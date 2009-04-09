@@ -1,0 +1,183 @@
+% Dieses Dokument muss mit PDFLatex geestzt werden
+% Vorteil: Grafiken koennen als jpg, png, ... verwendet werden
+%          und die Links im Dokument sind auch gleich richtig
+%
+\documentclass[
+               a4paper,
+               twoside, % fuer die Betrachtung am Schirm ungeschickt
+% Optionen fuer typearea.
+               BCOR1.92mm,DIV12,headinclude, %je hoeher der DIV-Wert, desto mehr geht auf eine Seite - Hack für BCOR. Bei BCOR2mm sind die Fuellpunkte beim Inhaltsverzeichnis falsch
+%               titlepage,
+               bibliography=totoc,
+%               idxtotoc,   %Index ins Inhaltsverzeichnis
+%				liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
+               headsepline,
+               cleardoublepage=empty,
+               parskip=half,
+%				pointlessnumbers, %f"ur englische Texte, dann auch "packages_and_options" die komafont f"ur "Uberschriften anpassen.
+%               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
+               final   % ACHTUNG! - in pagestyle.tex noch Seitenstil anpassen
+               ]{scrbook}
+\input{preambel/packages_and_options}
+
+ %Der untere Rand darf "flattern"
+\raggedbottom
+
+%Sprache f"ur das Titelblatt einstellen. Standard: deutsch
+%\sprache{englisch}
+
+\setcounter{tocdepth}{2} %1 fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
+\makeindex
+
+\pruefer{Prof.\,Dr.\,Pro Fessor}
+\betreuer{Dipl.-Inf.\,Roman Tiker} % oder M.\,Sc.\,Roman Tiker
+
+\begonnen{25.\,April 2005}
+\beendet{21.\,Oktober 2005}
+%Bei englischen Arbeiten ist das Format "October 21, 2005" (siehe http://www.ego4u.de/de/cram-up/vocabulary/date/written)
+
+\titel{Web Services und empirische Philosophie}
+\autor{Au Torin}
+%\autor{C.\,O.\,Autor}  % bei zwei Autoren
+%\studiengang{swt} % Default ist \studiengang{inf}, also Informatik.
+
+\nummer{4712}
+
+%Hier das Institut angeben.
+%\institut\fmi
+%\institut\iris
+%\institut\iste
+%\institut\iti
+%\institut\iaas
+%\institut\ipvs
+%\institut\vis
+%\institut\visus
+
+%Alternativen:
+
+%1. Freitext
+\institut{
+Institut f\"ur Formale Methoden der Informatik\\\vskip .3em
+Abteilung Formale Konzepte\\\vskip .3em
+Universit\"at Stuttgart\\
+Universit\"atsstra{\ss}e 38\\
+D--70569 Stuttgart}
+
+%2. Ganze Fakultaet
+%\institut\fak
+
+
+%Bitte CR-Klassifikationen anpassen
+%  http://www.informatik.uni-stuttgart.de/zdi/buecherei/ifibib_hilfe_cr.html 
+%  oder
+%  http://www.acm.org/class/
+\crk{H.4.1}%Office Automation: Workflow Management
+\crk{K.1} %Computer Industry: standards
+
+%Angaben in die PDF-Infos uebernehmen
+\makeatletter
+\hypersetup{
+            pdftitle={\@titel},
+            pdfauthor={\@author},
+            pdfkeywords={\@crk}, % <-- hier ggf. weitere Stichworte einfuegen
+            pdfsubject={}
+}
+\makeatother
+
+\begin{document}
+%\svnInfo $Id: ausarbeitung.tex 80 2009-04-09 11:06:26Z koppor $ 
+\VerbatimFootnotes %verbatim text in Fussnoten erlauben. Geht normalerweise nicht.
+%\frontmatter
+\input{macros/commands}
+\pagenumbering{arabic}
+\Titelblatt
+%Nach dem Titelblatt ist die aktuelle Seite immer noch 1
+%Dies wird mit den naechsten zwei Zeilen korrigiert.
+\setcounter{page}{2}
+\cleardoublepage
+
+%Jetzt das Inhaltsverzeichnis
+%Eigener Seitenstil fuer's Inhaltsverzeichnis
+\deftripstyle{preamble}{}{}{}{}{}{\pagemark}
+%Doku zu deftripstyle: scrguide.pdf
+\pagestyle{preamble}
+\renewcommand*{\chapterpagestyle}{preamble}
+\microtypesetup{protrusion=false}
+\tableofcontents
+
+%listof* untereinandergesetzt
+%ACHTUNG! Falls ein anderer Kapitelstil gewählt wird, muss der Code hier evtl.
+%  angepasst werden
+\begingroup 
+\makeatletter
+  \def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \reset@font
+            \normalfont \vphantom{\@chapapp{} \thechapter}
+        \par\nobreak\vspace*{10\p@}%
+        \interlinepenalty\@M
+    {\huge \bfseries %
+	%Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+    %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
+    \fontfamily{phv}\selectfont
+	%B) Fuer Kapitaelchen folgende Zeile aktivieren:
+	%\fontseries{m}\fontshape{sc}\selectfont
+	#1\par\nobreak}
+    %\vspace*{1\p@}%
+\makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
+    \par\nobreak
+    \vskip 5\p@
+  }}
+\makeatother
+\let\cleardoublepage\clearpage
+\listoffigures
+\let\cleardoublepage\relax
+\listoftables
+
+%Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
+%\lstlistoflistings 
+%ansonsten:
+\listof{Listing}{Verzeichnis der Listings}
+
+%mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
+%Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
+\listof{Algorithmus}{Verzeichnis der Algorithmen}
+%\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
+
+\endgroup
+
+\cleardoublepage
+
+%Optischen Randausgleich und Grauwertkorrektur wieder aktivieren
+\microtypesetup{protrusion=true}
+
+\renewcommand*{\chapterpagestyle}{scrplain}
+\pagestyle{scrheadings}
+\input{preambel/pagestyle}
+%
+%
+% ** Hier wird der Text eingebunden **
+%
+\input{content/einleitung}
+%\input{...weitere Kapitel...}
+\input{content/kapitel2}
+\input{content/zusammenfassung_und_ausblick}
+%
+%
+%\renewcommand{\appendixtocname}{Anhang}
+%\renewcommand{\appendixname}{Anhang}
+%\renewcommand{\appendixpagename}{Anhang}
+\appendix
+\input{content/anhang}
+%\printindex
+\bibliographystyle{alphadin}
+%\bibliographystyle{bibliography/IAAS}
+\bibliography{bibliography/bibliography}
+Alle URLs wurden zuletzt am 17.03.2008 gepr\"uft.
+%All links were last followed on March 17, 2008.
+
+\backmatter 
+\pagestyle{empty}
+\renewcommand*{\chapterpagestyle}{empty}
+\Versicherung
+\end{document}
