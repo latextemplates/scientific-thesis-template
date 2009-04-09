@@ -1,0 +1,94 @@
+
+% Andere Kapitelueberschriften
+% falls einem der Standard von KOMA nicht gefaellt...
+% Falls man zurück zu KOMA moechte, dann muss jede der vier folgenden Moeglichkeiten deaktiviert sein.
+
+% 1. Moeglichkeit
+%\usepackage[Sonny]{fncychap}
+
+% 2. Moeglichkeit
+\iffalse
+\usepackage[Bjarne]{fncychap}
+\ChNameVar{\Large\sf} \ChNumVar{\Huge} \ChTitleVar{\Large\sf}
+\ChRuleWidth{0.5pt} \ChNameUpperCase
+\fi
+
+%Variante der 2. Moeglichkeit
+\iffalse
+\usepackage[Rejne]{fncychap}
+\ChNameVar{\centering\Huge\rm\bfseries}
+\ChNumVar{\Huge}
+ \ChTitleVar{\centering\Huge\rm}
+\ChNameUpperCase
+\ChTitleUpperCase
+\ChRuleWidth{1pt}
+\fi
+
+% 3. Moeglichkeit
+\iffalse
+\usepackage{fncychap}
+\ChNameUpperCase
+\ChTitleUpperCase
+\ChNameVar{\raggedright\normalsize} %\rm
+\ChNumVar{\bfseries\Large}
+\ChTitleVar{\raggedright\Huge}
+\ChRuleWidth{1pt}
+\fi
+
+% 4. Moeglichkeit
+% Zur Aktivierierung "\iffalse" und "\fi" auskommentieren
+% Innen drin kann man dann noch zwischen
+%   * serifenloser Schriftart (eingestellt)
+%   * serifenhafter Schriftart (wenn kein zusaetzliches Kommando aktiviert ist) und
+%   * Kapitälchen wählen
+\iffalse
+\makeatletter
+%\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+
+%Fuer Kapitel mit Kapitelnummer
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \reset@font
+			%Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+            %A) Fuer serifenlose Schrift:
+            \fontfamily{phv}\selectfont
+			%B) Fuer Kapitaelchen:
+			%\fontseries{m}\fontshape{sc}\selectfont
+            %C) Fuer ganz "normale" Schrift:
+            %\normalfont 
+			%
+			\Large \@chapapp{} \thechapter
+        \par\nobreak\vspace*{10\p@}%
+        \interlinepenalty\@M
+    {\Huge\bfseries\baselineskip3ex
+	%Fuer Kapitaelchen folgende Zeile aktivieren:
+	%\fontseries{m}\fontshape{sc}\selectfont
+	#1\par\nobreak}
+    \vspace*{10\p@}%
+\makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
+    \par\nobreak
+    \vskip 40\p@
+  }}
+
+  %Fuer Kapitel ohne Kapitelnummer (z.B. Inhaltsverzeichnis)
+  \def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \reset@font
+            \normalfont \vphantom{\@chapapp{} \thechapter}
+        \par\nobreak\vspace*{10\p@}%
+        \interlinepenalty\@M
+    {\Huge \bfseries %
+	%Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+    %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
+    \fontfamily{phv}\selectfont
+	%B) Fuer Kapitaelchen folgende Zeile aktivieren:
+	%\fontseries{m}\fontshape{sc}\selectfont
+	#1\par\nobreak}
+    \vspace*{10\p@}%
+\makebox[\textwidth]{\hrulefill}%    \hrulefill does not work
+    \par\nobreak
+    \vskip 40\p@
+  }}
+%
+\makeatother
+\fi

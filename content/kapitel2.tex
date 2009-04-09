@@ -1,0 +1,156 @@
+%\svnInfo $Id: kapitel2.tex 80 2009-04-09 11:06:26Z koppor $ 
+
+%Die Angabe des schlauen Spruchs auf diesem Wege funtioniert nur,
+%wenn keine Änderung des Kapitels mittels den in preambel/chapterheads.tex
+%vorgeschlagenen Möglichkeiten durchgeführt wurde.
+\setchapterpreamble[u]{%
+\dictum[Albert Einstein]{Probleme kann man niemals mit derselben Denkweise lösen, durch die sie entstanden sind.}
+}
+\chapter{Kapitel zwei}
+%\vspace{-3cm}
+%\vspace{2cm}
+
+\label{chap:k2}
+Hier wird der Hauptteil stehen. Falls mehrere Kapitel gewünscht, entweder mehrmals \texttt{\textbackslash{}chapter} benutzen oder pro Kapitel eine eigene Datei anlegen und \texttt{ausarbeitung.tex} anpassen.
+
+Verweise auf einen Abschnitt gehen mittels: ``Siehe Abschnitt~\vref{sec:mf}''. Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}ref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird. \texttt{vref}: Abschnitt \vref{sec:diff}, \texttt{ref}: \ref{sec:diff}.
+
+Falls ein Abschnitt länger als eine Seite wird und man mittels \texttt{\textbackslash{}vref} darauf
+verweisen möchte, dann sollte man \texttt{\textbackslash{}phantomsection} verwenden und dann wird
+auch bei \texttt{vref} die richtige Seite angeben.
+%The link location will be placed on the line below.
+%Tipp von http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#The_hyperref_package_and_.5Cphantomsection
+\phantomsection
+\label{cooltarget}Hier wird irgendwas beschrieben.
+
+\section{Mathematische Formeln}
+\label{sec:mf}
+Mathematische Formeln kann man $so$ setzen. §symbols-a4.pdf§ (zu finden auf \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf}) enthält eine Liste der unter LaTeX direkt verfügbaren Symbole. z.\,B.\ $\mathbb{N}$ für die Menge der natürlichen Zahlen. Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/} gelesen werden.
+
+Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}.
+
+\section{Quellcode}
+Listing~\ref{lst:ListingANDlstlisting} zeigt, wie man Programmlistings einbindet.  Mittels §\lstinputlisting§ kann man den Inhalt direkt aus Dateien lesen.
+
+%Listing-Umgebung wurde durch \newfloat{Listing} definiert
+\begin{Listing}
+\begin{lstlisting}
+<listing name="second sample">
+  <content>not interesting</content>
+</listing>
+\end{lstlisting}
+\caption{lstlisting in einer Listings-Umgebung, damit das Listing durch Balken abgetrennt ist}
+\label{lst:ListingANDlstlisting}
+\end{Listing}
+
+\section{Abbildungen}
+Die Abbildungen~\ref{fig:chor1} und~\ref{fig:chor2} sind für das Verständnis dieses Dokuments
+wichtig. Im Anhang zeigt Abbildung~\vref{fig:AnhangsChor} erneut die komplette Choreographie.
+
+%Die Parameter in eckigen Klammern sind optionale Parameter - z.B. [htb!]
+%htb! bedeutet: "Liebes LaTeX, bitte platziere diese Abbildung zuerst hier ("_h_ere"). Falls das nicht funktioniert, dann bitte oben auf der Seite ("_t_op"). Und falls das nicht geht, bitte unten auf der Seite ("_b_ottom"). Und bitte, bitte bevorzuge hier und oben, auch wenn's net so optimal aussieht ("!")
+%Diese sollten nach Möglichkeit NICHT verwendet werden. LaTeX's Algorithmus für das Platzieren der Gleitumgebung ist schon sehr gut!
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=\textwidth]{choreography}
+    \caption{Beispiel-Choreographie}
+    \label{fig:chor1}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=.8\textwidth]{choreography}
+    \caption[Beispiel-Choreographie]{Die Beispiel-Choreographie. Nun etwas kleiner, damit \texttt{\textbackslash textwidth} demonstriert wird. Und auch die Verwendung von alternativen Bildunterschriften für das Verzeichnis der Abbildungen. Letzteres ist allerdings nur Bedingt zu empfehlen, denn wer liesst schon so viel Text unter einem Bild? Oder ist es einfach nur Stilsache?}
+    \label{fig:chor2}
+  \end{center}
+\end{figure}
+
+\section{Tabellen}
+Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse.
+\begin{table}
+  \begin{center}
+    \begin{tabular}{ccc}
+	\toprule
+	\multicolumn{2}{c}{\textbf{zusammengefasst}} & \textbf{Titel} \\ \midrule
+	Tabelle & wie & in \\
+	\url{tabsatz.pdf}& empfohlen & gesetzt\\
+	\bottomrule
+    \end{tabular}
+    \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
+    \label{tab:Ergebnisse}
+  \end{center}
+\end{table}
+
+\section{Pseudocode}
+Algorithmus~\vref{alg:sample} zeigt einen Beispielalgorithmus.
+\begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
+\caption{Sample algorithm}
+\label{alg:sample}
+\begin{algorithmic}
+\Procedure{Sample}{$a$,$v_e$}
+\State $\mathsf{parentHandled} \gets (a = \mathsf{process}) \lor \mathsf{visited}(a'), (a',c,a) \in \mathsf{HR}$ 
+\State \Comment $(a',c'a) \in \mathsf{HR}$ denotes that $a'$ is the parent of $a$
+\If{$\mathsf{parentHandled}\,\land(\mathcal{L}_\mathit{in}(a)=\emptyset\,\lor\,\forall l \in \mathcal{L}_\mathit{in}(a): \mathsf{visited}(l))$}
+\State $\mathsf{visited}(a) \gets \text{true}$
+\State $\mathsf{writes}_\circ(a,v_e) \gets
+\begin{cases}
+\mathsf{joinLinks}(a,v_e) & \abs{\mathcal{L}_\mathit{in}(a)} > 0\\
+\mathsf{writes}_\circ(p,v_e)
+& \exists p: (p,c,a) \in \mathsf{HR}\\
+(\emptyset, \emptyset, \emptyset, false) & \text{otherwise}
+\end{cases}
+$
+\If{$a\in\mathcal{A}_\mathit{basic}$}
+  \State \Call{HandleBasicActivity}{$a$,$v_e$}
+\ElsIf{$a\in\mathcal{A}_\mathit{flow}$}
+  \State \Call{HandleFlow}{$a$,$v_e$}
+\ElsIf{$a = \mathsf{process}$} \Comment Directly handle the contained activity
+  \State \Call{HandleActivity}{$a'$,$v_e$}, $(a,\bot,a') \in \mathsf{HR}$
+  \State $\mathsf{writes}_\bullet(a) \gets \mathsf{writes}_\bullet(a')$
+\EndIf
+\ForAll{$l \in \mathcal{L}_\mathit{out}(a)$}
+  \State \Call{HandleLink}{$l$,$v_e$}
+\EndFor
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{Algorithmus}
+
+\clearpage
+Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der kann das nur mit folgendem \textbf{üblen} Hack tun:
+
+{
+\begin{minipage}{\textwidth}
+\hrule height .8pt width\textwidth
+\vskip.15em%\vskip\abovecaptionskip\relax
+\stepcounter{Algorithmus}
+\addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
+\noindent\textbf{Algorithmus \theAlgorithmus} Description
+%\stepcounter{algorithm}
+%\addcontentsline{alg}{Algorithmus}{\thealgorithm{}\hskip0em Description}
+%\textbf{Algorithmus \thealgorithm} Description
+\vskip.3em%\vskip\belowcaptionskip\relax
+\hrule height .5pt width\textwidth
+\end{minipage}
+code goes here\\
+test2\\
+\vskip-.9em
+\hrule height .5pt width\textwidth
+}
+
+\section{Verschiedenes}
+\label{sec:diff}
+Ziffern (123\,654\,789) werden schön gesetzt. Falls dies nicht gewünscht ist, den Parameter \texttt{osf} bei dem Paket \texttt{mathpazo} herausnehmen.
+
+\textsc{Kapitälchen} werden schön gesperrt...
+
+\begin{compactenum}[I]
+\item Man kann auch die Nummerierung dank paralist kompakt halten
+\item und auf eine andere Nummerierung umstellen
+\end{compactenum}
+
+\section{Weitere Hinweise}
+Bitte schaut für weitere Informationen in's Studiwiki\footnote{\url{http://studiwiki.informatik.uni-stuttgart.de/LaTeX}}. Dort sind viele weitere Tipps und Hinweise verlinkt.
+
+Verbesserungsvorschläge für diese Vorlage sind immer willkommen. Bitte im Trac ein Ticket eingragen (\url{https://studiforge.informatik.uni-stuttgart.de/trac/Vorlagen/}).

@@ -1,0 +1,19 @@
+Release-TODO:
+Doko zum Einbinden
+svn:externals
+
+in SVN selbst diplomtitel.sty als external einbinden
+
+
+Gliederung so formatieren, wie seba oder Thomas Steinmetz
+
+
+Als TODOs/Tipp @ Trac:
+  * conditional compiltaion with version.sty
+  * Acronym-Paket
+  * Kommentar zu cm-super in preambel/font.tex
+
+  * Fußnoten in Tabellen
+  * Überschriften nach links: \addtokomafont{section}{\hspace*{--1cm}}
+  * emptypage-paket (CTAN:macros/latex/contrib/emptypage)
+    --> wird schon durch cleardouble=empty erledigt

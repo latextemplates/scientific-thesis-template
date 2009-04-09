@@ -1,0 +1,28 @@
+% $Id: commands.tex 80 2009-04-09 11:06:26Z koppor $
+%
+%wird fuer Tabellen benoetigt (z.B. >{centering\RBS}p{2.5cm} erzeugt einen zentrierten 2,5cm breiten Absatz in einer Tabelle
+\newcommand{\RBS}{\let\\=\tabularnewline}
+
+%Normalerweise werden Texte mittels ``Satz'' beschrieben.
+%Dann werden auch die richtigen Anfuehrungszeichen verwendet.
+%Manchmal klappt es doch nicht. Und statt \glqq Test\grqq{} ... wird
+%hier das Kommando \gq definiert, dass sich \gq{so} benutzt.
+\newcommand{\gq}[1]{\glqq{}#1\grqq{}\xspace}
+
+%from hmks makros.tex - \indexify
+\newcommand{\toindex}[1]{\index{#1}#1}
+%
+\newcommand{\dotcup}{\ensuremath{\,\mathaccent\cdot\cup\,}} %Tipp aus The Comprehensive LaTeX Symbol List
+%
+%Anstatt $|x|$ $\abs{x}$ verwenden. Die Betragsstriche skalieren automatisch, falls "x" etwas groessers sein sollte...
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+%
+%fuer Zitate
+\newcommand{\citeS}[2]{\cite[S.~#1]{#2}}
+\newcommand{\citeSf}[2]{\cite[S.~#1\,f.]{#2}}
+\newcommand{\citeSff}[2]{\cite[S.~#1\,ff.]{#2}}
+\newcommand{\vgl}{vgl.\ }
+\newcommand{\Vgl}{Vgl.\ }
+%
+\newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
+\algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
