@@ -7,7 +7,12 @@
 %Dann werden auch die richtigen Anfuehrungszeichen verwendet.
 %Manchmal klappt es doch nicht. Und statt \glqq Test\grqq{} ... wird
 %hier das Kommando \gq definiert, dass sich \gq{so} benutzt.
+% siehe reader für richtige variante
 \newcommand{\gq}[1]{\glqq{}#1\grqq{}\xspace}
+
+%% typoraphisch richtige Abkürzungen
+\newcommand{\zB}[0]{z.\,B.\xspace}
+\newcommand{\bzw}[0]{bzw. \xspace}
 
 %from hmks makros.tex - \indexify
 \newcommand{\toindex}[1]{\index{#1}#1}
@@ -26,3 +31,7 @@
 %
 \newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
 \algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
+
+% Seitengroessen - Gegen Schusterjungen und Hurenkinder...
+\newcommand{\largepage}{\enlargethispage{\baselineskip}}
+\newcommand{\shortpage}{\enlargethispage{-\baselineskip}}

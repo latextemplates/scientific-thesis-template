@@ -27,7 +27,7 @@
 
 
 %Fallback-Schriftart
-\usepackage{lmodern}  % Latin Modern Fonts sind die Nachfolger von Computer Modern, den LaTeX-Standardfonts
+%\usepackage{lmodern}  % Latin Modern Fonts sind die Nachfolger von Computer Modern, den LaTeX-Standardfonts
 %Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
 %Allerdings sieht diese Schritart in Diplomarbeiten fuer Fliesstext auch nicht besonders schoen aus.
 %Trotzdem ist sie fuer Programmcode gut geeignet
@@ -39,6 +39,14 @@
 %Falls auskommentiert, wird die Standardschriftart genommen
 %\usepackage[scaled=.92]{luximono} % Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
 %\usepackage{courier} 
+
+% Tolle Schriften...
+%\usepackage{helvet}
+%\usepackage{palatino}
+\usepackage[osf]{libertine}
+% Für Schreibschrift würde tun, muss aber ned
+%\usepackage{mathrsfs} %  \mathscr{ABC}
+
 
 %Schriftart fuer den Fliesstext - ueberschreibt lmodern
 %
@@ -56,7 +64,7 @@
 %  herunterladen 
 %Falls bei einer Silbentrennung ploetzlich eine ganze Zeile fehlt (passiert unter Windows XP mit MikTex 2.5 und foxit reader als pdfreader
 %\usepackage{pdfcprot}
-%ausprobieren. Dieses erzeugt allerdings nur f�r Palatino (in dieser Vorlage die Default-Schrift) einen guten optischen Randausgleich
+%ausprobieren. Dieses erzeugt allerdings nur für Palatino (in dieser Vorlage die Default-Schrift) einen guten optischen Randausgleich
 %Falls alle Stricke reissen, muss leider auf den optischen Randausgleich verzichtet werden.
 
 %fuer microtype
@@ -66,6 +74,6 @@
 %
 %\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }% 
 %\SetTracking{ encoding = *, shape = sc }{ 45 }% Hier wird festgelegt,
-            % dass alle Passagen in Kapit�lchen automatisch leicht
+            % dass alle Passagen in Kapitälchen automatisch leicht
             % gesperrt werden.
 			% Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
