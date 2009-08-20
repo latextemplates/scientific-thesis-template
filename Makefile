@@ -3,7 +3,7 @@ editor = gedit
 
 # Main file name and literature list
 MASTER_TEX = ausarbeitung.tex
-LITERATURE = bibliography/studienarbeit.bib
+LITERATURE = bibliography/bibliography.bib
 
 latex = pdflatex
 bibtex = bibtex
