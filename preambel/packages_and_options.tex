@@ -158,7 +158,8 @@
 %Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
 \usepackage{fancyvrb}
 %\fvset{fontsize=\small} %Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
-%\DefineShortVerb{\§} %Somit kann im Text ganz einfach §verbatim§ text gesetzt werden.
+%Funktioniert mit UTF-8 nicht mehr
+%\DefineShortVerb{\§} %Somit kann im Text ganz einfach |verbatim| text gesetzt werden.
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{fontsize=\footnotesize}
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{fontsize=\footnotesize}
 %
@@ -507,3 +508,4 @@
 \setcounter{tocdepth}{2}
 %
 %%%
+
