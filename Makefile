@@ -99,9 +99,7 @@ rcs.sty:
 	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/rcs/rcs.sty
 
 todonotes.sty:
-	wget ftp://dante.de/tex-archive/macros/latex/contrib/todonotes/todonotes.sty
-	wget ftp://dante.de/tex-archive/macros/latex/contrib/todonotes/todonotes.ins
-	wget ftp://dante.de/tex-archive/macros/latex/contrib/todonotes/todonotes.dtx
+	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/todonotes/todonotes.sty
 
 tabulary.ins:
 	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/tabulary/tabulary.dtx
@@ -150,5 +148,5 @@ dokumentationen:
 
 # Einmal initial alle Dokumentationen ziehen mit "dokumentation.pdf"
 # tabulary.sty algorithm.sty lmodern.sty microtype.sty todonotes.sty dokumentation.pdf
-fetchstys: tabulary.sty algorithm.sty lmodern.sty microtype.sty todonotes.sty
+fetchstys: todonotes.sty
 
