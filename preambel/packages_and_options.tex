@@ -37,6 +37,10 @@
 %%%
 % Codierung
 % Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
+%
+% Mit UTF-8 funktionieren folgende Pakete nicht mehr. Bitte beachten!
+%   * fancyvrb mit § 
+%   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/ 
 \usepackage[utf8]{inputenc}
 %
 %%%
@@ -50,7 +54,7 @@
 
 
 %%%
-% fancyheadings fuer koma
+% fancyheadings (nicht nur) fuer koma
 \usepackage[automark]{scrpage2} 
 %
 %%%
@@ -104,7 +108,7 @@
 
 
 %%%
-% Tabllenerweiterungen
+% Tabellenerweiterungen
 \usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
 \usepackage{longtable}
 %
@@ -112,7 +116,7 @@
 
 
 %%%
-% Links verhalten sich so wie sie sollen
+% Links verhalten sich so, wie sie sollen
 \usepackage{url}
 %
 %%%
@@ -124,6 +128,22 @@
 %
 %%%
 
+%%%
+%lustiger Hack fuer das Abkuerzungsverzeichnis
+%nach latex durchlauf folgendes ausfuehren
+%makeindex ausarbeitung.nlo -s nomencl.ist -o ausarbeitung.nls 
+%danach nochmal latex
+%\usepackage{nomencl}
+%	\let\abk\nomenclature %Deutsche Ueberschrift setzen
+%	  	\renewcommand{\nomname}{List of Abbreviations}
+%		%Punkte zw. Abkuerzung und Erklaerung
+%	  	\setlength{\nomlabelwidth}{.2\hsize}
+%	  	\renewcommand{\nomlabel}[1]{#1 \dotfill}
+%		%Zeilenabstaende verkleinern
+%	  	\setlength{\nomitemsep}{-\parsep}
+%	\makenomenclature
+%
+%%%
 
 %%%
 % Logik für Tex
