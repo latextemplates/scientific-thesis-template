@@ -3,8 +3,8 @@
 %          und die Links im Dokument sind auch gleich richtig
 %
 \documentclass[
-               a4paper,
-               twoside, % fuer die Betrachtung am Schirm ungeschickt
+               paper=a4,,
+%               twoside, % fuer die Betrachtung am Schirm ungeschickt
 % Optionen fuer typearea.
                BCOR1.92mm,DIV12,headinclude, %je hoeher der DIV-Wert, desto mehr geht auf eine Seite - Hack für BCOR. Bei BCOR2mm sind die Fuellpunkte beim Inhaltsverzeichnis falsch
 %               titlepage,
@@ -23,10 +23,21 @@
  %Der untere Rand darf "flattern"
 \raggedbottom
 
+%%%
+% Wie tief wird das Inhaltsverzeichnis aufgeschlüsselt
+% 0 --\chapter
+% 1 --\section
+% 2 --\subsection
+% 3 --\subsubsection
+% 4 --\paragraph
+% fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
+\setcounter{tocdepth}{3}
+%
+%%%
+
 %Sprache f"ur das Titelblatt einstellen. Standard: deutsch
 %\sprache{englisch}
 
-\setcounter{tocdepth}{2} %1 fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
 \makeindex
 
 \pruefer{Prof.\,Dr.\,Pro Fessor}
@@ -103,6 +114,18 @@ D--70569 Stuttgart}
 \pagestyle{preamble}
 \renewcommand*{\chapterpagestyle}{preamble}
 \microtypesetup{protrusion=false}
+
+%%%
+% Literaturverzeichnis ins TOC mit aufnehmen, aber nur wenn nichts anderes mehr hilft!
+% \addcontentsline{toc}{chapter}{Literaturverzeichnis}
+%
+% oder zB
+%\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+%\section*{Abkürzungsverzeichnis}
+%
+%%%
+
+%Inhaltsverzeichnis anlegen
 \tableofcontents
 
 %listof* untereinandergesetzt
