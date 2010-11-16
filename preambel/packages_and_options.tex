@@ -21,6 +21,11 @@
 %
 %%%
 
+%%%
+%Farbdefinitionen
+\usepackage[hyperref,dvipsnames]{xcolor}
+%
+
 
 %%%
 % Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
@@ -260,7 +265,6 @@
 %%%
 %
 \raggedbottom     % Variable Seitenhöhen zulassen
-\linespread{1.05} % Durchschuss für Charter leicht erhöhen
 %
 %%%
 
@@ -289,7 +293,6 @@
 %
 %\usepackage{multicol}
 %\usepackage{setspace} % kollidiert mit diplomarbeit.sty
-\usepackage[hyperref,dvipsnames]{xcolor} %Parameter "pdftex" ist unnoetig
 %
 %http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats
 %\usepackage{flafter} %floats IMMER nach ihrer Deklaration platzieren
@@ -492,6 +495,9 @@
 %
 %%%
 
+%%%
+%Optischer Randausgleich
+\usepackage{microtype}
 
 %%%
 % Rueckverweise aus dem Literaturverzeichnis
