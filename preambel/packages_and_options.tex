@@ -470,18 +470,6 @@
 
 %%%
 %
-\automark[section]{chapter}
-\setkomafont{pagehead}{\normalfont\sffamily} %gilt auch f"ur Fu"s
-\setkomafont{pagenumber}{\normalfont\rmfamily}
-%\setheadsepline[.4pt]{.4pt} %funktioniert nicht: Alle Linien sind hier weg
-%
-%
-% Fuer englische Texte sind serifenhafte Ueberschriften gut. Deshalb hier der Befehl zum Aktivieren von serifenhaften Ueberschriften
-%\setkomafont{disposition}{\normalfont\rmfamily}
-%
-% Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
-\setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
-%
 % Float-placements - http://dcwww.camd.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html#figplacement
 % and http://people.cs.uu.nl/piet/floats/node1.html
 \renewcommand{\topfraction}{0.85}
@@ -502,12 +490,13 @@
 %%%
 % Rueckverweise aus dem Literaturverzeichnis
 \usepackage[hyperpageref]{backref}
+\iftrue
 % Deutscher Text
 \newcommand{\babelbackrefnotcited}{\relax}
 \newcommand{\babelbackrefcitedsingle}[1]{(Zitiert auf Seite~#1)}
 \newcommand{\babelbackrefcitedmulti}[1]{(Zitiert auf den Seiten~#1)}
 \newcommand{\babelbackrefand}{und}
-\iffalse
+\else
 % Englischer Text
 \newcommand{\babelbackrefnotcited}{\relax}
 \newcommand{\babelbackrefcitedsingle}[1]{(Cited on page~#1)}
