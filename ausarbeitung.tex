@@ -14,10 +14,20 @@
                headsepline,
                cleardoublepage=empty,
                parskip=half,
-%				pointlessnumbers, %f"ur englische Texte, dann auch "packages_and_options" die komafont f"ur "Uberschriften anpassen.
+%				pointlessnumbers, %f"ur englische Texte, dann auch "packages_and_options" und "fonts" anpassen.
 %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
                final   % ACHTUNG! - in pagestyle.tex noch Seitenstil anpassen
                ]{scrbook}
+
+%Englisch:			   
+%\let\ifdeutsch\iffalse
+%\let\ifenglisch\iftrue
+
+%Deutsch:
+\let\ifdeutsch\iftrue
+\let\ifenglisch\iffalse
+
+			   
 \input{preambel/packages_and_options}
 
  %Der untere Rand darf "flattern"
@@ -36,16 +46,23 @@
 %%%
 
 %Sprache f"ur das Titelblatt einstellen. Standard: deutsch
-%\sprache{englisch}
+\ifenglisch
+\sprache{englisch}
+\fi
 
 \makeindex
 
 \pruefer{Prof.\,Dr.\,Pro Fessor}
 \betreuer{Dipl.-Inf.\,Roman Tiker} % oder M.\,Sc.\,Roman Tiker
 
+\ifdeutsch
 \begonnen{25.\,April 2005}
 \beendet{21.\,Oktober 2005}
+\else
 %Bei englischen Arbeiten ist das Format "October 21, 2005" (siehe http://www.ego4u.de/de/cram-up/vocabulary/date/written)
+\begonnen{April 25, 2005}
+\beendet{Oktober 21, 2005}
+\fi
 
 \titel{Web Services und empirische Philosophie}
 \autor{Au Torin}
@@ -144,11 +161,16 @@ D--70569 Stuttgart}
         \par\nobreak\vspace*{10\p@}%
         \interlinepenalty\@M
     {\huge \bfseries %
-	%Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+	%
+	%Default-Schrift: Serifenhaft (fuer englische Dokumente)
+	% Dann sowohl A als auch B deaktivieren
     %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
+	\ifdeutsch
     \fontfamily{phv}\selectfont
+	\fi
 	%B) Fuer Kapitaelchen folgende Zeile aktivieren:
 	%\fontseries{m}\fontshape{sc}\selectfont
+	%
 	#1\par\nobreak}
     %\vspace*{1\p@}%
 \makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
@@ -164,11 +186,19 @@ D--70569 Stuttgart}
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
 %\lstlistoflistings 
 %ansonsten:
+\ifdeutsch
 \listof{Listing}{Verzeichnis der Listings}
+\else
+\listof{Listing}{List of Listings}
+\fi
 
 %mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
 %Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
+\ifdeutsch
 \listof{Algorithmus}{Verzeichnis der Algorithmen}
+\else
+\listof{Algorithmus}{List of Algorithms}
+\fi
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
 
 \endgroup
@@ -198,11 +228,17 @@ D--70569 Stuttgart}
 \input{content/anhang}
 %\printindex
 %\bibliographystyle{alphadin}
-%\bibliographystyle{bibliography/IAAS} %f"ur englische Texte
+\ifdeutsch
 \bibliographystyle{bibliography/IAASde} %f"ur deutsche Texte
+\else
+\bibliographystyle{bibliography/IAAS} %f"ur englische Texte
+\fi
 \bibliography{bibliography/bibliography}
+\ifdeutsch
 Alle URLs wurden zuletzt am 17.03.2008 gepr\"uft.
-%All links were last followed on March 17, 2008.
+\else
+All links were last followed on March 17, 2008.
+\fi
 
 \backmatter 
 \pagestyle{empty}

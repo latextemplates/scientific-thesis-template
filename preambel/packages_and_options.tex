@@ -29,12 +29,15 @@
 
 %%%
 % Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
+\ifdeutsch
 \usepackage[ngerman]{babel}
+\else
 %
 %
 % if you are writing in english
 % für englische Texte, Hinweise zu weiteren, notwendigen Umstellungen in README.txt beachten
-%\usepackage[american]{babel}
+\usepackage[american]{babel}
+\fi
 %
 %%%
 
@@ -272,8 +275,14 @@
 %%%
 % Falls die Seitenzahl bei einer Referenz auf eine Abbildung nur dann angegeben werden soll,
 % falls sich die Abbildung nicht auf der selben Seite befindet...
+\ifdeutsch
 \usepackage[ngerman]{varioref}
-%
+\else
+\usepackage{varioref}
+\fi
+%%%
+
+%%%
 % Noch schoenere Tabellen als mit booktabs mit http://www.zvisionwelt.de/downloads.html
 \usepackage{booktabs} 
 %
@@ -446,7 +455,9 @@
         belowskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
         captionpos=b
 }
+\ifdeutsch
 \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
+\fi
 %
 %%%
 
@@ -454,7 +465,9 @@
 %%%
 %fuer algorithm.sty: - falls Deutsch und nicht Englisch. Falls Englisch als Sprache gewählt wurde, bitte die folgenden beiden Zeilen auskommentieren.
 \floatname{algorithm}{Algorithmus}
+\ifdeutsch
 \renewcommand{\listalgorithmname}{Verzeichnis der Algorithmen}
+\fi
 %
 %%%
 
@@ -478,6 +491,10 @@
 \renewcommand{\floatpagefraction}{0.75}
 %\setcounter{totalnumber}{5}
 %
+%%%
+
+%%%
+%
 % Bei Gleichungen nur dann die Nummer zeigen, wenn die Gleichung auch referenziert wird
 \mathtoolsset{showonlyrefs}
 %
@@ -486,11 +503,12 @@
 %%%
 %Optischer Randausgleich
 \usepackage{microtype}
+%%%
 
 %%%
 % Rueckverweise aus dem Literaturverzeichnis
 \usepackage[hyperpageref]{backref}
-\iftrue
+\ifdeutsch
 % Deutscher Text
 \newcommand{\babelbackrefnotcited}{\relax}
 \newcommand{\babelbackrefcitedsingle}[1]{(Zitiert auf Seite~#1)}

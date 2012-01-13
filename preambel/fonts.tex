@@ -9,14 +9,21 @@
 
 %%%
 %
+\ifenglisch
 % Fuer englische Texte sind serifenhafte Ueberschriften gut. Deshalb hier der Befehl zum Aktivieren von serifenhaften Ueberschriften
-%\setkomafont{disposition}{\normalfont\rmfamily}
+\setkomafont{disposition}{\normalfont\rmfamily}
+
+% Bei englisschen Texten das Label (optionaler Eintrag bei \item) bei description-Umgegungen nur auf fett und nicht fett+serifenlos stellen.
+\setkomafont{descriptionlabel}{\normalfont\bfseries}
+\fi
 %
 %%%
 
 %%%
 % Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
+\ifdeutsch
 \setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
+\fi
 %%%
 
 %Symbole
@@ -54,7 +61,11 @@
 %Trotzdem ist sie fuer Programmcode gut geeignet
 
 %Schriftart fuer die Ueberschriften - ueberschreibt lmodern
-\usepackage[scaled=.95]{helvet} %fuer englische Texte .95 auf .90 aendern
+\ifdeutsch
+\usepackage[scaled=.95]{helvet}
+\else
+\usepackage[scaled=.90]{helvet}
+\fi
 
 %Schriftart fuer Programmcode - ueberschreibt lmodern
 %Falls auskommentiert, wird die Standardschriftart genommen
@@ -71,14 +82,18 @@
 
 %Schriftart fuer den Fliesstext - ueberschreibt lmodern
 %
+\ifdeutsch
 \usepackage[osf]{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
+\fi
 %Bringt Palantino, osf = Minuskel-Ziffern
 %
 %\usepackage{charter} %Charter fuer englsiche Texte
 %\linespread{1.05} % Durchschuss für Charter leicht erhöhen
 %
 %\usepackage{mathptmx} %Times fuer englische Texte. Sieht nicht sooo gut aus.
-%\usepackage{lmodern}
+\ifenglisch
+\usepackage{lmodern}
+\fi
 
 \usepackage[T1]{fontenc}
 
