@@ -339,9 +339,11 @@
 %
 %% Da es mit KOMA 3 und xcolor zu Problemen mit den global Options kommt MÜSSEN die Optionen so gesetzt werden.
 %
-% Eigene Farbdefinitionen ohne das xcolor package
+
+% Eigene Farbdefinitionen ohne die Namen des xcolor packages
 \definecolor{darkblue}{rgb}{0,0,.5}
 \definecolor{black}{rgb}{0,0,0}
+
 \hypersetup{
 	pdftex=true,
 	breaklinks=true,
@@ -354,6 +356,9 @@
 	breaklinks=true,
 	colorlinks=true,
 	hyperindex=true,
+	%
+	filecolor=darkblue,
+	urlcolor=darkblue,
 	linkcolor=black,
 	citecolor=black
 }
