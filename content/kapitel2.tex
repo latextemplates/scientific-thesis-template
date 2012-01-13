@@ -27,6 +27,17 @@ auch bei \texttt{vref} die richtige Seite angeben.
 \label{sec:mf}
 Mathematische Formeln kann man $so$ setzen. \texttt{symbols-a4.pdf} (zu finden auf \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf}) enthält eine Liste der unter LaTeX direkt verfügbaren Symbole. z.\,B.\ $\mathbb{N}$ für die Menge der natürlichen Zahlen. Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/} gelesen werden.
 
+Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} verwendet wurde.
+\begin{equation*}
+x = y
+\end{equation*}
+
+Die Gleichung~\ref{eq:test} erhält eine Nummer:
+\begin{equation}
+\label{eq:test}
+x = y
+\end{equation}
+
 Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}.
 
 \section{Quellcode}
