@@ -4,9 +4,9 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `head,alph,vonx,nm-init,ed-au,xmth,atit-u,num-xser,doi,pp,xedn,jabr,and-xcom,xand,url,url-blk,nfss,')
-%% german.mbs  (with options: `alph,vonx,nm-init,ed-au,xmth,atit-u,num-xser,doi,pp,xedn,jabr,and-xcom,xand,url,url-blk,nfss,')
-%% merlin.mbs  (with options: `tail,alph,vonx,nm-init,ed-au,xmth,atit-u,num-xser,doi,pp,xedn,jabr,and-xcom,xand,url,url-blk,nfss,')
+%% merlin.mbs  (with options: `head,exlang,alph,vonx,nm-init,ed-au,xmth,atit-u,num-xser,doi,pp,xedn,jabr,and-xcom,xand,url,url-blk,nfss,')
+%% german.mbs  (with options: `exlang,alph,vonx,nm-init,ed-au,xmth,atit-u,num-xser,doi,pp,xedn,jabr,and-xcom,xand,url,url-blk,nfss,')
+%% merlin.mbs  (with options: `tail,exlang,alph,vonx,nm-init,ed-au,xmth,atit-u,num-xser,doi,pp,xedn,jabr,and-xcom,xand,url,url-blk,nfss,')
 %% ----------------------------------------
 %% ***  ***
 %% 
@@ -25,7 +25,7 @@
  % \ProvidesFile{merlin.mbs}[2011/11/18 4.33 (PWD, AO, DPC)]
  %   For use with BibTeX version 0.99a or later
  %-------------------------------------------------------------------
- % This bibliography style file is intended for texts in ENGLISH
+ % This bibliography style file is intended for texts in
  % This is a labelled citation style similar to the standard alpha.bst,
  %   where labels are of the form Dal90 or DBK89.
  % It requires no extra package to interface to the main text.
@@ -208,82 +208,6 @@ FUNCTION {space.word}
 { " " swap$ * " " * }
  % Here are the language-specific definitions for explicit words.
  % Each function has a name bbl.xxx where xxx is the English word.
- % The language selected here is ENGLISH
-FUNCTION {bbl.and}
-{ "and"}
-
-FUNCTION {bbl.etal}
-{ "et~al." }
-
-FUNCTION {bbl.editors}
-{ "editors" }
-
-FUNCTION {bbl.editor}
-{ "editor" }
-
-FUNCTION {bbl.edby}
-{ "edited by" }
-
-FUNCTION {bbl.edition}
-{ "edition" }
-
-FUNCTION {bbl.volume}
-{ "volume" }
-
-FUNCTION {bbl.of}
-{ "of" }
-
-FUNCTION {bbl.number}
-{ "number" }
-
-FUNCTION {bbl.nr}
-{ "no." }
-
-FUNCTION {bbl.in}
-{ "in" }
-
-FUNCTION {bbl.pages}
-{ "pp." }
-
-FUNCTION {bbl.page}
-{ "p." }
-
-FUNCTION {bbl.chapter}
-{ "chapter" }
-
-FUNCTION {bbl.techrep}
-{ "Technical Report" }
-
-FUNCTION {bbl.mthesis}
-{ "Master's thesis" }
-
-FUNCTION {bbl.phdthesis}
-{ "Ph.D. thesis" }
-
-MACRO {jan} {"January"}
-
-MACRO {feb} {"February"}
-
-MACRO {mar} {"March"}
-
-MACRO {apr} {"April"}
-
-MACRO {may} {"May"}
-
-MACRO {jun} {"June"}
-
-MACRO {jul} {"July"}
-
-MACRO {aug} {"August"}
-
-MACRO {sep} {"September"}
-
-MACRO {oct} {"October"}
-
-MACRO {nov} {"November"}
-
-MACRO {dec} {"December"}
-
  %-------------------------------------------------------------------
  % Begin module:
  % \ProvidesFile{german.mbs}[2003/11/06 4.2 (PWD)]

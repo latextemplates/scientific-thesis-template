@@ -29,6 +29,7 @@ head,\MBopta}
 %INTERNAL LANGUAGE SUPPORT (if no external language file)
 %   %: (def) English
 %  babel,%: Babel
+    exlang,%: External language file
 %--------------------
 %STYLE OF CITATIONS:
 %   %: (def) Numerical
