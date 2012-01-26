@@ -1,4 +1,4 @@
-%\svnInfo $Id: kapitel2.tex 80 2009-04-09 11:06:26Z koppor $ 
+%\svnInfo $Id$ 
 
 %Die Angabe des schlauen Spruchs auf diesem Wege funtioniert nur,
 %wenn keine Änderung des Kapitels mittels den in preambel/chapterheads.tex
@@ -13,15 +13,8 @@
 \label{chap:k2}
 Hier wird der Hauptteil stehen. Falls mehrere Kapitel gewünscht, entweder mehrmals \texttt{\textbackslash{}chapter} benutzen oder pro Kapitel eine eigene Datei anlegen und \texttt{ausarbeitung.tex} anpassen.
 
-Verweise auf einen Abschnitt gehen mittels: ``Siehe Abschnitt~\vref{sec:mf}''. Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}ref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird. \texttt{vref}: Abschnitt \vref{sec:diff}, \texttt{ref}: \ref{sec:diff}.
-
-Falls ein Abschnitt länger als eine Seite wird und man mittels \texttt{\textbackslash{}vref} darauf
-verweisen möchte, dann sollte man \texttt{\textbackslash{}phantomsection} verwenden und dann wird
-auch bei \texttt{vref} die richtige Seite angeben.
-%The link location will be placed on the line below.
-%Tipp von http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#The_hyperref_package_and_.5Cphantomsection
-\phantomsection
-\label{cooltarget}Hier wird irgendwas beschrieben.
+\section{File-Encoding}
+Die Vorlage wurde 2010 auf UTF-8 umgestellt. TeXnicCenter 1 RC 1 unterstützt \textbf{kein} UTF-8. Die Alpha-Version soll UTF-8 können, aber es gibt anscheinend Probleme. Deshalb bitte einen anderen Editor, wie \zB TeXstudio.
 
 \section{Mathematische Formeln}
 \label{sec:mf}
@@ -155,6 +148,22 @@ test2\\
 \hrule height .5pt width\textwidth
 }
 
+\section{Verweise}
+Verweise auf einen Abschnitt gehen mittels: ``Siehe Abschnitt~\vref{sec:mf}''. Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}ref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird. \texttt{vref}: Abschnitt \vref{sec:diff}, \texttt{ref}: \ref{sec:diff}.
+
+%Mit MiKTeX Installationsstund 2012-01-16 nicht mehr nötig
+%Falls ein Abschnitt länger als eine Seite wird und man mittels \texttt{\textbackslash{}vref} auf eine konkrete Stelle in der Section
+%verweisen möchte, dann sollte man \texttt{\textbackslash{}phantomsection} verwenden und dann wird
+%auch bei \texttt{vref} die richtige Seite angeben.
+
+%%The link location will be placed on the line below.
+%%Tipp von http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#The_hyperref_package_and_.5Cphantomsection
+%\phantomsection
+%\label{alabel}
+%Das Beispiel für \texttt{\textbackslash{}phantomsection} bitte im \LaTeX{}-Quellcode anschauen.
+
+%Hier das Beispiel: Siehe Abschnitt \vref{hack1} und Abschnitt \vref{hack2}.
+
 \section{Verschiedenes}
 \label{sec:diff}
 \ifdeutsch
@@ -168,5 +177,5 @@ Ziffern (123\,654\,789) werden schön gesetzt. Falls dies nicht gewünscht ist, 
 \item und auf eine andere Nummerierung umstellen
 \end{compactenum}
 
-\section{Weitere Hinweise}
+\section{Weitere Informationen}
 Verbesserungsvorschläge für diese Vorlage sind immer willkommen. Bitte im Trac ein Ticket eingragen (\url{https://vorlagen.studiforge.informatik.uni-stuttgart.de/trac.fcgi/wiki/WikiStart}). Vom Trac sind weitere \LaTeX-Seiten verlinkt.
