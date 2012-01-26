@@ -1,5 +1,3 @@
-Gliederung so formatieren, wie Sebastian Breier oder Thomas Steinmetz
-
 Zweispaltiger Satz:
 http://www.komascript.de/node/759
 
