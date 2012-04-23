@@ -148,6 +148,17 @@ D--70569 Stuttgart}
 %Doku zu deftripstyle: scrguide.pdf
 \pagestyle{preamble}
 \renewcommand*{\chapterpagestyle}{preamble}
+
+%Kurzfassung / abstract
+%auch im Stil vom Inhaltsverzeichnis
+\ifdeutsch
+\section*{Kurzfassung}
+\else
+\section*{Abstract}
+\fi
+\ldots ... Short summary of the thesis ...
+\cleardoublepage
+
 \iftex4ht
 \else
 \microtypesetup{protrusion=false}

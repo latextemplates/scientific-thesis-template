@@ -41,6 +41,10 @@
 % Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
 \ifdeutsch
 \usepackage[ngerman]{babel}
+  %Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+  \addto\captionsngerman{%
+    \renewcommand\abstractname{Kurzfassung}%
+  }
 \else
 %
 %
