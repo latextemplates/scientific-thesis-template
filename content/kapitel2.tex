@@ -8,14 +8,17 @@
 \dictum[Albert Einstein]{Probleme kann man niemals mit derselben Denkweise lösen, durch die sie entstanden sind.}
 }
 \chapter{Kapitel zwei}
+\label{chap:k2}
 %\vspace{-3cm}
 %\vspace{2cm}
 
-\label{chap:k2}
 Hier wird der Hauptteil stehen. Falls mehrere Kapitel gewünscht, entweder mehrmals \texttt{\textbackslash{}chapter} benutzen oder pro Kapitel eine eigene Datei anlegen und \texttt{ausarbeitung.tex} anpassen.
 
 \section{File-Encoding}
 Die Vorlage wurde 2010 auf UTF-8 umgestellt. TeXnicCenter 1 RC 1 unterstützt \textbf{kein} UTF-8. Die Alpha-Version soll UTF-8 können, aber es gibt anscheinend Probleme. Deshalb bitte einen anderen Editor, wie \zB TeXstudio.
+
+\section{Zitate}
+Wörter am besten mittels \texttt{\textbackslash enquote\{...\}} \enquote{einschließen}, dann werden die richtigen Anführungszeichen verwendet.
 
 \section{Mathematische Formeln}
 \label{sec:mf}
@@ -84,7 +87,7 @@ Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse.
 	\url{tabsatz.pdf}& empfohlen & gesetzt\\
 	
 	\multirow{2}{*}{Beispiel} & \multicolumn{2}{c}{ein schönes Beispiel}\\
-	 & \multicolumn{2}{c}{für die Verwendung von \gq{multirow}}\\
+	 & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}\\
 	\bottomrule
     \end{tabular}
     \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
