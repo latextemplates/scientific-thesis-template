@@ -1,11 +1,11 @@
-Release-TODO:
-Doko zum Einbinden
-svn:externals
-
-in SVN selbst diplomtitel.sty als external einbinden
+Gliederung so formatieren, wie Sebastian Breier oder Thomas Steinmetz
 
 
-Gliederung so formatieren, wie seba oder Thomas Steinmetz
+Tipps von Moritz Löser:
+"thrreparttable" - habe ich benutzt um Tabellen mit Fußnoten zu setzen "pdflscape" - um einzelne Seiten ins Querformat zu drehen, praktisch für große Tabellen und Abbildungen (im pdf-Dokument werden die Seiten dann automatisch korrekt angezeigt)
+
+Beim listingspaket hab ich übrigens ne ganze Weile gebraucht um Zeilennummern vernünftig (nicht in den Seitenrand) zu setzen:
+"\begin{lstlisting}[numbers=left, xleftmargin=0.7cm]..." die 0,7cm sind natürlich nicht immer korrekt. Für wenige Zeilen (einstellige Nummern) reicht etwas weniger für 3-stellige braucht man etwas mehr - keine optimale Lösung, aber ne Lösung ;-). Eventuell kannst diese Optionen ja in deiner Vorlage erwähnen
 
 
 Als TODOs/Tipp @ Trac:
@@ -17,3 +17,7 @@ Als TODOs/Tipp @ Trac:
   * Überschriften nach links: \addtokomafont{section}{\hspace*{--1cm}}
   * emptypage-paket (CTAN:macros/latex/contrib/emptypage)
     --> wird schon durch cleardouble=empty erledigt
+
+ccaption vs. caption package
+ * subfig benötigt anscheinend caption package
+ * Captions sollten (wie Standard in LaTeX) zentriert sein
