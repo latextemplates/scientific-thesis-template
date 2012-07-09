@@ -1,5 +1,7 @@
 Gliederung so formatieren, wie Sebastian Breier oder Thomas Steinmetz
 
+Zweispaltiger Satz:
+http://www.komascript.de/node/759
 
 Tipps von Moritz Löser:
 "thrreparttable" - habe ich benutzt um Tabellen mit Fußnoten zu setzen "pdflscape" - um einzelne Seiten ins Querformat zu drehen, praktisch für große Tabellen und Abbildungen (im pdf-Dokument werden die Seiten dann automatisch korrekt angezeigt)
