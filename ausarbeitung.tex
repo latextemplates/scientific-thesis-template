@@ -114,6 +114,24 @@ D--70569 Stuttgart}
 
 \begin{document}
 %\svnInfo $Id: ausarbeitung.tex 80 2009-04-09 11:06:26Z koppor $ 
+
+%tex4ht-Konvertierung verschönern
+\iftex4ht
+% tell tex4ht to create picures also for formulas starting with '$'
+% WARNING: a tex4ht run now takes forever!
+\Configure{$}{\PicMath}{\EndPicMath}{} 
+%$ % <- syntax highlighting fix for emacs
+\Css{body {text-align:justify;}}
+
+%conversion of .pdf to .png
+\Configure{graphics*}  
+         {pdf}  
+         {\Needs{"convert \csname Gin@base\endcsname.pdf  
+                               \csname Gin@base\endcsname.png"}%  
+          \Picture[pict]{\csname Gin@base\endcsname.png}%  
+         }  
+\fi
+
 \VerbatimFootnotes %verbatim text in Fussnoten erlauben. Geht normalerweise nicht.
 %\frontmatter
 \input{macros/commands}
@@ -130,7 +148,10 @@ D--70569 Stuttgart}
 %Doku zu deftripstyle: scrguide.pdf
 \pagestyle{preamble}
 \renewcommand*{\chapterpagestyle}{preamble}
+\iftex4ht
+\else
 \microtypesetup{protrusion=false}
+\fi
 
 %%%
 % Literaturverzeichnis ins TOC mit aufnehmen, aber nur wenn nichts anderes mehr hilft!
@@ -205,8 +226,11 @@ D--70569 Stuttgart}
 
 \cleardoublepage
 
+\iftex4ht
+\else
 %Optischen Randausgleich und Grauwertkorrektur wieder aktivieren
 \microtypesetup{protrusion=true}
+\fi
 
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}

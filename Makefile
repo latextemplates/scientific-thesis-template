@@ -13,6 +13,7 @@ TEX_FILES = $(wildcard preambel/*.tex content/*.tex)
 GFX_FILES = $(wildcard graphics/*)
 
 PDF = $(SRC).pdf
+AUX = $(SRC).aux
 
 date=$(shell date +%Y%m%d%H%M)
 
@@ -148,5 +149,8 @@ dokumentationen:
 
 # Einmal initial alle Dokumentationen ziehen mit "dokumentation.pdf"
 # tabulary.sty algorithm.sty lmodern.sty microtype.sty todonotes.sty dokumentation.pdf
-fetchstys: todonotes.sty
+fetchstys: tabulary.sty algorithm.sty lmodern.sty microtype.sty todonotes.sty
 
+html: clean pdf
+	rm $(AUX)
+	htlatex.bat $(SRC)

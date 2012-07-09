@@ -21,6 +21,16 @@
 %
 %%%
 
+
+%%%
+%Parallelbetrieb tex4ht und pdflatex
+\makeatletter
+\@ifpackageloaded{tex4ht}{\def\iftex4ht{\iftrue}}
+                         {\def\iftex4ht{\iffalse}}
+\makeatother
+%%%
+
+
 %%%
 %Farbdefinitionen
 \usepackage[hyperref,dvipsnames]{xcolor}
@@ -71,7 +81,11 @@
 %%%
 % Versionskontrolle
 %SVN. Für die final version "draft" durch "final" ersetzen
+\iftex4ht
+\usepackage[final,eso-foot]{svninfo}
+\else
 \usepackage[draft,eso-foot]{svninfo}
+\fi
 %
 %Falls rcs oder cvs als Versionskontrolle verwendet wird, dann anstattdessen
 %\usepackage{rcs}
@@ -224,7 +238,12 @@
 % Wird für fancyvrb und für lstlistings verwendet
 % zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
 % floatrow ist der Nachfolger von float
+\iftex4ht
+\usepackage{float}
+\else
+%tex4ht is not compatible with the advanced floatrow package
 \usepackage{floatrow} 
+\fi
 %
 %%%
 
@@ -275,10 +294,15 @@
 %%%
 % Falls die Seitenzahl bei einer Referenz auf eine Abbildung nur dann angegeben werden soll,
 % falls sich die Abbildung nicht auf der selben Seite befindet...
+\iftex4ht
+%tex4ht does not work well with vref, therefore we emulate vref behavior
+\newcommand{\vref}[1]{\ref{#1}}
+\else
 \ifdeutsch
 \usepackage[ngerman]{varioref}
 \else
 \usepackage{varioref}
+\fi
 \fi
 %%%
 
