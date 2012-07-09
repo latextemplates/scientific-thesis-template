@@ -1,0 +1,95 @@
+% $Id: diplomtitel-template.tex 36 2008-03-17 07:33:14Z koppor $
+%
+% Dies ist ein Template f"ur den Style `diplomtitel' v2.5b.
+%
+% erzeugt das Titelblatt und die Versicherung f"ur Diplom- oder
+% Studienarbeiten,
+%
+% geaendert 8. Feb. 2001 - Timo Heiber
+% Bezeichnung des Studienganges hinzugefuegt (neue Richtlinie...).
+%
+% geaendert 2. Januar 2006 - Oliver Kopp
+% Auf neue Version 2.5a angepasst
+% Verwendung des Koma-Paktes (http://www.komascript.de)
+% Verwendung von Festabständen (\,) bei Abkürzungen (vgl. Duden Band 1, "Festabstände". In der 22. Auflage auf S. 93 zu finden)
+
+\documentclass[11pt]{scrartcl}
+\usepackage{ngerman}
+\usepackage{diplomtitel}
+
+%\studiengang{swt} % Default ist \studiengang{inf}, also Informatik.
+
+% Die folgenden neun Angaben, au"ser \art und \institut, m"ussen immer
+% angegeben werden.  Mehrere Zeilen werden mit \\ getrennt.
+%
+\pruefer{Prof.\,P.\,RofessorIn}
+\betreuer{Dipl.-Inf.\,Ro.\,Mantikerin\\Dipl.-Inf.\,Ro.\,Mantiker}
+
+\begonnen{11.\,November~1916}
+\beendet{5.\,Mai~1999}
+%Bei englischen Arbeiten ist das Format "May 5, 1999" (siehe http://www.ego4u.de/de/cram-up/vocabulary/date/written)
+
+\titel{Das Sein\\ des Nichtseins\\ oder\\ Was ich noch nie wissen wollte}
+\autor{A.\,U.\,TorIn}
+%\autor{C.\,O.\,Autor}  % bei zwei Autoren
+
+%\art{Studien}   %% Default ist \art{Diplom}, also eine Diplomarbeit
+\nummer{0815}  % Nummer der Studien-/Diplomarbeit
+
+
+%Hier das Institut angeben.
+%\institut\fmi
+%\institut\iris
+%\institut\iste
+%\institut\iti
+%\institut\iaas
+%\institut\ipvs
+%\institut\vis
+%\institut\visus
+
+%Alternativen:
+
+%1. Freitext
+\institut{
+Institut f\"ur Formale Methoden der Informatik\\\vskip .3em
+Abteilung Formale Konzepte\\\vskip .3em
+Universit\"at Stuttgart\\
+Universit\"atsstra{\ss}e 38\\
+D–70569 Stuttgart}
+
+%2. Ganze Fakultaet
+%\institut\fak
+
+
+
+%% Mehrere CR-Klassifikationen einfach mit \crk{..} aufzaehlen
+%% (optional).
+%
+\crk{C.2.0}\crk{D.3.4}\crk{E.2.0}\crk{A.3.4}
+
+%% F"ur Leute mit asugefallenem Geschmack kann der Titel/Autor-Kasten
+%% eingerahmt werden. Default ist keine Umrandung.
+%
+%\umrandet
+
+%Default: deutsch
+%\sprache{englisch}
+
+\begin{document}
+
+%% `\maketitle' oder `\Titelblatt' erzeugt automatisch ein Titelblatt
+%% mit den oben angegebenen Parametern.
+%% (Als Seiteneffekt wird die Seitennummer der folgenden Seite
+%% auf 1 zurueckgesetzt!)
+%
+\Titelblatt
+
+
+%% `Versicherung' erzeugt ein Blatt mit der Versicherung des
+%% Autors, nur die angegebenen Quellen benutzt zu haben.  Dieses
+%% Blatt muss noch unterschrieben werden.
+%
+%\pagestyle{empty}%% <<== fuer "normales" Dokument evtl. entfernen
+\Versicherung
+
+\end{document}
