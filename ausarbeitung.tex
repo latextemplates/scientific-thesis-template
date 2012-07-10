@@ -3,10 +3,10 @@
 %          und die Links im Dokument sind auch gleich richtig
 %
 \documentclass[
-               paper=a4,,
+               paper=a4,
 %               twoside, % fuer die Betrachtung am Schirm ungeschickt
 % Optionen fuer typearea.
-               BCOR1.92mm,DIV12,headinclude, %je hoeher der DIV-Wert, desto mehr geht auf eine Seite - Hack für BCOR. Bei BCOR2mm sind die Fuellpunkte beim Inhaltsverzeichnis falsch
+               BCOR1.92mm,DIV12,headinclude, %je hÃ¶her der DIV-Wert, desto mehr geht auf eine Seite - Hack fÃ¼r BCOR. Bei BCOR2mm sind die Fuellpunkte beim Inhaltsverzeichnis falsch
 %               titlepage,
                bibliography=totoc,
 %               idxtotoc,   %Index ins Inhaltsverzeichnis
@@ -34,14 +34,13 @@
 \raggedbottom
 
 %%%
-% Wie tief wird das Inhaltsverzeichnis aufgeschlüsselt
+% Wie tief wird das Inhaltsverzeichnis aufgeschlÃ¼sselt
 % 0 --\chapter
-% 1 --\section
+% 1 --\section % fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
 % 2 --\subsection
 % 3 --\subsubsection
 % 4 --\paragraph
-% fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 %
 %%%
 
@@ -113,9 +112,7 @@ D--70569 Stuttgart}
 \makeatother
 
 \begin{document}
-%\svnInfo $Id: ausarbeitung.tex 80 2009-04-09 11:06:26Z koppor $ 
-
-%tex4ht-Konvertierung verschönern
+%tex4ht-Konvertierung verschÃ¶nern
 \iftex4ht
 % tell tex4ht to create picures also for formulas starting with '$'
 % WARNING: a tex4ht run now takes forever!
@@ -169,20 +166,20 @@ D--70569 Stuttgart}
 % \addcontentsline{toc}{chapter}{Literaturverzeichnis}
 %
 % oder zB
-%\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
-%\section*{Abkürzungsverzeichnis}
+%\addcontentsline{toc}{section}{AbkÃ¼rzungsverzeichnis}
+%\section*{AbkÃ¼rzungsverzeichnis}
 %
 %%%
 
 %Inhaltsverzeichnis anlegen
 \tableofcontents
 
-% Bei einem ungünstigen Seitenumbruch im Inhaltsverzeichnis, kann dieser mit
+% Bei einem ungÃ¼nstigen Seitenumbruch im Inhaltsverzeichnis, kann dieser mit
 % \addtocontents{toc}{\protect\newpage}
-% an der passenden Stelle im Fließtext erzwungen werden.
+% an der passenden Stelle im FlieÃŸtext erzwungen werden.
 
 %listof* untereinandergesetzt
-%ACHTUNG! Falls ein anderer Kapitelstil gewählt wird, muss der Code hier evtl.
+%ACHTUNG! Falls ein anderer Kapitelstil gewÃ¤hlt wird, muss der Code hier evtl.
 %  angepasst werden
 \begingroup 
 \makeatletter
@@ -231,7 +228,7 @@ D--70569 Stuttgart}
 \else
 \listof{Algorithmus}{List of Algorithms}
 \fi
-%\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
+%\listofalgorithms %Ist nur fÃ¼r Algorithmen, die mittels \begin{algorithm} umschlossen werden, nÃ¶tig
 
 \endgroup
 
@@ -270,7 +267,7 @@ D--70569 Stuttgart}
 \fi
 \bibliography{bibliography/bibliography}
 \ifdeutsch
-Alle URLs wurden zuletzt am 17.03.2008 gepr\"uft.
+Alle URLs wurden zuletzt am 17.\,03.\,2008 gepr\"uft.
 \else
 All links were last followed on March 17, 2008.
 \fi
