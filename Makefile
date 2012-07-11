@@ -74,10 +74,10 @@ edit:
 	psnup -6 $(SRC).ps > 6.ps
 
 stand: $(PDF)
-	cp $(PDF) "/tmp/Ausarbeitung - Stand $(date).pdf"
+	cp $(PDF) "Ausarbeitung - Stand $(date).pdf"
 
 standps: ps
-	psnup -2 $(SRC).ps > "/tmp/Ausarbeitung - Stand $(date).ps"
+	psnup -2 $(SRC).ps > "Ausarbeitung - Stand $(date).ps"
 
 ##
 # Das ganze am Besten vor der final und als eigene Version ala make spellcheck
@@ -95,7 +95,7 @@ aspell:
 ##
 
 ##
-# Einige nicht standart Styles die noch unbedingt installiert werden müssen.
+# Einige nicht-standard-Styles, die noch unbedingt installiert werden müssen.
 rcs.sty:
 	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/rcs/rcs.sty
 
@@ -128,8 +128,6 @@ algorithm.sty:
 dokumentationen:
 	mkdir Dokus
 	cd ./Dokus
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/rcs/rcs-conf.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/rcs/rcs-user.pdf
 	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/todonotes/todonotes.pdf
 	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/algorithms/algorithms.pdf
 	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/tabulary/tabulary.pdf
