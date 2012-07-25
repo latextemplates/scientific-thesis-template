@@ -1,4 +1,4 @@
-%wird fuer Tabellen benoetigt (z.B. >{centering\RBS}p{2.5cm} erzeugt einen zentrierten 2,5cm breiten Absatz in einer Tabelle
+%wird fuer Tabellen benötigt (z.B. >{centering\RBS}p{2.5cm} erzeugt einen zentrierten 2,5cm breiten Absatz in einer Tabelle
 \newcommand{\RBS}{\let\\=\tabularnewline}
 
 %% typoraphisch richtige Abkürzungen
@@ -12,10 +12,10 @@
 %
 \newcommand{\dotcup}{\ensuremath{\,\mathaccent\cdot\cup\,}} %Tipp aus The Comprehensive LaTeX Symbol List
 %
-%Anstatt $|x|$ $\abs{x}$ verwenden. Die Betragsstriche skalieren automatisch, falls "x" etwas groessers sein sollte...
+%Anstatt $|x|$ $\abs{x}$ verwenden. Die Betragsstriche skalieren automatisch, falls "x" etwas größer sein sollte...
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 %
-%fuer Zitate
+%für Zitate
 \newcommand{\citeS}[2]{\cite[S.~#1]{#2}}
 \newcommand{\citeSf}[2]{\cite[S.~#1\,f.]{#2}}
 \newcommand{\citeSff}[2]{\cite[S.~#1\,ff.]{#2}}
@@ -25,6 +25,6 @@
 \newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
 \algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
 
-% Seitengroessen - Gegen Schusterjungen und Hurenkinder...
+% Seitengrößen - Gegen Schusterjungen und Hurenkinder...
 \newcommand{\largepage}{\enlargethispage{\baselineskip}}
 \newcommand{\shortpage}{\enlargethispage{-\baselineskip}}
