@@ -47,14 +47,18 @@
 %   21-Apr-2007 (Oliver Kopp) v2.5b
 %     * ITI-Fix von Horst Prote eingearbeitet
 %     * Abteilungen werden durch \institut direkt unterst"utzt. - Beispiel f"ur die Einbindung von Abteilungen ist in Vorlage 0.9b enthalten
+%    25-Jul-2012 (Niklas Schnelle) v2.6
+%     * UTF-8 und nur Unix line endings
+%     * Bachelorarbeiten hinzugefügt
+%     * Masterarbeiten hinzugefügt
 %
 % Todos:
 %  Evtl. Abteilungen mittels Kommando und nicht durch Freitext in \institut einbinden.
 
-\typeout{Package: diplomtitel v2.5b $Date:: 2007-08-03 #$ $Revision: 5 $}
+\typeout{Package: diplomtitel v2.6 $Date:: 2012-07-25 #$ $Revision: 0 $}
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{diplomtitel}[2007/04/21 v2.5b %
+  \ProvidesPackage{diplomtitel}[2012/07/25 v2.6 %
      Package to create a title page]
 \fi
 
@@ -104,6 +108,8 @@
         \gdef\@labelfak{Faculty of Computer Science}%
         \gdef\@labelstudi{Studienarbeit}%
         \gdef\@labeldiplom{Diplomarbeit}%
+        \gdef\@labelbachelor{Bachelor's Thesis}%
+        \gdef\@labelmaster{Master's Thesis}%
         \gdef\@labelinf{Computer Science}%
         \gdef\@labelsw{Software Engineering}%
 %
@@ -144,6 +150,8 @@
         \gdef\@labelfak{Fakultät Informatik, Elektrotechnik und Informationstechnik}%
         \gdef\@labelstudi{Studienarbeit}%
         \gdef\@labeldiplom{Diplomarbeit}%
+        \gdef\@labelbachelor{Bachelorarbeit}%
+        \gdef\@labelmaster{Masterarbeit}%
         \gdef\@labelinf{Informatik}%
         \gdef\@labelsw{Softwaretechnik}%
 %
@@ -189,6 +197,8 @@
 \newcommand{\art}[1]{\begingroup
   \def\1{#1}\def\0{Diplom}\ifx\1\0\gdef\@art{\@labeldiplom}\else
   \def\0{Studien}\ifx\1\0\gdef\@art{\@labelstudi}\else
+  \def\0{Bachelor}\ifx\1\0\gdef\@art{\@labelbachelor}\else
+  \def\0{Master}\ifx\1\0\gdef\@art{\@labelmaster}\else
   \gdef\@art{#1}\fi\fi \endgroup}
 \newcommand{\@art}{\@labeldiplom}
 
@@ -332,7 +342,7 @@
  \@labelvisus\\
  \@instadr}
 
-%Die gesamte Fakult"at
+%Die gesamte Fakultät
 \newcommand{\fak}{%
   \@labelfak\\
   \@instadr}
