@@ -32,29 +32,33 @@
 %   09-Okt-2005 (Oliver Kopp) Schrifttyp auf serifenlos gestellt (v.2.3)
 %   01-Jan-2006 (Nils Radtke) \gdef\@labelipvr aktualisiert (v2.4)
 %   02-Jan-2006 (Oliver Kopp) IPVR in IPVS geaenderet.
-%                             Nach "Nr." nun Duden-konformer Festabstand. (vgl. Duden Band 1, "Festabst�nde". In der 22. Auflage auf S. 93 zu finden)
-%                             "selbst�ndig" ist auch nach neuer Rechtschreibung i.O. �nderung von Version v.2.2a zur�ckgenommen 
+%                             Nach "Nr." nun Duden-konformer Festabstand. (vgl. Duden Band 1, "Festabstände". In der 22. Auflage auf S. 93 zu finden)
+%                             "selbständig" ist auch nach neuer Rechtschreibung i.O. Änderung von Version v.2.2a zurückgenommen 
 %                             (v2.4a)
-%   04-Mai-2006 (Oliver Kopp) labeliaas eingef�gt (v2.4b)
+%   04-Mai-2006 (Oliver Kopp) labeliaas eingefügt (v2.4b)
 %   08-Mai-2006 (Oliver Kopp) typo fixed, Danke an Joerg Oberfell fuer den Hinweis (v2.4c)
 %   17-Apr-2007 (Oliver Kopp) v2.5
 %     * \betreuerin and \prueferin hinzugefuegt. Danke an Juern Laun fuer den Hinweis. Fuer mehr Informationen mit dem Umgang mit weiblichen Formen sollte der "Leitfaden" von Prof. Jochen Ludewig konsultiert werden. Siehe: http://studiwiki.informatik.uni-stuttgart.de/Ausarbeitungen
 %     * Default-Initialisierungen entfernt
 %     * \maketitle auf \Titelblatt umdefiniert
-%     * \Versicherung erzeugt keine anschlie�ende leere Seite mehr
+%     * \Versicherung erzeugt keine anschließende leere Seite mehr
 %   20-Apr-2007 (Oliver Kopp) v2.5a
 %     * Vorschlag von Horst Prote eingearbeitet: ifi entfernt und weitere Institute aufgenommen
 %   21-Apr-2007 (Oliver Kopp) v2.5b
 %     * ITI-Fix von Horst Prote eingearbeitet
 %     * Abteilungen werden durch \institut direkt unterst"utzt. - Beispiel f"ur die Einbindung von Abteilungen ist in Vorlage 0.9b enthalten
+%    25-Jul-2012 (Niklas Schnelle) v2.6
+%     * UTF-8 und nur Unix line endings
+%     * Bachelorarbeiten hinzugefügt
+%     * Masterarbeiten hinzugefügt
 %
 % Todos:
 %  Evtl. Abteilungen mittels Kommando und nicht durch Freitext in \institut einbinden.
 
-\typeout{Package: diplomtitel v2.5b $Date:: 2007-08-03 #$ $Revision: 5 $}
+\typeout{Package: diplomtitel v2.6 $Date:: 2012-07-25 #$ $Revision: 0 $}
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{diplomtitel}[2007/04/21 v2.5b %
+  \ProvidesPackage{diplomtitel}[2012/07/25 v2.6 %
      Package to create a title page]
 \fi
 
@@ -104,6 +108,8 @@
         \gdef\@labelfak{Faculty of Computer Science}%
         \gdef\@labelstudi{Studienarbeit}%
         \gdef\@labeldiplom{Diplomarbeit}%
+        \gdef\@labelbachelor{Bachelor's Thesis}%
+        \gdef\@labelmaster{Master's Thesis}%
         \gdef\@labelinf{Computer Science}%
         \gdef\@labelsw{Software Engineering}%
 %
@@ -116,7 +122,7 @@
         \gdef\@labeliti{Institute of Computer Architecture and Computer Engineering}%
         \gdef\@labeliris{Institute of Computer-aided Product Development Systems}%
         \gdef\@labelvis{Institute of Visualization and Interactive Systems}%
-		\gdef\@labelvisus{Visualisierungsinstitut der Universit\"at Stuttgart}%
+		\gdef\@labelvisus{Visualisierungsinstitut der Universität Stuttgart}%
 %
         \gdef\@labelerklaerung{Declaration}%
         \gdef\@labeleinbearbeiter{ All the work contained within this thesis,\\
@@ -132,38 +138,40 @@
 }
 
 \def\labelsdeutsch{
-        \gdef\@labelpruefer{Pr\"ufer}%
-        %\gdef\@labelprueferin{Pr\"uferin}%
+        \gdef\@labelpruefer{Prüfer}%
+        %\gdef\@labelprueferin{Prüferin}%
         \gdef\@labelbetreuer{Betreuer}%
         %\gdef\@labelbetreuerin{Betreuerin}%
         \gdef\@labelstudiengang{Studiengang}%
         \gdef\@labelbegin{begonnen am}%
         \gdef\@labelend{beendet am}%
         \gdef\@labelcrk{CR-Klassifikation}%
-        \gdef\@labeluni{Universit\"at Stuttgart}%
-        \gdef\@labelfak{Fakult\"at Informatik, Elektrotechnik und Informationstechnik}%
+        \gdef\@labeluni{Universität Stuttgart}%
+        \gdef\@labelfak{Fakultät Informatik, Elektrotechnik und Informationstechnik}%
         \gdef\@labelstudi{Studienarbeit}%
         \gdef\@labeldiplom{Diplomarbeit}%
+        \gdef\@labelbachelor{Bachelorarbeit}%
+        \gdef\@labelmaster{Masterarbeit}%
         \gdef\@labelinf{Informatik}%
         \gdef\@labelsw{Softwaretechnik}%
 %
 % Institute
 %
-		\gdef\@labeliaas{Institut f\"ur Architektur von Anwendungssystemen}%
-        \gdef\@labelipvs{Institut f\"ur Parallele und Verteilte Systeme}%
-        \gdef\@labelfmi{Institut f\"ur Formale Methoden der Informatik}%
-        \gdef\@labeliste{Institut f\"ur Softwaretechnologie}%
-        \gdef\@labeliti{Institut f\"ur Technische Informatik}%
-        \gdef\@labeliris{Institut f\"ur Rechnergest\"utzte Ingenieursysteme}%
-        \gdef\@labelvis{Institut f\"ur Visualisierung und Interaktive Systeme}%
-		\gdef\@labelvisus{Visualisierungsinstitut der Universit\"at Stuttgart}%
+		\gdef\@labeliaas{Institut für Architektur von Anwendungssystemen}%
+        \gdef\@labelipvs{Institut für Parallele und Verteilte Systeme}%
+        \gdef\@labelfmi{Institut für Formale Methoden der Informatik}%
+        \gdef\@labeliste{Institut für Softwaretechnologie}%
+        \gdef\@labeliti{Institut für Technische Informatik}%
+        \gdef\@labeliris{Institut für Rechnergestützte Ingenieursysteme}%
+        \gdef\@labelvis{Institut für Visualisierung und Interaktive Systeme}%
+		\gdef\@labelvisus{Visualisierungsinstitut der Universität Stuttgart}%
 %
-        \gdef\@labelerklaerung{Erkl\"arung}%
+        \gdef\@labelerklaerung{Erklärung}%
         \gdef\@labeleinbearbeiter{Hiermit versichere ich, diese Arbeit
-          selbst\"andig verfasst und nur die angegebenen Quellen benutzt
+          selbständig verfasst und nur die angegebenen Quellen benutzt
           zu haben.}%
         \gdef\@labelzweibearbeiter{Hiermit versichern wir, diese Arbeit 
-                                   selbst\"andig verfasst und nur die
+                                   selbständig verfasst und nur die
                                    angegebenen Quellen benutzt zu haben.}
 }       
 
@@ -189,6 +197,8 @@
 \newcommand{\art}[1]{\begingroup
   \def\1{#1}\def\0{Diplom}\ifx\1\0\gdef\@art{\@labeldiplom}\else
   \def\0{Studien}\ifx\1\0\gdef\@art{\@labelstudi}\else
+  \def\0{Bachelor}\ifx\1\0\gdef\@art{\@labelbachelor}\else
+  \def\0{Master}\ifx\1\0\gdef\@art{\@labelmaster}\else
   \gdef\@art{#1}\fi\fi \endgroup}
 \newcommand{\@art}{\@labeldiplom}
 
@@ -285,8 +295,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Noch ein paar Definitionen, die verwendet und ver"andert
-% werden k"onnen:
+% Noch ein paar Definitionen, die verwendet und verändert
+% werden können:
 %
 \newcommand{\einbearbeiter}{\@labeleinbearbeiter}%
 \newcommand{\zweibearbeiter}{\@labelzweibearbeiter}%
@@ -294,7 +304,7 @@
 
 \newcommand{\@instadr}{%
   \@labeluni\\
-  Universit\"atsstra{\ss}e 38\\
+  Universitätsstraße 38\\
   D--70569 Stuttgart}
   
 %Die einzelnen Institute
@@ -332,7 +342,7 @@
  \@labelvisus\\
  \@instadr}
 
-%Die gesamte Fakult"at
+%Die gesamte Fakultät
 \newcommand{\fak}{%
   \@labelfak\\
   \@instadr}
