@@ -189,6 +189,8 @@
 \let\@titel\relax
 
 %
+% \art{Bachelor}     %% fuer Bachelorarbeiten oder
+% \art{Master}       %% fuer Masterarbeiten oder
 % \art{Diplom}       %% fuer Diplomarbeiten oder
 % \art{Studien}      %% fuer Studienarbeiten oder
 % \art{freier_Text}  %% fuer Sonderfaelle
@@ -199,7 +201,7 @@
   \def\0{Studien}\ifx\1\0\gdef\@art{\@labelstudi}\else
   \def\0{Bachelor}\ifx\1\0\gdef\@art{\@labelbachelor}\else
   \def\0{Master}\ifx\1\0\gdef\@art{\@labelmaster}\else
-  \gdef\@art{#1}\fi\fi \endgroup}
+  \gdef\@art{#1}\fi\fi\fi\fi \endgroup}
 \newcommand{\@art}{\@labeldiplom}
 
 %
