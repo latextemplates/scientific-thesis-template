@@ -15,6 +15,29 @@ Characteristics
 
 This template runs at Windows using the current [MiKTeX](http://www.miktex.org) distribution. Linux should work without any issues. In some cases, `make fetchstys` might be necessary to fetch required `.sty` files.
 
+Using with your git repository
+==============================
+
+Initialization
+--------------
+This howto assumes that you have not a git repository for your thesis.
+If you have, just add https://github.com/latextemplates/USTUTT-computer-science.git as upstream and merge the branch "template" into your "master" branch.
+
+1. Open command line
+1. git clone https://github.com/latextemplates/USTUTT-computer-science.git
+1. cd USTUTT-computer-science
+1. git remote rename origin github
+1. git checkout -b master
+
+Now, you are on the master branch, where you can write your thesis and push it to your (remote) origin repository, in case you have one.
+
+Merging updates from the template
+---------------------------------
+If you want to merge updates from github, do the following:
+
+1. git fetch github
+1. git merge github/template
+
 LaTeX compilation
 =================
 The template is compiled using normal LaTeX commands.
@@ -39,12 +62,12 @@ Automatic compilation using texify
 ----------------------------------
  
     texify -p ausarbeitung.tex
-	
+
 Automatic compilation using latexmk
 -----------------------------------
 
     latexmk -pdf ausarbeitung
-	
+
 Continuous previewing using latexmk
 -----------------------------------
 
