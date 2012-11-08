@@ -114,10 +114,54 @@
 %%%
 % Grafikeinbindungen
 \usepackage{graphicx}%Parameter "pdftex" unnoetig
-\graphicspath{{graphics/}}
+\graphicspath{{\getgraphicspath}}
+\newcommand{\getgraphicspath}{graphics/}
 %
 %%%
 
+
+%%%
+% Enables inclusion of SVG graphics - 1:1 approach
+% This is NOT the approach of http://www.ctan.org/tex-archive/info/svg-inkscape,
+% which allows text in SVG to be typeset using LaTeX
+% We just include the SVG as is
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.svg}{pdf}{.pdf}{%
+  inkscape -z -D --file=#1 --export-pdf=\OutputFile
+}
+%
+%%%
+
+
+%%%
+% Enables inclusion of SVG graphics - text-rendered-with-LaTeX-approach
+% This is the approach of http://www.ctan.org/tex-archive/info/svg-inkscape,
+\newcommand{\executeiffilenewer}[3]{%
+\IfFileExists{#2}
+{
+%\message{file #2 exists}
+\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+{\pdffilemoddate{#2}}>0%
+{\immediate\write18{#3}}
+\else
+{%\message{file up to date #2}
+}
+\fi%
+}{
+%\message{file #2 doesn't exist}
+%\message{argument: #3}
+%\immediate\write18{echo "test" > xoutput.txt}
+\immediate\write18{#3}
+}
+}
+\newcommand{\includesvg}[1]{%
+\executeiffilenewer{#1.svg}{#1.pdf}%
+{
+inkscape -z -D --file=\getgraphicspath#1.svg %
+--export-pdf=\getgraphicspath#1.pdf --export-latex}%
+\input{\getgraphicspath#1.pdf_tex}%
+}
+%%%
 
 %%%
 % Tabellenerweiterungen

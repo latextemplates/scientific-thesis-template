@@ -5,7 +5,9 @@ editor = gedit
 MASTER_TEX = ausarbeitung.tex
 LITERATURE = bibliography/bibliography.bib
 
-latex = pdflatex
+#latex = pdflatex -shell-escape
+#MiKTeX:
+latex = pdflatex --enable-write18
 bibtex = bibtex
 
 SRC = $(shell basename $(MASTER_TEX) .tex)

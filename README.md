@@ -19,6 +19,8 @@ LaTeX compilation
 =================
 The template is compiled using normal LaTeX commands.
 
+If you want to include .svg graphics, inkscape has to be in your path.
+
 Usual LaTeX run
 ---------------
 

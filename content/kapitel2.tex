@@ -73,6 +73,23 @@ wichtig. Im Anhang zeigt Abbildung~\vref{fig:AnhangsChor} erneut die komplette C
   \end{center}
 \end{figure}
 
+Das SVG in \autoref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \autoref{fig:latexSVG} mittels pdflatex gesetzt ist.
+
+\begin{figure}
+\centering
+\includegraphics{svgexample.svg}
+\caption{SVG direkt eingebunden}
+\label{fig:directSVG}
+\end{figure}
+
+\begin{figure}
+\centering
+\def\svgwidth{.4\textwidth}
+\includesvg{svgexample}
+\caption{Text im SVG mittels \LaTeX{} gesetzt}
+\label{fig:latexSVG}
+\end{figure}
+
 \section{Tabellen}
 Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse.
 \begin{table}
