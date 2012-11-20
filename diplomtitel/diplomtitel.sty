@@ -14,6 +14,7 @@
 % (C) 2005 Steffen Keul
 % (C) 2006 Nils Radtke, Oliver Kopp
 % (C) 2007 Oliver Kopp
+% (C) 2012 Niklas Schnelle, Oliver Kopp
 %
 % Erste Version:      28-Feb-90 (br)
 %
@@ -47,18 +48,21 @@
 %   21-Apr-2007 (Oliver Kopp) v2.5b
 %     * ITI-Fix von Horst Prote eingearbeitet
 %     * Abteilungen werden durch \institut direkt unterst"utzt. - Beispiel f"ur die Einbindung von Abteilungen ist in Vorlage 0.9b enthalten
-%    25-Jul-2012 (Niklas Schnelle) v2.6
+%   25-Jul-2012 (Niklas Schnelle) v2.6
 %     * UTF-8 und nur Unix line endings
 %     * Bachelorarbeiten hinzugefügt
 %     * Masterarbeiten hinzugefügt
+%   20-Nov-2012 (Oliver Kopp) v2.7
+%     * neuer Erklärungstext (von http://www.informatik.uni-stuttgart.de/studierende/pruefungen/pruefungsausschuss-informatik-und-softwaretechnik/abschlussarbeiten-in-der-informatik/formvorschriften-fuer-abschlussarbeiten.html)
+%     * SVN-Kommandos entfernt
 %
 % Todos:
 %  Evtl. Abteilungen mittels Kommando und nicht durch Freitext in \institut einbinden.
 
-\typeout{Package: diplomtitel v2.6 $Date:: 2012-07-25 #$ $Revision: 0 $}
+\typeout{Package: diplomtitel v2.7}
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{diplomtitel}[2012/07/25 v2.6 %
+  \ProvidesPackage{diplomtitel}[2012/11/20 v2.7 %
      Package to create a title page]
 \fi
 
@@ -125,16 +129,13 @@
 		\gdef\@labelvisus{Visualisierungsinstitut der Universität Stuttgart}%
 %
         \gdef\@labelerklaerung{Declaration}%
-        \gdef\@labeleinbearbeiter{ All the work contained within this thesis,\\
-                                   except where otherwise acknowledged, was\\
-                                   solely the effort of the author. At no \\
-                                   stage was any collaboration entered into\\
-                                   with any other party.}%
-        \gdef\@labelzweibearbeiter{All the work contained within this thesis,\\
-                                   except where otherwise acknowledged, was\\
-                                   solely the effort of the authors. At no \\
-                                   stage was any collaboration entered into\\
-                                   with any other party.}%
+        \gdef\@labeleinbearbeiter{I declar that this thesis is the solely effort of the author.
+I did not use any other sources and references than the listed ones.
+I have marked all contained direct or indirect statements from other sources as such.
+Neither this work nor significant parts of it were part of another review process.
+I did not publish this work partially or completely yet.
+The electronic copy is consitent with all submitted copies.}%
+        \gdef\@labelzweibearbeiter{n/a}%
 }
 
 \def\labelsdeutsch{
@@ -167,13 +168,17 @@
 		\gdef\@labelvisus{Visualisierungsinstitut der Universität Stuttgart}%
 %
         \gdef\@labelerklaerung{Erklärung}%
-        \gdef\@labeleinbearbeiter{Hiermit versichere ich, diese Arbeit
-          selbständig verfasst und nur die angegebenen Quellen benutzt
-          zu haben.}%
-        \gdef\@labelzweibearbeiter{Hiermit versichern wir, diese Arbeit 
-                                   selbständig verfasst und nur die
-                                   angegebenen Quellen benutzt zu haben.}
-}       
+        \gdef\@labeleinbearbeiter{Ich versichere, diese Arbeit selbstständig verfasst zu haben.
+Ich habe keine anderen als die angegebenen Quellen benutzt und alle wörtlich oder sinngemäß aus anderen Werken übernommene Aussagen als solche gekennzeichnet.
+Weder diese Arbeit noch wesentliche Teile daraus waren bisher Gegenstand eines anderen Prüfungsverfahrens.
+Ich habe diese Arbeit bisher weder teilweise noch vollständig veröffentlicht.
+Das elektronische Exemplar stimmt mit allen eingereichten Exemplaren überein. }%
+        \gdef\@labelzweibearbeiter{Wir versichern, diese Arbeit selbstständig verfasst zu haben.
+Wir haben keine anderen als die angegebenen Quellen benutzt und alle wörtlich oder sinngemäß aus anderen Werken übernommene Aussagen als solche gekennzeichnet.
+Weder diese Arbeit noch wesentliche Teile daraus waren bisher Gegenstand eines anderen Prüfungsverfahrens.
+Wir haben diese Arbeit bisher weder teilweise noch vollständig veröffentlicht.
+Das elektronische Exemplar stimmt mit allen eingereichten Exemplaren überein. }
+}
 
 
 \newcommand{\sprache}[1]{ \def\1{#1}\def\0{deutsch}\ifx\1\0\labelsdeutsch\else
@@ -470,16 +475,16 @@
   \null
   \vskip 5cm\relax
   \centering
-  \begin{minipage}[t]{8cm}
+  \begin{minipage}[t]{10cm}
     \hbox{\bf \@labelerklaerung}%
     \vskip 1cm\relax
-    \begin{flushleft}%
+    %\begin{flushleft}%
       \@versicherung
-    \end{flushleft}%
+    %\end{flushleft}%
     \vskip 4cm\relax
     \hrulefill
     \vskip .4\baselineskip
-    \hbox{\ (\@author)}
+    \hbox{\ Ort, Datum, Unterschift}
   \end{minipage}
 %%   \hbox{\kern 2cm\vbox{%
 %%       \@setsize\large{14pt}\xiipt\@xiipt %% \large

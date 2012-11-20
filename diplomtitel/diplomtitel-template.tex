@@ -10,9 +10,16 @@
 % Auf neue Version 2.5a angepasst
 % Verwendung des Koma-Paktes (http://www.komascript.de)
 % Verwendung von Festabständen (\,) bei Abkürzungen (vgl. Duden Band 1, "Festabstände". In der 22. Auflage auf S. 93 zu finden)
+%
+% geaendert 20. November 2012 - Oliver Kopp
+%  * Statt ngerman-Paket wird nun babel benutzt.
+%  * UTF-8 Unterstützung
 
 \documentclass[11pt]{scrartcl}
-\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
 \usepackage{diplomtitel}
 
 %\studiengang{swt} % Default ist \studiengang{inf}, also Informatik.
@@ -53,7 +60,7 @@ Institut für Formale Methoden der Informatik\\\vskip .3em
 Abteilung Formale Konzepte\\\vskip .3em
 Universität Stuttgart\\
 Universitätsstraße 38\\
-D70569 Stuttgart}
+70569 Stuttgart}
 
 %2. Ganze Fakultaet
 %\institut\fak
