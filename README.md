@@ -1,7 +1,7 @@
 About
 =====
 
-Inoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at the University of Stuttgart, Computer Science.
+Unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at the University of Stuttgart, Computer Science.
 
 More information at https://github.com/latextemplates/USTUTT-computer-science.
 
