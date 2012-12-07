@@ -51,6 +51,10 @@
 %     * UTF-8 und nur Unix line endings
 %     * Bachelorarbeiten hinzugefügt
 %     * Masterarbeiten hinzugefügt
+%    7-Dez-2012 (Niklas Schnelle) v2.6a
+%     * Erklärung von 
+%       http://www.informatik.uni-stuttgart.de/studierende/pruefungen/pruefungsausschuss-informatik-und-softwaretechnik/abschlussarbeiten-in-der-informatik/formvorschriften-fuer-abschlussarbeiten.html
+%	auf den neusten Stand gebraucht, inklusive Englische Übersetzung durch professionellen Übersetzer.
 %
 % Todos:
 %  Evtl. Abteilungen mittels Kommando und nicht durch Freitext in \institut einbinden.
@@ -125,16 +129,24 @@
 		\gdef\@labelvisus{Visualisierungsinstitut der Universität Stuttgart}%
 %
         \gdef\@labelerklaerung{Declaration}%
-        \gdef\@labeleinbearbeiter{ All the work contained within this thesis,\\
-                                   except where otherwise acknowledged, was\\
-                                   solely the effort of the author. At no \\
-                                   stage was any collaboration entered into\\
-                                   with any other party.}%
-        \gdef\@labelzweibearbeiter{All the work contained within this thesis,\\
-                                   except where otherwise acknowledged, was\\
-                                   solely the effort of the authors. At no \\
-                                   stage was any collaboration entered into\\
-                                   with any other party.}%
+        \gdef\@labeleinbearbeiter{I declare herewith that I am the author of this thesis. 
+				  I did not use any other sources than those named and all those
+				  passages quoted  from other works either literally or in the general
+				  sense are marked as such. Neither the complete thesis
+				  nor essential parts of it have been used up to
+				  now in any other examination procedure.
+				  I have not published this thesis up to now either in part or as a whole.
+				  The electronically submitted version is
+				  identical to all the other versions which have been submitted.}%
+        \gdef\@labelzweibearbeiter{We declare herewith that we are the authors of this thesis. 
+				  We did not use any other sources than those named and all those
+				  passages quoted from other works either literally or in the general
+				  sense are marked as such. Neither the complete thesis
+				  nor essential parts of it have been used up to
+				  now in any other examination procedure.
+				  We have not published this thesis up to now either in part or as a whole.
+				  The electronically submitted version is
+				  identical to all the other versions which have been submitted.}%
 }
 
 \def\labelsdeutsch{
@@ -167,13 +179,28 @@
 		\gdef\@labelvisus{Visualisierungsinstitut der Universität Stuttgart}%
 %
         \gdef\@labelerklaerung{Erklärung}%
-        \gdef\@labeleinbearbeiter{Hiermit versichere ich, diese Arbeit
-          selbständig verfasst und nur die angegebenen Quellen benutzt
-          zu haben.}%
-        \gdef\@labelzweibearbeiter{Hiermit versichern wir, diese Arbeit 
-                                   selbständig verfasst und nur die
-                                   angegebenen Quellen benutzt zu haben.}
-}       
+        \gdef\@labeleinbearbeiter{Ich versichere, diese Arbeit selbstständig verfasst zu haben.
+				  Ich habe keine anderen als die angegebenen Quellen benutzt und alle
+				  wörtlich oder sinngemäß aus anderen Werken übernommene Aussagen als
+				  solche gekennzeichnet.
+				  Weder diese Arbeit noch wesentliche Teile daraus waren bisher Gegenstand
+				  eines anderen Prüfungsverfahrens.
+				  Ich habe diese Arbeit bisher weder teilweise noch vollständig
+				  veröffentlicht.
+				   Das elektronische Exemplar stimmt mit allen eingereichten Exemplaren
+				  überein.}
+}%
+        \gdef\@labelzweibearbeiter{Wir versichern, diese Arbeit selbstständig verfasst zu haben.
+				  Wir haben keine anderen als die angegebenen Quellen benutzt und alle
+				  wörtlich oder sinngemäß aus anderen Werken übernommene Aussagen als
+				  solche gekennzeichnet.
+				  Weder diese Arbeit noch wesentliche Teile daraus waren bisher Gegenstand
+				  eines anderen Prüfungsverfahrens.
+				  Wir haben diese Arbeit bisher weder teilweise noch vollständig
+				  veröffentlicht.
+				  Das elektronische Exemplar stimmt mit allen eingereichten Exemplaren
+				  überein.}
+       
 
 
 \newcommand{\sprache}[1]{ \def\1{#1}\def\0{deutsch}\ifx\1\0\labelsdeutsch\else
