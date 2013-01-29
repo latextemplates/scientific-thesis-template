@@ -153,4 +153,4 @@ fetchstys: tabulary.sty algorithm.sty lmodern.sty microtype.sty todonotes.sty
 
 html: clean pdf
 	rm $(AUX)
-	htlatex.bat $(SRC)
+	htlatex $(SRC)
