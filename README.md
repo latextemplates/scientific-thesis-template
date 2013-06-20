@@ -28,6 +28,8 @@ If you have, just add https://github.com/latextemplates/USTUTT-computer-science.
 1. cd USTUTT-computer-science
 1. git remote rename origin github
 1. git checkout -b master
+1. git submodule init
+1. git submodule update
 
 Now, you are on the master branch, where you can write your thesis and push it to your (remote) origin repository, in case you have one.
 
@@ -37,6 +39,7 @@ If you want to merge updates from github, do the following:
 
 1. git fetch github
 1. git merge github/template
+1. git submodule update
 
 LaTeX compilation
 =================
