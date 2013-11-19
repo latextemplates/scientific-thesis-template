@@ -83,13 +83,15 @@
 %\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
 %
 \fi
+
+\ifenglisch
 %
-%\usepackage{charter} %Charter fuer englsiche Texte
-%\linespread{1.05} % Durchschuss für Charter leicht erhöhen
+\usepackage{charter} %Charter fuer englische Texte
+\linespread{1.05} % Durchschuss für Charter leicht erhöhen
 %
 %\usepackage{mathptmx} %Times fuer englische Texte. Sieht nicht sooo gut aus.
-\ifenglisch
-\usepackage{lmodern}
+%
+%Fallback ist lmodern, die oben eingebunden wurde
 \fi
 
 %Schriftart fuer Programmcode - ueberschreibt lmodern
