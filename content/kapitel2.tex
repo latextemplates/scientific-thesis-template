@@ -77,9 +77,9 @@ wichtig. Im Anhang zeigt Abbildung~\vref{fig:AnhangsChor} erneut die komplette C
 \end{figure}
 
 Das SVG in \autoref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \autoref{fig:latexSVG} mittels pdflatex gesetzt ist.
-Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \verb1\iffalse1 und \verb1\iftrue1 auskommentiert sein.
+\todo{Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.}
 
-\iffalse
+\iffalse % <-- Das hier wegnehmen, falls inkscape im Pfad ist
 \begin{figure}
 \centering
 \includegraphics{svgexample.svg}
@@ -94,7 +94,7 @@ Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Que
 \caption{Text im SVG mittels \LaTeX{} gesetzt}
 \label{fig:latexSVG}
 \end{figure}
-\fi
+\fi % <-- Das hier wegnehmen, falls inkscape im Pfad ist
 
 \section{Tabellen}
 Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse.
