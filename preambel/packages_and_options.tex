@@ -92,6 +92,13 @@
 \addtolength\mathindent{1em}%work-around ams-math problem with align and 9 -> 10
 \usepackage{mathtools} %fixes bugs in AMS math
 %
+%for theorems, replacement for amsthm
+\usepackage[amsmath,hyperref]{ntheorem}
+\theorempreskipamount 2ex plus1ex minus0.5ex
+\theorempostskipamount 2ex plus1ex minus0.5ex
+\theoremstyle{break}
+\newtheorem{definition}{Definition}[section]
+%
 %%%
 
 
@@ -415,6 +422,16 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 	citecolor=black
 }
 %
+%%%
+
+
+%%%
+% cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
+\ifdeutsch
+\usepackage[ngerman,capitalise,nameinlink]{cleveref}
+\else
+\usepackage[capitalise,nameinlink]{cleveref}
+\fi
 %%%
 
 

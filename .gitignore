@@ -29,6 +29,7 @@
 *.ps
 *.synctex
 *.synctex.gz
+*.thm
 *.tmp
 *.toc
 *.tpt

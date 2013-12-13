@@ -76,7 +76,7 @@ wichtig. Im Anhang zeigt Abbildung~\vref{fig:AnhangsChor} erneut die komplette C
   \end{center}
 \end{figure}
 
-Das SVG in \autoref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \autoref{fig:latexSVG} mittels pdflatex gesetzt ist.
+Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
 \todo{Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.}
 
 \iffalse % <-- Das hier wegnehmen, falls inkscape im Pfad ist
@@ -173,12 +173,16 @@ test2\\
 }
 
 \section{Verweise}
-Man das Wort \enquote{Abschnitt} mittels \verb1\autoref{...}1 direkt erzeugen lassen: \autoref{sec:mf}.
-Das geht auch für Abbildungen usw.
-
 Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
-``Siehe Abschnitt~\vref{sec:mf}''.
-Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}ref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird. \texttt{vref}: Abschnitt \vref{sec:diff}, \texttt{ref}: \ref{sec:diff}.
+\enquote{Siehe \vref{sec:mf}}.
+Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}cref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird.
+\texttt{vref}: \enquote{\vref{sec:diff}}, \texttt{cref}: \enquote{\cref{sec:diff}}, \texttt{ref}: \enquote{\ref{sec:diff}}.
+
+Falls \enquote{varioref} Schwierigkeiten macht, dann kann man stattdessen \enquote{cref} verwenden.
+Dies erzeugt auch das Wort \enquote{Abschnitt} automatisch: \cref{sec:mf}.
+Das geht auch für Abbildungen usw.
+Im Englischen bitte \verb1\Cref{...}1 (mit großen \enquote{C} am Anfang) verwenden.
+
 
 %Mit MiKTeX Installation ab dem 2012-01-16 nicht mehr nötig
 %Falls ein Abschnitt länger als eine Seite wird und man mittels \texttt{\textbackslash{}vref} auf eine konkrete Stelle in der Section
@@ -193,6 +197,13 @@ Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\te
 
 %Hier das Beispiel: Siehe Abschnitt \vref{hack1} und Abschnitt \vref{hack2}.
 
+\section{Definitionen}
+\begin{definition}[Title]
+\label{def:def1}
+Definition Text
+\end{definition}
+
+\Cref{def:def1} zeigt \ldots
 
 \section{Verschiedenes}
 \label{sec:diff}
