@@ -173,7 +173,12 @@ test2\\
 }
 
 \section{Verweise}
-Verweise auf einen Abschnitt gehen mittels: ``Siehe Abschnitt~\vref{sec:mf}''. Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}ref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird. \texttt{vref}: Abschnitt \vref{sec:diff}, \texttt{ref}: \ref{sec:diff}.
+Man das Wort \enquote{Abschnitt} mittels \verb1\autoref{...}1 direkt erzeugen lassen: \autoref{sec:mf}.
+Das geht auch für Abbildungen usw.
+
+Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
+``Siehe Abschnitt~\vref{sec:mf}''.
+Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}ref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird. \texttt{vref}: Abschnitt \vref{sec:diff}, \texttt{ref}: \ref{sec:diff}.
 
 %Mit MiKTeX Installation ab dem 2012-01-16 nicht mehr nötig
 %Falls ein Abschnitt länger als eine Seite wird und man mittels \texttt{\textbackslash{}vref} auf eine konkrete Stelle in der Section
@@ -187,6 +192,7 @@ Verweise auf einen Abschnitt gehen mittels: ``Siehe Abschnitt~\vref{sec:mf}''. D
 %Das Beispiel für \texttt{\textbackslash{}phantomsection} bitte im \LaTeX{}-Quellcode anschauen.
 
 %Hier das Beispiel: Siehe Abschnitt \vref{hack1} und Abschnitt \vref{hack2}.
+
 
 \section{Verschiedenes}
 \label{sec:diff}
