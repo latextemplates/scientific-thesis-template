@@ -21,11 +21,11 @@ Using with your git repository
 Initialization
 --------------
 This howto assumes that you have not a git repository for your thesis.
-If you have, just add https://github.com/latextemplates/USTUTT-computer-science.git as upstream and merge the branch "template" into your "master" branch.
+If you have, just add https://github.com/latextemplates/uni-stuttgart-computer-science-template.git as upstream and merge the branch "template" into your "master" branch.
 
 1. Open command line
-1. git clone https://github.com/latextemplates/USTUTT-computer-science.git
-1. cd USTUTT-computer-science
+1. git clone https://github.com/latextemplates/uni-stuttgart-computer-science-template.git
+1. cd uni-stuttgart-computer-science-template
 1. git remote rename origin github
 1. git checkout -b master
 1. git submodule init
