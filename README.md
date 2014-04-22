@@ -3,7 +3,7 @@ About
 
 Unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at the University of Stuttgart, Computer Science.
 
-More information at https://github.com/latextemplates/USTUTT-computer-science.
+More information at https://github.com/latextemplates/uni-stuttgart-computer-science-template.
 
 It originates from the studiforge server at https://vorlagen.studiforge.informatik.uni-stuttgart.de/trac/
 
@@ -256,7 +256,7 @@ Font selection
 
 Margin settings
 
-Einstellung der Seitenränder
+Einstellung der Seitenrï¿½nder
 
 ### preambel/packages`_`and`_`options.tex
 
