@@ -13,7 +13,7 @@ Characteristics
 * pdflatex
 * Depends on bibtex (and not to biblatex yet)
 
-This template runs at Windows using the current [MiKTeX](http://www.miktex.org) distribution. Linux should work without any issues. In some cases, `make fetchstys` might be necessary to fetch required `.sty` files.
+This template runs at Windows using the current [MiKTeX](http://www.miktex.org) distribution. Linux (TexLive full >= 2012 )should work without any issues. 
 
 Using with your git repository
 ==============================
@@ -93,11 +93,6 @@ aspell
 ------
 
 Checks all files using aspell.
-
-dokumentationen
----------------
-
-Fetches PDFs for important included LaTeX packages.
 
 clean
 -----

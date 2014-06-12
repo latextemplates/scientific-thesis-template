@@ -88,68 +88,13 @@ standps: ps
 # add-tex-command begin PO // PO := prüfe []{} ;; po := ignoriere []{}
 # Leerzeichen ungleich Tabs !!!
 # Config File nicht vergessen
-aspell: 
+aspell:
 	for tex in $(TEX_FILES);	\
 		do	\
 			aspell -t -l de_DE -d german -T utf-8 -c $$tex --encoding=utf-8;	\
 		done
 #
 ##
-
-##
-# Einige nicht-standard-Styles, die noch unbedingt installiert werden müssen.
-rcs.sty:
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/rcs/rcs.sty
-
-todonotes.sty:
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/todonotes/todonotes.sty
-
-tabulary.ins:
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/tabulary/tabulary.dtx
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/tabulary/tabulary.ins
-
-microtype.ins:
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/microtype/microtype.ins
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/microtype/microtype.dtx
-
-lmodern.sty:
-	wget -r -l1 -nd ftp://dante.ctan.org/tex-archive/fonts/lm/tex/latex/lm/
-
-algorithm.sty:
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/algorithms/algorithm.sty
-	wget ftp://dante.ctan.org/tex-archive/macros/latex/contrib/algorithms/algorithmic.sty
-
-%.sty: %.ins
-	tex $? 
-	rm -f $*.ins $*.dtx $*.log
-#
-##
-
-# Die Dokumentationen aller verwendeten Packages. Weitere Dokus von Hand einfügen.
-# Geht bestimmt auch hübscher.
-dokumentationen:
-	mkdir Dokus
-	cd ./Dokus
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/todonotes/todonotes.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/algorithms/algorithms.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/tabulary/tabulary.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/microtype/microtype.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/xcolor/xcolor.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/xcolor/xcolor2.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/paralist/paralist.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/svninfo/svninfo.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/fncychap/fncychap.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/listings/listings.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/fancyvrb/fancyvrb.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/caption/caption.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/floatrow/floatrow.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/subfig/subfig.pdf
-	wget -N ftp://tug.ctan.org/tex-archive/macros/latex/contrib/yafoot/yafoot-man.pdf
-	wget -N ftp://dante.ctan.org/tex-archive/macros/latex/contrib/hyperref/*.pdf
-
-# Einmal initial alle Dokumentationen ziehen mit "dokumentation.pdf"
-# tabulary.sty algorithm.sty lmodern.sty microtype.sty todonotes.sty dokumentation.pdf
-fetchstys: tabulary.sty algorithm.sty lmodern.sty microtype.sty todonotes.sty
 
 html: clean pdf
 	rm $(AUX)
