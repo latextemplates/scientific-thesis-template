@@ -198,7 +198,7 @@ BibTeX style file for English bibliographies. Possibly, it can be used for Germa
 
 ### bibliography/IAAS.dbj
 
-Source for generating `IAAS.bst` (`latex IAAS.dbj`, requires custombib)
+Source for generating `IAAS.bst` (`latex IAAS.dbj`, requires [custombib](http://www.ctan.org/pkg/custom-bib))
 
 ## content/
 
