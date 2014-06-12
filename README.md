@@ -186,12 +186,6 @@ The Makefile.
 
 This file.
 
-## Diplomtitle
-
-### diplomtitle/diplomtitel.sty
-
-Style file for the cover sheet of the document.
-
 ## Bibliography
 
 ### bibliography/literatur.bib
