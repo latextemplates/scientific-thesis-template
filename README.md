@@ -11,12 +11,12 @@ Characteristics
 ---------------
 * UTF-8
 * pdflatex
-* Depends on bibtex (and not to biblatex yet)
+* Depends on bibtex (and not biblatex yet)
 
-This template runs at Windows using the current [MiKTeX](http://www.miktex.org) distribution. Linux (TexLive full >= 2012 )should work without any issues. 
+This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution. On Linux (TexLive full >= 2012) should work without any issues. 
 
-Using with your git repository
-==============================
+Using with your own git repository
+==================================
 
 Initialization
 --------------
