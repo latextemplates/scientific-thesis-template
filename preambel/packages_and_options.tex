@@ -106,6 +106,10 @@
 % Intelligentes Leerzeichen um hinter Abkürzungen die richtigen Abstände zu erhalten, auch leere.
 % siehe commands.tex \gq{}
 \usepackage{xspace}
+%Macht \xspace und \enquote kompatibel
+\makeatletter
+\xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
+\makeatother
 %
 %%%
 
