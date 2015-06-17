@@ -274,14 +274,12 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Fuer listings
 % Wird für fancyvrb und für lstlistings verwendet
-% zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
-% floatrow ist der Nachfolger von float
-\iftex4ht
 \usepackage{float}
-\else
-%tex4ht is not compatible with the advanced floatrow package
-\usepackage{floatrow}
-\fi
+
+%\usepackage{floatrow}
+%% zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
+% floatrow ist der Nachfolger von float
+% Allerdings macht floatrow in manchen Konstellationen Probleme. Deshalb ist das Paket deaktiviert.
 %
 %%%
 
@@ -647,5 +645,3 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \fi}
 %
 %%%
-
-
