@@ -11,13 +11,20 @@ Quick start
 -----------
 If you don't want to use git, just download https://github.com/latextemplates/uni-stuttgart-computer-science-template/archive/template.zip
 
-Characteristics
----------------
+Recommended LaTeX environments
+------------------------------
+* offline: [TeXstudio] together with [JabRef].
+* online: [overleaf]. Also with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
+
+
+Characteristics of the template
+-------------------------------
 * UTF-8
 * pdflatex
 * Depends on bibtex (and not biblatex yet)
 
 This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution. On Linux (TexLive full >= 2012) should work without any issues. 
+
 
 Using with your own git repository
 ==================================
@@ -42,30 +49,14 @@ If you want to merge updates from github, do the following:
 1. git fetch github
 1. git merge github/template
 
+
 LaTeX compilation
 =================
 The template is compiled using normal LaTeX commands.
+Your LaTeX environment (such as [TeXStudio]) should take care about the compilation transparently.
+If you want to include .svg graphics, [inkscape] has to be in your path.
 
-If you want to include .svg graphics, inkscape has to be in your path.
-
-Usual LaTeX run
----------------
-
-    pdflatex ausarbeitung
-    bibtex ausarbeitung
-    pdflatex ausarbeitung
-    pdflatex ausarbeitung
-
-Automatic compilation using make
---------------------------------
-
-    make
-
-
-Automatic compilation using texify
-----------------------------------
- 
-    texify -p ausarbeitung.tex
+If you want to compile using the command line, you can use following tools.
 
 Automatic compilation using latexmk
 -----------------------------------
@@ -77,57 +68,30 @@ Continuous previewing using latexmk
 
     latexmk -pvc -pdf ausarbeitung
 
-This will open Acrobat Reader once. Close it and start a PDF reader supporting instant reload of PDFs. We recommend [Sumatra PDF](http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader-de.html).
+This will open Acrobat Reader once. Close it and start a PDF reader supporting instant reload of PDFs.
+We recommend [Sumatra PDF].
 
-
-Make targets
-============
-
+Automatic compilation using make
+--------------------------------
 For those, who have [cygwin](http://www.cygwin.com/) installed or run a linux machine, this template offers a simple LaTeX makefile. It is not so sophisticated as other projects, but does its job
 
-pdf (default)
--------------
+    make
 
-Generates ausarbeitung.pdf
+Make targets:
+ * `pdf` (default): Generates ausarbeitung.pdf
+ * `aspell`: Checks all files using aspell.
+ * `clean`: Removes all temporary files.
+ * `mrproper`: Cleans up and removes also editor backup files.
+ * `stand`: Creates a new PDF with the current status of the thesis.
+ * `view`: Opens the configured viewer
+ * `6`: Generates a 3x2 postscriptfile using psnup.
 
-aspell
-------
-
-Checks all files using aspell.
-
-clean
------
-
-Removes all temporary files.
-
-mrproper
---------
-
-Cleans up and removes also editor backup files.
-
-stand
------
-
-Creates a new PDF with the current status of the thesis.
-
-view
-----
-
-Opens the configured viewer
-
-6
--
-
-Generates a 3x2 postscriptfile using psnup.
-
-Alternatives
-------------
-
-* http://code.google.com/p/latex-makefile/
+Alternatives:
+* https://github.com/shiblon/latex-makefile
 * https://github.com/ransford/pdflatex-makefile
 * https://github.com/brotchie/latex-rubber-makefile
 * See http://stackoverflow.com/questions/1240037/recommended-build-system-for-latex
-* Current favorite: [LaTeX-Mk](http://latex-mk.sourceforge.net/).
+* Current favourite: [LaTeX-Mk](http://latex-mk.sourceforge.net/).
 
 Tweaks
 ======
@@ -142,7 +106,7 @@ Two steps to switch to English typesetting:
 1. `ausarbeitung.tex`: Right on top: remove the `%` before `pointlessnumbers` (line 17)
 1. `ausarbeitung.tex`: Exchange commands `\ifdeutsch` and `\ifenglisch`. (Lines 23,23 <-> 27,28).
 1. `preambel/packages_and_options.tex` at `usepackage` of `uni-stuttgart-cs-cover`: disabled `language=german` and enable `language=english`. (Lines 448 and 449)
-1. Cleanup everything (e.g., `make clean`). Otherwise pdflatex will complain because of `ngerman`.
+1. Cleanup everything (e.g., `latexmk -c ausarbeitung`). Otherwise pdflatex will complain because of `ngerman`.
 
 Change Appearance of Chapter Headings
 -------------------------------------
@@ -166,97 +130,34 @@ See http://wiki.flupp.de/LaTeX
 
 # Contained Files and Directories
 
-## Main directory
+* ausarbeitung.tex
+  * Main file
+  * New chapters are added by using `\input`
+  * Adjust title etc. here
+* Makefile: The Makefile.
+* README.md: This file.
+* uni-stuttgart-cs-cover.sty: Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
+* bibliography/literatur.bib. Bibliography. BibTex format. Manage it with [JabRef].
+* bibliography/IAAS.bst: BibTeX style file for English bibliographies. Possibly, it can be used for German bibliographies, too.
+* bibliography/IAAS.dbj: Source for generating `IAAS.bst` (`latex IAAS.dbj`, requires [custombib](http://www.ctan.org/pkg/custom-bib))
+* content/: Place for the actual content
+  * content/einleitung.tex: First chapter: The introduction
+  * content/kapitel2.tex: Second chapter
+  * content/zusammenfassung`_`und`_`ausblick.tex: Conclusion and outlook.
+  * content/anhang.tex
+* graphics/: Directory containing the figures.
+  By using PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
+* macros/: Directory for macros.
+  * macros/commands.tex: Example macros
+* preambel/: Latex header of the document ("preambel" in latex)
+  * preambel/chapterheads.tex: Definition for the chapter headings.
+  * preambel/fonts.tex: Font selection
+  * preambel/margins.tex: Margin settings / Einstellung der Seitenränder
+  * preambel/packages`_`and`_`options.tex: Includes required packages and their options.
+  * preambel/pagestyle.tex: Defines the head and the foot of a page.
 
-### ausarbeitung.tex
-* Main file
-* New chapters are added by using `\input`
-* Adjust title etc. here
-
-
-### Makefile
-
-The Makefile.
-
-### README.md
-
-This file.
-
-### uni-stuttgart-cs-cover.sty
-
-Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
-
-
-## Bibliography
-
-### bibliography/literatur.bib
-
-Bibliography. BibTex format. Manage it with [JabRef](http://jabref.sf.net) or similar BibTeX tooling.
-
-### bibliography/IAAS.bst
-
-BibTeX style file for English bibliographies. Possibly, it can be used for German bibliographies, too.
-
-### bibliography/IAAS.dbj
-
-Source for generating `IAAS.bst` (`latex IAAS.dbj`, requires [custombib](http://www.ctan.org/pkg/custom-bib))
-
-## content/
-
-Place for the actual content
-
-### content/einleitung.tex
-
-First chapter: The introduction
-
-### content/kapitel2.tex
-
-Second chapter
-
-### content/zusammenfassung`_`und`_`ausblick.tex
-
-Conclusion and outlook.
-
-### content/anhang.tex
-
-Appendix
-
-## graphics/
-
-Directory containing the figures.
-
-By using PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
-
-## macros/ 
-
-Directory for macros.
-
-### macros/commands.tex
-
-Sample macros
-
-## preambel/
-
-Latex header of the document ("preambel" in latex)
-
-### preambel/chapterheads.tex
-
-Definition for the chapter headings.
-
-### preambel/fonts.tex
-
-Font selection
-
-### preambel/margins.tex
-
-Margin settings
-
-Einstellung der Seitenr�nder
-
-### preambel/packages`_`and`_`options.tex
-
-Includes required packages and their options.
-
-### preambel/pagestyle.tex
-
-Defines the head and the foot of a page.
+ [inkscape]: http://inkscape.org/
+ [JabRef]: http://jabref.sf.net
+ [overleaf]: https://www.overleaf.com/
+ [Sumatra PDF]: http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader-de.html
+ [TeXStudio]: http://texstudio.sourceforge.net/
