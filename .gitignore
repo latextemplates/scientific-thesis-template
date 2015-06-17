@@ -12,6 +12,7 @@
 *.css
 *.dvi
 *.err
+*.fls
 *.glo
 *.gls
 *.html
