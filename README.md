@@ -7,6 +7,10 @@ More information at https://github.com/latextemplates/uni-stuttgart-computer-sci
 
 It originates from the studiforge server at https://vorlagen.studiforge.informatik.uni-stuttgart.de/trac/
 
+Quick start
+-----------
+If you don't want to use git, just download https://github.com/latextemplates/uni-stuttgart-computer-science-template/archive/template.zip
+
 Characteristics
 ---------------
 * UTF-8
@@ -28,8 +32,6 @@ If you have, just add https://github.com/latextemplates/uni-stuttgart-computer-s
 1. cd uni-stuttgart-computer-science-template
 1. git remote rename origin github
 1. git checkout -b master
-1. git submodule init
-1. git submodule update
 
 Now, you are on the master branch, where you can write your thesis and push it to your (remote) origin repository, in case you have one.
 
@@ -39,7 +41,6 @@ If you want to merge updates from github, do the following:
 
 1. git fetch github
 1. git merge github/template
-1. git submodule update
 
 LaTeX compilation
 =================
@@ -180,6 +181,11 @@ The Makefile.
 ### README.md
 
 This file.
+
+### uni-stuttgart-cs-cover.sty
+
+Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
+
 
 ## Bibliography
 
