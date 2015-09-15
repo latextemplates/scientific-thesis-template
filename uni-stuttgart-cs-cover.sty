@@ -137,7 +137,7 @@
 	\gdef\@labelTypeDiplom{Diplomarbeit}%
 	\gdef\@labelTypeBachelor{Bachelorarbeit}%
 	\gdef\@labelTypeMaster{Masterarbeit}%
-	\gdef\@labelTypeProjectINF{Projekt-INF}%
+	\gdef\@labelTypeProjectINF{Project-INF}%
 	\gdef\@labelTypeFachstudie{Fachstudie}%
 	\gdef\@labelTypeProzessanalyse{Prozessanalyse}%
 	\gdef\@labelTypeNummer{Nr.}%
@@ -225,6 +225,7 @@
 	\def\1{\MCS@course}
 	% dont remove last two braces / empty else clause
 	\def\0{cs}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseCS}}{}
+	\def\0{cs2}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseCS2}}{}
 	\def\0{se}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseSE}}{}
 	\def\0{mcl}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseMCL}}{}
 	\def\0{msv}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseMSV}}{}
