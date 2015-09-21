@@ -541,7 +541,13 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %neue float Umgebung fuer Listings, die mittels fancyvrb gesetzt werden sollen
 \floatstyle{ruled}
 \newfloat{Listing}{tbp}{code}[chapter]
+\crefname{Listing}{Listing}{Listings}
 \newfloat{Algorithmus}{tbp}{alg}[chapter]
+\ifdeutsch
+\crefname{Algorithmus}{Algorithmus}{Algorithmus}
+\else
+\crefname{Algorithmus}{Algorithm}{Algorithms}
+\fi
 %
 %amsmath
 %\numberwithin{equation}{section}
