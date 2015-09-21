@@ -649,6 +649,16 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %
 %%%
 
+
+%%%
+%ensure that floats covering a whole page are placed at the top of the page
+%see http://tex.stackexchange.com/a/28565/9075
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+%%%
+
 %%%
 %Optischer Randausgleich
 \usepackage{microtype}
