@@ -16,6 +16,10 @@ Recommended LaTeX environments
 * offline: [TeXstudio] together with [JabRef].
 * online: [overleaf]. Also with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
 
+### Recommended setup of MiKTeX
+* Install MiKTeX for: "Only for: `username`"
+* Install MiKTeX to: `C:\MiKTeX`. This enabled browsing for documentation at `C:\MiKTeX29\doc\latex
+* Install missing packages on the fly: `Yes`
 
 Characteristics of the template
 -------------------------------
