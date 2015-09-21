@@ -381,6 +381,34 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
+%biblatex statt bibtex
+\usepackage[
+  backend       = biber, %minalphanames only works with biber backend
+  bibstyle      = alphabetic,
+  citestyle     = alphabetic,
+  firstinits    = true,
+  minnames      = 1,
+  minalphanames = 3,
+  maxalphanames = 4,
+  maxbibnames   = 99,
+  maxcitenames  = 3,
+  backref       = true]{biblatex}
+\bibliography{bibliography}
+
+\DefineBibliographyStrings{ngerman}{
+  backrefpage  = {Zitiert auf S\adddot},
+  backrefpages = {Zitiert auf S\adddot},
+  andothers    = {et\ \addabbrvspace al\adddot},
+  %Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
+  bibliography = {Literaturverzeichnis}
+}
+
+%natbib compatibility
+\newcommand{\citep}[1]{\cite{#1}}
+\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
+%%%
+
+%%%
 % Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
 % Pakets "index" wichtig, da sonst die Referenzierung nicht funktioniert.
 % Für die Indizierung selbst ist unter http://xindy.sourceforge.net
@@ -613,35 +641,4 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 %Optischer Randausgleich
 \usepackage{microtype}
-%%%
-
-%%%
-% Rueckverweise aus dem Literaturverzeichnis
-\usepackage[hyperpageref]{backref}
-\ifdeutsch
-% Deutscher Text
-\newcommand{\babelbackrefnotcited}{\relax}
-\newcommand{\babelbackrefcitedsingle}[1]{(Zitiert auf Seite~#1)}
-\newcommand{\babelbackrefcitedmulti}[1]{(Zitiert auf den Seiten~#1)}
-\newcommand{\babelbackrefand}{und}
-\else
-% Englischer Text
-\newcommand{\babelbackrefnotcited}{\relax}
-\newcommand{\babelbackrefcitedsingle}[1]{(Cited on page~#1)}
-\newcommand{\babelbackrefcitedmulti}[1]{(Cited on pages~#1)}
-\newcommand{\babelbackrefand}{and}
-\fi
-% Tweak backref
-\renewcommand{\backreftwosep}{ \babelbackrefand~} % seperate 2 pages
-\renewcommand{\backreflastsep}{ \babelbackrefand~} % seperate last of longer list
-\renewcommand*{\backref}[1]{} % Standard deaktivieren
-\renewcommand*{\backrefalt}[4]{% 
-\ifcase #1 %
-\babelbackrefnotcited%
-\or
-\babelbackrefcitedsingle{#2}%
-\else
-\babelbackrefcitedmulti{#2}%
-\fi}
-%
 %%%

@@ -8,7 +8,7 @@ LITERATURE = bibliography/bibliography.bib
 #latex = pdflatex -shell-escape
 #MiKTeX:
 latex = pdflatex --enable-write18
-bibtex = bibtex
+bibtex = biber
 
 SRC = $(shell basename $(MASTER_TEX) .tex)
 TEX_FILES = $(wildcard preambel/*.tex content/*.tex)
@@ -46,7 +46,7 @@ clean:
 	@rm -f $(SRC).4ct $(SRC).4tc $(SRC).alg $(SRC).aux $(SRC).bbl $(SRC).blg $(SRC).brf $(SRC).code $(SRC).dvi $(SRC).err $(SRC).glo $(SRC).gls $(SRC).hp \
 	$(SRC).idv $(SRC).lo? $(SRC).log $(SRC).lot $(SRC).out $(SRC).tmp $(SRC).toc $(SRC).tpt $(SRC).lbl $(SRC).idx \
 	$(SRC).ilg $(SRC).ind $(SRC).ps $(SRC).xref $(SRC).code $(SRC).html $(SRC).css $(SRC).lg $(SRC).thm \
-	$(SRC).synctex.gz $(SRC).fls $(SRC).fdb_latexmk
+	$(SRC).synctex.gz $(SRC).fls $(SRC).fdb_latexmk $(SRC).bcf $(SRC).run.xml
 
 # Endversion - mit eingebauter Seitenvorschau
 # mehrere Durchlaeufe, da bei longtable einige runs mehr vonnoeten sind...

@@ -25,7 +25,7 @@ Characteristics of the template
 -------------------------------
 * UTF-8
 * pdflatex
-* Depends on bibtex (and not biblatex yet)
+* Depends on [biblatex]
 
 This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution. On Linux (TexLive full >= 2012) should work without any issues. 
 
@@ -141,9 +141,7 @@ See http://wiki.flupp.de/LaTeX
 * Makefile: The Makefile.
 * README.md: This file.
 * uni-stuttgart-cs-cover.sty: Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
-* bibliography/literatur.bib. Bibliography. BibTex format. Manage it with [JabRef].
-* bibliography/IAAS.bst: BibTeX style file for English bibliographies. Possibly, it can be used for German bibliographies, too.
-* bibliography/IAAS.dbj: Source for generating `IAAS.bst` (`latex IAAS.dbj`, requires [custombib](http://www.ctan.org/pkg/custom-bib))
+* `bibliography.bib`. Bibliography. [biblatex] format. Manage it with [JabRef].
 * content/: Place for the actual content
   * content/einleitung.tex: First chapter: The introduction
   * content/kapitel2.tex: Second chapter
@@ -160,6 +158,7 @@ See http://wiki.flupp.de/LaTeX
   * preambel/packages`_`and`_`options.tex: Includes required packages and their options.
   * preambel/pagestyle.tex: Defines the head and the foot of a page.
 
+ [biblatex]: https://www.ctan.org/pkg/biblatex
  [inkscape]: http://inkscape.org/
  [JabRef]: http://jabref.sf.net
  [overleaf]: https://www.overleaf.com/
