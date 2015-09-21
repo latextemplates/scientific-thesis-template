@@ -16,6 +16,8 @@ Recommended LaTeX environments
 * offline: [TeXstudio] together with [JabRef].
 * online: [overleaf]. Also with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
 
+See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
+
 ### Recommended setup of MiKTeX
 * Install MiKTeX for: "Only for: `username`"
 * Install MiKTeX to: `C:\MiKTeX`. This enabled browsing for documentation at `C:\MiKTeX29\doc\latex
