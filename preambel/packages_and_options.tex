@@ -192,6 +192,10 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Links verhalten sich so, wie sie sollen
 \usepackage{url}
+%Hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 %
 %%%
 
