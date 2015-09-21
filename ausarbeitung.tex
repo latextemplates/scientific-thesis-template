@@ -15,16 +15,16 @@
 %               titlepage,
                bibliography=totoc,
 %               idxtotoc,   %Index ins Inhaltsverzeichnis
-%				liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
+%                liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
                headsepline,
                cleardoublepage=empty,
                parskip=half,
-%				pointlessnumbers, %f"ur englische Texte, dann unten \ifdeutsch und \ifenglisch anpassen.
+%                pointlessnumbers, %f"ur englische Texte, dann unten \ifdeutsch und \ifenglisch anpassen.
 %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
                final   % ACHTUNG! - in pagestyle.tex noch Seitenstil anpassen
                ]{scrbook}
 
-%Englisch:			   
+%Englisch:
 %\let\ifdeutsch\iffalse
 %\let\ifenglisch\iftrue
 
@@ -32,10 +32,10 @@
 \let\ifdeutsch\iftrue
 \let\ifenglisch\iffalse
 
-			   
+
 \input{preambel/packages_and_options}
 
- %Der untere Rand darf "flattern"
+%Der untere Rand darf "flattern"
 \raggedbottom
 
 %%%
@@ -147,17 +147,17 @@
         \par\nobreak\vspace*{10\p@}%
         \interlinepenalty\@M
     {\huge \bfseries %
-	%
-	%Default-Schrift: Serifenhaft (fuer englische Dokumente)
-	% Dann sowohl A als auch B deaktivieren
+    %
+    %Default-Schrift: Serifenhaft (fuer englische Dokumente)
+    % Dann sowohl A als auch B deaktivieren
     %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
-	\ifdeutsch
+    \ifdeutsch
     \fontfamily{phv}\selectfont
-	\fi
-	%B) Fuer Kapitaelchen folgende Zeile aktivieren:
-	%\fontseries{m}\fontshape{sc}\selectfont
-	%
-	#1\par\nobreak}
+    \fi
+    %B) Fuer Kapitaelchen folgende Zeile aktivieren:
+    %\fontseries{m}\fontshape{sc}\selectfont
+    %
+    #1\par\nobreak}
     %\vspace*{1\p@}%
 \makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
     \par\nobreak

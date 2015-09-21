@@ -10,7 +10,7 @@
 % Styleguide:
 %
 % Ein sehr kleiner Styleguide. Packages werden in Blöcken organisiert.
-% Ein Block beginnt mit drei % in einer Zeile, dann % <Blocküberschrift>, dann 
+% Ein Block beginnt mit drei % in einer Zeile, dann % <Blocküberschrift>, dann
 % eine Liste der möglichen Optionen und deren Einstellungen, Gründe und Kommentare
 % eine % Zeile in der sonst nichts steht und dann wieder %%% in einer Zeile.
 %
@@ -24,8 +24,8 @@
 % Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
 %
 % Mit UTF-8 funktionieren folgende Pakete nicht mehr. Bitte beachten!
-%   * fancyvrb mit § 
-%   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/ 
+%   * fancyvrb mit §
+%   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/
 \usepackage[utf8]{inputenc}
 %
 %%%
@@ -79,7 +79,7 @@
 
 %%%
 % fancyheadings (nicht nur) fuer koma
-\usepackage[automark]{scrpage2} 
+\usepackage[automark]{scrpage2}
 %
 %%%
 
@@ -205,17 +205,17 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 %lustiger Hack fuer das Abkuerzungsverzeichnis
 %nach latex durchlauf folgendes ausfuehren
-%makeindex ausarbeitung.nlo -s nomencl.ist -o ausarbeitung.nls 
+%makeindex ausarbeitung.nlo -s nomencl.ist -o ausarbeitung.nls
 %danach nochmal latex
 %\usepackage{nomencl}
-%	\let\abk\nomenclature %Deutsche Ueberschrift setzen
-%	  	\renewcommand{\nomname}{List of Abbreviations}
-%		%Punkte zw. Abkuerzung und Erklaerung
-%	  	\setlength{\nomlabelwidth}{.2\hsize}
-%	  	\renewcommand{\nomlabel}[1]{#1 \dotfill}
-%		%Zeilenabstaende verkleinern
-%	  	\setlength{\nomitemsep}{-\parsep}
-%	\makenomenclature
+%    \let\abk\nomenclature %Deutsche Ueberschrift setzen
+%          \renewcommand{\nomname}{List of Abbreviations}
+%        %Punkte zw. Abkuerzung und Erklaerung
+%          \setlength{\nomlabelwidth}{.2\hsize}
+%          \renewcommand{\nomlabel}[1]{#1 \dotfill}
+%        %Zeilenabstaende verkleinern
+%          \setlength{\nomitemsep}{-\parsep}
+%    \makenomenclature
 %
 %%%
 
@@ -264,8 +264,8 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 %%%
 % Ermoeglicht es, Abbildungen um 90 Grad zu drehen
-% Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird. 
-%Das Paket lscape dreht die Seite auch nicht 
+% Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
+%Das Paket lscape dreht die Seite auch nicht
 \usepackage{pdflscape}
 %
 %%%
@@ -302,17 +302,17 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 %%%
 % Fußnoten
-% 
+%
 %\usepackage{dblfnote}  %Zweispaltige Fußnoten
 %
 % Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
-%\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}} 
+%\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
 %
 % Abstand zwischen Fußnoten vergrößern:
 %\setlength{\footnotesep}{.85\baselineskip}
 %
 %
-\renewcommand{\footnoterule}{}             % Keine Trennlinie zur Fußnote 
+\renewcommand{\footnoterule}{}             % Keine Trennlinie zur Fußnote
 \addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
 % Fußnoten immer ganz unten auf einer \raggedbottom-Seite
 \usepackage{fnpos}
@@ -344,7 +344,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 %%%
 % Noch schoenere Tabellen als mit booktabs mit http://www.zvisionwelt.de/downloads.html
-\usepackage{booktabs} 
+\usepackage{booktabs}
 %
 %\usepackage[section]{placeins}
 %
@@ -412,7 +412,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
 % Pakets "index" wichtig, da sonst die Referenzierung nicht funktioniert.
 % Für die Indizierung selbst ist unter http://xindy.sourceforge.net
-% ein gutes Tool zu erhalten 
+% ein gutes Tool zu erhalten
 %%%
 
 
@@ -437,19 +437,19 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \definecolor{black}{rgb}{0,0,0}
 
 \hypersetup{
-	breaklinks=true,
-	bookmarksnumbered=true,
-	bookmarksopen=true,
-	bookmarksopenlevel=1,
-	breaklinks=true,
-	colorlinks=true,
-	pdfstartview=Fit,
-	pdfpagelayout=SinglePage,
-	%
-	filecolor=darkblue,
-	urlcolor=darkblue,
-	linkcolor=black,
-	citecolor=black
+    breaklinks=true,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=1,
+    breaklinks=true,
+    colorlinks=true,
+    pdfstartview=Fit,
+    pdfpagelayout=SinglePage,
+    %
+    filecolor=darkblue,
+    urlcolor=darkblue,
+    linkcolor=black,
+    citecolor=black
 }
 %
 %%%
@@ -469,7 +469,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Zur Darstellung von Algorithmen
 % Algorithm muss nach hyperref geladen werden
-\usepackage[chapter]{algorithm} 
+\usepackage[chapter]{algorithm}
 \usepackage[]{algpseudocode}
 %
 %%%
@@ -495,20 +495,20 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %
 % für englische Ausarbeitungen "language=english" benutzen
 \usepackage[
-	title={Förderungswürdigkeit der F\"{o}rderung von Öl},
-	author={Lars K.},
-	type=bachelor,
-	institute=iaas,
-	number=12345,
-	course=se,
-	examiner={Prof.\ Dr.\ Uwe Fessor},
-	supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
-	startdate={5.\ Juli 2013}, % English: July 5, 2013;    ISO: 2013-07-05
-	enddate={5.\ Januar 2014}, % English: January 5, 2014; ISO: 2014-01-05
-	crk={I.7.2},
-	language=german
-	%language=english
-	]{uni-stuttgart-cs-cover}
+    title={Förderungswürdigkeit der F\"{o}rderung von Öl},
+    author={Lars K.},
+    type=bachelor,
+    institute=iaas,
+    number=12345,
+    course=se,
+    examiner={Prof.\ Dr.\ Uwe Fessor},
+    supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
+    startdate={5.\ Juli 2013}, % English: July 5, 2013;    ISO: 2013-07-05
+    enddate={5.\ Januar 2014}, % English: January 5, 2014; ISO: 2014-01-05
+    crk={I.7.2},
+    language=german
+    %language=english
+    ]{uni-stuttgart-cs-cover}
 %
 %%%
 
@@ -530,7 +530,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-% Optionen                                                                  
+% Optionen
 %
 \captionsetup{
   format=hang,
@@ -593,7 +593,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
         extendedchars=true,
         basicstyle=\footnotesize\ttfamily,
         commentstyle=\slshape,
-        stringstyle=\ttfamily, %Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben		zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
+        stringstyle=\ttfamily, %Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
         breaklines=true,
         breakatwhitespace=true,
         columns=flexible,
@@ -619,7 +619,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-% Das Euro Zeichen 
+% Das Euro Zeichen
 % Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
 % Alternative: \usepackage{eurosym}
 \newcommand{\EUR}{\ppleuro}
