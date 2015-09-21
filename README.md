@@ -60,6 +60,7 @@ LaTeX compilation
 =================
 The template is compiled using normal LaTeX commands.
 Your LaTeX environment (such as [TeXStudio]) should take care about the compilation transparently.
+When the "Package Installation" dialog pops up at TeXStudio, choose your username at "The package will be installed for:" and uncheck "Always show this dialog before installing packages."
 If you want to include .svg graphics, [inkscape] has to be in your path.
 
 If you want to compile using the command line, you can use following tools.
