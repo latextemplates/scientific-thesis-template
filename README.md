@@ -41,12 +41,12 @@ This howto assumes that you have not a git repository for your thesis.
 If you have, just add https://github.com/latextemplates/uni-stuttgart-computer-science-template.git as upstream and merge the branch "template" into your "master" branch.
 
 1. Open command line
-1. git clone https://github.com/latextemplates/uni-stuttgart-computer-science-template.git
-1. cd uni-stuttgart-computer-science-template
-1. git remote rename origin github
-1. git checkout -b master
+1. Change to the directory where you want to have your main tex file.
+1. Fetch the template from github: `git clone https://github.com/latextemplates/uni-stuttgart-computer-science-template.git .`
+1. Rename `origin` to `github` to enable adding your own `origin` repository: `git remote rename origin github`
+1. Create a new branch master starting from the latest commit in the `template` branch: `git checkout -b master`
 
-Now, you are on the master branch, where you can write your thesis and push it to your (remote) origin repository, in case you have one.
+Now, you are on the `master` branch, where you can write your thesis and push it to your (remote) `origin` repository, in case you have one.
 
 Merging updates from the template
 ---------------------------------
