@@ -3,7 +3,7 @@ editor = gedit
 
 # Main file name and literature list
 MASTER_TEX = ausarbeitung.tex
-LITERATURE = bibliography/bibliography.bib
+LITERATURE = bibliography.bib
 
 #latex = pdflatex -shell-escape
 #MiKTeX:
