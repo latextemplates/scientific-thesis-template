@@ -68,15 +68,22 @@ If you want to compile using the command line, you can use following tools.
 Automatic compilation using latexmk
 -----------------------------------
 
-    latexmk -pdf ausarbeitung
+    latexmk ausarbeitung
 
 Continuous previewing using latexmk
 -----------------------------------
 
-    latexmk -pvc -pdf ausarbeitung
+    latexmk -pvc ausarbeitung
 
-This will open Acrobat Reader once. Close it and start a PDF reader supporting instant reload of PDFs.
-We recommend [Sumatra PDF].
+This will open a [Sumatra PDF] and only works with the supplied configuration.
+
+### latexmk configuration
+This repository ships a `.latexmk` which is read by latexmk.
+It is configured for Windows and especially sets Sumatra PDF as default PDF viewer.
+You can make this local configuration a global configuration, when you put it at [the right place](http://tex.stackexchange.com/a/41149/9075).
+
+If you want to add more packages, configure it there.
+For instance, for support of makeglossaries see http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries.
 
 Automatic compilation using make
 --------------------------------
