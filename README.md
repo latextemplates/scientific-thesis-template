@@ -27,10 +27,12 @@ Characteristics of the template
 -------------------------------
 * UTF-8
 * pdflatex
+* [latexmk]
 * [biblatex]+biber instead of plain bibtex
 
 This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution.
 On Linux (TexLive full >= 2013) should work without any issues.
+Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/autolatex/), it is [not included in MiKTeX](http://www.ctan.org/pkg/autolatex) and therefore it is not used here.
 
 
 Using with your own git repository
@@ -172,6 +174,7 @@ See http://wiki.flupp.de/LaTeX
  [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
  [inkscape]: http://inkscape.org/
  [JabRef]: http://jabref.sf.net
+ [latexmk]: http://tex.stackexchange.com/tags/latexmk/info
  [overleaf]: https://www.overleaf.com/
  [Sumatra PDF]: http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader-de.html
  [TeXStudio]: http://texstudio.sourceforge.net/

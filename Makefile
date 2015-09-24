@@ -1,13 +1,14 @@
+# Executables
+latexmk = latexmk
 viewer = evince
 editor = gedit
 
-# Main file name and literature list
+# Main file name
 MASTER_TEX = ausarbeitung.tex
 LITERATURE = bibliography.bib
 
-latex = pdflatex -shell-escape
-bibtex = biber
 
+# Derived file names
 SRC = $(shell basename $(MASTER_TEX) .tex)
 TEX_FILES = $(wildcard preambel/*.tex content/*.tex)
 GFX_FILES = $(wildcard graphics/*)
@@ -22,39 +23,17 @@ date=$(shell date +%Y%m%d%H%M)
 all: $(PDF)
 .PHONY: $(PDF)
 
-$(PDF): $(TEX_FILES) $(GFX_FILES) $(SRC).bbl
-	$(latex) $(MASTER_TEX)
-	@if grep -q "LaTeX Warning: There were undefined references." $(SRC).log; then \
-		if grep -q "LaTeX Warning: Citation" $(SRC).log; then \
-			$(bibtex) $(SRC); \
-		fi; \
-		$(latex) $(MASTER_TEX); \
-	fi
-	@while grep -q "LaTeX Warning: Label(s) may have changed" $(SRC).log; do \
-		$(latex) $(MASTER_TEX); \
-	done
-
-$(SRC).bbl: $(LITERATURE)
-	@if test ! -f $(SRC).aux; then \
-		$(latex) $(MASTER_TEX); \
-	fi
-	$(bibtex) $(SRC)
+$(PDF): $(MASTER_TEX) $(LITERATURE) $(TEX_FILES) $(GFX_FILES)
+	$(latexmk) $(MASTER_TEX)
 
 clean: 
-	@rm -f $(SRC).4ct $(SRC).4tc $(SRC).alg $(SRC).aux $(SRC).bbl $(SRC).blg $(SRC).brf $(SRC).code $(SRC).dvi $(SRC).err $(SRC).glo $(SRC).gls $(SRC).hp \
-	$(SRC).idv $(SRC).lo? $(SRC).log $(SRC).lot $(SRC).out $(SRC).tmp $(SRC).toc $(SRC).tpt $(SRC).lbl $(SRC).idx \
-	$(SRC).ilg $(SRC).ind $(SRC).ps $(SRC).xref $(SRC).code $(SRC).html $(SRC).css $(SRC).lg $(SRC).thm \
-	$(SRC).synctex.gz $(SRC).fls $(SRC).fdb_latexmk $(SRC).bcf $(SRC).run.xml
+	$(latexmk) -C
 
 # Endversion - mit eingebauter Seitenvorschau
 # mehrere Durchlaeufe, da bei longtable einige runs mehr vonnoeten sind...
 final: $(PDF)
-	$(latex) $(MASTER_TEX)
-	$(latex) $(MASTER_TEX)
-	$(latex) $(MASTER_TEX)
-	$(latex) $(MASTER_TEX)
 	thumbpdf $(PDF)
-	$(latex) $(MASTER_TEX)
+	$(latexmk) $(MASTER_TEX)
 
 mrproper: clean
 	rm -f *~
