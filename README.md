@@ -104,11 +104,12 @@ Make targets:
  * `6`: Generates a 3x2 postscriptfile using psnup.
 
 Alternatives:
+* https://github.com/akerbos/ltx2any
 * https://github.com/shiblon/latex-makefile
 * https://github.com/ransford/pdflatex-makefile
 * https://github.com/brotchie/latex-rubber-makefile
-* See http://stackoverflow.com/questions/1240037/recommended-build-system-for-latex
-* Current favourite: [LaTeX-Mk](http://latex-mk.sourceforge.net/).
+* [LaTeX-Mk](http://latex-mk.sourceforge.net/)
+* See also http://stackoverflow.com/questions/1240037/recommended-build-system-for-latex and http://tex.stackexchange.com/questions/40738/how-to-properly-make-a-latex-project
 
 Tweaks
 ======
