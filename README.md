@@ -29,7 +29,8 @@ Characteristics of the template
 * pdflatex
 * [biblatex]+biber instead of plain bibtex
 
-This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution. On Linux (TexLive full >= 2012) should work without any issues. 
+This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution.
+On Linux (TexLive full >= 2013) should work without any issues.
 
 
 Using with your own git repository
