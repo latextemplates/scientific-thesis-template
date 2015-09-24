@@ -1,9 +1,15 @@
 # Executables
 latexmk = latexmk
-# Required for thumbpdf as latexmk does not support thumbpdf by itself
+
+## Required for thumbpdf as latexmk does not support thumbpdf by itself
 pdflatex = pdflatex
-viewer = evince
+
+## evince at linux
+viewer = 'C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe'
+
+## Editor
 editor = gedit
+
 
 # Main file name
 MASTER_TEX = ausarbeitung.tex
