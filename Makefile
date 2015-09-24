@@ -1,5 +1,7 @@
 # Executables
 latexmk = latexmk
+# Required for thumbpdf as latexmk does not support thumbpdf by itself
+pdflatex = pdflatex
 viewer = evince
 editor = gedit
 
@@ -33,7 +35,7 @@ clean:
 # mehrere Durchlaeufe, da bei longtable einige runs mehr vonnoeten sind...
 final: $(PDF)
 	thumbpdf $(PDF)
-	$(latexmk) $(MASTER_TEX)
+	$(pdflatex) $(MASTER_TEX)
 
 mrproper: clean
 	rm -f *~
