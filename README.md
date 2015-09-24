@@ -27,7 +27,7 @@ Characteristics of the template
 -------------------------------
 * UTF-8
 * pdflatex
-* Depends on [biblatex]
+* [biblatex]+biber instead of plain bibtex
 
 This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution. On Linux (TexLive full >= 2012) should work without any issues. 
 
