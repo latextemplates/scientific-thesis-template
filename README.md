@@ -168,7 +168,7 @@ See http://wiki.flupp.de/LaTeX
   * preambel/packages`_`and`_`options.tex: Includes required packages and their options.
   * preambel/pagestyle.tex: Defines the head and the foot of a page.
 
- [biblatex]: https://www.ctan.org/pkg/biblatex
+ [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
  [inkscape]: http://inkscape.org/
  [JabRef]: http://jabref.sf.net
  [overleaf]: https://www.overleaf.com/
