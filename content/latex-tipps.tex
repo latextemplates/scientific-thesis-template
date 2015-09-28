@@ -118,20 +118,20 @@ Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse und die Tabelle~\ref{tab:Ergebniss
 	\begin{tabular}{l *{8}{d{3.2}}}
 		\toprule
 						
-			  \multirow{2}{*}{\textbf{Bedingungen}} & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}} \\
+			   & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}} \\
 			\cmidrule(r){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
 			
-			& \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}}\\
+			\textbf{Bedingungen} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}}\\
 			\midrule
 			
 			W & 1.1 & 5.55 & 6.66 & .01 &  &  &  & \\
 			X & 22.22 & 0.0 & 77.5 & .1 &  &  &  & \\
 			Y & 333.3 & .1 & 11.11 & .05 &  &  &  & \\
-			Z & 4444.44 & 77.777 & 14.06 & .3 &  &  &  & \\
+			Z & 4444.44 & 77.77 & 14.06 & .3 &  &  &  & \\
 		\bottomrule 
 	\end{tabular}
 	
-	\caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD)}
+	\caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD). Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.}
 	\label{tab:Werte}
 \end{table}
 
@@ -192,6 +192,16 @@ test2\\
 \hrule height .5pt width\textwidth
 }
 
+
+\section{Abkürzungen}
+
+Beim ersten Durchlaf betrug die \ac{FR} 5. Beim zweiten Durchlauf war die \ac{FR} 3.
+
+Mit \verb+\ac{...}+ können Abkürungen eingebaut werden, beim ersten aufrufen wird die lange Form eingesetzt. Beim wiederholten werwenden von \verb+\ac{...}+ wird automatisch die kurz Form angezeigt. Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt.
+
+Definiert werden Abkürzungen in der Datei \textit{ausarbeitung.tex} im Abschnitt '\%\%\% acro' mithilfe von \verb+\DeclareAcronym{...}{...}+.
+
+Mehr infos unter: \url{http://mirror.hmc.edu/ctan/macros/latex/contrib/acro/acro_en.pdf}
 
 \section{Verweise}
 Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:

@@ -61,6 +61,16 @@
 }
 \makeatother
 
+
+%%% acro
+% alle Acronyme die verwendet werden kommen hier her.
+
+\DeclareAcronym{ER}{short = ER , long = error rate}
+\DeclareAcronym{FR}{short = FR , long = Fehlerrate}
+
+%%%
+
+
 \begin{document}
 %tex4ht-Konvertierung verschönern
 \iftex4ht
@@ -124,7 +134,6 @@
 %
 % oder zB
 %\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
-%\section*{Abkürzungsverzeichnis}
 %
 %%%
 
@@ -168,6 +177,12 @@
 \listoffigures
 \let\cleardoublepage\relax
 \listoftables
+
+\ifdeutsch
+\printacronyms[name=Abkürzungsverzeichnis, heading=chapter*]
+\else
+\printacronyms[name=List of Acronyms]
+\fi
 
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
 %\lstlistoflistings 
