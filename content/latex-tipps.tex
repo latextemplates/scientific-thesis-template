@@ -73,6 +73,19 @@ wichtig. Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreograph
   \end{center}
 \end{figure}
 
+
+\begin{figure}
+  \centering
+    \subfloat[]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigA}}
+    \subfloat[]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigB}}
+		\subfloat[]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigC}}
+	\caption{Beispiel um 3 Abbildung nebeneinader zu stellen nur jedes einzeln referenzieren zu können. Abbildung~\ref{fig:subfigB}
+ ist die mittlere Abbildung.}
+\label{fig:subfig_example}
+\end{figure}
+
+
+
 Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
 \todo{Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.}
 
