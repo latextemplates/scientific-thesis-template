@@ -172,12 +172,29 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 --export-pdf=\getgraphicspath#1.pdf --export-latex}%
 \input{\getgraphicspath#1.pdf_tex}%
 }
+
+
 %%%
+\usepackage{siunitx}
+%%%
+
+%%%
+\usepackage{acro} %nice Acronyms
+%\DeclareAcronym{TCT}{short = TCT , long = task completion time}
+%%%
+
 
 %%%
 % Tabellenerweiterungen
 \usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
 \usepackage{longtable}
+\usepackage{dcolumn} %Aligning numbers by decimal points in table columns
+\ifdeutsch
+	\newcolumntype{d}[1]{D{.}{,}{#1}}
+\else
+	\newcolumntype{d}[1]{D{.}{.}{#1}}
+\fi
+
 %
 %%%
 
@@ -185,6 +202,13 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Eine Zelle, die sich über mehrere Zeilen erstreckt.
 % Siehe Beispieltabelle in Kapitel 2
 \usepackage{multirow}
+%
+%%%
+
+%%%
+%Fuer Tabellen mit Variablen Spaltenbreiten
+%\usepackage{tabularx}
+%\usepackage{tabulary}
 %
 %%%
 
@@ -296,12 +320,6 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 
 
-%%%
-%Fuer Tabellen mit Variablen Spaltenbreiten
-%\usepackage{tabularx}
-%\usepackage{tabulary}
-%
-%%%
 
 
 %%%
