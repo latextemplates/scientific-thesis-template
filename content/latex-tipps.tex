@@ -51,7 +51,7 @@ Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{h
 Quellcode im \lstinline|<listing />| ist auch möglich.
 
 \section{Abbildungen}
-Die Abbildungen~\ref{fig:chor1} und~\ref{fig:chor2} sind für das Verständnis dieses Dokuments
+Die \cref{fig:chor1} und \ref{fig:chor2} sind für das Verständnis dieses Dokuments
 wichtig. Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 
 %Die Parameter in eckigen Klammern sind optionale Parameter - z.B. [htb!]
@@ -84,8 +84,6 @@ wichtig. Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreograph
 \label{fig:subfig_example}
 \end{figure}
 
-
-
 Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
 \todo{Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.}
 
@@ -108,7 +106,7 @@ Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG
 
 \section{Tabellen}
 
-Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse und die Tabelle~\ref{tab:Ergebnisse} zeigt wie numerische Daten in einer Tabelle representiert werden können.
+\cref{tab:Ergebnisse} zeigt Ergebnisse und die \cref{tab:Ergebnisse} zeigt wie numerische Daten in einer Tabelle representiert werden können.
 \begin{table}
   \begin{center}
     \begin{tabular}{ccc}

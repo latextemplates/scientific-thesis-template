@@ -316,7 +316,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Fuer Abbildungen innerhalb von Abbildungen
 % Ersetzt das Paket subfigure
 %\usepackage{subfig}
-\usepackage[caption=false]{subfig}
+\usepackage[caption=false, lofdepth=1, lotdepth]{subfig}
 %
 %%%
 
@@ -481,10 +481,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \ifdeutsch
-\usepackage[ngerman,capitalise,nameinlink]{cleveref}
-\crefname{figure}{Abbildung}{Abbildungen}
+\usepackage[ngerman,capitalise,nameinlink,noabbrev]{cleveref}
 \else
-\usepackage[capitalise,nameinlink]{cleveref}
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
 \fi
 %%%
 
