@@ -520,7 +520,12 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Deckblattstyle
 %
-% für englische Ausarbeitungen "language=english" benutzen
+\ifdeutsch
+	\PassOptionsToPackage{language=german}{uni-stuttgart-cs-cover}
+\else
+	\PassOptionsToPackage{language=english}{uni-stuttgart-cs-cover}
+\fi
+
 \usepackage[
     title={Förderungswürdigkeit der F\"{o}rderung von Öl},
     author={Lars K.},
@@ -532,9 +537,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
     supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
     startdate={5.\ Juli 2013}, % English: July 5, 2013;    ISO: 2013-07-05
     enddate={5.\ Januar 2014}, % English: January 5, 2014; ISO: 2014-01-05
-    crk={I.7.2},
-    language=german
-    %language=english
+    crk={I.7.2}
     ]{uni-stuttgart-cs-cover}
 %
 %%%
