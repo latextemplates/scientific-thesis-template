@@ -34,7 +34,7 @@ all: $(PDF)
 $(PDF): $(MASTER_TEX) $(LITERATURE) $(TEX_FILES) $(GFX_FILES)
 	$(latexmk) $(MASTER_TEX)
 
-clean: 
+clean:
 	$(latexmk) -C
 
 # Endversion - mit eingebauter Seitenvorschau
@@ -82,6 +82,9 @@ aspell:
 #
 ##
 
+showundef:
+	grep undefined $(LOG)
+
 html: clean pdf
 	rm $(AUX)
-	htlatex $(SRC)
+	htlatex $(SRC) "html,word,charset=utf8" " -utf8"
