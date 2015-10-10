@@ -5,7 +5,9 @@
 %Ermöglicht \\ bei der Titelseite (z.B. bei supervisor)
 %Siehe https://github.com/latextemplates/uni-stuttgart-cs-cover/issues/4
 \RequirePackage{kvoptions-patch}
-%
+%Warns about outdated packages and missing caption delcarations
+%See https://www.ctan.org/pkg/nag
+\RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[
                fontsize=12pt, %Default: 11pt, bei Linux Libertine zu klein zum Lesen
                paper=a4,
