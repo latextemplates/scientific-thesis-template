@@ -8,6 +8,10 @@
 %Warns about outdated packages and missing caption delcarations
 %See https://www.ctan.org/pkg/nag
 \RequirePackage[l2tabu, orthodox]{nag}
+%Neue deutsche Trennmuster
+%Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
+%Nur für pdflatex, nicht für lualatex
+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
 \documentclass[
                fontsize=12pt, %Default: 11pt, bei Linux Libertine zu klein zum Lesen
                paper=a4,
