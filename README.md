@@ -90,7 +90,8 @@ For instance, for support of makeglossaries see http://tex.stackexchange.com/que
 
 Automatic compilation using make
 --------------------------------
-For those, who have [cygwin](http://www.cygwin.com/) installed or run a linux machine, this template offers a simple LaTeX makefile. It is not so sophisticated as other projects, but does its job
+For those, who have [cygwin](http://www.cygwin.com/) installed or run a linux machine, this template offers a simple LaTeX makefile.
+It is not so sophisticated as other projects, but does its job.
 
     make
 
