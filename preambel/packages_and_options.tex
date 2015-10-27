@@ -411,7 +411,8 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 %biblatex statt bibtex
 \usepackage[
-  backend       = biber, %minalphanames only works with biber backend
+  backend       = biber, 	%biber dose not work with 64x versions alternative: bibtex8
+														%minalphanames only works with biber backend														
   bibstyle      = alphabetic,
   citestyle     = alphabetic,
   firstinits    = true,
@@ -420,8 +421,13 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   maxalphanames = 4,
   maxbibnames   = 99,
   maxcitenames  = 3,
+	natbib        = true,
+	doi           = true,
+	eprint        = true,
+	url           = true,
   backref       = true]{biblatex}
 \bibliography{bibliography}
+%\addbibresource[datatype=bibtex]{bibliography.bib}
 
 \DefineBibliographyStrings{ngerman}{
   backrefpage  = {Zitiert auf S\adddot},
@@ -431,10 +437,6 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   bibliography = {Literaturverzeichnis}
 }
 
-%natbib compatibility
-\newcommand{\citep}[1]{\cite{#1}}
-\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
-%%%
 
 %%%
 % Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
