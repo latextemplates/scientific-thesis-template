@@ -13,7 +13,10 @@ If you don't want to use git, just download https://github.com/latextemplates/un
 
 Recommended LaTeX environments
 ------------------------------
-* offline: [TeXstudio] together with [JabRef].
+* offline: Grammar and spell checking is available at [TeXstudio].
+  Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+  Note that it is enough to point to `languagetool.jar`.
+  Use [JabRef] to manage your bibliography.
 * online: [overleaf]. Also with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
 
 See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
@@ -177,7 +180,8 @@ See http://wiki.flupp.de/LaTeX
  [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
  [inkscape]: http://inkscape.org/
  [JabRef]: http://jabref.sf.net
+ [LanguageTool]: https://languagetool.org/
  [latexmk]: http://tex.stackexchange.com/tags/latexmk/info
  [overleaf]: https://www.overleaf.com/
  [Sumatra PDF]: http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader-de.html
- [TeXStudio]: http://texstudio.sourceforge.net/
+ [TeXstudio]: http://texstudio.sourceforge.net/
