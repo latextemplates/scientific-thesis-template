@@ -410,6 +410,19 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   bibliography = {Literaturverzeichnis}
 }
 
+%enable hyperlinked author names when using \citeauthor
+%source: http://tex.stackexchange.com/a/75916/9075
+\DeclareCiteCommand{\citeauthor}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printtext[bibhyperref]{\printnames{labelname}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
 %natbib compatibility
 \newcommand{\citep}[1]{\cite{#1}}
 \newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
