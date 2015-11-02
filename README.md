@@ -31,7 +31,7 @@ Characteristics of the template
 * UTF-8
 * pdflatex
 * [latexmk]
-* [biblatex]+biber instead of plain bibtex
+* [biblatex]+[biber] instead of plain [bibtex]
 
 This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution.
 On Linux (TexLive full >= 2013) should work without any issues.
@@ -177,7 +177,9 @@ See http://wiki.flupp.de/LaTeX
   * preambel/packages`_`and`_`options.tex: Includes required packages and their options.
   * preambel/pagestyle.tex: Defines the head and the foot of a page.
 
+ [biber]: https://www.ctan.org/pkg/biber
  [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
+ [bibtex]: https://www.ctan.org/pkg/bibtex
  [inkscape]: http://inkscape.org/
  [JabRef]: http://jabref.sf.net
  [LanguageTool]: https://languagetool.org/
