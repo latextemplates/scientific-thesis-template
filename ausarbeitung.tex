@@ -1,4 +1,5 @@
-% Dieses Dokument muss mit PDFLatex geestzt werden
+% !TeX spellcheck = de_DE
+% Dieses Dokument muss mit PDFLatex gesetzt werden
 % Vorteil: Grafiken koennen als jpg, png, ... verwendet werden
 %          und die Links im Dokument sind auch gleich richtig
 %
@@ -15,9 +16,13 @@
 \documentclass[
                fontsize=12pt, %Default: 11pt, bei Linux Libertine zu klein zum Lesen
                paper=a4,
-%               twoside, % fuer die Betrachtung am Schirm ungeschickt
-% Optionen fuer typearea.
-               BCOR1.92mm,DIV12,headinclude, %je höher der DIV-Wert, desto mehr geht auf eine Seite - Hack für BCOR. Bei BCOR2mm sind die Fuellpunkte beim Inhaltsverzeichnis falsch
+               twoside, % fuer die Betrachtung am Schirm ungeschickt
+% BEGINN: Optionen für typearea
+               BCOR=3mm, % Hack für BCOR (1.92 o.ä.), da bei BCOR2mm die Fuellpunkte beim Inhaltsverzeichnis falsch sind. Hack aber nicht mehr nötig: microtype für Verzeichnisse ausschalten hilft.
+               DIV=13,   % je höher der DIV-Wert, desto mehr geht auf eine Seite. Gute werde sind zwischen DIV=12 und DIV=15
+               headinclude=true,
+               footinclude=false,
+% ENDE: Optionen für typearea
 %               titlepage,
                bibliography=totoc,
 %               idxtotoc,   %Index ins Inhaltsverzeichnis
