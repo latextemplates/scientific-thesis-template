@@ -391,11 +391,14 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   bibstyle      = alphabetic,
   citestyle     = alphabetic,
   firstinits    = true,
+  useprefix     = true, %print "von, van, etc.", too.
   minnames      = 1,
   minalphanames = 3,
   maxalphanames = 4,
   maxbibnames   = 99,
   maxcitenames  = 3,
+  doi           = false, %source: http://tex.stackexchange.com/a/23118/9075
+  isbn          = false, %source: http://tex.stackexchange.com/a/23118/9075
   backref       = true]{biblatex}
 \bibliography{bibliography}
 
@@ -410,6 +413,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %natbib compatibility
 \newcommand{\citep}[1]{\cite{#1}}
 \newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
+%Beginning of sentence - analogous to cleveref - important for names such as "zur Muehlen"
+\newcommand{\Citep}[1]{\cite{#1}}
+\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
 %%%
 
 %%%
