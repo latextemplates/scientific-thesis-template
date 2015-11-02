@@ -14,13 +14,15 @@ Alle neueren Editoren sollten damit keine Schwierigkeiten haben.
 
 \section{Zitate}
 Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
-Beispiel: \cite{WSPA} oder mit Authorenangabe: \citet{WSPA}.
+Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
 
 Wörter am besten mittels \texttt{\textbackslash enquote\{...\}} \enquote{einschließen}, dann werden die richtigen Anführungszeichen verwendet.
 
 \section{Mathematische Formeln}
 \label{sec:mf}
-Mathematische Formeln kann man $so$ setzen. \texttt{symbols-a4.pdf} (zu finden auf \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf}) enthält eine Liste der unter LaTeX direkt verfügbaren Symbole. z.\,B.\ $\mathbb{N}$ für die Menge der natürlichen Zahlen. Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/} gelesen werden.
+Mathematische Formeln kann man $so$ setzen. \texttt{symbols-a4.pdf} (zu finden auf \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf}) enthält eine Liste der unter LaTeX direkt verfügbaren Symbole.
+Z.\,B.\ $\mathbb{N}$ für die Menge der natürlichen Zahlen.
+Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/} gelesen werden.
 
 Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} verwendet wurde.
 \begin{equation*}
@@ -36,7 +38,8 @@ x = y
 Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}.
 
 \section{Quellcode}
-\Cref{lst:ListingANDlstlisting} zeigt, wie man Programmlistings einbindet.  Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus Dateien lesen.
+\Cref{lst:ListingANDlstlisting} zeigt, wie man Programmlistings einbindet.
+Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus Dateien lesen.
 
 %Listing-Umgebung wurde durch \newfloat{Listing} definiert
 \begin{Listing}
@@ -52,8 +55,8 @@ Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{h
 Quellcode im \lstinline|<listing />| ist auch möglich.
 
 \section{Abbildungen}
-Die Abbildungen~\ref{fig:chor1} und~\ref{fig:chor2} sind für das Verständnis dieses Dokuments
-wichtig. Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
+Die Abbildungen~\ref{fig:chor1} und~\ref{fig:chor2} sind für das Verständnis dieses Dokuments wichtig.
+Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 
 %Die Parameter in eckigen Klammern sind optionale Parameter - z.B. [htb!]
 %htb! bedeutet: "Liebes LaTeX, bitte platziere diese Abbildung zuerst hier ("_h_ere"). Falls das nicht funktioniert, dann bitte oben auf der Seite ("_t_op"). Und falls das nicht geht, bitte unten auf der Seite ("_b_ottom"). Und bitte, bitte bevorzuge hier und oben, auch wenn's net so optimal aussieht ("!")
