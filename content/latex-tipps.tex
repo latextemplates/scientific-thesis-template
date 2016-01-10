@@ -165,7 +165,7 @@ Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der 
 {
 \begin{minipage}{\textwidth}
 \hrule height .8pt width\textwidth
-\vskip.15em%\vskip\abovecaptionskip\relax
+\vskip.3em%\vskip\abovecaptionskip\relax
 \stepcounter{Algorithmus}
 \addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
 \noindent\textbf{Algorithmus \theAlgorithmus} Description
@@ -175,9 +175,13 @@ Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der 
 \vskip.3em%\vskip\belowcaptionskip\relax
 \hrule height .5pt width\textwidth
 \end{minipage}
+%without the following line, the text is nerer at the rule
+\vskip-.3em
+%
 code goes here\\
 test2\\
-\vskip-.9em
+%
+\vskip-.7em
 \hrule height .5pt width\textwidth
 }
 
