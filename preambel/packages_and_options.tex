@@ -192,6 +192,11 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Links verhalten sich so, wie sie sollen
 \usepackage{url}
+%
+%Use text font as url font, not the monospaced one
+%see comments at http://tex.stackexchange.com/q/98463/9075
+\urlstyle{same}
+%
 %Hint by http://tex.stackexchange.com/a/10419/9075
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
