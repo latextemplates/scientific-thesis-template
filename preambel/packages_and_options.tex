@@ -388,10 +388,11 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %biblatex statt bibtex
 \usepackage[
   backend       = biber, %minalphanames only works with biber backend
+  sortcites     = true,
   bibstyle      = alphabetic,
   citestyle     = alphabetic,
   firstinits    = true,
-  useprefix     = true, %print "von, van, etc.", too.
+  useprefix     = false, %"von, van, etc." will be printed, too. See below.
   minnames      = 1,
   minalphanames = 3,
   maxalphanames = 4,
@@ -402,9 +403,30 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   backref       = true]{biblatex}
 \bibliography{bibliography}
 
+%Do not put "vd" in the label, but put it at "\citeauthor"
+%Source: http://tex.stackexchange.com/a/30277/9075
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\togglefalse{blx@useprefix}}
+
+%Thin spaces between initials
+%http://tex.stackexchange.com/a/11083/9075
+\renewrobustcmd*{\bibinitdelim}{\,}
+
+%Keep first and last name together in the bibliography
+%http://tex.stackexchange.com/a/196192/9075
+\renewcommand*\bibnamedelimc{\addnbspace}
+\renewcommand*\bibnamedelimd{\addnbspace}
+
+%Replace last "and" by comma in bibliography
+%See http://tex.stackexchange.com/a/41532/9075
+\AtBeginBibliography{%
+  \renewcommand*{\finalnamedelim}{\addcomma\space}%
+}
+
 \DefineBibliographyStrings{ngerman}{
-  backrefpage  = {Zitiert auf S\adddot},
-  backrefpages = {Zitiert auf S\adddot},
+  backrefpage  = {zitiert auf S\adddot},
+  backrefpages = {zitiert auf S\adddot},
   andothers    = {et\ \addabbrvspace al\adddot},
   %Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
   bibliography = {Literaturverzeichnis}
