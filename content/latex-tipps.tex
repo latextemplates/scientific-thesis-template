@@ -250,11 +250,35 @@ Sachverhalt weiter erläutern sollen. Die zweite Abbildung ist um 90 Grad gedreh
 \end{figure}
 
 \begin{landscape}
-%sidewaysfigure
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{choreography.pdf}
-  \caption{Beispiel-Choreographie II}
-  \label{fig:AnhangsChor2}
-\end{figure}
+  %sidewaysfigure
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{choreography.pdf}
+    \caption{Beispiel-Choreographie II}
+    \label{fig:AnhangsChor2}
+  \end{figure}
 \end{landscape}
+
+\clearpage
+%hint by http://tex.stackexchange.com/a/3265/9075
+%other option is to use changepage according to http://tex.stackexchange.com/a/2639/9075. This, however, has issues with landscape
+\thispagestyle{empty}
+
+\savegeometry{koma}
+
+%If you only have height problems, this is not needed at all
+\addtolength{\textwidth}{2cm}
+\addtolength{\evensidemargin}{-1cm}
+
+\begin{landscape}
+  %sidewaysfigure
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{choreography.pdf}
+    \caption{Beispiel-Choreographie, auf einer weißen Seite gezeigt wird und über die definierten Seitenränder herausragt}
+  \end{figure}
+\end{landscape}
+
+%the original layout is restored.
+%%\restoregeometry cannot be used as we use \addtolength
+\loadgeometry{koma}

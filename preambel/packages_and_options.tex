@@ -710,7 +710,19 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \makeatother
 %%%
 
+
 %%%
 %Optischer Randausgleich
 \usepackage{microtype}
+%%%
+
+%%%
+%Package geometry to enlarge on page
+%
+%Source: http://www.howtotex.com/tips-tricks/change-margins-of-a-single-page/
+%
+%Normally, this should not be used as the typearea package calculates the margins perfectly
+\usepackage[
+  pass %just load the package and do not destory the work of typearea
+]{geometry}
 %%%
