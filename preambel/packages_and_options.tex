@@ -458,6 +458,15 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
 %%%
 
+
+%%%
+% Blindtext. Paket "blindtext" ist fortgeschritterner als "lipsum" und kann auch Mathematik im Text (http://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/)
+% kantlipsum (https://www.ctan.org/tex-archive/macros/latex/contrib/kantlipsum) ist auch ganz nett, aber eben auch keine Mathematik
+% Wird verwendet, um etwas Text zu erzeugen, um eine volle Seite wegen Layout zu sehen.
+\usepackage[math]{blindtext}
+%%%
+
+
 %%%
 % Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
 % Pakets "index" wichtig, da sonst die Referenzierung nicht funktioniert.
