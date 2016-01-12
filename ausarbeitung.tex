@@ -154,38 +154,7 @@
 % \addtocontents{toc}{\protect\newpage}
 % an der passenden Stelle im Fließtext erzwungen werden.
 
-%listof* untereinandergesetzt
-%ACHTUNG! Falls ein anderer Kapitelstil gewählt wird, muss der Code hier evtl.
-%  angepasst werden
-\begingroup 
-\makeatletter
-  \def\@makeschapterhead#1{%
-  \vspace*{10\p@}%
-  {\parindent \z@ \raggedright \reset@font
-            \normalfont \vphantom{\@chapapp{} \thechapter}
-        \par\nobreak\vspace*{10\p@}%
-        \interlinepenalty\@M
-    {\huge \bfseries %
-    %
-    %Default-Schrift: Serifenhaft (fuer englische Dokumente)
-    % Dann sowohl A als auch B deaktivieren
-    %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
-    \ifdeutsch
-    \fontfamily{phv}\selectfont
-    \fi
-    %B) Fuer Kapitaelchen folgende Zeile aktivieren:
-    %\fontseries{m}\fontshape{sc}\selectfont
-    %
-    #1\par\nobreak}
-    %\vspace*{1\p@}%
-\makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
-    \par\nobreak
-    \vskip 5\p@
-  }}
-\makeatother
-\let\cleardoublepage\clearpage
 \listoffigures
-\let\cleardoublepage\relax
 \listoftables
 
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
@@ -205,10 +174,6 @@
 \listof{Algorithmus}{List of Algorithms}
 \fi
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
-
-\endgroup
-
-\cleardoublepage
 
 \iftex4ht
 \else
