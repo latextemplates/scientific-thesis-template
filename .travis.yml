@@ -1,0 +1,39 @@
+# this file is inspired by https://github.com/mgmax/pdflatex-travis-example
+
+# a language has to be set
+# "c" is chosen, because "perl" calls `cpanm --quiet --installdeps --notest .`, which fails
+# other possibilities are listed https://docs.travis-ci.com/user/language-specific/
+language: c
+compiler:
+- gcc
+
+# we test at Trusty (14.04 (LTS))
+# see https://docs.travis-ci.com/user/trusty-ci-environment/
+sudo: required
+dist: trusty
+
+before_install:
+  # instead of installing the most recent texlive manually from an iso
+  # (as described at https://geofs.uni-muenster.de/geoinf/page/doku.php?id=tex-ecke:installation),
+  # we try to use the packages from the latest ubuntu
+  - sudo add-apt-repository "deb http://de.archive.ubuntu.com/ubuntu/ wily main universe multiverse"
+  - sudo add-apt-repository "deb http://de.archive.ubuntu.com/ubuntu/ wily-security main universe multiverse"
+  # ensure that trusty packages take priority
+  # we cannot pin libstdc++6 as texlive is dependend on a newer version than shipped with trusty
+  - echo 'APT::Default-Release "trusty";' | sudo tee /etc/apt/apt.conf.d/00-trusty-is-default > /dev/null
+  - "echo -e 'Package: dpkg\nPin: release a=trusty\nPin-Priority: 900\n' | sudo tee /etc/apt/preferences.d/keep-system-packages > /dev/null"
+  - "echo -e 'Package: lsb-base\nPin: release a=trusty\nPin-Priority: 990\n' | sudo tee -a /etc/apt/preferences.d/keep-system-packages > /dev/null"
+  - sudo apt-get update
+  # install dependencies first as they cannot be installed in one run
+  - sudo apt-get install -y --reinstall --purge -t wily fontconfig-config
+  - sudo apt-get install -y --no-install-recommends -t wily fonts-sil-gentiumplus
+  #  * algorithm.sty s in texlive-science - hint by http://tex.stackexchange.com/a/29273/9075
+  #  * biblatex is in texlive-bibtex-extra
+  #  * texlive-lang-german for German hyphenation patterns
+  - sudo apt-get install -y --no-install-recommends -t wily texlive texlive-lang-german texlive-latex-extra texlive-bibtex-extra texlive-science
+  # fonts Linux Libertine and lmodern (even though cfr-lm should be preferred - see http://tex.stackexchange.com/a/247543/9075)
+  - sudo apt-get install -y --no-install-recommends -t wily texlive-fonts-extra lmodern
+  # latexmk
+  - sudo apt-get install -y --no-install-recommends -t wily biber latexmk
+
+script: latexmk

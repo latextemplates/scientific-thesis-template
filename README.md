@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template.svg?branch=template)](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template)
+
 About
 =====
 
