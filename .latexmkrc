@@ -1,4 +1,5 @@
-#You can add `--interaction nonstopmode` if you don't want pdflatex to stop on errors
+#`-file-line-error` is similar to `--interaction nonstopmode`, but shows the concrete line number
+#Remove it, it you want pdflatex to stop on errors
 $pdflatex = 'pdflatex -shell-escape -file-line-error --synctex=-1 %O %S';
 
 #Use SumatraPDF instead of the default PDF viewer
