@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template.svg?branch=template)](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template)
+
 About
 =====
 
@@ -13,7 +15,10 @@ If you don't want to use git, just download https://github.com/latextemplates/un
 
 Recommended LaTeX environments
 ------------------------------
-* offline: [TeXstudio] together with [JabRef].
+* offline: Grammar and spell checking is available at [TeXstudio].
+  Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+  Note that it is enough to point to `languagetool.jar`.
+  Use [JabRef] to manage your bibliography.
 * online: [overleaf]. Also with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
 
 See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
@@ -27,9 +32,12 @@ Characteristics of the template
 -------------------------------
 * UTF-8
 * pdflatex
-* Depends on [biblatex]
+* [latexmk]
+* [biblatex]+[biber] instead of plain [bibtex]
 
-This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution. On Linux (TexLive full >= 2012) should work without any issues. 
+This template works on Windows using the current [MiKTeX](http://www.miktex.org) distribution.
+On Linux (TexLive full >= 2013) should work without any issues.
+Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/autolatex/), it is [not included in MiKTeX](http://www.ctan.org/pkg/autolatex) and therefore it is not used here.
 
 
 Using with your own git repository
@@ -68,19 +76,27 @@ If you want to compile using the command line, you can use following tools.
 Automatic compilation using latexmk
 -----------------------------------
 
-    latexmk -pdf ausarbeitung
+    latexmk ausarbeitung
 
 Continuous previewing using latexmk
 -----------------------------------
 
-    latexmk -pvc -pdf ausarbeitung
+    latexmk -pvc ausarbeitung
 
-This will open Acrobat Reader once. Close it and start a PDF reader supporting instant reload of PDFs.
-We recommend [Sumatra PDF].
+This will open a [Sumatra PDF] and only works with the supplied configuration.
+
+### latexmk configuration
+This repository ships a `.latexmk` which is read by latexmk.
+It is configured for Windows and especially sets Sumatra PDF as default PDF viewer.
+You can make this local configuration a global configuration, when you put it at [the right place](http://tex.stackexchange.com/a/41149/9075).
+
+If you want to add more packages, configure it there.
+For instance, for support of makeglossaries see http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries.
 
 Automatic compilation using make
 --------------------------------
-For those, who have [cygwin](http://www.cygwin.com/) installed or run a linux machine, this template offers a simple LaTeX makefile. It is not so sophisticated as other projects, but does its job
+For those, who have [cygwin](http://www.cygwin.com/) installed or run a linux machine, this template offers a simple LaTeX makefile.
+It is not so sophisticated as other projects, but does its job.
 
     make
 
@@ -94,11 +110,12 @@ Make targets:
  * `6`: Generates a 3x2 postscriptfile using psnup.
 
 Alternatives:
+* https://github.com/akerbos/ltx2any
 * https://github.com/shiblon/latex-makefile
 * https://github.com/ransford/pdflatex-makefile
 * https://github.com/brotchie/latex-rubber-makefile
-* See http://stackoverflow.com/questions/1240037/recommended-build-system-for-latex
-* Current favourite: [LaTeX-Mk](http://latex-mk.sourceforge.net/).
+* [LaTeX-Mk](http://latex-mk.sourceforge.net/)
+* See also http://stackoverflow.com/questions/1240037/recommended-build-system-for-latex and http://tex.stackexchange.com/questions/40738/how-to-properly-make-a-latex-project
 
 Tweaks
 ======
@@ -108,7 +125,7 @@ Switching to English
 
 The template has been built primarily for German documents. English documents, however, are also very welcome.
 
-Two steps to switch to English typesetting:
+Five steps to switch to English typesetting:
 
 1. `ausarbeitung.tex`: Exchange commands `\ifdeutsch` and `\ifenglisch`. (Lines 11,12 <-> 15,16).
 1. Cleanup everything (e.g., `latexmk -c ausarbeitung`). Otherwise pdflatex will complain because of `ngerman`.
@@ -159,9 +176,13 @@ See http://wiki.flupp.de/LaTeX
   * preambel/packages`_`and`_`options.tex: Includes required packages and their options.
   * preambel/pagestyle.tex: Defines the head and the foot of a page.
 
- [biblatex]: https://www.ctan.org/pkg/biblatex
+ [biber]: https://www.ctan.org/pkg/biber
+ [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
+ [bibtex]: https://www.ctan.org/pkg/bibtex
  [inkscape]: http://inkscape.org/
  [JabRef]: http://jabref.sf.net
+ [LanguageTool]: https://languagetool.org/
+ [latexmk]: http://tex.stackexchange.com/tags/latexmk/info
  [overleaf]: https://www.overleaf.com/
  [Sumatra PDF]: http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader-de.html
- [TeXStudio]: http://texstudio.sourceforge.net/
+ [TeXstudio]: http://texstudio.sourceforge.net/

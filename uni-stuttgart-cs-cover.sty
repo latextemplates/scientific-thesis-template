@@ -299,6 +299,7 @@
   %%%%% ==> 155mm (Titel: 165mm/Autor: 195mm) von oben
   %%% Die Box kann max. 100mm breit und 60mmm hoch sein,
   %%% au"serdem wird noch ein Rand von mind. 2.5mm gelassen
+  %%% Even if \centering is not recommended (see l2tabu or nag package), just replacing it with {\centering{...}} doesn't work as \centering doesn't center on the complete page
   \centerline{\fboxsep=0pt
     \@USCCover@umrandet{\hbox to 100mm{\hfil
     \vbox to 60mm{\hsize=95mm\parindent=0pt

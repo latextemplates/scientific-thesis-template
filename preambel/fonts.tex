@@ -1,8 +1,8 @@
 %%%
 %
 \automark[section]{chapter}
-\setkomafont{pageheadfoot}{\normalfont\sffamily}
-\setkomafont{pagenumber}{\normalfont\rmfamily}
+\setkomafont{pageheadfoot}{\normalfont\sffamily} %gilt auch f"ur Fu"s
+\setkomafont{pagenumber}{\normalfont\sffamily}
 %\setheadsepline[.4pt]{.4pt} %funktioniert nicht: Alle Linien sind hier weg
 %
 %%%
@@ -36,6 +36,9 @@
 %\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
                       %durch mathpazo ist das schon definiert
 \usepackage{amssymb}
+
+%For \texttrademark{}
+\usepackage{textcomp}
 
 %name-clashes von marvosym und mathabx vermeiden:
 \def\delsym#1{%

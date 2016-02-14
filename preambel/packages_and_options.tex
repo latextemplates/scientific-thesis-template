@@ -49,10 +49,10 @@
 % Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
 \ifdeutsch
 \usepackage[ngerman]{babel}
-  %Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
-  \addto\captionsngerman{%
-    \renewcommand\abstractname{Kurzfassung}%
-  }
+%Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+\addto\captionsngerman{%
+	\renewcommand\abstractname{Kurzfassung}%
+}
 \else
 %
 %
@@ -216,6 +216,11 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Links verhalten sich so, wie sie sollen
 \usepackage{url}
+%
+%Use text font as url font, not the monospaced one
+%see comments at http://tex.stackexchange.com/q/98463/9075
+\urlstyle{same}
+%
 %Hint by http://tex.stackexchange.com/a/10419/9075
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
@@ -413,30 +418,82 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \usepackage[
   backend       = biber, 	%biber dose not work with 64x versions alternative: bibtex8
 														%minalphanames only works with biber backend														
+  sortcites     = true,
   bibstyle      = alphabetic,
   citestyle     = alphabetic,
   firstinits    = true,
+  useprefix     = false, %"von, van, etc." will be printed, too. See below.
   minnames      = 1,
   minalphanames = 3,
   maxalphanames = 4,
   maxbibnames   = 99,
   maxcitenames  = 3,
 	natbib        = true,
-	doi           = true,
 	eprint        = true,
 	url           = true,
+  doi           = true,
+  isbn          = true,
   backref       = true]{biblatex}
 \bibliography{bibliography}
 %\addbibresource[datatype=bibtex]{bibliography.bib}
 
+%Do not put "vd" in the label, but put it at "\citeauthor"
+%Source: http://tex.stackexchange.com/a/30277/9075
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\togglefalse{blx@useprefix}}
+
+%Thin spaces between initials
+%http://tex.stackexchange.com/a/11083/9075
+\renewrobustcmd*{\bibinitdelim}{\,}
+
+%Keep first and last name together in the bibliography
+%http://tex.stackexchange.com/a/196192/9075
+\renewcommand*\bibnamedelimc{\addnbspace}
+\renewcommand*\bibnamedelimd{\addnbspace}
+
+%Replace last "and" by comma in bibliography
+%See http://tex.stackexchange.com/a/41532/9075
+\AtBeginBibliography{%
+  \renewcommand*{\finalnamedelim}{\addcomma\space}%
+}
+
 \DefineBibliographyStrings{ngerman}{
-  backrefpage  = {Zitiert auf S\adddot},
-  backrefpages = {Zitiert auf S\adddot},
+  backrefpage  = {zitiert auf S\adddot},
+  backrefpages = {zitiert auf S\adddot},
   andothers    = {et\ \addabbrvspace al\adddot},
   %Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
   bibliography = {Literaturverzeichnis}
 }
 
+%enable hyperlinked author names when using \citeauthor
+%source: http://tex.stackexchange.com/a/75916/9075
+\DeclareCiteCommand{\citeauthor}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printtext[bibhyperref]{\printnames{labelname}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+%natbib compatibility
+%\newcommand{\citep}[1]{\cite{#1}}
+%\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
+%Beginning of sentence - analogous to cleveref - important for names such as "zur Muehlen"
+%\newcommand{\Citep}[1]{\cite{#1}}
+%\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
+%%%
+
+
+%%%
+% Blindtext. Paket "blindtext" ist fortgeschritterner als "lipsum" und kann auch Mathematik im Text (http://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/)
+% kantlipsum (https://www.ctan.org/tex-archive/macros/latex/contrib/kantlipsum) ist auch ganz nett, aber eben auch keine Mathematik
+% Wird verwendet, um etwas Text zu erzeugen, um eine volle Seite wegen Layout zu sehen.
+\usepackage[math]{blindtext}
+%%%
 
 %%%
 % Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
@@ -692,7 +749,19 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \makeatother
 %%%
 
+
 %%%
 %Optischer Randausgleich
 \usepackage{microtype}
+%%%
+
+%%%
+%Package geometry to enlarge on page
+%
+%Source: http://www.howtotex.com/tips-tricks/change-margins-of-a-single-page/
+%
+%Normally, this should not be used as the typearea package calculates the margins perfectly
+\usepackage[
+  pass %just load the package and do not destory the work of typearea
+]{geometry}
 %%%

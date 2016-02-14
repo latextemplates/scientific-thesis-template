@@ -1,3 +1,4 @@
+% !TeX spellcheck = de_DE
 %Die Angabe des schlauen Spruchs auf diesem Wege funtioniert nur,
 %wenn keine Änderung des Kapitels mittels den in preambel/chapterheads.tex
 %vorgeschlagenen Möglichkeiten durchgeführt wurde.
@@ -8,12 +9,24 @@
 \label{chap:latextipps}
 
 \section{File-Encoding und Unterstützung von Umlauten}
+\label{sec:firstsectioninlatexhints}
 Die Vorlage wurde 2010 auf UTF-8 umgestellt.
 Alle neueren Editoren sollten damit keine Schwierigkeiten haben.
 
 \section{Zitate}
 Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
-Beispiel: \cite{WSPA} oder mit Authorenangabe: \citet{WSPA}.
+Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
+
+Der folgende Satz demonstriert \begin{inparaenum}[1.]
+\item die Großschreibung von Autorennamen am Satzanfang,
+\item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
+\item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
+\item dass in dem Literaturverzeichnis der Namenspräfix \enquote{van der} von \enquote{Wil M.\,P.\ van der Aalst} steht.
+\end{inparaenum}
+\Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
+
+Der folgende Satz demonstriert, dass man mittels \texttt{label} in einem Bibliopgrahie"=Eintrag den Textteil des generierten Labels überschreiben kann, aber das Jahr und die Eindeutigkeit noch von biber generiert wird.
+Die Apache ODE Engine \cite{ApacheODE} ist eine Workflow-Maschine, die BPEL-Prozesse zuverlässig ausführt.
 
 Wörter am besten mittels \texttt{\textbackslash enquote\{...\}} \enquote{einschließen}, dann werden die richtigen Anführungszeichen verwendet.
 
@@ -21,7 +34,9 @@ Beim Erstellen der Bibtex-Datei wird empfohlen darauf zu achten, dass die DOI au
 
 \section{Mathematische Formeln}
 \label{sec:mf}
-Mathematische Formeln kann man $so$ setzen. \texttt{symbols-a4.pdf} (zu finden auf \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf}) enthält eine Liste der unter LaTeX direkt verfügbaren Symbole. z.\,B.\ $\mathbb{N}$ für die Menge der natürlichen Zahlen. Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/} gelesen werden.
+Mathematische Formeln kann man $so$ setzen. \texttt{symbols-a4.pdf} (zu finden auf \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf}) enthält eine Liste der unter LaTeX direkt verfügbaren Symbole.
+Z.\,B.\ $\mathbb{N}$ für die Menge der natürlichen Zahlen.
+Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/} gelesen werden.
 
 Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} verwendet wurde.
 \begin{equation*}
@@ -37,7 +52,8 @@ x = y
 Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}.
 
 \section{Quellcode}
-\Cref{lst:ListingANDlstlisting} zeigt, wie man Programmlistings einbindet.  Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus Dateien lesen.
+\Cref{lst:ListingANDlstlisting} zeigt, wie man Programmlistings einbindet.
+Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus Dateien lesen.
 
 %Listing-Umgebung wurde durch \newfloat{Listing} definiert
 \begin{Listing}
@@ -53,26 +69,25 @@ Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{h
 Quellcode im \lstinline|<listing />| ist auch möglich.
 
 \section{Abbildungen}
-Die \cref{fig:chor1} und \ref{fig:chor2} sind für das Verständnis dieses Dokuments
-wichtig. Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
+
+Die \cref{fig:chor1} und \ref{fig:chor2} sind für das Verständnis dieses Dokuments wichtig.
+Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 
 %Die Parameter in eckigen Klammern sind optionale Parameter - z.B. [htb!]
 %htb! bedeutet: "Liebes LaTeX, bitte platziere diese Abbildung zuerst hier ("_h_ere"). Falls das nicht funktioniert, dann bitte oben auf der Seite ("_t_op"). Und falls das nicht geht, bitte unten auf der Seite ("_b_ottom"). Und bitte, bitte bevorzuge hier und oben, auch wenn's net so optimal aussieht ("!")
 %Diese sollten nach Möglichkeit NICHT verwendet werden. LaTeX's Algorithmus für das Platzieren der Gleitumgebung ist schon sehr gut!
 \begin{figure}
-  \begin{center}
-    \includegraphics[width=\textwidth]{choreography.pdf}
-    \caption{Beispiel-Choreographie}
-    \label{fig:chor1}
-  \end{center}
+  \centering
+  \includegraphics[width=\textwidth]{choreography.pdf}
+  \caption{Beispiel-Choreographie}
+  \label{fig:chor1}
 \end{figure}
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[width=.8\textwidth]{choreography.pdf}
-    \caption[Beispiel-Choreographie]{Die Beispiel-Choreographie. Nun etwas kleiner, damit \texttt{\textbackslash textwidth} demonstriert wird. Und auch die Verwendung von alternativen Bildunterschriften für das Verzeichnis der Abbildungen. Letzteres ist allerdings nur Bedingt zu empfehlen, denn wer liest schon so viel Text unter einem Bild? Oder ist es einfach nur Stilsache?}
-    \label{fig:chor2}
-  \end{center}
+  \centering
+  \includegraphics[width=.8\textwidth]{choreography.pdf}
+  \caption[Beispiel-Choreographie]{Die Beispiel-Choreographie. Nun etwas kleiner, damit \texttt{\textbackslash textwidth} demonstriert wird. Und auch die Verwendung von alternativen Bildunterschriften für das Verzeichnis der Abbildungen. Letzteres ist allerdings nur Bedingt zu empfehlen, denn wer liest schon so viel Text unter einem Bild? Oder ist es einfach nur Stilsache?}
+  \label{fig:chor2}
 \end{figure}
 
 
@@ -110,20 +125,19 @@ Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG
 
 \cref{tab:Ergebnisse} zeigt Ergebnisse und die \cref{tab:Ergebnisse} zeigt wie numerische Daten in einer Tabelle representiert werden können.
 \begin{table}
-  \begin{center}
-    \begin{tabular}{ccc}
-    \toprule
-    \multicolumn{2}{c}{\textbf{zusammengefasst}} & \textbf{Titel} \\ \midrule
-    Tabelle & wie & in \\
-    \url{tabsatz.pdf}& empfohlen & gesetzt\\
+  \centering
+  \begin{tabular}{ccc}
+  \toprule
+  \multicolumn{2}{c}{\textbf{zusammengefasst}} & \textbf{Titel} \\ \midrule
+  Tabelle & wie & in \\
+  \url{tabsatz.pdf}& empfohlen & gesetzt\\
 
-    \multirow{2}{*}{Beispiel} & \multicolumn{2}{c}{ein schönes Beispiel}\\
-     & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}\\
-    \bottomrule
-    \end{tabular}
-    \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
-    \label{tab:Ergebnisse}
-  \end{center}
+  \multirow{2}{*}{Beispiel} & \multicolumn{2}{c}{ein schönes Beispiel}\\
+   & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}\\
+  \bottomrule
+  \end{tabular}
+  \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
+  \label{tab:Ergebnisse}
 \end{table}
 
 \begin{table}
@@ -189,7 +203,7 @@ Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der 
 {
 \begin{minipage}{\textwidth}
 \hrule height .8pt width\textwidth
-\vskip.15em%\vskip\abovecaptionskip\relax
+\vskip.3em%\vskip\abovecaptionskip\relax
 \stepcounter{Algorithmus}
 \addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
 \noindent\textbf{Algorithmus \theAlgorithmus} Description
@@ -199,9 +213,13 @@ Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der 
 \vskip.3em%\vskip\belowcaptionskip\relax
 \hrule height .5pt width\textwidth
 \end{minipage}
+%without the following line, the text is nerer at the rule
+\vskip-.3em
+%
 code goes here\\
 test2\\
-\vskip-.9em
+%
+\vskip-.7em
 \hrule height .5pt width\textwidth
 }
 
@@ -220,7 +238,7 @@ Mehr infos unter: \url{http://mirror.hmc.edu/ctan/macros/latex/contrib/acro/acro
 Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
 \enquote{Siehe \vref{sec:mf}}.
 Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}cref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird.
-\texttt{vref}: \enquote{\vref{sec:diff}}, \texttt{cref}: \enquote{\cref{sec:diff}}, \texttt{ref}: \enquote{\ref{sec:diff}}.
+\texttt{vref}: \enquote{\vref{sec:firstsectioninlatexhints}}, \texttt{cref}: \enquote{\cref{sec:firstsectioninlatexhints}}, \texttt{ref}: \enquote{\ref{sec:firstsectioninlatexhints}}.
 
 Falls \enquote{varioref} Schwierigkeiten macht, dann kann man stattdessen \enquote{cref} verwenden.
 Dies erzeugt auch das Wort \enquote{Abschnitt} automatisch: \cref{sec:mf}.
@@ -259,34 +277,56 @@ Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{li
 
 \textsc{Kapitälchen} werden schön gesperrt...
 
-\begin{compactenum}[I]
+\begin{compactenum}[I.]
 \item Man kann auch die Nummerierung dank paralist kompakt halten
 \item und auf eine andere Nummerierung umstellen
 \end{compactenum}
 
-\section{Weitere Informationen}
-Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
-Bitte bei github ein Ticket eintragen (\url{https://github.com/latextemplates/uni-stuttgart-computer-science-template/issues}).
 \section{Weitere Illustrationen}
 Abbildungen~\ref{fig:AnhangsChor} und~\ref{fig:AnhangsChor2} zeigen zwei Choreographien, die den
 Sachverhalt weiter erläutern sollen. Die zweite Abbildung ist um 90 Grad gedreht, um das Paket
 \texttt{rotating} zu demonstrieren.
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[width=\textwidth]{choreography.pdf}
-    \caption{Beispiel-Choreographie I}
-    \label{fig:AnhangsChor}
-  \end{center}
+  \centering
+  \includegraphics[width=\textwidth]{choreography.pdf}
+  \caption{Beispiel-Choreographie I}
+  \label{fig:AnhangsChor}
 \end{figure}
 
 \begin{landscape}
-%sidewaysfigure
-\begin{figure}
-  \begin{center}
+  %sidewaysfigure
+  \begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{choreography.pdf}
     \caption{Beispiel-Choreographie II}
     \label{fig:AnhangsChor2}
-  \end{center}
-\end{figure}
+  \end{figure}
 \end{landscape}
+
+\clearpage
+%hint by http://tex.stackexchange.com/a/3265/9075
+%other option is to use changepage according to http://tex.stackexchange.com/a/2639/9075. This, however, has issues with landscape
+\thispagestyle{empty}
+
+\savegeometry{koma}
+
+%If you only have height problems, this is not needed at all
+\addtolength{\textwidth}{2cm}
+\addtolength{\evensidemargin}{-1cm}
+
+\begin{landscape}
+  %sidewaysfigure
+  \begin{figure}
+    \centerline{\includegraphics[width=0.9\paperheight]{choreography.pdf}}
+    \caption{Beispiel-Choreographie, auf einer weißen Seite gezeigt wird und über die definierten Seitenränder herausragt}
+  \end{figure}
+\end{landscape}
+
+%the original layout is restored.
+%%\restoregeometry cannot be used as we use \addtolength
+\loadgeometry{koma}
+
+\section{Schlusswort}
+Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
+Bitte bei github ein Ticket eintragen (\url{https://github.com/latextemplates/uni-stuttgart-computer-science-template/issues}).
