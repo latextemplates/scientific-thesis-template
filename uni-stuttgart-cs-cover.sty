@@ -258,7 +258,6 @@
 \begingroup
 	\newcommand{\USCCover@isTwoColumn}{false}
 	\if@twocolumn \renewcommand{\USCCover@isTwoColumn}{true} \onecolumn \fi
-  \sf
   \pagestyle{empty}%
   \thispagestyle{empty}%
   %\fontfamily{ppl}\selectfont
@@ -362,7 +361,7 @@
   \vskip 5cm\relax
 	\begin{center}
 		\begin{minipage}[t]{10cm}
-			\hbox{\bf \@labelAffirmation}%
+			\hbox{\textbf{\@labelAffirmation}}%
 			\vskip 1cm\relax
 			%\begin{flushleft}%
 			\@AffirmationText
