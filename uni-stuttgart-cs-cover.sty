@@ -4,28 +4,42 @@
 % (C) 2006 Nils Radtke, Oliver Kopp
 % (C) 2007 Oliver Kopp
 % (C) 2012 Oliver Kopp, Kai Mindermann, Niklas Schnelle
+% (C) 2016 Oliver Kopp
 
 \NeedsTeXFormat{LaTeX2e}
 \newcommand{\USCCover@Pgkname}{uni-stuttgart-cs-cover}
-\ProvidesPackage{\USCCover@Pgkname}[2012/11/20 Cover and affirmation for work at the University of Stuttgart, Computer Science.]
-\typeout{Package: `\USCCover@Pgkname' v3.0}
+\ProvidesPackage{\USCCover@Pgkname}[2016/05/29 Cover and affirmation for work at the University of Stuttgart, Computer Science.]
+\typeout{Package: `\USCCover@Pgkname' v3.1}
 % ------------------------------
 % required packages
 % ------------------------------
 % kvoptions for key value options support
 \RequirePackage{kvoptions}
 \RequirePackage{ifthen}
+%\RequirePackage{ifluatex}
 
 % this package requires utf8 inputenc
-\def\USCCover@stop{\PackageWarningNoLine{\USCCover@Pgkname}
-  {This package won't work without loading\MessageBreak
-   `inputenc' or `inputenx' with the `utf8' option}%
-  \let\USCCover@Pgkname\@gobbletwo\endinput}
+\def\USCCover@utf8warning{\PackageWarningNoLine{\USCCover@Pgkname}
+  {This package requires UTF-8 support.\MessageBreak
+   If at pdflatex, load `inputenc' or `inputenx' with the `utf8' option}%
+}
+
+\newif\ifinputencloaded
+
 \@ifpackageloaded{inputenx}
-  {\def\USCCover@tempa{inputenx}}
-  {\@ifpackageloaded{inputenc}{\def\USCCover@tempa{inputenc}}{\USCCover@stop}}
-\@ifpackagewith{\USCCover@tempa}{utf8}{}{\USCCover@stop}
-\@ifpackagewith{\USCCover@tempa}{utf8x}{\USCCover@stop}{}
+  {\def\USCCover@tempa{inputenx}\inputencloadedtrue}
+  {\@ifpackageloaded{inputenc}{\def\USCCover@tempa{inputenc}\inputencloadedtrue}{\inputencloadedfalse}}
+\ifinputencloaded
+  \@ifpackagewith{\USCCover@tempa}{utf8}{}{\USCCover@utf8warning}
+  %We also drop utf8x, as we believe that this is obsolete - see http://tex.stackexchange.com/questions/13067/utf8x-vs-utf8-inputenc
+  \@ifpackagewith{\USCCover@tempa}{utf8x}{\USCCover@utf8warning}{}
+\else
+  \ifluatex
+    %no warning required
+  \else
+    \USCCover@utf8warning
+  \fi
+\fi
 
 % ------------------------------
 % options
