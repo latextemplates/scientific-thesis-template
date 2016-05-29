@@ -9,10 +9,17 @@
 %Warns about outdated packages and missing caption delcarations
 %See https://www.ctan.org/pkg/nag
 \RequirePackage[l2tabu, orthodox]{nag}
+
 %Neue deutsche Trennmuster
 %Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
 %Nur für pdflatex, nicht für lualatex
+\RequirePackage{ifluatex}
+\ifluatex
+%do not load anything
+\else
 \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+\fi
+
 \documentclass[
                fontsize=12pt, %Default: 11pt, bei Linux Libertine zu klein zum Lesen
 % BEGINN: Optionen für typearea

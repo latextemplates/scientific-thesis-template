@@ -26,7 +26,11 @@
 % Mit UTF-8 funktionieren folgende Pakete nicht mehr. Bitte beachten!
 %   * fancyvrb mit §
 %   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/
+\ifluatex
+%no package loading required
+\else
 \usepackage[utf8]{inputenc}
+\fi
 %
 %%%
 
