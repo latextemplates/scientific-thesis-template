@@ -103,7 +103,10 @@
 %\usepackage{courier}
 \usepackage[scaled=0.83]{beramono} %BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
 
+\ifluatex
+\else
 \usepackage[T1]{fontenc}
+\fi
 
 
 % optischer Randausgleich - bei miktex gleich dabei - bei linux von

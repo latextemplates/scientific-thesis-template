@@ -27,8 +27,13 @@
 %Neue deutsche Trennmuster
 %Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
 %Nur für pdflatex, nicht für lualatex
-\ifdeutsch
-	\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+\RequirePackage{ifluatex}
+\ifluatex
+%do not load anything
+\else
+	\ifdeutsch
+		\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+	\fi
 \fi
 
 \documentclass[
