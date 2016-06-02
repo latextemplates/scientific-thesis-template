@@ -53,10 +53,10 @@
 % Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
 \ifdeutsch
 \usepackage[ngerman]{babel}
-  %Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
-  \addto\captionsngerman{%
-    \renewcommand\abstractname{Kurzfassung}%
-  }
+%Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+\addto\captionsngerman{%
+	\renewcommand\abstractname{Kurzfassung}%
+}
 \else
 %
 %
@@ -176,12 +176,29 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 --export-pdf=\getgraphicspath#1.pdf --export-latex}%
 \input{\getgraphicspath#1.pdf_tex}%
 }
+
+
 %%%
+\usepackage{siunitx}
+%%%
+
+%%%
+\usepackage{acro} %nice Acronyms
+%\DeclareAcronym{TCT}{short = TCT , long = task completion time}
+%%%
+
 
 %%%
 % Tabellenerweiterungen
 \usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
 \usepackage{longtable}
+\usepackage{dcolumn} %Aligning numbers by decimal points in table columns
+\ifdeutsch
+	\newcolumntype{d}[1]{D{.}{,}{#1}}
+\else
+	\newcolumntype{d}[1]{D{.}{.}{#1}}
+\fi
+
 %
 %%%
 
@@ -189,6 +206,13 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Eine Zelle, die sich über mehrere Zeilen erstreckt.
 % Siehe Beispieltabelle in Kapitel 2
 \usepackage{multirow}
+%
+%%%
+
+%%%
+%Fuer Tabellen mit Variablen Spaltenbreiten
+%\usepackage{tabularx}
+%\usepackage{tabulary}
 %
 %%%
 
@@ -297,20 +321,20 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 
 
+
 %%%
 % Fuer Abbildungen innerhalb von Abbildungen
 % Ersetzt das Paket subfigure
-%\usepackage{subfig}
+%
+% Due to bug #24 in the caption package we need to update caption3.sty at the moment manualy to use subfig.
+% Bug #24: http://sourceforge.net/p/latex-caption/tickets/24/
+% corrected caption3.sty: http://sourceforge.net/p/latex-caption/code/HEAD/tree/branches/3.3/tex/caption3.sty
+%
+\usepackage[caption=false, lofdepth=1, lotdepth]{subfig}
 %
 %%%
 
 
-%%%
-%Fuer Tabellen mit Variablen Spaltenbreiten
-%\usepackage{tabularx}
-%\usepackage{tabulary}
-%
-%%%
 
 
 %%%
@@ -396,7 +420,8 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 %biblatex statt bibtex
 \usepackage[
-  backend       = biber, %minalphanames only works with biber backend
+  backend       = biber, 	%biber dose not work with 64x versions alternative: bibtex8
+														%minalphanames only works with biber backend														
   sortcites     = true,
   bibstyle      = alphabetic,
   citestyle     = alphabetic,
@@ -407,10 +432,14 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   maxalphanames = 4,
   maxbibnames   = 99,
   maxcitenames  = 3,
-  doi           = false, %source: http://tex.stackexchange.com/a/23118/9075
-  isbn          = false, %source: http://tex.stackexchange.com/a/23118/9075
+	natbib        = true,
+	eprint        = true,
+	url           = true,
+  doi           = true,
+  isbn          = true,
   backref       = true]{biblatex}
 \bibliography{bibliography}
+%\addbibresource[datatype=bibtex]{bibliography.bib}
 
 %Do not put "vd" in the label, but put it at "\citeauthor"
 %Source: http://tex.stackexchange.com/a/30277/9075
@@ -455,11 +484,11 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   {\usebibmacro{postnote}}
 
 %natbib compatibility
-\newcommand{\citep}[1]{\cite{#1}}
-\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
+%\newcommand{\citep}[1]{\cite{#1}}
+%\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
 %Beginning of sentence - analogous to cleveref - important for names such as "zur Muehlen"
-\newcommand{\Citep}[1]{\cite{#1}}
-\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
+%\newcommand{\Citep}[1]{\cite{#1}}
+%\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
 %%%
 
 
@@ -469,7 +498,6 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Wird verwendet, um etwas Text zu erzeugen, um eine volle Seite wegen Layout zu sehen.
 \usepackage[math]{blindtext}
 %%%
-
 
 %%%
 % Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
@@ -521,10 +549,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \ifdeutsch
-\usepackage[ngerman,capitalise,nameinlink]{cleveref}
-\crefname{figure}{Abbildung}{Abbildungen}
+\usepackage[ngerman,capitalise,nameinlink,noabbrev]{cleveref}
 \else
-\usepackage[capitalise,nameinlink]{cleveref}
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
 \fi
 %%%
 
@@ -556,7 +583,12 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Deckblattstyle
 %
-% für englische Ausarbeitungen "language=english" benutzen
+\ifdeutsch
+	\PassOptionsToPackage{language=german}{uni-stuttgart-cs-cover}
+\else
+	\PassOptionsToPackage{language=english}{uni-stuttgart-cs-cover}
+\fi
+
 \usepackage[
     title={Förderungswürdigkeit der F\"{o}rderung von Öl},
     author={Lars K.},
@@ -568,9 +600,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
     supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
     startdate={5.\ Juli 2013}, % English: July 5, 2013;    ISO: 2013-07-05
     enddate={5.\ Januar 2014}, % English: January 5, 2014; ISO: 2014-01-05
-    crk={I.7.2},
-    language=german
-    %language=english
+    crk={I.7.2}
     ]{uni-stuttgart-cs-cover}
 %
 %%%

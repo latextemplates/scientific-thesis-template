@@ -6,6 +6,20 @@
 %Ermöglicht \\ bei der Titelseite (z.B. bei supervisor)
 %Siehe https://github.com/latextemplates/uni-stuttgart-cs-cover/issues/4
 \RequirePackage{kvoptions-patch}
+
+%Englisch:
+%\let\ifdeutsch\iffalse
+%\let\ifenglisch\iftrue
+
+%Deutsch:
+\let\ifdeutsch\iftrue
+\let\ifenglisch\iffalse
+
+%
+\ifdeutsch
+	\PassOptionsToClass{numbers=noenddot}{scrbook}
+\fi
+
 %Warns about outdated packages and missing caption delcarations
 %See https://www.ctan.org/pkg/nag
 \RequirePackage[l2tabu, orthodox]{nag}
@@ -17,7 +31,9 @@
 \ifluatex
 %do not load anything
 \else
-\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+	\ifdeutsch
+		\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+	\fi
 \fi
 
 \documentclass[
@@ -37,18 +53,9 @@
                headsepline,
                cleardoublepage=empty,
                parskip=half,
-%                pointlessnumbers, %f"ur englische Texte, dann unten \ifdeutsch und \ifenglisch anpassen.
 %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
                final   % ACHTUNG! - in pagestyle.tex noch Seitenstil anpassen
                ]{scrbook}
-
-%Englisch:
-%\let\ifdeutsch\iffalse
-%\let\ifenglisch\iftrue
-
-%Deutsch:
-\let\ifdeutsch\iftrue
-\let\ifenglisch\iffalse
 
 
 \input{preambel/packages_and_options}
@@ -79,7 +86,18 @@
 }
 \makeatother
 
+
+%%% acro
+% alle Acronyme die verwendet werden kommen hier her.
+
+\DeclareAcronym{ER}{short = ER , long = error rate}
+\DeclareAcronym{FR}{short = FR , long = Fehlerrate}
+
+%%%
+
+
 \begin{document}
+
 %tex4ht-Konvertierung verschönern
 \iftex4ht
 % tell tex4ht to create picures also for formulas starting with '$'
@@ -142,7 +160,6 @@
 %
 % oder zB
 %\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
-%\section*{Abkürzungsverzeichnis}
 %
 %%%
 
@@ -163,6 +180,12 @@
 
 \listoffigures
 \listoftables
+
+\ifdeutsch
+\printacronyms[name=Abkürzungsverzeichnis, heading=chapter*]
+\else
+\printacronyms[name=List of Acronyms, heading=chapter*]
+\fi
 
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
 %\lstlistoflistings 

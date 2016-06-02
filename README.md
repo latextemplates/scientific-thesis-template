@@ -127,10 +127,7 @@ The template has been built primarily for German documents. English documents, h
 
 Five steps to switch to English typesetting:
 
-1. `ausarbeitung.tex`: Add `%` before `\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}`
-1. `ausarbeitung.tex`: Right on top: remove the `%` before `pointlessnumbers` (line 17)
-1. `ausarbeitung.tex`: Exchange commands `\ifdeutsch` and `\ifenglisch`. (Lines 23,23 <-> 27,28).
-1. `preambel/packages_and_options.tex` at `usepackage` of `uni-stuttgart-cs-cover`: disable `language=german` and enable `language=english`. (Lines 448 and 449)
+1. `ausarbeitung.tex`: Exchange commands `\ifdeutsch` and `\ifenglisch`. (Lines 11,12 <-> 15,16).
 1. Cleanup everything (e.g., `latexmk -c ausarbeitung`). Otherwise pdflatex will complain because of `ngerman`.
 
 Change Appearance of Chapter Headings

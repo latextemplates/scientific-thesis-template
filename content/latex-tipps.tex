@@ -30,6 +30,8 @@ Die Apache ODE Engine \cite{ApacheODE} ist eine Workflow-Maschine, die BPEL-Proz
 
 Wörter am besten mittels \texttt{\textbackslash enquote\{...\}} \enquote{einschließen}, dann werden die richtigen Anführungszeichen verwendet.
 
+Beim Erstellen der Bibtex-Datei wird empfohlen darauf zu achten, dass die DOI aufgeführt wird.
+
 \section{Mathematische Formeln}
 \label{sec:mf}
 Mathematische Formeln kann man $so$ setzen. \texttt{symbols-a4.pdf} (zu finden auf \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf}) enthält eine Liste der unter LaTeX direkt verfügbaren Symbole.
@@ -67,7 +69,8 @@ Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus D
 Quellcode im \lstinline|<listing />| ist auch möglich.
 
 \section{Abbildungen}
-Die Abbildungen~\ref{fig:chor1} und~\ref{fig:chor2} sind für das Verständnis dieses Dokuments wichtig.
+
+Die \cref{fig:chor1} und \ref{fig:chor2} sind für das Verständnis dieses Dokuments wichtig.
 Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 
 %Die Parameter in eckigen Klammern sind optionale Parameter - z.B. [htb!]
@@ -85,6 +88,17 @@ Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
   \includegraphics[width=.8\textwidth]{choreography.pdf}
   \caption[Beispiel-Choreographie]{Die Beispiel-Choreographie. Nun etwas kleiner, damit \texttt{\textbackslash textwidth} demonstriert wird. Und auch die Verwendung von alternativen Bildunterschriften für das Verzeichnis der Abbildungen. Letzteres ist allerdings nur Bedingt zu empfehlen, denn wer liest schon so viel Text unter einem Bild? Oder ist es einfach nur Stilsache?}
   \label{fig:chor2}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+    \subfloat[]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigA}}
+    \subfloat[]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigB}}
+		\subfloat[Subcaption if needed]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigC}}
+	\caption{Beispiel um 3 Abbildung nebeneinader zu stellen nur jedes einzeln referenzieren zu können. Abbildung~\ref{fig:subfigB}
+ ist die mittlere Abbildung.}
+\label{fig:subfig_example}
 \end{figure}
 
 Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
@@ -108,7 +122,8 @@ Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG
 \fi % <-- Das hier wegnehmen, falls inkscape im Pfad ist
 
 \section{Tabellen}
-Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse.
+
+\cref{tab:Ergebnisse} zeigt Ergebnisse und die \cref{tab:Ergebnisse} zeigt wie numerische Daten in einer Tabelle representiert werden können.
 \begin{table}
   \centering
   \begin{tabular}{ccc}
@@ -123,6 +138,28 @@ Tabelle~\ref{tab:Ergebnisse} zeigt Ergebnisse.
   \end{tabular}
   \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
   \label{tab:Ergebnisse}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{l *{8}{d{3.2}}}
+		\toprule
+						
+			   & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}} \\
+			\cmidrule(r){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
+			
+			\textbf{Bedingungen} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}}\\
+			\midrule
+			
+			W & 1.1 & 5.55 & 6.66 & .01 &  &  &  & \\
+			X & 22.22 & 0.0 & 77.5 & .1 &  &  &  & \\
+			Y & 333.3 & .1 & 11.11 & .05 &  &  &  & \\
+			Z & 4444.44 & 77.77 & 14.06 & .3 &  &  &  & \\
+		\bottomrule 
+	\end{tabular}
+	
+	\caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD). Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.}
+	\label{tab:Werte}
 \end{table}
 
 \section{Pseudocode}
@@ -185,6 +222,17 @@ test2\\
 \vskip-.7em
 \hrule height .5pt width\textwidth
 }
+
+
+\section{Abkürzungen}
+
+Beim ersten Durchlaf betrug die \ac{FR} 5. Beim zweiten Durchlauf war die \ac{FR} 3.
+
+Mit \verb+\ac{...}+ können Abkürungen eingebaut werden, beim ersten aufrufen wird die lange Form eingesetzt. Beim wiederholten werwenden von \verb+\ac{...}+ wird automatisch die kurz Form angezeigt. Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt.
+
+Definiert werden Abkürzungen in der Datei \textit{ausarbeitung.tex} im Abschnitt '\%\%\% acro' mithilfe von \verb+\DeclareAcronym{...}{...}+.
+
+Mehr infos unter: \url{http://mirror.hmc.edu/ctan/macros/latex/contrib/acro/acro_en.pdf}
 
 \section{Verweise}
 Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
