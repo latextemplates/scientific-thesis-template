@@ -1,8 +1,16 @@
 %%%
 %
 \automark[section]{chapter}
-\setkomafont{pageheadfoot}{\normalfont\sffamily} %gilt auch f"ur Fu"s
+\ifenglisch
+%serif font also in heading, foot and page number (contained in foot)
+\setkomafont{pageheadfoot}{\normalfont\rmfamily}
+\setkomafont{pagenumber}{\normalfont\rmfamily}
+\else
+%sans serif font in German texts
+\setkomafont{pageheadfoot}{\normalfont\sffamily}
 \setkomafont{pagenumber}{\normalfont\sffamily}
+\fi
+%
 %\setheadsepline[.4pt]{.4pt} %funktioniert nicht: Alle Linien sind hier weg
 %
 %%%
