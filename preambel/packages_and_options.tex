@@ -52,8 +52,10 @@
 %%%
 % Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
 \ifdeutsch
-\usepackage[ngerman]{babel}
-%Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+% letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
+% see also http://tex.stackexchange.com/a/50638/9075
+\usepackage[american,ngerman]{babel}
+% Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
 \addto\captionsngerman{%
 	\renewcommand\abstractname{Kurzfassung}%
 }
@@ -61,8 +63,8 @@
 %
 %
 % if you are writing in english
-% für englische Texte, Hinweise zu weiteren, notwendigen Umstellungen in README.txt beachten
-\usepackage[american]{babel}
+% last language is the default language
+\usepackage[ngerman,american]{babel}
 \fi
 %
 %%%
