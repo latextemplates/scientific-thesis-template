@@ -766,3 +766,13 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   pass %just load the package and do not destory the work of typearea
 ]{geometry}
 %%%
+
+%%%
+% footnotes in tables
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+% Reuse of footnotes
+% Reuse of Footnotes, see http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
+\crefformat{footnote}{#2\footnotemark[#1]#3}
+%%%

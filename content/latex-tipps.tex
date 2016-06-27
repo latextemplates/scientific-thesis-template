@@ -267,6 +267,9 @@ Definition Text
 
 \Cref{def:def1} zeigt \ldots
 
+\section{Fußnoten}
+Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\label{fussnote}Diese Fußnote ist ein Beispiel.}. Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in der Fußnote setzt \verb+\footnote{\label{...}...}+ und anschließend mittels \verb+\cref{...}+ die Fußnote erneut verwendet\cref{fussnote}.
+
 \section{Verschiedenes}
 \label{sec:diff}
 \ifdeutsch
