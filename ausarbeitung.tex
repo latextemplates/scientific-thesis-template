@@ -87,15 +87,6 @@
 \makeatother
 
 
-%%% acro
-% alle Acronyme die verwendet werden kommen hier her.
-
-\DeclareAcronym{ER}{short = ER , long = error rate}
-\DeclareAcronym{FR}{short = FR , long = Fehlerrate}
-
-%%%
-
-
 \begin{document}
 
 %tex4ht-Konvertierung verschönern
@@ -135,6 +126,8 @@
 %Doku zu deftripstyle: scrguide.pdf
 \pagestyle{preamble}
 \renewcommand*{\chapterpagestyle}{preamble}
+
+\input{content/abkuerzungen}
 
 %Kurzfassung / abstract
 %auch im Stil vom Inhaltsverzeichnis
@@ -181,12 +174,6 @@
 \listoffigures
 \listoftables
 
-\ifdeutsch
-\printacronyms[name=Abkürzungsverzeichnis, heading=chapter*]
-\else
-\printacronyms[name=List of Acronyms, heading=chapter*]
-\fi
-
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
 %\lstlistoflistings 
 %ansonsten:
@@ -232,6 +219,18 @@
 %\renewcommand{\appendixpagename}{Anhang}
 \appendix
 \input{content/latex-tipps}
+
+% Abkürzungsverzeichnis
+\cleardoublepage
+\phantomsection
+\ifdeutsch
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+\else
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\fi
+\printglossary[type=\acronymtype,style=mystyle]
+% see http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
+\clearpage
 
 %\printindex
 
