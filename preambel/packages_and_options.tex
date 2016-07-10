@@ -426,10 +426,17 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %\setlength{\footnotesep}{.85\baselineskip}
 %
 %
-\renewcommand{\footnoterule}{}             % Keine Trennlinie zur Fußnote
+%
+%Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+%\renewcommand{\footnoterule}{}
+%
 \addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
+%
 % Fußnoten immer ganz unten auf einer \raggedbottom-Seite
+% fnpos kommt aus dem yafoot package
 \usepackage{fnpos}
+\makeFNbelow
+\makeFNbottom
 %
 %%%
 
