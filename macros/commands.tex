@@ -1,6 +1,10 @@
 %wird fuer Tabellen benötigt (z.B. >{centering\RBS}p{2.5cm} erzeugt einen zentrierten 2,5cm breiten Absatz in einer Tabelle
 \newcommand{\RBS}{\let\\=\tabularnewline}
 
+%To avoid issues with Springer's \mathplus
+%See also http://tex.stackexchange.com/q/212644/9075
+\providecommand\mathplus{+}
+
 %% typoraphisch richtige Abkürzungen
 \newcommand{\zB}[0]{z.\,B.\xspace}
 \newcommand{\bzw}[0]{bzw.\xspace}
