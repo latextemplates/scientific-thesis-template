@@ -108,10 +108,13 @@ Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 \label{fig:subfig_example}
 \end{figure}
 
-Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
-\todo{Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.}
+Es ist möglich, SVGs direkt beim Kompilieren in PDF umzuwandeln.
+Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
 
 \iffalse % <-- Das hier wegnehmen, falls inkscape im Pfad ist
+Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
+Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.
+
 \begin{figure}
 \centering
 \includegraphics{svgexample.svg}
