@@ -8,6 +8,13 @@
 \chapter{LaTeX-Tipps}
 \label{chap:latextipps}
 
+Pro Satz eine neue Zeile.
+Das ist wichtig, um sauber versionieren zu können.
+In LaTeX werden Absätze durch eine Leerzeile getrennt.
+
+Folglich werden neue Abstäze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
+Der letzte Satz kam in einem neuen Absatz.
+
 \section{File-Encoding und Unterstützung von Umlauten}
 \label{sec:firstsectioninlatexhints}
 Die Vorlage wurde 2010 auf UTF-8 umgestellt.
@@ -101,10 +108,13 @@ Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 \label{fig:subfig_example}
 \end{figure}
 
-Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
-\todo{Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.}
+Es ist möglich, SVGs direkt beim Kompilieren in PDF umzuwandeln.
+Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
 
 \iffalse % <-- Das hier wegnehmen, falls inkscape im Pfad ist
+Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
+Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.
+
 \begin{figure}
 \centering
 \includegraphics{svgexample.svg}
@@ -226,13 +236,13 @@ test2\\
 
 \section{Abkürzungen}
 
-Beim ersten Durchlaf betrug die \ac{FR} 5. Beim zweiten Durchlauf war die \ac{FR} 3.
+Beim ersten Durchlauf betrug die \gls{fr} 5. Beim zweiten Durchlauf war die \gls{fr} 3. Die Pluralform sieht man hier:\ \glspl{er}. Um zu demonstrieren wie das Abkürzungsverzeichnis bei längeren Beschreibungstexten aussieht, muss hier noch \glspl{rdbms} erwähnt werden.
 
-Mit \verb+\ac{...}+ können Abkürungen eingebaut werden, beim ersten aufrufen wird die lange Form eingesetzt. Beim wiederholten werwenden von \verb+\ac{...}+ wird automatisch die kurz Form angezeigt. Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt.
+Mit \verb+\gls{...}+ können Abkürungen eingebaut werden, beim ersten aufrufen wird die lange Form eingesetzt. Beim wiederholten Verwenden von \verb+\gls{...}+ wird automatisch die kurz Form angezeigt. Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt. Mit \verb+\glspl{...}+ wird die Pluralform verwendet. Möchte man dass bei der ersten Verwendung direkt die Kurzform erscheint, so kann man mit \verb+\glsunset{...}+ eine Abkürzung als bereits verwendet markieren. Das Gegenteil erreicht man mit \verb+\glsreset{...}+. 
 
-Definiert werden Abkürzungen in der Datei \textit{ausarbeitung.tex} im Abschnitt '\%\%\% acro' mithilfe von \verb+\DeclareAcronym{...}{...}+.
+Definiert werden Abkürzungen in der Datei \textit{content\\ausarbeitung.tex} mithilfe von \verb+\newacronym{...}{...}{...}+.
 
-Mehr infos unter: \url{http://mirror.hmc.edu/ctan/macros/latex/contrib/acro/acro_en.pdf}
+Mehr Infos unter: \url{http://tug.ctan.org/macros/latex/contrib/glossaries/glossariesbegin.pdf}
 
 \section{Verweise}
 Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
@@ -266,6 +276,9 @@ Definition Text
 \end{definition}
 
 \Cref{def:def1} zeigt \ldots
+
+\section{Fußnoten}
+Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\label{fussnote}Diese Fußnote ist ein Beispiel.}. Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in der Fußnote setzt \verb+\footnote{\label{...}...}+ und anschließend mittels \verb+\cref{...}+ die Fußnote erneut verwendet\cref{fussnote}.
 
 \section{Verschiedenes}
 \label{sec:diff}

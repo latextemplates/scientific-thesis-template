@@ -7,17 +7,25 @@
 %Siehe https://github.com/latextemplates/uni-stuttgart-cs-cover/issues/4
 \RequirePackage{kvoptions-patch}
 
-%Englisch:
+%English:
 %\let\ifdeutsch\iffalse
 %\let\ifenglisch\iftrue
 
-%Deutsch:
+%German:
 \let\ifdeutsch\iftrue
 \let\ifenglisch\iffalse
 
 %
-\ifdeutsch
+\ifenglisch
 	\PassOptionsToClass{numbers=noenddot}{scrbook}
+\else
+	%()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
+	%Nach DUDEN steht in Gliederungen, in denen ausschließlich arabische Ziffern für die Nummerierung
+	%verwendet werden, am Ende der Gliederungsnummern kein abschließender Punkt
+	%(siehe [DUD96, R3]). Wird hingegen innerhalb der Gliederung auch mit römischen Zahlen
+	%oder Groß- oder Kleinbuchstaben gearbeitet, so steht am Ende aller Gliederungsnummern ein
+	%abschließender Punkt (siehe [DUD96, R4])
+	\PassOptionsToClass{numbers=autoendperiod}{scrbook}
 \fi
 
 %Warns about outdated packages and missing caption delcarations
@@ -40,8 +48,8 @@
                fontsize=12pt, %Default: 11pt, bei Linux Libertine zu klein zum Lesen
 % BEGINN: Optionen für typearea
                paper=a4,
-               twoside, % fuer die Betrachtung am Schirm ungeschickt
-               BCOR=3mm, % Hack für BCOR (1.92 o.ä.), da bei BCOR2mm die Fuellpunkte beim Inhaltsverzeichnis falsch sind. Hack aber nicht mehr nötig: microtype für Verzeichnisse ausschalten hilft.
+               twoside,  % fuer die Betrachtung am Schirm ungeschickt
+               BCOR=3mm, % Bindekorrektur
                DIV=13,   % je höher der DIV-Wert, desto mehr geht auf eine Seite. Gute werde sind zwischen DIV=12 und DIV=15
                headinclude=true,
                footinclude=false,
@@ -87,15 +95,6 @@
 \makeatother
 
 
-%%% acro
-% alle Acronyme die verwendet werden kommen hier her.
-
-\DeclareAcronym{ER}{short = ER , long = error rate}
-\DeclareAcronym{FR}{short = FR , long = Fehlerrate}
-
-%%%
-
-
 \begin{document}
 
 %tex4ht-Konvertierung verschönern
@@ -135,6 +134,8 @@
 %Doku zu deftripstyle: scrguide.pdf
 \pagestyle{preamble}
 \renewcommand*{\chapterpagestyle}{preamble}
+
+\input{content/abkuerzungen}
 
 %Kurzfassung / abstract
 %auch im Stil vom Inhaltsverzeichnis
@@ -181,12 +182,6 @@
 \listoffigures
 \listoftables
 
-\ifdeutsch
-\printacronyms[name=Abkürzungsverzeichnis, heading=chapter*]
-\else
-\printacronyms[name=List of Acronyms, heading=chapter*]
-\fi
-
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
 %\lstlistoflistings 
 %ansonsten:
@@ -232,6 +227,18 @@
 %\renewcommand{\appendixpagename}{Anhang}
 \appendix
 \input{content/latex-tipps}
+
+% Abkürzungsverzeichnis
+\cleardoublepage
+\phantomsection
+\ifdeutsch
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+\else
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\fi
+\printglossary[type=\acronymtype,style=mystyle]
+% see http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
+\clearpage
 
 %\printindex
 

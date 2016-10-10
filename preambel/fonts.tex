@@ -1,8 +1,16 @@
 %%%
 %
 \automark[section]{chapter}
-\setkomafont{pageheadfoot}{\normalfont\sffamily} %gilt auch f"ur Fu"s
+\ifenglisch
+%serif font also in heading, foot and page number (contained in foot)
+\setkomafont{pageheadfoot}{\normalfont\rmfamily}
+\setkomafont{pagenumber}{\normalfont\rmfamily}
+\else
+%sans serif font in German texts
+\setkomafont{pageheadfoot}{\normalfont\sffamily}
 \setkomafont{pagenumber}{\normalfont\sffamily}
+\fi
+%
 %\setheadsepline[.4pt]{.4pt} %funktioniert nicht: Alle Linien sind hier weg
 %
 %%%
@@ -13,7 +21,7 @@
 % Fuer englische Texte sind serifenhafte Ueberschriften gut. Deshalb hier der Befehl zum Aktivieren von serifenhaften Ueberschriften
 \setkomafont{disposition}{\normalfont\rmfamily}
 
-% Bei englisschen Texten das Label (optionaler Eintrag bei \item) bei description-Umgegungen nur auf fett und nicht fett+serifenlos stellen.
+% Bei englischen Texten das Label (optionaler Eintrag bei \item) bei description-Umgegungen nur auf fett und nicht fett+serifenlos stellen.
 \setkomafont{descriptionlabel}{\normalfont\bfseries}
 \fi
 %

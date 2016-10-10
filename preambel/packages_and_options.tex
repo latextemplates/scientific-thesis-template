@@ -48,12 +48,102 @@
 \usepackage[hyperref,dvipsnames]{xcolor}
 %
 
+%%%
+% Required for custom acronyms/glossaries style
+% Left aligned Columns in tables with fixed width
+% see http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
+\usepackage{ragged2e}
+%%%
+
+%%%
+% Abkürzungsverzeichnis
+\usepackage{scrwfile} % Wichtig, ansonsten erscheint "No room for a new \write"
+% siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
+\usepackage[acronym,indexonlyfirst,nomain]{glossaries}
+\ifdeutsch
+\renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+\else
+\renewcommand*{\acronymname}{List of Abbreviations}
+\fi
+\renewcommand*{\glsgroupskip}{}
+% see http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
+\newlength\maxlength
+\newlength\thislength
+\newglossarystyle{mystyle}
+% requires ragged2e
+{%
+	\renewenvironment{theglossary}%
+	{% start of glossary
+		% Find maximum width of the first column:
+		\setlength{\maxlength}{0pt}%
+		\forglsentries[\currentglossary]{\thislabel}%
+		{%
+			\settowidth{\thislength}{\glsentryshort{\thislabel}}%
+			\ifdim\thislength>\maxlength
+			\setlength{\maxlength}{\thislength}%
+			\fi
+		}%
+		% Now calculate the width of the second column:
+		\setlength{\glsdescwidth}{.9\linewidth-0.13\linewidth-0.15\linewidth-4\tabcolsep}%
+		% If you only have short descriptions, use 0.20 (for example) instead of 0.13 and "l" instead of "c" for Abkürzung/Abbrevation
+		% Start the tabular environment
+		\begin{longtable}{>{\RaggedRight\hspace{0pt}}p{0.13\linewidth}>{\RaggedRight\hspace{0pt}}p{\glsdescwidth}>{\Centering}p{0.15\linewidth}}
+			\toprule
+			\ifdeutsch
+			\multicolumn{1}{c}{\textbf{Abkürzung}} &
+			\multicolumn{1}{@{}c}{\textbf{Bedeutung}} &
+			\multicolumn{1}{@{}c}{\textbf{Erstes Vorkommen}}\\%
+			\else
+			\multicolumn{1}{c}{\textbf{Abbreviation}} &
+			\multicolumn{1}{@{}c}{\textbf{Meaning}} &
+			\multicolumn{1}{@{}c}{\textbf{First occurrence}}\\%
+			\fi
+			\midrule\endfirsthead
+			\caption*{\ifdeutsch(fortsetzung)\else(continued)\fi}\\
+			\toprule
+			\ifdeutsch
+			\multicolumn{1}{c}{\textbf{Abkürzung}} &
+			\multicolumn{1}{@{}c}{\textbf{Bedeutung}} &
+			\multicolumn{1}{@{}c}{\textbf{Erstes Vorkommen}}\\%
+			\else
+			\multicolumn{1}{c}{\textbf{Abbreviation}} &
+			\multicolumn{1}{@{}c}{\textbf{Meaning}} &
+			\multicolumn{1}{@{}c}{\textbf{First occurrence}}\\%
+			\fi
+			\midrule\endhead
+			\bottomrule\endfoot
+		}%
+		{% end of glossary
+		\end{longtable}%
+	}%
+	% Header has been incorporated into \begin{theglossary}
+	\renewcommand*{\glossaryheader}{}%
+	% Don't do anything between letter groups
+	\renewcommand*{\glsgroupheading}[1]{}%
+	\renewcommand*{\glsgroupskip}{}%
+	% Set display for each the acronym entry
+	\renewcommand{\glossentry}[2]{%
+		\glstarget{##1}{\glsentryshort{##1}}% short form
+		&
+		\glsentrylong{##1}% long form
+		&
+		##2% page of first use
+		\\% end of row
+	}%
+	% No sub-entries, so \subglossentry doesn't need redefining
+}
+
+\makeglossaries
+%%%
+
 
 %%%
 % Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
 \ifdeutsch
-\usepackage[ngerman]{babel}
-%Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+% letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
+% see also http://tex.stackexchange.com/a/50638/9075
+\usepackage[american,ngerman]{babel}
+% Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
 \addto\captionsngerman{%
 	\renewcommand\abstractname{Kurzfassung}%
 }
@@ -61,8 +151,8 @@
 %
 %
 % if you are writing in english
-% für englische Texte, Hinweise zu weiteren, notwendigen Umstellungen in README.txt beachten
-\usepackage[american]{babel}
+% last language is the default language
+\usepackage[ngerman,american]{babel}
 \fi
 %
 %%%
@@ -91,9 +181,10 @@
 %%%
 %Mathematik
 %
-\usepackage[fleqn,leqno]{amsmath} % Viele Mathematik-Sachen: Doku: /usr/share/doc/texmf/latex/amsmath/amsldoc.dvi.gz
+\usepackage[]{amsmath} % Viele Mathematik-Sachen: Doku: /usr/share/doc/texmf/latex/amsmath/amsldoc.dvi.gz
+\PassOptionsToPackage{fleqn,leqno}{amsmath} % options must be passed this way, otherwise it does not work with glossaries
 %fleqn (=Gleichungen linksbündig platzieren) funktioniert nicht direkt. Es muss noch ein Patch gemacht werden:
-\addtolength\mathindent{1em}%work-around ams-math problem with align and 9 -> 10
+%\addtolength\mathindent{1em}%work-around ams-math problem with align and 9 -> 10. Does not work with glossaries, No visual changes.
 \usepackage{mathtools} %fixes bugs in AMS math
 %
 %for theorems, replacement for amsthm
@@ -183,12 +274,6 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 
 %%%
-\usepackage{acro} %nice Acronyms
-%\DeclareAcronym{TCT}{short = TCT , long = task completion time}
-%%%
-
-
-%%%
 % Tabellenerweiterungen
 \usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
 \usepackage{longtable}
@@ -259,14 +344,6 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Logik für Tex
 \usepackage{ifthen} %fuer if-then-else @ commands.tex
-%
-%%%
-
-
-%%%
-% unterschiedliche Fancy-Chapter-Styles
-%\usepackage[Bjarne]{fncychap}
-%\usepackage[Lenny]{fncychap}
 %
 %%%
 
@@ -349,10 +426,17 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %\setlength{\footnotesep}{.85\baselineskip}
 %
 %
-\renewcommand{\footnoterule}{}             % Keine Trennlinie zur Fußnote
+%
+%Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+%\renewcommand{\footnoterule}{}
+%
 \addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
+%
 % Fußnoten immer ganz unten auf einer \raggedbottom-Seite
+% fnpos kommt aus dem yafoot package
 \usepackage{fnpos}
+\makeFNbelow
+\makeFNbottom
 %
 %%%
 
@@ -420,7 +504,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 %biblatex statt bibtex
 \usepackage[
-  backend       = biber, 	%biber dose not work with 64x versions alternative: bibtex8
+  backend       = biber, 	%biber does not work with 64x versions alternative: bibtex8
 														%minalphanames only works with biber backend														
   sortcites     = true,
   bibstyle      = alphabetic,
@@ -446,6 +530,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \makeatletter
 \AtBeginDocument{\toggletrue{blx@useprefix}}
 \AtBeginBibliography{\togglefalse{blx@useprefix}}
+\makeatother
 
 %Thin spaces between initials
 %http://tex.stackexchange.com/a/11083/9075
@@ -535,8 +620,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
     breaklinks=true,
     colorlinks=true,
     pdfstartview=Fit,
-    pdfpagelayout=SinglePage,
-    %
+    pdfpagelayout=TwoPageRight, % zweiseitige Darstellung: ungerade Seiten rechts im PDF-Viewer - siehe auch http://tex.stackexchange.com/a/21109/9075
     filecolor=darkblue,
     urlcolor=darkblue,
     linkcolor=black,
@@ -655,10 +739,13 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \setlength{\extrarowheight}{1pt}
 %
 %
-\input{preambel/chapterheads}
-%
 %%%
 
+%%%
+% unterschiedliche Chapter-Styles
+% u.a. Paket fncychap
+\input{preambel/chapterheads}
+%%%
 
 %%%
 %Minitoc-Einstellungen
@@ -768,4 +855,14 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \usepackage[
   pass %just load the package and do not destory the work of typearea
 ]{geometry}
+%%%
+
+%%%
+% footnotes in tables
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+% Reuse of footnotes
+% Reuse of Footnotes, see http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
+\crefformat{footnote}{#2\footnotemark[#1]#3}
 %%%

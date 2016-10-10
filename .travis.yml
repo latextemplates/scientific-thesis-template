@@ -33,6 +33,8 @@ before_install:
   - sudo apt-get install -y --no-install-recommends -t wily texlive texlive-lang-german texlive-latex-extra texlive-bibtex-extra texlive-science
   # fonts Linux Libertine and lmodern (even though cfr-lm should be preferred - see http://tex.stackexchange.com/a/247543/9075)
   - sudo apt-get install -y --no-install-recommends -t wily texlive-fonts-extra lmodern
+  # required for pgfopts
+  - sudo apt-get install -y --no-install-recommends -t wily texlive-pictures
   # latexmk
   - sudo apt-get install -y --no-install-recommends -t wily biber latexmk
 
