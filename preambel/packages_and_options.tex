@@ -66,74 +66,11 @@
 \renewcommand*{\acronymname}{List of Abbreviations}
 \fi
 \renewcommand*{\glsgroupskip}{}
+%
+% Removed Glossarie as a table as a quick fix to get the template working again
 % see http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
-\newlength\maxlength
-\newlength\thislength
-\newglossarystyle{mystyle}
-% requires ragged2e
-{%
-	\renewenvironment{theglossary}%
-	{% start of glossary
-		% Find maximum width of the first column:
-		\setlength{\maxlength}{0pt}%
-		\forglsentries[\currentglossary]{\thislabel}%
-		{%
-			\settowidth{\thislength}{\glsentryshort{\thislabel}}%
-			\ifdim\thislength>\maxlength
-			\setlength{\maxlength}{\thislength}%
-			\fi
-		}%
-		% Now calculate the width of the second column:
-		\setlength{\glsdescwidth}{.9\linewidth-0.13\linewidth-0.15\linewidth-4\tabcolsep}%
-		% If you only have short descriptions, use 0.20 (for example) instead of 0.13 and "l" instead of "c" for Abkürzung/Abbrevation
-		% Start the tabular environment
-		\begin{longtable}{>{\RaggedRight\hspace{0pt}}p{0.13\linewidth}>{\RaggedRight\hspace{0pt}}p{\glsdescwidth}>{\Centering}p{0.15\linewidth}}
-			\toprule
-			\ifdeutsch
-			\multicolumn{1}{c}{\textbf{Abkürzung}} &
-			\multicolumn{1}{@{}c}{\textbf{Bedeutung}} &
-			\multicolumn{1}{@{}c}{\textbf{Erstes Vorkommen}}\\%
-			\else
-			\multicolumn{1}{c}{\textbf{Abbreviation}} &
-			\multicolumn{1}{@{}c}{\textbf{Meaning}} &
-			\multicolumn{1}{@{}c}{\textbf{First occurrence}}\\%
-			\fi
-			\midrule\endfirsthead
-			\caption*{\ifdeutsch(fortsetzung)\else(continued)\fi}\\
-			\toprule
-			\ifdeutsch
-			\multicolumn{1}{c}{\textbf{Abkürzung}} &
-			\multicolumn{1}{@{}c}{\textbf{Bedeutung}} &
-			\multicolumn{1}{@{}c}{\textbf{Erstes Vorkommen}}\\%
-			\else
-			\multicolumn{1}{c}{\textbf{Abbreviation}} &
-			\multicolumn{1}{@{}c}{\textbf{Meaning}} &
-			\multicolumn{1}{@{}c}{\textbf{First occurrence}}\\%
-			\fi
-			\midrule\endhead
-			\bottomrule\endfoot
-		}%
-		{% end of glossary
-		\end{longtable}%
-	}%
-	% Header has been incorporated into \begin{theglossary}
-	\renewcommand*{\glossaryheader}{}%
-	% Don't do anything between letter groups
-	\renewcommand*{\glsgroupheading}[1]{}%
-	\renewcommand*{\glsgroupskip}{}%
-	% Set display for each the acronym entry
-	\renewcommand{\glossentry}[2]{%
-		\glstarget{##1}{\glsentryshort{##1}}% short form
-		&
-		\glsentrylong{##1}% long form
-		&
-		##2% page of first use
-		\\% end of row
-	}%
-	% No sub-entries, so \subglossentry doesn't need redefining
-}
-
-\makeglossaries
+%
+\makenoidxglossaries
 %%%
 
 
@@ -173,7 +110,7 @@
 
 %%%
 % fancyheadings (nicht nur) fuer koma
-\usepackage[automark]{scrpage2}
+\usepackage[automark]{scrlayer-scrpage}
 %
 %%%
 

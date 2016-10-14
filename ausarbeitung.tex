@@ -94,6 +94,7 @@
 }
 \makeatother
 
+\input{content/abkuerzungen}
 
 \begin{document}
 
@@ -123,7 +124,7 @@
 \input glyphtounicode.tex
 \pdfgentounicode=1
 
-\VerbatimFootnotes %verbatim text in Fußnoten erlauben. Geht normalerweise nicht.
+%\VerbatimFootnotes %verbatim text in Fußnoten erlauben. Geht normalerweise nicht.
 
 \input{macros/commands}
 \pagenumbering{arabic}
@@ -134,8 +135,6 @@
 %Doku zu deftripstyle: scrguide.pdf
 \pagestyle{preamble}
 \renewcommand*{\chapterpagestyle}{preamble}
-
-\input{content/abkuerzungen}
 
 %Kurzfassung / abstract
 %auch im Stil vom Inhaltsverzeichnis
@@ -200,6 +199,9 @@
 \fi
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
 
+% Abkürzungsverzeichnis
+\printnoidxglossaries
+
 \iftex4ht
 \else
 %Optischen Randausgleich und Grauwertkorrektur wieder aktivieren
@@ -228,16 +230,6 @@
 \appendix
 \input{content/latex-tipps}
 
-% Abkürzungsverzeichnis
-\cleardoublepage
-\phantomsection
-\ifdeutsch
-\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
-\else
-\addcontentsline{toc}{chapter}{List of Abbreviations}
-\fi
-\printglossary[type=\acronymtype,style=mystyle]
-% see http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
 \clearpage
 
 %\printindex
