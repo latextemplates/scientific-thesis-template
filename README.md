@@ -24,9 +24,13 @@ Recommended LaTeX environments
 See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
 
 ### Recommended setup of MiKTeX
-* Install MiKTeX for: "Only for: `username`"
-* Install MiKTeX to: `C:\MiKTeX`. This enabled browsing for documentation at `C:\MiKTeX29\doc\latex
-* Install missing packages on the fly: `Yes`
+* Download the basic installer from http://miktex.org/download
+* Start it
+* First screen: Read the license condiditions and be sure that you really agree.
+* Second screen: "Shared Installation": Install MiKTeX for: "Only for: `username`"
+* Third screen: "Installation Directory": Install MiKTeX to: `C:\MiKTeX`. This enabled browsing for documentation at `C:\MiKTeX29\doc\latex`
+* Fourth screen: "Settings": Preferred paper: A4 and Install missing packages on the fly: `Yes`
+* Fifth screen: Press "Start"
 
 Characteristics of the template
 -------------------------------
