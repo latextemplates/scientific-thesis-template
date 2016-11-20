@@ -9,6 +9,8 @@ before_install:
   - wget https://github.com/scottkosty/install-tl-ubuntu/raw/master/install-tl-ubuntu
   - chmod +x ./install-tl-ubuntu
   - sudo ./install-tl-ubuntu
+  # refresh PATH variable
+  - . /etc/environment
   # latexmk has to be installed after install-tl-ubuntu to ensure that texlive is not taken from debian, but the latest one. In other words: addons->apt->packages cannot be used
   - sudo apt-get install -y latexmk
 
