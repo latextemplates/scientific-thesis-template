@@ -49,7 +49,7 @@ If you do not want to have an updated installation, but fiddle around with dirty
 ## Installation hints for Windows
 
 * The default installation of MiKTeX ships with incompatible biblatex and biber packages. You have to keep your MiKTeX up to date. In case you followed the linked installation steps, you only have to run "Update MiKTeX". If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see http://tex.stackexchange.com/a/108490/9075)
-* Install other tools using [Chocolatey]: `choco install texstudio sumatrapdf.install latexmk strawberryperl jabref languagetool jre8`. This allows you to run `choco upgrade all` to keep the software updated.
+* Install other tools using [chocolatey]: `choco install texstudio sumatrapdf.install latexmk strawberryperl jabref languagetool jre8`. This allows you to run `choco upgrade all` to keep the software updated.
 * Ensure that in the "MiKTeX Package Manager" "biber" and "biblatex-lni" are installed
 
 ### Recommended setup of MiKTeX
@@ -197,6 +197,7 @@ See <http://wiki.flupp.de/LaTeX>.
  [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
  [bibtex]: https://www.ctan.org/pkg/bibtex
  [inkscape]: http://inkscape.org/
+ [chocolatey]: https://chocolatey.org/
  [JabRef]: https://www.jabref.org
  [LanguageTool]: https://languagetool.org/
  [latexmk]: http://tex.stackexchange.com/tags/latexmk/info
