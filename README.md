@@ -60,8 +60,12 @@ If you do not want to have an updated installation, but fiddle around with dirty
 * Third screen: "Installation Directory": Install MiKTeX to: `C:\MiKTeX`. This enabled browsing for documentation at `C:\MiKTeX29\doc\latex`
 * Fourth screen: "Settings": Preferred paper: A4 and Install missing packages on the fly: `Yes`
 * Fifth screen: Press "Start"
-
-
+* After the installation:
+  1. Open `cmd.exe`
+  2. Execute `mpm --update-db`
+  3. Execute `mpm --update`
+  4. Execute `mpm --install=cm-super`
+  5. Execute `initexmf --update-fndb`
 
 ## Using with your own git repository
 
