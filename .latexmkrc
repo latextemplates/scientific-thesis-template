@@ -3,7 +3,7 @@
 $pdflatex = 'pdflatex -shell-escape -file-line-error --synctex=-1 %O %S';
 
 #Use SumatraPDF instead of the default PDF viewer
-$pdf_previewer = 'start "C:\Program Files (x86)\SumatraPDF\SumatraPDF.exe"';
+$pdf_previewer = 'start "C:\Program Files\SumatraPDF\SumatraPDF.exe"';
 
 #SumatraPDF updates automatically
 $preview_mode = 0;
