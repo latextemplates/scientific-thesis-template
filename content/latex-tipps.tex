@@ -343,3 +343,35 @@ Sachverhalt weiter erläutern sollen. Die zweite Abbildung ist um 90 Grad gedreh
 \section{Schlusswort}
 Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
 Bitte bei github ein Ticket eintragen (\url{https://github.com/latextemplates/uni-stuttgart-computer-science-template/issues}).
+
+\IfFileExists{pgfplots.sty}{
+\section{Plots with pgfplots}
+Pgfplot ist ein Paket um Graphen zu plotten ohne den Umweg \"ueber gnuplot oder matplotlib zu gehen. 
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[xlabel=$x$,
+               ylabel=$\sin(x)$]
+    \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\caption{$\sin(x)$ mit pgfplots.}
+\end{figure}
+}{}
+
+\IfFileExists{tikz.sty}{
+\section{Figures with tikz}
+TikZ ist ein Paket um Zeichnungen mittels Programmierung zu erstellen. Dieses Paket eigent sich um Gitter zu erstellen oder andere regelm\"a\ss{}ige Strukturen zu erstellen.
+\begin{figure}[ht]
+\begin{center}
+\begin{tikzpicture}
+  \draw(0,0) rectangle (4,4);
+  \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+    \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+      \draw(\x,\y) circle (1pt);
+\end{tikzpicture}
+\end{center}
+\caption{Eine tikz-Graphik.}\label{fig:tikz_example}
+\end{figure}
+}{}

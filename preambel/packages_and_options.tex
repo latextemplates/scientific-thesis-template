@@ -808,3 +808,20 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Reuse of Footnotes, see http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
 \crefformat{footnote}{#2\footnotemark[#1]#3}
 %%%
+
+%%%
+% pgfplots (optional if the ppackage is installed)
+% PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
+\IfFileExists{pgfplots.sty}{
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+}{}
+%%%
+
+%%%
+% tikz (optional if the ppackage is installed)
+% Package for creating graphics programmatically
+\IfFileExists{tikz.sty}{
+\usepackage{tikz}
+}{}
+%%%
