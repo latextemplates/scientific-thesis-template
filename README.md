@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template.svg?branch=template)](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template)
 
-# Uni Stuttgart Computer Science LaTeX Template
+# LaTeX Template for Scientific Theses
 
-Unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at the University of Stuttgart, Computer Science.
+This template is a general template for scientific theses.
+Currently, it is the unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at the University of Stuttgart, Computer Science.
+It will be extended to support theses from different universities.
 
-More information at https://github.com/latextemplates/uni-stuttgart-computer-science-template.
-
-It originates from the studiforge server at https://vorlagen.studiforge.informatik.uni-stuttgart.de/trac/
+More information at <https://github.com/latextemplates/scientific-thesis-template>.
 
 ## Characteristics of the template
 
@@ -21,7 +21,7 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 
 ## Quick start
 
-If you don't want to use git, just download https://github.com/latextemplates/uni-stuttgart-computer-science-template/archive/template.zip
+If you don't want to use git, just download https://github.com/latextemplates/scientific-thesis-template/archive/template.zip
 
 ## Recommended LaTeX environments
 
@@ -72,11 +72,11 @@ If you do not want to have an updated installation, but fiddle around with dirty
 ### Initialization
 
 This howto assumes that you have not a git repository for your thesis.
-If you have, just add https://github.com/latextemplates/uni-stuttgart-computer-science-template.git as upstream and merge the branch "template" into your "master" branch.
+If you have, just add https://github.com/latextemplates/scientific-thesis-template.git as upstream and merge the branch "template" into your "master" branch.
 
 1. Open command line
 1. Change to the directory where you want to have your main tex file.
-1. Fetch the template from github: `git clone https://github.com/latextemplates/uni-stuttgart-computer-science-template.git .`
+1. Fetch the template from github: `git clone https://github.com/latextemplates/scientific-thesis-template.git .`
 1. Rename `origin` to `github` to enable adding your own `origin` repository: `git remote rename origin github`
 1. Create a new branch master starting from the latest commit in the `template` branch: `git checkout -b master`
 
