@@ -321,7 +321,15 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
   \end{figure}
 \end{landscape}
 
+
+\iffalse
+
 \clearpage
+
+FIXME - This does not work with MiKTeX as of 2016-12-30
+
+TODO- demonstrate rotating package
+
 %hint by http://tex.stackexchange.com/a/3265/9075
 %other option is to use changepage according to http://tex.stackexchange.com/a/2639/9075. This, however, has issues with landscape
 \thispagestyle{empty}
@@ -335,7 +343,8 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
 \begin{landscape}
   %sidewaysfigure
   \begin{figure}
-    \centerline{\includegraphics[width=0.9\paperheight]{choreography.pdf}}
+    \centering
+    \includegraphics[width=0.9\paperheight]{choreography.pdf}
     \caption{Beispiel-Choreographie, auf einer weißen Seite gezeigt wird und über die definierten Seitenränder herausragt}
   \end{figure}
 \end{landscape}
@@ -343,6 +352,9 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
 %the original layout is restored.
 %%\restoregeometry cannot be used as we use \addtolength
 \loadgeometry{koma}
+
+\fi
+
 
 \IfFileExists{pgfplots.sty}{
 \section{Plots with pgfplots}
