@@ -92,19 +92,31 @@
 	%the labels are written in German, because these are the official terms given by the regulations ("Prüfungsordnung")
 	%For a detailed discussion see https://github.com/latextemplates/uni-stuttgart-computer-science-cover/pull/10
 	\gdef\@labelTypeStudy{Studienarbeit}%
-	\gdef\@labelTypeDiplom{Diplomarbeit}%
-	\gdef\@labelTypeBachelor{Bachelorarbeit}%
-	\gdef\@labelTypeMaster{Masterarbeit}%
+	\gdef\@labelTypeDiplom{Diploma Thesis}%
+	\gdef\@labelTypeBachelor{Bachelor Thesis}%
+	\gdef\@labelTypeMaster{Master Thesis}%
 	\gdef\@labelTypeProjectINF{Projekt-INF}%
 	\gdef\@labelTypeFachstudie{Fachstudie}%
 	\gdef\@labelTypeProzessanalyse{Prozessanalyse}%
+	\gdef\@labelTypeNummer{No.}%
 	
-	\gdef\@labelCourseCS{Informatik}%
-	\gdef\@labelCourseSE{Softwaretechnik}%
-	\gdef\@labelCourseMCL{Computerlinguistik}%
-	\gdef\@labelCourseTK{Technische Kybernetik}%
-	\gdef\@labelCourseMSV{Maschinelle Sprachverarbeitung}%
-	\gdef\@labelCourseBIS{Wirtschaftsinformatik}%
+	\gdef\@labelCourseCS{Computer Science}%
+	\gdef\@labelCourseINF{Informatics}%  
+	% The old diploma study program in German is called "Computer Science"
+	% https://www.uni-stuttgart.de/studieren/angebot/studiengang/Computer_Science_Diploma_-_expiring/?__locale=en
+	% The bachelor study program in German is called "Informatics"
+	% https://www.uni-stuttgart.de/studieren/angebot/studiengang/Informatics_B.Sc./?__locale=en
+	% The master study program in German is called "Informatics"
+	% https://www.uni-stuttgart.de/studieren/angebot/studiengang/Informatics_M.Sc./?__locale=en
+	% The bachelor study program in German as minor subject is called "Computer Science"
+	% https://www.uni-stuttgart.de/studieren/angebot/studiengang/Computer_Science_B.A._xminor_subjectx/?__locale=en
+	% The master study program in English is called "Computer Science"
+	% https://www.uni-stuttgart.de/studieren/angebot/studiengang/Computer_Science_M.Sc._-_mainly_in_English/?__locale=en
+	\gdef\@labelCourseSE{Software Engineering}%
+	\gdef\@labelCourseMCL{Computational Linguistics}%
+	\gdef\@labelCourseTK{Technical Cybernetics}%
+	\gdef\@labelCourseMSV{Natural Language Processing}%
+	\gdef\@labelCourseBIS{Information Systems}% should better be "Business Informatics", but https://www.bwi.uni-stuttgart.de/wi/index.en.html says "Information Systems"
 	\gdef\@labelCourseSimTech{Simulation Technology}%
 	
 	% institute names
@@ -141,11 +153,13 @@
 	\gdef\@labelTypeDiplom{Diplomarbeit}%
 	\gdef\@labelTypeBachelor{Bachelorarbeit}%
 	\gdef\@labelTypeMaster{Masterarbeit}%
-	\gdef\@labelTypeProjectINF{Projekt-INF}%
+	\gdef\@labelTypeProjectINF{Project-INF}%
 	\gdef\@labelTypeFachstudie{Fachstudie}%
 	\gdef\@labelTypeProzessanalyse{Prozessanalyse}%
+	\gdef\@labelTypeNummer{Nr.}%
 	
 	\gdef\@labelCourseCS{Informatik}%
+	\gdef\@labelCourseINF{Informatik}%
 	\gdef\@labelCourseSE{Softwaretechnik}%
 	\gdef\@labelCourseMCL{Computerlinguistik}%
 	\gdef\@labelCourseTK{Technische Kybernetik}%
@@ -228,6 +242,7 @@
 	\def\1{\MCS@course}
 	% dont remove last two braces / empty else clause
 	\def\0{cs}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseCS}}{}
+	\def\0{inf}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseINF}}{}
 	\def\0{se}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseSE}}{}
 	\def\0{mcl}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseMCL}}{}
 	\def\0{msv}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseMSV}}{}
@@ -321,7 +336,7 @@
     \vbox to 60mm{\hsize=95mm\parindent=0pt
       \vskip 10mm plus 30mm minus 7.5mm
       \begin{center}\@setsize\large{14pt}\xiipt\@xiipt %%\large
-        \@labelType\ Nr.\,\MCS@number
+        \@labelType\ \@labelTypeNummer\,\MCS@number
       \end{center}%
       \vskip 12.5mm plus 12.5mm minus 10mm
       \begin{center}\@setsize\LARGE{22pt}\xviipt\@xviipt %%\LARGE
