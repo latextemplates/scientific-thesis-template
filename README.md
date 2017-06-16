@@ -136,15 +136,15 @@ Edit `preambel/chapterheads.tex`.
 ### Q: Do I have to do something special for the final version?
 
   - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
-  - By using `\largeparge` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
+  - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
   - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `preambel/packages_and_options`.
-  - Ensure that you run `pdflatex` at least three times and that there no "undefined references".
+  - Ensure that you run `pdflatex` at least three times and that there are no "undefined references".
   - The margins are intended for a duplex printing. **Do not change them** (or do exactly know what you are doing).
 
 ### Q: I want to use make instead of latexmk
 
 For those, who have [cygwin](http://www.cygwin.com/) installed or run a linux machine, this template offers a simple LaTeX makefile.
-It is not so sophisticated as other projects, but does its job.
+It is not as sophisticated as other projects, but does its job.
 
     make
 
