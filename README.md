@@ -166,7 +166,7 @@ Make targets:
 * [LaTeX-Mk](http://latex-mk.sourceforge.net/)
 * See also http://stackoverflow.com/questions/1240037/recommended-build-system-for-latex and http://tex.stackexchange.com/questions/40738/how-to-properly-make-a-latex-project
 
-### Q: Is there any other place to look for further information?Further Reading
+### Q: Is there any other place to look for further information?
 
 See <http://wiki.flupp.de/LaTeX>.
 
