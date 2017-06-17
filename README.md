@@ -12,7 +12,7 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
 
 * UTF-8
 * pdflatex
-* [latexmk]
+* [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
 * [biblatex]+[biber] instead of plain [bibtex]
 * Most recent packages and package configuration based on long-time experience
 * Open for contributions
@@ -164,7 +164,7 @@ Make targets:
 * https://github.com/ransford/pdflatex-makefile
 * https://github.com/brotchie/latex-rubber-makefile
 * [LaTeX-Mk](http://latex-mk.sourceforge.net/)
-* See also http://stackoverflow.com/questions/1240037/recommended-build-system-for-latex and http://tex.stackexchange.com/questions/40738/how-to-properly-make-a-latex-project
+* See also [Recommended build system for latex?](https://stackoverflow.com/q/1240037/873282) and [How to properly 'make' a latex project?](https://tex.stackexchange.com/q/40738/9075)
 
 ### Q: Is there any other place to look for further information?
 
