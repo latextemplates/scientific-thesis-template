@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- English works also take the same heading style than German works (sans serif)
 - made font size default again (now 11pt instead of 12pt) to look better
 - margins are set in a way that the page content does not "jump" when reading on screen.
 

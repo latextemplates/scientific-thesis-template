@@ -1,29 +1,10 @@
 %%%
 %
 \automark[section]{chapter}
-\ifenglisch
-%serif font also in heading, foot and page number (contained in foot)
-\setkomafont{pageheadfoot}{\normalfont\rmfamily}
-\setkomafont{pagenumber}{\normalfont\rmfamily}
-\else
-%sans serif font in German texts
 \setkomafont{pageheadfoot}{\normalfont\sffamily}
 \setkomafont{pagenumber}{\normalfont\sffamily}
-\fi
 %
 %\setheadsepline[.4pt]{.4pt} %funktioniert nicht: Alle Linien sind hier weg
-%
-%%%
-
-%%%
-%
-\ifenglisch
-% Fuer englische Texte sind serifenhafte Ueberschriften gut. Deshalb hier der Befehl zum Aktivieren von serifenhaften Ueberschriften
-\setkomafont{disposition}{\normalfont\rmfamily}
-
-% Bei englischen Texten das Label (optionaler Eintrag bei \item) bei description-Umgegungen nur auf fett und nicht fett+serifenlos stellen.
-\setkomafont{descriptionlabel}{\normalfont\bfseries}
-\fi
 %
 %%%
 
@@ -75,7 +56,7 @@
 \ifdeutsch
 \usepackage[scaled=.95]{helvet}
 \else
-\usepackage[scaled=.90]{helvet}
+\usepackage{helvet}
 \fi
 
 % Für Schreibschrift würde tun, muss aber ned
@@ -93,9 +74,7 @@
 %Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
 %\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
 %
-\fi
-
-\ifenglisch
+\else
 %
 \usepackage{charter} %Charter fuer englische Texte
 \linespread{1.05} % Durchschuss für Charter leicht erhöhen
