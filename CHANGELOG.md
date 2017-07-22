@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - made font size default again (now 11pt instead of 12pt) to look better
+- margins are set in a way that the page content does not "jump" when reading on screen.
 
 ## 1.0.0 - 2017-06-16
 

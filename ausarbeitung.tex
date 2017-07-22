@@ -48,16 +48,10 @@
 \documentclass[
                % fontsize=11pt is the standard
                paper=a4,
-               twoside,  % fuer die Betrachtung am Schirm ungeschickt
-               BCOR=3mm, % Bindekorrektur
-               DIV=13,   % je höher der DIV-Wert, desto mehr geht auf eine Seite. Gute werde sind zwischen DIV=12 und DIV=15
-               headinclude=true,
-               footinclude=false,
-% ENDE: Optionen für typearea
-%               titlepage,
+               twoside,  % we are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
                bibliography=totoc,
 %               idxtotoc,   %Index ins Inhaltsverzeichnis
-%                liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
+%               liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
                headsepline,
                cleardoublepage=empty,
                parskip=half,

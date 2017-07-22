@@ -792,9 +792,15 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %
 %Source: http://www.howtotex.com/tips-tricks/change-margins-of-a-single-page/
 %
-%Normally, this should not be used as the typearea package calculates the margins perfectly
+%Normally, geometry should not be used as the typearea package calculates the margins perfectly for printing
+%However, we want better screen-readable documents where the content does not "jump"
+%Thus, we fix the margins left and right to the same value
 \usepackage[
-  pass %just load the package and do not destory the work of typearea
+  left=3cm,right=3cm,top=2.5cm,bottom=2.5cm,
+  headsep=18pt,
+  footskip=30pt,
+  includehead,
+  includefoot
 ]{geometry}
 %%%
 
