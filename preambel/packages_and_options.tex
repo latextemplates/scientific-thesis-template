@@ -796,7 +796,11 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 %%%
 %schoene TODOs
+\ifdeutsch
+\usepackage[ngerman]{todonotes}
+\else
 \usepackage{todonotes}
+\fi
 \setlength{\marginparwidth}{2,5cm}
 
 \let\xtodo\todo
