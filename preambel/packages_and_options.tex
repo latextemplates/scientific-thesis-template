@@ -433,17 +433,6 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-%schoene TODOs
-\usepackage{todonotes}
-\let\xtodo\todo
-\renewcommand{\todo}[1]{\xtodo[inline,color=black!5]{#1}}
-\newcommand{\utodo}[1]{\xtodo[inline,color=green!5]{#1}}
-\newcommand{\itodo}[1]{\xtodo[inline]{#1}}
-%
-%%%
-
-
-%%%
 %biblatex statt bibtex
 \usepackage[
   backend       = biber, %biber does not work with 64x versions alternative: bibtex8
@@ -802,6 +791,19 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   includehead,
   includefoot
 ]{geometry}
+%%%
+
+
+%%%
+%schoene TODOs
+\usepackage{todonotes}
+\setlength{\marginparwidth}{2,5cm}
+
+\let\xtodo\todo
+\renewcommand{\todo}[1]{\xtodo[inline,color=black!5]{#1}}
+\newcommand{\utodo}[1]{\xtodo[inline,color=green!5]{#1}}
+\newcommand{\itodo}[1]{\xtodo[inline]{#1}}
+%
 %%%
 
 %%%
