@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template.svg?branch=template)](https://travis-ci.org/latextemplates/uni-stuttgart-computer-science-template)
+[![Build Status](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/template.svg?style=shield&circle-token=e5183de3b28f9da0c01d02e9ff354c3f172c71ab)](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/template.svg?style=shield&circle-token=e5183de3b28f9da0c01d02e9ff354c3f172c71ab)
 
 # LaTeX Template for Scientific Theses
 
