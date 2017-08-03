@@ -2,7 +2,7 @@ version: 2
 jobs:
    build:
      docker:
-       - image: koppor/docker-texlive
+       - image: koppor/texlive
      steps:
        - checkout
        - run: latexmk ausarbeitung.tex
