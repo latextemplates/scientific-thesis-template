@@ -23,6 +23,15 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 
 If you don't want to use git, just download https://github.com/latextemplates/scientific-thesis-template/archive/template.zip
 
+Usage at overleaf
+- create new overleaf projct
+- clone the overleaf project using git
+- copy the files to that directory
+- delete `.latexmkrc`
+- `git add .`
+- `git comit -m"initial import`
+- git push
+
 ## Recommended LaTeX environments
 
 * offline: Grammar and spell checking is available at [TeXstudio].
