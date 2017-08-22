@@ -75,6 +75,7 @@ If you do not want to have an updated installation, but fiddle around with dirty
   3. Execute `mpm --update`
   4. Execute `mpm --install=cm-super`
   5. Execute `initexmf --update-fndb`
+  6. Execute `initexmf --mklinks --force`
 
 ## Using with your own git repository
 
