@@ -181,6 +181,20 @@ Make targets:
 See <http://wiki.flupp.de/LaTeX>.
 
 
+### Q: I was recommended the Harvard style
+
+This template uses the alphabetic style.
+That style is explained at the [biblatex documentation](http://texdoc.net/texmf-dist/doc/latex/biblatex/biblatex.pdf) on page 60:
+
+> The alphabetic labels resemble a compact author-year
+> style to some extent, but the way they are employed is similar to a numeric citation
+> scheme. For example, instead of “Jones 1995” this style would use the label “[Jon95]”.
+> “Jones and Williams 1986” would be rendered as “[JW86]”.
+
+We are aware that the University of Stuttgart [recommends to use the Hardvard style](https://ilias3.uni-stuttgart.de/ilias.php?ref_id=12257&from_page=11895&obj_id=11896&cmd=layout&cmdClass=illmpresentationgui&cmdNode=dn&baseClass=ilLMPresentationGUI).
+However, this style is not common in natural sciences and information science.
+
+
 ## Contained Files and Directories
 
 * ausarbeitung.tex
