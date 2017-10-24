@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+### Changed
+
+- Translate float name of 'Algorithmus' environment in English thesis
+- Translate float name of 'algorithm' environment only in German thesis
+
 ## [1.2.0] - 2017-07-28
 
 ### Changed

@@ -656,6 +656,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \crefname{Algorithmus}{Algorithmus}{Algorithmus}
 \else
 \crefname{Algorithmus}{Algorithm}{Algorithms}
+\floatname{Algorithmus}{Algorithm}
 \fi
 %
 %amsmath
@@ -720,9 +721,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-%fuer algorithm.sty: - falls Deutsch und nicht Englisch. Falls Englisch als Sprache gewählt wurde, bitte die folgenden beiden Zeilen auskommentieren.
-\floatname{algorithm}{Algorithmus}
+%fuer algorithm.sty: - falls Deutsch und nicht Englisch.
 \ifdeutsch
+\floatname{algorithm}{Algorithmus}
 \renewcommand{\listalgorithmname}{Verzeichnis der Algorithmen}
 \fi
 %
