@@ -13,7 +13,7 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
 * UTF-8
 * pdflatex
 * [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
-* [biblatex]+[biber] instead of plain [bibtex]
+* [biblatex]+[biber] instead of plain [bibtex], because biblatex fully supports UTF-8 and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
 * Most recent packages and package configuration based on long-time experience
 * Open for contributions
 
