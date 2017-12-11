@@ -6,10 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
-### Changed
+### Added
+- New course "Medieninformatik"
 
+### Fixed
 - Translate float name of 'Algorithmus' environment in English thesis
 - Translate float name of 'algorithm' environment only in German thesis
+
+### Changed
+- The repository uses the branch `master` as default branch and not `template` anymore.
 
 ## [1.2.0] - 2017-07-28
 

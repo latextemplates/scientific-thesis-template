@@ -8,6 +8,37 @@ It will be extended to support theses from different universities.
 
 More information at <https://github.com/latextemplates/scientific-thesis-template>.
 
+<!-- toc -->
+
+- [Characteristics of the template](#characteristics-of-the-template)
+- [Quick start](#quick-start)
+  * [Download](#download)
+  * [Usage at overleaf](#usage-at-overleaf)
+  * [Usage using plain git](#usage-using-plain-git)
+- [Recommended LaTeX environments](#recommended-latex-environments)
+- [Trouble shooting](#trouble-shooting)
+- [Installation hints for Ubuntu](#installation-hints-for-ubuntu)
+- [Installation hints for Windows](#installation-hints-for-windows)
+  * [Recommended setup of MiKTeX](#recommended-setup-of-miktex)
+- [Using with your own git repository](#using-with-your-own-git-repository)
+  * [Initialization](#initialization)
+  * [Merging updates from the template](#merging-updates-from-the-template)
+- [LaTeX compilation](#latex-compilation)
+  * [Automatic compilation using latexmk](#automatic-compilation-using-latexmk)
+  * [Continuous previewing using latexmk](#continuous-previewing-using-latexmk)
+  * [latexmk configuration](#latexmk-configuration)
+- [FAQ](#faq)
+  * [Q: How do I switch to English?](#q-how-do-i-switch-to-english)
+  * [Q: How do I change the appearance of chapter headings?](#q-how-do-i-change-the-appearance-of-chapter-headings)
+  * [Q: Do I have to do something special for the final version?](#q-do-i-have-to-do-something-special-for-the-final-version)
+  * [Q: I want to use make instead of latexmk](#q-i-want-to-use-make-instead-of-latexmk)
+  * [Q: Are there any other alternatives to latexmk and make?](#q-are-there-any-other-alternatives-to-latexmk-and-make)
+  * [Q: Is there any other place to look for further information?](#q-is-there-any-other-place-to-look-for-further-information)
+  * [Q: I was recommended the Harvard style](#q-i-was-recommended-the-harvard-style)
+- [Contained Files and Directories](#contained-files-and-directories)
+
+<!-- tocstop -->
+
 ## Characteristics of the template
 
 * UTF-8
@@ -21,16 +52,26 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 
 ## Quick start
 
-If you don't want to use git, just download https://github.com/latextemplates/scientific-thesis-template/archive/template.zip
+### Download
 
-Usage at overleaf
-- create new overleaf projct
-- clone the overleaf project using git
-- copy the files to that directory
-- delete `.latexmkrc`
-- `git add .`
-- `git comit -m"initial import`
-- git push
+1. Download <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip>
+2. Extract `master.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+
+### Usage at overleaf
+
+1. create new overleaf projct
+2. clone the overleaf project using git
+3. copy the files to that directory. Follow the steps at "Download" above
+4. delete `.latexmkrc`
+5. `git add .`
+6. `git comit -m"initial import"`
+7. git push
+
+### Usage using plain git
+
+We do not recommend to fork this project as a fork denotes that you work on improving the template itself.
+Thus, just create a new git repository and populate it using the files provided at <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip>
+
 
 ## Recommended LaTeX environments
 
@@ -130,18 +171,22 @@ For instance, for support of makeglossaries see http://tex.stackexchange.com/que
 
 ## FAQ
 
+
 ### Q: How do I switch to English?
 
-The template has been built primarily for German documents. English documents, however, are also very welcome.
+The template was built primarily for German documents.
+English documents, however, are also very welcome.
 
 Five steps to switch to English typesetting:
 
 1. `ausarbeitung.tex`: Exchange commands `\ifdeutsch` and `\ifenglisch`. (Lines 11,12 <-> 15,16).
 1. Cleanup everything (e.g., `latexmk -c ausarbeitung`). Otherwise pdflatex will complain because of `ngerman`.
 
+
 ### Q: How do I change the appearance of chapter headings?
 
 Edit `preambel/chapterheads.tex`.
+
 
 ### Q: Do I have to do something special for the final version?
 
@@ -150,6 +195,7 @@ Edit `preambel/chapterheads.tex`.
   - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `preambel/packages_and_options`.
   - Ensure that you run `pdflatex` at least three times and that there are no "undefined references".
   - The margins are intended for a duplex printing. **Do not change them** (or do exactly know what you are doing).
+
 
 ### Q: I want to use make instead of latexmk
 
@@ -167,6 +213,7 @@ Make targets:
  * `view`: Opens the configured viewer
  * `6`: Generates a 3x2 postscriptfile using psnup.
 
+
 ### Q: Are there any other alternatives to latexmk and make?
 
 * https://github.com/akerbos/ltx2any
@@ -175,6 +222,7 @@ Make targets:
 * https://github.com/brotchie/latex-rubber-makefile
 * [LaTeX-Mk](http://latex-mk.sourceforge.net/)
 * See also [Recommended build system for latex?](https://stackoverflow.com/q/1240037/873282) and [How to properly 'make' a latex project?](https://tex.stackexchange.com/q/40738/9075)
+
 
 ### Q: Is there any other place to look for further information?
 
