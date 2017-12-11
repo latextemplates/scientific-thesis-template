@@ -15,34 +15,9 @@
                final   % ACHTUNG! - in pagestyle.tex noch Seitenstil anpassen
                ]{scrbook}
 \input{config}
-
-%Der untere Rand darf "flattern"
-\raggedbottom
-
-%%%
-% Wie tief wird das Inhaltsverzeichnis aufgeschlüsselt
-% 0 --\chapter
-% 1 --\section % fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
-% 2 --\subsection
-% 3 --\subsubsection
-% 4 --\paragraph
-\setcounter{tocdepth}{1}
-%
-%%%
+\input{acronyms}
 
 \makeindex
-
-%Angaben in die PDF-Infos uebernehmen
-\makeatletter
-\hypersetup{
-            pdftitle={}, %Titel der Arbeit
-            pdfauthor={}, %Author
-            pdfkeywords={}, % CR-Klassifikation und ggf. weitere Stichworte
-            pdfsubject={}
-}
-\makeatother
-
-\input{content/abkuerzungen}
 
 \begin{document}
 
