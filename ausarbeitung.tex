@@ -1,50 +1,6 @@
-% !TeX spellcheck = de_DE
-% !TeX program = make
-% Dieses Dokument muss mit PDFLatex gesetzt werden
-% Vorteil: Grafiken koennen als jpg, png, ... verwendet werden
-%          und die Links im Dokument sind auch gleich richtig
-%
-%Ermöglicht \\ bei der Titelseite (z.B. bei supervisor)
-%Siehe https://github.com/latextemplates/uni-stuttgart-cs-cover/issues/4
-\RequirePackage{kvoptions-patch}
-
-%English:
-%\let\ifdeutsch\iffalse
-%\let\ifenglisch\iftrue
-
-%German:
-\let\ifdeutsch\iftrue
-\let\ifenglisch\iffalse
-
-%
-\ifenglisch
-	\PassOptionsToClass{numbers=noenddot}{scrbook}
-\else
-	%()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
-	%Nach DUDEN steht in Gliederungen, in denen ausschließlich arabische Ziffern für die Nummerierung
-	%verwendet werden, am Ende der Gliederungsnummern kein abschließender Punkt
-	%(siehe [DUD96, R3]). Wird hingegen innerhalb der Gliederung auch mit römischen Zahlen
-	%oder Groß- oder Kleinbuchstaben gearbeitet, so steht am Ende aller Gliederungsnummern ein
-	%abschließender Punkt (siehe [DUD96, R4])
-	\PassOptionsToClass{numbers=autoendperiod}{scrbook}
-\fi
-
-%Warns about outdated packages and missing caption delcarations
-%See https://www.ctan.org/pkg/nag
-\RequirePackage[l2tabu, orthodox]{nag}
-
-%Neue deutsche Trennmuster
-%Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
-%Nur für pdflatex, nicht für lualatex
-\RequirePackage{ifluatex}
-\ifluatex
-%do not load anything
-\else
-	\ifdeutsch
-		\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
-	\fi
-\fi
-
+% !TeX spellcheck = de-DE
+% !BIB program = biber
+\input{pre-documentclass}
 \documentclass[
                % fontsize=11pt is the standard
                paper=a4,
@@ -58,9 +14,7 @@
 %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
                final   % ACHTUNG! - in pagestyle.tex noch Seitenstil anpassen
                ]{scrbook}
-
-
-\input{preambel/packages_and_options}
+\input{config}
 
 %Der untere Rand darf "flattern"
 \raggedbottom
@@ -207,7 +161,25 @@
 
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
-\input{preambel/pagestyle}
+\pagestyle{scrheadings}
+
+%ihead aufgeteilt - Bezeichnungen: 4.1, S. 119, scrguide
+
+%für die Teilversionen - nur bei Verwendung von RCS/CVS
+%\ihead[Version \RCSRevision]{Version \RCSRevision}
+
+%Für die finale Version oder bei Verwendung von SVN
+\ihead[]{}
+
+
+% Sowohl für die Teilversionen als auch die finale Version:
+
+\chead[]{}
+\ohead[]{\headmark}
+%
+\cfoot[]{}
+\ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
+\ifoot[]{}
 %
 %
 % ** Hier wird der Text eingebunden **
