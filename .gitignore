@@ -1,18 +1,89 @@
 ausarbeitung.pdf
 graphics/*.pdf_tex
 
-#tex4ht
+# tex4ht
 *.4ct
 *.4tc
 
-#configured in packages_and_options.tex
+# configured in packages_and_options.tex
 *.code
 
-
-
+# IntelliJ
+.idea/
 
 
 # Created by https://www.gitignore.io/api/latex,jabref,microsoftoffice,libreoffice,emacs
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+projectile-bookmarks.eld
+
+# directory configuration
+.dir-locals.el
+
+# saveplace
+places
+
+# url cache
+url/cache/
+
+# cedet
+ede-projects.el
+
+# smex
+smex-items
+
+# company-statistics
+company-statistics-cache.el
+
+# anaconda-mode
+anaconda-mode/
+
+### JabRef ###
+# JabRef - https://www.jabref.org/
+*.bak
+*.sav
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
@@ -30,6 +101,7 @@ graphics/*.pdf_tex
 
 ## Intermediate documents:
 *.dvi
+*.xdv
 *-converted-to.*
 # these rules might exclude image files for figures etc.
 # *.ps
@@ -45,7 +117,6 @@ graphics/*.pdf_tex
 *.blg
 *-blx.aux
 *-blx.bib
-*.brf
 *.run.xml
 
 ## Build tool auxiliary files:
@@ -55,6 +126,7 @@ graphics/*.pdf_tex
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+*Notes.bib
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -69,14 +141,31 @@ acs-*.bib
 
 # beamer
 *.nav
+*.pre
 *.snm
 *.vrb
+
+# changes
+*.soc
 
 # cprotect
 *.cpt
 
+# elsarticle (documentclass of Elsevier journals)
+*.spl
+
+# endnotes
+*.ent
+
 # fixme
 *.lox
+
+# feynmf/feynmp
+*.mf
+*.mp
+*.t[1-9]
+*.t[1-9][0-9]
+*.tfm
 
 #(r)(e)ledmac/(r)(e)ledpar
 *.end
@@ -105,6 +194,10 @@ acs-*.bib
 # gnuplottex
 *-gnuplottex-*
 
+# gregoriotex
+*.gaux
+*.gtex
+
 # hyperref
 *.brf
 
@@ -127,9 +220,10 @@ acs-*.bib
 *.maf
 *.mlf
 *.mlt
-*.mtc
-*.mtc[0-9]
-*.mtc[1-9][0-9]
+*.mtc[0-9]*
+*.slf[0-9]*
+*.slt[0-9]*
+*.stc[0-9]*
 
 # minted
 _minted*
@@ -138,11 +232,14 @@ _minted*
 # morewrites
 *.mw
 
-# mylatexformat
-*.fmt
-
 # nomencl
 *.nlo
+
+# pax
+*.pax
+
+# pdfpcnotes
+*.pdfpc
 
 # sagetex
 *.sagetex.sage
@@ -194,8 +291,6 @@ TSWLatexianTemp*
 
 ## Editors:
 # WinEdt
-*.bak
-*.sav
 
 # Texpad
 .texpadtmp
@@ -206,11 +301,15 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
+# auto folder when using emacs and auctex
+/auto/*
 
-### JabRef ###
-# JabRef - http://www.jabref.org/
-*.bib.bak
+# expex forward references with \gathertags
+*-tags.tex
 
+### LibreOffice ###
+# LibreOffice locks
+.~lock.*#
 
 ### MicrosoftOffice ###
 *.tmp
@@ -228,54 +327,6 @@ TSWLatexianTemp*
 ~$*.ppt*
 
 # Visio autosave temporary files
-*.~vsdx
+*.~vsd*
 
-
-### LibreOffice ###
-# LibreOffice locks
-.~lock.*#
-
-
-### Emacs ###
-# -*- mode: gitignore; -*-
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-*.elc
-auto-save-list
-tramp
-.\#*
-
-# Org-mode
-.org-id-locations
-*_archive
-
-# flymake-mode
-*_flymake.*
-
-# eshell files
-/eshell/history
-/eshell/lastdir
-
-# elpa packages
-/elpa/
-
-# reftex files
-*.rel
-
-# AUCTeX auto folder
-/auto/
-
-# cask packages
-.cask/
-dist/
-
-# Flycheck
-flycheck_*.el
-
-# server auth directory
-/server/
-
-# projectiles files
-.projectile
+# End of https://www.gitignore.io/api/latex,jabref,microsoftoffice,libreoffice,emacs
