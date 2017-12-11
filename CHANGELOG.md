@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased] - 2017-12-11
 
+### Fixed
+- Remove outdated section "Using with your own git repository"
+
 ## [1.3.0] - 2017-12-11
 
 ### Added

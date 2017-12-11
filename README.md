@@ -20,9 +20,6 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
 - [Installation hints for Ubuntu](#installation-hints-for-ubuntu)
 - [Installation hints for Windows](#installation-hints-for-windows)
   * [Recommended setup of MiKTeX](#recommended-setup-of-miktex)
-- [Using with your own git repository](#using-with-your-own-git-repository)
-  * [Initialization](#initialization)
-  * [Merging updates from the template](#merging-updates-from-the-template)
 - [LaTeX compilation](#latex-compilation)
   * [Automatic compilation using latexmk](#automatic-compilation-using-latexmk)
   * [Continuous previewing using latexmk](#continuous-previewing-using-latexmk)
@@ -117,28 +114,6 @@ If you do not want to have an updated installation, but fiddle around with dirty
   4. Execute `mpm --install=cm-super`
   5. Execute `initexmf --update-fndb`
   6. Execute `initexmf --mklinks --force`
-
-## Using with your own git repository
-
-### Initialization
-
-This howto assumes that you have not a git repository for your thesis.
-If you have, just add https://github.com/latextemplates/scientific-thesis-template.git as upstream and merge the branch "template" into your "master" branch.
-
-1. Open command line
-1. Change to the directory where you want to have your main tex file.
-1. Fetch the template from github: `git clone https://github.com/latextemplates/scientific-thesis-template.git .`
-1. Rename `origin` to `github` to enable adding your own `origin` repository: `git remote rename origin github`
-1. Create a new branch master starting from the latest commit in the `template` branch: `git checkout -b master`
-
-Now, you are on the `master` branch, where you can write your thesis and push it to your (remote) `origin` repository, in case you have one.
-
-### Merging updates from the template
-
-If you want to merge updates from github, do the following:
-
-1. git fetch github
-1. git merge github/template
 
 
 ## LaTeX compilation
