@@ -1,4 +1,4 @@
-[![Build Status](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/template.svg?style=shield&circle-token=e5183de3b28f9da0c01d02e9ff354c3f172c71ab)](https://circleci.com/gh/latextemplates/scientific-thesis-template/)
+[![Build Status](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/master.svg?style=shield&circle-token=e5183de3b28f9da0c01d02e9ff354c3f172c71ab)](https://circleci.com/gh/latextemplates/scientific-thesis-template/)
 
 # LaTeX Template for Scientific Theses
 
@@ -51,8 +51,9 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 
 ### Download
 
-1. Download <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip>
-2. Extract `master.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+1. Go to the latest release via <https://github.com/latextemplates/scientific-thesis-template/releases/latest>.
+1. Download the file `source.zip`
+2. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
 
 ### Usage at overleaf
 
