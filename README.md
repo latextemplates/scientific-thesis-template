@@ -36,6 +36,8 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
   * [Q: Is there any other place to look for further information?](#q-is-there-any-other-place-to-look-for-further-information)
   * [Q: I was recommended the Harvard style](#q-i-was-recommended-the-harvard-style)
 - [Contained Files and Directories](#contained-files-and-directories)
+  * [Directories](#directories)
+  * [Files](#files)
 
 <!-- tocstop -->
 
@@ -60,7 +62,7 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 
 ### Usage at overleaf
 
-1. create new overleaf projct
+1. create new overleaf project
 2. clone the overleaf project using git
 3. copy the files to that directory. Follow the steps at "Download" above
 4. delete `.latexmkrc`
@@ -226,25 +228,25 @@ However, this style is not common in natural sciences and information science.
 
 ### Directories
 
-* `graphics` Directory containing the figures.
+* [graphics](graphics/) Directory containing the figures.
   By using PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
 
 ### Files
 
-- `main-german.tex` - the start file for a German thesis
+- [main-german.tex](main-german.tex) - The start file for a German thesis
   * Main file
   * Add text here
   * Adjust title etc. here
-- `bibliography.bib`. Bibliography. [biblatex] format. Manage it with [JabRef].
-- `acronyms.tex`: Abbreviations.
-- `commands.tex`: Example macros
-- `config.tex`: The place to add packages etc.
+- [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
+- [acronyms.tex](acronyms.tex) - Abbreviations.
+- [commands.tex](commands.tex) - Example macros
+- [config.tex](config.tex) - The place to add packages etc.
 
 Following additional files are included, which do not need to be adapted:
 
-- `Makefile`: The Makefile.
-- `README.md` - explaining the template
-- `uni-stuttgart-cs-cover.sty`: Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
+- [Makefile](Makefile) - The Makefile. Builds on latexmk.
+- [README.md](README.md) - Explains the template
+- [uni-stuttgart-cs-cover.sty](uni-stuttgart-cs-cover.sty) - Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
 
  [biber]: https://www.ctan.org/pkg/biber
  [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
