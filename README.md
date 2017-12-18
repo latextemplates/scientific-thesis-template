@@ -3,8 +3,11 @@
 # LaTeX Template for Scientific Theses
 
 This template is a general template for scientific theses.
-Currently, it is the unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at the University of Stuttgart, Computer Science.
-It will be extended to support theses from different universities.
+Currently, it is the unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
+
+  - University of Stuttgart, Computer Science.
+
+It will be extended to support theses from different institutions.
 
 More information at <https://github.com/latextemplates/scientific-thesis-template>.
 
@@ -168,7 +171,7 @@ Edit `preambel/chapterheads.tex`.
 
   - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
   - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
-  - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `preambel/packages_and_options`.
+  - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `config.tex`.
   - Ensure that you run `pdflatex` at least three times and that there are no "undefined references".
   - The margins are intended for a duplex printing. **Do not change them** (or do exactly know what you are doing).
 
@@ -221,29 +224,27 @@ However, this style is not common in natural sciences and information science.
 
 ## Contained Files and Directories
 
-* ausarbeitung.tex
-  * Main file
-  * New chapters are added by using `\input`
-  * Adjust title etc. here
-* Makefile: The Makefile.
-* README.md: This file.
-* uni-stuttgart-cs-cover.sty: Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
-* `bibliography.bib`. Bibliography. [biblatex] format. Manage it with [JabRef].
-* content/: Place for the actual content
-  * content/einleitung.tex: First chapter: The introduction
-  * content/kapitel2.tex: Second chapter
-  * content/zusammenfassung`_`und`_`ausblick.tex: Conclusion and outlook.
-  * content/anhang.tex
-* graphics/: Directory containing the figures.
+### Directories
+
+* `graphics` Directory containing the figures.
   By using PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
-* macros/: Directory for macros.
-  * macros/commands.tex: Example macros
-* preambel/: Latex header of the document ("preambel" in latex)
-  * preambel/chapterheads.tex: Definition for the chapter headings.
-  * preambel/fonts.tex: Font selection
-  * preambel/margins.tex: Margin settings / Einstellung der Seitenränder
-  * preambel/packages`_`and`_`options.tex: Includes required packages and their options.
-  * preambel/pagestyle.tex: Defines the head and the foot of a page.
+
+### Files
+
+- `main-german.tex` - the start file for a German thesis
+  * Main file
+  * Add text here
+  * Adjust title etc. here
+- `bibliography.bib`. Bibliography. [biblatex] format. Manage it with [JabRef].
+- `acronyms.tex`: Abbreviations.
+- `commands.tex`: Example macros
+- `config.tex`: The place to add packages etc.
+
+Following additional files are included, which do not need to be adapted:
+
+- `Makefile`: The Makefile.
+- `README.md` - explaining the template
+- `uni-stuttgart-cs-cover.sty`: Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
 
  [biber]: https://www.ctan.org/pkg/biber
  [biblatex]: http://tex.stackexchange.com/tags/biblatex/info

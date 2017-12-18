@@ -12,7 +12,7 @@ editor = gedit
 
 
 # Main file name
-MASTER_TEX = ausarbeitung.tex
+MASTER_TEX = main-german.tex
 LITERATURE = bibliography.bib
 
 

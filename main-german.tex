@@ -1,5 +1,12 @@
 % !TeX spellcheck = de-DE
 % !BIB program = biber
+%
+
+
+% vv  scroll down to line 200 for content  vv
+
+
+
 \input{pre-documentclass}
 \documentclass[
                % fontsize=11pt is the standard
@@ -12,9 +19,24 @@
                cleardoublepage=empty,
                parskip=half,
 %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
-               final   % ACHTUNG! - in pagestyle.tex noch Seitenstil anpassen
+               final
                ]{scrbook}
 \input{config}
+
+
+\usepackage[
+    title={Förderungswürdigkeit der F\"{o}rderung von Öl},
+    author={Lars K.},
+    type=bachelor,
+    institute=iaas,
+    course={Medieninformatik},
+    examiner={Prof.\ Dr.\ Uwe Fessor},
+    supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
+    startdate={5.\ Juli 2013}, % English: July 5, 2013;    ISO: 2013-07-05
+    enddate={5.\ Januar 2014}  % English: January 5, 2014; ISO: 2014-01-05
+    ]{uni-stuttgart-cs-cover}
+
+
 \input{acronyms}
 
 \makeindex
@@ -49,7 +71,7 @@
 
 %\VerbatimFootnotes %verbatim text in Fußnoten erlauben. Geht normalerweise nicht.
 
-\input{macros/commands}
+\input{commands}
 \pagenumbering{arabic}
 \Titelblatt
 
@@ -134,42 +156,111 @@
 % END: Verzeichnisse
 
 
+% Headline and footline
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
 \pagestyle{scrheadings}
-
-%ihead aufgeteilt - Bezeichnungen: 4.1, S. 119, scrguide
-
-%für die Teilversionen - nur bei Verwendung von RCS/CVS
-%\ihead[Version \RCSRevision]{Version \RCSRevision}
-
-%Für die finale Version oder bei Verwendung von SVN
 \ihead[]{}
-
-
-% Sowohl für die Teilversionen als auch die finale Version:
-
 \chead[]{}
 \ohead[]{\headmark}
-%
 \cfoot[]{}
 \ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
 \ifoot[]{}
+
+
+%% vv  scroll down for content  vv %%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% vv  scroll down for content  vv %%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% Main content starts here
 %
-% ** Hier wird der Text eingebunden **
-%
-\input{content/einleitung}
-%\input{...weitere Kapitel...}
-\input{content/kapitel2}
-\input{content/zusammenfassung_und_ausblick}
-%
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Einleitung}
+In diesem Kapitel steht die Einleitung zu dieser Arbeit.
+Sie soll nur als Beispiel dienen und hat nichts mit dem Buch \cite{WSPA} zu tun.
+Nun viel Erfolg bei der Arbeit!
+
+Bei \LaTeX\ werden Absätze durch freie Zeilen angegeben.
+Da die Arbeit über ein Versionskontrollsystem versioniert wird, ist es sinnvoll, pro \emph{Satz} eine neue Zeile im \texttt{.tex}-Dokument anzufangen.
+So kann einfacher ein Vergleich von Versionsständen vorgenommen werden.
+
+\section*{Gliederung}
+Die Arbeit ist in folgender Weise gegliedert:
+\begin{description}
+\item[Kapitel~\ref{chap:k2} -- \nameref{chap:k2}:] Hier werden werden die Grundlagen dieser Arbeit beschrieben.
+\item[Kapitel~\ref{chap:zusfas} -- \nameref{chap:zusfas}] fasst die Ergebnisse der Arbeit zusammen und stellt Anknüpfungspunkte vor.
+\end{description}
+
+
+
+\chapter{Kapitel zwei}
+\label{chap:k2}
+
+Hier wird der Hauptteil stehen. Falls mehrere Kapitel gewünscht, entweder mehrmals \texttt{\textbackslash{}chapter} benutzen oder pro Kapitel eine eigene Datei anlegen und \texttt{ausarbeitung.tex} anpassen.
+
+LaTeX-Hinweise stehen in \cref{chap:latextipps}.
+
+%noch etwas Fülltext
+\blinddocument
+
+
+\chapter{Zusammenfassung und Ausblick}\label{chap:zusfas}
+Hier bitte einen kurzen Durchgang durch die Arbeit.
+
+\section*{Ausblick}
+...und anschließend einen Ausblick
+
+
+
 %\renewcommand{\appendixtocname}{Anhang}
 %\renewcommand{\appendixname}{Anhang}
 %\renewcommand{\appendixpagename}{Anhang}
 \appendix
-\input{content/latex-tipps}
+\input{latex-hints-de}
 
 \clearpage
 
