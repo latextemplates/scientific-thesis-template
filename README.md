@@ -6,6 +6,7 @@ This template is a general template for scientific theses.
 Currently, it is the unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
   - University of Stuttgart, Computer Science.
+  - Paderborn University, Computer Science. - To be confirmed.
 
 It will be extended to support theses from different institutions.
 
