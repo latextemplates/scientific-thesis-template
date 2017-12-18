@@ -57,8 +57,9 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 ### Download
 
 1. Go to the latest release via <https://github.com/latextemplates/scientific-thesis-template/releases/latest>.
-1. Download the file `source.zip`
-2. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+2. Download the file `source.zip`
+3. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+4. Start texing at `main-english.tex` or `main-german.tex`.
 
 ### Usage at overleaf
 
@@ -87,11 +88,6 @@ Thus, just create a new git repository and populate it using the files provided 
 
 See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
 
-## Trouble shooting
-
-* biber/biblatex too old -> see installation hints of how to update them at different systems
-* `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.` -> Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
-
 ## Installation hints for Ubuntu
 
 Ubuntu currently [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
@@ -106,6 +102,7 @@ If you do not want to have an updated installation, but fiddle around with dirty
 * Ensure that in the "MiKTeX Package Manager" "biber" and "biblatex-lni" are installed
 
 ### Recommended setup of MiKTeX
+
 * Download the basic installer from http://miktex.org/download
 * Start it
 * First screen: Read the license condiditions and be sure that you really agree.
@@ -133,11 +130,11 @@ If you want to compile using the command line, you can use following tools.
 
 ### Automatic compilation using latexmk
 
-    latexmk ausarbeitung
+    latexmk main-german
 
 ### Continuous previewing using latexmk
 
-    latexmk -pvc ausarbeitung
+    latexmk -pvc main-german
 
 This will open a [Sumatra PDF] and only works with the supplied configuration.
 
@@ -152,17 +149,13 @@ For instance, for support of makeglossaries see http://tex.stackexchange.com/que
 
 ## FAQ
 
+### Q: There is an output that biber/biblatex too old
 
-### Q: How do I switch to English?
+See installation hints of how to update them at different systems.
 
-The template was built primarily for German documents.
-English documents, however, are also very welcome.
+### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
-Five steps to switch to English typesetting:
-
-1. `ausarbeitung.tex`: Exchange commands `\ifdeutsch` and `\ifenglisch`. (Lines 11,12 <-> 15,16).
-1. Cleanup everything (e.g., `latexmk -c ausarbeitung`). Otherwise pdflatex will complain because of `ngerman`.
-
+Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
 
 ### Q: How do I change the appearance of chapter headings?
 
