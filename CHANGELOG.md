@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [unreleased] - 
+## [2.0.0] - 2017-12-18
 
 ### Added
 - `main-paderborn-english.tex` and `main-paderborn-german.tex`- start documents for Paderborn University.
@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - No text content in sub files. Most users do not need the split. Advanced users can split the content by themselves.
 - All configuration files put in the root folder.
 - Remove "CR classification" from `uni-stuttgart-cs-cover.sty`.
+- git tags now without `v` prefix.
 
 ## [1.3.0] - 2017-12-11
 
@@ -54,7 +55,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.2.0...2.0.0
 [1.3.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.0.0...v1.1.0
