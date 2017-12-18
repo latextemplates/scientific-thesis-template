@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [unreleased]
 
 ### Changed
+- Microtype is now loaded with `babel=true` option. This should lead to even better micro-typographic results.
 - Refine styleguide in `config.tex`
 
 ## [2.0.0] - 2017-12-18

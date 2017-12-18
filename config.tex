@@ -679,32 +679,36 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %\usepackage{courier}
 \usepackage[scaled=0.83]{beramono} %BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
 
+%%%
+%
+% EN: Modern font encoding
 \ifluatex
 \else
 \usepackage[T1]{fontenc}
 \fi
+%
+%%%
 
-
-\usepackage{microtype}
 %%
 % EN: Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
 % DE: Optischer Randausgleich und Grauwerktkorrektur
-%Falls bei einer Silbentrennung ploetzlich eine ganze Zeile fehlt (passiert unter Windows XP mit MikTex 2.5 und foxit reader als pdfreader
-%\usepackage{pdfcprot}
-%ausprobieren. Dieses erzeugt allerdings nur für Palatino (in dieser Vorlage die Default-Schrift) einen guten optischen Randausgleich
-%Falls alle Stricke reissen, muss leider auf den optischen Randausgleich verzichtet werden.
-
-%fuer microtype
-%tracking=true muss als Parameter des microtype-packages mitgegeben werden
+%     Falls bei einer Silbentrennung ploetzlich eine ganze Zeile fehlt (passiert unter Windows XP mit MikTex 2.5 und foxit reader als pdfreader oder \usepackage{pdfcprot}
+%     ausprobieren. Dieses erzeugt allerdings nur für Palatino (in dieser Vorlage die Default-Schrift) einen guten optischen Randausgleich
+%     Falls alle Stricke reissen, muss leider auf den optischen Randausgleich verzichtet werden.
+\usepackage[babel=true]{microtype}
 %
-%Deaktiviert, da dies bei Algorithmen seltsam aussieht
+%DE: fuer microtype
+%DE: tracking=true muss als Parameter des microtype-packages mitgegeben werden
+%DE: Deaktiviert, da dies bei Algorithmen seltsam aussieht
 %
 %\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
-%\SetTracking{ encoding = *, shape = sc }{ 45 }% Hier wird festgelegt,
-            % dass alle Passagen in Kapitälchen automatisch leicht
-            % gesperrt werden.
-			% Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
-
+%\SetTracking{ encoding = *, shape = sc }{ 45 }
+%DE: Hier wird festgelegt,
+%    dass alle Passagen in Kapitälchen automatisch leicht
+%    gesperrt werden.
+%    Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
+%
+%%%
 
 %%%
 % Links auf Gleitumgebungen springen nicht zur Beschriftung,
