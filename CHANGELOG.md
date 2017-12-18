@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - The main file for works is `main-german.tex` for German documents.
 - No text content in sub files. Most users do not need the split. Advanced users can split the content by themselves.
 - All configuration files put in the root folder.
+- Remove "CR classification" from `uni-stuttgart-cs-cover.sty`.
 
 ## [1.3.0] - 2017-12-11
 

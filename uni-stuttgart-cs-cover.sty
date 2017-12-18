@@ -60,7 +60,6 @@
 \DeclareStringOption[supervisor not set]{supervisor} 
 \DeclareStringOption[startdate not set]{startdate} 
 \DeclareStringOption[enddate not set]{enddate}
-\DeclareStringOption[crk not set]{crk}
 
 \DeclareStringOption[german]{language}
 \DeclareBoolOption[false]{setPageNumberToOne}
@@ -85,7 +84,6 @@
 	\gdef\@labelCourse{Course of Study}%
 	\gdef\@labelStartdate{Commenced}%
 	\gdef\@labelEnddate{Completed}%
-	\gdef\@labelcrk{CR-Classification}%
 	\gdef\@labelUniversity{~\newline University of Stuttgart}%
 	\gdef\@labelDept{Faculty of Computer Science}%
 
@@ -134,7 +132,6 @@
 	\gdef\@labelCourse{Studiengang}%
 	\gdef\@labelStartdate{Beginn am}%
 	\gdef\@labelEnddate{Beendet am}%
-	\gdef\@labelcrk{CR-Nummer}%
 	\gdef\@labelUniversity{~\newline Universität Stuttgart}%
 	\gdef\@labelDept{Fakultät Informatik, Elektrotechnik und Informationstechnik}%
 	
@@ -357,10 +354,6 @@
     \begin{USCCover@TBlist}%
       \item[\@labelStartdate:]\MCS@startdate
       \item[\@labelEnddate:]\MCS@enddate
-      \ifx\@crk\relax \else
-          \vskip 1.5\baselineskip
-          \item[\@labelcrk:]\MCS@crk
-      \fi
     \end{USCCover@TBlist}%
     \vfill}%
 
