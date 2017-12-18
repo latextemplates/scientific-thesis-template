@@ -7,8 +7,8 @@
 % vv  scroll down to line 200 for content  vv
 
 
-\let\ifdeutsch\iftrue
-\let\ifenglisch\iffalse
+\let\ifdeutsch\iffalse
+\let\ifenglisch\iftrue
 \input{pre-documentclass}
 \documentclass[
                % fontsize=11pt is the standard
@@ -27,15 +27,15 @@
 
 
 \usepackage[
-    title={Förderungswürdigkeit der F\"{o}rderung von Öl},
+    title={Is Oil the future?},
     author={Lars K.},
     type=bachelor,
     institute=iaas, % or other institute names - or just a plain string using {Demo\\Demo...}
     course={Medieninformatik},
     examiner={Prof.\ Dr.\ Uwe Fessor},
     supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
-    startdate={5.\ Juli 2013}, % English: July 5, 2013;    ISO: 2013-07-05
-    enddate={5.\ Januar 2014}  % English: January 5, 2014; ISO: 2014-01-05
+    startdate={July 5, 2018},
+    enddate={January 5, 2019}
     ]{uni-stuttgart-cs-cover}
 
 \input{acronyms}
@@ -204,48 +204,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\chapter{Einleitung}
-In diesem Kapitel steht die Einleitung zu dieser Arbeit.
-Sie soll nur als Beispiel dienen und hat nichts mit dem Buch \cite{WSPA} zu tun.
-Nun viel Erfolg bei der Arbeit!
+\chapter{Introduction}
 
-Bei \LaTeX\ werden Absätze durch freie Zeilen angegeben.
-Da die Arbeit über ein Versionskontrollsystem versioniert wird, ist es sinnvoll, pro \emph{Satz} eine neue Zeile im \texttt{.tex}-Dokument anzufangen.
-So kann einfacher ein Vergleich von Versionsständen vorgenommen werden.
-
-\section*{Gliederung}
-Die Arbeit ist in folgender Weise gegliedert:
-\begin{description}
-\item[Kapitel~\ref{chap:k2} -- \nameref{chap:k2}:] Hier werden werden die Grundlagen dieser Arbeit beschrieben.
-\item[Kapitel~\ref{chap:zusfas} -- \nameref{chap:zusfas}] fasst die Ergebnisse der Arbeit zusammen und stellt Anknüpfungspunkte vor.
-\end{description}
+This thesis tarts with \cref{chap:k2}.
 
 
-
-\chapter{Kapitel zwei}
+\chapter{Chapter Two}
 \label{chap:k2}
 
-Hier wird der Hauptteil stehen. Falls mehrere Kapitel gewünscht, entweder mehrmals \texttt{\textbackslash{}chapter} benutzen oder pro Kapitel eine eigene Datei anlegen und \texttt{ausarbeitung.tex} anpassen.
-
-LaTeX-Hinweise stehen in \cref{chap:latextipps}.
-
-%noch etwas Fülltext
 \blinddocument
 
 
-\chapter{Zusammenfassung und Ausblick}\label{chap:zusfas}
-Hier bitte einen kurzen Durchgang durch die Arbeit.
+\chapter{Conclusion and Outlook}
+\label{chap:zusfas}
 
-\section*{Ausblick}
-...und anschließend einen Ausblick
+\section*{Outlook}
 
-
-
-%\renewcommand{\appendixtocname}{Anhang}
-%\renewcommand{\appendixname}{Anhang}
-%\renewcommand{\appendixpagename}{Anhang}
-\appendix
-\input{latex-hints-de}
 
 \clearpage
 
@@ -253,7 +227,7 @@ Hier bitte einen kurzen Durchgang durch die Arbeit.
 
 \printbibliography
 
-Alle URLs wurden zuletzt am 17.\,03.\,2018 geprüft.
+All links were last followed on March 17, 2018.
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
