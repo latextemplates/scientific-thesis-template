@@ -254,6 +254,11 @@ Following additional files are included, which do not need to be adapted:
 - [README.md](README.md) - Explains the template
 - [uni-stuttgart-cs-cover.sty](uni-stuttgart-cs-cover.sty) - Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
 
+# License
+
+The license of this work is [CC0](https://creativecommons.org/publicdomain/zero/1.0/), which corresponds to "public domain".
+
+
  [biber]: https://www.ctan.org/pkg/biber
  [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
  [bibtex]: https://www.ctan.org/pkg/bibtex

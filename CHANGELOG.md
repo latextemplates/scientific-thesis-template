@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - All configuration files put in the root folder.
 - Remove "CR classification" from `uni-stuttgart-cs-cover.sty`.
 - git tags now without `v` prefix.
+- Change license to [CC0](https://creativecommons.org/publicdomain/zero/1.0/) to ensure wide use.
 
 ## [1.3.0] - 2017-12-11
 

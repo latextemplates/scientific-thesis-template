@@ -1,6 +1,6 @@
 # Contributing to the scientific thesis template
 
-We welcome contributions to JabRef and encourage to create a fork, clone, **create a new branch** (such as `fix-for-issue-121`), **work on the new branch — not master**, and create a pull request.
+We welcome contributions to this template and encourage to create a fork, clone, **create a new branch** (such as `fix-for-issue-121`), **work on the new branch — not master**, and create a pull request.
 Be sure to create a **separate branch** for each improvement you implement.
 Take a look at GitHub's excellent [help documentation] for a detailed explanation and the explanation of [Feature Branch Workflow](https://de.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) for the idea behind this kind of development.
 
@@ -10,7 +10,7 @@ Keep in mind that these steps are wrote for <https://help.jabref.org>, but they 
 
 ## Rights
 
-By contributing, you agree that your contribution is made available under MIT, but that the current maintainer of this work may change the license as it fits.
+By contributing, you agree that your contribution is made available under CC0, but that the current maintainer of this work may change the license as it fits.
 
 
 ## Create a pull request
