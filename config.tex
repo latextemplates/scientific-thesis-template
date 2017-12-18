@@ -1,9 +1,17 @@
-% In dieser Datei werden zuerst die benoetigten Pakete eingebunden und
-% danach diverse Optionen gesetzt. Achtung Reihenfolge ist entscheidend!
+% EN: This file includes basic packages and sets options. The order of package
+%     loading is important
+% DE: In dieser Datei werden zuerst die benoetigten Pakete eingebunden und
+%     danach diverse Optionen gesetzt. Achtung Reihenfolge ist entscheidend!
 
 
 %%%
-% Styleguide:
+% EN: Styleguide:
+% - English comments are prefixed with "EN", German comments are prefixed with "DE"
+% - Prefixed headings define the language for the subsequent paragraphs
+% - It is tried to organize packages in blocks. One block starts with %%%, then
+%   % <heading>, then the options and more text. % followed by %%% end a block.
+%
+% DE: Styleguide:
 %
 % Ein sehr kleiner Styleguide. Packages werden in Blöcken organisiert.
 % Ein Block beginnt mit drei % in einer Zeile, dann % <Blocküberschrift>, dann
@@ -16,12 +24,13 @@
 %%%
 
 %%%
-% Required for recent version of komascript, as this template does not use the most recent commands of KOMAScript
+% EN: Required for recent version of komascript, as this template does not use the most recent commands of KOMAScript
 \usepackage{scrhack}
 %%%
 
 %%%
-% Codierung
+% DE: Codierung
+%
 % Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
 %
 % Mit UTF-8 funktionieren folgende Pakete nicht mehr. Bitte beachten!
@@ -36,7 +45,7 @@
 %%%
 
 %%%
-%Parallelbetrieb tex4ht und pdflatex
+% DE: Parallelbetrieb tex4ht und pdflatex
 \makeatletter
 \@ifpackageloaded{tex4ht}{\def\iftex4ht{\iftrue}}
                          {\def\iftex4ht{\iffalse}}
@@ -50,9 +59,9 @@
 %
 
 %%%
-% Required for custom acronyms/glossaries style
-% Left aligned Columns in tables with fixed width
-% see http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
+% EN: Required for custom acronyms/glossaries style.
+%     Left aligned Columns in tables with fixed width.
+%     See http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
 \usepackage{ragged2e}
 %%%
 
@@ -76,10 +85,11 @@
 
 
 %%%
-% Neue deutsche Rechtschreibung und Literatur statt "Literature", Nachfolger von ngerman.sty
+% DE: Neue deutsche Rechtschreibung und Literatur statt "Literature"
+%     Die folgende Einstellung ist der Nachfolger von ngerman.sty
 \ifdeutsch
-% letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
-% see also http://tex.stackexchange.com/a/50638/9075
+% DE: letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
+%     Siehe auch http://tex.stackexchange.com/a/50638/9075
 \usepackage[american,ngerman]{babel}
 % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
 \addto\captionsngerman{%
@@ -88,8 +98,8 @@
 \else
 %
 %
-% if you are writing in english
-% last language is the default language
+% EN: if you are writing in English
+%     last language is the default language
 \usepackage[ngerman,american]{babel}
 \fi
 %
@@ -675,10 +685,10 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \fi
 
 
-% optischer Randausgleich - bei miktex gleich dabei - bei linux von
-%  http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
-%  herunterladen
 \usepackage{microtype}
+%%
+% EN: Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
+% DE: Optischer Randausgleich und Grauwerktkorrektur
 %Falls bei einer Silbentrennung ploetzlich eine ganze Zeile fehlt (passiert unter Windows XP mit MikTex 2.5 und foxit reader als pdfreader
 %\usepackage{pdfcprot}
 %ausprobieren. Dieses erzeugt allerdings nur für Palatino (in dieser Vorlage die Default-Schrift) einen guten optischen Randausgleich

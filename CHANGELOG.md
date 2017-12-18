@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+### Changed
+- Refine styleguide in `config.tex`
+
 ## [2.0.0] - 2017-12-18
 
 ### Added
