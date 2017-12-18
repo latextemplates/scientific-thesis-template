@@ -10,4 +10,4 @@ jobs:
        - run: latexmk main-paderborn-german.tex
        - run: latexmk main-paderborn-english.tex
        - run: mkdir build && cp README.md main-*.pdf build/
-       #- run: .circleci/deploy-ghpages.sh build/
+       - run: .circleci/deploy-ghpages.sh build/
