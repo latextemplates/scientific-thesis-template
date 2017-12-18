@@ -8,4 +8,4 @@ jobs:
        - run: latexmk main-german.tex
        - run: latexmk main-english.tex
        - run: mkdir build && cp README.md main-*.pdf build/
-       - run: .circleci/deploy-ghpages.sh build/
+       #- run: .circleci/deploy-ghpages.sh build/
