@@ -89,7 +89,8 @@ Thus, just create a new git repository and populate it using the files provided 
   Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
   Note that it is enough to point to `languagetool.jar`.
   Use [JabRef] to manage your bibliography.
-  Quick installation using [Chocolatey]: `choco install texstudio languagetool jabref`
+  Quick installation using [Chocolatey]: `choco install texstudio languagetool jabref`.
+  A comparison to other literature management software is available at <https://ultimate-comparisons.github.io/ultimate-reference-management-software-comparison/>.
 * online: [overleaf]. Also with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
 
 See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
