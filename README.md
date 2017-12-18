@@ -156,6 +156,10 @@ For instance, for support of makeglossaries see http://tex.stackexchange.com/que
 
 See installation hints of how to update them at different systems.
 
+### Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.
+
+Just run pdflatex again.
+
 ### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
 Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
