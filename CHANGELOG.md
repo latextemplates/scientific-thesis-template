@@ -6,11 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased] - 2017-12-11
 
+### Added
+- `main-paderborn-english.tex` - start document for Paderborn University.
+
 ### Fixed
 - Remove outdated section "Using with your own git repository"
 
 ### Changed
-
 - The main file for works is `main-german.tex` for German documents.
 - No text content in sub files. Most users do not need the split. Advanced users can split the content by themselves.
 - All configuration files put in the root folder.

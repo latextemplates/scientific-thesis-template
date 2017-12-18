@@ -1,0 +1,78 @@
+\thispagestyle{empty}
+
+%margin of the title text box
+\newgeometry{left=1.5cm,right=1.5cm,top=12.6cm,bottom=1.5cm}
+
+\definecolor{pbblue}{RGB}{35,53,107} %\definecolor{pbblue}{spotcolor}{PATNONE281PC,1.0}
+\definecolor{pbgray}{RGB}{213,212,208} %\definecolor{pbgray}{spotcolor}{PATNONE420PC,1.0}
+
+\begin{tikzpicture}[remember picture, overlay]
+% for hints on absolute positioning see https://tex.stackexchange.com/a/6821/9075
+
+    % blue box
+    \node[yshift=5mm] at (current page.south west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \fill[fill=pbblue] (5mm,0) rectangle (\paperwidth-5mm,10.2cm);
+       \end{tikzpicture}
+      };
+
+    % gray box - inner part
+    \node[yshift=10.6cm] at (current page.south west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \draw[color=pbgray!80!black,fill=pbgray!80!black] (5mm,0) rectangle (\paperwidth-5mm,6cm);
+       \end{tikzpicture}
+      };
+    % gray box - outer part
+    \node[yshift=10.6cm] at (current page.south west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \draw[color=pbgray,fill=pbgray] (0,0) rectangle (5mm,6cm);
+        \draw[color=pbgray,fill=pbgray] (\paperwidth-5mm,0) rectangle (\paperwidth,6cm);
+       \end{tikzpicture}
+      };
+
+    % strange white box - top
+    \node[yshift=-3.5cm] at (current page.north west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \fill[fill=white] (13cm,0) rectangle (19.5cm,.5cm);
+       \end{tikzpicture}
+      };
+    % strange white box - bottom
+    \node[yshift=0cm] at (current page.south west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \fill[fill=white] (13cm,0) rectangle (19.5cm,.9cm);
+       \end{tikzpicture}
+      };
+\end{tikzpicture}
+
+% University logo
+\AddToShipoutPictureBG*{%
+    \AtPageUpperLeft{%
+        \put(\LenToUnit{13cm},\LenToUnit{-2.5cm}){%
+            \includegraphics[scale=.337]{logos/UPB_LOGO_GB_RGB_15.pdf}
+        }%
+    }
+}
+
+% Background picture
+\AddToShipoutPictureBG*{%
+    \AtPageUpperLeft{%
+        \put(\LenToUnit{.5cm},\LenToUnit{-13.1cm}){%
+            %20x10cm
+            \includegraphics{logos/UBP-background-picture.pdf}
+        }%
+    }
+}
+
+\makeatletter
+\noindent
+{\vspace{-.1cm}\LARGE\textsf{\textcolor{white}{\MakeUppercase{\@labelType}}}\par}\bigskip
+
+\noindent
+{\Huge\textsf{\textbf{\textcolor{pbblue}{\MakeUppercase{\MCS@title}}}}\par}\smallskip
+
+\noindent
+{\LARGE\textsf{\textcolor{white}{\MakeUppercase{\MCS@author}}}}
+\makeatother
+
+\restoregeometry
+\clearpage
