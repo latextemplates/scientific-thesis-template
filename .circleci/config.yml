@@ -5,4 +5,4 @@ jobs:
        - image: koppor/texlive
      steps:
        - checkout
-       - run: latexmk ausarbeitung.tex
+       - run: latexmk main-german.tex
