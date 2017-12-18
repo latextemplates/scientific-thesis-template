@@ -3,7 +3,7 @@
 # LaTeX Template for Scientific Theses
 
 This template is a general template for scientific theses.
-Currently, it is the unoffical LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
+Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
   - University of Stuttgart, Computer Science.
   - Paderborn University, Computer Science. - To be confirmed.
@@ -99,18 +99,23 @@ See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questio
 
 Ubuntu currently [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
 The easiest way is to uninstall the ubuntu package and use [install-tl-ubuntu](https://github.com/scottkosty/install-tl-ubuntu).
-Then, you can follow the instructions given at http://tex.stackexchange.com/a/55459/9075 to update your tex live distribution.
-If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly.
+Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
+If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
 
 ## Installation hints for Windows
 
-* The default installation of MiKTeX ships with incompatible biblatex and biber packages. You have to keep your MiKTeX up to date. In case you followed the linked installation steps, you only have to run "Update MiKTeX". If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see http://tex.stackexchange.com/a/108490/9075)
-* Install other tools using [chocolatey]: `choco install texstudio sumatrapdf.install latexmk strawberryperl jabref languagetool jre8`. This allows you to run `choco upgrade all` to keep the software updated.
+* The default installation of MiKTeX ships with incompatible biblatex and biber packages.
+  You have to keep your MiKTeX up to date.
+  In case you followed the linked installation steps, you only have to run "Update MiKTeX".
+  If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see <http://tex.stackexchange.com/a/108490/9075>).
+* Install other tools using [chocolatey]:
+  `choco install texstudio sumatrapdf.install latexmk strawberryperl jabref languagetool jre8`.
+  This allows you to run `choco upgrade all` to keep the software updated.
 * Ensure that in the "MiKTeX Package Manager" "biber" and "biblatex-lni" are installed
 
 ### Recommended setup of MiKTeX
 
-* Download the basic installer from http://miktex.org/download
+* Download the basic installer from <http://miktex.org/download>
 * Start it
 * First screen: Read the license conditions and be sure that you really agree.
 * Second screen: "Shared Installation": Install MiKTeX for: "Only for: `username`"
@@ -152,7 +157,7 @@ It is configured for Windows and especially sets Sumatra PDF as default PDF view
 You can make this local configuration a global configuration, when you put it at [the right place](http://tex.stackexchange.com/a/41149/9075).
 
 If you want to add more packages, configure it there.
-For instance, for support of makeglossaries see http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries.
+For instance, for support of makeglossaries see <http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries>.
 
 ## FAQ
 
@@ -201,17 +206,17 @@ Make targets:
 
 ### Q: Are there any other alternatives to latexmk and make?
 
-* https://github.com/akerbos/ltx2any
-* https://github.com/shiblon/latex-makefile
-* https://github.com/ransford/pdflatex-makefile
-* https://github.com/brotchie/latex-rubber-makefile
+* <https://github.com/akerbos/ltx2any>
+* <https://github.com/shiblon/latex-makefile>
+* <https://github.com/ransford/pdflatex-makefile>
+* <https://github.com/brotchie/latex-rubber-makefile>
 * [LaTeX-Mk](http://latex-mk.sourceforge.net/)
 * See also [Recommended build system for latex?](https://stackoverflow.com/q/1240037/873282) and [How to properly 'make' a latex project?](https://tex.stackexchange.com/q/40738/9075)
 
 
 ### Q: Is there any other place to look for further information?
 
-See <http://wiki.flupp.de/LaTeX>.
+For German users, go to <http://texfragen.de/>.
 
 
 ### Q: I was recommended the Harvard style
@@ -246,10 +251,10 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 ### Files
 
 - `main-*.tex` - Start file for theses
-  * [main-german.tex](main-german.tex) for German
-  * [main-english.tex](main-english.tex) for English
-  * [main-paderborn-german.tex](main-german.tex) for German theses at Paderborn University
-  * [main-paderborn-english.tex](main-english.tex) for English theses at Paderborn University
+  * [main-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-german.tex) for German
+  * [main-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-english.tex) for English
+  * [main-paderborn-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderporn-german.tex) for German theses at Paderborn University
+  * [main-paderborn-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderborn-english.tex) for English theses at Paderborn University
   * Add text here
   * Adjust title etc. here
 - [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
@@ -259,9 +264,9 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 
 Following additional files are included, which do not need to be adapted:
 
-- [Makefile](Makefile) - The Makefile. Builds on latexmk.
-- [README.md](README.md) - Explains the template
-- [uni-stuttgart-cs-cover.sty](uni-stuttgart-cs-cover.sty) - Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
+- [Makefile](https://github.com/latextemplates/scientific-thesis-template/blob/master/Makefile) - The Makefile. Builds on latexmk.
+- [README.md](https://github.com/latextemplates/scientific-thesis-template/blob/master/README.md) - Explains the template
+- [uni-stuttgart-cs-cover.sty](https://github.com/latextemplates/scientific-thesis-template/blob/master/uni-stuttgart-cs-cover.sty) - Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
 
 ## License
 
