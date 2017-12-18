@@ -29,6 +29,7 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
   * [latexmk configuration](#latexmk-configuration)
 - [FAQ](#faq)
   * [Q: There is an output that biber/biblatex too old](#q-there-is-an-output-that-biberbiblatex-too-old)
+  * [Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.](#q-my-paderborn-title-page-is-strange-the-boxes-seem-to-be-located-arbitrarily)
   * [Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`](#q-i-get-the-error---pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable-fonts)
   * [Q: How do I change the appearance of chapter headings?](#q-how-do-i-change-the-appearance-of-chapter-headings)
   * [Q: Do I have to do something special for the final version?](#q-do-i-have-to-do-something-special-for-the-final-version)
@@ -40,6 +41,8 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
 - [Contained Files and Directories](#contained-files-and-directories)
   * [Directories](#directories)
   * [Files](#files)
+- [License](#license)
+  * [Exceptions](#exceptions)
 
 <!-- tocstop -->
 
