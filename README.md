@@ -19,7 +19,6 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
   * [Usage at overleaf](#usage-at-overleaf)
   * [Usage using plain git](#usage-using-plain-git)
 - [Recommended LaTeX environments](#recommended-latex-environments)
-- [Trouble shooting](#trouble-shooting)
 - [Installation hints for Ubuntu](#installation-hints-for-ubuntu)
 - [Installation hints for Windows](#installation-hints-for-windows)
   * [Recommended setup of MiKTeX](#recommended-setup-of-miktex)
@@ -28,13 +27,15 @@ More information at <https://github.com/latextemplates/scientific-thesis-templat
   * [Continuous previewing using latexmk](#continuous-previewing-using-latexmk)
   * [latexmk configuration](#latexmk-configuration)
 - [FAQ](#faq)
-  * [Q: How do I switch to English?](#q-how-do-i-switch-to-english)
+  * [Q: There is an output that biber/biblatex too old](#q-there-is-an-output-that-biberbiblatex-too-old)
+  * [Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`](#q-i-get-the-error---pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable-fonts)
   * [Q: How do I change the appearance of chapter headings?](#q-how-do-i-change-the-appearance-of-chapter-headings)
   * [Q: Do I have to do something special for the final version?](#q-do-i-have-to-do-something-special-for-the-final-version)
   * [Q: I want to use make instead of latexmk](#q-i-want-to-use-make-instead-of-latexmk)
   * [Q: Are there any other alternatives to latexmk and make?](#q-are-there-any-other-alternatives-to-latexmk-and-make)
   * [Q: Is there any other place to look for further information?](#q-is-there-any-other-place-to-look-for-further-information)
   * [Q: I was recommended the Harvard style](#q-i-was-recommended-the-harvard-style)
+  * [Q: Aren't there other templates?](#q-arent-there-other-templates)
 - [Contained Files and Directories](#contained-files-and-directories)
   * [Directories](#directories)
   * [Files](#files)
@@ -215,6 +216,14 @@ That style is explained at the [biblatex documentation](http://texdoc.net/texmf-
 
 We are aware that the University of Stuttgart [recommends to use the Hardvard style](https://ilias3.uni-stuttgart.de/ilias.php?ref_id=12257&from_page=11895&obj_id=11896&cmd=layout&cmdClass=illmpresentationgui&cmdNode=dn&baseClass=ilLMPresentationGUI).
 However, this style is not common in natural sciences and information science.
+
+
+### Q: Aren't there other templates?
+
+Sure. The [Hagenberg Thesis Document Collection](https://github.com/Digital-Media/HagenbergThesis) seems to be the most promising.
+However, they currently do not support microtype and not the cover of the University of Stuttgart.
+
+We are collecting alternatives at the issue [#25](https://github.com/latextemplates/scientific-thesis-template/issues/25) and plan to add a comparison to each other template.
 
 
 ## Contained Files and Directories
