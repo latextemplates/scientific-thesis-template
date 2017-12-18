@@ -4,10 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [unreleased] - 2017-12-11
+## [unreleased] - 
 
 ### Added
-- `main-paderborn-english.tex` - start document for Paderborn University.
+- `main-paderborn-english.tex` and `main-paderborn-german.tex`- start documents for Paderborn University.
+- `main-english.tex` - start document for English documens
 
 ### Fixed
 - Remove outdated section "Using with your own git repository"

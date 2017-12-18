@@ -1,4 +1,4 @@
-% !TeX spellcheck = en-US
+% !TeX spellcheck = de-DE
 % !TeX encoding = utf8
 % !TeX program = pdflatex
 % !BIB program = biber
@@ -7,8 +7,8 @@
 % vv  scroll down to line 200 for content  vv
 
 
-\let\ifdeutsch\iffalse
-\let\ifenglisch\iftrue
+\let\ifdeutsch\iftrue
+\let\ifenglisch\iffalse
 \input{pre-documentclass}
 \documentclass[
                % fontsize=11pt is the standard
@@ -31,12 +31,12 @@
 \usepackage{textpos}
 
 \usepackage[
-    title={Is Oil the future?},
+    title={Ist Öl die Zukunft?},
     author={Lars K.},
-    type={Bachlor Thesis},
+    type={Bachlorarbeit},
     institute={
         Database and Information Systems\\
-        Paderborn University\\
+        Universität Paderborn\\
         Warburger Str.~100\\
         33098 Paderborn
     },
@@ -144,7 +144,7 @@
 \listoftables
 
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
-%\lstlistoflistings
+%\lstlistoflistings 
 %ansonsten:
 \ifdeutsch
 \listof{Listing}{Verzeichnis der Listings}
@@ -204,22 +204,44 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\chapter{Introduction}
+\chapter{Einleitung}
+In diesem Kapitel steht die Einleitung zu dieser Arbeit.
+Sie soll nur als Beispiel dienen und hat nichts mit dem Buch \cite{WSPA} zu tun.
+Nun viel Erfolg bei der Arbeit!
 
-This thesis tarts with \cref{chap:k2}.
+Bei \LaTeX\ werden Absätze durch freie Zeilen angegeben.
+Da die Arbeit über ein Versionskontrollsystem versioniert wird, ist es sinnvoll, pro \emph{Satz} eine neue Zeile im \texttt{.tex}-Dokument anzufangen.
+So kann einfacher ein Vergleich von Versionsständen vorgenommen werden.
+
+Die Arbeit ist in folgender Weise gegliedert:
+In \cref{chap:k2} werden die Grundlagen dieser Arbeit beschrieben.
+Schließlich fasst \cref{chap:zusfas} die Ergebnisse der Arbeit zusammen und stellt Anknüpfungspunkte vor.
 
 
-\chapter{Chapter Two}
+\chapter{Kapitel zwei}
 \label{chap:k2}
 
+Hier wird der Hauptteil stehen. Falls mehrere Kapitel gewünscht, entweder mehrmals \texttt{\textbackslash{}chapter} benutzen oder pro Kapitel eine eigene Datei anlegen und \texttt{ausarbeitung.tex} anpassen.
+
+LaTeX-Hinweise stehen in \cref{chap:latextipps}.
+
+%noch etwas Fülltext
 \blinddocument
 
 
-\chapter{Conclusion and Outlook}
-\label{chap:zusfas}
+\chapter{Zusammenfassung und Ausblick}\label{chap:zusfas}
+Hier bitte einen kurzen Durchgang durch die Arbeit.
 
-\section*{Outlook}
+\section*{Ausblick}
+...und anschließend einen Ausblick
 
+
+
+%\renewcommand{\appendixtocname}{Anhang}
+%\renewcommand{\appendixname}{Anhang}
+%\renewcommand{\appendixpagename}{Anhang}
+\appendix
+\input{latex-hints-de}
 
 \clearpage
 
@@ -227,7 +249,7 @@ This thesis tarts with \cref{chap:k2}.
 
 \printbibliography
 
-All links were last followed on March 17, 2018.
+Alle URLs wurden zuletzt am 17.\,03.\,2018 geprüft.
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}

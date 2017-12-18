@@ -236,8 +236,11 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 
 ### Files
 
-- [main-german.tex](main-german.tex) - The start file for a German thesis
-  * Main file
+- `main-*.tex` - Start file for theses
+  * [main-german.tex](main-german.tex) for German
+  * [main-english.tex](main-english.tex) for English
+  * [main-paderborn-german.tex](main-german.tex) for German theses at Paderborn University
+  * [main-paderborn-english.tex](main-english.tex) for English theses at Paderborn University
   * Add text here
   * Adjust title etc. here
 - [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
