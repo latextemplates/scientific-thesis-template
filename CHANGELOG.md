@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+### Added
+- Added [Markdown Architectural Decision Records](https://adr.github.io/madr/) to `docs/adr` folder.
+
 ### Changed
 - Microtype is now loaded with `babel=true` option. This should lead to even better micro-typographic results.
 - Refine styleguide in `config.tex`
