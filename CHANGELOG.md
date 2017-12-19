@@ -11,7 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Microtype is now loaded with `babel=true` option. This should lead to even better micro-typographic results.
-- Refine styleguide in `config.tex`
+- Refine styleguide in `config.tex`.
+
+### Fixed
+- Fix typo in "Bachelor" in `main-paderborn-*.tex`.
 
 ## [2.0.0] - 2017-12-18
 
