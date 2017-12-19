@@ -10,7 +10,8 @@ Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, an
 
 It will be extended to support theses from different institutions.
 
-More information at <https://github.com/latextemplates/scientific-thesis-template>.
+This README.md of the template is also rendered at <https://latextemplates.github.io/scientific-thesis-template/>.
+For architectural decision records see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
 
 <!-- toc -->
 
