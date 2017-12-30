@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+### Changed
+- Enabled line breaks in long urls (which are not separated by spaces or slashes) in the bibliography.
+
 ## [2.0.1] - 2017-12-19
 
 ### Added
