@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Enabled line breaks in long urls (which are not separated by spaces or slashes) in the bibliography.
+- Option `hyphens` added to package `url`: URLs can now also be hyphenated at hyphens, even though that might be confusing: Is the "-" part of the address or just a hyphen?. 
 
 ## [2.0.1] - 2017-12-19
 

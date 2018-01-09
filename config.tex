@@ -252,11 +252,13 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-% Links verhalten sich so, wie sie sollen
-\usepackage{url}
-%
-%Use text font as url font, not the monospaced one
-%see comments at http://tex.stackexchange.com/q/98463/9075
+% EN: Links behave as they should. Enables "\url{...}" for URL typesettings.
+%     Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
+%     See https://tex.stackexchange.com/a/3034/9075.
+% DE: Links verhalten sich so, wie sie sollen
+%     Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
+%     Siehe https://tex.stackexchange.com/a/3034/9075.
+\usepackage[hyphens]{url}
 \urlstyle{same}
 %
 %Hint by http://tex.stackexchange.com/a/10419/9075
