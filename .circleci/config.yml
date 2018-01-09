@@ -9,5 +9,5 @@ jobs:
        - run: latexmk main-english.tex
        - run: latexmk main-paderborn-german.tex
        - run: latexmk main-paderborn-english.tex
-       - run: mkdir build && cp -r README.md main-*.pdf .github/_config.yml docs/adr build/
+       - run: mkdir build && cp -r README.md main-*.pdf .github/_config.yml docs/ build/
        - run: if [ "$CIRCLE_BRANCH" == "master" ]; then .circleci/deploy-ghpages.sh build/; fi

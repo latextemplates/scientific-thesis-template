@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+### Added
+- Added an explanation (`docs/overleaf.md`) with screenshots of how to start at overleaf .
+
 ### Changed
 - Enabled line breaks in long urls (which are not separated by spaces or slashes) in the bibliography.
 

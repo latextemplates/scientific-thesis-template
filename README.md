@@ -70,13 +70,7 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 
 ### Usage at overleaf
 
-1. create new overleaf project
-2. clone the overleaf project using git
-3. copy the files to that directory. Follow the steps at "Download" above
-4. delete `.latexmkrc`
-5. `git add .`
-6. `git comit -m"initial import"`
-7. git push
+See [overleaf](overleaf.md).
 
 ### Usage using plain git
 
