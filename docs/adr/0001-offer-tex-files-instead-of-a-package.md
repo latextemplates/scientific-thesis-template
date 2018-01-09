@@ -5,7 +5,8 @@ It has to be decided how the template is distributed.
 ## Considered Alternatives
 
 * Distribute using a ZIP file downloadable via GitHub
-* Offer as package distributed using CTAN
+* Offer as latex package (`.sty`) distributed using CTAN
+* Offer as a class file  (`.cls`) distributed using CTAN
 
 ## Decision Outcome
 
