@@ -10,8 +10,8 @@ Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, an
 
 It will be extended to support theses from different institutions.
 
-This README.md of the template is also rendered at <https://latextemplates.github.io/scientific-thesis-template/>.
-For architectural decision records see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
+This file (`README.md`) of the template is also rendered at <https://latextemplates.github.io/scientific-thesis-template/>.
+For [architectural decision records](https://adr.github.io) see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
 
 <!-- toc -->
 
@@ -92,7 +92,9 @@ See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questio
 
 ## Installation hints for Ubuntu
 
-Ubuntu currently [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
+From Ubuntu 17.04 onwards, this template works without issues.
+
+Ubuntu 16.04 [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
 The easiest way is to uninstall the ubuntu package and use [install-tl-ubuntu](https://github.com/scottkosty/install-tl-ubuntu).
 Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
 If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
@@ -246,10 +248,13 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 ### Files
 
 - `main-*.tex` - Start file for theses
-  * [main-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-german.tex) for German
-  * [main-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-english.tex) for English
-  * [main-paderborn-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderporn-german.tex) for German theses at Paderborn University
-  * [main-paderborn-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderborn-english.tex) for English theses at Paderborn University
+  * The files follow the pattern `main-[institution-][language].tex`, where
+    - `institution` is empty or `paderborn`
+    - `language` is `english` or `german`
+    - [main-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-german.tex) for German
+    - [main-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-english.tex) for English
+    - [main-paderborn-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderporn-german.tex) for German theses at Paderborn University
+    - [main-paderborn-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderborn-english.tex) for English theses at Paderborn University
   * Add text here
   * Adjust title etc. here
 - [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
