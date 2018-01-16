@@ -1,7 +1,7 @@
-% This file is loaded before the \documentclass command in the main document
+% EN: This file is loaded before the \documentclass command in the main document
 
-% The following package allows \\ at the title page
-% For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
+% EN: The following package allows \\ at the title page
+%     For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
 \RequirePackage{kvoptions-patch}
 
 \ifenglisch
@@ -20,12 +20,12 @@
 % See https://www.ctan.org/pkg/nag
 \RequirePackage[l2tabu, orthodox]{nag}
 
-%Neue deutsche Trennmuster
-%Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
-%Nur für pdflatex, nicht für lualatex
+%DE: Neue deutsche Trennmuster
+%    Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
+%    Nur für pdflatex, nicht für lualatex
 \RequirePackage{ifluatex}
 \ifluatex
-%do not load anything
+  % do not load anything
 \else
 	\ifdeutsch
 		\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
