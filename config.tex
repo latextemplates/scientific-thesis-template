@@ -26,11 +26,6 @@
 %%%
 
 %%%
-% EN: Required for recent version of komascript, as this template does not use the most recent commands of KOMAScript
-\usepackage{scrhack}
-%%%
-
-%%%
 % DE: Codierung
 %
 % Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
@@ -1095,3 +1090,10 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
             pdfsubject={}
 }
 \makeatother
+
+%%%
+% EN: Required for recent version of komascript, as some packges are not that compatible with KOMAScript as they should be
+%     Has to be loaded at the *very* and, so we use "\AtEndPreamble" by etoolsbox
+\usepackage{etoolbox}
+\AtEndPreamble{\usepackage{scrhack}}
+%%%
