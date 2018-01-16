@@ -361,14 +361,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-% Fuer Abbildungen innerhalb von Abbildungen
-% Ersetzt das Paket subfigure
-%
-% Due to bug #24 in the caption package we need to update caption3.sty at the moment manualy to use subfig.
-% Bug #24: http://sourceforge.net/p/latex-caption/tickets/24/
-% corrected caption3.sty: http://sourceforge.net/p/latex-caption/code/HEAD/tree/branches/3.3/tex/caption3.sty
-%
-\usepackage[caption=false, lofdepth=1, lotdepth, margin=5pt]{subfig}
+% DE: Fuer Abbildungen innerhalb von Abbildungen
+%     Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
+\usepackage[hypcap=true]{subcaption}
 %
 %%%
 

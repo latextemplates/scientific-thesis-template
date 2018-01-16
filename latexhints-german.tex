@@ -99,14 +99,30 @@ Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 
 
 \begin{figure}
-  \centering
-    \subfloat[]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigA}}
-    \subfloat[]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigB}}
-		\subfloat[Subcaption if needed]{\includegraphics[width=0.3\textwidth]{choreography.pdf} \label{fig:subfigC}}
-	\caption{Beispiel um 3 Abbildung nebeneinader zu stellen nur jedes einzeln referenzieren zu können. Abbildung~\ref{fig:subfigB}
- ist die mittlere Abbildung.}
-\label{fig:subfig_example}
+  \hfill
+  \begin{subfigure}{.3\textwidth}
+    \includegraphics[width=\textwidth]{choreography.pdf}
+    \caption{Choreografie 1}
+    \label{fig:subfigA}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.3\textwidth}
+    \includegraphics[width=\textwidth]{choreography.pdf}
+    \caption{Choreografie 2}
+    \label{fig:subfigB}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.3\textwidth}
+    \includegraphics[width=.9\textwidth]{choreography.pdf}
+    \caption{Choreografie 3}
+    \label{fig:subfigC}
+  \end{subfigure}
+  \caption{Beispiel um 3 Abbildung nebeneinader zu stellen nur jedes einzeln referenzieren zu können.}
+  \label{fig:subfig_example}
 \end{figure}
+
+\Cref{fig:subfig_example} zeigt die Verwendung des subcaption-Pakets.
+Es ist auch möglich, auf Unterabbildungen zu verweisen: \Cref{fig:subfigA}.
 
 Es ist möglich, SVGs direkt beim Kompilieren in PDF umzuwandeln.
 Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
