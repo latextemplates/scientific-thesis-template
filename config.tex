@@ -311,11 +311,18 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-%Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
+%DE: Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
 \usepackage{fancyvrb}
-%\fvset{fontsize=\small} %Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
-%Funktioniert mit UTF-8 nicht mehr
-%\DefineShortVerb{\§} %Somit kann im Text ganz einfach |verbatim| text gesetzt werden.
+%
+%EN: Font size for the normal text
+%DE: Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
+%\fvset{fontsize=\small}
+%
+%DE: Somit kann im Text ganz einfach §verbatim§ text gesetzt werden.
+%    Disabled, because UTF-8 does not work any more and lualatex causes issues
+%\DefineShortVerb{\§}
+%
+%EN: Shrink font size of listings
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{fontsize=\footnotesize}
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{fontsize=\footnotesize}
 %
@@ -341,15 +348,14 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 
 %%%
-% Fuer listings
-% Wird für fancyvrb und für lstlistings verwendet
+%EN: Required for proper environments of fancyvrb and lstlistings
+%DE: Wird für fancyvrb und für lstlistings verwendet
 \usepackage{float}
 
 %\usepackage{floatrow}
-%% zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
-% floatrow ist der Nachfolger von float
-% Allerdings macht floatrow in manchen Konstellationen Probleme. Deshalb ist das Paket deaktiviert.
-%
+%DE: zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
+%    floatrow ist der Nachfolger von float
+%    Allerdings macht floatrow in manchen Konstellationen Probleme. Deshalb ist das Paket deaktiviert.
 %%%
 
 
