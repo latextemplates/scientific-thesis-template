@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [unreleased]
 
 ### Added
+- Added `main-minted-german.tex` to show how [minted](https://github.com/gpoore/minted) can be used.
 - Added an explanation (`docs/overleaf.md`) with screenshots of how to start at overleaf.
 
 ### Changed

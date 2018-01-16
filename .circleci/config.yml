@@ -6,6 +6,7 @@ jobs:
      steps:
        - checkout
        - run: latexmk main-german.tex
+       - run: latexmk main-minted-german.tex
        - run: latexmk main-english.tex
        - run: latexmk main-paderborn-german.tex
        - run: latexmk main-paderborn-english.tex

@@ -5,8 +5,13 @@
 This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
-  - University of Stuttgart, Computer Science. [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)] [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)]
-  - Paderborn University, Computer Science. - To be confirmed.  [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)] [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)]
+  - University of Stuttgart, Computer Science.
+    [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)],
+    [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)],
+    [[example-minted-german](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)]
+  - Paderborn University, Computer Science. - To be confirmed.
+    [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)]
+    [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)]
 
 It will be extended to support theses from different institutions.
 
@@ -36,6 +41,7 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
   * [Q: Do I have to do something special for the final version?](#q-do-i-have-to-do-something-special-for-the-final-version)
   * [Q: I want to use make instead of latexmk](#q-i-want-to-use-make-instead-of-latexmk)
   * [Q: Are there any other alternatives to latexmk and make?](#q-are-there-any-other-alternatives-to-latexmk-and-make)
+  * [Q: I want to use minted as its syntax highlighting seems to be better](#q-i-want-to-use-minted-as-its-syntax-highlighting-seems-to-be-better)
   * [Q: Is there any other place to look for further information?](#q-is-there-any-other-place-to-look-for-further-information)
   * [Q: I was recommended the Harvard style](#q-i-was-recommended-the-harvard-style)
   * [Q: Aren't there other templates?](#q-arent-there-other-templates)
@@ -53,6 +59,7 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 * pdflatex
 * [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
 * [biblatex]+[biber] instead of plain [bibtex], because biblatex fully supports UTF-8 and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
+* Optional: Render listings using [minted](https://github.com/gpoore/minted/), which provides better output than [listings](https://ctan.org/pkg/listings), but requires [pygments](http://pygments.org/) to be installed.
 * Most recent packages and package configuration based on long-time experience
 * Open for contributions
 
@@ -162,13 +169,16 @@ For instance, for support of makeglossaries see <http://tex.stackexchange.com/qu
 
 See installation hints of how to update them at different systems.
 
+
 ### Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.
 
 Just run pdflatex again.
 
+
 ### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
 Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
+
 
 ### Q: How do I change the appearance of chapter headings?
 
@@ -211,6 +221,15 @@ Make targets:
 * See also [Recommended build system for latex?](https://stackoverflow.com/q/1240037/873282) and [How to properly 'make' a latex project?](https://tex.stackexchange.com/q/40738/9075)
 
 
+### Q: I want to use minted as its syntax highlighting seems to be better
+
+1. Install python and [pygments](http://pygments.org/):
+  - `choco install python`
+  - `pip install pygments`
+1. Start with `main-minted-german.tex`
+2. Use `-shell-escape` when texing: `pdflatex -shell-escape main-minted-german.tex`
+
+
 ### Q: Is there any other place to look for further information?
 
 For German users, go to <http://texfragen.de/>.
@@ -248,8 +267,9 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 ### Files
 
 - `main-*.tex` - Start file for theses
-  * The files follow the pattern `main-[institution-][language].tex`, where
+  * The files follow the pattern `main-[institution-][feature-][language].tex`, where
     - `institution` is empty or `paderborn`
+    - `feature` is empty or `minted`
     - `language` is `english` or `german`
     - [main-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-german.tex) for German
     - [main-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-english.tex) for English
