@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Lines in listings (made by `lstlistings`) are numbered
+
 ### Fixed
 - Fixed numbering of minted listings
 

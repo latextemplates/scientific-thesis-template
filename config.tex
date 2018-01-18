@@ -936,11 +936,16 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
         stringstyle=\ttfamily, %Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
         breaklines=true,
         breakatwhitespace=true,
-        columns=flexible,
+        columns=flexible, %alternative: fixed
+        numbers=left,
+        numberstyle=\tiny,
+        basewidth=.5em,
+        xleftmargin=.5cm,
         aboveskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
         belowskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
         captionpos=b
 }
+
 \ifdeutsch
 \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
 \fi
