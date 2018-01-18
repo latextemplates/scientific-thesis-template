@@ -34,9 +34,9 @@
 %   * fancyvrb mit §
 %   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/
 \ifluatex
-%no package loading required
+  %no package loading required
 \else
-\usepackage[utf8]{inputenc}
+  \usepackage[utf8]{inputenc}
 \fi
 %
 %%%
@@ -45,7 +45,7 @@
 % DE: Parallelbetrieb tex4ht und pdflatex
 \makeatletter
 \@ifpackageloaded{tex4ht}{\def\iftex4ht{\iftrue}}
-                         {\def\iftex4ht{\iffalse}}
+{\def\iftex4ht{\iffalse}}
 \makeatother
 %%%
 
@@ -68,9 +68,9 @@
 % siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
 \usepackage[acronym,indexonlyfirst,nomain]{glossaries}
 \ifdeutsch
-\renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+  \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
 \else
-\renewcommand*{\acronymname}{List of Abbreviations}
+  \renewcommand*{\acronymname}{List of Abbreviations}
 \fi
 \renewcommand*{\glsgroupskip}{}
 %
@@ -85,19 +85,19 @@
 % DE: Neue deutsche Rechtschreibung und Literatur statt "Literature"
 %     Die folgende Einstellung ist der Nachfolger von ngerman.sty
 \ifdeutsch
-% DE: letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
-%     Siehe auch http://tex.stackexchange.com/a/50638/9075
-\usepackage[american,ngerman]{babel}
-% Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
-\addto\captionsngerman{%
-	\renewcommand\abstractname{Kurzfassung}%
-}
+  % DE: letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
+  %     Siehe auch http://tex.stackexchange.com/a/50638/9075
+  \usepackage[american,ngerman]{babel}
+  % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+  \addto\captionsngerman{%
+    \renewcommand\abstractname{Kurzfassung}%
+  }
 \else
-%
-%
-% EN: if you are writing in English
-%     last language is the default language
-\usepackage[ngerman,american]{babel}
+  %
+  %
+  % EN: if you are writing in English
+  %     last language is the default language
+  \usepackage[ngerman,american]{babel}
 \fi
 %
 %%%
@@ -187,29 +187,29 @@
 % Enables inclusion of SVG graphics - text-rendered-with-LaTeX-approach
 % This is the approach of http://www.ctan.org/tex-archive/info/svg-inkscape,
 \newcommand{\executeiffilenewer}[3]{%
-\IfFileExists{#2}
-{
-%\message{file #2 exists}
-\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
-{\pdffilemoddate{#2}}>0%
-{\immediate\write18{#3}}
-\else
-{%\message{file up to date #2}
-}
-\fi%
-}{
-%\message{file #2 doesn't exist}
-%\message{argument: #3}
-%\immediate\write18{echo "test" > xoutput.txt}
-\immediate\write18{#3}
-}
+  \IfFileExists{#2}
+  {
+    %\message{file #2 exists}
+    \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+      {\pdffilemoddate{#2}}>0%
+      {\immediate\write18{#3}}
+    \else
+      {%\message{file up to date #2}
+      }
+    \fi%
+  }{
+    %\message{file #2 doesn't exist}
+    %\message{argument: #3}
+    %\immediate\write18{echo "test" > xoutput.txt}
+    \immediate\write18{#3}
+  }
 }
 \newcommand{\includesvg}[1]{%
-\executeiffilenewer{#1.svg}{#1.pdf}%
-{
-inkscape -z -D --file=\getgraphicspath#1.svg %
---export-pdf=\getgraphicspath#1.pdf --export-latex}%
-\input{\getgraphicspath#1.pdf_tex}%
+  \executeiffilenewer{#1.svg}{#1.pdf}%
+  {
+    inkscape -z -D --file=\getgraphicspath#1.svg %
+    --export-pdf=\getgraphicspath#1.pdf --export-latex}%
+  \input{\getgraphicspath#1.pdf_tex}%
 }
 
 
@@ -223,9 +223,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \usepackage{longtable}
 \usepackage{dcolumn} %Aligning numbers by decimal points in table columns
 \ifdeutsch
-	\newcolumntype{d}[1]{D{.}{,}{#1}}
+  \newcolumntype{d}[1]{D{.}{,}{#1}}
 \else
-	\newcolumntype{d}[1]{D{.}{.}{#1}}
+  \newcolumntype{d}[1]{D{.}{.}{#1}}
 \fi
 
 %
@@ -408,14 +408,14 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Falls die Seitenzahl bei einer Referenz auf eine Abbildung nur dann angegeben werden soll,
 % falls sich die Abbildung nicht auf der selben Seite befindet...
 \iftex4ht
-%tex4ht does not work well with vref, therefore we emulate vref behavior
-\newcommand{\vref}[1]{\ref{#1}}
+  %tex4ht does not work well with vref, therefore we emulate vref behavior
+  \newcommand{\vref}[1]{\ref{#1}}
 \else
-\ifdeutsch
-\usepackage[ngerman]{varioref}
-\else
-\usepackage{varioref}
-\fi
+  \ifdeutsch
+    \usepackage[ngerman]{varioref}
+  \else
+    \usepackage{varioref}
+  \fi
 \fi
 %%%
 
@@ -450,7 +450,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %biblatex statt bibtex
 \usepackage[
   backend       = biber, %biber does not work with 64x versions alternative: bibtex8
-						 %minalphanames only works with biber backend
+  %minalphanames only works with biber backend
   sortcites     = true,
   bibstyle      = alphabetic,
   citestyle     = alphabetic,
@@ -461,9 +461,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
   maxalphanames = 4,
   maxbibnames   = 99,
   maxcitenames  = 3,
-	natbib        = true,
-	eprint        = true,
-	url           = true,
+  natbib        = true,
+  eprint        = true,
+  url           = true,
   doi           = true,
   isbn          = true,
   backref       = true]{biblatex}
@@ -471,7 +471,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % enable more breaks at URLs. See https://tex.stackexchange.com/a/134281.
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
-  
+
 \bibliography{bibliography}
 %\addbibresource[datatype=bibtex]{bibliography.bib}
 
@@ -508,15 +508,15 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %enable hyperlinked author names when using \citeauthor
 %source: http://tex.stackexchange.com/a/75916/9075
 \DeclareCiteCommand{\citeauthor}
-  {\boolfalse{citetracker}%
-   \boolfalse{pagetracker}%
-   \usebibmacro{prenote}}
-  {\ifciteindex
-     {\indexnames{labelname}}
-     {}%
-   \printtext[bibhyperref]{\printnames{labelname}}}
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
+{\boolfalse{citetracker}%
+  \boolfalse{pagetracker}%
+  \usebibmacro{prenote}}
+{\ifciteindex
+  {\indexnames{labelname}}
+  {}%
+  \printtext[bibhyperref]{\printnames{labelname}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
 
 %natbib compatibility
 %\newcommand{\citep}[1]{\cite{#1}}
@@ -563,18 +563,18 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \definecolor{black}{rgb}{0,0,0}
 
 \hypersetup{
-    breaklinks=true,
-    bookmarksnumbered=true,
-    bookmarksopen=true,
-    bookmarksopenlevel=1,
-    breaklinks=true,
-    colorlinks=true,
-    pdfstartview=Fit,
-    pdfpagelayout=SinglePage, % Alterntaive: TwoPageRight -- zweiseitige Darstellung: ungerade Seiten rechts im PDF-Viewer - siehe auch http://tex.stackexchange.com/a/21109/9075
-    filecolor=darkblue,
-    urlcolor=darkblue,
-    linkcolor=black,
-    citecolor=black
+  breaklinks=true,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  bookmarksopenlevel=1,
+  breaklinks=true,
+  colorlinks=true,
+  pdfstartview=Fit,
+  pdfpagelayout=SinglePage, % Alterntaive: TwoPageRight -- zweiseitige Darstellung: ungerade Seiten rechts im PDF-Viewer - siehe auch http://tex.stackexchange.com/a/21109/9075
+  filecolor=darkblue,
+  urlcolor=darkblue,
+  linkcolor=black,
+  citecolor=black
 }
 %
 %%%
@@ -583,9 +583,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \ifdeutsch
-\usepackage[ngerman,capitalise,nameinlink,noabbrev]{cleveref}
+  \usepackage[ngerman,capitalise,nameinlink,noabbrev]{cleveref}
 \else
-\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+  \usepackage[capitalise,nameinlink,noabbrev]{cleveref}
 \fi
 %%%
 
@@ -614,7 +614,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
 \ifdeutsch
-\setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
+  \setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
 \fi
 %%%
 
@@ -626,7 +626,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
 %\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
 %\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
-                      %durch mathpazo ist das schon definiert
+%durch mathpazo ist das schon definiert
 \usepackage{amssymb}
 
 %For \texttrademark{}
@@ -634,8 +634,8 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 %name-clashes von marvosym und mathabx vermeiden:
 \def\delsym#1{%
-%  \expandafter\let\expandafter\origsym\expandafter=\csname#1\endcsname
-%  \expandafter\let\csname orig#1\endcsname=\origsym
+  %  \expandafter\let\expandafter\origsym\expandafter=\csname#1\endcsname
+  %  \expandafter\let\csname orig#1\endcsname=\origsym
   \expandafter\let\csname#1\endcsname=\relax
 }
 
@@ -657,9 +657,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 
 %Schriftart fuer die Ueberschriften - ueberschreibt lmodern
 \ifdeutsch
-\usepackage[scaled=.95]{helvet}
+  \usepackage[scaled=.95]{helvet}
 \else
-\usepackage{helvet}
+  \usepackage{helvet}
 \fi
 
 % Für Schreibschrift würde tun, muss aber ned
@@ -668,23 +668,23 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %Schriftart fuer den Fliesstext - ueberschreibt lmodern
 %
 \ifdeutsch
-%
-%Linux Libertine, siehe http://www.linuxlibertine.org/
-%Packageparamter [osf] = Minuskel-Ziffern
-%rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
-\usepackage[rm]{libertine}
-%
-%Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
-%\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
-%
+  %
+  %Linux Libertine, siehe http://www.linuxlibertine.org/
+  %Packageparamter [osf] = Minuskel-Ziffern
+  %rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
+  \usepackage[rm]{libertine}
+  %
+  %Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
+  %\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
+  %
 \else
-%
-\usepackage{charter} %Charter fuer englische Texte
-\linespread{1.05} % Durchschuss für Charter leicht erhöhen
-%
-%\usepackage{mathptmx} %Times fuer englische Texte. Sieht nicht sooo gut aus.
-%
-%Fallback ist lmodern, die oben eingebunden wurde
+  %
+  \usepackage{charter} %Charter fuer englische Texte
+  \linespread{1.05} % Durchschuss für Charter leicht erhöhen
+  %
+  %\usepackage{mathptmx} %Times fuer englische Texte. Sieht nicht sooo gut aus.
+  %
+  %Fallback ist lmodern, die oben eingebunden wurde
 \fi
 
 %Schriftart fuer Programmcode - ueberschreibt lmodern
@@ -698,7 +698,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % EN: Modern font encoding
 \ifluatex
 \else
-\usepackage[T1]{fontenc}
+  \usepackage[T1]{fontenc}
 \fi
 %
 %%%
@@ -736,9 +736,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % Deckblattstyle
 %
 \ifdeutsch
-	\PassOptionsToPackage{language=german}{scientific-thesis-cover}
+  \PassOptionsToPackage{language=german}{scientific-thesis-cover}
 \else
-	\PassOptionsToPackage{language=english}{scientific-thesis-cover}
+  \PassOptionsToPackage{language=english}{scientific-thesis-cover}
 \fi
 
 
@@ -784,10 +784,10 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \crefname{Listing}{Listing}{Listings}
 \newfloat{Algorithmus}{tbp}{alg}[chapter]
 \ifdeutsch
-\crefname{Algorithmus}{Algorithmus}{Algorithmus}
+  \crefname{Algorithmus}{Algorithmus}{Algorithmus}
 \else
-\crefname{Algorithmus}{Algorithm}{Algorithms}
-\floatname{Algorithmus}{Algorithm}
+  \crefname{Algorithmus}{Algorithm}{Algorithms}
+  \floatname{Algorithmus}{Algorithm}
 \fi
 %
 %amsmath
@@ -820,35 +820,35 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %DE: Zur Aktivierung eines der folgenden Möglichkeiten ein Paar von "\iffalse" und "\fi" auskommentieren
 
 \iffalse
-\usepackage[Bjarne]{fncychap}
-\ChNameVar{\Large\sf} \ChNumVar{\Huge} \ChTitleVar{\Large\sf}
-\ChRuleWidth{0.5pt} \ChNameUpperCase
+  \usepackage[Bjarne]{fncychap}
+  \ChNameVar{\Large\sf} \ChNumVar{\Huge} \ChTitleVar{\Large\sf}
+  \ChRuleWidth{0.5pt} \ChNameUpperCase
 \fi
 
 \iffalse
-\usepackage[Rejne]{fncychap}
-\ChNameVar{\centering\Huge\rm\bfseries}
-\ChNumVar{\Huge}
- \ChTitleVar{\centering\Huge\rm}
-\ChNameUpperCase
-\ChTitleUpperCase
-\ChRuleWidth{1pt}
+  \usepackage[Rejne]{fncychap}
+  \ChNameVar{\centering\Huge\rm\bfseries}
+  \ChNumVar{\Huge}
+  \ChTitleVar{\centering\Huge\rm}
+  \ChNameUpperCase
+  \ChTitleUpperCase
+  \ChRuleWidth{1pt}
 \fi
 
 \iffalse
-\usepackage{fncychap}
-\ChNameUpperCase
-\ChTitleUpperCase
-\ChNameVar{\raggedright\normalsize} %\rm
-\ChNumVar{\bfseries\Large}
-\ChTitleVar{\raggedright\Huge}
-\ChRuleWidth{1pt}
+  \usepackage{fncychap}
+  \ChNameUpperCase
+  \ChTitleUpperCase
+  \ChNameVar{\raggedright\normalsize} %\rm
+  \ChNumVar{\bfseries\Large}
+  \ChTitleVar{\raggedright\Huge}
+  \ChRuleWidth{1pt}
 \fi
 
 \iffalse
-\usepackage[Bjornstrup]{fncychap}
-\ChNumVar{\fontsize{76}{80}\selectfont\sffamily\bfseries}
-\ChTitleVar{\raggedright\Large\sffamily\bfseries}
+  \usepackage[Bjornstrup]{fncychap}
+  \ChNumVar{\fontsize{76}{80}\selectfont\sffamily\bfseries}
+  \ChTitleVar{\raggedright\Large\sffamily\bfseries}
 \fi
 
 % EN: Complete different chapter style - self made
@@ -858,55 +858,55 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %   * serifenhafter Schriftart (wenn kein zusaetzliches Kommando aktiviert ist) und
 %   * Kapitälchen wählen
 \iffalse
-\makeatletter
-%\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+  \makeatletter
+  %\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
 
-%Fuer Kapitel mit Kapitelnummer
-\def\@makechapterhead#1{%
-  \vspace*{10\p@}%
-  {\parindent \z@ \raggedright \reset@font
-			%Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
-            %A) Fuer serifenlose Schrift:
-            \fontfamily{phv}\selectfont
-			%B) Fuer Kapitaelchen:
-			%\fontseries{m}\fontshape{sc}\selectfont
-            %C) Fuer ganz "normale" Schrift:
-            %\normalfont
-			%
-			\Large \@chapapp{} \thechapter
-        \par\nobreak\vspace*{10\p@}%
-        \interlinepenalty\@M
-    {\Huge\bfseries\baselineskip3ex
-	%Fuer Kapitaelchen folgende Zeile aktivieren:
-	%\fontseries{m}\fontshape{sc}\selectfont
-	#1\par\nobreak}
+  %Fuer Kapitel mit Kapitelnummer
+  \def\@makechapterhead#1{%
     \vspace*{10\p@}%
-\makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
-    \par\nobreak
-    \vskip 40\p@
-  }}
+    {\parindent \z@ \raggedright \reset@font
+      %Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+      %A) Fuer serifenlose Schrift:
+      \fontfamily{phv}\selectfont
+      %B) Fuer Kapitaelchen:
+      %\fontseries{m}\fontshape{sc}\selectfont
+      %C) Fuer ganz "normale" Schrift:
+      %\normalfont
+      %
+      \Large \@chapapp{} \thechapter
+      \par\nobreak\vspace*{10\p@}%
+      \interlinepenalty\@M
+      {\Huge\bfseries\baselineskip3ex
+        %Fuer Kapitaelchen folgende Zeile aktivieren:
+        %\fontseries{m}\fontshape{sc}\selectfont
+        #1\par\nobreak}
+      \vspace*{10\p@}%
+      \makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
+      \par\nobreak
+      \vskip 40\p@
+    }}
 
   %Fuer Kapitel ohne Kapitelnummer (z.B. Inhaltsverzeichnis)
   \def\@makeschapterhead#1{%
-  \vspace*{10\p@}%
-  {\parindent \z@ \raggedright \reset@font
-            \normalfont \vphantom{\@chapapp{} \thechapter}
-        \par\nobreak\vspace*{10\p@}%
-        \interlinepenalty\@M
-    {\Huge \bfseries %
-	%Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
-    %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
-    \fontfamily{phv}\selectfont
-	%B) Fuer Kapitaelchen folgende Zeile aktivieren:
-	%\fontseries{m}\fontshape{sc}\selectfont
-	#1\par\nobreak}
     \vspace*{10\p@}%
-\makebox[\textwidth]{\hrulefill}%    \hrulefill does not work
-    \par\nobreak
-    \vskip 40\p@
-  }}
-%
-\makeatother
+    {\parindent \z@ \raggedright \reset@font
+      \normalfont \vphantom{\@chapapp{} \thechapter}
+      \par\nobreak\vspace*{10\p@}%
+      \interlinepenalty\@M
+      {\Huge \bfseries %
+        %Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+        %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
+        \fontfamily{phv}\selectfont
+        %B) Fuer Kapitaelchen folgende Zeile aktivieren:
+        %\fontseries{m}\fontshape{sc}\selectfont
+        #1\par\nobreak}
+      \vspace*{10\p@}%
+      \makebox[\textwidth]{\hrulefill}%    \hrulefill does not work
+      \par\nobreak
+      \vskip 40\p@
+    }}
+  %
+  \makeatother
 \fi
 %%%
 
@@ -933,25 +933,25 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 % Fuer listings.sty
 \lstset{language=XML,
-        showstringspaces=false,
-        extendedchars=true,
-        basicstyle=\footnotesize\ttfamily,
-        commentstyle=\slshape,
-        stringstyle=\ttfamily, %Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
-        breaklines=true,
-        breakatwhitespace=true,
-        columns=flexible, %alternative: fixed
-        numbers=left,
-        numberstyle=\tiny,
-        basewidth=.5em,
-        xleftmargin=.5cm,
-        aboveskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
-        belowskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
-        captionpos=b
+  showstringspaces=false,
+  extendedchars=true,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\slshape,
+  stringstyle=\ttfamily, %Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=flexible, %alternative: fixed
+  numbers=left,
+  numberstyle=\tiny,
+  basewidth=.5em,
+  xleftmargin=.5cm,
+  aboveskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  belowskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  captionpos=b
 }
 
 \ifdeutsch
-\renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
+  \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
 \fi
 %
 %%%
@@ -960,8 +960,8 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 %fuer algorithm.sty: - falls Deutsch und nicht Englisch.
 \ifdeutsch
-\floatname{algorithm}{Algorithmus}
-\renewcommand{\listalgorithmname}{Verzeichnis der Algorithmen}
+  \floatname{algorithm}{Algorithmus}
+  \renewcommand{\listalgorithmname}{Verzeichnis der Algorithmen}
 \fi
 %
 %%%
@@ -1035,9 +1035,9 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %%%
 %schoene TODOs
 \ifdeutsch
-\usepackage[colorinlistoftodos,ngerman]{todonotes}
+  \usepackage[colorinlistoftodos,ngerman]{todonotes}
 \else
-\usepackage[colorinlistoftodos]{todonotes}
+  \usepackage[colorinlistoftodos]{todonotes}
 \fi
 \setlength{\marginparwidth}{2,5cm}
 
@@ -1062,8 +1062,8 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % pgfplots (optional if the ppackage is installed)
 % PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
 \IfFileExists{pgfplots.sty}{
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.12}
+  \usepackage{pgfplots}
+  \pgfplotsset{compat=1.12}
 }{}
 %%%
 
@@ -1071,7 +1071,7 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % tikz (optional if the package is installed)
 % Package for creating graphics programmatically
 \IfFileExists{tikz.sty}{
-\usepackage{tikz}
+  \usepackage{tikz}
 }{}
 %%%
 
@@ -1093,10 +1093,10 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 %Angaben in die PDF-Infos uebernehmen
 \makeatletter
 \hypersetup{
-            pdftitle={}, %Titel der Arbeit
-            pdfauthor={}, %Author
-            pdfkeywords={}, % CR-Klassifikation und ggf. weitere Stichworte
-            pdfsubject={}
+  pdftitle={}, %Titel der Arbeit
+  pdfauthor={}, %Author
+  pdfkeywords={}, % CR-Klassifikation und ggf. weitere Stichworte
+  pdfsubject={}
 }
 \makeatother
 

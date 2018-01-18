@@ -5,15 +5,15 @@
 \RequirePackage{kvoptions-patch}
 
 \ifenglisch
-	\PassOptionsToClass{numbers=noenddot}{scrbook}
+  \PassOptionsToClass{numbers=noenddot}{scrbook}
 \else
-	%()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
-	%Nach DUDEN steht in Gliederungen, in denen ausschließlich arabische Ziffern für die Nummerierung
-	%verwendet werden, am Ende der Gliederungsnummern kein abschließender Punkt
-	%(siehe [DUD96, R3]). Wird hingegen innerhalb der Gliederung auch mit römischen Zahlen
-	%oder Groß- oder Kleinbuchstaben gearbeitet, so steht am Ende aller Gliederungsnummern ein
-	%abschließender Punkt (siehe [DUD96, R4])
-	\PassOptionsToClass{numbers=autoendperiod}{scrbook}
+  %()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
+  %Nach DUDEN steht in Gliederungen, in denen ausschließlich arabische Ziffern für die Nummerierung
+  %verwendet werden, am Ende der Gliederungsnummern kein abschließender Punkt
+  %(siehe [DUD96, R3]). Wird hingegen innerhalb der Gliederung auch mit römischen Zahlen
+  %oder Groß- oder Kleinbuchstaben gearbeitet, so steht am Ende aller Gliederungsnummern ein
+  %abschließender Punkt (siehe [DUD96, R4])
+  \PassOptionsToClass{numbers=autoendperiod}{scrbook}
 \fi
 
 % Warns about outdated packages and missing caption declarations
@@ -27,7 +27,7 @@
 \ifluatex
   % do not load anything
 \else
-	\ifdeutsch
-		\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
-	\fi
+  \ifdeutsch
+    \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+  \fi
 \fi

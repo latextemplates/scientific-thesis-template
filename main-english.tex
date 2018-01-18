@@ -11,32 +11,32 @@
 \let\ifenglisch\iftrue
 \input{pre-documentclass}
 \documentclass[
-               % fontsize=11pt is the standard
-               paper=a4,
-               twoside,  % we are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
-               bibliography=totoc,
-%               idxtotoc,   %Index ins Inhaltsverzeichnis
-%               liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
-               headsepline,
-               cleardoublepage=empty,
-               parskip=half,
-%               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
-               final
-               ]{scrbook}
+  % fontsize=11pt is the standard
+  paper=a4,
+  twoside,  % we are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
+  bibliography=totoc,
+  %               idxtotoc,   %Index ins Inhaltsverzeichnis
+  %               liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
+  headsepline,
+  cleardoublepage=empty,
+  parskip=half,
+  %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
+  final
+]{scrbook}
 \input{config}
 
 
 \usepackage[
-    title={Is Oil the future?},
-    author={Lars K.},
-    type=bachelor,
-    institute=iaas, % or other institute names - or just a plain string using {Demo\\Demo...}
-    course={Medieninformatik},
-    examiner={Prof.\ Dr.\ Uwe Fessor},
-    supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
-    startdate={July 5, 2018},
-    enddate={January 5, 2019}
-    ]{scientific-thesis-cover}
+  title={Is Oil the future?},
+  author={Lars K.},
+  type=bachelor,
+  institute=iaas, % or other institute names - or just a plain string using {Demo\\Demo...}
+  course={Medieninformatik},
+  examiner={Prof.\ Dr.\ Uwe Fessor},
+  supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
+  startdate={July 5, 2018},
+  enddate={January 5, 2019}
+]{scientific-thesis-cover}
 
 \input{acronyms}
 
@@ -46,19 +46,19 @@
 
 %tex4ht-Konvertierung verschönern
 \iftex4ht
-% tell tex4ht to create picures also for formulas starting with '$'
-% WARNING: a tex4ht run now takes forever!
-\Configure{$}{\PicMath}{\EndPicMath}{} 
-%$ % <- syntax highlighting fix for emacs
-\Css{body {text-align:justify;}}
+  % tell tex4ht to create picures also for formulas starting with '$'
+  % WARNING: a tex4ht run now takes forever!
+  \Configure{$}{\PicMath}{\EndPicMath}{}
+  %$ % <- syntax highlighting fix for emacs
+  \Css{body {text-align:justify;}}
 
-%conversion of .pdf to .png
-\Configure{graphics*}  
-         {pdf}  
-         {\Needs{"convert \csname Gin@base\endcsname.pdf  
-                               \csname Gin@base\endcsname.png"}%  
-          \Picture[pict]{\csname Gin@base\endcsname.png}%  
-         }  
+  %conversion of .pdf to .png
+  \Configure{graphics*}
+  {pdf}
+  {\Needs{"convert \csname Gin@base\endcsname.pdf
+      \csname Gin@base\endcsname.png"}%
+    \Picture[pict]{\csname Gin@base\endcsname.png}%
+  }
 \fi
 
 %Tipp von http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html
@@ -87,9 +87,9 @@
 %Kurzfassung / abstract
 %auch im Stil vom Inhaltsverzeichnis
 \ifdeutsch
-\section*{Kurzfassung}
+  \section*{Kurzfassung}
 \else
-\section*{Abstract}
+  \section*{Abstract}
 \fi
 
 ... Short summary of the thesis ...
@@ -101,7 +101,7 @@
 
 \iftex4ht
 \else
-\microtypesetup{protrusion=false}
+  \microtypesetup{protrusion=false}
 \fi
 
 %%%
@@ -135,17 +135,17 @@
 %\lstlistoflistings 
 %ansonsten:
 \ifdeutsch
-\listof{Listing}{Verzeichnis der Listings}
+  \listof{Listing}{Verzeichnis der Listings}
 \else
-\listof{Listing}{List of Listings}
+  \listof{Listing}{List of Listings}
 \fi
 
 %mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
 %Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
 \ifdeutsch
-\listof{Algorithmus}{Verzeichnis der Algorithmen}
+  \listof{Algorithmus}{Verzeichnis der Algorithmen}
 \else
-\listof{Algorithmus}{List of Algorithms}
+  \listof{Algorithmus}{List of Algorithms}
 \fi
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
 
@@ -154,8 +154,8 @@
 
 \iftex4ht
 \else
-%Optischen Randausgleich und Grauwertkorrektur wieder aktivieren
-\microtypesetup{protrusion=true}
+  %Optischen Randausgleich und Grauwertkorrektur wieder aktivieren
+  \microtypesetup{protrusion=true}
 \fi
 
 % END: Verzeichnisse

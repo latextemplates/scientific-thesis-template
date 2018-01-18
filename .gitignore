@@ -1,6 +1,11 @@
 main-*.pdf
 graphics/*.pdf_tex
 
+# latexindent
+*.bak
+*.bak?
+*.bak??
+
 # tex4ht
 *.4ct
 *.4tc

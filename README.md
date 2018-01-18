@@ -249,6 +249,16 @@ We are aware that the University of Stuttgart [recommends to use the Hardvard st
 However, this style is not common in natural sciences and information science.
 
 
+### Q: How can I reformat my .tex files?
+
+Execute `latexindent -l -s -sl -w main-english.tex`
+
+
+### Q: How I want to obey the one-sentence-per-line rule.
+
+Execute `latexindent -m -l -s -sl -w main-english.tex`
+
+
 ### Q: Aren't there other templates?
 
 Sure. The [Hagenberg Thesis Document Collection](https://github.com/Digital-Media/HagenbergThesis) seems to be the most promising.
