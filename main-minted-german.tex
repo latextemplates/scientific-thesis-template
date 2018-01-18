@@ -25,7 +25,7 @@
                ]{scrbook}
 \input{config}
 
-\usepackage{minted}
+\usepackage[chapter]{minted}
 %Zeilennummern innerhalb vom Rand:
 \setminted{numbersep=5pt, xleftmargin=12pt}
 
@@ -37,6 +37,14 @@
 %\usemintedstyle{borland}
 %\usemintedstyle{friendlygrayscale}
 \usemintedstyle{friendly}
+
+%EN: compatibility of packages minted and listings with respect to the numbering of "List." caption
+%    source: https://tex.stackexchange.com/a/269510/9075
+\AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
+\AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+%EN: We use the Listing environment to have the nice bar. So, we also have to patch the "Listing" environment for consistent counters
+\AtBeginEnvironment{Listing}{\setcounter{listing}{\value{lstlisting}}}
+\AtEndEnvironment{Listing}{\stepcounter{lstlisting}}
 
 
 % EN: The package scientific-thesis-cover (https://ctan.org/pkg/scientific-thesis-cover) was added to CTAN on January 1, 2018.

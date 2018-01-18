@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- Fixed numbering of minted listings
+
 ## [2.1.0] - 2018-01-16
 
 ### Added
