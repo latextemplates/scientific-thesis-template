@@ -811,21 +811,20 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 % falls einem der Standard von KOMA nicht gefaellt...
 % Falls man zurück zu KOMA moechte, dann muss jede der vier folgenden Moeglichkeiten deaktiviert sein.
 
-% 1. Moeglichkeit
 %\usepackage[Sonny]{fncychap}
-%oder
+
 %\usepackage[Bjarne]{fncychap}
-%oder
+
 %\usepackage[Lenny]{fncychap}
 
-% 2. Moeglichkeit
+%DE: Zur Aktivierung eines der folgenden Möglichkeiten ein Paar von "\iffalse" und "\fi" auskommentieren
+
 \iffalse
 \usepackage[Bjarne]{fncychap}
 \ChNameVar{\Large\sf} \ChNumVar{\Huge} \ChTitleVar{\Large\sf}
 \ChRuleWidth{0.5pt} \ChNameUpperCase
 \fi
 
-%Variante der 2. Moeglichkeit
 \iffalse
 \usepackage[Rejne]{fncychap}
 \ChNameVar{\centering\Huge\rm\bfseries}
@@ -836,7 +835,6 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \ChRuleWidth{1pt}
 \fi
 
-% 3. Moeglichkeit
 \iffalse
 \usepackage{fncychap}
 \ChNameUpperCase
@@ -847,8 +845,14 @@ inkscape -z -D --file=\getgraphicspath#1.svg %
 \ChRuleWidth{1pt}
 \fi
 
-% 4. Moeglichkeit
-% Zur Aktivierierung "\iffalse" und "\fi" auskommentieren
+\iffalse
+\usepackage[Bjornstrup]{fncychap}
+\ChNumVar{\fontsize{76}{80}\selectfont\sffamily\bfseries}
+\ChTitleVar{\raggedright\Large\sffamily\bfseries}
+\fi
+
+% EN: Complete different chapter style - self made
+
 % Innen drin kann man dann noch zwischen
 %   * serifenloser Schriftart (eingestellt)
 %   * serifenhafter Schriftart (wenn kein zusaetzliches Kommando aktiviert ist) und
