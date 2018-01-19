@@ -630,43 +630,28 @@
 
 %EN: Headings are typset in Helvetica (which is similar to Arial)
 %DE: Schriftart fuer die Ueberschriften - ueberschreibt lmodern
-\ifdeutsch
-  \usepackage[scaled=.95]{helvet}
-\else
-  \usepackage{helvet}
-\fi
+\usepackage[scaled=.95]{helvet}
 
 % Für Schreibschrift würde tun, muss aber ned
 %\usepackage{mathrsfs} %  \mathscr{ABC}
 
 %EN: Font for the main text
 %DE: Schriftart fuer den Fliesstext - ueberschreibt lmodern
-\ifdeutsch
-  %
-  %Linux Libertine, siehe http://www.linuxlibertine.org/
-  %Packageparamter [osf] = Minuskel-Ziffern
-  %rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
-  \usepackage[rm]{libertine}
-  %
-  %Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
-  %\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
-  %
+%Linux Libertine, siehe http://www.linuxlibertine.org/
+%Packageparamter [osf] = Minuskel-Ziffern
+%rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
+\usepackage[rm]{libertine}
 
-  %Schriftart fuer Programmcode - ueberschreibt lmodern
-  %Falls auskommentiert, wird die Standardschriftart lmodern genommen
-  %\usepackage[scaled=.92]{luximono} % Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
-  %\usepackage{courier}
-  \usepackage[scaled=0.83]{beramono} %BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
-\else
-  %
-  %\usepackage{charter} %Charter fuer englische Texte
-  %\linespread{1.05} % Durchschuss für Charter leicht erhöhen
-  %Times Roman from the modern newtx package
-  \usepackage{newtxtext}
-  \usepackage{newtxmath}
-  %
-  %Fallback ist lmodern, die oben eingebunden wurde
-\fi
+%EN: Alternative Font: Palantino. It is recommeded by Prof. Ludewig for German texts
+%DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
+%    Bitte nur in deutschen Texten
+%\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
+
+%Schriftart fuer Programmcode - ueberschreibt lmodern
+%Falls auskommentiert, wird die Standardschriftart lmodern genommen
+%\usepackage[scaled=.92]{luximono} % Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
+%\usepackage{courier}
+\usepackage[scaled=0.83]{beramono} %BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
 
 %Symbole
 %--------
