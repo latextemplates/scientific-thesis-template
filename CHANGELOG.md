@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Change package option `final` to `draft=false` to reduce output from KOMA-Script
+
 ## [2.1.1] - 2018-01-18
 
 ### Added
