@@ -2,6 +2,58 @@ indentPreamble: 1
 defaultIndent: '  '
 preserveBlankLines: 1
 condenseMultipleBlankLinesInto: 0
+indentAfterHeadings:
+    For:
+       indentAfterThisHeading: 1
+       level: 1
+    EndFor:
+       indentAfterThisHeading: 1
+       level: 1
+    ForAll:
+       indentAfterThisHeading: 1
+       level: 1
+    While:
+       indentAfterThisHeading: 1
+       level: 1
+    EndWhile:
+       indentAfterThisHeading: 1
+       level: 1
+    Repeat:
+       indentAfterThisHeading: 1
+       level: 1
+    Until:
+       indentAfterThisHeading: 1
+       level: 1
+    If:
+       indentAfterThisHeading: 1
+       level: 1
+    ElsIf:
+       indentAfterThisHeading: 1
+       level: 1
+    Else:
+       indentAfterThisHeading: 1
+       level: 1
+    EndIf:
+       indentAfterThisHeading: 1
+       level: 1
+    Procedure:
+       indentAfterThisHeading: 1
+       level: 1
+    EndProcedure:
+       indentAfterThisHeading: 1
+       level: 1
+    Function:
+       indentAfterThisHeading: 1
+       level: 1
+    EndFunction:
+       indentAfterThisHeading: 1
+       level: 1
+    Loop:
+       indentAfterThisHeading: 1
+       level: 1
+    EndLoop:
+       indentAfterThisHeading: 1
+       level: 1
 oneSentencePerLine:
     manipulateSentences: 0
     removeSentenceLineBreaks: 1

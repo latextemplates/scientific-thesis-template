@@ -193,36 +193,36 @@ Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
 \section{Pseudocode}
 \Cref{alg:sample} zeigt einen Beispielalgorithmus.
 \begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
-\caption{Sample algorithm}
-\label{alg:sample}
-\begin{algorithmic}
-\Procedure{Sample}{$a$,$v_e$}
-\State $\mathsf{parentHandled} \gets (a = \mathsf{process}) \lor \mathsf{visited}(a'), (a',c,a) \in \mathsf{HR}$
-\State \Comment $(a',c'a) \in \mathsf{HR}$ denotes that $a'$ is the parent of $a$
-\If{$\mathsf{parentHandled}\,\land(\mathcal{L}_\mathit{in}(a)=\emptyset\,\lor\,\forall l \in \mathcal{L}_\mathit{in}(a): \mathsf{visited}(l))$}
-\State $\mathsf{visited}(a) \gets \text{true}$
-\State $\mathsf{writes}_\circ(a,v_e) \gets
-\begin{cases}
-\mathsf{joinLinks}(a,v_e) & \abs{\mathcal{L}_\mathit{in}(a)} > 0\\
-\mathsf{writes}_\circ(p,v_e)
-& \exists p: (p,c,a) \in \mathsf{HR}\\
-(\emptyset, \emptyset, \emptyset, false) & \text{otherwise}
-\end{cases}
-$
-\If{$a\in\mathcal{A}_\mathit{basic}$}
-  \State \Call{HandleBasicActivity}{$a$,$v_e$}
-\ElsIf{$a\in\mathcal{A}_\mathit{flow}$}
-  \State \Call{HandleFlow}{$a$,$v_e$}
-\ElsIf{$a = \mathsf{process}$} \Comment Directly handle the contained activity
-  \State \Call{HandleActivity}{$a'$,$v_e$}, $(a,\bot,a') \in \mathsf{HR}$
-  \State $\mathsf{writes}_\bullet(a) \gets \mathsf{writes}_\bullet(a')$
-\EndIf
-\ForAll{$l \in \mathcal{L}_\mathit{out}(a)$}
-  \State \Call{HandleLink}{$l$,$v_e$}
-\EndFor
-\EndIf
-\EndProcedure
-\end{algorithmic}
+  \caption{Sample algorithm}
+  \label{alg:sample}
+  \begin{algorithmic}
+    \Procedure{Sample}{$a$,$v_e$}
+      \State $\mathsf{parentHandled} \gets (a = \mathsf{process}) \lor \mathsf{visited}(a'), (a',c,a) \in \mathsf{HR}$
+      \State \Comment $(a',c'a) \in \mathsf{HR}$ denotes that $a'$ is the parent of $a$
+    \If{$\mathsf{parentHandled}\,\land(\mathcal{L}_\mathit{in}(a)=\emptyset\,\lor\,\forall l \in \mathcal{L}_\mathit{in}(a): \mathsf{visited}(l))$}
+      \State $\mathsf{visited}(a) \gets \text{true}$
+      \State $\mathsf{writes}_\circ(a,v_e) \gets
+        \begin{cases}
+          \mathsf{joinLinks}(a,v_e)                & \abs{\mathcal{L}_\mathit{in}(a)} > 0 \\
+          \mathsf{writes}_\circ(p,v_e)
+                                                   & \exists p: (p,c,a) \in \mathsf{HR}   \\
+          (\emptyset, \emptyset, \emptyset, false) & \text{otherwise}
+        \end{cases}
+      $
+    \If{$a\in\mathcal{A}_\mathit{basic}$}
+      \State \Call{HandleBasicActivity}{$a$,$v_e$}
+    \ElsIf{$a\in\mathcal{A}_\mathit{flow}$}
+      \State \Call{HandleFlow}{$a$,$v_e$}
+    \ElsIf{$a = \mathsf{process}$} \Comment Directly handle the contained activity
+      \State \Call{HandleActivity}{$a'$,$v_e$}, $(a,\bot,a') \in \mathsf{HR}$
+      \State $\mathsf{writes}_\bullet(a) \gets \mathsf{writes}_\bullet(a')$
+    \EndIf
+    \ForAll{$l \in \mathcal{L}_\mathit{out}(a)$}
+      \State \Call{HandleLink}{$l$,$v_e$}
+    \EndFor
+    \EndIf
+    \EndProcedure
+  \end{algorithmic}
 \end{Algorithmus}
 
 \clearpage
@@ -376,38 +376,38 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
 
 
 \IfFileExists{pgfplots.sty}{
-  \section{Plots with pgfplots}
-  Pgfplot ist ein Paket um Graphen zu plotten ohne den Umweg über gnuplot oder matplotlib zu gehen.
-  \begin{figure}[h]
-    \begin{center}
-      \begin{tikzpicture}
-        \begin{axis}[xlabel=$x$,
-            ylabel=$\sin(x)$]
-          \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
-        \end{axis}
-      \end{tikzpicture}
-    \end{center}
-    \caption{$\sin(x)$ mit pgfplots.}
-  \end{figure}
-}{}
+    \section{Plots with pgfplots}
+    Pgfplot ist ein Paket um Graphen zu plotten ohne den Umweg über gnuplot oder matplotlib zu gehen.
+    \begin{figure}[h]
+      \begin{center}
+        \begin{tikzpicture}
+          \begin{axis}[xlabel=$x$,
+              ylabel=$\sin(x)$]
+            \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
+          \end{axis}
+        \end{tikzpicture}
+      \end{center}
+      \caption{$\sin(x)$ mit pgfplots.}
+    \end{figure}
+  }{}
 
 \IfFileExists{tikz.sty}{
-  \section{Figures with tikz}
-  TikZ ist ein Paket um Zeichnungen mittels Programmierung zu erstellen.
-  Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukturen zu erstellen.
-  \begin{figure}[ht]
-    \begin{center}
-      \begin{tikzpicture}
-        \draw(0,0) rectangle (4,4);
-        \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
-        \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
-        \draw(\x,\y) circle (1pt);
-      \end{tikzpicture}
-    \end{center}
-    \caption{Eine tikz-Graphik.}\label{fig:tikz_example}
-  \end{figure}
-}{}
+    \section{Figures with tikz}
+    TikZ ist ein Paket um Zeichnungen mittels Programmierung zu erstellen.
+    Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukturen zu erstellen.
+    \begin{figure}[ht]
+      \begin{center}
+        \begin{tikzpicture}
+          \draw(0,0) rectangle (4,4);
+          \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+          \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+          \draw(\x,\y) circle (1pt);
+        \end{tikzpicture}
+      \end{center}
+      \caption{Eine tikz-Graphik.}\label{fig:tikz_example}
+    \end{figure}
+  }{}
 
-\section{Schlusswort}
-Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
-Bitte bei GitHub ein Ticket eintragen (\url{https://github.com/latextemplates/scientific-thesis-template/issues}).
+  \section{Schlusswort}
+  Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
+  Bitte bei GitHub ein Ticket eintragen (\url{https://github.com/latextemplates/scientific-thesis-template/issues}).
