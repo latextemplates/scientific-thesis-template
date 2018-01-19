@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added package [upquote](https://ctan.org/pkg/upquote) to enable backticks in verbatim text.
+
 ### Changed
 - Change package option `final` to `draft=false` to reduce output from KOMA-Script
 - Change font text to Times Roman for both English and German templates. Fixes [#48](https://github.com/latextemplates/scientific-thesis-template/issues/48).
