@@ -294,7 +294,6 @@ Following additional files are included, which do not need to be adapted:
 
 - [Makefile](https://github.com/latextemplates/scientific-thesis-template/blob/master/Makefile) - The Makefile. Builds on latexmk.
 - [README.md](https://github.com/latextemplates/scientific-thesis-template/blob/master/README.md) - Explains the template
-- [uni-stuttgart-cs-cover.sty](https://github.com/latextemplates/scientific-thesis-template/blob/master/uni-stuttgart-cs-cover.sty) - Verbatim copy of uni-stuttgart-cs-cover.sty available at https://github.com/latextemplates/uni-stuttgart-computer-science-cover
 
 ## License
 
