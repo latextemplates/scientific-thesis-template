@@ -2,6 +2,7 @@ indentPreamble: 1
 defaultIndent: '  '
 preserveBlankLines: 1
 condenseMultipleBlankLinesInto: 0
+maxNumberOfBackUps: 9
 oneSentencePerLine:
     manipulateSentences: 0
     removeSentenceLineBreaks: 1
