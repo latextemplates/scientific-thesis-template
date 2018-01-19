@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Change package option `final` to `draft=false` to reduce output from KOMA-Script
+- Change font of English text from Charter to Times Roman
 
 ## [2.1.1] - 2018-01-18
 
