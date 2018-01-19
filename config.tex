@@ -44,8 +44,11 @@
 %%%
 % DE: Parallelbetrieb tex4ht und pdflatex
 \makeatletter
-\@ifpackageloaded{tex4ht}{\def\iftex4ht{\iftrue}}
-{\def\iftex4ht{\iffalse}}
+\@ifpackageloaded{tex4ht}{
+  \def\iftex4ht{\iftrue}
+}{
+  \def\iftex4ht{\iffalse}
+}
 \makeatother
 %%%
 
