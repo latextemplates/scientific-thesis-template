@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Change package option `final` to `draft=false` to reduce output from KOMA-Script
-- Change font of English text to [Linux Libertine](http://www.linuxlibertine.org/)
+- Change font text to Times Roman for both English and German templates. Fixes [#48](https://github.com/latextemplates/scientific-thesis-template/issues/48).
 
 ## [2.1.1] - 2018-01-18
 
