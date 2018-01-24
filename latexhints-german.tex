@@ -62,7 +62,7 @@ Die Gleichung~\ref{eq:test} erhält eine Nummer:
 Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}.
 
 \section{Quellcode}
-\Cref{lst:ListingANDlstlisting} zeigt, wie man Programmlistings einbindet.
+\Cref{lst:ListingANDlstlisting,helloworld} zeigen, wie man Programmlistings einbindet.
 Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus Dateien lesen.
 
 %Listing-Umgebung wurde durch \newfloat{Listing} definiert
@@ -76,6 +76,9 @@ Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus D
   \caption{lstlisting in einer Listings-Umgebung, damit das Listing durch Balken abgetrennt ist}
   \label{lst:ListingANDlstlisting}
 \end{Listing}
+
+%TODO: Currently not shown in TOC
+\lstinputlisting[language=C++,label=helloworld,caption={"`hello world"' in C++.},float]{code/helloworld.cpp}
 
 Quellcode im \lstinline|<listing />| ist auch möglich.
 

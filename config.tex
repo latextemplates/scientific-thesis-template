@@ -331,8 +331,8 @@
   numberstyle=\tiny,
   basewidth=.5em,
   xleftmargin=.5cm,
-  aboveskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
-  belowskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  % aboveskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  % belowskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
   captionpos=b
 }
 
@@ -390,6 +390,7 @@
 
 %%%
 %EN: Required for proper environments of fancyvrb and lstlistings
+%    There is also the newfloat pacakge (recommended by minted), but we currently have no expericene with that
 %DE: Wird für fancyvrb und für lstlistings verwendet
 \usepackage{float}
 
@@ -814,7 +815,8 @@
 }
 %
 %EN: New float environments for listings and algorithms
-\floatstyle{ruled}
+%
+% \floatstyle{ruled} % TODO: enabled or disabled causes no change - listings and algorithms are always ruled
 \newfloat{Listing}{tbp}{code}[chapter]
 \crefname{Listing}{Listing}{Listings}
 \newfloat{Algorithmus}{tbp}{alg}[chapter]
