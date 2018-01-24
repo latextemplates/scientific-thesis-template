@@ -26,9 +26,9 @@
 %%%
 
 %%%
+% EN: File encoding
 % DE: Codierung
-%
-% Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
+%     Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
 %
 % Mit UTF-8 funktionieren folgende Pakete nicht mehr. Bitte beachten!
 %   * fancyvrb mit §
@@ -54,7 +54,8 @@
 
 
 %%%
-%Farbdefinitionen
+% EN: Defintion of colors
+% DE: Farbdefinitionen
 \usepackage[hyperref,dvipsnames]{xcolor}
 %
 
@@ -85,6 +86,7 @@
 
 
 %%%
+% EN: Support for language-specific hyphenation
 % DE: Neue deutsche Rechtschreibung und Literatur statt "Literature"
 %     Die folgende Einstellung ist der Nachfolger von ngerman.sty
 \ifdeutsch
@@ -113,7 +115,8 @@
 
 
 %%%
-% erweitertes Enumerate
+% EN: extended enumarations
+% DE: erweitertes Enumerate
 \usepackage{paralist}
 %
 %%%
@@ -127,7 +130,8 @@
 
 
 %%%
-%Mathematik
+% EN: Mathematics
+% DE: Mathematik
 %
 \usepackage[]{amsmath} % Viele Mathematik-Sachen: Doku: /usr/share/doc/texmf/latex/amsmath/amsldoc.dvi.gz
 \PassOptionsToPackage{fleqn,leqno}{amsmath} % options must be passed this way, otherwise it does not work with glossaries
@@ -158,15 +162,19 @@
 
 
 %%%
-% Anhang
+% EN: Package for the appendix
+% DE: Anhang
 \usepackage{appendix}
 %[toc,page,title,header]
 %
 %%%
 
 %%%
-% Grafikeinbindungen
-\usepackage{graphicx}%Parameter "pdftex" unnoetig
+% EN: Graphics
+% DE: Grafikeinbindungen
+%
+% EN: The parameter "pdftex" is not required
+\usepackage{graphicx}
 \graphicspath{{\getgraphicspath}}
 \newcommand{\getgraphicspath}{graphics/}
 %
@@ -222,7 +230,8 @@
 %%%
 
 %%%
-% Tabellenerweiterungen
+% EN: Extensions for tables
+% DE: Tabellenerweiterungen
 \usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
 \usepackage{longtable}
 \usepackage{dcolumn} %Aligning numbers by decimal points in table columns
@@ -295,7 +304,8 @@
 %%%
 
 %%%
-% DE: Logik für Tex
+% EN: Logic for TeX - enables if-then-else in commands
+% DE: Logik für TeX
 %     FÜr if-then-else @ commands.tex
 \usepackage{ifthen}
 %
@@ -303,14 +313,39 @@
 
 
 %%%
-%
+% EN: Code Listings
+% DE: Listings
 \usepackage{listings}
+\lstset{language=XML,
+  showstringspaces=false,
+  extendedchars=true,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\slshape,
+  % DE: Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
+  stringstyle=\ttfamily, 
+  breaklines=true,
+  breakatwhitespace=true,
+  % EN: alternative: fixed
+  columns=flexible,
+  numbers=left,
+  numberstyle=\tiny,
+  basewidth=.5em,
+  xleftmargin=.5cm,
+  aboveskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  belowskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  captionpos=b
+}
+
+\ifdeutsch
+  \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
+\fi
 %
 %%%
 
 
 %%%
-%DE: Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
+% EN: Alternative to listings could be fancyvrb. Can be used together.
+% DE: Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
 \usepackage{fancyvrb}
 %
 %EN: Font size for the normal text
@@ -334,18 +369,20 @@
 
 
 %%%
-% Bildunterschriften bei floats genauso formatieren wie bei Listings
-% Anpassung wird unten bei den newfloat-Deklarationen vorgenommen
-% https://www.ctan.org/pkg/caption2 is superseeded by this package.
+% EN: Tunings of captions for floats, listings, ...
+% DE: Bildunterschriften bei floats genauso formatieren wie bei Listings
+%     Anpassung wird unten bei den newfloat-Deklarationen vorgenommen
+%     https://www.ctan.org/pkg/caption2 is superseeded by this package.
 \usepackage{caption}
 %
 %%%
 
 
 %%%
-% Ermoeglicht es, Abbildungen um 90 Grad zu drehen
-% Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
-%Das Paket lscape dreht die Seite auch nicht
+% EN: Provides rotating figures, where the PDF page is also turned
+% DE: Ermoeglicht es, Abbildungen um 90 Grad zu drehen
+%     Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
+%     Das Paket lscape dreht die Seite auch nicht
 \usepackage{pdflscape}
 %
 %%%
@@ -365,6 +402,7 @@
 
 
 %%%
+% EN: For nested figures
 % DE: Fuer Abbildungen innerhalb von Abbildungen
 %     Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
 \usepackage[hypcap=true]{subcaption}
@@ -372,10 +410,9 @@
 %%%
 
 
-
-
 %%%
-% Fußnoten
+% EN: Extended support for footnotes
+% DE: Fußnoten
 %
 %\usepackage{dblfnote}  %Zweispaltige Fußnoten
 %
@@ -385,9 +422,8 @@
 % Abstand zwischen Fußnoten vergrößern:
 %\setlength{\footnotesep}{.85\baselineskip}
 %
-%
-%
-%Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+% EN: Following command disables the separting line of the footnote
+% DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
 %\renewcommand{\footnoterule}{}
 %
 \addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
@@ -402,8 +438,9 @@
 
 
 %%%
-%
-\raggedbottom     % Variable Seitenhöhen zulassen
+% EN: Variable page heights
+% DE: Variable Seitenhöhen zulassen
+\raggedbottom
 %
 %%%
 
@@ -424,7 +461,8 @@
 %%%
 
 %%%
-% Noch schoenere Tabellen als mit booktabs mit http://www.zvisionwelt.de/downloads.html
+% EN: More beautiful tables if one uses \toprule, \midrule, \bottomrule
+% DE: Noch schoenere Tabellen als mit booktabs mit http://www.zvisionwelt.de/downloads.html
 \usepackage{booktabs}
 %
 %\usepackage[section]{placeins}
@@ -554,18 +592,20 @@
 
 
 %%%
-% ggf.in der Endversion komplett rausnehmen. dann auch \href in commands.tex aktivieren
-% Alle Optionen nach \hypersetup verschoben, sonst crash
-%
-\usepackage[]{hyperref}%siehe auch: "Praktisches LaTeX" - www.itp.uni-hannover.de/~kreutzm
-%
-%% Da es mit KOMA 3 und xcolor zu Problemen mit den global Options kommt MÜSSEN die Optionen so gesetzt werden.
+% EN: Provides hyperlinks
+% DE: Erlaubt Hyperlinks im Dokument.
+%     Alle Optionen nach \hypersetup verschoben, sonst crash
+%     Siehe auch: "Praktisches LaTeX" - www.itp.uni-hannover.de/~kreutzm
+\usepackage{hyperref}
 %
 
-% Eigene Farbdefinitionen ohne die Namen des xcolor packages
+% EN: Define colors
+% DE: Da es mit KOMA 3 und xcolor zu Problemen mit den global Options kommt MÜSSEN die Optionen so gesetzt werden.
+%     Eigene Farbdefinitionen ohne die Namen des xcolor packages
 \definecolor{darkblue}{rgb}{0,0,.5}
 \definecolor{black}{rgb}{0,0,0}
 
+% EN: Define color of links and more
 \hypersetup{
   breaklinks=true,
   bookmarksnumbered=true,
@@ -585,7 +625,8 @@
 
 
 %%%
-% cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
+% EN: Extensions for references inside the document (\cref{fig:sample}, ...)
+% DE: cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \ifdeutsch
   \usepackage[ngerman,capitalise,nameinlink,noabbrev]{cleveref}
 \else
@@ -604,7 +645,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Fonts
+%% EN: Fonts
+%% DE: Schriften
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \automark[section]{chapter}
@@ -760,7 +802,8 @@
 
 
 %%%
-% Optionen
+% EN: Settings for captions of floats
+% DE: Formatierung der Beschriftungen
 %
 \captionsetup{
   format=hang,
@@ -796,8 +839,9 @@
 %%%
 
 %%%
-% unterschiedliche Chapter-Styles
-% u.a. Paket fncychap
+%EN: Various chapter styles
+% DE: unterschiedliche Chapter-Styles
+%     u.a. Paket fncychap
 
 % Andere Kapitelueberschriften
 % falls einem der Standard von KOMA nicht gefaellt...
@@ -906,7 +950,10 @@
 %Minitoc-Einstellungen
 %\dominitoc
 %\renewcommand{\mtctitle}{Inhaltsverzeichnis dieses Kapitels}
-%
+%%%
+
+%%%
+% Nicer layout
 % Disable single lines at the start of a paragraph (Schusterjungen)
 \clubpenalty = 10000
 %
@@ -923,34 +970,8 @@
 
 
 %%%
-% Fuer listings.sty
-\lstset{language=XML,
-  showstringspaces=false,
-  extendedchars=true,
-  basicstyle=\footnotesize\ttfamily,
-  commentstyle=\slshape,
-  stringstyle=\ttfamily, %Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
-  breaklines=true,
-  breakatwhitespace=true,
-  columns=flexible, %alternative: fixed
-  numbers=left,
-  numberstyle=\tiny,
-  basewidth=.5em,
-  xleftmargin=.5cm,
-  aboveskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
-  belowskip=0mm, %deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
-  captionpos=b
-}
-
-\ifdeutsch
-  \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
-\fi
-%
-%%%
-
-
-%%%
-%fuer algorithm.sty: - falls Deutsch und nicht Englisch.
+% EN: Fix names for algorithms in German
+% DE: fuer algorithm.sty: - falls Deutsch und nicht Englisch.
 \ifdeutsch
   \floatname{algorithm}{Algorithmus}
   \renewcommand{\listalgorithmname}{Verzeichnis der Algorithmen}
@@ -960,9 +981,10 @@
 
 
 %%%
-% Das Euro Zeichen
-% Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
-% Alternative: \usepackage{eurosym}
+% EN: The euro sign
+% DE: Das Euro Zeichen
+%     Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
+%     Alternative: \usepackage{eurosym}
 \newcommand{\EUR}{\ppleuro}
 %
 %%%
@@ -1002,7 +1024,8 @@
 
 
 %%%
-%Optischer Randausgleich
+% EN: Improves the border of the text
+% DE: Optischer Randausgleich und Grauwertkorrektur
 \usepackage{microtype}
 %%%
 
@@ -1042,6 +1065,7 @@
 
 
 %%%
+% EN: Provides todo notes
 % DE: schoene TODOs
 \ifdeutsch
   \usepackage[colorinlistoftodos,ngerman]{todonotes}
@@ -1068,8 +1092,8 @@
 %%%
 
 %%%
-% pgfplots (optional if the ppackage is installed)
-% PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
+% EN: pgfplots (optional if the ppackage is installed)
+%     PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
 \IfFileExists{pgfplots.sty}{
   \usepackage{pgfplots}
   \pgfplotsset{compat=1.12}
@@ -1077,8 +1101,8 @@
 %%%
 
 %%%
-% tikz (optional if the package is installed)
-% Package for creating graphics programmatically
+% EN: tikz (optional if the package is installed)
+%     Package for creating graphics programmatically
 \IfFileExists{tikz.sty}{
   \usepackage{tikz}
 }{}
