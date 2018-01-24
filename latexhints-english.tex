@@ -5,7 +5,7 @@
 %wenn keine Änderung des Kapitels mittels den in preambel/chapterheads.tex
 %vorgeschlagenen Möglichkeiten durchgeführt wurde.
 \setchapterpreamble[u]{%
-\dictum[Albert Einstein]{Probleme kann man niemals mit derselben Denkweise lösen, durch die sie entstanden sind.}
+  \dictum[Albert Einstein]{Probleme kann man niemals mit derselben Denkweise lösen, durch die sie entstanden sind.}
 }
 \chapter{LaTeX Hints}
 \label{chap:latexhints}
@@ -29,10 +29,10 @@ Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
 Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
 
 Der folgende Satz demonstriert \begin{inparaenum}[1.]
-\item die Großschreibung von Autorennamen am Satzanfang,
-\item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
-\item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
-\item dass in dem Literaturverzeichnis der Namenspräfix \enquote{van der} von \enquote{Wil M.\,P.\ van der Aalst} steht.
+  \item die Großschreibung von Autorennamen am Satzanfang,
+  \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
+  \item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
+  \item dass in dem Literaturverzeichnis der Namenspräfix \enquote{van der} von \enquote{Wil M.\,P.\ van der Aalst} steht.
 \end{inparaenum}
 \Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
 
@@ -52,13 +52,13 @@ For the documentation of editing mathemacitcal formulas read the package \texttt
 
 Following equation is not numbered because of using \texttt{\textbackslash align*} as environment.
 \begin{align*}
-x = y
+  x = y
 \end{align*}
 
 Equation~\ref{eq:test} is numbered and can be referenced in the text:
 \begin{align}
-\label{eq:test}
-x = y
+  \label{eq:test}
+  x = y
 \end{align}
 
 More details about mathematical environments provides this documentation\footnote{\url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}}.
@@ -70,13 +70,13 @@ With \texttt{\textbackslash lstinputlisting} the source code can be loaded direc
 
 %Listing-Umgebung wurde durch \newfloat{Listing} definiert
 \begin{Listing}
-\begin{lstlisting}
+  \begin{lstlisting}
 <listing name="second sample">
   <content>not interesting</content>
 </listing>
 \end{lstlisting}
-\caption{Inn a Listings environment the code is separated by two horizontal lines.}
-\label{lst:ListingANDlstlisting}
+  \caption{Inn a Listings environment the code is separated by two horizontal lines.}
+  \label{lst:ListingANDlstlisting}
 \end{Listing}
 
 Source code is also available in the text \lstinline|<listing />|.
@@ -134,23 +134,23 @@ Es ist möglich, SVGs direkt beim Kompilieren in PDF umzuwandeln.
 Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
 
 \iffalse % <-- Das hier wegnehmen, falls inkscape im Pfad ist
-Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
-Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.
+  Das SVG in \cref{fig:directSVG} ist direkt eingebunden, während der Text im SVG in \cref{fig:latexSVG} mittels pdflatex gesetzt ist.
+  Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Quelltext \texttt{\textbackslash{}iffalse} und \texttt{\textbackslash{}iftrue} auskommentiert sein.
 
-\begin{figure}
-\centering
-\includegraphics{svgexample.svg}
-\caption{SVG direkt eingebunden}
-\label{fig:directSVG}
-\end{figure}
+  \begin{figure}
+    \centering
+    \includegraphics{svgexample.svg}
+    \caption{SVG direkt eingebunden}
+    \label{fig:directSVG}
+  \end{figure}
 
-\begin{figure}
-\centering
-\def\svgwidth{.4\textwidth}
-\includesvg{svgexample}
-\caption{Text im SVG mittels \LaTeX{} gesetzt}
-\label{fig:latexSVG}
-\end{figure}
+  \begin{figure}
+    \centering
+    \def\svgwidth{.4\textwidth}
+    \includesvg{svgexample}
+    \caption{Text im SVG mittels \LaTeX{} gesetzt}
+    \label{fig:latexSVG}
+  \end{figure}
 \fi % <-- Das hier wegnehmen, falls inkscape im Pfad ist
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tables}
@@ -159,48 +159,48 @@ Falls man die Graphiken sehen möchte, muss inkscape im PATH sein und im Tex-Que
 \begin{table}
   \centering
   \begin{tabular}{ccc}
-  \toprule
-  \multicolumn{2}{c}{\textbf{zusammengefasst}} & \textbf{Titel} \\ \midrule
-  Tabelle & wie & in \\
-  \url{tabsatz.pdf}& empfohlen & gesetzt\\
+    \toprule
+    \multicolumn{2}{c}{\textbf{zusammengefasst}} & \textbf{Titel}                                                          \\ \midrule
+    Tabelle                                      & wie                                                           & in      \\
+    \url{tabsatz.pdf}                            & empfohlen                                                     & gesetzt \\
 
-  \multirow{2}{*}{Beispiel} & \multicolumn{2}{c}{ein schönes Beispiel}\\
-   & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}\\
-  \bottomrule
+    \multirow{2}{*}{Beispiel}                    & \multicolumn{2}{c}{ein schönes Beispiel}                                \\
+                                                 & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}           \\
+    \bottomrule
   \end{tabular}
   \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
   \label{tab:Ergebnisse}
 \end{table}
 
 \begin{table}
-	\centering
-	\begin{tabular}{l *{8}{d{3.2}}}
-		\toprule
-						
-			   & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}} \\
-			\cmidrule(r){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
-			
-			\textbf{Bedingungen} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}}\\
-			\midrule
-			
-			W & 1.1 & 5.55 & 6.66 & .01 &  &  &  & \\
-			X & 22.22 & 0.0 & 77.5 & .1 &  &  &  & \\
-			Y & 333.3 & .1 & 11.11 & .05 &  &  &  & \\
-			Z & 4444.44 & 77.77 & 14.06 & .3 &  &  &  & \\
-		\bottomrule 
-	\end{tabular}
-	
-	\caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD). Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.}
-	\label{tab:Werte}
+  \centering
+  \begin{tabular}{l *{8}{d{3.2}}}
+    \toprule
+
+                         & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}}                                                                                                                                       \\
+    \cmidrule(r){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
+
+    \textbf{Bedingungen} & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} \\
+    \midrule
+
+    W                    & 1.1                                      & 5.55                                     & 6.66                                     & .01                                      &                                &                                 &                                &                                 \\
+    X                    & 22.22                                    & 0.0                                      & 77.5                                     & .1                                       &                                &                                 &                                &                                 \\
+    Y                    & 333.3                                    & .1                                       & 11.11                                    & .05                                      &                                &                                 &                                &                                 \\
+    Z                    & 4444.44                                  & 77.77                                    & 14.06                                    & .3                                       &                                &                                 &                                &                                 \\
+    \bottomrule
+  \end{tabular}
+
+  \caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD). Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.}
+  \label{tab:Werte}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Pseudocode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Cref{alg:sample} zeigt einen Beispielalgorithmus.
 \begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
-\caption{Sample algorithm}
-\label{alg:sample}
-\begin{algorithmic}
+  \caption{Sample algorithm}
+  \label{alg:sample}
+  \begin{algorithmic}
 \Procedure{Sample}{$a$,$v_e$}
 \State $\mathsf{parentHandled} \gets (a = \mathsf{process}) \lor \mathsf{visited}(a'), (a',c,a) \in \mathsf{HR}$
 \State \Comment $(a',c'a) \in \mathsf{HR}$ denotes that $a'$ is the parent of $a$
@@ -227,7 +227,7 @@ $
 \EndFor
 \EndIf
 \EndProcedure
-\end{algorithmic}
+  \end{algorithmic}
 \end{Algorithmus}
 
 \clearpage
@@ -235,16 +235,16 @@ Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der 
 
 {
 \begin{minipage}{\textwidth}
-\hrule height .8pt width\textwidth
-\vskip.3em%\vskip\abovecaptionskip\relax
-\stepcounter{Algorithmus}
-\addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
-\noindent\textbf{Algorithmus \theAlgorithmus} Description
-%\stepcounter{algorithm}
-%\addcontentsline{alg}{Algorithmus}{\thealgorithm{}\hskip0em Description}
-%\textbf{Algorithmus \thealgorithm} Description
-\vskip.3em%\vskip\belowcaptionskip\relax
-\hrule height .5pt width\textwidth
+  \hrule height .8pt width\textwidth
+  \vskip.3em%\vskip\abovecaptionskip\relax
+  \stepcounter{Algorithmus}
+  \addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
+  \noindent\textbf{Algorithmus \theAlgorithmus} Description
+  %\stepcounter{algorithm}
+  %\addcontentsline{alg}{Algorithmus}{\thealgorithm{}\hskip0em Description}
+  %\textbf{Algorithmus \thealgorithm} Description
+  \vskip.3em%\vskip\belowcaptionskip\relax
+  \hrule height .5pt width\textwidth
 \end{minipage}
 %without the following line, the text is nerer at the rule
 \vskip-.3em
@@ -260,7 +260,7 @@ test2\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Beim ersten Durchlauf betrug die \gls{fr} 5. Beim zweiten Durchlauf war die \gls{fr} 3. Die Pluralform sieht man hier:\ \glspl{er}. Um zu demonstrieren wie das Abkürzungsverzeichnis bei längeren Beschreibungstexten aussieht, muss hier noch \glspl{rdbms} erwähnt werden.
 
-Mit \verb+\gls{...}+ können Abkürungen eingebaut werden, beim ersten aufrufen wird die lange Form eingesetzt. Beim wiederholten Verwenden von \verb+\gls{...}+ wird automatisch die kurz Form angezeigt. Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt. Mit \verb+\glspl{...}+ wird die Pluralform verwendet. Möchte man dass bei der ersten Verwendung direkt die Kurzform erscheint, so kann man mit \verb+\glsunset{...}+ eine Abkürzung als bereits verwendet markieren. Das Gegenteil erreicht man mit \verb+\glsreset{...}+. 
+Mit \verb+\gls{...}+ können Abkürungen eingebaut werden, beim ersten aufrufen wird die lange Form eingesetzt. Beim wiederholten Verwenden von \verb+\gls{...}+ wird automatisch die kurz Form angezeigt. Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt. Mit \verb+\glspl{...}+ wird die Pluralform verwendet. Möchte man dass bei der ersten Verwendung direkt die Kurzform erscheint, so kann man mit \verb+\glsunset{...}+ eine Abkürzung als bereits verwendet markieren. Das Gegenteil erreicht man mit \verb+\glsreset{...}+.
 
 Definiert werden Abkürzungen in der Datei \textit{content\\ausarbeitung.tex} mithilfe von \verb+\newacronym{...}{...}{...}+.
 
@@ -295,8 +295,8 @@ Im Englischen bitte \verb1\Cref{...}1 (mit großen \enquote{C} am Anfang) verwen
 \section{Definitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{definition}[Title]
-\label{def:def1}
-Definition Text
+  \label{def:def1}
+  Definition Text
 \end{definition}
 
 \Cref{def:def1} zeigt \ldots
@@ -312,16 +312,16 @@ Footnotes are provided by the command \verb+\footnote{...}+\footnote{\label{fuss
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:diff}
 \ifdeutsch
-Ziffern (123\,654\,789) werden schön gesetzt.
-Entweder in einer Linie oder als Minuskel-Ziffern.
-Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
+  Ziffern (123\,654\,789) werden schön gesetzt.
+  Entweder in einer Linie oder als Minuskel-Ziffern.
+  Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
 \fi
 
 \textsc{Kapitälchen} werden schön gesperrt...
 
 \begin{compactenum}[I.]
-\item Man kann auch die Nummerierung dank paralist kompakt halten
-\item und auf eine andere Nummerierung umstellen
+  \item Man kann auch die Nummerierung dank paralist kompakt halten
+  \item und auf eine andere Nummerierung umstellen
 \end{compactenum}
 
 \section{Weitere Illustrationen}
@@ -347,40 +347,40 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
 \end{landscape}
 
 \IfFileExists{pgfplots.sty}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Plots with pgfplots}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The package pdfplots provides plotting of functions directly in \LaTeX~like with matlab or gnuplot. 
-\begin{figure}[h]
-\begin{center}
-\begin{tikzpicture}
-  \begin{axis}[xlabel=$x$,
-               ylabel=$\sin(x)$]
-    \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
-  \end{axis}
-\end{tikzpicture}
-\end{center}
-\caption{Plot of $\sin(x)$ direclty inside the figure environment with pgfplots.}
-\end{figure}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Plots with pgfplots}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  The package pdfplots provides plotting of functions directly in \LaTeX~like with matlab or gnuplot.
+  \begin{figure}[h]
+    \begin{center}
+      \begin{tikzpicture}
+        \begin{axis}[xlabel=$x$,
+            ylabel=$\sin(x)$]
+          \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
+        \end{axis}
+      \end{tikzpicture}
+    \end{center}
+    \caption{Plot of $\sin(x)$ direclty inside the figure environment with pgfplots.}
+  \end{figure}
 }{}
 
 \IfFileExists{tikz.sty}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Figures with tikz}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The tikz is a package for creating graphics programmatically. With this package grids or other regular strucutres can be easliy generated.
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Figures with tikz}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  The tikz is a package for creating graphics programmatically. With this package grids or other regular strucutres can be easliy generated.
 
-\begin{figure}[ht]
-\begin{center}
-\begin{tikzpicture}
-  \draw(0,0) rectangle (4,4);
-  \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
-    \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
-      \draw(\x,\y) circle (1pt);
-\end{tikzpicture}
-\end{center}
-\caption{A regular grid genrated with easily with two for loops.}\label{fig:tikz_example}
-\end{figure}
+  \begin{figure}[ht]
+    \begin{center}
+      \begin{tikzpicture}
+        \draw(0,0) rectangle (4,4);
+        \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+        \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+        \draw(\x,\y) circle (1pt);
+      \end{tikzpicture}
+    \end{center}
+    \caption{A regular grid genrated with easily with two for loops.}\label{fig:tikz_example}
+  \end{figure}
 }{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Closing remarks}
