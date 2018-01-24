@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - URLs are typeset in monospaced font again. With the change of the font to Times Romen, it looks good in the monospaced font again.
 
+### Fixed
+- Listings rendered by minted are now also shown in the TOC
+
 ## [2.2.0] - 2018-01-19
 
 ### Added
