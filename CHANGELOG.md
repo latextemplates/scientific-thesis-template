@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Changed
-- URLs are typeset in monospaced font again. With the change of the font to Times Romen, it looks good in the monospaced font again.
+- URLs are typeset in monospaced font again. With the change of the font to Times Roman, it looks good in the monospaced font again.
+- Replace 1997 [footnote](https://ctan.org/pkg/footnote) package by [footnotehyper](https://ctan.org/pkg/footnotehyper).
 
 ### Fixed
 - Listings rendered by minted are now also shown in the TOC

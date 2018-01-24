@@ -1084,12 +1084,13 @@
 %%%
 
 %%%
-% footnotes in tables
-\usepackage{footnote}
+% EN: Enable footnotes in tables.
+%     This package superseeds the 1997 package "footnote"
+\usepackage{footnotehyper}
+% TODO: The footnotehyper author recommends to enclose the respective area with \begin{savenotes} ... \end{savenotes}
 \makesavenoteenv{tabular}
 \makesavenoteenv{table}
-% Reuse of footnotes
-% Reuse of Footnotes, see http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
+% Reuse of footnotes, see http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
 \crefformat{footnote}{#2\footnotemark[#1]#3}
 %%%
 
