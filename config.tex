@@ -759,22 +759,6 @@
 
 
 %%%
-% Margins
-%Viele Moeglichkeiten, die Raender im Dokument einzustellen.
-%Satzspiegel neu berechnen. Dokumentation dazu ist in "scrguide.pdf" von KOMA-Skript zu finden
-%  Optionen werden bei \documentclass[] in ausarbeitung.tex mitgegeben.
-\typearea[current]{current} %neu berechnen, da neue Schrift eingebunden
-
-%\usepackage{a4}
-%\usepackage{a4wide}
-%\areaset{170mm}{277mm} %a4:29,7hochx21mbreit
-
-%Wer die Masse direkt eingeben moechte:
-%Bei diesem Beispiel wird die Regel nicht beachtet, dass der innere Rand halb so gross wie der aussere Rand und der obere Rand halb so gross wie der untere Rand sein sollte
-%\usepackage[inner=2.5cm, outer=2.5cm, includefoot, top=3cm, bottom=1.5cm]{geometry}
-
-
-%%%
 % Optionen
 %
 \captionsetup{
@@ -1022,13 +1006,30 @@
 %%%
 
 %%%
-%Package geometry to enlarge on page
+% EN: Margins
+% DE: Ränder
+%     Viele Moeglichkeiten, die Raender im Dokument einzustellen.
 %
-%Source: http://www.howtotex.com/tips-tricks/change-margins-of-a-single-page/
+%     Satzspiegel neu berechnen. Dokumentation dazu ist in "scrguide.pdf" von KOMA-Skript zu finden
+%     Optionen werden bei \documentclass[] in ausarbeitung.tex mitgegeben.
+% \typearea[current]{current} %neu berechnen, da neue Schrift eingebunden
+
+%\usepackage{a4}
+%\usepackage{a4wide}
+%\areaset{170mm}{277mm} %a4:29,7hochx21mbreit
+
+%Wer die Masse direkt eingeben moechte:
+%Bei diesem Beispiel wird die Regel nicht beachtet, dass der innere Rand halb so gross wie der aussere Rand und der obere Rand halb so gross wie der untere Rand sein sollte
+%\usepackage[inner=2.5cm, outer=2.5cm, includefoot, top=3cm, bottom=1.5cm]{geometry}
+
+% EN: Package geometry to enlarge on page
 %
-%Normally, geometry should not be used as the typearea package calculates the margins perfectly for printing
-%However, we want better screen-readable documents where the content does not "jump"
-%Thus, we fix the margins left and right to the same value
+%     Normally, geometry should not be used as the typearea package calculates the margins perfectly for printing
+%     However, we want better screen-readable documents where the content does not "jump"
+%     Thus, we fix the margins left and right to the same value
+%
+%     Source: http://www.howtotex.com/tips-tricks/change-margins-of-a-single-page/
+%
 \usepackage[
   left=3cm,right=3cm,top=2.5cm,bottom=2.5cm,
   headsep=18pt,
@@ -1040,7 +1041,7 @@
 
 
 %%%
-%schoene TODOs
+% DE: schoene TODOs
 \ifdeutsch
   \usepackage[colorinlistoftodos,ngerman]{todonotes}
 \else
