@@ -6,7 +6,7 @@ maxNumberOfBackUps: 9
 modifyLineBreaks:
     oneSentencePerLine:
         manipulateSentences: 1
-        removeSentenceLineBreaks: 1
+        removeSentenceLineBreaks: 0
         sentencesFollow:
             par: 1
             blankLine: 1
@@ -25,4 +25,4 @@ modifyLineBreaks:
             betterFullStop: 1
             exclamationMark: 1
             questionMark: 1
-            other: "\:|\;|\,"
+            other: '(?:\.\)(?!\h*[a-z]))|(?:(?<!(?:(?:e\.g)|(?:i\.e)|(?:etc))))\.(?!(?:[a-z]|[A-Z]|\-|\,|\.|[0-9]))'

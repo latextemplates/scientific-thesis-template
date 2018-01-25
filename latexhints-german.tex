@@ -100,7 +100,12 @@ Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{choreography.pdf}
-  \caption[Beispiel-Choreographie]{Die Beispiel-Choreographie. Nun etwas kleiner, damit \texttt{\textbackslash textwidth} demonstriert wird. Und auch die Verwendung von alternativen Bildunterschriften für das Verzeichnis der Abbildungen. Letzteres ist allerdings nur Bedingt zu empfehlen, denn wer liest schon so viel Text unter einem Bild? Oder ist es einfach nur Stilsache?}
+  \caption[Beispiel-Choreographie]{Die Beispiel-Choreographie.
+    Nun etwas kleiner, damit \texttt{\textbackslash textwidth} demonstriert wird.
+    Und auch die Verwendung von alternativen Bildunterschriften für das Verzeichnis der Abbildungen.
+    Letzteres ist allerdings nur Bedingt zu empfehlen, denn wer liest schon so viel Text unter einem Bild?
+    Oder ist es einfach nur Stilsache?
+  }
   \label{fig:chor2}
 \end{figure}
 
@@ -191,7 +196,9 @@ Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
     \bottomrule
   \end{tabular}
 
-  \caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD). Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.}
+  \caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD).
+  Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.
+  }
   \label{tab:Werte}
 \end{table}
 
@@ -309,7 +316,9 @@ Im Englischen bitte \verb1\Cref{...}1 (mit großem \enquote{C} am Anfang) verwen
 \Cref{def:def1} zeigt \ldots
 
 \section{Fußnoten}
-Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\label{fussnote}Diese Fußnote ist ein Beispiel.}. Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in der Fußnote setzt \verb+\footnote{\label{...}...}+ und anschließend mittels \verb+\cref{...}+ die Fußnote erneut verwendet\cref{fussnote}.
+Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\label{fussnote}Diese Fußnote ist ein Beispiel.
+}.
+Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in der Fußnote setzt \verb+\footnote{\label{...}...}+ und anschließend mittels \verb+\cref{...}+ die Fußnote erneut verwendet\cref{fussnote}.
 
 \section{Verschiedenes}
 \label{sec:diff}
@@ -319,7 +328,7 @@ Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\
   Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
 \fi
 
-\textsc{Kapitälchen} werden schön gesperrt...
+\textsc{Kapitälchen} werden schön gesperrt.
 
 \begin{compactenum}[I.]
   \item Man kann auch die Nummerierung dank paralist kompakt halten
@@ -380,40 +389,40 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
 
 \fi
 
-
 \IfFileExists{pgfplots.sty}{
-    \section{Plots with pgfplots}
-    Pgfplot ist ein Paket um Graphen zu plotten ohne den Umweg über gnuplot oder matplotlib zu gehen.
-    \begin{figure}[h]
-      \begin{center}
-        \begin{tikzpicture}
-          \begin{axis}[xlabel=$x$,
-              ylabel=$\sin(x)$]
-            \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
-          \end{axis}
-        \end{tikzpicture}
-      \end{center}
-      \caption{$\sin(x)$ mit pgfplots.}
-    \end{figure}
-  }{}
+  \section{Plots with pgfplots}
+  Pgfplot ist ein Paket um Graphen zu plotten ohne den Umweg über gnuplot oder matplotlib zu gehen.
+  %hint by http://tex.stackexchange.com/a/3265/9075%other option is to use changepage according to http://tex.stackexchange.com/a/2639/9075. This, however, has issues with landscape%If you only have height problems, this is not needed at all%sidewaysfigure%the original layout is restored.%%\restoregeometry cannot be used as we use \addtolength
+  \begin{figure}[h]
+    \begin{center}
+      \begin{tikzpicture}
+        \begin{axis}[xlabel=$x$,
+            ylabel=$\sin(x)$]
+          \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
+        \end{axis}
+      \end{tikzpicture}
+    \end{center}
+    \caption{$\sin(x)$ mit pgfplots.}
+  \end{figure}
+}{}
 
 \IfFileExists{tikz.sty}{
-    \section{Figures with tikz}
-    TikZ ist ein Paket um Zeichnungen mittels Programmierung zu erstellen.
-    Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukturen zu erstellen.
-    \begin{figure}[ht]
-      \begin{center}
-        \begin{tikzpicture}
-          \draw(0,0) rectangle (4,4);
-          \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
-          \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
-          \draw(\x,\y) circle (1pt);
-        \end{tikzpicture}
-      \end{center}
-      \caption{Eine tikz-Graphik.}\label{fig:tikz_example}
-    \end{figure}
-  }{}
+  \section{Figures with tikz}
+  TikZ ist ein Paket um Zeichnungen mittels Programmierung zu erstellen.
+  Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukturen zu erstellen.
+  \begin{figure}[ht]
+    \begin{center}
+      \begin{tikzpicture}
+        \draw(0,0) rectangle (4,4);
+        \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+        \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+        \draw(\x,\y) circle (1pt);
+      \end{tikzpicture}
+    \end{center}
+    \caption{Eine tikz-Graphik.}\label{fig:tikz_example}
+  \end{figure}
+}{}
 
-  \section{Schlusswort}
-  Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
-  Bitte bei GitHub ein Ticket eintragen (\url{https://github.com/latextemplates/scientific-thesis-template/issues}).
+\section{Schlusswort}
+Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
+Bitte bei GitHub ein Ticket eintragen (\url{https://github.com/latextemplates/scientific-thesis-template/issues}).

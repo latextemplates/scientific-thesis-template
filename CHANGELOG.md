@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Listings rendered by minted are now also shown in the TOC
+- latexindent config: `removeSentenceLineBreaks` set to 0 to avoid collapsing of environments
 
 ## [2.2.0] - 2018-01-19
 
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Lines in listings (made by `lstlistings`) are numbered
+- Initial [latexindent](https://ctan.org/pkg/latexindent) config
 
 ### Fixed
 - Fixed numbering of minted listings
