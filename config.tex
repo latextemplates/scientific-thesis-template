@@ -240,8 +240,7 @@
 \else
   \newcolumntype{d}[1]{D{.}{.}{#1}}
 \fi
-
-%
+\setlength{\extrarowheight}{1pt}
 %%%
 
 %%%
@@ -393,13 +392,17 @@
 %    There is also the newfloat pacakge (recommended by minted), but we currently have no expericene with that
 %DE: Wird für fancyvrb und für lstlistings verwendet
 \usepackage{float}
-
+%
+% EN: Alternative to float package
 %\usepackage{floatrow}
 %DE: zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
 %    floatrow ist der Nachfolger von float
 %    Allerdings macht floatrow in manchen Konstellationen Probleme. Deshalb ist das Paket deaktiviert.
+%
+% EN: See http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats
+% DE: floats IMMER nach einer Referenzierung platzieren
+%\usepackage{flafter}
 %%%
-
 
 
 %%%
@@ -472,9 +475,11 @@
 
 
 %%%
-%Fuer Graphiken. Allerdings funktioniert es nicht zusammen mit pdflatex
-%\usepackage{gastex} % \tolarance kann dann nicht mehr umdefiniert werden
+% EN: Graphs and Automata
 %
+% TODO: Since version 3.0 (2013-10-01), it supports pdflatex via the auto-pst-pdf package
+%       Requires -shell-escape
+%\usepackage{gastex}
 %%%
 
 
@@ -482,10 +487,6 @@
 %
 %\usepackage{multicol}
 %\usepackage{setspace} % kollidiert mit diplomarbeit.sty
-%
-%http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats
-%\usepackage{flafter} %floats IMMER nach ihrer Deklaration platzieren
-%
 %%%
 
 
@@ -814,11 +815,13 @@
   singlelinecheck=true
 }
 %
-%EN: New float environments for listings and algorithms
+% EN: New float environments for listings and algorithms
 %
 % \floatstyle{ruled} % TODO: enabled or disabled causes no change - listings and algorithms are always ruled
+%
 \newfloat{Listing}{tbp}{code}[chapter]
 \crefname{Listing}{Listing}{Listings}
+%
 \newfloat{Algorithmus}{tbp}{alg}[chapter]
 \ifdeutsch
   \crefname{Algorithmus}{Algorithmus}{Algorithmus}
@@ -826,19 +829,15 @@
   \crefname{Algorithmus}{Algorithm}{Algorithms}
   \floatname{Algorithmus}{Algorithm}
 \fi
-%
+%%
+
+
+%%
 %amsmath
 %\numberwithin{equation}{section}
 %\renewcommand{\theequation}{\thesection.\Roman{equation}}
-%
-%pdftex
-\pdfcompresslevel=9
-%
-%Tabellen (array.sty)
-\setlength{\extrarowheight}{1pt}
-%
-%
-%%%
+%%
+
 
 %%%
 %EN: Various chapter styles
@@ -1083,6 +1082,7 @@
 %
 %%%
 
+
 %%%
 % EN: Enable footnotes in tables.
 %     This package superseeds the 1997 package "footnote"
@@ -1094,6 +1094,7 @@
 \crefformat{footnote}{#2\footnotemark[#1]#3}
 %%%
 
+
 %%%
 % EN: pgfplots (optional if the ppackage is installed)
 %     PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
@@ -1103,6 +1104,7 @@
 }{}
 %%%
 
+
 %%%
 % EN: tikz (optional if the package is installed)
 %     Package for creating graphics programmatically
@@ -1111,8 +1113,13 @@
 }{}
 %%%
 
-%Der untere Rand darf "flattern"
+
+%%
+% EN: Layout: bottoms of pages not aligned to each other
+% DE: Der untere Rand darf "flattern"
 \raggedbottom
+%%
+
 
 %%%
 % Wie tief wird das Inhaltsverzeichnis aufgeschlüsselt
@@ -1126,7 +1133,8 @@
 %%%
 
 
-%Angaben in die PDF-Infos uebernehmen
+%%%
+% DE: Angaben in die PDF-Infos uebernehmen
 \makeatletter
 \hypersetup{
   pdftitle={}, %Titel der Arbeit
@@ -1135,6 +1143,13 @@
   pdfsubject={}
 }
 \makeatother
+%%%
+
+%%%
+% EN: Higher compression of the output PDF
+\pdfcompresslevel=9
+%%%
+
 
 %%%
 % EN: Required for recent version of komascript, as some packges are not that compatible with KOMAScript as they should be
