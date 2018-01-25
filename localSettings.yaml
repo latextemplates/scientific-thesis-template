@@ -1,9 +1,9 @@
 indentPreamble: 1
 defaultIndent: '  '
-preserveBlankLines: 1
-condenseMultipleBlankLinesInto: 0
 maxNumberOfBackUps: 9
 modifyLineBreaks:
+    preserveBlankLines: 1
+    condenseMultipleBlankLinesInto: 0
     oneSentencePerLine:
         manipulateSentences: 1
         removeSentenceLineBreaks: 0
