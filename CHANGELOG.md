@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - URLs are typeset in monospaced font again. With the change of the font to Times Roman, it looks good in the monospaced font again.
 - Replace 1997 [footnote](https://ctan.org/pkg/footnote) package by [footnotehyper](https://ctan.org/pkg/footnotehyper).
+- Switch from manual `\clubpenalty` and `\widowpenalty` commands to [nowidow](https://www.ctan.org/pkg/nowidow) package.
 
 ### Fixed
 - Listings rendered by minted are now also shown in the TOC

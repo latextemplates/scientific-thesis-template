@@ -954,17 +954,26 @@
 %%%
 
 %%%
-% Nicer layout
-% Disable single lines at the start of a paragraph (Schusterjungen)
-\clubpenalty = 10000
+% EN: Nicer paragraph line placement:
+%     - Disable single lines at the start of a paragraph (Schusterjungen)
+%     - Disable single lines at the end of a paragraph (Hurenkinder)
+%     Normally, this is clubpenalty and widowpenalty, but using a package, it feels more non-hacky
+\usepackage[all,defaultlines=3]{nowidow}
 %
-% Disable single lines at the end of a paragraph (Hurenkinder)
-\widowpenalty = 10000 \displaywidowpenalty = 10000
-%
-%http://groups.google.de/group/de.comp.text.tex/browse_thread/thread/f97da71d90442816/f5da290593fd647e?lnk=st&q=tolerance+emergencystretch&rnum=5&hl=de#f5da290593fd647e
-%Mehr Infos unter http://www.tex.ac.uk/cgi-bin/texfaq2html?label=overfull
+\displaywidowpenalty = 10000
+%%%
+
+%%%
+% EN: Try to get rid of "overfull hbox" things and let text flow batter
+%     See also
+%       - http://groups.google.de/group/de.comp.text.tex/browse_thread/thread/f97da71d90442816/f5da290593fd647e?lnk=st&q=tolerance+emergencystretch&rnum=5&hl=de#f5da290593fd647e
+%       - http://www.tex.ac.uk/cgi-bin/texfaq2html?label=overfull
 \tolerance=2000
-\setlength{\emergencystretch}{3pt}   % kann man evtl. auf 20 erhoehen
+%
+% EN: This could be increased to 20pt
+\setlength{\emergencystretch}{3pt}
+%
+% EN: Suppress hbox warnings if less than 1pt
 \setlength{\hfuzz}{1pt}
 %
 %%%
