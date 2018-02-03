@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [2.3.0] - 2018-02-04
 
 ### Changed
 - URLs are typeset in monospaced font again. With the change of the font to Times Roman, it looks good in the monospaced font again.
@@ -66,7 +66,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - `main-paderborn-english.tex` and `main-paderborn-german.tex`- start documents for Paderborn University.
-- `main-english.tex` - start document for English documens
+- `main-english.tex` - start document for English documents.
 
 ### Fixed
 - Remove outdated section "Using with your own git repository"
@@ -114,7 +114,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/latextemplates/scientific-thesis-template/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.0.1...2.1.0
