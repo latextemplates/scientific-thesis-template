@@ -31,11 +31,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.1.1] - 2018-01-18
 
 ### Added
-- Lines in listings (made by `lstlistings`) are numbered
-- Initial [latexindent](https://ctan.org/pkg/latexindent) config
+- Lines in listings (made by `lstlistings`) are numbered.
+- Initial [latexindent](https://ctan.org/pkg/latexindent) config.
 
 ### Fixed
-- Fixed numbering of minted listings
+- Fixed numbering of minted listings.
 
 ## [2.1.0] - 2018-01-16
 
