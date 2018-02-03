@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Replace 1997 [footnote](https://ctan.org/pkg/footnote) package by [footnotehyper](https://ctan.org/pkg/footnotehyper).
 - Switch from manual `\clubpenalty` and `\widowpenalty` commands to [nowidow](https://www.ctan.org/pkg/nowidow) package.
 - More English translations in `config.tex`.
+- Ligatures are disabled for monospaced font. E.g., \texttt{--} stays `--` and is not converted to an en dash.
 
 ### Fixed
 - Listings rendered by minted are now also shown in the TOC

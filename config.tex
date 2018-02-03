@@ -763,6 +763,9 @@
 %     Falls alle Stricke reissen, muss leider auf den optischen Randausgleich verzichtet werden.
 \usepackage[babel=true]{microtype}
 %
+% EN: \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
+\DisableLigatures{encoding = T1, family = tt* }
+%
 %DE: fuer microtype
 %DE: tracking=true muss als Parameter des microtype-packages mitgegeben werden
 %DE: Deaktiviert, da dies bei Algorithmen seltsam aussieht
