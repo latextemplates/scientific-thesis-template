@@ -6,8 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added hint on `\abs` command to `latexhints-*.tex`
+
 ### Removed
-- Removed outdated hint on `\textsc` in `latex-hints-*.tex`.
+- Removed outdated hint on `\textsc` in `latexhints-*.tex`.
 
 ## [2.3.0] - 2018-02-04
 
