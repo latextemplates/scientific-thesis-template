@@ -98,11 +98,12 @@
     \renewcommand\abstractname{Kurzfassung}%
   }
 \else
-  %
-  %
-  % EN: if you are writing in English
-  %     last language is the default language
-  \usepackage[ngerman,american]{babel}
+  % EN: Set English as language and allow to write hyphenated"=words
+  %     `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish).
+  %      "english" has to go last to set it as default language
+  \usepackage[ngerman,english]{babel}
+  % EN: Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+  \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
 \fi
 %
 %%%

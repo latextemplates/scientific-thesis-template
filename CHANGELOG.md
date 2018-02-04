@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Thereby added [lccaps](https://ctan.org/pkg/lccaps) package.
   They are rendered differently in English and German documents.
 
+### Fixed
+- Babel shorthands work in English texts, too.
+
 ### Removed
 - Removed outdated hint on `\textsc` in `latexhints-*.tex`.
 
