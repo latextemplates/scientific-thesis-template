@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
-- Added hint on `\abs` command to `latexhints-*.tex`
+- Added hint on `\abs` command to `latexhints-*.tex`.
+- Added `\initialism` and direct commands (e.g., `BPEL`) to have nice renderings of names of standards.
+  Thereby added [lccaps](https://ctan.org/pkg/lccaps) package.
+  They are rendered differently in English and German documents.
 
 ### Removed
 - Removed outdated hint on `\textsc` in `latexhints-*.tex`.

@@ -35,3 +35,15 @@
 % DE: Seitengrößen - Gegen Schusterjungen und Hurenkinder...
 \newcommand{\largepage}{\enlargethispage{\baselineskip}}
 \newcommand{\shortpage}{\enlargethispage{-\baselineskip}}
+
+\newcommand{\initialism}[1]{%
+  \ifdeutsch%
+    \textsc{#1}\xspace%
+  \else%
+    \textlcc{#1}\xspace%
+  \fi%
+}
+\newcommand{\OMG}{\initialism{OMG}}
+\newcommand{\BPEL}{\initialism{BPEL}}
+\newcommand{\BPMN}{\initialism{BPMN}}
+\newcommand{\UML}{\initialism{UML}}
