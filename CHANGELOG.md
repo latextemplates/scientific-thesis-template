@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Removed
+- Removed outdated hint on `\textsc` in `latex-hints-*.tex`.
+
 ## [2.3.0] - 2018-02-04
 
 ### Changed
