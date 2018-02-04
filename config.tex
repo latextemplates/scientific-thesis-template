@@ -761,7 +761,13 @@
 %     Falls bei einer Silbentrennung ploetzlich eine ganze Zeile fehlt (passiert unter Windows XP mit MikTex 2.5 und foxit reader als pdfreader oder \usepackage{pdfcprot}
 %     ausprobieren. Dieses erzeugt allerdings nur für Palatino (in dieser Vorlage die Default-Schrift) einen guten optischen Randausgleich
 %     Falls alle Stricke reissen, muss leider auf den optischen Randausgleich verzichtet werden.
-\usepackage[babel=true]{microtype}
+\usepackage[
+  babel=true,
+  expansion=alltext,
+  protrusion=alltext-nott, % EN: Ensure that at listings, there is no change at the margin of the listing
+  final % EN: Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
+        %     In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
+]{microtype}
 %
 % EN: \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \DisableLigatures{encoding = T1, family = tt* }
@@ -776,7 +782,8 @@
 %    dass alle Passagen in Kapitälchen automatisch leicht
 %    gesperrt werden.
 %    Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
-%
+%    Deaktiviert, da sonst "BPEL", "BPMN" usw. wirklich komisch aussehen.
+%    Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
 %%%
 
 %%%
