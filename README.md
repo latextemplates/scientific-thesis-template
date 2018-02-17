@@ -20,34 +20,13 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 
 - [Characteristics of the template](#characteristics-of-the-template)
 - [Quick start](#quick-start)
-  * [Download](#download)
-  * [Usage at overleaf](#usage-at-overleaf)
-  * [Usage using plain git](#usage-using-plain-git)
 - [Recommended LaTeX environments](#recommended-latex-environments)
 - [Installation hints for Ubuntu](#installation-hints-for-ubuntu)
 - [Installation hints for Windows](#installation-hints-for-windows)
-  * [Recommended setup of MiKTeX](#recommended-setup-of-miktex)
 - [LaTeX compilation](#latex-compilation)
-  * [Automatic compilation using latexmk](#automatic-compilation-using-latexmk)
-  * [Continuous previewing using latexmk](#continuous-previewing-using-latexmk)
-  * [latexmk configuration](#latexmk-configuration)
 - [FAQ](#faq)
-  * [Q: There is an output that biber/biblatex too old](#q-there-is-an-output-that-biberbiblatex-too-old)
-  * [Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.](#q-my-paderborn-title-page-is-strange-the-boxes-seem-to-be-located-arbitrarily)
-  * [Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`](#q-i-get-the-error---pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable-fonts)
-  * [Q: How do I change the appearance of chapter headings?](#q-how-do-i-change-the-appearance-of-chapter-headings)
-  * [Q: Do I have to do something special for the final version?](#q-do-i-have-to-do-something-special-for-the-final-version)
-  * [Q: I want to use make instead of latexmk](#q-i-want-to-use-make-instead-of-latexmk)
-  * [Q: Are there any other alternatives to latexmk and make?](#q-are-there-any-other-alternatives-to-latexmk-and-make)
-  * [Q: I want to use minted as its syntax highlighting seems to be better](#q-i-want-to-use-minted-as-its-syntax-highlighting-seems-to-be-better)
-  * [Q: Is there any other place to look for further information?](#q-is-there-any-other-place-to-look-for-further-information)
-  * [Q: I was recommended the Harvard style](#q-i-was-recommended-the-harvard-style)
-  * [Q: Aren't there other templates?](#q-arent-there-other-templates)
 - [Contained Files and Directories](#contained-files-and-directories)
-  * [Directories](#directories)
-  * [Files](#files)
 - [License](#license)
-  * [Exceptions](#exceptions)
 
 <!-- tocstop -->
 
@@ -168,6 +147,18 @@ For instance, for support of makeglossaries see <http://tex.stackexchange.com/qu
 See installation hints of how to update them at different systems.
 
 
+### Q: Overleaf copmlains about missing `.sty` files.
+
+Google for the name of the `sty` and upload it to overleaf.
+As of 2018-02-17, these are:
+- `lccaps.sty` - can be downloaded from <http://ge.tt/6SnCdco2>
+- `scientific-thesis-cover.sty` - can be downloaded from <https://raw.githubusercontent.com/latextemplates/scientific-thesis-cover/master/scientific-thesis-cover.sty>
+
+Overleaf also [provides support to add new CTAN packages](https://www.overleaf.com/help/30-what-packages-do-you-support).
+Feel free to write them to add the two packages [lccaps](https://ctan.org/pkg/lccaps) and [scientific-thesis-cover](https://ctan.org/pkg/scientific-thesis-cover).
+Include in your message that you are aware that one can upload `.sty` files manually, but that you want others to offer a good template experience, too.
+
+
 ### Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.
 
 Just run pdflatex again.
@@ -189,7 +180,7 @@ Edit `preambel/chapterheads.tex`.
   - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
   - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `config.tex`.
   - Ensure that you run `pdflatex` at least three times and that there are no "undefined references".
-  - The margins are intended for a duplex printing. **Do not change them** (or do exactly know what you are doing).
+  - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
 
 
 ### Q: I want to use make instead of latexmk
