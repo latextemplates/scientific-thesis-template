@@ -6,6 +6,7 @@ This log lists the architectural decisions for the scientific-thesis-template.
 
 - [ADR-0000](0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
 - [ADR-0001](0001-offer-tex-files-instead-of-a-package.md) - Offer tex files instead of a package
+- [ADR-0002](0002-use-cc0-as-license.md) - Use CC0 as license
 
 <!-- adrlogstop -->
 
