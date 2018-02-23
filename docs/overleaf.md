@@ -15,7 +15,7 @@
 
 2. Choose "Upload Zip"
 
-![Uplaod Zip](overleaf-step-2.png)
+![Upload Zip](overleaf-step-2.png)
 
 3. Select <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip> for uploading
 
@@ -33,7 +33,28 @@
 
 ![Choose main file](overleaf-step-6.png)
 
+7. See error missing `sty` files.
+
+You get following error:
+
+![lccaps](overleaf-step-7-lccaps-error.png)
+
+The Overleaf FAQ states at [What packages do you support?](https://www.overleaf.com/help/30-what-packages-do-you-support) that they support TeX Live 2016, which does not include all new packages.
+The templates makes use of two packages, which are not included at overleaf until now.
+Thus, you have to upload the sty files manually.
+
+8. Upload llcaps
+
+![lccaps](overleaf-step-8.1.png)
+
+Insert the URL <https://raw.githubusercontent.com/latextemplates/stys-for-overleaf/master/lccaps.sty>
+
+![lccaps](overleaf-step-8.2.png)
+
+
 7. Now you can start working in the main file.
+
+
 
 ## Manual setup
 
