@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Babel shorthands work in English texts, too.
 - No more warning of deprecated `firstinits` (fixed by replacing it by `giveninits`).
+- In English hints: no more double section "Weitere Illustrationen".
 
 ### Changed
 - `maxcitenames` of biblatex is now `2` to abbreviate also three authors when using `\Citet{...}`.
