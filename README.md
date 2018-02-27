@@ -151,12 +151,14 @@ See installation hints of how to update them at different systems.
 
 Google for the name of the `sty` and upload it to overleaf.
 As of 2018-02-17, these are:
-- `lccaps.sty` - can be downloaded from <http://ge.tt/6SnCdco2>
-- `scientific-thesis-cover.sty` - can be downloaded from <https://raw.githubusercontent.com/latextemplates/scientific-thesis-cover/master/scientific-thesis-cover.sty>
+- `lccaps.sty` - can be downloaded from <https://latextemplates.github.io/stys-for-overleaf/>.
+- `scientific-thesis-cover.sty` - can be downloaded from <https://raw.githubusercontent.com/latextemplates/scientific-thesis-cover/master/scientific-thesis-cover.sty>.
 
-Overleaf also [provides support to add new CTAN packages](https://www.overleaf.com/help/30-what-packages-do-you-support).
-Feel free to write them to add the two packages [lccaps](https://ctan.org/pkg/lccaps) and [scientific-thesis-cover](https://ctan.org/pkg/scientific-thesis-cover).
-Include in your message that you are aware that one can upload `.sty` files manually, but that you want others to offer a good template experience, too.
+
+### Q: MiKTeX complains about missing `.sty` files.
+
+Use the [MiKTeX console](https://miktex.org/howto/miktex-console) to refresh the package index.
+Then, automatic installation should work again.
 
 
 ### Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.
