@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Babel shorthands work in English texts, too.
 
+### Changed
+- `maxcitenames` of biblatex is now `2` to abbreviate also three authors when using `\Citet{...}`.
+
 ### Removed
 - Removed outdated hint on `\textsc` in `latexhints-*.tex`.
 
