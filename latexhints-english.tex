@@ -196,6 +196,26 @@ Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
   \caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD). Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.}
   \label{tab:Werte}
 \end{table}
+
+\IfFileExists{pgfplotstable.sty}{
+
+\subsection{Tabellen mit pgfplots}
+With the pgfplotstable package tables can be directly generated from a csv file.
+
+\begin{table}[h]
+\centering
+\pgfplotstabletypeset[
+col sep = comma,
+every head row/.style={before row=\toprule,after row=\midrule},
+every last row/.style={after row=\bottomrule},
+display columns/0/.style={string type,column name={}}
+]
+{data/data.csv}
+\caption{Tabelle direclty generated from the values of a csf file.}
+\end{table}
+}{}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Pseudocode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

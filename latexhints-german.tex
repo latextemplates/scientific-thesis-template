@@ -205,6 +205,28 @@ Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
   \label{tab:Werte}
 \end{table}
 
+
+
+\IfFileExists{pgfplotstable.sty}{
+
+\subsection{Tabellen mit pgfplots}
+Mit pgfplots koennen Tabellen direkt aus einer CSV-Datei erstellt werden.
+
+\begin{table}[h]
+\centering
+\pgfplotstabletypeset[
+col sep = comma,
+every head row/.style={before row=\toprule,after row=\midrule},
+every last row/.style={after row=\bottomrule},
+display columns/0/.style={string type,column name={}}
+]
+{data/data.csv}
+\caption{Tabelle generiert aus einer CSV-Datei mit pgfplots}
+\end{table}
+}{}
+
+
+
 \section{Pseudocode}
 \Cref{alg:sample} zeigt einen Beispielalgorithmus.
 \begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
