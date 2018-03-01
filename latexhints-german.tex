@@ -311,7 +311,7 @@ Im Englischen bitte \verb1\Cref{...}1 (mit großem \enquote{C} am Anfang) verwen
 
 %Hier das Beispiel: Siehe Abschnitt \vref{hack1} und Abschnitt \vref{hack2}.
 
-\section{Definitionen}
+\section{DefinitiAn}
 \begin{definition}[Title]
   \label{def:def1}
   Definition Text
@@ -337,7 +337,7 @@ Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in d
   \item und auf eine andere Nummerierung umstellen
 \end{compactenum}
 
-\section{Weitere Illustrationen}
+\section{Weitere IllustratiAn}
 \Cref{fig:AnhangsChor,fig:AnhangsChor2} zeigen zwei Choreographien, die den Sachverhalt weiter erläutern sollen.
 Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu demonstrieren.
 
@@ -462,6 +462,111 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
 \caption{Ein Klassendiagramm mit tikz-uml generiert. Beispiel von Nicolas Kielbasiewicz adaptiert.}
 \end{figure}
 \end{center}
+
+
+\section{Tabellen und Abbildungen \"uber mehere Seiten}
+
+\subsection{Tabellen}
+
+\begin{longtable}{|l|l|l|}
+\caption{Tabelle \"uber mehere Seiten} \label{tab:long} \\
+
+\hline \multicolumn{1}{|c|}{\textbf{A}} & \multicolumn{1}{c|}{\textbf{B}} & \multicolumn{1}{c|}{\textbf{B}} \\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- von dor vorherigen Seite weitergrf\"uhrt}} \\
+\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{|r|}{{Wird auf der n\"achsten Seite fortgef\"uhrt}} \\ \hline
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+A & B C & D \\
+\end{longtable}
+
 
 
 \section{Schlusswort}
