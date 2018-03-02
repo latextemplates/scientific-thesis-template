@@ -425,6 +425,45 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
   \end{figure}
 }{}
 
+\section{UML-Diagramme mit tikz-uml}
+
+
+\begin{center}
+\begin{figure}
+\begin{tikzpicture}
+\begin{umlpackage}{p}
+\begin{umlpackage}{sp1}
+\umlclass[template=T]{A}{
+  n : uint \\ t : float
+}{}
+\umlclass[y=-3]{B}{
+  d : double
+}{
+  \umlvirt{setB(b : B) : void} \\ getB() : B}
+\end{umlpackage}
+\begin{umlpackage}[x=10,y=-6]{sp2}
+\umlinterface{C}{
+  n : uint \\ s : string
+}{}
+\end{umlpackage}
+\umlclass[x=2,y=-10]{D}{
+  n : uint
+  }{}
+\end{umlpackage}
+
+\umlassoc[geometry=-|-, arg1=tata, mult1=*, pos1=0.3, arg2=toto, mult2=1, pos2=2.9, align2=left]{C}{B}
+\umlunicompo[geometry=-|, arg=titi, mult=*, pos=1.7, stereo=vector]{D}{C}
+\umlimport[geometry=|-, anchors=90 and 50, name=import]{sp2}{sp1}
+\umlaggreg[arg=tutu, mult=1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{D}{D}
+\umlinherit[geometry=-|]{D}{B}
+\umlnote[x=2.5,y=-6, width=3cm]{B}{Eine Notiz f\"ur die Klasse B}
+\umlnote[x=7.5,y=-2]{import-2}{Eine Anmerkung}
+\end{tikzpicture}
+\caption{Ein Klassendiagramm mit tikz-uml generiert. Beispiel von Nicolas Kielbasiewicz adaptiert.}
+\end{figure}
+\end{center}
+
+
 \section{Schlusswort}
 Verbesserungsvorschläge für diese Vorlage sind immer willkommen.
 Bitte bei GitHub ein Ticket eintragen (\url{https://github.com/latextemplates/scientific-thesis-template/issues}).

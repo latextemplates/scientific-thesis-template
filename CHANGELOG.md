@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Add the package tikz-uml for generating uml diagrams
+
 ## [2.4.0] - 2018-02-28
 
 ### Added
