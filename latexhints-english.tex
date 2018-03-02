@@ -196,6 +196,26 @@ Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
   \caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD). Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.}
   \label{tab:Werte}
 \end{table}
+
+\IfFileExists{pgfplotstable.sty}{
+
+\subsection{Tabellen mit pgfplots}
+With the pgfplotstable package tables can be directly generated from a csv file.
+
+\begin{table}[h]
+\centering
+\pgfplotstabletypeset[
+col sep = comma,
+every head row/.style={before row=\toprule,after row=\midrule},
+every last row/.style={after row=\bottomrule},
+display columns/0/.style={string type,column name={}}
+]
+{data/data.csv}
+\caption{Tabelle direclty generated from the values of a csf file.}
+\end{table}
+}{}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Pseudocode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -370,6 +390,19 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
     \end{center}
     \caption{Plot of $\sin(x)$ direclty inside the figure environment with pgfplots.}
   \end{figure}
+  
+  \begin{figure}[h]
+    \begin{center}
+      \begin{tikzpicture}
+        \begin{axis}[xlabel=$x$,
+            ylabel=$y$]
+          \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Read coordinates from csv file and plot them
+        \end{axis}
+      \end{tikzpicture}
+    \end{center}
+    \caption{Coordinates $x$ and $y$ read from csv file and plotted pgfplots.}
+  \end{figure}
+  
 }{}
 
 \IfFileExists{tikz.sty}{
