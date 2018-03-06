@@ -25,6 +25,17 @@
 %
 %%%
 
+
+%%%
+% EN: Enable copy and paste of text from the PDF
+%     mmap enables mathematical symbols, but does not work with the newtx font set
+%     See: https://tex.stackexchange.com/a/64457/9075
+%     Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+%     Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+\usepackage{cmap}
+%%%
+
+
 %%%
 % EN: File encoding
 % DE: Codierung
@@ -652,6 +663,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EN: Fonts
 %% DE: Schriften
+%%
+%% !!! If you change the font, be sure that words such as "workflow" can
+%% !!! still be copied from the PDF. If this is not the case, you have
+%% !!! to use glyphtounicode. See comment at cmap package
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \automark[section]{chapter}
