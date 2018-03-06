@@ -346,19 +346,6 @@ Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\
 }.
 Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in der Fußnote setzt \verb+\footnote{\label{...}...}+ und anschließend mittels \verb+\cref{...}+ die Fußnote erneut verwendet\cref{fussnote}.
 
-\section{Verschiedenes}
-\label{sec:diff}
-\ifdeutsch
-  Ziffern (123\,654\,789) werden schön gesetzt.
-  Entweder in einer Linie oder als Minuskel-Ziffern.
-  Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
-\fi
-
-\begin{compactenum}[I.]
-  \item Man kann auch die Nummerierung dank paralist kompakt halten
-  \item und auf eine andere Nummerierung umstellen
-\end{compactenum}
-
 \section{Weitere Illustrationen}
 \Cref{fig:AnhangsChor,fig:AnhangsChor2} zeigen zwei Choreographien, die den Sachverhalt weiter erläutern sollen.
 Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu demonstrieren.
@@ -601,6 +588,19 @@ A & B C & D \\
 \end{longtable}
 
 
+
+\section{Verschiedenes}
+\label{sec:diff}
+\ifdeutsch
+  Ziffern (123\,654\,789) werden schön gesetzt.
+  Entweder in einer Linie oder als Minuskel-Ziffern.
+  Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
+\fi
+
+\begin{compactenum}[I.]
+  \item Man kann auch die Nummerierung dank paralist kompakt halten
+  \item und auf eine andere Nummerierung umstellen
+\end{compactenum}
 
 \section{Schlusswort}
 Verbesserungsvorschläge für diese Vorlage sind immer willkommen.

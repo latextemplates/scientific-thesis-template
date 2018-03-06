@@ -338,21 +338,6 @@ Im Englischen bitte \verb1\Cref{...}1 (mit großen \enquote{C} am Anfang) verwen
 Footnotes are provided by the command \verb+\footnote{...}+\footnote{\label{fussnote}Example footnote.}. Citing footnotes is possible by provinding a label\verb+\footnote{\label{...}...}+ and cite the footnote with \verb+\cref{...}+ in the text\cref{fussnote}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Verschiedenes}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:diff}
-\ifdeutsch
-  Ziffern (123\,654\,789) werden schön gesetzt.
-  Entweder in einer Linie oder als Minuskel-Ziffern.
-  Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
-\fi
-
-\begin{compactenum}[I.]
-  \item Man kann auch die Nummerierung dank paralist kompakt halten
-  \item und auf eine andere Nummerierung umstellen
-\end{compactenum}
-
 \section{Weitere Illustrationen}
 \Cref{fig:AnhangsChor,fig:AnhangsChor2} zeigen zwei Choreographien, die den Sachverhalt weiter erlÃ¤utern sollen.
 Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu demonstrieren.
@@ -567,6 +552,23 @@ A & BC & D \\
 A & BC & D \\
 A & BC & D \\
 \end{longtable}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Verschiedenes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:diff}
+\ifdeutsch
+  Ziffern (123\,654\,789) werden schön gesetzt.
+  Entweder in einer Linie oder als Minuskel-Ziffern.
+  Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
+\fi
+
+\begin{compactenum}[I.]
+  \item Man kann auch die Nummerierung dank paralist kompakt halten
+  \item und auf eine andere Nummerierung umstellen
+\end{compactenum}
 
 
 
