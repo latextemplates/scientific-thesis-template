@@ -405,24 +405,24 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
   
 }{}
 
-\IfFileExists{tikz.sty}{
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \section{Figures with tikz}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  The tikz is a package for creating graphics programmatically. With this package grids or other regular strucutres can be easliy generated.
 
-  \begin{figure}[ht]
-    \begin{center}
-      \begin{tikzpicture}
-        \draw(0,0) rectangle (4,4);
-        \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
-        \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
-        \draw(\x,\y) circle (1pt);
-      \end{tikzpicture}
-    \end{center}
-    \caption{A regular grid genrated with easily with two for loops.}\label{fig:tikz_example}
-  \end{figure}
-}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Figures with tikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The tikz is a package for creating graphics programmatically. With this package grids or other regular strucutres can be easliy generated.
+
+\begin{figure}[ht]
+  \begin{center}
+    \begin{tikzpicture}
+      \draw(0,0) rectangle (4,4);
+      \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+      \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+      \draw(\x,\y) circle (1pt);
+    \end{tikzpicture}
+  \end{center}
+  \caption{A regular grid genrated with easily with two for loops.}\label{fig:tikz_example}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{UML diagrams with tikz-uml}
