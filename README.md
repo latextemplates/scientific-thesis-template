@@ -50,7 +50,10 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 2. Download the file `source.zip`
 3. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
 4. Start texing at `main-english.tex` or `main-german.tex`.
-5. Users of Paderborn University: Adapt `logos/UBP-background-picture.pdf` to your needs. It has the format 20cm x 10cm.
+5. Users of Paderborn University:
+  - Start texing at `main-paderborn-english.tex` or `main-paderborn-german.tex`.
+  - Adapt `logos/UBP-background-picture.pdf` to your needs. It has the format 20cm x 10cm.
+  - Change `!TeX root =` in `latexhints-english.tex` and `latexhints-german.tex`.
 
 ### Usage at overleaf
 
