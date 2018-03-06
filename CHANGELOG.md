@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add the package tikz-uml for generating uml diagrams
 - Add the package longtables for tables over multiple pages
+
+### Changed
+- Reorderded `latexhints-*.tex` to keep topics (figures, tables, code) together
+
 ## [2.4.0] - 2018-02-28
 
 ### Added

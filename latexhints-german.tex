@@ -1,3 +1,4 @@
+% !TeX root = main-german.tex
 % !TeX spellcheck = de_DE
 % !TeX encoding = utf8
 
@@ -85,6 +86,72 @@ Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus D
 
 Quellcode im \lstinline|<listing />| ist auch möglich.
 
+
+\section{Pseudocode}
+\Cref{alg:sample} zeigt einen Beispielalgorithmus.
+\begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
+  \caption{Sample algorithm}
+  \label{alg:sample}
+  %EN: This is an environment from the algorithmicx package
+  \begin{algorithmic}
+    \Procedure{Sample}{$a$,$v_e$}
+      \State $\mathsf{parentHandled} \gets (a = \mathsf{process}) \lor \mathsf{visited}(a'), (a',c,a) \in \mathsf{HR}$
+      \State \Comment $(a',c'a) \in \mathsf{HR}$ denotes that $a'$ is the parent of $a$
+    \If{$\mathsf{parentHandled}\,\land(\mathcal{L}_\mathit{in}(a)=\emptyset\,\lor\,\forall l \in \mathcal{L}_\mathit{in}(a): \mathsf{visited}(l))$}
+      \State $\mathsf{visited}(a) \gets \text{true}$
+      \State $\mathsf{writes}_\circ(a,v_e) \gets
+        \begin{cases}
+          \mathsf{joinLinks}(a,v_e)                & \abs{\mathcal{L}_\mathit{in}(a)} > 0 \\
+          \mathsf{writes}_\circ(p,v_e)
+                                                   & \exists p: (p,c,a) \in \mathsf{HR}   \\
+          (\emptyset, \emptyset, \emptyset, false) & \text{otherwise}
+        \end{cases}
+      $
+    \If{$a\in\mathcal{A}_\mathit{basic}$}
+      \State \Call{HandleBasicActivity}{$a$,$v_e$}
+    \ElsIf{$a\in\mathcal{A}_\mathit{flow}$}
+      \State \Call{HandleFlow}{$a$,$v_e$}
+    \ElsIf{$a = \mathsf{process}$} \Comment Directly handle the contained activity
+      \State \Call{HandleActivity}{$a'$,$v_e$}, $(a,\bot,a') \in \mathsf{HR}$
+      \State $\mathsf{writes}_\bullet(a) \gets \mathsf{writes}_\bullet(a')$
+    \EndIf
+    \ForAll{$l \in \mathcal{L}_\mathit{out}(a)$}
+      \State \Call{HandleLink}{$l$,$v_e$}
+    \EndFor
+    \EndIf
+    \EndProcedure
+  \end{algorithmic}
+\end{Algorithmus}
+
+\clearpage
+Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der kann das nur mit folgendem \textbf{üblen} Hack tun:
+
+{
+\begin{minipage}{\textwidth}
+  \hrule height .8pt width\textwidth
+  \vskip.3em%\vskip\abovecaptionskip\relax
+  \stepcounter{Algorithmus}
+  \addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
+  \noindent\textbf{Algorithmus \theAlgorithmus} Description
+  %\stepcounter{algorithm}
+  %\addcontentsline{alg}{Algorithmus}{\thealgorithm{}\hskip0em Description}
+  %\textbf{Algorithmus \thealgorithm} Description
+  \vskip.3em%\vskip\belowcaptionskip\relax
+  \hrule height .5pt width\textwidth
+\end{minipage}
+%without the following line, the text is nerer at the rule
+\vskip-.3em
+%
+code goes here\\
+test2\\
+%
+\vskip-.7em
+\hrule height .5pt width\textwidth
+}
+
+
+
+
 \section{Abbildungen}
 
 Die \cref{fig:chor1} und \ref{fig:chor2} sind für das Verständnis dieses Dokuments wichtig.
@@ -162,189 +229,6 @@ Dies ist im Quellcode zu latex-tipps.tex beschrieben, allerdings auskommentiert.
   \end{figure}
 \fi % <-- Das hier wegnehmen, falls inkscape im Pfad ist
 
-\section{Tabellen}
-
-\cref{tab:Ergebnisse} zeigt Ergebnisse und die \cref{tab:Ergebnisse} zeigt wie numerische Daten in einer Tabelle representiert werden können.
-\begin{table}
-  \centering
-  \begin{tabular}{ccc}
-    \toprule
-    \multicolumn{2}{c}{\textbf{zusammengefasst}} & \textbf{Titel}                                                          \\ \midrule
-    Tabelle                                      & wie                                                           & in      \\
-    \url{tabsatz.pdf}                            & empfohlen                                                     & gesetzt \\
-
-    \multirow{2}{*}{Beispiel}                    & \multicolumn{2}{c}{ein schönes Beispiel}                                \\
-                                                 & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}           \\
-    \bottomrule
-  \end{tabular}
-  \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
-  \label{tab:Ergebnisse}
-\end{table}
-
-\begin{table}
-  \centering
-  \begin{tabular}{l *{8}{d{3.2}}}
-    \toprule
-
-                         & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}}                                                                                                                                       \\
-    \cmidrule(r){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
-
-    \textbf{Bedingungen} & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} \\
-    \midrule
-
-    W                    & 1.1                                      & 5.55                                     & 6.66                                     & .01                                      &                                &                                 &                                &                                 \\
-    X                    & 22.22                                    & 0.0                                      & 77.5                                     & .1                                       &                                &                                 &                                &                                 \\
-    Y                    & 333.3                                    & .1                                       & 11.11                                    & .05                                      &                                &                                 &                                &                                 \\
-    Z                    & 4444.44                                  & 77.77                                    & 14.06                                    & .3                                       &                                &                                 &                                &                                 \\
-    \bottomrule
-  \end{tabular}
-
-  \caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD).
-  Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.
-  }
-  \label{tab:Werte}
-\end{table}
-
-
-
-\IfFileExists{pgfplotstable.sty}{
-
-\subsection{Tabellen mit pgfplots}
-Mit pgfplots koennen Tabellen direkt aus einer CSV-Datei erstellt werden.
-
-\begin{table}[h]
-\centering
-\pgfplotstabletypeset[
-col sep = comma,
-every head row/.style={before row=\toprule,after row=\midrule},
-every last row/.style={after row=\bottomrule},
-display columns/0/.style={string type,column name={}}
-]
-{data/data.csv}
-\caption{Tabelle generiert aus einer CSV-Datei mit pgfplots}
-\end{table}
-}{}
-
-
-
-\section{Pseudocode}
-\Cref{alg:sample} zeigt einen Beispielalgorithmus.
-\begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
-  \caption{Sample algorithm}
-  \label{alg:sample}
-  %EN: This is an environment from the algorithmicx package
-  \begin{algorithmic}
-    \Procedure{Sample}{$a$,$v_e$}
-      \State $\mathsf{parentHandled} \gets (a = \mathsf{process}) \lor \mathsf{visited}(a'), (a',c,a) \in \mathsf{HR}$
-      \State \Comment $(a',c'a) \in \mathsf{HR}$ denotes that $a'$ is the parent of $a$
-    \If{$\mathsf{parentHandled}\,\land(\mathcal{L}_\mathit{in}(a)=\emptyset\,\lor\,\forall l \in \mathcal{L}_\mathit{in}(a): \mathsf{visited}(l))$}
-      \State $\mathsf{visited}(a) \gets \text{true}$
-      \State $\mathsf{writes}_\circ(a,v_e) \gets
-        \begin{cases}
-          \mathsf{joinLinks}(a,v_e)                & \abs{\mathcal{L}_\mathit{in}(a)} > 0 \\
-          \mathsf{writes}_\circ(p,v_e)
-                                                   & \exists p: (p,c,a) \in \mathsf{HR}   \\
-          (\emptyset, \emptyset, \emptyset, false) & \text{otherwise}
-        \end{cases}
-      $
-    \If{$a\in\mathcal{A}_\mathit{basic}$}
-      \State \Call{HandleBasicActivity}{$a$,$v_e$}
-    \ElsIf{$a\in\mathcal{A}_\mathit{flow}$}
-      \State \Call{HandleFlow}{$a$,$v_e$}
-    \ElsIf{$a = \mathsf{process}$} \Comment Directly handle the contained activity
-      \State \Call{HandleActivity}{$a'$,$v_e$}, $(a,\bot,a') \in \mathsf{HR}$
-      \State $\mathsf{writes}_\bullet(a) \gets \mathsf{writes}_\bullet(a')$
-    \EndIf
-    \ForAll{$l \in \mathcal{L}_\mathit{out}(a)$}
-      \State \Call{HandleLink}{$l$,$v_e$}
-    \EndFor
-    \EndIf
-    \EndProcedure
-  \end{algorithmic}
-\end{Algorithmus}
-
-\clearpage
-Und wer einen Algorithmus schreiben möchte, der über mehrere Seiten geht, der kann das nur mit folgendem \textbf{üblen} Hack tun:
-
-{
-\begin{minipage}{\textwidth}
-  \hrule height .8pt width\textwidth
-  \vskip.3em%\vskip\abovecaptionskip\relax
-  \stepcounter{Algorithmus}
-  \addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
-  \noindent\textbf{Algorithmus \theAlgorithmus} Description
-  %\stepcounter{algorithm}
-  %\addcontentsline{alg}{Algorithmus}{\thealgorithm{}\hskip0em Description}
-  %\textbf{Algorithmus \thealgorithm} Description
-  \vskip.3em%\vskip\belowcaptionskip\relax
-  \hrule height .5pt width\textwidth
-\end{minipage}
-%without the following line, the text is nerer at the rule
-\vskip-.3em
-%
-code goes here\\
-test2\\
-%
-\vskip-.7em
-\hrule height .5pt width\textwidth
-}
-
-
-\section{Abkürzungen}
-
-Beim ersten Durchlauf betrug die \gls{fr} 5.
-Beim zweiten Durchlauf war die \gls{fr} 3.
-Die Pluralform sieht man hier: \glspl{er}.
-Um zu demonstrieren, wie das Abkürzungsverzeichnis bei längeren Beschreibungstexten aussieht, muss hier noch \glspl{rdbms} erwähnt werden.
-
-Mit \verb+\gls{...}+ können Abkürzungen eingebaut werden, beim ersten Aufrufen wird die lange Form eingesetzt.
-Beim wiederholten Verwenden von \verb+\gls{...}+ wird automatisch die kurz Form angezeigt.
-Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt.
-Mit \verb+\glspl{...}+ wird die Pluralform verwendet.
-Möchte man, dass bei der ersten Verwendung direkt die Kurzform erscheint, so kann man mit \verb+\glsunset{...}+ eine Abkürzung als bereits verwendet markieren.
-Das Gegenteil erreicht man mit \verb+\glsreset{...}+.
-
-Definiert werden Abkürzungen in der Datei \textit{content\\ausarbeitung.tex} mithilfe von \verb+\newacronym{...}{...}{...}+.
-
-Mehr Infos unter: \url{http://tug.ctan.org/macros/latex/contrib/glossaries/glossariesbegin.pdf}
-
-\section{Verweise}
-Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
-\enquote{Siehe \vref{sec:mf}}.
-Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}cref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird.
-\texttt{vref}: \enquote{\vref{sec:firstsectioninlatexhints}}, \texttt{cref}: \enquote{\cref{sec:firstsectioninlatexhints}}, \texttt{ref}: \enquote{\ref{sec:firstsectioninlatexhints}}.
-
-Falls \enquote{varioref} Schwierigkeiten macht, dann kann man stattdessen \enquote{cref} verwenden.
-Dies erzeugt auch das Wort \enquote{Abschnitt} automatisch: \cref{sec:mf}.
-Das geht auch für Abbildungen usw.
-Im Englischen bitte \verb1\Cref{...}1 (mit großem \enquote{C} am Anfang) verwenden.
-
-
-%Mit MiKTeX Installation ab dem 2012-01-16 nicht mehr nötig
-%Falls ein Abschnitt länger als eine Seite wird und man mittels \texttt{\textbackslash{}vref} auf eine konkrete Stelle in der Section
-%verweisen möchte, dann sollte man \texttt{\textbackslash{}phantomsection} verwenden und dann wird
-%auch bei \texttt{vref} die richtige Seite angeben.
-
-%%The link location will be placed on the line below.
-%%Tipp von http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#The_hyperref_package_and_.5Cphantomsection
-%\phantomsection
-%\label{alabel}
-%Das Beispiel für \texttt{\textbackslash{}phantomsection} bitte im \LaTeX{}-Quellcode anschauen.
-
-%Hier das Beispiel: Siehe Abschnitt \vref{hack1} und Abschnitt \vref{hack2}.
-
-\section{Definitionen}
-\begin{definition}[Title]
-  \label{def:def1}
-  Definition Text
-\end{definition}
-
-\Cref{def:def1} zeigt \ldots
-
-\section{Fußnoten}
-Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\label{fussnote}Diese Fußnote ist ein Beispiel.
-}.
-Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in der Fußnote setzt \verb+\footnote{\label{...}...}+ und anschließend mittels \verb+\cref{...}+ die Fußnote erneut verwendet\cref{fussnote}.
 
 \section{Weitere Illustrationen}
 \Cref{fig:AnhangsChor,fig:AnhangsChor2} zeigen zwei Choreographien, die den Sachverhalt weiter erläutern sollen.
@@ -445,8 +329,8 @@ Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukt
   \caption{Eine tikz-Graphik.}\label{fig:tikz_example}
 \end{figure}
 
-\section{UML-Diagramme mit tikz-uml}
 
+\section{UML-Diagramme mit tikz-uml}
 
 \begin{center}
 \begin{figure}
@@ -484,9 +368,71 @@ Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukt
 \end{center}
 
 
-\section{Tabellen und Abbildungen \"uber mehere Seiten}
+\section{Tabellen}
 
-\subsection{Tabellen}
+\cref{tab:Ergebnisse} zeigt Ergebnisse und die \cref{tab:Ergebnisse} zeigt wie numerische Daten in einer Tabelle representiert werden können.
+\begin{table}
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \multicolumn{2}{c}{\textbf{zusammengefasst}} & \textbf{Titel}                                                          \\ \midrule
+    Tabelle                                      & wie                                                           & in      \\
+    \url{tabsatz.pdf}                            & empfohlen                                                     & gesetzt \\
+
+    \multirow{2}{*}{Beispiel}                    & \multicolumn{2}{c}{ein schönes Beispiel}                                \\
+                                                 & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}           \\
+    \bottomrule
+  \end{tabular}
+  \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
+  \label{tab:Ergebnisse}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{l *{8}{d{3.2}}}
+    \toprule
+
+                         & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}}                                                                                                                                       \\
+    \cmidrule(r){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
+
+    \textbf{Bedingungen} & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} \\
+    \midrule
+
+    W                    & 1.1                                      & 5.55                                     & 6.66                                     & .01                                      &                                &                                 &                                &                                 \\
+    X                    & 22.22                                    & 0.0                                      & 77.5                                     & .1                                       &                                &                                 &                                &                                 \\
+    Y                    & 333.3                                    & .1                                       & 11.11                                    & .05                                      &                                &                                 &                                &                                 \\
+    Z                    & 4444.44                                  & 77.77                                    & 14.06                                    & .3                                       &                                &                                 &                                &                                 \\
+    \bottomrule
+  \end{tabular}
+
+  \caption{Beispieltabelle f\"{u}r 4 Bedingungen (W-Z) mit jeweils 4 Parameters mit (M und SD).
+  Hinweiß: immer die selbe anzahl an Nachkommastellen angeben.
+  }
+  \label{tab:Werte}
+\end{table}
+
+
+
+\IfFileExists{pgfplotstable.sty}{
+
+\subsection{Tabellen mit pgfplots}
+Mit pgfplots koennen Tabellen direkt aus einer CSV-Datei erstellt werden.
+
+\begin{table}[h]
+\centering
+\pgfplotstabletypeset[
+col sep = comma,
+every head row/.style={before row=\toprule,after row=\midrule},
+every last row/.style={after row=\bottomrule},
+display columns/0/.style={string type,column name={}}
+]
+{data/data.csv}
+\caption{Tabelle generiert aus einer CSV-Datei mit pgfplots}
+\end{table}
+}{}
+
+
+\section{Tabellen über mehere Seiten}
 
 \begin{longtable}{|l|l|l|}
 \caption{Tabelle \"uber mehere Seiten} \label{tab:long} \\
@@ -587,6 +533,65 @@ A & B C & D \\
 A & B C & D \\
 \end{longtable}
 
+
+\section{Abkürzungen}
+
+Beim ersten Durchlauf betrug die \gls{fr} 5.
+Beim zweiten Durchlauf war die \gls{fr} 3.
+Die Pluralform sieht man hier: \glspl{er}.
+Um zu demonstrieren, wie das Abkürzungsverzeichnis bei längeren Beschreibungstexten aussieht, muss hier noch \glspl{rdbms} erwähnt werden.
+
+Mit \verb+\gls{...}+ können Abkürzungen eingebaut werden, beim ersten Aufrufen wird die lange Form eingesetzt.
+Beim wiederholten Verwenden von \verb+\gls{...}+ wird automatisch die kurz Form angezeigt.
+Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt.
+Mit \verb+\glspl{...}+ wird die Pluralform verwendet.
+Möchte man, dass bei der ersten Verwendung direkt die Kurzform erscheint, so kann man mit \verb+\glsunset{...}+ eine Abkürzung als bereits verwendet markieren.
+Das Gegenteil erreicht man mit \verb+\glsreset{...}+.
+
+Definiert werden Abkürzungen in der Datei \textit{content\\ausarbeitung.tex} mithilfe von \verb+\newacronym{...}{...}{...}+.
+
+Mehr Infos unter: \url{http://tug.ctan.org/macros/latex/contrib/glossaries/glossariesbegin.pdf}
+
+
+\section{Verweise}
+Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
+\enquote{Siehe \vref{sec:mf}}.
+Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}cref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird.
+\texttt{vref}: \enquote{\vref{sec:firstsectioninlatexhints}}, \texttt{cref}: \enquote{\cref{sec:firstsectioninlatexhints}}, \texttt{ref}: \enquote{\ref{sec:firstsectioninlatexhints}}.
+
+Falls \enquote{varioref} Schwierigkeiten macht, dann kann man stattdessen \enquote{cref} verwenden.
+Dies erzeugt auch das Wort \enquote{Abschnitt} automatisch: \cref{sec:mf}.
+Das geht auch für Abbildungen usw.
+Im Englischen bitte \verb1\Cref{...}1 (mit großem \enquote{C} am Anfang) verwenden.
+
+
+%Mit MiKTeX Installation ab dem 2012-01-16 nicht mehr nötig
+%Falls ein Abschnitt länger als eine Seite wird und man mittels \texttt{\textbackslash{}vref} auf eine konkrete Stelle in der Section
+%verweisen möchte, dann sollte man \texttt{\textbackslash{}phantomsection} verwenden und dann wird
+%auch bei \texttt{vref} die richtige Seite angeben.
+
+%%The link location will be placed on the line below.
+%%Tipp von http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#The_hyperref_package_and_.5Cphantomsection
+%\phantomsection
+%\label{alabel}
+%Das Beispiel für \texttt{\textbackslash{}phantomsection} bitte im \LaTeX{}-Quellcode anschauen.
+
+%Hier das Beispiel: Siehe Abschnitt \vref{hack1} und Abschnitt \vref{hack2}.
+
+
+\section{Definitionen}
+\begin{definition}[Title]
+  \label{def:def1}
+  Definition Text
+\end{definition}
+
+\Cref{def:def1} zeigt \ldot
+s
+
+\section{Fußnoten}
+Fußnoten können mit dem Befehl \verb+\footnote{...}+ gesetzt werden\footnote{\label{fussnote}Diese Fußnote ist ein Beispiel.
+}.
+Mehrfache Verwendung von Fußnoten ist möglich indem man zu erst ein Label in der Fußnote setzt \verb+\footnote{\label{...}...}+ und anschließend mittels \verb+\cref{...}+ die Fußnote erneut verwendet\cref{fussnote}.
 
 
 \section{Verschiedenes}
