@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
-- Add the package tikz-uml for generating uml diagrams
-- Add the package longtables for tables over multiple pages
+- Add the package tikz-uml for generating uml diagrams.
+- Add the package longtables for tables over multiple pages.
 
 ### Changed
-- Reorderded `latexhints-*.tex` to keep topics (figures, tables, code) together
+- Reorderded `latexhints-*.tex` to keep topics (figures, tables, code) together.
 - Switch from `glyphtounicode` to [cmap](https://ctan.org/pkg/cmap) package.
+
+### Fixed
+- Compilation with `lualatex` works again.
 
 ## [2.4.0] - 2018-02-28
 

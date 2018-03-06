@@ -45,7 +45,8 @@
 %   * fancyvrb mit §
 %   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/
 \ifluatex
-  %no package loading required
+  % EN: See https://tex.stackexchange.com/a/158517/9075
+  \usepackage[utf8]{luainputenc}
 \else
   \usepackage[utf8]{inputenc}
 \fi
