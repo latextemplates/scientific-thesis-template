@@ -17,7 +17,15 @@ graphics/*.pdf_tex
 .idea/
 
 
-# Created by https://www.gitignore.io/api/latex,jabref,microsoftoffice,libreoffice,emacs
+
+# Created by https://www.gitignore.io/api/code,latex,linux,emacs,jabref,windows,libreoffice,microsoftoffice
+
+### Code ###
+# Visual Studio Code - https://code.visualstudio.com/
+.settings/
+.vscode/
+tsconfig.json
+jsconfig.json
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -316,6 +324,20 @@ TSWLatexianTemp*
 # LibreOffice locks
 .~lock.*#
 
+### Linux ###
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
 ### MicrosoftOffice ###
 *.tmp
 
@@ -334,4 +356,26 @@ TSWLatexianTemp*
 # Visio autosave temporary files
 *.~vsd*
 
-# End of https://www.gitignore.io/api/latex,jabref,microsoftoffice,libreoffice,emacs
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+
+# End of https://www.gitignore.io/api/code,latex,linux,emacs,jabref,windows,libreoffice,microsoftoffice
