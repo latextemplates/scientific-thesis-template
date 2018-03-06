@@ -147,7 +147,7 @@ For instance, for support of makeglossaries see <http://tex.stackexchange.com/qu
 See installation hints of how to update them at different systems.
 
 
-### Q: Overleaf copmlains about missing `.sty` files.
+### Q: Overleaf complains about missing `.sty` files.
 
 Google for the name of the `sty` and upload it to overleaf.
 As of 2018-02-17, these are:
