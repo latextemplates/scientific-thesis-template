@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Add package [selnolig](https://ctan.org/pkg/selnolig) to correctly handle [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
-- Add the package tikz-uml for generating uml diagrams.
-- Add the package longtables for tables over multiple pages.
+- Add package [tikz-uml](https://perso.ensta-paristech.fr/~kielbasi/tikzuml/) for generating uml diagrams.
+- Add package [longtable](https://www.ctan.org/pkg/longtable) for tables over multiple pages.
 
 ### Changed
 - Monospaced font is now Inconsolata.
