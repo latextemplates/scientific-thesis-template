@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Switch from `glyphtounicode` to [cmap](https://ctan.org/pkg/cmap) package.
 
 ### Fixed
+- Fix encoding in PDF bookmarks (pdf.js).
 - Compilation with `lualatex` works again.
 
 ## [2.4.0] - 2018-02-28
