@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Add package [selnolig](https://ctan.org/pkg/selnolig) to correctly handle [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
 - Add the package tikz-uml for generating uml diagrams.
 - Add the package longtables for tables over multiple pages.
 

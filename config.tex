@@ -110,6 +110,11 @@
   \addto\captionsngerman{%
     \renewcommand\abstractname{Kurzfassung}%
   }
+  \ifluatex
+    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
+    %     for a discussion
+    \usepackage[ngerman]{selnolig}
+  \fi
 \else
   % EN: Set English as language and allow to write hyphenated"=words
   %     `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish).
@@ -117,6 +122,11 @@
   \usepackage[ngerman,english]{babel}
   % EN: Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
   \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+  \ifluatex
+    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
+    %     for a discussion
+    \usepackage[english]{selnolig}
+  \fi
 \fi
 %
 %%%
