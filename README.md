@@ -32,9 +32,9 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 
 ## Characteristics of the template
 
-* Most recent packages and package configuration based on long-time experience
-* Open for contributions
+* Most recent packages and package configuration based on long-time experience.
 * [lualatex](http://www.luatex.org/) (with [pdflatex](https://en.wikipedia.org/wiki/PdfTeX) fallback) to enable proper typeset [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
+* Open for contributions.
 * [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
 * [biblatex]+[biber] instead of plain [bibtex], because biblatex fully supports UTF-8 and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
 * Automatic adjustment of wrong [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) using the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package
