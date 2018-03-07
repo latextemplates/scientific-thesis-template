@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add the package longtables for tables over multiple pages.
 
 ### Changed
+- Monospaced font is now Inconsolata.
 - Reorderded `latexhints-*.tex` to keep topics (figures, tables, code) together.
 - Switch from `glyphtounicode` to [cmap](https://ctan.org/pkg/cmap) package.
 

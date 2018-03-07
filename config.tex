@@ -46,7 +46,8 @@
 %   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/
 \ifluatex
   % EN: See https://tex.stackexchange.com/a/158517/9075
-  \usepackage[utf8]{luainputenc}
+  %     Not required, because of usage of fontspec package
+  %\usepackage[utf8]{luainputenc}
 \else
   \usepackage[utf8]{inputenc}
 \fi
@@ -686,9 +687,20 @@
 %%%
 
 %Times Roman for all text
-\RequirePackage{newtxtext}
-\RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+\ifluatex
+  \usepackage{fontspec}
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont[Scale=.9]{TeX Gyre Heros}
+  \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
+  \RequirePackage{newtxmath}
+\else
+  \RequirePackage{newtxtext}
+  \RequirePackage{newtxmath}
+  % EN: looks good with times, but no equivalent for lualatex found,
+  %     therefore replaced with inconsolata
+  %\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+  \RequirePackage[varl,scaled=.9]{inconsolata}
+\fi
 
 %EN: Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
 %    This is the modern package for "Computer Modern".
