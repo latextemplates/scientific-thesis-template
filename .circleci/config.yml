@@ -5,12 +5,12 @@ jobs:
        - image: koppor/texlive
      steps:
        - checkout
-       # test lualatex compilation
-       - run: lualatex main-german.tex
-       - run: lualatex -shell-escape main-minted-german.tex
-       - run: lualatex main-english.tex
-       - run: lualatex main-paderborn-german.tex
-       - run: lualatex main-paderborn-english.tex
+       # test pdflatex compilation
+       - run: pdflatex main-german.tex
+       - run: pdflatex -shell-escape main-minted-german.tex
+       - run: pdflatex main-english.tex
+       - run: pdflatex main-paderborn-german.tex
+       - run: pdflatex main-paderborn-english.tex
        # cleanup
        - run: git clean -xdf
        # normal compilation and release to homepage
