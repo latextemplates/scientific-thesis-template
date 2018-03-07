@@ -12,7 +12,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add package [longtable](https://www.ctan.org/pkg/longtable) for tables over multiple pages.
 
 ### Changed
-- Default compiler is `lualatex` (instead of `pdflatex`): `% !TeX program` and `.latexmkrc` adapted accordingly.
 - Monospaced font is now Inconsolata.
 - Reorderded `latexhints-*.tex` to keep topics (figures, tables, code) together.
 - Switch from `glyphtounicode` to [cmap](https://ctan.org/pkg/cmap) package.
