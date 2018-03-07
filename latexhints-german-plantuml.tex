@@ -1,0 +1,59 @@
+\Cref{fig:umlcar} zeigt ein einfaches UML-Diagramm mittels PlantUML.
+
+\begin{figure}
+  \centering
+  \begin{plantuml}
+  @startuml
+    class Car
+
+    Driver - Car : drives >
+    Car *- Wheel : have 4 >
+    Car -- Person : < owns
+  @enduml
+  \end{plantuml}
+  \caption{Einfaches PlantUML-Diagramm}
+  \label{fig:umlcar}
+\end{figure}
+
+\Cref{fig:plantuml} zeigt das Beispiel von \cref{fig:uml} mittels PlantUML.
+
+\begin{figure}
+  \centering
+  \begin{plantuml}
+    @startuml
+    package "p" #DDDDDD {
+      package "sp1" #DDDDDD {
+        class A<T> {
+          + n : uint
+          + t : float
+        }
+        class B {
+          + d : double
+          - setB(b: B): void
+          + getB(): B
+        }
+        note bottom of Class: A note on class B
+      }
+      package "sp2" #DDDDDD {
+        interface  C << interface >> {
+          + n : uint
+          + s : string
+        }
+      }
+      class D {
+        + n : uint
+      }
+
+      sp2 ..> sp1 : N1
+      note on link: An annotation
+
+      B <|--D
+      B "1 toto" --> "0..* tata" C
+      D "1" o-- D : tutu
+      D *--> "titi 0..*" C : << vector >>
+    }
+    @enduml
+  \end{plantuml}
+  \caption{PlantUML-Diagramm}
+  \label{fig:plantuml}
+\end{figure}

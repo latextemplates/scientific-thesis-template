@@ -300,7 +300,7 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
     \end{center}
     \caption{$\sin(x)$ mit pgfplots.}
   \end{figure}
-  
+
    \begin{figure}[h]
     \begin{center}
       \begin{tikzpicture}
@@ -312,7 +312,7 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
     \end{center}
     \caption{Koordianten $x$ und $y$ aus einer CSV-Datei geplottet mit pgfplots.}
   \end{figure}
-  
+
 }{}
 
 \section{Figures with tikz}
@@ -371,6 +371,11 @@ Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukt
 \end{figure}
 \end{center}
 
+\section{UML-Diagramme mit PlantUML}
+
+Falls \lualatex{} verwendet wird und PlantUML installiert ist, können UML-Diagramme mittels PlantUML erstellt werden.
+
+\IfFileExists{plantuml.sty}{\input{latexhints-german-plantuml}}{}
 
 \section{Tabellen}
 
@@ -442,12 +447,12 @@ display columns/0/.style={string type,column name={}}
 \begin{longtable}{|l|l|l|}
 \caption{Tabelle \"uber mehere Seiten} \label{tab:long} \\
 
-\hline \multicolumn{1}{|c|}{\textbf{A}} & \multicolumn{1}{c|}{\textbf{B}} & \multicolumn{1}{c|}{\textbf{B}} \\ \hline 
+\hline \multicolumn{1}{|c|}{\textbf{A}} & \multicolumn{1}{c|}{\textbf{B}} & \multicolumn{1}{c|}{\textbf{B}} \\ \hline
 \endfirsthead
 
 \multicolumn{3}{c}%
 {{\bfseries \tablename\ \thetable{} -- von dor vorherigen Seite weitergeführt}} \\
-\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline 
+\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
 \endhead
 
 \hline \multicolumn{3}{|r|}{{Wird auf der n\"achsten Seite fortgef\"uhrt}} \\ \hline

@@ -266,7 +266,7 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
     \end{center}
     \caption{Plot of $\sin(x)$ direclty inside the figure environment with pgfplots.}
   \end{figure}
-  
+
   \begin{figure}[h]
     \begin{center}
       \begin{tikzpicture}
@@ -278,7 +278,7 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
     \end{center}
     \caption{Coordinates $x$ and $y$ read from csv file and plotted pgfplots.}
   \end{figure}
-  
+
 }{}
 
 
@@ -301,7 +301,7 @@ The tikz is a package for creating graphics programmatically. With this package 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{UML diagrams with tikz-uml}
+\section{UML diagrams using tikz-uml}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \Cref{fig:uml} presents a class diagram typeset using tikz-uml.
@@ -342,6 +342,11 @@ The tikz is a package for creating graphics programmatically. With this package 
 \end{figure}
 \end{center}
 
+\section{UML diagramme using PlantUML}
+
+In case \lualatex{} is used and PlantUML is installed, UML diagrams can be defined using PlantUML.
+
+\IfFileExists{plantuml.sty}{\input{latexhints-english-plantuml}}{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -411,12 +416,12 @@ display columns/0/.style={string type,column name={}}
 \begin{longtable}{|l|l|l|}
 \caption{A sample long table.} \label{tab:long} \\
 
-\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline 
+\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
 \endfirsthead
 
 \multicolumn{3}{c}%
 {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
-\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline 
+\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
 \endhead
 
 \hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline

@@ -350,7 +350,7 @@
   basicstyle=\footnotesize\ttfamily,
   commentstyle=\slshape,
   % DE: Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
-  stringstyle=\ttfamily, 
+  stringstyle=\ttfamily,
   breaklines=true,
   breakatwhitespace=true,
   % EN: alternative: fixed
@@ -1200,9 +1200,16 @@
 
 %%%
 % EN: tikz-uml
-%     Package for creating uml diagramms 
+%     Package for creating uml diagramms
 \usepackage{tikz-uml}
 %%%
+
+%%%
+% EN: Enable PlantUML listings in the environment "plantuml"
+\IfFileExists{plantuml.sty}{
+  \usepackage[output=latex]{plantuml}
+}{}
+%%
 
 %%
 % EN: Layout: bottoms of pages not aligned to each other
