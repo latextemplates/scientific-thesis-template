@@ -622,10 +622,12 @@
 
 %%%
 % EN: Provides hyperlinks
+%     Option "unicode" fixes umlauts in the PDF bookmarks - see https://tex.stackexchange.com/a/338770/9075
+%
 % DE: Erlaubt Hyperlinks im Dokument.
 %     Alle Optionen nach \hypersetup verschoben, sonst crash
 %     Siehe auch: "Praktisches LaTeX" - www.itp.uni-hannover.de/~kreutzm
-\usepackage{hyperref}
+\usepackage[unicode]{hyperref}
 %
 
 % EN: Define colors
@@ -651,7 +653,6 @@
 }
 %
 %%%
-
 
 %%%
 % EN: Extensions for references inside the document (\cref{fig:sample}, ...)
