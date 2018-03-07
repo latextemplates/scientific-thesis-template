@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [2.5.0] - 2018-03-07
 
 ### Added
 - Add package [selnolig](https://ctan.org/pkg/selnolig) to correctly handle [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
@@ -149,8 +149,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2.4.0...HEAD
-[2.3.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.3.0...2.4.0
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2.5.0...HEAD
+[2.5.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.4.0...2.5.0
+[2.4.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/latextemplates/scientific-thesis-template/compare/2.1.0...2.1.1
