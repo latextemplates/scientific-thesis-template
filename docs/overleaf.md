@@ -43,7 +43,7 @@ The Overleaf FAQ states at [What packages do you support?](https://www.overleaf.
 The templates makes use of two packages, which are not included at overleaf until now.
 Thus, you have to upload the sty files manually.
 
-8. Upload llcaps
+8. Upload `llcaps.sty`
 
 ![lccaps](overleaf-step-8.1.png)
 
@@ -51,9 +51,17 @@ Insert the URL <https://raw.githubusercontent.com/latextemplates/stys-for-overle
 
 ![lccaps](overleaf-step-8.2.png)
 
+9. Upload `scientific-thesis-cover.sty`
 
-7. Now you can start working in the main file.
+Similar as `llcaps.sty`. Use <https://raw.githubusercontent.com/latextemplates/scientific-thesis-cover/master/scientific-thesis-cover.sty> as URL.
 
+10. Switch build tool to loalatex.
+
+Choose lualatex in project settings as outlined at <https://www.overleaf.com/blog/167-new-build-options-available-on-writelatex-compile-with-lualatex-or-latex-plus-dvipdf#.WqE7rOdG3kY>.
+
+  ![Switch to lualatex](https://www.filepicker.io/api/file/aPVX5DQ0T9KSp8UNeWk1)
+
+11. Now you can start working in the main file.
 
 
 ## Manual setup
