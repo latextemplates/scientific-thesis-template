@@ -51,15 +51,23 @@ Beispielsweise $\mathbb{N}$ für die Menge der natürlichen Zahlen.
 Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{http://texdoc.net/pkg/amsmath} gelesen werden.
 
 Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} verwendet wurde.
+\begin{filecontents*}{\democodefile}
 \begin{equation*}
   x = y
 \end{equation*}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
 
 Die Gleichung~\ref{eq:test} erhält eine Nummer:
+\begin{filecontents*}{\democodefile}
 \begin{equation}
   \label{eq:test}
   x = y
 \end{equation}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
 
 Die Vorlage bietet \verb+\abs+ an, damit die Absolutbetragsstriche richtig skalieren:
 $\abs{X}$.
@@ -71,6 +79,7 @@ Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{h
 Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus Dateien lesen.
 
 %Listing-Umgebung wurde durch \newfloat{Listing} definiert
+
 \begin{Listing}
   \begin{lstlisting}[language=XML]
 <listing name="second sample">
@@ -161,12 +170,15 @@ Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 %Die Parameter in eckigen Klammern sind optionale Parameter - z.B. [htb!]
 %htb! bedeutet: "Liebes LaTeX, bitte platziere diese Abbildung zuerst hier ("_h_ere"). Falls das nicht funktioniert, dann bitte oben auf der Seite ("_t_op"). Und falls das nicht geht, bitte unten auf der Seite ("_b_ottom"). Und bitte, bitte bevorzuge hier und oben, auch wenn's net so optimal aussieht ("!")
 %Diese sollten nach Möglichkeit NICHT verwendet werden. LaTeX's Algorithmus für das Platzieren der Gleitumgebung ist schon sehr gut!
+
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{choreography.pdf}
   \caption{Beispiel-Choreographie}
   \label{fig:chor1}
 \end{figure}
+
+
 
 \begin{figure}
   \centering
