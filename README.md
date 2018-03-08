@@ -185,7 +185,7 @@ Edit `preambel/chapterheads.tex`.
   - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
   - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
   - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `config.tex`.
-  - Ensure that you run `pdflatex` at least three times and that there are no "undefined references".
+  - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
   - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
 
 
@@ -222,7 +222,7 @@ Make targets:
   - `choco install python`
   - `pip install pygments`
 1. Start with `main-minted-german.tex`
-2. Use `-shell-escape` when texing: `pdflatex -shell-escape main-minted-german.tex`
+2. Use `-shell-escape` when texing: `lualatex -shell-escape main-minted-german.tex`
 
 
 ### Q: Is there any other place to look for further information?
@@ -268,7 +268,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 ### Directories
 
 * [graphics](graphics/) Directory containing the figures.
-  By using PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
+  By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
 
 ### Files
 
