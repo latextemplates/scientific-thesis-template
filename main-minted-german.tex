@@ -1,6 +1,7 @@
 % !TeX spellcheck = de-DE
 % !TeX encoding = utf8
 % !TeX program = lualatex
+% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -83,8 +84,8 @@ enddate={5.\ Januar 2014}  % English: January 5, 2014; ISO: 2014-01-05
   \Configure{graphics*}
   {pdf}
   {\Needs{"convert \csname Gin@base\endcsname.pdf
-      \csname Gin@base\endcsname.png"}%  
-    \Picture[pict]{\csname Gin@base\endcsname.png}%  
+      \csname Gin@base\endcsname.png"}%
+    \Picture[pict]{\csname Gin@base\endcsname.png}%
   }
 \fi
 
@@ -150,7 +151,7 @@ enddate={5.\ Januar 2014}  % English: January 5, 2014; ISO: 2014-01-05
 \listoftables
 
 %Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
-%\lstlistoflistings 
+%\lstlistoflistings
 %ansonsten:
 \ifdeutsch
   \listof{Listing}{Verzeichnis der Listings}

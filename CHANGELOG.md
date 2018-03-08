@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Magic comment `% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]` to `main-minted-german.tex`.
+
 ### Changed
 - Default compiler is `lualatex` (instead of `pdflatex`): `% !TeX program` and `.latexmkrc` adapted accordingly.
 
