@@ -63,8 +63,7 @@ See [overleaf](overleaf.md).
 ### Usage using plain git
 
 We do not recommend to fork this project as a fork denotes that you work on improving the template itself.
-Thus, just create a new git repository and populate it using the files provided at <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip>
-
+Thus, just create a new git repository and populate it using the files provided at `source.zip`, which you downloaded at the [latest release page](https://github.com/latextemplates/scientific-thesis-template/releases/latest).
 
 ## Recommended LaTeX environments
 
