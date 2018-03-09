@@ -34,14 +34,14 @@ Der folgende Satz demonstriert \begin{inparaenum}[1.]
   \item die Großschreibung von Autorennamen am Satzanfang,
   \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
   \item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
-  \item dass in dem Literaturverzeichnis der Namenspräfix \enquote{van der} von \enquote{Wil M.\,P.\ van der Aalst} steht.
+  \item dass in dem Literaturverzeichnis der Namenspräfix \qq{van der} von \qq{Wil M.\,P.\ van der Aalst} steht.
 \end{inparaenum}
 \Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
 
 Der folgende Satz demonstriert, dass man mittels \texttt{label} in einem Bibliopgrahie"=Eintrag den Textteil des generierten Labels überschreiben kann, aber das Jahr und die Eindeutigkeit noch von biber generiert wird.
 The workflow engine Apache ODE \cite{ApacheODE} executes \BPEL processes reliably.
 
-Wörter am besten mittels \texttt{\textbackslash enquote\{...\}} \enquote{einschließen}, dann werden die richtigen Anführungszeichen verwendet.
+Wörter am besten mittels \texttt{\textbackslash qq\{...\}} \qq{einschließen}, dann werden die richtigen Anführungszeichen verwendet.
 
 Beim Erstellen der Bibtex-Datei wird empfohlen darauf zu achten, dass die DOI aufgeführt wird.
 
@@ -362,7 +362,7 @@ In case \lualatex{} is used and PlantUML is installed, UML diagrams can be defin
     \url{tabsatz.pdf}                            & empfohlen                                                     & gesetzt \\
 
     \multirow{2}{*}{Beispiel}                    & \multicolumn{2}{c}{ein schönes Beispiel}                                \\
-                                                 & \multicolumn{2}{c}{für die Verwendung von \enquote{multirow}}           \\
+                                                 & \multicolumn{2}{c}{für die Verwendung von \qq{multirow}}           \\
     \bottomrule
   \end{tabular}
   \caption[Beispieltabelle]{Beispieltabelle -- siehe \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
@@ -534,15 +534,15 @@ Mehr Infos unter: \url{http://tug.ctan.org/macros/latex/contrib/glossaries/gloss
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Für weit entfernte Abschnitte ist \enquote{varioref} zu empfehlen:
-\enquote{Siehe \vref{sec:mf}}.
+Für weit entfernte Abschnitte ist \qq{varioref} zu empfehlen:
+\qq{Siehe \vref{sec:mf}}.
 Das Kommando \texttt{\textbackslash{}vref} funktioniert ähnlich wie \texttt{\textbackslash{}cref} mit dem Unterschied, dass zusätzlich ein Verweis auf die Seite hinzugefügt wird.
-\texttt{vref}: \enquote{\vref{sec:firstsectioninlatexhints}}, \texttt{cref}: \enquote{\cref{sec:firstsectioninlatexhints}}, \texttt{ref}: \enquote{\ref{sec:firstsectioninlatexhints}}.
+\texttt{vref}: \qq{\vref{sec:firstsectioninlatexhints}}, \texttt{cref}: \qq{\cref{sec:firstsectioninlatexhints}}, \texttt{ref}: \qq{\ref{sec:firstsectioninlatexhints}}.
 
-Falls \enquote{varioref} Schwierigkeiten macht, dann kann man stattdessen \enquote{cref} verwenden.
-Dies erzeugt auch das Wort \enquote{Abschnitt} automatisch: \cref{sec:mf}.
+Falls \qq{varioref} Schwierigkeiten macht, dann kann man stattdessen \qq{cref} verwenden.
+Dies erzeugt auch das Wort \qq{Abschnitt} automatisch: \cref{sec:mf}.
 Das geht auch für Abbildungen usw.
-Im Englischen bitte \verb1\Cref{...}1 (mit großen \enquote{C} am Anfang) verwenden.
+Im Englischen bitte \verb1\Cref{...}1 (mit großen \qq{C} am Anfang) verwenden.
 
 
 %Mit MiKTeX Installation ab dem 2012-01-16 nicht mehr nötig
@@ -588,9 +588,9 @@ Footnotes are provided by the command \verb+\footnote{...}+\footnote{\label{fuss
   \item und auf eine andere Nummerierung umstellen
 \end{compactenum}
 
-The words \enquote{workflow} and \enquote{dwarflike} can be copied from the PDF and pasted to a text file.
-In case \LuaLaTeX{} is used as compiler, there is no ligature at \enquote{f"|l} in the word \enquote{dwarflike} (in contrast to \enquote{fl} at \enquote{workflow}).
-In other words: \enquote{dwarflike} und \enquote{dwarf"|like} look the same in the PDF.
+The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
+In case \LuaLaTeX{} is used as compiler, there is no ligature at \qq{f"|l} in the word \qq{dwarflike} (in contrast to \qq{fl} at \qq{workflow}).
+In other words: \qq{dwarflike} und \qq{dwarf"|like} look the same in the PDF.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
