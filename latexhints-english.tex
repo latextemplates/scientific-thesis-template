@@ -342,12 +342,12 @@ The tikz is a package for creating graphics programmatically. With this package 
 \end{figure}
 \end{center}
 
-\section{UML diagramme using PlantUML}
+\section{UML diagrams using PlantUML}
 
 In case \lualatex{} is used and PlantUML is installed, UML diagrams can be defined using PlantUML.
 
-\IfFileExists{plantuml.sty}{\input{latexhints-english-plantuml}}{}
-
+% Only works if "--shell-escape" is activated. Please activate only if you are sure, your compilation settings are correct
+%\IfFileExists{plantuml.sty}{\input{latexhints-english-plantuml}}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tables}
