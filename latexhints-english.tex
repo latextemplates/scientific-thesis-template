@@ -589,8 +589,10 @@ Footnotes are provided by the command \verb+\footnote{...}+\footnote{\label{fuss
 \end{compactenum}
 
 The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
-In case \LuaLaTeX{} is used as compiler, there is no ligature at \qq{f{}l} in the word \qq{dwarflike} (in contrast to \qq{fl} at \qq{workflow}).
-In other words: \qq{dwarflike} and \qq{dwarf{}like} look the same in the PDF.
+In case \LuaLaTeX{} is used as compiler, there is no ligature at \qq{f\/l} in the word \qq{dwarflike} (in contrast to \qq{fl} at \qq{workflow}).
+In other words: \qq{dwarflike} and \qq{dwarf\/like} look the same in the PDF.
+% Meta comment: The precise form of the optimal ligation suppression command may vary depending on the character pairs involved - see https://tex.stackexchange.com/q/28437/9075
+In case they do not, there is an issue with Lua\LaTeX{} and the selnolig package.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
