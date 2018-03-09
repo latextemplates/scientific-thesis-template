@@ -29,12 +29,18 @@ Alle neueren Editoren sollten damit keine Schwierigkeiten haben.
 Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
 Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
 
-Der folgende Satz demonstriert \begin{inparaenum}[1.]
+Der folgende Satz demonstriert 
+\begin{filecontents*}{\democodefile}
+\begin{inparaenum}[1.]
   \item die Großschreibung von Autorennamen am Satzanfang,
   \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
   \item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
   \item dass in dem Literaturverzeichnis der Namenspräfix \enquote{van der} von \enquote{Wil M.\,P.\ van der Aalst} steht.
 \end{inparaenum}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
+
 \Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
 
 Der folgende Satz demonstriert, dass man mittels \texttt{label} in einem Bibliopgrahie"=Eintrag den Textteil des generierten Labels überschreiben kann, aber das Jahr und die Eindeutigkeit noch von biber generiert wird.
@@ -91,6 +97,7 @@ Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus D
   \label{lst:ListingANDlstlisting}
 \end{Listing}
 
+
 %TODO: Currently not shown in TOC
 \lstinputlisting[language=C++,label=helloworld,caption={"`hello world"' in C++.},float]{code/helloworld.cpp}
 
@@ -99,6 +106,8 @@ Quellcode im \lstinline|<listing />| ist auch möglich.
 
 \section{Pseudocode}
 \Cref{alg:sample} zeigt einen Beispielalgorithmus.
+
+
 \begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
   \caption{Sample algorithm}
   \label{alg:sample}
