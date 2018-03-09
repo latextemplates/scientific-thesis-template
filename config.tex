@@ -136,10 +136,20 @@
 %
 %%%
 
+
 %%%
-% Anführungszeichen
-% Zitate in \enquote{...} setzen, dann werden automatisch die richtigen Anführungszeichen verwendet.
+% EN: For easy quotations: \enquote{text}
+%     This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+% DE:  Anführungszeichen
+%      Zitate in \enquote{...} setzen, dann werden automatisch die richtigen Anführungszeichen verwendet.
 \usepackage{csquotes}
+%%%
+
+
+%%%
+% EN: For even easier quotations: \qq{text}.
+%     Is not smart in the case of nesting, but good enough for the most cases
+\usepackage{textcmds}
 %%%
 
 
