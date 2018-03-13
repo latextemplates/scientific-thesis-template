@@ -6,8 +6,10 @@ Technical Story: https://github.com/latextemplates/scientific-thesis-template/is
 ## Context and Problem Statement
 
 For high-quality documents, the [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) have to be right.
+See [english.stackexchange.com](https://english.stackexchange.com/q/50660/66058) for a long discusisson.
 See a German rant on wrong ligatures: https://web.archive.org/web/20150425155310/http://www.mengensatz.de/blog/?p=79.
-For instance, in "Auflage", the "f" and "l" must not be combined.
+For instance, in the English word "offline", the letters "f" and "l" must not be joined.
+In the German word "Auflage", the letters "f" and "l" must not be joined.
 See also the last lines in https://tex.stackexchange.com/a/64457/9075.
 
 ### More readings
@@ -51,8 +53,9 @@ Found going from https://tex.stackexchange.com/q/28437/9075 to https://tex.stack
 
 * Good, because proven solutions
 * Good, because pdflatex can be used
+* Bad, because babel's `"|` shortcut is used, which produces currect results in the case of "fl" and the font "latin modern" only.
+  See <https://tex.stackexchange.com/a/389439/9075> for a long explanation.
 * Bad, because tex files change
-* Bad, because babel's `"|` shortcut is used, which produces currect results in the case of "fl" and the font "latin modern" only
 
 
 ### Supress ligatures completely

@@ -146,6 +146,21 @@ For instance, for support of makeglossaries see <http://tex.stackexchange.com/qu
 
 ## FAQ
 
+### Q: What is the issue with ligatures?
+
+A [ligature](https://en.wikipedia.org/wiki/Typographic_ligature) is the joining of letters to look better.
+There are rules that there should be no ligatures at "morpheme boundaries".
+See [english.stackexchange.com](https://english.stackexchange.com/q/50660/66058) for a long discusisson.
+
+Example with correct ligatures:
+
+![selnolig activated](ligatures-selnolig-activated.png)
+
+Example with wrong ligatures:
+
+![selnolig not activated](ligatures-selnolig-deactivated.png)
+
+See [ADR-0004](docs/adr/0004-use-lualatex-for-correct-ligatures.md) for a discussion on the technical solution possiblities.
 
 ### Q: There is an output that biber/biblatex too old
 
