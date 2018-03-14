@@ -26,6 +26,7 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 - [LaTeX compilation](#latex-compilation)
 - [FAQ](#faq)
 - [Contained Files and Directories](#contained-files-and-directories)
+- [Resources](#resources)
 - [License](#license)
 
 <!-- tocstop -->
@@ -316,6 +317,10 @@ Following additional files are included, which do not need to be adapted:
 
 - [Makefile](https://github.com/latextemplates/scientific-thesis-template/blob/master/Makefile) - The Makefile. Builds on latexmk.
 - [README.md](https://github.com/latextemplates/scientific-thesis-template/blob/master/README.md) - Explains the template
+
+## Resources
+
+- Charles Lipson, [Cite Right, Second Edition](http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo10702043.html), Chicago Guides to Writing, Editing, and Publishing, 2011.
 
 ## License
 
