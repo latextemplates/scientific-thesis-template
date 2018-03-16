@@ -85,9 +85,12 @@
 %%%
 
 %%%
-% Abkürzungsverzeichnis
-\usepackage{scrwfile} % Wichtig, ansonsten erscheint "No room for a new \write"
-% siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
+% EN: Abbreviations
+% DE: Abkürzungsverzeichnis
+%
+% DE: Wichtig, ansonsten erscheint "No room for a new \write"
+\usepackage{scrwfile}
+% DE: siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
 \usepackage[acronym,indexonlyfirst,nomain]{glossaries}
 \ifdeutsch
   \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
@@ -96,8 +99,8 @@
 \fi
 \renewcommand*{\glsgroupskip}{}
 %
-% Removed Glossarie as a table as a quick fix to get the template working again
-% see http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
+% EN: Removed Glossarie as a table as a quick fix to get the template working again
+%     See http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
 %
 \makenoidxglossaries
 %%%
@@ -162,7 +165,7 @@
 
 
 %%%
-% fancyheadings (nicht nur) fuer koma
+% DE: fancyheadings (nicht nur) fuer koma
 \usepackage[automark]{scrlayer-scrpage}
 %
 %%%
@@ -172,13 +175,16 @@
 % EN: Mathematics
 % DE: Mathematik
 %
-\usepackage[]{amsmath} % Viele Mathematik-Sachen: Doku: /usr/share/doc/texmf/latex/amsmath/amsldoc.dvi.gz
-\PassOptionsToPackage{fleqn,leqno}{amsmath} % options must be passed this way, otherwise it does not work with glossaries
-%fleqn (=Gleichungen linksbündig platzieren) funktioniert nicht direkt. Es muss noch ein Patch gemacht werden:
+% DE: Viele Mathematik-Sachen. Siehe https://texdoc.net/pkg/amsmath
+\usepackage{amsmath}
+% EN: Options must be passed this way, otherwise it does not work with glossaries
+\PassOptionsToPackage{fleqn,leqno}{amsmath}
+% DE: fleqn (=Gleichungen linksbündig platzieren) funktioniert nicht direkt. Es muss noch ein Patch gemacht werden:
 %\addtolength\mathindent{1em}%work-around ams-math problem with align and 9 -> 10. Does not work with glossaries, No visual changes.
-\usepackage{mathtools} %fixes bugs in AMS math
+% EN: Fixes bugs in AMS math
+\usepackage{mathtools}
 %
-%for theorems, replacement for amsthm
+% EN: For theorems, replacement for amsthm
 \usepackage[amsmath,hyperref]{ntheorem}
 \theorempreskipamount 2ex plus1ex minus0.5ex
 \theorempostskipamount 2ex plus1ex minus0.5ex
@@ -189,10 +195,10 @@
 
 
 %%%
-% Intelligentes Leerzeichen um hinter Abkürzungen die richtigen Abstände zu erhalten, auch leere.
-% siehe commands.tex \gq{}
+% DE: Intelligentes Leerzeichen um hinter Abkürzungen die richtigen Abstände zu erhalten, auch leere.
+%     Siehe commands.tex \gq{}
 \usepackage{xspace}
-%Macht \xspace und \enquote kompatibel
+%DE: Macht \xspace und \enquote kompatibel
 \makeatletter
 \xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
 \makeatother
@@ -221,10 +227,10 @@
 
 
 %%%
-% Enables inclusion of SVG graphics - 1:1 approach
-% This is NOT the approach of http://www.ctan.org/tex-archive/info/svg-inkscape,
-% which allows text in SVG to be typeset using LaTeX
-% We just include the SVG as is
+% EN: Enables inclusion of SVG graphics - 1:1 approach
+%    This is NOT the approach of https://ctan.org/pkg/svg-inkscape,
+%     which allows text in SVG to be typeset using LaTeX
+%     We just include the SVG as is.
 \usepackage{epstopdf}
 \epstopdfDeclareGraphicsRule{.svg}{pdf}{.pdf}{%
   inkscape -z -D --file=#1 --export-pdf=\OutputFile
@@ -234,8 +240,8 @@
 
 
 %%%
-% Enables inclusion of SVG graphics - text-rendered-with-LaTeX-approach
-% This is the approach of http://www.ctan.org/tex-archive/info/svg-inkscape,
+% EN: Enables inclusion of SVG graphics - text-rendered-with-LaTeX-approach
+%     This is the approach of https://ctan.org/pkg/svg-inkscape,
 \newcommand{\executeiffilenewer}[3]{%
   \IfFileExists{#2}
   {
@@ -687,8 +693,8 @@
 
 
 %%%
-% Zur Darstellung von Algorithmen
-% Algorithm muss nach hyperref geladen werden
+% DE: Zur Darstellung von Algorithmen
+%     Algorithm muss nach hyperref geladen werden
 \usepackage[chapter]{algorithm}
 \usepackage[]{algpseudocode}
 %
@@ -713,13 +719,13 @@
 %%%
 
 %%%
-% Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
+% DE: Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
 \ifdeutsch
   \setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
 \fi
 %%%
 
-%Times Roman for all text
+% EN: Times Roman for all text
 \ifluatex
   \usepackage{fontspec}
   \setmainfont{TeX Gyre Termes}
@@ -735,9 +741,9 @@
   \RequirePackage[varl,scaled=.9]{inconsolata}
 \fi
 
-%EN: Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
-%    This is the modern package for "Computer Modern".
-%DE: Fallback-Schriftart
+% EN: Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
+%     This is the modern package for "Computer Modern".
+% DE: Fallback-Schriftart
 %\usepackage[%
 %    rm={oldstyle=false,proportional=true},%
 %    sf={oldstyle=false,proportional=true},%
@@ -745,40 +751,42 @@
 %    qt=false%
 %]{cfr-lm}
 
-%EN: Headings are typset in Helvetica (which is similar to Arial)
-%DE: Schriftart fuer die Ueberschriften - ueberschreibt lmodern
+% EN: Headings are typset in Helvetica (which is similar to Arial)
+% DE: Schriftart fuer die Ueberschriften - ueberschreibt lmodern
 %\usepackage[scaled=.95]{helvet}
 
-% Für Schreibschrift würde tun, muss aber ned
+% DE: Für Schreibschrift würde tun, muss aber nicht
 %\usepackage{mathrsfs} %  \mathscr{ABC}
 
-%EN: Font for the main text
-%DE: Schriftart fuer den Fliesstext - ueberschreibt lmodern
-%Linux Libertine, siehe http://www.linuxlibertine.org/
-%Packageparamter [osf] = Minuskel-Ziffern
-%rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
+% EN: Font for the main text
+% DE: Schriftart fuer den Fliesstext - ueberschreibt lmodern
+%     Linux Libertine, siehe http://www.linuxlibertine.org/
+%     Packageparamter [osf] = Minuskel-Ziffern
+%     rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
 %\usepackage[rm]{libertine}
 
-%EN: Alternative Font: Palantino. It is recommeded by Prof. Ludewig for German texts
-%DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
-%    Bitte nur in deutschen Texten
+% EN: Alternative Font: Palantino. It is recommeded by Prof. Ludewig for German texts
+% DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
+%     Bitte nur in deutschen Texten
 %\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
 
-%Schriftart fuer Programmcode - ueberschreibt lmodern
-%Falls auskommentiert, wird die Standardschriftart lmodern genommen
-%\usepackage[scaled=.92]{luximono} % Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
+% DE: Schriftart fuer Programmcode - ueberschreibt lmodern
+%     Falls auskommentiert, wird die Standardschriftart lmodern genommen
+%     Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
+%\usepackage[scaled=.92]{luximono}
 %\usepackage{courier}
-%\usepackage[scaled=0.83]{beramono} %BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
+% DE: BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
+%\usepackage[scaled=0.83]{beramono}
 
-%EN: backticks (`) are rendered as such in verbatim environments.
-%    See following links for details:
-%    - https://tex.stackexchange.com/a/341057/9075
-%    - https://tex.stackexchange.com/a/47451/9075
-%    - https://tex.stackexchange.com/a/166791/9075
+% EN: backticks (`) are rendered as such in verbatim environments.
+%     See following links for details:
+%     - https://tex.stackexchange.com/a/341057/9075
+%     - https://tex.stackexchange.com/a/47451/9075
+%     - https://tex.stackexchange.com/a/166791/9075
 \usepackage{upquote}
 
-%Symbole
-%--------
+% DE: Symbole
+%
 %\usepackage[geometry]{ifsym} % \BigSquare
 %\usepackage{mathabx}
 %\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
@@ -788,10 +796,10 @@
 %durch mathpazo ist das schon definiert
 \usepackage{amssymb}
 
-%For \texttrademark{}
+% EN: For \texttrademark{}
 \usepackage{textcomp}
 
-%name-clashes von marvosym und mathabx vermeiden:
+% EN: name-clashes von marvosym und mathabx vermeiden:
 \def\delsym#1{%
   %  \expandafter\let\expandafter\origsym\expandafter=\csname#1\endcsname
   %  \expandafter\let\csname orig#1\endcsname=\origsym
@@ -809,7 +817,6 @@
 
 
 %%%
-%
 % EN: Modern font encoding
 %     Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
 \ifluatex
