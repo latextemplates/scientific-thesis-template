@@ -271,7 +271,13 @@
 
 %%%
 % EN: Enable typesetting values with SI units.
-\usepackage{siunitx}
+\ifdeutsch
+  \usepackage[mode=text,group-four-digits]{siunitx}
+  \sisetup{locale=DE}
+\else
+  \usepackage[mode=text,group-four-digits,group-separator={,}]{siunitx}
+  \sisetup{locale=US}
+\fi
 %%%
 
 %%%
