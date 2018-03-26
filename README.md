@@ -205,6 +205,15 @@ Install the `cm-super` package using the MiKTeX package manager. Then, run `init
 Edit `preambel/chapterheads.tex`.
 
 
+### Q: How to include Excel charts properly?
+
+1. Select the excel chart you want to use.
+2. Print to PDF with the option "Print Selected Chart".
+3. Remove empty space of the created PDF page with `pdfcrop chart.pdf chart_cropped.pdf` (install via MikTex first, if not available; check via `pdfcrop --version`).
+4. Use pdfscissors (https://sites.google.com/site/pdfscissors) to crop the borders and title (maybe you have to allow https://sites.google.com in the Java security center in the control panel).
+5. Include the PDF in LaTex via `\includegraphics{chart_cropped.pdf}`.
+
+
 ### Q: Do I have to do something special for the final version?
 
   - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
