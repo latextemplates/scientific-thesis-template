@@ -167,7 +167,6 @@ See [ADR-0004](docs/adr/0004-use-lualatex-for-correct-ligatures.md) for a discus
 
 See installation hints of how to update them at different systems.
 
-
 ### Q: Overleaf complains about missing `.sty` files.
 
 Google for the name of the `sty` and upload it to overleaf.
@@ -175,12 +174,10 @@ As of 2018-02-17, these are:
 - `lccaps.sty` - can be downloaded from <https://latextemplates.github.io/stys-for-overleaf/>.
 - `scientific-thesis-cover.sty` - can be downloaded from <https://raw.githubusercontent.com/latextemplates/scientific-thesis-cover/master/scientific-thesis-cover.sty>.
 
-
 ### Q: MiKTeX complains about missing `.sty` files.
 
 Use the [MiKTeX console](https://miktex.org/howto/miktex-console) to refresh the package index.
 Then, automatic installation should work again.
-
 
 ### Q: I cannot get minted to run. There is this `-shell-escape` warning.
 
@@ -189,21 +186,17 @@ E.g., `lualatex -shell-escape -synctex=1 main-minted-german.tex`.
 When compiling `main-minted-german.tex` with TeXStudio, you will see a dialog warning about overriding the comipiliation command.
 Just anser "(a) allow for this document" and it will work.
 
-
 ### Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.
 
 Just run pdflatex again.
-
 
 ### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
 Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
 
-
 ### Q: How do I change the appearance of chapter headings?
 
 Edit `preambel/chapterheads.tex`.
-
 
 ### Q: How to include Excel charts properly?
 
@@ -213,6 +206,11 @@ Edit `preambel/chapterheads.tex`.
 4. Use pdfscissors (https://sites.google.com/site/pdfscissors) to crop the borders and title (maybe you have to allow https://sites.google.com in the Java security center in the control panel).
 5. Include the PDF in LaTex via `\includegraphics{chart_cropped.pdf}`.
 
+### Q: Do I need to take special care because of Visual Studio Code?
+
+Please remove the magic comments (`% !TeX program ...`) at the top of the `main-....tex` file.
+Although [LaTeX-Workshop supports magic comments](https://github.com/James-Yu/LaTeX-Workshop/blob/master/README.md#magic-comments), it currently does not work reliably.
+Without the magic comments, compilation works.
 
 ### Q: Do I have to do something special for the final version?
 
@@ -221,7 +219,6 @@ Edit `preambel/chapterheads.tex`.
   - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `config.tex`.
   - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
   - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
-
 
 ### Q: I want to use make instead of latexmk
 
@@ -239,7 +236,6 @@ Make targets:
  * `view`: Opens the configured viewer
  * `6`: Generates a 3x2 postscriptfile using psnup.
 
-
 ### Q: Are there any other alternatives to latexmk and make?
 
 * <https://github.com/akerbos/ltx2any>
@@ -249,7 +245,6 @@ Make targets:
 * [LaTeX-Mk](http://latex-mk.sourceforge.net/)
 * See also [Recommended build system for latex?](https://stackoverflow.com/q/1240037/873282) and [How to properly 'make' a latex project?](https://tex.stackexchange.com/q/40738/9075)
 
-
 ### Q: I want to use minted as its syntax highlighting seems to be better
 
 1. Install python and [pygments](http://pygments.org/):
@@ -258,11 +253,9 @@ Make targets:
 1. Start with `main-minted-german.tex`
 2. Use `-shell-escape` when texing: `lualatex -shell-escape main-minted-german.tex`
 
-
 ### Q: Is there any other place to look for further information?
 
 For German users, go to <http://texfragen.de/>.
-
 
 ### Q: I was recommended the Harvard style
 
@@ -277,17 +270,14 @@ That style is explained at the [biblatex documentation](http://texdoc.net/texmf-
 We are aware that the University of Stuttgart [recommends to use the Hardvard style](https://ilias3.uni-stuttgart.de/ilias.php?ref_id=12257&from_page=11895&obj_id=11896&cmd=layout&cmdClass=illmpresentationgui&cmdNode=dn&baseClass=ilLMPresentationGUI).
 However, this style is not common in natural sciences and information science.
 
-
 ### Q: How can I reformat my .tex files?
 
 Execute `latexindent -l -s -sl -w main-english.tex`
-
 
 ### Q: How I want to obey the one-sentence-per-line rule.
 
 Execute `latexindent -m -l -s -sl -w main-english.tex`.
 Attention! This is work in progress and does not always produce best results.
-
 
 ### Q: Aren't there other templates?
 
@@ -295,7 +285,6 @@ Sure. The [Hagenberg Thesis Document Collection](https://github.com/Digital-Medi
 However, they currently do not support microtype and not the cover of the University of Stuttgart.
 
 We are collecting alternatives at the issue [#25](https://github.com/latextemplates/scientific-thesis-template/issues/25) and plan to add a comparison to each other template.
-
 
 ## Contained Files and Directories
 
