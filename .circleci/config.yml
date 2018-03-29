@@ -2,7 +2,7 @@ version: 2
 jobs:
    build:
      docker:
-       - image: koppor/texlive
+       - image: koppor/texlive:v1.5.0
      steps:
        - checkout
        # normal compilation and release to homepage
