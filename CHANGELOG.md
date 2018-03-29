@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.0-beta.1] - 2018-03-12
+
 ### Added
 - Magic comment `% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]` to `main-minted-german.tex`.
 - LatexDemo to show the LaTeX source code for equations and enumerations and the result in a box next to it
@@ -158,7 +160,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2.5.0...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.1...HEAD
+[3.0.0-beta.1]: https://github.com/latextemplates/scientific-thesis-template/compare/2.5.0...3.0.0-beta.1
 [2.5.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.2.0...2.3.0
