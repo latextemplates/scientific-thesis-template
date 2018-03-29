@@ -36,46 +36,58 @@ The template offers foll UTF-8 support.
 All recent editors should not have issues with that.
 
 \section{Citations}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
+
+\begin{filecontents*}{\democodefile}
 Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
+\end{filecontents*}
+\PrintDemo{style=parallel}
 
 Der folgende Satz demonstriert 
-\begin{filecontents*}{\democodefile}
 \begin{inparaenum}[1.]
   \item die Großschreibung von Autorennamen am Satzanfang,
   \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
   \item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
   \item dass in dem Literaturverzeichnis der Namenspräfix \qq{van der} von \qq{Wil M.\,P.\ van der Aalst} steht.
 \end{inparaenum}
-\end{filecontents*}
 
+\begin{filecontents*}{\democodefile}
+\Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
+\end{filecontents*}
 \PrintDemo{style=parallel}
 
-\Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
-
 Der folgende Satz demonstriert, dass man mittels \texttt{label} in einem Bibliopgrahie"=Eintrag den Textteil des generierten Labels überschreiben kann, aber das Jahr und die Eindeutigkeit noch von biber generiert wird.
-The workflow engine Apache ODE \cite{ApacheODE} executes \BPEL processes reliably.
 
+\begin{filecontents*}{\democodefile}
+The workflow engine Apache ODE \cite{ApacheODE} executes \BPEL processes reliably.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+\begin{filecontents*}{\democodefile}
 Wörter am besten mittels \texttt{\textbackslash qq\{...\}} \qq{einschließen}, dann werden die richtigen Anführungszeichen verwendet.
+\end{filecontents*}
+\PrintDemo{style=parallel}
 
 Beim Erstellen der Bibtex-Datei wird empfohlen darauf zu achten, dass die DOI aufgeführt wird.
 
 \section{Formulas and Equations}
 \label{sec:mf}
-Equations $f(x)=x$ inside the text can be provided.
-A list with all available mathematical symbols is provided at \url{http://texdoc.net/pkg/symbols-a4}.
-As example the set of natural numbers is given by $\mathbb{N}$.
-For the documentation of editing mathematical formulas read the package documentation of \texttt{amsmath}\footnote{\url{http://texdoc.net/pkg/amsmath}}.
 
-Following equation is not numbered because of using \texttt{\textbackslash align*} as environment.
 \begin{filecontents*}{\democodefile}
-\begin{align*}
-  x = y
-\end{align*}
+Equations $f(x)=x$ inside the text can be provided.
 \end{filecontents*}
-
 \PrintDemo{style=parallel}
+
+A list with all available mathematical symbols is provided at \url{http://texdoc.net/pkg/symbols-a4}.
+
+\begin{filecontents*}{\democodefile}
+As example the set of natural numbers is given by $\mathbb{N}$.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+For the documentation of editing mathematical formulas read the package documentation of \texttt{amsmath}\footnote{\url{http://texdoc.net/pkg/amsmath}}.
 
 Equation~\ref{eq:test} is numbered and can be referenced in the text:
 \begin{filecontents*}{\democodefile}
@@ -84,13 +96,24 @@ Equation~\ref{eq:test} is numbered and can be referenced in the text:
   x = y
 \end{align}
 \end{filecontents*}
+\PrintDemo{style=parallel}
 
+Following equation is not numbered because of using \texttt{\textbackslash align*} as environment.
+\begin{filecontents*}{\democodefile}
+\begin{align*}
+  x = y
+\end{align*}
+\end{filecontents*}
 \PrintDemo{style=parallel}
 
 The template offers \verb+\abs+ to enable the bars scaling well at the absolute value:
-$\abs{X}$.
 
-More details about mathematical environments provides this documentation\footnote{\url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}}.
+\begin{filecontents*}{\democodefile}
+$\abs{X}$.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+More details about mathematical environments provides the documentation available at \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -110,7 +133,10 @@ With \texttt{\textbackslash lstinputlisting} the source code can be loaded direc
   \label{lst:ListingANDlstlisting}
 \end{Listing}
 
+\begin{filecontents*}{\democodefile}
 Source code is also available in the text \lstinline|<listing />|.
+\end{filecontents*}
+\PrintDemo{style=parallel}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -607,20 +633,26 @@ Footnotes are provided by the command \verb+\footnote{...}+\footnote{\label{fuss
   Letzteres erreicht man durch den Parameter \texttt{osf} bei dem Paket \texttt{libertine} bzw.\ \texttt{mathpazo} in \texttt{fonts.tex}.
 \fi
 
+\begin{filecontents*}{\democodefile}
 \begin{compactenum}[I.]
   \item Man kann auch die Nummerierung dank paralist kompakt halten
   \item und auf eine andere Nummerierung umstellen
 \end{compactenum}
+\end{filecontents*}
+\PrintDemo{style=parallel}
 
 The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
 
+\begin{filecontents*}{\democodefile}
 In case \LuaLaTeX{} is used as compiler, there is no ligature at \qq{f\/l} in the word \qq{dwarflike} (in contrast to \qq{fl} at \qq{workflow}).
 In other words: \qq{dwarflike} and \qq{dwarf\/like} look the same in the PDF.
-% Meta comment: The precise form of the optimal ligation suppression command may vary depending on the character pairs involved - see https://tex.stackexchange.com/q/28437/9075
 In case they do not, there is an issue with Lua\LaTeX{} and the selnolig package.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+% Meta comment: The precise form of the optimal ligation suppression command may vary depending on the character pairs involved - see https://tex.stackexchange.com/q/28437/9075
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Closing remarks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Please feel free to provide enhancements for this template and create a new ticket on github (\url{https://github.com/latextemplates/uni-stuttgart-computer-science-template/issues}).
+Please feel free to provide enhancements for this template and create a new ticket on GitHub (\url{https://github.com/latextemplates/uni-stuttgart-computer-science-template/issues}).
