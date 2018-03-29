@@ -386,6 +386,13 @@
   captionpos=b
 }
 
+\ifluatex
+\else
+  % EN: Enable UTF-8 support - see https://tex.stackexchange.com/q/419327/9075
+  \usepackage{listingsutf8}
+  \lstset{inputencoding=utf8/latin1}
+\fi
+
 \ifdeutsch
   \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
 \fi
@@ -1275,7 +1282,7 @@
 
 %%%
 % EN: Required for recent version of komascript, as some packges are not that compatible with KOMAScript as they should be
-%     Has to be loaded at the *very* and, so we use "\AtEndPreamble" by etoolsbox
+%     Has to be loaded at the *very* end, so we use "\AtEndPreamble" by etoolsbox
 \usepackage{etoolbox}
 \AtEndPreamble{\usepackage{scrhack}}
 %%%
@@ -1283,4 +1290,9 @@
 %%%
 % EN: Provide tables over multiple pages
 \usepackage{longtable}
+%%%
+
+%%%
+% EN: Show LaTeX commands and their results in the document
+\usepackage{latexdemo}
 %%%

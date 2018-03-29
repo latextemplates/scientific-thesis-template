@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Magic comment `% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]` to `main-minted-german.tex`.
-
+- LatexDemo to show the LaTeX source code for equations and enumerations and the result in a box next to it
 ### Changed
 - Default compiler is `lualatex` (instead of `pdflatex`): `% !TeX program` and `.latexmkrc` adapted accordingly.
 - Quotes are now made by `\qq{word}` instead of `\enquote{word}` to easy typing.

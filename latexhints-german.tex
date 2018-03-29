@@ -38,12 +38,18 @@ Alle neueren Editoren sollten damit keine Schwierigkeiten haben.
 Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
 Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
 
-Der folgende Satz demonstriert \begin{inparaenum}[1.]
+Der folgende Satz demonstriert 
+\begin{filecontents*}{\democodefile}
+\begin{inparaenum}[1.]
   \item die Großschreibung von Autorennamen am Satzanfang,
   \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
   \item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
   \item dass in dem Literaturverzeichnis der Namenspräfix \qq{van der} von \qq{Wil M.\,P.\ van der Aalst} steht.
 \end{inparaenum}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
+
 \Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
 
 Der folgende Satz demonstriert, dass man mittels \texttt{label} in einem Bibliopgrahie"=Eintrag den Textteil des generierten Labels überschreiben kann, aber das Jahr und die Eindeutigkeit noch von biber generiert wird.
@@ -60,15 +66,23 @@ Beispielsweise $\mathbb{N}$ für die Menge der natürlichen Zahlen.
 Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{http://texdoc.net/pkg/amsmath} gelesen werden.
 
 Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} verwendet wurde.
+\begin{filecontents*}{\democodefile}
 \begin{equation*}
   x = y
 \end{equation*}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
 
 Die Gleichung~\ref{eq:test} erhält eine Nummer:
+\begin{filecontents*}{\democodefile}
 \begin{equation}
   \label{eq:test}
   x = y
 \end{equation}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
 
 Die Vorlage bietet \verb+\abs+ an, damit die Absolutbetragsstriche richtig skalieren:
 $\abs{X}$.
@@ -80,6 +94,7 @@ Eine ausführliche Anleitung zum Mathematikmodus von LaTeX findet sich in \url{h
 Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus Dateien lesen.
 
 %Listing-Umgebung wurde durch \newfloat{Listing} definiert
+
 \begin{Listing}
   \begin{lstlisting}[language=XML]
 <listing name="second sample">
@@ -91,6 +106,7 @@ Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus D
   \label{lst:ListingANDlstlisting}
 \end{Listing}
 
+
 %TODO: Currently not shown in TOC
 \lstinputlisting[language=C++,label=helloworld,caption={"`hello world"' in C++.},float]{code/helloworld.cpp}
 
@@ -99,6 +115,8 @@ Quellcode im \lstinline|<listing />| ist auch möglich.
 
 \section{Pseudocode}
 \Cref{alg:sample} zeigt einen Beispielalgorithmus.
+
+
 \begin{Algorithmus} %Die Umgebung nur benutzen, wenn man den Algorithmus ähnlich wie Graphiken von TeX platzieren lassen möchte
   \caption{Sample algorithm}
   \label{alg:sample}
@@ -170,12 +188,15 @@ Im Anhang zeigt \vref{fig:AnhangsChor} erneut die komplette Choreographie.
 %Die Parameter in eckigen Klammern sind optionale Parameter - z.B. [htb!]
 %htb! bedeutet: "Liebes LaTeX, bitte platziere diese Abbildung zuerst hier ("_h_ere"). Falls das nicht funktioniert, dann bitte oben auf der Seite ("_t_op"). Und falls das nicht geht, bitte unten auf der Seite ("_b_ottom"). Und bitte, bitte bevorzuge hier und oben, auch wenn's net so optimal aussieht ("!")
 %Diese sollten nach Möglichkeit NICHT verwendet werden. LaTeX's Algorithmus für das Platzieren der Gleitumgebung ist schon sehr gut!
+
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{choreography.pdf}
   \caption{Beispiel-Choreographie}
   \label{fig:chor1}
 \end{figure}
+
+
 
 \begin{figure}
   \centering

@@ -40,12 +40,18 @@ All recent editors should not have issues with that.
 Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
 Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
 
-Der folgende Satz demonstriert \begin{inparaenum}[1.]
+Der folgende Satz demonstriert 
+\begin{filecontents*}{\democodefile}
+\begin{inparaenum}[1.]
   \item die Großschreibung von Autorennamen am Satzanfang,
   \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
   \item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
   \item dass in dem Literaturverzeichnis der Namenspräfix \qq{van der} von \qq{Wil M.\,P.\ van der Aalst} steht.
 \end{inparaenum}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
+
 \Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
 
 Der folgende Satz demonstriert, dass man mittels \texttt{label} in einem Bibliopgrahie"=Eintrag den Textteil des generierten Labels überschreiben kann, aber das Jahr und die Eindeutigkeit noch von biber generiert wird.
@@ -63,15 +69,23 @@ As example the set of natural numbers is given by $\mathbb{N}$.
 For the documentation of editing mathematical formulas read the package documentation of \texttt{amsmath}\footnote{\url{http://texdoc.net/pkg/amsmath}}.
 
 Following equation is not numbered because of using \texttt{\textbackslash align*} as environment.
+\begin{filecontents*}{\democodefile}
 \begin{align*}
   x = y
 \end{align*}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
 
 Equation~\ref{eq:test} is numbered and can be referenced in the text:
+\begin{filecontents*}{\democodefile}
 \begin{align}
   \label{eq:test}
   x = y
 \end{align}
+\end{filecontents*}
+
+\PrintDemo{style=parallel}
 
 The template offers \verb+\abs+ to enable the bars scaling well at the absolute value:
 $\abs{X}$.
