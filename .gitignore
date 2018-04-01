@@ -1,5 +1,6 @@
 main-*.pdf
 graphics/*.pdf_tex
+democode.tex
 
 # latexindent
 *.bak
