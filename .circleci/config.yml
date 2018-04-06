@@ -19,6 +19,6 @@ jobs:
       - run: git clean -xdf
       - run: pdflatex main-german.tex
       - run: pdflatex -shell-escape main-minted-german.tex
-       - run: pdflatex main-english.tex
+      - run: pdflatex main-english.tex
       - run: pdflatex main-paderborn-german.tex
       - run: pdflatex main-paderborn-english.tex
