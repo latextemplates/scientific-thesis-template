@@ -38,17 +38,15 @@ Alle neueren Editoren sollten damit keine Schwierigkeiten haben.
 Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
 Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
 
+\begin{tcblisting}{colback=red!5!white,colframe=red!75!black}
 Der folgende Satz demonstriert 
-\begin{filecontents*}{\democodefile}
 \begin{inparaenum}[1.]
   \item die Großschreibung von Autorennamen am Satzanfang,
   \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
   \item dass die Autorennamen ein Hyperlink auf das Literaturverzeichnis sind sowie
   \item dass in dem Literaturverzeichnis der Namenspräfix \qq{van der} von \qq{Wil M.\,P.\ van der Aalst} steht.
 \end{inparaenum}
-\end{filecontents*}
-
-\PrintDemo{style=parallel}
+\end{tcblisting}
 
 \Citet{RVvdA2016} präsentieren eine Studie über die Effektivität von Workflow-Management-Systemen.
 
@@ -65,24 +63,21 @@ Mathematische Formeln kann man $so$ setzen. \texttt{symbols-a4.pdf} (zu finden a
 Beispielsweise $\mathbb{N}$ für die Menge der natürlichen Zahlen.
 Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{http://texdoc.net/pkg/amsmath} gelesen werden.
 
+
+\begin{tcblisting}{colback=red!5!white,colframe=red!75!black}
 Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} verwendet wurde.
-\begin{filecontents*}{\democodefile}
-\begin{equation*}
-  x = y
-\end{equation*}
-\end{filecontents*}
-
-\PrintDemo{style=parallel}
-
-Die Gleichung~\ref{eq:test} erhält eine Nummer:
-\begin{filecontents*}{\democodefile}
 \begin{equation}
-  \label{eq:test}
-  x = y
+ x = y
 \end{equation}
-\end{filecontents*}
+\end{tcblisting}
 
-\PrintDemo{style=parallel}
+\begin{tcblisting}{colback=red!5!white,colframe=red!75!black}
+Die Gleichung~\ref{eq:test} erhält eine Nummer:
+\begin{equation}
+\label{eq:test}
+ x = y
+\end{equation}
+\end{tcblisting}
 
 Die Vorlage bietet \verb+\abs+ an, damit die Absolutbetragsstriche richtig skalieren:
 $\abs{X}$.
@@ -319,6 +314,7 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
   \section{Plots with pgfplots}
   Pgfplot ist ein Paket um Graphen zu plotten ohne den Umweg über gnuplot oder matplotlib zu gehen.
   %hint by http://tex.stackexchange.com/a/3265/9075%other option is to use changepage according to http://tex.stackexchange.com/a/2639/9075. This, however, has issues with landscape%If you only have height problems, this is not needed at all%sidewaysfigure%the original layout is restored.%%\restoregeometry cannot be used as we use \addtolength
+  
   \begin{figure}[h]
     \begin{center}
       \begin{tikzpicture}
@@ -345,7 +341,7 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
 
 }{}
 
-\section{Figures with tikz}
+\section{Abbildungen mit tikz}
 TikZ ist ein Paket um Zeichnungen mittels Programmierung zu erstellen.
 Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukturen zu erstellen.
 \begin{figure}[ht]
