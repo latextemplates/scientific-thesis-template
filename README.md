@@ -89,8 +89,8 @@ If you do not want to have an updated installation, but fiddle around with dirty
 
 ## Installation hints for Windows
 
-* The default installation of MiKTeX ships with incompatible biblatex and biber packages.
-  You have to keep your MiKTeX up to date.
+* The default installation of MiKTeX might ship with incompatible biblatex and biber packages.
+  **You have to keep your MiKTeX up to date.**
   In case you followed the linked installation steps, you only have to run "Update MiKTeX".
   If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see <http://tex.stackexchange.com/a/108490/9075>).
 * Install other tools using [chocolatey]:
@@ -103,16 +103,29 @@ If you do not want to have an updated installation, but fiddle around with dirty
 * Download the basic installer from <http://miktex.org/download>
 * Start it
 * First screen: Read the license conditions and be sure that you really agree.
-* Second screen: "Shared Installation": Install MiKTeX for: "Only for: `username`"
+  - Check "I accept the MiKTeX copying conditions"
+  - Click "Next"
+* Second screen: "Shared Installation": Install MiKTeX for: "Only for: `username`".
+  - Check first option
+  - Click "Next"
 * Third screen: "Installation Directory": Install MiKTeX to: `C:\MiKTeX`. This enabled browsing for documentation at `C:\MiKTeX29\doc\latex`
-* Fourth screen: "Settings": Preferred paper: A4 and Install missing packages on the fly: `Yes`
+  - Input "C:\MiKTeX" in the input field
+  - Click "Next"
+* Fourth screen: "Settings": Preferred paper: A4 and install missing packages on the fly.
+  - First combo box: "A4"
+  - Second combo box: "Yes":
+  - Click "Next"
 * Fifth screen: Press "Start"
+* Now a window "Executing" appears. It will take about 5 minutes until this is finished.
+* At the last screen: Click "Close"
 * After the installation:
   1. Open `cmd.exe`
   2. Execute `mpm --update-db`
   3. Execute `mpm --update`
+  4. Execute `mpm --install=tex-gyre` (to resolve `fontspec error: "font-not-found"`, `\setmainfont{TeX Gyre Termes}`)
+  4. Execute `mpm --install=tex-gyre-math`
   4. Execute `mpm --install=cm-super`
-  5. Execute `initexmf --update-fndb`
+  5. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270)
   6. Execute `initexmf --mklinks --force`
 
 
