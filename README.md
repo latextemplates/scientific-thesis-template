@@ -120,6 +120,7 @@ If you do not want to have an updated installation, but fiddle around with dirty
 * At the last screen: Click "Close"
 * After the installation:
   1. Open `cmd.exe`
+  2. Execute `refreshenv` to make MiKTeX's binaries known right after the installation
   2. Execute `mpm --update-db`
   3. Execute `mpm --update`
   4. Execute `mpm --install=tex-gyre` (to resolve `fontspec error: "font-not-found"`, `\setmainfont{TeX Gyre Termes}`)
