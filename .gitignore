@@ -2,6 +2,10 @@ main-*.pdf
 graphics/*.pdf_tex
 democode.tex
 
+# plantuml
+*-plantuml.latex
+*-plantuml.txt
+
 # latexindent
 *.bak
 *.bak?
