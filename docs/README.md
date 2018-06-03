@@ -3,15 +3,15 @@
 This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
-  - University of Stuttgart, Computer Science.
-    [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)],
-    [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)],
-    [[example-minted-german](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)]
-  - Paderborn University, Computer Science. - To be confirmed.
-    [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)]
-    [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)]
+  - University of Stuttgart, Computer Science
+    - [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
+    - [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
+    - [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
+  - Paderborn University, Computer Science - to be confirmed.
+    - [English example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)
+    - [German example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)
 
-It will be extended to support theses from different institutions.
+The template will be extended to support theses from different institutions.
 
 For [architectural decision records](https://adr.github.io) see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
 
@@ -33,28 +33,33 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 ## Characteristics of the template
 
 * Most recent packages and package configuration based on long-time experience.
-* [lualatex](http://www.luatex.org/) (with [pdflatex](https://en.wikipedia.org/wiki/PdfTeX) fallback) to enable proper typeset [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
+* [lualatex](http://www.luatex.org/) to enable proper typeset [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
+  For older systems, [pdflatex](https://en.wikipedia.org/wiki/PdfTeX) is still supported.
 * Open for contributions.
 * [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
 * [biblatex]+[biber] instead of plain [bibtex], because biblatex fully supports UTF-8 and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
 * Automatic adjustment of wrong [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) using the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package
 * Full Unicode (UTF-8) support
 * Optional: Render listings using [minted](https://github.com/gpoore/minted/), which provides better output than [listings](https://ctan.org/pkg/listings), but requires [pygments](http://pygments.org/) to be installed.
+* Optional: Direct inclusion of [PlantUML](http://plantuml.com/) diagram.s
 
 Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/autolatex/), it is [not included in MiKTeX](http://www.ctan.org/pkg/autolatex) and therefore it is not used here.
 
 ## Quick start
 
-### Download
-
-1. Go to the latest release via <https://github.com/latextemplates/scientific-thesis-template/releases/latest>.
-2. Download the file `source.zip`
-3. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
-4. Start texing at `main-english.tex` or `main-german.tex`.
-5. Users of Paderborn University:
-   - Start texing at `main-paderborn-english.tex` or `main-paderborn-german.tex`.
-   - Adapt `logos/UBP-background-picture.pdf` to your needs. It has the format 20cm x 10cm.
-   - Change `!TeX root =` in `latexhints-english.tex` and `latexhints-german.tex`.
+1. Download
+    1. Go to the latest release via <https://github.com/latextemplates/scientific-thesis-template/releases/latest>.
+    2. Download the file `source.zip`
+    3. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+2. Start Start texing
+    - University of Stuttgart:
+        - English: `main-english.tex`
+        - German: `main-german.tex`
+        - German advanced usage: `main-minted-german.tex` (see below)
+    - Paderborn University:
+        - Start texing at `main-paderborn-english.tex` or `main-paderborn-german.tex`.
+        - Adapt `logos/UBP-background-picture.pdf` to your needs. It has the format 20cm x 10cm.
+        - Change `!TeX root =` in `latexhints-english.tex` and `latexhints-german.tex`.
 
 ### Usage at overleaf
 
@@ -67,15 +72,21 @@ Thus, just create a new git repository and populate it using the files provided 
 
 ## Recommended LaTeX environments
 
-* offline: Grammar and spell checking is available at [TeXstudio].
-  Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
-  Note that it is enough to point to `languagetool.jar`.
-  Use [JabRef] to manage your bibliography.
-  Quick installation using [Chocolatey]: `choco install texstudio languagetool jabref`.
-  A comparison to other literature management software is available at <https://ultimate-comparisons.github.io/ultimate-reference-management-software-comparison/>.
-* online: [overleaf]. Also with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
+### Offline usage
 
+Grammar and spell checking is available at [TeXstudio].
+Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+Note that it is enough to point to `languagetool.jar`.
+Use [JabRef] to manage your bibliography.
+Quick installation using [Chocolatey]: `choco install texstudio languagetool jabref`.
+
+A comparison to other literature management software is available at <https://ultimate-comparisons.github.io/ultimate-reference-management-software-comparison/>.
 See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
+
+### Online usage
+
+[overleaf] has been tesed by multiple users.
+It also comes with [git support](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.VYFC2UZejkU).
 
 ## Installation hints for Ubuntu
 
@@ -89,49 +100,50 @@ If you do not want to have an updated installation, but fiddle around with dirty
 ## Installation hints for Windows
 
 Note: The default installation of MiKTeX might ship with incompatible biblatex and biber packages.
-  **You have to keep your MiKTeX up to date.**
-  In case you followed the linked installation steps, you only have to run "Update MiKTeX".
-  If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see <http://tex.stackexchange.com/a/108490/9075>).
+**You have to keep your MiKTeX up to date.**
+In case you followed the linked installation steps, you only have to run "Update MiKTeX".
+If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see <http://tex.stackexchange.com/a/108490/9075>).
   
 ### Preparations
 
 1. Install [chocolatey]:
-  1. Open `cmd.exe` as Administartor
-  2. Paste and hit <kbd>Enter</kbd> `@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
-  3. Execute `choco feature enable -n=allowGlobalConfirmation` to get rid off additional installation confirmations.
-  4. Execute `choco install texstudio sumatrapdf.install latexmk strawberryperl jre8 jabref languagetool` to install necessary tooling.
-  5. For more recommended tooling see <https://github.com/koppor/koppors-chocolatey-scripts>.
+    1. Open `cmd.exe` as Administartor
+    2. Paste and hit <kbd>Enter</kbd> `@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
+1. Execute `choco feature enable -n=allowGlobalConfirmation` to get rid off additional installation confirmations.
+1. Execute `choco install texstudio sumatrapdf.install latexmk strawberryperl jre8 jabref languagetool` to install necessary tooling.
+1. In case [PlantUML](http://plantuml.com/) should be used, follow the installation instructions at <https://latextemplates.github.io/plantuml/>.
+1. For more recommended tooling see <https://github.com/koppor/koppors-chocolatey-scripts>.
 
 ### Recommended setup of MiKTeX
 
 1. Download the basic installer from <http://miktex.org/download>
 1. Start it
 1. First screen: Read the license conditions and be sure that you really agree.
-  - Check "I accept the MiKTeX copying conditions"
-  - Click "Next"
+    - Check "I accept the MiKTeX copying conditions"
+    - Click "Next"
 1. Second screen: "Shared Installation": Install MiKTeX for: "Only for: `username`".
-  - Check first option
-  - Click "Next"
+    - Check first option
+    - Click "Next"
 1. Third screen: "Installation Directory": Install MiKTeX to: `C:\MiKTeX`. This enabled browsing for documentation at `C:\MiKTeX29\doc\latex`
-  - Input "C:\MiKTeX" in the input field
-  - Click "Next"
+    - Input "C:\MiKTeX" in the input field
+    - Click "Next"
 1. Fourth screen: "Settings": Preferred paper: A4 and install missing packages on the fly.
-  - First combo box: "A4"
-  - Second combo box: "Yes":
-  - Click "Next"
+    - First combo box: "A4"
+    - Second combo box: "Yes":
+    - Click "Next"
 1. Fifth screen: Press "Start"
 1. Now a window "Executing" appears. It will take about 5 minutes until this is finished.
 1. At the last screen: Click "Close"
 1. After the installation:
-  1. Open `cmd.exe`
-  2. Execute `refreshenv` to make MiKTeX's binaries known right after the installation
-  2. Execute `mpm --update-db`
-  3. Execute `mpm --update`
-  4. Execute `mpm --install=tex-gyre` (to resolve `fontspec error: "font-not-found"`, `\setmainfont{TeX Gyre Termes}`)
-  4. Execute `mpm --install=tex-gyre-math`
-  4. Execute `mpm --install=cm-super`
-  5. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270)
-  6. Execute `initexmf --mklinks --force`
+    1. Open `cmd.exe`
+    2. Execute `refreshenv` to make MiKTeX's binaries known right after the installation
+    2. Execute `mpm --update-db`
+    3. Execute `mpm --update`
+    4. Execute `mpm --install=tex-gyre` (to resolve `fontspec error: "font-not-found"`, `\setmainfont{TeX Gyre Termes}`)
+    4. Execute `mpm --install=tex-gyre-math`
+    4. Execute `mpm --install=cm-super`
+    5. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270)
+    6. Execute `initexmf --mklinks --force`
 
 
 ## LaTeX compilation
@@ -277,6 +289,11 @@ Make targets:
   - `pip install pygments`
 1. Start with `main-minted-german.tex`
 2. Use `-shell-escape` when texing: `lualatex -shell-escape main-minted-german.tex`
+
+### Q: `main-minted-german.tex` does not compile: ``File `main-minted-german-plantuml.latex' not found. \end{plantuml}``. What can I do?
+
+You did not setup the [plantuml package](https://www.ctan.org/pkg/plantuml) correctly.
+Please head to <https://latextemplates.github.io/plantuml/> for installation instructions.
 
 ### Q: Is there any other place to look for further information?
 
