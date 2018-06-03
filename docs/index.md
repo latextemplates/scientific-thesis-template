@@ -76,7 +76,9 @@ Thus, just create a new git repository and populate it using the files provided 
 
 Grammar and spell checking is available at [TeXstudio].
 Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
-Note that it is enough to point to `languagetool.jar`.
+Note that it is enough to point to `languagetool-server.jar`.
+![language-tool-configuration](texstudio-configuration-languagetool.png)
+
 Use [JabRef] to manage your bibliography.
 Quick installation using [Chocolatey]: `choco install texstudio languagetool jabref`.
 
