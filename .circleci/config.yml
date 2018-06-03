@@ -11,7 +11,7 @@ jobs:
       - run: latexmk main-english.tex
       - run: latexmk main-paderborn-german.tex
       - run: latexmk main-paderborn-english.tex
-      - run: mkdir build && cp -r README.md main-*.pdf lig*.png .github/_config.yml docs/* build/
+      - run: mkdir build && cp -r main-*.pdf .github/_config.yml docs/* build/
       - store_artifacts:
           path: build/
       - run: if [ "$CIRCLE_BRANCH" == "master" ]; then .circleci/deploy-ghpages.sh build/; fi
