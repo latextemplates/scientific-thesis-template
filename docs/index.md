@@ -164,19 +164,23 @@ Please answer `(a) allow for this document`:
 When the "Package Installation" dialog pops up at TeXStudio, choose your username at "The package will be installed for:" and uncheck "Always show this dialog before installing packages."
 If you want to include .svg graphics, [inkscape] has to be in your path.
 
-The first compilation will take at least 30 seconds, because there will be some LaTeX packages installed.
+**Attention!** The first compilation will take **at least 30 seconds**, because there will be some LaTeX packages installed.
 
-If you want to compile using the command line, you can use following tools.
+### Using the command line
 
-### Automatic compilation using latexmk
+For debugging, it might be better to use the command line for latexing.
+Use `lualatex --shell-escape main-minted-german` to compile the main document.
+Run `biber main-minted-german` to get the bibliography rendered (execute `lualatex` afterwards).
+
+Automatic compilation is also possible:
 
     latexmk main-german
 
-### Continuous previewing using latexmk
+If you want automatic compilation use following command:
 
     latexmk -pvc main-german
 
-This will open a [Sumatra PDF] and only works with the supplied configuration.
+This will also open a [Sumatra PDF] and only works with the supplied configuration.
 
 ### latexmk configuration
 
