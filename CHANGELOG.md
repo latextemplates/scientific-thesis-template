@@ -4,13 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [3.0.0-beta.2] - 2018-06-04
+
+### Added
+- LatexDemo to show the LaTeX source code for equations and enumerations and the result in a box next to it.
+- ADR-0004 explaining the usage of lualatex for ligature handling.
+
+### Changed
+- Moved documentation contents of `README.md` to `docs/index.md`.
+- Refined setup instructions.
+- Refined overleaf instructions.
+- Refined instructions not to use `\\` to separate paragraphs in LaTeX (but to use a blank line).
+- Documentation improvements in `config.tex`.
 
 ## [3.0.0-beta.1] - 2018-03-12
 
 ### Added
 - Magic comment `% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]` to `main-minted-german.tex`.
-- LatexDemo to show the LaTeX source code for equations and enumerations and the result in a box next to it
+
 ### Changed
 - Default compiler is `lualatex` (instead of `pdflatex`): `% !TeX program` and `.latexmkrc` adapted accordingly.
 - Quotes are now made by `\qq{word}` instead of `\enquote{word}` to easy typing.
@@ -160,7 +171,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.1...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.2...HEAD
+[3.0.0-beta.2]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.1...3.0.0-beta.2
 [3.0.0-beta.1]: https://github.com/latextemplates/scientific-thesis-template/compare/2.5.0...3.0.0-beta.1
 [2.5.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.3.0...2.4.0
