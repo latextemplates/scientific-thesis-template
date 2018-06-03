@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+### Changed
+
+- Bibliography goes before appendix
+
 ## [3.0.0-beta.2] - 2018-06-04
 
 ### Added
