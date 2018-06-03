@@ -1,4 +1,4 @@
-# LaTeX Template for Scientific Theses [![Build Status](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/scientific-thesis-template/) [![Donate to koppor on Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/koppor)
+# LaTeX Template for Scientific Theses [![Build Status](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/scientific-thesis-template/)
 
 This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
@@ -356,13 +356,15 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 Following additional files are included, which do not need to be adapted:
 
 - [Makefile](https://github.com/latextemplates/scientific-thesis-template/blob/master/Makefile) - The Makefile. Builds on latexmk.
-- [README.md](https://github.com/latextemplates/scientific-thesis-template/blob/master/README.md) - Explains the template
+- [README.md](https://github.com/latextemplates/scientific-thesis-template/blob/master/README.md) - minimal file pointing to this documentation.
 
 ## Resources
 
 - Lutz Hering, Heike Hering: [How to Write Technial Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
 - Marcus Deininger et al.: [Studienarbeiten - Ein Leitfaden zur Erstellung, Durchführung und Präsentation wissenschaftlicher Abschlussarbeiten am Beispiel Informatik](https://vdf.ch/studienarbeiten.html?author_id=2877), vdf. - Recommended as guideline for planning and working on the whole thesis.
 - Charles Lipson, [Cite Right, Second Edition: A Quick Guide to Citation Styles--MLA, APA, Chicago, the Sciences, Professions, and More](http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo10702043.html), Chicago Guides to Writing, Editing, and Publishing, 2011. - Recommended in case you are unsure about how to correctly cite something.
+
+[![Donate to koppor on Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/koppor)
 
 ## License
 
