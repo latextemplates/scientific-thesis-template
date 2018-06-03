@@ -153,6 +153,10 @@
 % EN: For even easier quotations: \qq{text}.
 %     Is not smart in the case of nesting, but good enough for the most cases
 \usepackage{textcmds}
+\ifdeutsch
+  % EN: German quotes are different. So do not use the English quotes, but the ones provided by the csquotes package.
+  \renewcommand{\qq}[1]{\enquote{#1}}
+\fi
 %%%
 
 

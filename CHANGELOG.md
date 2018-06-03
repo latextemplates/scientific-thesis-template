@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
-### Changed
+## Fixed
+- German quotes are correct when using `\qq{...}`.
 
-- Bibliography goes before appendix
+### Changed
+- Bibliography goes before appendix.
 
 ## [3.0.0-beta.2] - 2018-06-04
 
