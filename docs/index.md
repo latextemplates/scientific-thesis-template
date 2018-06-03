@@ -154,7 +154,12 @@ Your LaTeX environment (such as [TeXStudio]) should take care about the compilat
 If you open `main-minted-german.tex`, there will be a warning that the compilation command will be overridden.
 Please answer `(a) allow for this document`:
 
-![allow for this document](texstudio-conformation-1.png)
+![allow --shell-escape for this document](texstudio-confirmation-1.png)
+
+At "Build & View", there will be a question to update to biber.
+Please answer `(a) allow for this document`:
+
+![allow biber for this document](texstudio-confirmation-2.png)
 
 When the "Package Installation" dialog pops up at TeXStudio, choose your username at "The package will be installed for:" and uncheck "Always show this dialog before installing packages."
 If you want to include .svg graphics, [inkscape] has to be in your path.
