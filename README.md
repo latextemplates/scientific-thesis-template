@@ -59,7 +59,7 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 
 ### Usage at overleaf
 
-See [overleaf](overleaf.md).
+See [overleaf](docs/overleaf.md).
 
 ### Usage using plain git
 
