@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [unreleased]
+## [3.0.0-beta.3] - 2018-06-06
 
 ## Fixed
 - German quotes are correct when using `\qq{...}`.
@@ -180,7 +180,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.2...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.3...HEAD
+[3.0.0-beta.3]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.2...3.0.0-beta.3
 [3.0.0-beta.2]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.1...3.0.0-beta.2
 [3.0.0-beta.1]: https://github.com/latextemplates/scientific-thesis-template/compare/2.5.0...3.0.0-beta.1
 [2.5.0]: https://github.com/latextemplates/scientific-thesis-template/compare/2.4.0...2.5.0
