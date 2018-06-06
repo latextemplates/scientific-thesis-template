@@ -92,12 +92,27 @@ It also comes with [git support](https://www.overleaf.com/blog/195-new-collabora
 
 ## Installation hints for Ubuntu
 
-From Ubuntu 17.04 onwards, this template works without issues.
+- From Ubuntu 18.10 onwards, the basic version of the template works without issues.
+  Advanced usages such as cool syntax highlighting with [minted](https://www.ctan.org/pkg/minted) needs more configuration.
+- Ubuntu 16.04 [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
+  The easiest way is to uninstall the ubuntu package and use [install-tl-ubuntu](https://github.com/scottkosty/install-tl-ubuntu).
+  Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
+  If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
 
-Ubuntu 16.04 [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
-The easiest way is to uninstall the ubuntu package and use [install-tl-ubuntu](https://github.com/scottkosty/install-tl-ubuntu).
-Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
-If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
+Always working solution: Use the [docker image](https://hub.docker.com/r/koppor/texlive/).
+This is provides a perfectly configured latex distribution with all required tools.
+
+1. Execute `sudo visudo` to edit the sudoers file
+2. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: https://unix.stackexchange.com/a/13058/18033)
+3. Execute `sudo docker pull koppor/texlive`.
+   This should not ask for any password.
+   Will download approx. 4GB.
+4. Open TeXstudio
+5. Options > Configure TeXstudio > Commands
+6. Set "LuaLaTeX" to `docker run --rm -it -v DIROFTEXDOCUMENT:/home koppor/texlive lualatex --shell-escape -synctex=1 -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+7. Set "Biber" to `docker run --rm -it -v DIROFTEXDOCUMENT:/home koppor/texlive biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+8. Check if the "docker pull" command from step 3 succeed. If not, wait.
+9. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
 
 ## Installation hints for Windows
 
