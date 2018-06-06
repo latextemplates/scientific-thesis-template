@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Fixed
 - German quotes are correct when using `\qq{...}`.
+- `.editorconfig` only for `*.tex`, `*.bib`, `*.yaml` to enable seamless editing of `*.cpp`, `*.java`, etc. Fixes [#25](https://github.com/latextemplates/scientific-thesis-template/issues/90).
 
 ### Changed
 - Bibliography goes before appendix.
