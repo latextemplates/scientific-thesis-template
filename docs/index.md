@@ -127,8 +127,8 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
     1. Open `cmd.exe` as Administartor
     2. Paste and hit <kbd>Enter</kbd> `@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
 1. Execute `choco feature enable -n=allowGlobalConfirmation` to get rid off additional installation confirmations.
-1. Execute `choco install texstudio sumatrapdf.install latexmk strawberryperl jre8 jabref languagetool` to install necessary tooling.
-1. In case [PlantUML](http://plantuml.com/) should be used, follow the installation instructions at <https://latextemplates.github.io/plantuml/>.
+1. Execute `choco install texstudio sumatrapdf.install strawberryperl jre8 jabref languagetool` to install necessary tooling.
+1. In case [PlantUML](http://plantuml.com/) should be used, follow the installation instructions at <https://latextemplates.github.io/plantuml/> listed at the "pre-conditions" section.
 1. For more recommended tooling see <https://github.com/koppor/koppors-chocolatey-scripts>.
 
 ### Recommended setup of MiKTeX
