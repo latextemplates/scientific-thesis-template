@@ -143,8 +143,10 @@
 %%%
 % EN: For easy quotations: \enquote{text}
 %     This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
-% DE:  Anführungszeichen
-%      Zitate in \enquote{...} setzen, dann werden automatisch die richtigen Anführungszeichen verwendet.
+%     Note that this package results in a warning when it is loaded before minted (actually fvextra).
+% DE: Anführungszeichen
+%     Zitate in \enquote{...} setzen, dann werden automatisch die richtigen Anführungszeichen verwendet.
+%     Dieses package erzeugt eine Warnung, wenn es vor minted (genauer fvextra) geladen wird.
 \usepackage{csquotes}
 %%%
 
