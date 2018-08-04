@@ -6,8 +6,8 @@ Source code needs to be highlighted
 ## Considered Options
 
 * [minted](https://www.ctan.org/pkg/minted)
-* [listings](https://www.ctan.org/pkg/minted)
-* [pygmentex](https://www.ctan.org/pkg/pygmentex]
+* [listings](https://www.ctan.org/pkg/listings)
+* [pygmentex](https://www.ctan.org/pkg/pygmentex)
 
 
 ## Decision Outcome
