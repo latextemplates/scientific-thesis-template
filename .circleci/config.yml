@@ -7,10 +7,6 @@ jobs:
       - checkout
       # normal compilation and release to homepage
       - run: latexmk main-german.tex
-      - run: latexmk main-minted-german.tex
-      - run: latexmk main-english.tex
-      - run: latexmk main-paderborn-german.tex
-      - run: latexmk main-paderborn-english.tex
       - run: mkdir build && cp -r main-*.pdf .github/_config.yml docs/* build/
       - store_artifacts:
           path: build/
@@ -18,7 +14,3 @@ jobs:
       # test pdflatex compilation
       - run: git clean -xdf
       - run: pdflatex main-german.tex
-      - run: pdflatex -shell-escape main-minted-german.tex
-      - run: pdflatex main-english.tex
-      - run: pdflatex main-paderborn-german.tex
-      - run: pdflatex main-paderborn-english.tex
