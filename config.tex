@@ -411,20 +411,21 @@
 % DE: Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
 \usepackage{fancyvrb}
 %
-%EN: Font size for the normal text
-%DE: Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
+% EN: Font size for the normal text
+% DE: Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
 %\fvset{fontsize=\small}
 %
-%DE: Somit kann im Text ganz einfach §verbatim§ text gesetzt werden.
-%    Disabled, because UTF-8 does not work any more and lualatex causes issues
+% DE: Somit kann im Text ganz einfach §verbatim§ text gesetzt werden.
+%     Disabled, because UTF-8 does not work any more and lualatex causes issues
 %\DefineShortVerb{\§}
 %
-%EN: Shrink font size of listings
+% EN: Shrink font size of listings
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{fontsize=\footnotesize}
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{fontsize=\footnotesize}
 %
-%EN: Hack for fancyvrb based on http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-12/msg00075.html
-%EN: Change of the solution: \Vref somehow collidated with cleveref/varioref as the output of \Vref{} was "Abschnitt 4.3 auf Seite 85"; therefore changed to \myVref -- so completely removed
+% EN: Hack for fancyvrb based on http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-12/msg00075.html
+%     Change of the solution: \Vref somehow collidated with cleveref/varioref as the output of \Vref{} was "Abschnitt 4.3 auf Seite 85"; therefore changed to \myVref -- so completely removed
+%     See https://tex.stackexchange.com/q/132420/9075 for more information.
 \newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
 \newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 %
