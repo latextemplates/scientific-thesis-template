@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added [stfloats](https://ctan.org/pkg/stfloats) package to enable footnotes below floats.
 - Added `ngerman` as class option for German documents.
+- Added macros `\eg` and `\ie`.
+- Added macro `\powerset` to correctly typeset the powerset symbol.
 
 ### Changed
 
