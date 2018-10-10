@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## Added
+### Added
 
-- Added [stfloats](https://ctan.org/pkg/stfloats) package to enable footnotes below floats
+- Added [stfloats](https://ctan.org/pkg/stfloats) package to enable footnotes below floats.
+- Added `ngerman` as class option for German documents.
+
+### Changed
+
+- Change kind of loading of `cleveref` package.
+- Strings for `cleveref` in German are set explicitly.
 
 ## [3.0.0-beta.3] - 2018-06-06
 
