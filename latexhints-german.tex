@@ -102,17 +102,86 @@ Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus D
 
 %Listing-Umgebung wurde durch \newfloat{Listing} definiert
 
-\begin{Listing}
-  \begin{lstlisting}[language=XML]
+\begin{lstlisting}[language=XML,caption={Langes lstlisting},label={lst:ListingANDlstlisting},numbers=left]
 <listing name="second sample">
   <!-- comment -->
   <content>not interesting</content>
+  <emptyspace>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </emptyspace>
 </listing>
 \end{lstlisting}
-  \caption{lstlisting in einer Listings-Umgebung, damit das Listing durch Balken abgetrennt ist}
-  \label{lst:ListingANDlstlisting}
-\end{Listing}
-
 
 %TODO: Currently not shown in TOC
 \lstinputlisting[language=C++,label=helloworld,caption={"`hello world"' in C++.},float]{code/helloworld.cpp}
