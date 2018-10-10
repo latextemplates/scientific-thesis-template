@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## Added
+
+- Added [stfloats](https://ctan.org/pkg/stfloats) package to enable footnotes below floats
+
 ## [3.0.0-beta.3] - 2018-06-06
 
 ## Fixed
