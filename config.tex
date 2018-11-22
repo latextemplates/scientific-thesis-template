@@ -113,7 +113,7 @@
 \ifdeutsch
   % DE: letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
   %     Siehe auch http://tex.stackexchange.com/a/50638/9075
-  \usepackage[american,ngerman]{babel}
+  \usepackage[american,main=ngerman]{babel}
   % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
   \addto\captionsngerman{%
     \renewcommand\abstractname{Kurzfassung}%
@@ -127,7 +127,7 @@
   % EN: Set English as language and allow to write hyphenated"=words
   %     `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish).
   %      "english" has to go last to set it as default language
-  \usepackage[ngerman,english]{babel}
+  \usepackage[ngerman,main=english]{babel}
   % EN: Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
   \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
   \ifluatex
