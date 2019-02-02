@@ -82,27 +82,8 @@
 %     Left aligned Columns in tables with fixed width.
 %     See http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
 \usepackage{ragged2e}
-%%%
-
-%%%
-% EN: Abbreviations
-% DE: Abkürzungsverzeichnis
-%
 % DE: Wichtig, ansonsten erscheint "No room for a new \write"
 \usepackage{scrwfile}
-% DE: siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
-\usepackage[acronym,indexonlyfirst,nomain]{glossaries}
-\ifdeutsch
-  \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
-\else
-  \renewcommand*{\acronymname}{List of Abbreviations}
-\fi
-\renewcommand*{\glsgroupskip}{}
-%
-% EN: Removed Glossarie as a table as a quick fix to get the template working again
-%     See http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
-%
-\makenoidxglossaries
 %%%
 
 
@@ -724,6 +705,27 @@
 }
 %
 %%%
+
+
+%%%
+% EN: Abbreviations - has to be loaded after hyperref
+% DE: Abkürzungsverzeichnis - muss nach hyperref geladen werden
+%
+% DE: siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
+\usepackage[acronym,indexonlyfirst,nomain]{glossaries}
+\ifdeutsch
+  \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+\else
+  \renewcommand*{\acronymname}{List of Abbreviations}
+\fi
+\renewcommand*{\glsgroupskip}{}
+%
+% EN: Removed Glossarie as a table as a quick fix to get the template working again
+%     See http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
+%
+\makenoidxglossaries
+%%%
+
 
 %%%
 % EN: Extensions for references inside the document (\cref{fig:sample}, ...)
