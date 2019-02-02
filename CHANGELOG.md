@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Change kind of loading of `cleveref` package.
 - Strings for `cleveref` in German are set explicitly.
 
+### Fixed
+
+- There were English words appearing in German documents. [#100](https://github.com/latextemplates/scientific-thesis-template/pull/100) [#103](https://github.com/latextemplates/scientific-thesis-template/issues/103)
+
 ## [3.0.0-beta.3] - 2018-06-06
 
 ## Fixed
