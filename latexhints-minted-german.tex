@@ -4,7 +4,9 @@
 
 Falls \lualatex{} verwendet wird und PlantUML installiert ist, können UML-Diagramme mittels PlantUML erstellt werden.
 
-\IfFileExists{plantuml.sty}{\input{latexhints-german-plantuml}}{}
+\ifluatex
+  \IfFileExists{plantuml.sty}{\input{latexhints-german-plantuml}}{}
+\fi
 
 \section{minted}
 
