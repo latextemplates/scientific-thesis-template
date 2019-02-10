@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [3.0.0-beta.4] – 2019-02-10
 
 ### Added
 
@@ -235,7 +235,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.3...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.4...HEAD
+[3.0.0-beta.4]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.3...3.0.0-beta.4
 [3.0.0-beta.3]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.2...3.0.0-beta.3
 [3.0.0-beta.2]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.1...3.0.0-beta.2
 [3.0.0-beta.1]: https://github.com/latextemplates/scientific-thesis-template/compare/2.5.0...3.0.0-beta.1
