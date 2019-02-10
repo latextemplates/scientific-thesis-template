@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fix spacing between numbers and text in the TOC. [#78](https://github.com/latextemplates/scientific-thesis-template/issues/78)
 - `latexhints-minted-german.tex` compiles with pdflatex again
 
-## [3.0.0-beta.3] - 2018-06-06
+## [3.0.0-beta.3] – 2018-06-06
 
 ## Fixed
 
@@ -38,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Bibliography goes before appendix.
 
-## [3.0.0-beta.2] - 2018-06-04
+## [3.0.0-beta.2] – 2018-06-04
 
 ### Added
 
@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Refined instructions not to use `\\` to separate paragraphs in LaTeX (but to use a blank line).
 - Documentation improvements in `config.tex`.
 
-## [3.0.0-beta.1] - 2018-03-12
+## [3.0.0-beta.1] – 2018-03-12
 
 ### Added
 
@@ -64,7 +64,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Default compiler is `lualatex` (instead of `pdflatex`): `% !TeX program` and `.latexmkrc` adapted accordingly.
 - Quotes are now made by `\qq{word}` instead of `\enquote{word}` to easy typing.
 
-## [2.5.0] - 2018-03-07
+## [2.5.0] – 2018-03-07
 
 ### Added
 
@@ -83,7 +83,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fix encoding in PDF bookmarks (pdf.js).
 - Compilation with `lualatex` works again.
 
-## [2.4.0] - 2018-02-28
+## [2.4.0] – 2018-02-28
 
 ### Added
 
@@ -106,7 +106,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Removed outdated hint on `\textsc` in `latexhints-*.tex`.
 
-## [2.3.0] - 2018-02-04
+## [2.3.0] – 2018-02-04
 
 ### Changed
 
@@ -121,7 +121,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Listings rendered by minted are now also shown in the TOC
 - latexindent config: `removeSentenceLineBreaks` set to 0 to avoid collapsing of environments
 
-## [2.2.0] - 2018-01-19
+## [2.2.0] – 2018-01-19
 
 ### Added
 
@@ -132,7 +132,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Change package option `final` to `draft=false` to reduce output from KOMA-Script
 - Change font text to Times Roman for both English and German templates. Fixes [#48](https://github.com/latextemplates/scientific-thesis-template/issues/48).
 
-## [2.1.1] - 2018-01-18
+## [2.1.1] – 2018-01-18
 
 ### Added
 
@@ -143,7 +143,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Fixed numbering of minted listings.
 
-## [2.1.0] - 2018-01-16
+## [2.1.0] – 2018-01-16
 
 ### Added
 
@@ -158,7 +158,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Switch from `uni-stuttgart-cs-cover.sty` to [scientific-thesis-cover](https://ctan.org/pkg/scientific-thesis-cover).
 - Rename `latex-hints-de.tex` to `latexhints-german.tex` to be consistent with the filename pattern for `main-*.tex`.
 
-## [2.0.1] - 2017-12-19
+## [2.0.1] – 2017-12-19
 
 ### Added
 
@@ -175,12 +175,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Fix typo in "Bachelor" in `main-paderborn-*.tex`.
 
-## [2.0.0] - 2017-12-18
+## [2.0.0] – 2017-12-18
 
 ### Added
 
 - `main-paderborn-english.tex` and `main-paderborn-german.tex`- start documents for Paderborn University.
-- `main-english.tex` - start document for English documents.
+- `main-english.tex` – start document for English documents.
 
 ### Fixed
 
@@ -195,7 +195,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - git tags now without `v` prefix.
 - Change license to [CC0](https://creativecommons.org/publicdomain/zero/1.0/) to ensure wide use.
 
-## [1.3.0] - 2017-12-11
+## [1.3.0] – 2017-12-11
 
 ### Added
 
@@ -210,14 +210,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - The repository uses the branch `master` as default branch and not `template` anymore.
 
-## [1.2.0] - 2017-07-28
+## [1.2.0] – 2017-07-28
 
 ### Changed
 
 - Fixed non-inline todos
 - Use German name for 'list of todos' in German thesis
 
-## [1.1.0] - 2017-07-22
+## [1.1.0] – 2017-07-22
 
 ### Changed
 
@@ -225,7 +225,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - made font size default again (now 11pt instead of 12pt) to look better
 - margins are set in a way that the page content does not "jump" when reading on screen.
 
-## 1.0.0 - 2017-06-16
+## 1.0.0 – 2017-06-16
 
 ### Changed
 
