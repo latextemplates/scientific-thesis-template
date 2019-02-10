@@ -23,6 +23,9 @@ sub run_makeglossaries {
   };
 }
 
+# enable deletion of *.bbl when calling "latexmk -c"
+$bibtex_use = 2;
+
 #remove more files than in the default configuration
 @generated_exts = qw(acn acr alg aux code ist fls glg glo gls glsdefs idx ind lof lot out thm toc tpt wrt);
 $clean_ext .= ' %R.ist %R.xdy';

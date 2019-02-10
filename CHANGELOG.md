@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added `ngerman` as class option for German documents.
 - Added macros `\eg` and `\ie`.
 - Added macro `\powerset` to correctly typeset the powerset symbol.
+- Enable deletion of *.bbl when calling `latexmk -c`
 
 ### Changed
 
