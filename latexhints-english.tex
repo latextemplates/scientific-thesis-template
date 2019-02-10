@@ -397,6 +397,25 @@ In case \lualatex{} is used and PlantUML is installed, UML diagrams can be defin
 % Only works if "--shell-escape" is activated. Please activate only if you are sure, your compilation settings are correct
 %\IfFileExists{plantuml.sty}{\input{latexhints-english-plantuml}}{}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linguistic Forests}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{filecontents*}{\democodefile}
+\begin{forest}
+  [VP
+    [DP]
+    [V’
+      [V]
+      [DP]
+    ]
+  ]
+\end{forest}
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
