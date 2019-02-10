@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Links to abbreviations work again. [#102](https://github.com/latextemplates/scientific-thesis-template/issues/102)
 - Fix spacing between numbers and text in the TOC. [#78](https://github.com/latextemplates/scientific-thesis-template/issues/78)
 - `latexhints-minted-german.tex` compiles with pdflatex again
+- Fix "LaTeX Warning: Reference `tab:Results' on page 1 undefined on input line 422."
 
 ## [3.0.0-beta.3] – 2018-06-06
 
