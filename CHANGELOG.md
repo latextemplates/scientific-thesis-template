@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Removed
+
+- Removed option `hyperref` at xcolor package. It is not used and caused troubles at some setups.
+
 ## [3.0.0-beta.4] – 2019-02-10
 
 ### Added
