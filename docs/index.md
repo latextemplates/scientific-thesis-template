@@ -103,7 +103,7 @@ Always working solution: Use the [docker image](https://hub.docker.com/r/koppor/
 This is provides a perfectly configured latex distribution with all required tools.
 
 1. Execute `sudo visudo` to edit the sudoers file
-2. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: https://unix.stackexchange.com/a/13058/18033)
+2. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: <https://unix.stackexchange.com/a/13058/18033>)
 3. Execute `sudo docker pull koppor/texlive`.
    This should not ask for any password.
    Will download approx. 4GB.
@@ -159,7 +159,7 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
      5. Execute `mpm --install=tex-gyre` (to resolve `fontspec error: "font-not-found"`, `\setmainfont{TeX Gyre Termes}`)
      6. Execute `mpm --install=tex-gyre-math`
      7. Execute `mpm --install=cm-super`
-     8. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270)
+     8. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see <https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270>)
      9. Execute `initexmf --mklinks --force`
 
 ## LaTeX compilation
@@ -255,7 +255,7 @@ Just run pdflatex again.
 
 ### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
-Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
+Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: <http://tex.stackexchange.com/a/324972/9075>)
 
 ### Q: How do I change the appearance of chapter headings?
 
@@ -266,7 +266,7 @@ Edit `preambel/chapterheads.tex`.
 1. Select the excel chart you want to use.
 2. Print to PDF with the option "Print Selected Chart".
 3. Remove empty space of the created PDF page with `pdfcrop chart.pdf chart_cropped.pdf` (install via MikTex first, if not available; check via `pdfcrop --version`).
-4. Use pdfscissors (https://sites.google.com/site/pdfscissors) to crop the borders and title (maybe you have to allow https://sites.google.com in the Java security center in the control panel).
+4. Use pdfscissors (https://sites.google.com/site/pdfscissors) to crop the borders and title (maybe you have to allow <https://sites.google.com> in the Java security center in the control panel).
 5. Include the PDF in LaTex via `\includegraphics{chart_cropped.pdf}`.
 
 ### Q: Do I need to take special care because of Visual Studio Code?
