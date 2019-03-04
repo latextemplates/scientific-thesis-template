@@ -3,13 +3,13 @@
 This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
-  - University of Stuttgart, Computer Science
-    - [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
-    - [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
-    - [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
-  - Paderborn University, Computer Science - to be confirmed.
-    - [English example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)
-    - [German example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)
+- University of Stuttgart, Computer Science
+  - [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
+  - [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
+  - [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
+- Paderborn University, Computer Science - to be confirmed.
+  - [English example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)
+  - [German example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)
 
 The template will be extended to support theses from different institutions.
 
@@ -32,16 +32,16 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 
 ## Characteristics of the template
 
-* Most recent packages and package configuration based on long-time experience.
-* [lualatex](http://www.luatex.org/) to enable proper typeset [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
+- Most recent packages and package configuration based on long-time experience.
+- [lualatex](http://www.luatex.org/) to enable proper typeset [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
   For older systems, [pdflatex](https://en.wikipedia.org/wiki/PdfTeX) is still supported.
-* Open for contributions.
-* [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
-* [biblatex]+[biber] instead of plain [bibtex], because biblatex fully supports UTF-8 and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
-* Automatic adjustment of wrong [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) using the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package
-* Full Unicode (UTF-8) support
-* Optional: Render listings using [minted](https://github.com/gpoore/minted/), which provides better output than [listings](https://ctan.org/pkg/listings), but requires [pygments](http://pygments.org/) to be installed.
-* Optional: Direct inclusion of [PlantUML](http://plantuml.com/) diagram.s
+- Open for contributions.
+- [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
+- [biblatex]+[biber] instead of plain [bibtex], because biblatex fully supports UTF-8 and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
+- Automatic adjustment of wrong [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) using the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package
+- Full Unicode (UTF-8) support
+- Optional: Render listings using [minted](https://github.com/gpoore/minted/), which provides better output than [listings](https://ctan.org/pkg/listings), but requires [pygments](http://pygments.org/) to be installed.
+- Optional: Direct inclusion of [PlantUML](http://plantuml.com/) diagram.s
 
 Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/autolatex/), it is [not included in MiKTeX](http://www.ctan.org/pkg/autolatex) and therefore it is not used here.
 
@@ -152,16 +152,15 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
 1. Now a window "Executing" appears. It will take about 5 minutes until this is finished.
 1. At the last screen: Click "Close"
 1. After the installation:
-    1. Open `cmd.exe`
-    2. Execute `refreshenv` to make MiKTeX's binaries known right after the installation
-    2. Execute `mpm --update-db`
-    3. Execute `mpm --update`
-    4. Execute `mpm --install=tex-gyre` (to resolve `fontspec error: "font-not-found"`, `\setmainfont{TeX Gyre Termes}`)
-    4. Execute `mpm --install=tex-gyre-math`
-    4. Execute `mpm --install=cm-super`
-    5. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270)
-    6. Execute `initexmf --mklinks --force`
-
+     1. Open `cmd.exe`
+     2. Execute `refreshenv` to make MiKTeX's binaries known right after the installation
+     3. Execute `mpm --update-db`
+     4. Execute `mpm --update`
+     5. Execute `mpm --install=tex-gyre` (to resolve `fontspec error: "font-not-found"`, `\setmainfont{TeX Gyre Termes}`)
+     6. Execute `mpm --install=tex-gyre-math`
+     7. Execute `mpm --install=cm-super`
+     8. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270)
+     9. Execute `initexmf --mklinks --force`
 
 ## LaTeX compilation
 
@@ -234,6 +233,7 @@ See installation hints of how to update them at different systems.
 
 Google for the name of the `sty` and upload it to overleaf.
 As of 2018-02-17, these are:
+
 - `lccaps.sty` - can be downloaded from <https://latextemplates.github.io/stys-for-overleaf/>.
 - `scientific-thesis-cover.sty` - can be downloaded from <https://raw.githubusercontent.com/latextemplates/scientific-thesis-cover/master/scientific-thesis-cover.sty>.
 
@@ -277,11 +277,11 @@ Without the magic comments, compilation works.
 
 ### Q: Do I have to do something special for the final version?
 
-  - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
-  - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
-  - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `config.tex`.
-  - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
-  - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
+- If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
+- By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
+- Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `config.tex`.
+- Ensure that you run `lualatex` at least three times and that there are no "undefined references".
+- The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
 
 ### Q: I want to use make instead of latexmk
 
@@ -291,13 +291,14 @@ It is not as sophisticated as other projects, but does its job.
     make
 
 Make targets:
- * `pdf` (default): Generates ausarbeitung.pdf
- * `aspell`: Checks all files using aspell.
- * `clean`: Removes all temporary files.
- * `mrproper`: Cleans up and removes also editor backup files.
- * `stand`: Creates a new PDF with the current status of the thesis.
- * `view`: Opens the configured viewer
- * `6`: Generates a 3x2 postscriptfile using psnup.
+
+- `pdf` (default): Generates ausarbeitung.pdf
+- `aspell`: Checks all files using aspell.
+- `clean`: Removes all temporary files.
+- `mrproper`: Cleans up and removes also editor backup files.
+- `stand`: Creates a new PDF with the current status of the thesis.
+- `view`: Opens the configured viewer
+- `6`: Generates a 3x2 postscriptfile using psnup.
 
 ### Q: Are there any other alternatives to latexmk and make?
 
@@ -358,13 +359,13 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 
 ### Directories
 
-* [graphics](graphics/) Directory containing the figures.
+- [graphics](graphics/) Directory containing the figures.
   By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
 
 ### Files
 
 - `main-*.tex` - Start file for theses
-  * The files follow the pattern `main-[institution-][feature-][language].tex`, where
+  - The files follow the pattern `main-[institution-][feature-][language].tex`, where
     - `institution` is empty or `paderborn`
     - `feature` is empty or `minted`
     - `language` is `english` or `german`
@@ -372,8 +373,8 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
     - [main-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-english.tex) for English
     - [main-paderborn-german.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderporn-german.tex) for German theses at Paderborn University
     - [main-paderborn-english.tex](https://github.com/latextemplates/scientific-thesis-template/blob/master/main-paderborn-english.tex) for English theses at Paderborn University
-  * Add text here
-  * Adjust title etc. here
+  - Add text here
+  - Adjust title etc. here
 - [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
 - [acronyms.tex](acronyms.tex) - Abbreviations.
 - [commands.tex](commands.tex) - Example macros
