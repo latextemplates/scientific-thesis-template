@@ -32,4 +32,4 @@ Chosen option: CC0, because comes out best (see below).
 
 * Good, because well-known
 * Bad, because forces the user of the template to make available his text under GPL, too.
-  A long argumentation regarding this statement is done at: https://opensource.stackexchange.com/a/4206/5671
+  A long reasoning regarding this statement is done at: <https://opensource.stackexchange.com/a/4206/5671>
