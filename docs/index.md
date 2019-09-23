@@ -99,17 +99,17 @@ It also comes with [git support](https://www.overleaf.com/blog/195-new-collabora
   Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
   If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
 
-Always working solution: Use the [docker image](https://hub.docker.com/r/koppor/texlive/).
+Always working solution: Use the [docker image](https://hub.docker.com/r/danteev/texlive/).
 This is provides a perfectly configured latex distribution with all required tools.
 
 1. Execute `sudo visudo` to edit the sudoers file
 2. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: <https://unix.stackexchange.com/a/13058/18033>)
-3. Execute `sudo docker pull koppor/texlive`.
+3. Execute `sudo docker pull danteev/texlive`.
    This should not ask for any password.
    Will download approx. 4GB.
 4. Open TeXstudio
 5. Options > Configure TeXstudio > Commands
-6. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:/home koppor/texlive lualatex --shell-escape -synctex=1 -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+6. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive lualatex --shell-escape -synctex=1 -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
 7. Set "Biber" to `docker run --rm -v DIROFTEXDOCUMENT:/home koppor/texlive biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
 8. Check if the "docker pull" command from step 3 succeed. If not, wait.
 9. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
