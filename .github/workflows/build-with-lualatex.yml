@@ -12,6 +12,12 @@ jobs:
           root_file: main-german.tex
           compiler: lualatex
           args:
+      - name: biber main-german
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: main-german
+          compiler: biber
+          args:
       - name: Compile main-minted-german.tex
         uses: dante-ev/latex-action@master
         with:
