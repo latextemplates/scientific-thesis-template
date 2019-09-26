@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed loading of newtxmath.
+
 ### Removed
 
 - Removed option `hyperref` at xcolor package. It is not used and caused troubles at some setups.
