@@ -34,3 +34,13 @@ jobs:
         with:
           root_file: main-paderborn-english.tex
           args:
+      - name: Build
+        run: mkdir build && cp -r main-*.pdf .github/_config.yml docs/* build/
+      - name: Deploy
+        if: success()
+        uses: crazy-max/ghaction-github-pages@master
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
