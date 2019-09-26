@@ -34,11 +34,3 @@ jobs:
         with:
           root_file: main-paderborn-english.tex
           args:
-    - name: Collect and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: master
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: mkdir build && cp -r main-*.pdf .github/_config.yml docs/* build/
