@@ -1,6 +1,7 @@
-# LaTeX Template for Scientific Theses [![Build Status](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/scientific-thesis-template/)
+# LaTeX Template for Scientific Theses ![Build Status](https://github.com/latextemplates/scientific-thesis-template/workflows/build with lualatex/badge.svg)
 
-This template is a general template for scientific theses.
+> This template is a general template for scientific theses.
+
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses.
 
 See [docs/](docs/) for a documentation of the template.
