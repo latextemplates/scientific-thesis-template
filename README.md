@@ -1,4 +1,4 @@
-# LaTeX Template for Scientific Theses ![Build Status](https://github.com/latextemplates/scientific-thesis-template/workflows/build with lualatex/badge.svg)
+# LaTeX Template for Scientific Theses ![Build Status](https://github.com/latextemplates/scientific-thesis-template/workflows/Build%20with%20lualatex/badge.svg)
 
 > This template is a general template for scientific theses.
 

@@ -1,4 +1,4 @@
-name: build with pdflatex
+name: Build with pdflatex
 on: [push]
 jobs:
   build_latex:
