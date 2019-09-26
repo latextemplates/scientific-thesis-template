@@ -34,7 +34,7 @@ jobs:
         with:
           root_file: main-paderborn-english.tex
           args:
-      - name: Build
+      - name: Gather build artifacts
         run: mkdir build && cp -r main-*.pdf .github/_config.yml docs/* build/
       - name: Deploy
         if: success()
