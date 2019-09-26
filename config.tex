@@ -3,45 +3,35 @@
 
 % EN: This file includes basic packages and sets options. The order of package
 %     loading is important
+
 % DE: In dieser Datei werden zuerst die benoetigten Pakete eingebunden und
 %     danach diverse Optionen gesetzt. Achtung Reihenfolge ist entscheidend!
 
 
-%%%
 % EN: Styleguide:
 % - English comments are prefixed with "EN", German comments are prefixed with "DE"
 % - Prefixed headings define the language for the subsequent paragraphs
-% - It is tried to organize packages in blocks. One block starts with %%%, then
-%   % <heading>, then the options and more text. % followed by %%% end a block.
-%
+% - It is tried to organize packages in blocks. Bocks are separated by two empty lines.
+
 % DE: Styleguide:
 %
 % Ein sehr kleiner Styleguide. Packages werden in Blöcken organisiert.
-% Ein Block beginnt mit drei % in einer Zeile, dann % <Blocküberschrift>, dann
-% eine Liste der möglichen Optionen und deren Einstellungen, Gründe und Kommentare
-% eine % Zeile in der sonst nichts steht und dann wieder %%% in einer Zeile.
-%
 % Zwischen zwei Blöcken sind 2 Leerzeilen!
-% Zu jedem Paket werden soviele Optionen wie möglich/nötig angegeben
-%
-%%%
 
 
-%%%
 % EN: Enable copy and paste of text from the PDF
 %     Only required for pdflatex. It "just works" in the case of lualatex.
 %     mmap enables mathematical symbols, but does not work with the newtx font set
 %     See: https://tex.stackexchange.com/a/64457/9075
 %     Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
 %     Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+
 \ifluatex
 \else
   \usepackage{cmap}
 \fi
-%%%
 
 
-%%%
 % EN: File encoding
 % DE: Codierung
 %     Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
@@ -56,11 +46,10 @@
 \else
   \usepackage[utf8]{inputenc}
 \fi
-%
-%%%
 
-%%%
+
 % DE: Parallelbetrieb tex4ht und pdflatex
+
 \makeatletter
 \@ifpackageloaded{tex4ht}{
   \def\iftex4ht{\iftrue}
@@ -68,734 +57,36 @@
   \def\iftex4ht{\iffalse}
 }
 \makeatother
-%%%
 
 
-%%%
-% EN: Defintion of colors. Argument "hyperref" is not used as we do not want to change border colors of links: Links are not colored anymore.
-% DE: Farbdefinitionen
-\usepackage[dvipsnames]{xcolor}
-%%%
-
-
-%%%
-% EN: Required for custom acronyms/glossaries style.
-%     Left aligned Columns in tables with fixed width.
-%     See http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
-\usepackage{ragged2e}
-% DE: Wichtig, ansonsten erscheint "No room for a new \write"
-\usepackage{scrwfile}
-%%%
-
-
-%%%
-% EN: Support for language-specific hyphenation
-% DE: Neue deutsche Rechtschreibung und Literatur statt "Literature"
-%     Die folgende Einstellung ist der Nachfolger von ngerman.sty
-\ifdeutsch
-  % DE: letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
-  %     Siehe auch http://tex.stackexchange.com/a/50638/9075
-  \usepackage[american,main=ngerman]{babel}
-  % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
-  \addto\captionsngerman{%
-    \renewcommand\abstractname{Kurzfassung}%
-  }
-  \ifluatex
-    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
-    %     for a discussion
-    \usepackage[ngerman]{selnolig}
-  \fi
-\else
-  % EN: Set English as language and allow to write hyphenated"=words
-  %     `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish).
-  %      "english" has to go last to set it as default language
-  \usepackage[ngerman,main=english]{babel}
-  % EN: Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
-  \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
-  \ifluatex
-    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
-    %     for a discussion
-    \usepackage[english]{selnolig}
-  \fi
-\fi
-%
-%%%
-
-
-%%%
-% EN: For easy quotations: \enquote{text}
-%     This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
-%     Note that this package results in a warning when it is loaded before minted (actually fvextra).
-% DE: Anführungszeichen
-%     Zitate in \enquote{...} setzen, dann werden automatisch die richtigen Anführungszeichen verwendet.
-%     Dieses package erzeugt eine Warnung, wenn es vor minted (genauer fvextra) geladen wird.
-\usepackage{csquotes}
-%%%
-
-
-%%%
-% EN: For even easier quotations: \qq{text}.
-%     Is not smart in the case of nesting, but good enough for the most cases
-\usepackage{textcmds}
-\ifdeutsch
-  % EN: German quotes are different. So do not use the English quotes, but the ones provided by the csquotes package.
-  \renewcommand{\qq}[1]{\enquote{#1}}
-\fi
-%%%
-
-
-%%%
-% EN: extended enumarations
-% DE: erweitertes Enumerate
-\usepackage{paralist}
-%
-%%%
-
-
-%%%
-% DE: fancyheadings (nicht nur) fuer koma
-\usepackage[automark]{scrlayer-scrpage}
-%
-%%%
-
-
-%%%
 % EN: Mathematics
 % DE: Mathematik
 %
 % DE: Viele Mathematik-Sachen. Siehe https://texdoc.net/pkg/amsmath
-\usepackage{amsmath}
+%
 % EN: Options must be passed this way, otherwise it does not work with glossaries
-\PassOptionsToPackage{fleqn,leqno}{amsmath}
 % DE: fleqn (=Gleichungen linksbündig platzieren) funktioniert nicht direkt. Es muss noch ein Patch gemacht werden:
-%\addtolength\mathindent{1em}%work-around ams-math problem with align and 9 -> 10. Does not work with glossaries, No visual changes.
-% EN: Fixes bugs in AMS math
-\usepackage{mathtools}
+\PassOptionsToPackage{fleqn,leqno}{amsmath}
 %
-% EN: For theorems, replacement for amsthm
-\usepackage[amsmath,hyperref]{ntheorem}
-\theorempreskipamount 2ex plus1ex minus0.5ex
-\theorempostskipamount 2ex plus1ex minus0.5ex
-\theoremstyle{break}
-\newtheorem{definition}{Definition}[section]
-%
-%%%
+% DE: amsmath Muss nicht mehr geladen werden, da es von newtxmath automatisch geladen wird
+% \usepackage{amsmath}
 
 
-%%%
-% DE: Intelligentes Leerzeichen um hinter Abkürzungen die richtigen Abstände zu erhalten, auch leere.
-%     Siehe commands.tex \gq{}
-\usepackage{xspace}
-%DE: Macht \xspace und \enquote kompatibel
-\makeatletter
-\xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
-\makeatother
-%
-%%%
-
-\newcommand{\eg}{e.\,g.,\ }
-\newcommand{\ie}{i.\,e.,\ }
-
-% EN: introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
-\DeclareFontFamily{U}{MnSymbolC}{}
-\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
-\DeclareFontShape{U}{MnSymbolC}{m}{n}{
-  <-6>    MnSymbolC5
-  <6-7>   MnSymbolC6
-  <7-8>   MnSymbolC7
-  <8-9>   MnSymbolC8
-  <9-10>  MnSymbolC9
-  <10-12> MnSymbolC10
-  <12->   MnSymbolC12%
-}{}
-\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
-
-%%%
-% EN: Package for the appendix
-% DE: Anhang
-\usepackage{appendix}
-%[toc,page,title,header]
-%
-%%%
-
-%%%
-% EN: Graphics
-% DE: Grafikeinbindungen
-%
-% EN: The parameter "pdftex" is not required
-\usepackage{graphicx}
-\graphicspath{{\getgraphicspath}}
-\newcommand{\getgraphicspath}{graphics/}
-%
-%%%
-
-
-%%%
-% EN: Enables inclusion of SVG graphics - 1:1 approach
-%    This is NOT the approach of https://ctan.org/pkg/svg-inkscape,
-%     which allows text in SVG to be typeset using LaTeX
-%     We just include the SVG as is.
-\usepackage{epstopdf}
-\epstopdfDeclareGraphicsRule{.svg}{pdf}{.pdf}{%
-  inkscape -z -D --file=#1 --export-pdf=\OutputFile
-}
-%
-%%%
-
-
-%%%
-% EN: Enables inclusion of SVG graphics - text-rendered-with-LaTeX-approach
-%     This is the approach of https://ctan.org/pkg/svg-inkscape,
-\newcommand{\executeiffilenewer}[3]{%
-  \IfFileExists{#2}
-  {
-    %\message{file #2 exists}
-    \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
-      {\pdffilemoddate{#2}}>0%
-      {\immediate\write18{#3}}
-    \else
-      {%\message{file up to date #2}
-      }
-    \fi%
-  }{
-    %\message{file #2 doesn't exist}
-    %\message{argument: #3}
-    %\immediate\write18{echo "test" > xoutput.txt}
-    \immediate\write18{#3}
-  }
-}
-\newcommand{\includesvg}[1]{%
-  \executeiffilenewer{#1.svg}{#1.pdf}%
-  {
-    inkscape -z -D --file=\getgraphicspath#1.svg %
-    --export-pdf=\getgraphicspath#1.pdf --export-latex}%
-  \input{\getgraphicspath#1.pdf_tex}%
-}
-
-
-%%%
-% EN: Enable typesetting values with SI units.
-\ifdeutsch
-  \usepackage[mode=text,group-four-digits]{siunitx}
-  \sisetup{locale=DE}
-\else
-  \usepackage[mode=text,group-four-digits,group-separator={,}]{siunitx}
-  \sisetup{locale=US}
-\fi
-%%%
-
-%%%
-% EN: Extensions for tables
-% DE: Tabellenerweiterungen
-\usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
-\usepackage{longtable}
-\usepackage{dcolumn} %Aligning numbers by decimal points in table columns
-\ifdeutsch
-  \newcolumntype{d}[1]{D{.}{,}{#1}}
-\else
-  \newcolumntype{d}[1]{D{.}{.}{#1}}
-\fi
-\setlength{\extrarowheight}{1pt}
-%%%
-
-%%%
-% Eine Zelle, die sich über mehrere Zeilen erstreckt.
-% Siehe Beispieltabelle in Kapitel 2
-\usepackage{multirow}
-%
-%%%
-
-%%%
-%Fuer Tabellen mit Variablen Spaltenbreiten
-%\usepackage{tabularx}
-%\usepackage{tabulary}
-%
-%%%
-
-
-%%%
-% EN: Links behave as they should. Enables "\url{...}" for URL typesettings.
-%     Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
-%     See https://tex.stackexchange.com/a/3034/9075.
-% DE: Links verhalten sich so, wie sie sollen
-%     Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
-%     Siehe https://tex.stackexchange.com/a/3034/9075.
-\usepackage[hyphens]{url}
-%
-%  EN: When activated, use text font as url font, not the monospaced one.
-%      For all options see https://tex.stackexchange.com/a/261435/9075.
-% \urlstyle{same}
-%
-% EN: Hint by http://tex.stackexchange.com/a/10419/9075.
-\makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
-\makeatother
-%
-%%%
-
-
-%%%
-% Index über Begriffe, Abkürzungen
-%\usepackage{makeidx} makeidx ist out -> http://xindy.sf.net verwenden
-%
-%%%
-
-%%%
-%lustiger Hack fuer das Abkuerzungsverzeichnis
-%nach latex durchlauf folgendes ausfuehren
-%makeindex ausarbeitung.nlo -s nomencl.ist -o ausarbeitung.nls
-%danach nochmal latex
-%\usepackage{nomencl}
-%    \let\abk\nomenclature %Deutsche Ueberschrift setzen
-%          \renewcommand{\nomname}{List of Abbreviations}
-%        %Punkte zw. Abkuerzung und Erklaerung
-%          \setlength{\nomlabelwidth}{.2\hsize}
-%          \renewcommand{\nomlabel}[1]{#1 \dotfill}
-%        %Zeilenabstaende verkleinern
-%          \setlength{\nomitemsep}{-\parsep}
-%    \makenomenclature
-%
-%%%
-
-%%%
-% EN: Logic for TeX - enables if-then-else in commands
-% DE: Logik für TeX
-%     FÜr if-then-else @ commands.tex
-\usepackage{ifthen}
-%
-%%%
-
-
-%%%
-% EN: Code Listings
-% DE: Listings
-\usepackage{listings}
-\lstset{language=XML,
-  showstringspaces=false,
-  extendedchars=true,
-  basicstyle=\footnotesize\ttfamily,
-  commentstyle=\slshape,
-  % DE: Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
-  stringstyle=\ttfamily,
-  breaklines=true,
-  breakatwhitespace=true,
-  % EN: alternative: fixed
-  columns=flexible,
-  numbers=left,
-  numberstyle=\tiny,
-  basewidth=.5em,
-  xleftmargin=.5cm,
-  % aboveskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
-  % belowskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
-  captionpos=b
-}
-
-\ifluatex
-\else
-  % EN: Enable UTF-8 support - see https://tex.stackexchange.com/q/419327/9075
-  \usepackage{listingsutf8}
-  \lstset{inputencoding=utf8/latin1}
-\fi
-
-\ifdeutsch
-  \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
-\fi
-%
-%%%
-
-
-%%%
-% EN: Alternative to listings could be fancyvrb. Can be used together.
-% DE: Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
-\usepackage{fancyvrb}
-%
-% EN: Font size for the normal text
-% DE: Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
-%\fvset{fontsize=\small}
-%
-% DE: Somit kann im Text ganz einfach §verbatim§ text gesetzt werden.
-%     Disabled, because UTF-8 does not work any more and lualatex causes issues
-%\DefineShortVerb{\§}
-%
-% EN: Shrink font size of listings
-\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{fontsize=\footnotesize}
-\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{fontsize=\footnotesize}
-%
-% EN: Hack for fancyvrb based on http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-12/msg00075.html
-%     Change of the solution: \Vref somehow collidated with cleveref/varioref as the output of \Vref{} was "Abschnitt 4.3 auf Seite 85"; therefore changed to \myVref -- so completely removed
-%     See https://tex.stackexchange.com/q/132420/9075 for more information.
-\newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
-\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
-%
-%%%
-
-
-%%%
-% EN: Tunings of captions for floats, listings, ...
-% DE: Bildunterschriften bei floats genauso formatieren wie bei Listings
-%     Anpassung wird unten bei den newfloat-Deklarationen vorgenommen
-%     https://www.ctan.org/pkg/caption2 is superseeded by this package.
-\usepackage{caption}
-%
-%%%
-
-
-%%%
-% EN: Provides rotating figures, where the PDF page is also turned
-% DE: Ermoeglicht es, Abbildungen um 90 Grad zu drehen
-%     Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
-%     Das Paket lscape dreht die Seite auch nicht
-\usepackage{pdflscape}
-%
-%%%
-
-
-%%%
-%EN: Required for proper environments of fancyvrb and lstlistings
-%    There is also the newfloat pacakge (recommended by minted), but we currently have no expericene with that
-%DE: Wird für fancyvrb und für lstlistings verwendet
-\usepackage{float}
-%
-% EN: Alternative to float package
-%\usepackage{floatrow}
-%DE: zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
-%    floatrow ist der Nachfolger von float
-%    Allerdings macht floatrow in manchen Konstellationen Probleme. Deshalb ist das Paket deaktiviert.
-%
-% EN: See http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats
-% DE: floats IMMER nach einer Referenzierung platzieren
-%\usepackage{flafter}
-%%%
-
-
-%%%
-% EN: Put footnotes below floats
-%     Source: https://tex.stackexchange.com/a/32993/9075
-\usepackage{stfloats}
-\fnbelowfloat
-%%%
-
-
-%%%
-% EN: For nested figures
-% DE: Fuer Abbildungen innerhalb von Abbildungen
-%     Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
-\usepackage[hypcap=true]{subcaption}
-%
-%%%
-
-
-%%%
-% EN: Extended support for footnotes
-% DE: Fußnoten
-%
-%\usepackage{dblfnote}  %Zweispaltige Fußnoten
-%
-% Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
-%\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
-%
-% Abstand zwischen Fußnoten vergrößern:
-%\setlength{\footnotesep}{.85\baselineskip}
-%
-% EN: Following command disables the separting line of the footnote
-% DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
-%\renewcommand{\footnoterule}{}
-%
-\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
-%
-% Fußnoten immer ganz unten auf einer \raggedbottom-Seite
-% fnpos kommt aus dem yafoot package
-\usepackage{fnpos}
-\makeFNbelow
-\makeFNbottom
-%
-%%%
-
-
-%%%
-% EN: Variable page heights
-% DE: Variable Seitenhöhen zulassen
-\raggedbottom
-%
-%%%
-
-
-%%%
-% DE: Falls die Seitenzahl bei einer Referenz auf eine Abbildung nur dann angegeben werden soll,
-%     falls sich die Abbildung nicht auf der selben Seite befindet...
-\iftex4ht
-  %tex4ht does not work well with vref, therefore we emulate vref behavior
-  \newcommand{\vref}[1]{\ref{#1}}
-\else
-  \ifdeutsch
-    \usepackage[ngerman]{varioref}
-  \else
-    \usepackage{varioref}
-  \fi
-\fi
-%%%
-
-%%%
-% EN: More beautiful tables if one uses \toprule, \midrule, \bottomrule
-% DE: Noch schoenere Tabellen als mit booktabs mit http://www.zvisionwelt.de/downloads.html
-\usepackage{booktabs}
-%
-%\usepackage[section]{placeins}
-%
-%%%
-
-
-%%%
-% EN: Graphs and Automata
-%
-% TODO: Since version 3.0 (2013-10-01), it supports pdflatex via the auto-pst-pdf package
-%       Requires -shell-escape
-%\usepackage{gastex}
-%%%
-
-
-%%%
-%
-%\usepackage{multicol}
-%\usepackage{setspace} % kollidiert mit diplomarbeit.sty
-%%%
-
-
-%%%
-%biblatex statt bibtex
-\usepackage[
-  backend       = biber, %biber does not work with 64x versions alternative: bibtex8
-  %minalphanames only works with biber backend
-  sortcites     = true,
-  bibstyle      = alphabetic,
-  citestyle     = alphabetic,
-  giveninits    = true,
-  useprefix     = false, %"von, van, etc." will be printed, too. See below.
-  minnames      = 1,
-  minalphanames = 3,
-  maxalphanames = 4,
-  maxbibnames   = 99,
-  maxcitenames  = 2,
-  natbib        = true,
-  eprint        = true,
-  url           = true,
-  doi           = true,
-  isbn          = true,
-  backref       = true]{biblatex}
-
-% enable more breaks at URLs. See https://tex.stackexchange.com/a/134281.
-\setcounter{biburllcpenalty}{7000}
-\setcounter{biburlucpenalty}{8000}
-
-\bibliography{bibliography}
-%\addbibresource[datatype=bibtex]{bibliography.bib}
-
-%Do not put "vd" in the label, but put it at "\citeauthor"
-%Source: http://tex.stackexchange.com/a/30277/9075
-\makeatletter
-\AtBeginDocument{\toggletrue{blx@useprefix}}
-\AtBeginBibliography{\togglefalse{blx@useprefix}}
-\makeatother
-
-%Thin spaces between initials
-%http://tex.stackexchange.com/a/11083/9075
-\renewrobustcmd*{\bibinitdelim}{\,}
-
-%Keep first and last name together in the bibliography
-%http://tex.stackexchange.com/a/196192/9075
-\renewcommand*\bibnamedelimc{\addnbspace}
-\renewcommand*\bibnamedelimd{\addnbspace}
-
-%Replace last "and" by comma in bibliography
-%See http://tex.stackexchange.com/a/41532/9075
-\AtBeginBibliography{%
-  \renewcommand*{\finalnamedelim}{\addcomma\space}%
-}
-
-\DefineBibliographyStrings{ngerman}{
-  backrefpage  = {zitiert auf S\adddot},
-  backrefpages = {zitiert auf S\adddot},
-  andothers    = {et\ \addabbrvspace al\adddot},
-  %Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
-  bibliography = {Literaturverzeichnis}
-}
-
-%enable hyperlinked author names when using \citeauthor
-%source: http://tex.stackexchange.com/a/75916/9075
-\DeclareCiteCommand{\citeauthor}
-{\boolfalse{citetracker}%
-  \boolfalse{pagetracker}%
-  \usebibmacro{prenote}}
-{\ifciteindex
-  {\indexnames{labelname}}
-  {}%
-  \printtext[bibhyperref]{\printnames{labelname}}}
-{\multicitedelim}
-{\usebibmacro{postnote}}
-
-%natbib compatibility
-%\newcommand{\citep}[1]{\cite{#1}}
-%\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
-%Beginning of sentence - analogous to cleveref - important for names such as "zur Muehlen"
-%\newcommand{\Citep}[1]{\cite{#1}}
-%\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
-%%%
-
-
-%%%
-% DE: Blindtext. Paket "blindtext" ist fortgeschritterner als "lipsum" und kann auch Mathematik im Text (http://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/)
-%     kantlipsum (https://www.ctan.org/tex-archive/macros/latex/contrib/kantlipsum) ist auch ganz nett, aber eben auch keine Mathematik
-%     Wird verwendet, um etwas Text zu erzeugen, um eine volle Seite wegen Layout zu sehen.
-\usepackage[math]{blindtext}
-%%%
-
-
-%%%
-% EN: Make LaTeX logos available by commands. E.g., \lualatex
-\usepackage{dtk-logos}
-%
-%%%
-
-
-%%%
-% DE: Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
-%     Pakets "index" wichtig, da sonst die Referenzierung nicht funktioniert.
-%     Für die Indizierung selbst ist unter http://xindy.sourceforge.net
-%     ein gutes Tool zu erhalten
-%%%
-
-
-%%%
-%
-% EN: Add new packages at this place
-% DE: Hier also neue packages einbinden
-%
-%%%
-
-
-%%%
-% EN: Provides hyperlinks
-%     Option "unicode" fixes umlauts in the PDF bookmarks - see https://tex.stackexchange.com/a/338770/9075
-%
-% DE: Erlaubt Hyperlinks im Dokument.
-%     Alle Optionen nach \hypersetup verschoben, sonst crash
-%     Siehe auch: "Praktisches LaTeX" - www.itp.uni-hannover.de/~kreutzm
-\usepackage[unicode]{hyperref}
-%
-
-% EN: Define colors
-% DE: Da es mit KOMA 3 und xcolor zu Problemen mit den global Options kommt MÜSSEN die Optionen so gesetzt werden.
-%     Eigene Farbdefinitionen ohne die Namen des xcolor packages
-\definecolor{darkblue}{rgb}{0,0,.5}
-\definecolor{black}{rgb}{0,0,0}
-
-% EN: Define color of links and more
-\hypersetup{
-  bookmarksnumbered=true,
-  bookmarksopen=true,
-  bookmarksopenlevel=1,
-  breaklinks=true,
-  colorlinks=true,
-  pdfstartview=Fit,
-  pdfpagelayout=SinglePage, % DE: Alterntaive: TwoPageRight -- zweiseitige Darstellung: ungerade Seiten rechts im PDF-Viewer - siehe auch http://tex.stackexchange.com/a/21109/9075
-  %pdfencoding=utf8, % EN: This is probably the same as passing the option "unicode" at \usepackage{hyperref}
-  filecolor=darkblue,
-  urlcolor=darkblue,
-  linkcolor=black,
-  citecolor=black
-}
-%
-%%%
-
-
-%%%
-% EN: Abbreviations - has to be loaded after hyperref
-% DE: Abkürzungsverzeichnis - muss nach hyperref geladen werden
-%
-% DE: siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
-\usepackage[acronym,indexonlyfirst,nomain]{glossaries}
-\ifdeutsch
-  \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
-\else
-  \renewcommand*{\acronymname}{List of Abbreviations}
-\fi
-\renewcommand*{\glsgroupskip}{}
-%
-% EN: Removed Glossarie as a table as a quick fix to get the template working again
-%     See http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
-%
-\makenoidxglossaries
-%%%
-
-
-%%%
-% EN: Extensions for references inside the document (\cref{fig:sample}, ...)
-% DE: cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
-\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
-\ifdeutsch
-  \crefname{table}{Tabelle}{Tabellen}
-  \Crefname{table}{Tabelle}{Tabellen}
-  \crefname{figure}{\figurename}{\figurename}
-  \Crefname{figure}{Abbildungen}{Abbildungen}
-  \crefname{equation}{Gleichung}{Gleichungen}
-  \Crefname{equation}{Gleichung}{Gleichungen}
-  \crefname{theorem}{Theorem}{Theoreme}
-  \Crefname{theorem}{Theorem}{Theoreme}
-  \crefname{listing}{\lstlistingname}{\lstlistingname}
-  \Crefname{listing}{Listing}{Listings}
-  \crefname{section}{Abschnitt}{Abschnitte}
-  \Crefname{section}{Abschnitt}{Abschnitte}
-  \crefname{paragraph}{Abschnitt}{Abschnitte}
-  \Crefname{paragraph}{Abschnitt}{Abschnitte}
-  \crefname{subparagraph}{Abschnitt}{Abschnitte}
-  \Crefname{subparagraph}{Abschnitt}{Abschnitte}
-\else
-  \crefname{listing}{\lstlistingname}{\lstlistingname}
-  \Crefname{listing}{Listing}{Listings}
-\fi
-%%%
-
-
-%%%
-% DE: Zur Darstellung von Algorithmen
-%     Algorithm muss nach hyperref geladen werden
-\usepackage[chapter]{algorithm}
-\usepackage[]{algpseudocode}
-%
-%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EN: Fonts
 %% DE: Schriften
 %%
 %% !!! If you change the font, be sure that words such as "workflow" can
 %% !!! still be copied from the PDF. If this is not the case, you have
 %% !!! to use glyphtounicode. See comment at cmap package
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\automark[section]{chapter}
-\setkomafont{pageheadfoot}{\normalfont\sffamily}
-\setkomafont{pagenumber}{\normalfont\sffamily}
-%
-%\setheadsepline[.4pt]{.4pt} %funktioniert nicht: Alle Linien sind hier weg
-%
-%%%
-
-%%%
-% DE: Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
-\ifdeutsch
-  \setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
-\fi
-%%%
 
 % EN: Times Roman for all text
 \ifluatex
   % newtxmath has to come first - see https://tex.stackexchange.com/a/394139/9075
   \RequirePackage{newtxmath}
   \usepackage[no-math]{fontspec}
-  \setmainfont{TeX Gyre Termes}
-  \setsansfont[Scale=.9]{TeX Gyre Heros}
+  \setmainfont{TeXGyreTermes-Regular}
+  \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
   \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
 
   % source: https://tex.stackexchange.com/a/394139/9075
@@ -930,7 +221,6 @@
 %\usepackage{mathabx} - Ueberschreibt leider zu viel - und die \le-Zeichen usw. sehen nicht gut aus!
 
 
-%%%
 % EN: Modern font encoding
 %     Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
 \ifluatex
@@ -938,10 +228,11 @@
   \usepackage[T1]{fontenc}
 \fi
 %
-%%%
 
-%%
+
 % EN: Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
+% DE: Optischer Randausgleich und Grauwertkorrektur
+
 \usepackage[
   babel=true, % EN: Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
   expansion=alltext,
@@ -949,42 +240,644 @@
   final % EN: Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
         %     In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
 ]{microtype}
-%
+
+
 % EN: \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \DisableLigatures{encoding = T1, family = tt* }
-%
-%DE: fuer microtype
-%DE: tracking=true muss als Parameter des microtype-packages mitgegeben werden
-%DE: Deaktiviert, da dies bei Algorithmen seltsam aussieht
-%
+
+% DE: fuer microtype
+% DE: tracking=true muss als Parameter des microtype-packages mitgegeben werden
+% DE: Deaktiviert, da dies bei Algorithmen seltsam aussieht
+
 %\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
 %\SetTracking{ encoding = *, shape = sc }{ 45 }
-%DE: Hier wird festgelegt,
-%    dass alle Passagen in Kapitälchen automatisch leicht
-%    gesperrt werden.
-%    Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
+% DE: Hier wird festgelegt,
+%     dass alle Passagen in Kapitälchen automatisch leicht
+%     gesperrt werden.
+%     Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
 %    Deaktiviert, da sonst "BPEL", "BPMN" usw. wirklich komisch aussehen.
-%    Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
-%%%
+%     Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
 
-%%%
+
+% EN: amsmath teaks
+
+
+% EN: Fixes bugs in AMS math
+%     Corrently conflicts with unicode-math
+% \usepackage{mathtools}
+
+%\numberwithin{equation}{section}
+%\renewcommand{\theequation}{\thesection.\Roman{equation}}
+
+% EN: work-around ams-math problem with align and 9 -> 10. Does not work with glossaries, No visual changes.
+%\addtolength\mathindent{1em}
+
+
+% EN: For theorems, replacement for amsthm
+\usepackage[amsmath,hyperref]{ntheorem}
+\theorempreskipamount 2ex plus1ex minus0.5ex
+\theorempostskipamount 2ex plus1ex minus0.5ex
+\theoremstyle{break}
+\newtheorem{definition}{Definition}[section]
+
+
 % CTAN: https://ctan.org/pkg/lccaps
 % Doc: http://texdoc.net/pkg/lccaps
 %
 % Required for DE/EN \initialism
 \usepackage{lccaps}
-%%%
 
-%%%
-% Links auf Gleitumgebungen springen nicht zur Beschriftung,
-% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/oberdiek/hypcap.pdf
-% sondern zum Anfang der Gleitumgebung
+
+% EN: Defintion of colors. Argument "hyperref" is not used as we do not want to change border colors of links: Links are not colored anymore.
+% DE: Farbdefinitionen
+\usepackage[dvipsnames]{xcolor}
+
+
+% EN: Required for custom acronyms/glossaries style.
+%     Left aligned Columns in tables with fixed width.
+%     See http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
+\usepackage{ragged2e}
+
+
+% DE: Wichtig, ansonsten erscheint "No room for a new \write"
+\usepackage{scrwfile}
+
+
+% EN: Support for language-specific hyphenation
+% DE: Neue deutsche Rechtschreibung und Literatur statt "Literature"
+%     Die folgende Einstellung ist der Nachfolger von ngerman.sty
+\ifdeutsch
+  % DE: letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
+  %     Siehe auch http://tex.stackexchange.com/a/50638/9075
+  \usepackage[american,main=ngerman]{babel}
+  % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+  \addto\captionsngerman{%
+    \renewcommand\abstractname{Kurzfassung}%
+  }
+  \ifluatex
+    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
+    %     for a discussion
+    \usepackage[ngerman]{selnolig}
+  \fi
+\else
+  % EN: Set English as language and allow to write hyphenated"=words
+  %     `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish).
+  %      "english" has to go last to set it as default language
+  \usepackage[ngerman,main=english]{babel}
+  % EN: Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+  \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+  \ifluatex
+    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
+    %     for a discussion
+    \usepackage[english]{selnolig}
+  \fi
+\fi
+%
+
+
+% EN: For easy quotations: \enquote{text}
+%     This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+%     Note that this package results in a warning when it is loaded before minted (actually fvextra).
+% DE: Anführungszeichen
+%     Zitate in \enquote{...} setzen, dann werden automatisch die richtigen Anführungszeichen verwendet.
+%     Dieses package erzeugt eine Warnung, wenn es vor minted (genauer fvextra) geladen wird.
+\usepackage{csquotes}
+
+
+% EN: For even easier quotations: \qq{text}.
+%     Is not smart in the case of nesting, but good enough for the most cases
+\usepackage{textcmds}
+\ifdeutsch
+  % EN: German quotes are different. So do not use the English quotes, but the ones provided by the csquotes package.
+  \renewcommand{\qq}[1]{\enquote{#1}}
+\fi
+
+
+% EN: extended enumarations
+% DE: erweitertes Enumerate
+\usepackage{paralist}
+
+
+% DE: Gestaltung der Kopf- und Fußteilen
+
+\usepackage[automark]{scrlayer-scrpage}
+
+\automark[section]{chapter}
+\setkomafont{pageheadfoot}{\normalfont\sffamily}
+\setkomafont{pagenumber}{\normalfont\sffamily}
+
+% DE: funktioniert nicht: Alle Linien sind hier weg
+%\setheadsepline[.4pt]{.4pt}
+
+
+% DE: Intelligentes Leerzeichen um hinter Abkürzungen die richtigen Abstände zu erhalten, auch leere.
+%     Siehe commands.tex \gq{}
+\usepackage{xspace}
+% DE: Macht \xspace und \enquote kompatibel
+\makeatletter
+\xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
+\makeatother
+
+
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+
+
+% EN: introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+  <-6>    MnSymbolC5
+  <6-7>   MnSymbolC6
+  <7-8>   MnSymbolC7
+  <8-9>   MnSymbolC8
+  <9-10>  MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+
+% EN: Package for the appendix
+% DE: Anhang
+\usepackage{appendix}
+%[toc,page,title,header]
+%
+
+
+% EN: Graphics
+% DE: Grafikeinbindungen
+%
+% EN: The parameter "pdftex" is not required
+\usepackage{graphicx}
+\graphicspath{{\getgraphicspath}}
+\newcommand{\getgraphicspath}{graphics/}
+
+
+% EN: Enables inclusion of SVG graphics - 1:1 approach
+%    This is NOT the approach of https://ctan.org/pkg/svg-inkscape,
+%     which allows text in SVG to be typeset using LaTeX
+%     We just include the SVG as is.
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.svg}{pdf}{.pdf}{%
+  inkscape -z -D --file=#1 --export-pdf=\OutputFile
+}
+
+
+% EN: Enables inclusion of SVG graphics - text-rendered-with-LaTeX-approach
+%     This is the approach of https://ctan.org/pkg/svg-inkscape,
+\newcommand{\executeiffilenewer}[3]{%
+  \IfFileExists{#2}
+  {
+    %\message{file #2 exists}
+    \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+      {\pdffilemoddate{#2}}>0%
+      {\immediate\write18{#3}}
+    \else
+      {%\message{file up to date #2}
+      }
+    \fi%
+  }{
+    %\message{file #2 doesn't exist}
+    %\message{argument: #3}
+    %\immediate\write18{echo "test" > xoutput.txt}
+    \immediate\write18{#3}
+  }
+}
+\newcommand{\includesvg}[1]{%
+  \executeiffilenewer{#1.svg}{#1.pdf}%
+  {
+    inkscape -z -D --file=\getgraphicspath#1.svg %
+    --export-pdf=\getgraphicspath#1.pdf --export-latex}%
+  \input{\getgraphicspath#1.pdf_tex}%
+}
+
+
+% EN: Enable typesetting values with SI units.
+\ifdeutsch
+  \usepackage[mode=text,group-four-digits]{siunitx}
+  \sisetup{locale=DE}
+\else
+  \usepackage[mode=text,group-four-digits,group-separator={,}]{siunitx}
+  \sisetup{locale=US}
+\fi
+
+
+% EN: Extensions for tables
+% DE: Tabellenerweiterungen
+\usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
+\usepackage{longtable}
+\usepackage{dcolumn} %Aligning numbers by decimal points in table columns
+\ifdeutsch
+  \newcolumntype{d}[1]{D{.}{,}{#1}}
+\else
+  \newcolumntype{d}[1]{D{.}{.}{#1}}
+\fi
+\setlength{\extrarowheight}{1pt}
+
+
+% DE: Eine Zelle, die sich über mehrere Zeilen erstreckt.
+%     Siehe Beispieltabelle in Kapitel 2
+\usepackage{multirow}
+
+
+% DE: Fuer Tabellen mit Variablen Spaltenbreiten
+%\usepackage{tabularx}
+%\usepackage{tabulary}
+
+
+% EN: Links behave as they should. Enables "\url{...}" for URL typesettings.
+%     Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
+%     See https://tex.stackexchange.com/a/3034/9075.
+% DE: Links verhalten sich so, wie sie sollen
+%     Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
+%     Siehe https://tex.stackexchange.com/a/3034/9075.
+\usepackage[hyphens]{url}
+%
+%  EN: When activated, use text font as url font, not the monospaced one.
+%      For all options see https://tex.stackexchange.com/a/261435/9075.
+% \urlstyle{same}
+%
+% EN: Hint by http://tex.stackexchange.com/a/10419/9075.
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+
+% DE: Index über Begriffe, Abkürzungen
+%\usepackage{makeidx} makeidx ist out -> http://xindy.sf.net verwenden
+
+
+% DE: lustiger Hack fuer das Abkuerzungsverzeichnis
+%     nach latex durchlauf folgendes ausfuehren
+%     makeindex ausarbeitung.nlo -s nomencl.ist -o ausarbeitung.nls
+%     danach nochmal latex
+%\usepackage{nomencl}
+%    \let\abk\nomenclature %Deutsche Ueberschrift setzen
+%          \renewcommand{\nomname}{List of Abbreviations}
+%        %Punkte zw. Abkuerzung und Erklaerung
+%          \setlength{\nomlabelwidth}{.2\hsize}
+%          \renewcommand{\nomlabel}[1]{#1 \dotfill}
+%        %Zeilenabstaende verkleinern
+%          \setlength{\nomitemsep}{-\parsep}
+%    \makenomenclature
+
+
+% EN: Logic for TeX - enables if-then-else in commands
+% DE: Logik für TeX
+%     FÜr if-then-else @ commands.tex
+\usepackage{ifthen}
+
+
+% EN: Code Listings
+% DE: Listings
+\usepackage{listings}
+\lstset{language=XML,
+  showstringspaces=false,
+  extendedchars=true,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\slshape,
+  % DE: Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
+  stringstyle=\ttfamily,
+  breaklines=true,
+  breakatwhitespace=true,
+  % EN: alternative: fixed
+  columns=flexible,
+  numbers=left,
+  numberstyle=\tiny,
+  basewidth=.5em,
+  xleftmargin=.5cm,
+  % aboveskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  % belowskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  captionpos=b
+}
+
+\ifluatex
+\else
+  % EN: Enable UTF-8 support - see https://tex.stackexchange.com/q/419327/9075
+  \usepackage{listingsutf8}
+  \lstset{inputencoding=utf8/latin1}
+\fi
+
+\ifdeutsch
+  \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
+\fi
+
+
+% EN: Alternative to listings could be fancyvrb. Can be used together.
+% DE: Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
+\usepackage{fancyvrb}
+%
+% EN: Font size for the normal text
+% DE: Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
+%\fvset{fontsize=\small}
+%
+% DE: Somit kann im Text ganz einfach §verbatim§ text gesetzt werden.
+%     Disabled, because UTF-8 does not work any more and lualatex causes issues
+%\DefineShortVerb{\§}
+%
+% EN: Shrink font size of listings
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{fontsize=\footnotesize}
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{fontsize=\footnotesize}
+%
+% EN: Hack for fancyvrb based on http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-12/msg00075.html
+%     Change of the solution: \Vref somehow collidated with cleveref/varioref as the output of \Vref{} was "Abschnitt 4.3 auf Seite 85"; therefore changed to \myVref -- so completely removed
+%     See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+
+
+% EN: Tunings of captions for floats, listings, ...
+% DE: Bildunterschriften bei floats genauso formatieren wie bei Listings
+%     Anpassung wird unten bei den newfloat-Deklarationen vorgenommen
+%     https://www.ctan.org/pkg/caption2 is superseeded by this package.
+\usepackage{caption}
+
+
+% EN: Provides rotating figures, where the PDF page is also turned
+% DE: Ermoeglicht es, Abbildungen um 90 Grad zu drehen
+%     Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
+%     Das Paket lscape dreht die Seite auch nicht
+\usepackage{pdflscape}
+
+
+% EN: Required for proper environments of fancyvrb and lstlistings
+%    There is also the newfloat pacakge (recommended by minted), but we currently have no expericene with that
+% DE: Wird für fancyvrb und für lstlistings verwendet
+\usepackage{float}
+%
+% EN: Alternative to float package
+%\usepackage{floatrow}
+% DE: zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
+%     floatrow ist der Nachfolger von float
+%     Allerdings macht floatrow in manchen Konstellationen Probleme. Deshalb ist das Paket deaktiviert.
+%
+% EN: See http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats
+% DE: floats IMMER nach einer Referenzierung platzieren
+%\usepackage{flafter}
+
+
+% EN: Put footnotes below floats
+%     Source: https://tex.stackexchange.com/a/32993/9075
+\usepackage{stfloats}
+\fnbelowfloat
+
+
+% EN: For nested figures
+% DE: Fuer Abbildungen innerhalb von Abbildungen
+%     Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
+\usepackage[hypcap=true]{subcaption}
+
+
+% EN: Extended support for footnotes
+% DE: Fußnoten
+%
+%\usepackage{dblfnote}  %Zweispaltige Fußnoten
+%
+% Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
+%\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
+%
+% Abstand zwischen Fußnoten vergrößern:
+%\setlength{\footnotesep}{.85\baselineskip}
+%
+% EN: Following command disables the separting line of the footnote
+% DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+%\renewcommand{\footnoterule}{}
+%
+\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
+%
+% Fußnoten immer ganz unten auf einer \raggedbottom-Seite
+% fnpos kommt aus dem yafoot package
+\usepackage{fnpos}
+\makeFNbelow
+\makeFNbottom
+
+
+% EN: Variable page heights
+% DE: Variable Seitenhöhen zulassen
+\raggedbottom
+
+
+% DE: Falls die Seitenzahl bei einer Referenz auf eine Abbildung nur dann angegeben werden soll,
+%     falls sich die Abbildung nicht auf der selben Seite befindet...
+\iftex4ht
+  %tex4ht does not work well with vref, therefore we emulate vref behavior
+  \newcommand{\vref}[1]{\ref{#1}}
+\else
+  \ifdeutsch
+    \usepackage[ngerman]{varioref}
+  \else
+    \usepackage{varioref}
+  \fi
+\fi
+
+
+% EN: More beautiful tables if one uses \toprule, \midrule, \bottomrule
+% DE: Noch schoenere Tabellen als mit booktabs mit http://www.zvisionwelt.de/downloads.html
+\usepackage{booktabs}
+%
+%\usepackage[section]{placeins}
+
+
+% EN: Graphs and Automata
+%
+% TODO: Since version 3.0 (2013-10-01), it supports pdflatex via the auto-pst-pdf package
+%       Requires -shell-escape
+%\usepackage{gastex}
+
+
+%\usepackage{multicol}
+
+% DE: kollidiert mit diplomarbeit.sty
+%\usepackage{setspace} 
+
+
+% DE: biblatex statt bibtex
+\usepackage[
+  backend       = biber, %biber does not work with 64x versions alternative: bibtex8
+  %minalphanames only works with biber backend
+  sortcites     = true,
+  bibstyle      = alphabetic,
+  citestyle     = alphabetic,
+  giveninits    = true,
+  useprefix     = false, %"von, van, etc." will be printed, too. See below.
+  minnames      = 1,
+  minalphanames = 3,
+  maxalphanames = 4,
+  maxbibnames   = 99,
+  maxcitenames  = 2,
+  natbib        = true,
+  eprint        = true,
+  url           = true,
+  doi           = true,
+  isbn          = true,
+  backref       = true]{biblatex}
+
+% enable more breaks at URLs. See https://tex.stackexchange.com/a/134281.
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+\bibliography{bibliography}
+%\addbibresource[datatype=bibtex]{bibliography.bib}
+
+%Do not put "vd" in the label, but put it at "\citeauthor"
+%Source: http://tex.stackexchange.com/a/30277/9075
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\togglefalse{blx@useprefix}}
+\makeatother
+
+%Thin spaces between initials
+%http://tex.stackexchange.com/a/11083/9075
+\renewrobustcmd*{\bibinitdelim}{\,}
+
+%Keep first and last name together in the bibliography
+%http://tex.stackexchange.com/a/196192/9075
+\renewcommand*\bibnamedelimc{\addnbspace}
+\renewcommand*\bibnamedelimd{\addnbspace}
+
+%Replace last "and" by comma in bibliography
+%See http://tex.stackexchange.com/a/41532/9075
+\AtBeginBibliography{%
+  \renewcommand*{\finalnamedelim}{\addcomma\space}%
+}
+
+\DefineBibliographyStrings{ngerman}{
+  backrefpage  = {zitiert auf S\adddot},
+  backrefpages = {zitiert auf S\adddot},
+  andothers    = {et\ \addabbrvspace al\adddot},
+  %Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
+  bibliography = {Literaturverzeichnis}
+}
+
+% EN: enable hyperlinked author names when using \citeauthor
+%     source: http://tex.stackexchange.com/a/75916/9075
+\DeclareCiteCommand{\citeauthor}
+{\boolfalse{citetracker}%
+  \boolfalse{pagetracker}%
+  \usebibmacro{prenote}}
+{\ifciteindex
+  {\indexnames{labelname}}
+  {}%
+  \printtext[bibhyperref]{\printnames{labelname}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+% EN: natbib compatibility
+%\newcommand{\citep}[1]{\cite{#1}}
+%\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
+% EN: Beginning of sentence - analogous to cleveref - important for names such as "zur Muehlen"
+%\newcommand{\Citep}[1]{\cite{#1}}
+%\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
+
+% DE: Blindtext. Paket "blindtext" ist fortgeschritterner als "lipsum" und kann auch Mathematik im Text (http://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/)
+%     kantlipsum (https://www.ctan.org/tex-archive/macros/latex/contrib/kantlipsum) ist auch ganz nett, aber eben auch keine Mathematik
+%     Wird verwendet, um etwas Text zu erzeugen, um eine volle Seite wegen Layout zu sehen.
+\usepackage[math]{blindtext}
+
+
+% EN: Make LaTeX logos available by commands. E.g., \lualatex
+\usepackage{dtk-logos}
+
+
+% DE: Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
+%     Pakets "index" wichtig, da sonst die Referenzierung nicht funktioniert.
+%     Für die Indizierung selbst ist unter http://xindy.sourceforge.net
+%     ein gutes Tool zu erhalten.
+%     Hier also neue packages einbinden.
+% EN: Add new packages at this place.
+
+
+% EN: Provides hyperlinks
+%     Option "unicode" fixes umlauts in the PDF bookmarks - see https://tex.stackexchange.com/a/338770/9075
+%
+% DE: Erlaubt Hyperlinks im Dokument.
+%     Alle Optionen nach \hypersetup verschoben, sonst crash
+%     Siehe auch: "Praktisches LaTeX" - www.itp.uni-hannover.de/~kreutzm
+\usepackage[unicode]{hyperref}
+
+
+% EN: Define colors
+% DE: Da es mit KOMA 3 und xcolor zu Problemen mit den global Options kommt MÜSSEN die Optionen so gesetzt werden.
+%     Eigene Farbdefinitionen ohne die Namen des xcolor packages
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{black}{rgb}{0,0,0}
+
+
+% EN: Define color of links and more
+\hypersetup{
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  bookmarksopenlevel=1,
+  breaklinks=true,
+  colorlinks=true,
+  pdfstartview=Fit,
+  pdfpagelayout=SinglePage, % DE: Alterntaive: TwoPageRight -- zweiseitige Darstellung: ungerade Seiten rechts im PDF-Viewer - siehe auch http://tex.stackexchange.com/a/21109/9075
+  %pdfencoding=utf8, % EN: This is probably the same as passing the option "unicode" at \usepackage{hyperref}
+  filecolor=darkblue,
+  urlcolor=darkblue,
+  linkcolor=black,
+  citecolor=black
+}
+
+
+% EN: Abbreviations - has to be loaded after hyperref
+% DE: Abkürzungsverzeichnis - muss nach hyperref geladen werden
+%
+% DE: siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
+\usepackage[acronym,indexonlyfirst,nomain]{glossaries}
+\ifdeutsch
+  \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+\else
+  \renewcommand*{\acronymname}{List of Abbreviations}
+\fi
+\renewcommand*{\glsgroupskip}{}
+%
+% EN: Removed Glossarie as a table as a quick fix to get the template working again
+%     See http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
+%
+\makenoidxglossaries
+
+
+% EN: Extensions for references inside the document (\cref{fig:sample}, ...)
+% DE: cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+\ifdeutsch
+  \crefname{table}{Tabelle}{Tabellen}
+  \Crefname{table}{Tabelle}{Tabellen}
+  \crefname{figure}{\figurename}{\figurename}
+  \Crefname{figure}{Abbildungen}{Abbildungen}
+  \crefname{equation}{Gleichung}{Gleichungen}
+  \Crefname{equation}{Gleichung}{Gleichungen}
+  \crefname{theorem}{Theorem}{Theoreme}
+  \Crefname{theorem}{Theorem}{Theoreme}
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+  \crefname{section}{Abschnitt}{Abschnitte}
+  \Crefname{section}{Abschnitt}{Abschnitte}
+  \crefname{paragraph}{Abschnitt}{Abschnitte}
+  \Crefname{paragraph}{Abschnitt}{Abschnitte}
+  \crefname{subparagraph}{Abschnitt}{Abschnitte}
+  \Crefname{subparagraph}{Abschnitt}{Abschnitte}
+\else
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+\fi
+
+
+% DE: Zur Darstellung von Algorithmen
+%     Algorithm muss nach hyperref geladen werden
+\usepackage[chapter]{algorithm}
+\usepackage[]{algpseudocode}
+
+
+% DE: Links auf Gleitumgebungen springen nicht zur Beschriftung,
+%     Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/oberdiek/hypcap.pdf
+%     sondern zum Anfang der Gleitumgebung
 \usepackage[all]{hypcap}
-%%%
 
 
-%%%
-% Deckblattstyle
+% DE: Deckblattstyle
 %
 \ifdeutsch
   \PassOptionsToPackage{language=german}{scientific-thesis-cover}
@@ -993,16 +886,12 @@
 \fi
 
 
-%%%
-%Bugfixes packages
+% EN: Bugfixes packages
 %\usepackage{fixltx2e} %Fuer neueste LaTeX-Installationen nicht mehr benoetigt - bereinigte einige Ungereimtheiten, die auf Grund von Rueckwaertskompatibilitaet beibahlten wurden.
 %\usepackage{mparhack} %Fixt die Position von marginpars (die in DAs selten bis gar nicht gebraucht werden}
 %\usepackage{ellipsis} %Fixt die Abstaende vor \ldots. Wird wohl auch nicht benoetigt.
-%
-%%%
 
 
-%%%
 % EN: Settings for captions of floats
 % DE: Formatierung der Beschriftungen
 %
@@ -1013,14 +902,15 @@
   %single line captions should be centered, multiline captions justified
   singlelinecheck=true
 }
-%
+
+
 % EN: New float environments for listings and algorithms
 %
 % \floatstyle{ruled} % TODO: enabled or disabled causes no change - listings and algorithms are always ruled
 %
 \newfloat{Listing}{tbp}{code}[chapter]
 \crefname{Listing}{Listing}{Listings}
-%
+
 \newfloat{Algorithmus}{tbp}{alg}[chapter]
 \ifdeutsch
   \crefname{Algorithmus}{Algorithmus}{Algorithmus}
@@ -1028,18 +918,10 @@
   \crefname{Algorithmus}{Algorithm}{Algorithms}
   \floatname{Algorithmus}{Algorithm}
 \fi
-%%
 
 
-%%
-%amsmath
-%\numberwithin{equation}{section}
-%\renewcommand{\theequation}{\thesection.\Roman{equation}}
-%%
 
-
-%%%
-%EN: Various chapter styles
+% EN: Various chapter styles
 % DE: unterschiedliche Chapter-Styles
 %     u.a. Paket fncychap
 
@@ -1144,15 +1026,13 @@
   %
   \makeatother
 \fi
-%%%
 
-%%%
+
 % DE: Minitoc-Einstellungen
 %\dominitoc
 %\renewcommand{\mtctitle}{Inhaltsverzeichnis dieses Kapitels}
-%%%
 
-%%%
+
 % EN: Nicer paragraph line placement:
 %     - Disable single lines at the start of a paragraph (Schusterjungen)
 %     - Disable single lines at the end of a paragraph (Hurenkinder)
@@ -1160,9 +1040,8 @@
 \usepackage[all,defaultlines=3]{nowidow}
 %
 \displaywidowpenalty = 10000
-%%%
 
-%%%
+
 % EN: Try to get rid of "overfull hbox" things and let text flow batter
 %     See also
 %       - http://groups.google.de/group/de.comp.text.tex/browse_thread/thread/f97da71d90442816/f5da290593fd647e?lnk=st&q=tolerance+emergencystretch&rnum=5&hl=de#f5da290593fd647e
@@ -1174,33 +1053,23 @@
 %
 % EN: Suppress hbox warnings if less than 1pt
 \setlength{\hfuzz}{1pt}
-%
-%%%
 
 
-%%%
 % EN: Fix names for algorithms in German
 % DE: fuer algorithm.sty: - falls Deutsch und nicht Englisch.
 \ifdeutsch
   \floatname{algorithm}{Algorithmus}
   \renewcommand{\listalgorithmname}{Verzeichnis der Algorithmen}
 \fi
-%
-%%%
 
 
-%%%
 % EN: The euro sign
 % DE: Das Euro Zeichen
 %     Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
 %     Alternative: \usepackage{eurosym}
 \newcommand{\EUR}{\ppleuro}
-%
-%%%
 
 
-%%%
-%
 % Float-placements - http://dcwww.camd.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html#figplacement
 % and http://people.cs.uu.nl/piet/floats/node1.html
 \renewcommand{\topfraction}{0.85}
@@ -1208,37 +1077,22 @@
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\floatpagefraction}{0.75}
 %\setcounter{totalnumber}{5}
-%
-%%%
 
-%%%
-%
-% Bei Gleichungen nur dann die Nummer zeigen, wenn die Gleichung auch referenziert wird
-%
-% Funktioniert mit MiKTeX Stand 2012-01-13 nicht. Deshalb ist dieser Schalter deaktiviert.
-%
-%\mathtoolsset{showonlyrefs}
-%
-%%%
-
-
-%%%
-%ensure that floats covering a whole page are placed at the top of the page
-%see http://tex.stackexchange.com/a/28565/9075
+% EN: ensure that floats covering a whole page are placed at the top of the page
+%    see http://tex.stackexchange.com/a/28565/9075
 \makeatletter
 \setlength{\@fptop}{0pt}
 \setlength{\@fpbot}{0pt plus 1fil}
 \makeatother
-%%%
 
 
-%%%
-% EN: Improves the border of the text
-% DE: Optischer Randausgleich und Grauwertkorrektur
-\usepackage{microtype}
-%%%
 
-%%%
+% DE: Bei Gleichungen nur dann die Nummer zeigen, wenn die Gleichung auch referenziert wird
+%     Funktioniert mit MiKTeX Stand 2012-01-13 nicht. Deshalb ist dieser Schalter deaktiviert.
+%
+%\mathtoolsset{showonlyrefs}
+
+
 % EN: Margins
 % DE: Ränder
 %     Viele Moeglichkeiten, die Raender im Dokument einzustellen.
@@ -1270,10 +1124,8 @@
   includehead,
   includefoot
 ]{geometry}
-%%%
 
 
-%%%
 % EN: Provides todo notes
 % DE: schoene TODOs
 \ifdeutsch
@@ -1287,11 +1139,8 @@
 \renewcommand{\todo}[1]{\xtodo[inline,color=black!5]{#1}}
 \newcommand{\utodo}[1]{\xtodo[inline,color=green!5]{#1}}
 \newcommand{\itodo}[1]{\xtodo[inline]{#1}}
-%
-%%%
 
 
-%%%
 % EN: Enable footnotes in tables.
 %     This package superseeds the 1997 package "footnote"
 \usepackage{footnotehyper}
@@ -1300,10 +1149,8 @@
 \makesavenoteenv{table}
 % Reuse of footnotes, see http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
 \crefformat{footnote}{#2\footnotemark[#1]#3}
-%%%
 
 
-%%%
 % EN: pgfplots (optional if the ppackage is installed)
 %     PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
 \IfFileExists{pgfplots.sty}{
@@ -1311,47 +1158,38 @@
   % EN: highest version supported by overleaf as of 2018-03-16
   \pgfplotsset{compat=1.14}
 }{}
-%%%
 
-%%%
+
 % EN: pgfplotstable (optional if the ppackage is installed)
 %     PGFPlots generates tables from csv files
 \IfFileExists{pgfplotstable.sty}{
   \usepackage{pgfplotstable}
 }{}
-%%%
 
-%%%
+
 % EN: Package for creating graphics programmatically
 \usepackage{tikz}
-%%%
 
-%%%
-% EN: tikz-uml
-%     Package for creating uml diagramms
+
+% EN: Package for creating uml diagramms
 \usepackage{tikz-uml}
-%%%
 
-%%%
+
 % EN: Forest: apgf/TikZ-based package for drawing linguistic trees - https://ctan.org/pkg/forest
 \usepackage{forest}
-%%%
 
-%%%
+
 % EN: Enable PlantUML listings in the environment "plantuml"
 \IfFileExists{plantuml.sty}{
   \usepackage[output=latex]{plantuml}
 }{}
-%%
 
-%%
+
 % EN: Layout: bottoms of pages not aligned to each other
 % DE: Der untere Rand darf "flattern"
 \raggedbottom
-%%
 
 
-%%%
 % DE: Wie tief wird das Inhaltsverzeichnis aufgeschlüsselt
 % 0 --\chapter
 % 1 --\section % fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
@@ -1359,17 +1197,13 @@
 % 3 --\subsubsection
 % 4 --\paragraph
 \setcounter{tocdepth}{1}
-%
-%%%
 
-%%%
+
 % EN: Fixes wrong spacing in the TOC.
 %     Source: https://tex.stackexchange.com/a/33842/9075 -> comment by esdd
 \RedeclareSectionCommand[tocnumwidth=2.8em]{section}
-%%%
 
 
-%%%
 % DE: Angaben in die PDF-Infos uebernehmen
 \makeatletter
 \hypersetup{
@@ -1379,29 +1213,29 @@
   pdfsubject={}
 }
 \makeatother
-%%%
 
-%%%
+
 % EN: Higher compression of the output PDF
 \pdfcompresslevel=9
-%%%
 
 
-%%%
 % EN: Required for recent version of komascript, as some packges are not that compatible with KOMAScript as they should be
 %     Has to be loaded at the *very* end, so we use "\AtEndPreamble" by etoolsbox
 \usepackage{etoolbox}
 \AtEndPreamble{\usepackage{scrhack}}
-%%%
 
-%%%
+
 % EN: Provide tables over multiple pages
 \usepackage{longtable}
-%%%
 
-%%%
+
 % EN: Show LaTeX commands and their results in the document
 %     Enables the command \PrintDemo
 % See https://github.com/latextemplates/scientific-thesis-template/issues/82 for further discussion
 \usepackage{latexdemo}
-%%%
+
+
+% DE: Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
+\ifdeutsch
+  \setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
+\fi

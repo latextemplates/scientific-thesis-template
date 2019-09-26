@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fixed loading of newtxmath.
+- Fixed loading of "TeX Gyre Termes" and "TeX Gyre Heros" on MiKTeX.
+
+## Changed
+
+- Simplified styleguide of `config.tex`
 
 ### Removed
 
