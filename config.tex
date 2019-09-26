@@ -777,8 +777,11 @@
 
 
 % EN: Make LaTeX logos available by commands. E.g., \lualatex
-\usepackage{dtk-logos}
+%     Disabled, because currently causes \not= already defined
+%\usepackage{dtk-logos}
 
+% quick replacement:
+\newcommand{\LuaLaTeX}{Lua\LaTeX\xspace}
 
 % DE: Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
 %     Pakets "index" wichtig, da sonst die Referenzierung nicht funktioniert.
