@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed loading of newtxmath.
 - Fixed loading of "TeX Gyre Termes" and "TeX Gyre Heros" on MiKTeX.
 - Fixed bold and italics
+- Fixed font in math environment `\mathrm` to use "TeX Gyre Termes"
 
 ## Changed
 
