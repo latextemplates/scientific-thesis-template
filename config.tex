@@ -85,7 +85,10 @@
   % newtxmath has to come first - see https://tex.stackexchange.com/a/394139/9075
   \RequirePackage{newtxmath}
   \usepackage[no-math]{fontspec}
-  \setmainfont{TeXGyreTermes-Regular}
+  \setmainfont{TeXGyreTermes-Regular}[
+       BoldFont       = TeXGyreTermes-Bold ,
+       ItalicFont     = TeXGyreTermes-Italic ,
+       BoldItalicFont = TeXGyreTermes-BoldItalic ]
   \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
   \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
 
