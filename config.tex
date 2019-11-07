@@ -82,63 +82,16 @@
 
 % EN: Times Roman for all text
 \ifluatex
-  % newtxmath has to come first - see https://tex.stackexchange.com/a/394139/9075
-  \RequirePackage{newtxmath}
+  % source: Second proposed fix from the following answer: https://tex.stackexchange.com/a/394137
   \usepackage[no-math]{fontspec}
   \setmainfont{TeXGyreTermes-Regular}[
        BoldFont       = TeXGyreTermes-Bold ,
        ItalicFont     = TeXGyreTermes-Italic ,
-       BoldItalicFont = TeXGyreTermes-BoldItalic ]
+       BoldItalicFont = TeXGyreTermes-BoldItalic,
+       NFSSFamily     = ntxtlf]
   \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
   \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
-
-  % source: https://tex.stackexchange.com/a/394139/9075
-  \DeclareSymbolFont{oldoperators}{OT1}{ntxtlf}{m}{n}
-  \SetSymbolFont{oldoperators}{bold}{OT1}{ntxtlf}{b}{n}
-  \AtBeginDocument{%
-    \DeclareMathSymbol{0}{\mathalpha}{operators}{`0}%
-    \DeclareMathSymbol{1}{\mathalpha}{operators}{`1}%
-    \DeclareMathSymbol{2}{\mathalpha}{operators}{`2}%
-    \DeclareMathSymbol{3}{\mathalpha}{operators}{`3}%
-    \DeclareMathSymbol{4}{\mathalpha}{operators}{`4}%
-    \DeclareMathSymbol{5}{\mathalpha}{operators}{`5}%
-    \DeclareMathSymbol{6}{\mathalpha}{operators}{`6}%
-    \DeclareMathSymbol{7}{\mathalpha}{operators}{`7}%
-    \DeclareMathSymbol{8}{\mathalpha}{operators}{`8}%
-    \DeclareMathSymbol{9}{\mathalpha}{operators}{`9}%
-    \DeclareMathSymbol{\Gamma}{\mathalpha}{oldoperators}{"00}%
-    \DeclareMathSymbol{\Delta}{\mathalpha}{oldoperators}{"01}%
-    \DeclareMathSymbol{\Theta}{\mathalpha}{oldoperators}{"02}%
-    \DeclareMathSymbol{\Lambda}{\mathalpha}{oldoperators}{"03}%
-    \DeclareMathSymbol{\Xi}{\mathalpha}{oldoperators}{"04}%
-    \DeclareMathSymbol{\Pi}{\mathalpha}{oldoperators}{"05}%
-    \DeclareMathSymbol{\Sigma}{\mathalpha}{oldoperators}{"06}%
-    \DeclareMathSymbol{\Upsilon}{\mathalpha}{oldoperators}{"07}%
-    \DeclareMathSymbol{\Phi}{\mathalpha}{oldoperators}{"08}%
-    \DeclareMathSymbol{\Psi}{\mathalpha}{oldoperators}{"09}%
-    \DeclareMathSymbol{\Omega}{\mathalpha}{oldoperators}{"0A}%
-    \DeclareMathSymbol{!}{\mathclose}{operators}{"21}%
-    \DeclareMathSymbol{+}{\mathbin}{operators}{"2B}%
-    \DeclareMathSymbol{:}{\mathrel}{operators}{"3A}%
-    \DeclareMathSymbol{;}{\mathpunct}{operators}{"3B}%
-    \DeclareMathSymbol{=}{\mathrel}{operators}{"3D}%
-    \DeclareMathSymbol{?}{\mathclose}{operators}{"3F}%
-    \DeclareMathDelimiter{(}{\mathopen} {operators}{"28}{largesymbols}{"00}%
-    \DeclareMathDelimiter{)}{\mathclose}{operators}{"29}{largesymbols}{"01}%
-    \DeclareMathDelimiter{[}{\mathopen} {operators}{"5B}{largesymbols}{"02}%
-    \DeclareMathDelimiter{]}{\mathclose}{operators}{"5D}{largesymbols}{"03}%
-    \DeclareMathAccent{\acute}{\mathalpha}{operators}{"B4}%
-    \DeclareMathAccent{\grave}{\mathalpha}{operators}{"60}%
-    \DeclareMathAccent{\ddot}{\mathalpha}{operators}{"A8}%
-    \DeclareMathAccent{\tilde}{\mathalpha}{oldoperators}{"7E}%
-    \DeclareMathAccent{\bar}{\mathalpha}{oldoperators}{"16}%
-    \DeclareMathAccent{\breve}{\mathalpha}{oldoperators}{"15}%
-    \DeclareMathAccent{\check}{\mathalpha}{oldoperators}{"14}%
-    \DeclareMathAccent{\hat}{\mathalpha}{oldoperators}{"5E}%
-    \DeclareMathAccent{\dot}{\mathalpha}{oldoperators}{"5F}%
-    \DeclareMathAccent{\mathring}{\mathalpha}{oldoperators}{"17}%
-    \DeclareMathSymbol{\mathdollar}{\mathord}{operators}{"24}%
-  }
+  \RequirePackage{newtxmath}
 \else
   \RequirePackage{newtxtext}
   \RequirePackage{newtxmath}
@@ -692,7 +645,7 @@
 %\usepackage{multicol}
 
 % DE: kollidiert mit diplomarbeit.sty
-%\usepackage{setspace} 
+%\usepackage{setspace}
 
 
 % DE: biblatex statt bibtex
