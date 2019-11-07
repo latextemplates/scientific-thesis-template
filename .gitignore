@@ -23,14 +23,16 @@ democode.tex
 
 
 
+
 # Created by https://www.gitignore.io/api/code,latex,linux,emacs,jabref,windows,libreoffice,microsoftoffice
+# Edit at https://www.gitignore.io/?templates=code,latex,linux,emacs,jabref,windows,libreoffice,microsoftoffice
 
 ### Code ###
-# Visual Studio Code - https://code.visualstudio.com/
-.settings/
-.vscode/
-tsconfig.json
-jsconfig.json
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -75,28 +77,13 @@ flycheck_*.el
 
 # projectiles files
 .projectile
-projectile-bookmarks.eld
 
 # directory configuration
 .dir-locals.el
 
-# saveplace
-places
+# network security
+/network-security.data
 
-# url cache
-url/cache/
-
-# cedet
-ede-projects.el
-
-# smex
-smex-items
-
-# company-statistics
-company-statistics-cache.el
-
-# anaconda-mode
-anaconda-mode/
 
 ### JabRef ###
 # JabRef - https://www.jabref.org/
@@ -116,6 +103,7 @@ anaconda-mode/
 *.fot
 *.cb
 *.cb2
+.*.lb
 
 ## Intermediate documents:
 *.dvi
@@ -144,7 +132,10 @@ anaconda-mode/
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
-*Notes.bib
+
+## Build tool directories for auxiliary files
+# latexrun
+latex.out/
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -165,6 +156,9 @@ acs-*.bib
 
 # changes
 *.soc
+
+# comment
+*.cut
 
 # cprotect
 *.cpt
@@ -209,12 +203,23 @@ acs-*.bib
 *.gls
 *.glsdefs
 
+# uncomment this for glossaries-extra (will ignore makeindex's style files!)
+# *.ist
+
 # gnuplottex
 *-gnuplottex-*
 
 # gregoriotex
 *.gaux
 *.gtex
+
+# htlatex
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.trc
+*.xref
 
 # hyperref
 *.brf
@@ -228,11 +233,13 @@ acs-*.bib
 # listings
 *.lol
 
+# luatexja-ruby
+*.ltjruby
+
 # makeidx
 *.idx
 *.ilg
 *.ind
-*.ist
 
 # minitoc
 *.maf
@@ -251,7 +258,9 @@ _minted*
 *.mw
 
 # nomencl
+*.nlg
 *.nlo
+*.nls
 
 # pax
 *.pax
@@ -280,6 +289,9 @@ sympy-plots-for-*.tex/
 *.pytxcode
 pythontex-files-*/
 
+# tcolorbox
+*.listing
+
 # thmtools
 *.loe
 
@@ -291,8 +303,18 @@ pythontex-files-*/
 # todonotes
 *.tdo
 
+# vhistory
+*.hst
+*.ver
+
 # easy-todo
 *.lod
+
+# xcolor
+*.xcp
+
+# xmpincl
+*.xmpi
 
 # xindy
 *.xdy
@@ -313,6 +335,9 @@ TSWLatexianTemp*
 # Texpad
 .texpadtmp
 
+# LyX
+*.lyx~
+
 # Kile
 *.backup
 
@@ -320,10 +345,18 @@ TSWLatexianTemp*
 *~[0-9]*
 
 # auto folder when using emacs and auctex
-/auto/*
+./auto/*
+*.el
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# standalone packages
+*.sta
+
+### LaTeX Patch ###
+# glossaries
+*.glstex
 
 ### LibreOffice ###
 # LibreOffice locks
@@ -349,6 +382,9 @@ TSWLatexianTemp*
 # Word temporary
 ~$*.doc*
 
+# Word Auto Backup File
+Backup of *.doc*
+
 # Excel temporary
 ~$*.xls*
 
@@ -364,11 +400,15 @@ TSWLatexianTemp*
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
+Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
+# Dump file
+*.stackdump
+
 # Folder config file
-Desktop.ini
+[Dd]esktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
@@ -376,11 +416,11 @@ $RECYCLE.BIN/
 # Windows Installer files
 *.cab
 *.msi
+*.msix
 *.msm
 *.msp
 
 # Windows shortcuts
 *.lnk
-
 
 # End of https://www.gitignore.io/api/code,latex,linux,emacs,jabref,windows,libreoffice,microsoftoffice
