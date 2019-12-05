@@ -787,7 +787,10 @@
 % DE: siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
 \usepackage[acronym,indexonlyfirst,nomain]{glossaries}
 \ifdeutsch
-  \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+  \addto\captionsngerman % DE: siehe https://tex.stackexchange.com/a/154566
+  {%
+    \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+  }
 \else
   \renewcommand*{\acronymname}{List of Abbreviations}
 \fi
