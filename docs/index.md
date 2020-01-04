@@ -58,7 +58,7 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
         - German advanced usage: `main-minted-german.tex` (see below)
     - Paderborn University:
         - Start texing at `main-paderborn-english.tex` or `main-paderborn-german.tex`.
-        - Adapt `logos/UBP-background-picture.pdf` to your needs. It has the format 20cm x 10cm.
+        - Adapt `res/logos/UBP-background-picture.pdf` to your needs. It has the format 20cm x 10cm.
         - Change `!TeX root =` in `latexhints-english.tex` and `latexhints-german.tex`.
 
 ### Usage at overleaf
@@ -359,7 +359,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 
 ### Directories
 
-- [graphics](graphics/) Directory containing the figures.
+- [graphics](res/graphics/) Directory containing the figures.
   By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
 
 ### Files
@@ -399,7 +399,7 @@ The license of this work is [CC0](https://creativecommons.org/publicdomain/zero/
 
 ### Exceptions
 
-The images in `logos` are subject to other copyright from other parties:
+The images in `res/logos` are subject to other copyright from other parties:
 
 - `UPB_LOGO_GB_RGB_15.pdf` and `UPB_Logo_RGB_D_2012.pdf` are copyright Paderborn University.
   Refer to <https://www.uni-paderborn.de/universitaet/marketing/design-vorgaben-templates/> for proper use.

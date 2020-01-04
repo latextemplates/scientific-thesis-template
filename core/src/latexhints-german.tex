@@ -115,7 +115,7 @@ Mittels \texttt{\textbackslash lstinputlisting} kann man den Inhalt direkt aus D
 
 
 %TODO: Currently not shown in TOC
-\lstinputlisting[language=C++,label=helloworld,caption={"`hello world"' in C++.},float]{code/helloworld.cpp}
+\lstinputlisting[language=C++,label=helloworld,caption={"`hello world"' in C++.},float]{res/code/helloworld.cpp}
 
 Quellcode im \lstinline|<listing />| ist auch möglich.
 
@@ -343,7 +343,7 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
       \begin{tikzpicture}
         \begin{axis}[xlabel=$x$,
             ylabel=$y$]
-          \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Koordinaten aus einer CSV-Datei lesen und plotten
+          \addplot table [x=a, y=c, col sep=comma] {res/data/data.csv};  % Koordinaten aus einer CSV-Datei lesen und plotten
         \end{axis}
       \end{tikzpicture}
     \end{center}
@@ -469,7 +469,7 @@ every head row/.style={before row=\toprule,after row=\midrule},
 every last row/.style={after row=\bottomrule},
 display columns/0/.style={string type,column name={}}
 ]
-{data/data.csv}
+{res/data/data.csv}
 \caption{Tabelle generiert aus einer CSV-Datei mit pgfplots}
 \end{table}
 }{}

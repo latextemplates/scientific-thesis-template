@@ -10,7 +10,7 @@
 
 \let\ifdeutsch\iftrue
 \let\ifenglisch\iffalse
-\input{pre-documentclass}
+\input{src/pre-documentclass}
 \documentclass[
   ngerman,
   % fontsize=11pt is the standard
@@ -25,7 +25,7 @@
   %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
   draft=false
 ]{scrbook}
-\input{config}
+\input{src/config}
 
 % Packages required for title page of Paderborn University
 \usepackage{tikz}
@@ -49,7 +49,7 @@
   enddate={January 5, 2019}
 ]{scientific-thesis-cover}
 
-\input{acronyms}
+\input{src/acronyms}
 
 \makeindex
 
@@ -64,7 +64,7 @@
   \Css{body {text-align:justify;}}
 
   %conversion of .pdf to .png
-  \Configure{graphics*}
+  \Configure{res/graphics*}
   {pdf}
   {\Needs{"convert \csname Gin@base\endcsname.pdf
       \csname Gin@base\endcsname.png"}%
@@ -74,10 +74,10 @@
 
 %\VerbatimFootnotes %verbatim text in Fußnoten erlauben. Geht normalerweise nicht.
 
-\input{commands}
+\input{src/commands}
 \pagenumbering{arabic}
 
-\input{paderborn-title}
+\input{style/paderborn-title}
 
 \Titelblatt
 
@@ -244,7 +244,7 @@ Alle URLs wurden zuletzt am 17.\,03.\,2018 geprüft.
 %\renewcommand{\appendixname}{Anhang}
 %\renewcommand{\appendixpagename}{Anhang}
 \appendix
-\input{latexhints-german}
+\input{src/latexhints-german}
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}

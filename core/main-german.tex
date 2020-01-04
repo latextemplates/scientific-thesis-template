@@ -9,7 +9,7 @@
 
 \let\ifdeutsch\iftrue
 \let\ifenglisch\iffalse
-\input{pre-documentclass}
+\input{src/pre-documentclass}
 \documentclass[
   ngerman,
   % fontsize=11pt is the standard
@@ -24,7 +24,7 @@
   %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
   draft=false
 ]{scrbook}
-\input{config}
+\input{src/config}
 
 % EN: The package scientific-thesis-cover (https://ctan.org/pkg/scientific-thesis-cover) was added to CTAN on January 1, 2018.
 %     It is available in recent texlive and miktex installations
@@ -40,7 +40,7 @@ startdate={5.\ Juli 2013}, % English: July 5, 2013;    ISO: 2013-07-05
 enddate={5.\ Januar 2014}  % English: January 5, 2014; ISO: 2014-01-05
 ]{scientific-thesis-cover}
 
-\input{acronyms}
+\input{src/acronyms}
 
 \makeindex
 
@@ -55,7 +55,7 @@ enddate={5.\ Januar 2014}  % English: January 5, 2014; ISO: 2014-01-05
   \Css{body {text-align:justify;}}
 
   %conversion of .pdf to .png
-  \Configure{graphics*}
+  \Configure{res/graphics*}
   {pdf}
   {\Needs{"convert \csname Gin@base\endcsname.pdf
       \csname Gin@base\endcsname.png"}%
@@ -65,7 +65,7 @@ enddate={5.\ Januar 2014}  % English: January 5, 2014; ISO: 2014-01-05
 
 %\VerbatimFootnotes %verbatim text in Fußnoten erlauben. Geht normalerweise nicht.
 
-\input{commands}
+\input{src/commands}
 \pagenumbering{arabic}
 \Titelblatt
 
@@ -245,7 +245,7 @@ Alle URLs wurden zuletzt am 17.\,03.\,2018 geprüft.
 %\renewcommand{\appendixname}{Anhang}
 %\renewcommand{\appendixpagename}{Anhang}
 \appendix
-\input{latexhints-german}
+\input{src/latexhints-german}
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}

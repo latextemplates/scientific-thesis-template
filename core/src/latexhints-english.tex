@@ -322,7 +322,7 @@ This is described in the source code of latex-tipps.tex, but commented out.
       \begin{tikzpicture}
         \begin{axis}[xlabel=$x$,
             ylabel=$y$]
-          \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Read coordinates from csv file and plot them
+          \addplot table [x=a, y=c, col sep=comma] {res/data/data.csv};  % Read coordinates from csv file and plot them
         \end{axis}
       \end{tikzpicture}
     \end{center}
@@ -473,7 +473,7 @@ every head row/.style={before row=\toprule,after row=\midrule},
 every last row/.style={after row=\bottomrule},
 display columns/0/.style={string type,column name={}}
 ]
-{data/data.csv}
+{res/data/data.csv}
 \caption{Table direclty generated from the values of a csf file.}
 \end{table}
 }{}

@@ -12,7 +12,7 @@ The license of this work is [CC0](https://creativecommons.org/publicdomain/zero/
 
 ### Exceptions
 
-The images in `logos` are subject to other copyright from other parties:
+The images in `res/logos` are subject to other copyright from other parties:
 
 - `UPB_LOGO_GB_RGB_15.pdf` and `UPB_Logo_RGB_D_2012.pdf` are copyright Paderborn University.
   Refer to <https://www.uni-paderborn.de/universitaet/marketing/design-vorgaben-templates/> for proper use.
