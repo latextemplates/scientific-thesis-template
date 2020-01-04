@@ -33,7 +33,7 @@ $pdf_mode = 4;
 
 # =0 <-> no preview
 # >0 <-> preview
-$preview_mode = 1;
+$preview_mode = 0;
 
 $view = 'default';
 
