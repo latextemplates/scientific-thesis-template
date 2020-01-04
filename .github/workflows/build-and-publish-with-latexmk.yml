@@ -12,30 +12,30 @@ jobs:
       - name: Compile main-german.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-german.tex
+          root_file: core/main-german.tex
           args:
       - name: Compile main-minted-german.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-minted-german.tex
+          root_file: core/main-minted-german.tex
           args:
       - name: Compile main-english.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-english.tex
+          root_file: core/main-english.tex
           args:
       - name: Compile main-paderborn-german.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-paderborn-german.tex
+          root_file: core/main-paderborn-german.tex
           args:
       - name: Compile main-paderborn-english.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-paderborn-english.tex
+          root_file: core/main-paderborn-english.tex
           args:
       - name: Gather build artifacts
-        run: mkdir build && cp -r main-*.pdf .github/_config.yml docs/* build/
+        run: mkdir build && cp -r core/build/main-*.pdf .github/_config.yml docs/* build/
       - name: Deploy
         if: success()
         uses: crazy-max/ghaction-github-pages@master

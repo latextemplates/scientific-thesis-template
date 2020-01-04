@@ -9,36 +9,36 @@ jobs:
       - name: Compile main-german.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-german.tex
+          root_file: core/main-german.tex
           compiler: lualatex
           args:
       - name: biber main-german
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-german
+          root_file: core/main-german
           compiler: biber
           args:
       - name: Compile main-minted-german.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-minted-german.tex
+          root_file: core/main-minted-german.tex
           compiler: lualatex
           args: -shell-escape
       - name: Compile main-english.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-english.tex
+          root_file: core/main-english.tex
           compiler: lualatex
           args:
       - name: Compile main-paderborn-german.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-paderborn-german.tex
+          root_file: core/main-paderborn-german.tex
           compiler: lualatex
           args:
       - name: Compile main-paderborn-english.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: main-paderborn-english.tex
+          root_file: core/main-paderborn-english.tex
           compiler: lualatex
           args:
