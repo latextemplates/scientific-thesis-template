@@ -17,11 +17,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Changed
 
+- The code has been restructured in a deeper folder-hierarchy to make the code-structure cleaner.
+  Hence, file-paths are changed (including paths in `.github/workflows`).
+- `.latexmk` builds every file in a subfolder `core/build`, which keeps the clean folder-hierarchy.
 - Simplified styleguide of `config.tex`
 - Removed package [dtk-logos](https://ctan.org/tex-archive/usergrps/dante/dtk), because it causes issues with lualatex
 
 ### Removed
 
+- Replaced `Makefile` by `.latexmkrc`.
+  Now, all main-tex-files defined in the `.latexmkrc` can be built by executing `latexmk` and that's it.
+  In theory, the directives (e.g. `% !TEX ...`) can be removed, but some editors/IDEs still may need them.
 - Removed option `hyperref` at xcolor package. It is not used and caused troubles at some setups.
 
 ## [3.0.0-beta.4] – 2019-02-10
