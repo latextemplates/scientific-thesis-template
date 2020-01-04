@@ -8,7 +8,10 @@
 $do_cd = 1;
 @default_files = (
     'core/main-english.tex',
-    'core/main-german.tex'
+    # 'core/main-paderborn-english.tex',
+    # 'core/main-german.tex',
+    # 'core/main-minted-german.tex',
+    # 'core/main-paderborn-german.tex',
 );
 # relative to main.tex
 $out_dir = 'build';
