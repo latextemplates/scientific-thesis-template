@@ -526,12 +526,11 @@ $RECYCLE.BIN/
 # custom
 
 /custom/
+build/
 
 .vscode/
 
-main-*.pdf
 graphics/*.pdf_tex
-democode.tex
 
 # plantuml
 *-plantuml.latex
@@ -548,4 +547,3 @@ democode.tex
 
 # configured in packages_and_options.tex
 *.code
-

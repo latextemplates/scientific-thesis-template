@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - The code has been restructured in a deeper folder-hierarchy to make the code-structure cleaner.
   Hence, file-paths are changed (including paths in `.github/workflows`).
 - `.latexmk` builds every file in a subfolder `core/build`, which keeps the clean folder-hierarchy.
+- Added script for creating a new gitignore-file with one command.
+- Removed `democode` from gitignore since `build/` has been added and `democode.tex` is moved into `core/build/` automatically, due to `.latexmk`.
 - Simplified styleguide of `config.tex`
 - Removed package [dtk-logos](https://ctan.org/tex-archive/usergrps/dante/dtk), because it causes issues with lualatex
 
