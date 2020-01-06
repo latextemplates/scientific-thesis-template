@@ -320,7 +320,7 @@ Make targets:
 ### Q: `main-minted-german.tex` does not compile: ``File `main-minted-german-plantuml.latex' not found. \end{plantuml}``. What can I do?
 
 You did not setup the [plantuml package](https://www.ctan.org/pkg/plantuml) correctly.
-Please head to <https://latextemplates.github.io/plantuml/> for installation instructions.
+Please head to <https://koppor.github.io/plantuml/> for installation instructions.
 
 ### Q: Is there any other place to look for further information?
 
