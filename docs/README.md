@@ -1,4 +1,4 @@
-# LaTeX Template for Scientific Theses [![Build Status](https://circleci.com/gh/latextemplates/scientific-thesis-template/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/scientific-thesis-template/)
+# LaTeX Template for Scientific Theses [![Build Status](https://github.com/latextemplates/scientific-thesis-template/workflows/Build%20with%20lualatex/badge.svg)](https://github.com/latextemplates/scientific-thesis-template/actions?query=workflow%3A%22Build+with+lualatex%22)
 
 This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
@@ -51,7 +51,7 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
     1. Go to the latest release via <https://github.com/latextemplates/scientific-thesis-template/releases>.
     2. Download the file `source.zip`
     3. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
-2. Start Start texing
+2. Start texing
     - University of Stuttgart:
         - English: `main-english.tex`
         - German: `main-german.tex`
