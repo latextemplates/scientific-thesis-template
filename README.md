@@ -4,7 +4,7 @@
 
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses.
 
-See [docs/](docs/) for a documentation of the template.
+See [docs/](docs/) or <http://latextemplates.github.io/scientific-thesis-template/> for a documentation of the template.
 
 ## License
 
