@@ -20,7 +20,7 @@ Chosen option: CC0, because comes out best (see below).
 ### CC0
 
 * Good, because allows the user to do anything
-* Bad, because bad license
+* Bad, because the license text is long
 * Bad, because not as well-known as MIT, GPL
 
 ### MIT

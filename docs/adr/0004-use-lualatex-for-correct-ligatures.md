@@ -39,7 +39,6 @@ Found going from <https://tex.stackexchange.com/q/28437/9075> to <https://tex.st
 * Good, because disables at the right places and not completely
 * Bad, because needs switch of latex compiler to lualatex, which users are not used to
 
-
 ### Use a post-processor
 
 - perl-based solution: <http://ctan.org/pkg/rmligs>
@@ -56,7 +55,7 @@ Found going from <https://tex.stackexchange.com/q/28437/9075> to <https://tex.st
 
 See <https://tex.stackexchange.com/q/61042/9075> and <https://tex.stackexchange.com/q/1841/9075>
 
-* Good, because easiy to implement
+* Good, because easy to implement
 * Good, because pdflatex can be used
 * Bad, because ligatures look better
 
