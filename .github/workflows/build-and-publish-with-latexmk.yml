@@ -1,8 +1,5 @@
-name: Build and publish to gh-pages
-on:
-  push:
-    branches:
-      - master
+name: Build with lualatex (and publish to gh-pages)
+on: [push, pull_request]
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -37,8 +34,8 @@ jobs:
       - name: Gather build artifacts
         run: mkdir build && cp -r main-*.pdf .github/_config.yml docs/* build/
       - name: Deploy
-        if: success()
-        uses: crazy-max/ghaction-github-pages@master
+        if: github.ref == 'refs/heads/master'
+        uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
           build_dir: build
