@@ -3,8 +3,7 @@ on:
   push:
   pull_request:
   schedule:
-    # run on 1th and 15th of each month
-    - cron: '1 2 1,15 * *'
+    - cron: '1 2 2,16 * *'
 jobs:
   build_latex:
     runs-on: ubuntu-latest
