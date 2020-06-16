@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+      - main
+      - switch-publish
 jobs:
   build_latex:
     runs-on: ubuntu-latest
