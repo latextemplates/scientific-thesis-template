@@ -16,11 +16,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed renaming of `\acronymname` to "Abkürzungsverzeichnis" when using the german template
 - Fixed loading of "TeX Gyre Heros" variants on LuaLaTeX
 
-## Changed
+### Changed
 
 - Simplified styleguide of `config.tex`
 - Removed package [dtk-logos](https://ctan.org/tex-archive/usergrps/dante/dtk), because it causes issues with lualatex
 - Removed package [amssymb] to fix compilation error. [#125](https://github.com/latextemplates/scientific-thesis-template/issues/125)
+
+### Added
+
+- Added section "related work". [#127](https://github.com/latextemplates/scientific-thesis-template/issues/127)
 
 ### Removed
 
