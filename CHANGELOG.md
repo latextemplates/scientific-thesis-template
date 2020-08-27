@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed font in math environment `\mathrm` to use "TeX Gyre Termes"
 - Fixed renaming of `\acronymname` to "Abkürzungsverzeichnis" when using the german template
 - Fixed loading of "TeX Gyre Heros" variants on LuaLaTeX
+- Fixed the broken PlantUML setup link in the documentation
 
 ### Changed
 
