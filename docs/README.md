@@ -33,12 +33,12 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 ## Characteristics of the template
 
 - Most recent packages and package configuration based on long-time experience.
-- [lualatex](http://www.luatex.org/) to enable proper typeset [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).
+- ~~[lualatex](http://www.luatex.org/) to enable proper typeset [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature).~~
   For older systems, [pdflatex](https://en.wikipedia.org/wiki/PdfTeX) is still supported.
 - Open for contributions.
 - [latexmk] - Reasoning available at <https://tex.stackexchange.com/a/249243/9075>.
 - [biblatex]+[biber] instead of plain [bibtex], because biblatex fully supports UTF-8 and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
-- Automatic adjustment of wrong [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) using the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package
+- ~~Automatic adjustment of wrong [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) using the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package~~
 - Full Unicode (UTF-8) support
 - Optional: Render listings using [minted](https://github.com/gpoore/minted/), which provides better output than [listings](https://ctan.org/pkg/listings), but requires [pygments](http://pygments.org/) to be installed.
 - Optional: Direct inclusion of [PlantUML](http://plantuml.com/) diagram.s
@@ -108,10 +108,11 @@ This is provides a perfectly configured latex distribution with all required too
    Will download approx. 4GB.
 4. Open TeXstudio
 5. Options > Configure TeXstudio > Commands
-6. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-7. Set "Biber" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-8. Check if the "docker pull" command from step 3 succeed. If not, wait.
-9. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
+6. Set "PdfLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+7. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+8. Set "Biber" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+9. Check if the "docker pull" command from step 3 succeed. If not, wait.
+10. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
 
 ## Installation hints for Windows
 
