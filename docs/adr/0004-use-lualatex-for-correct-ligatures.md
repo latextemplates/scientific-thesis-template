@@ -13,9 +13,9 @@ See also the last lines in <https://tex.stackexchange.com/a/64457/9075>.
 
 ### More readings
 
-- <https://www.typolexikon.de/ligatur/>
-- Questions on ligatures: <https://tex.stackexchange.com/questions/tagged/ligatures>
-- Disable ligatures in headings: <https://tex.stackexchange.com/q/198743/9075>
+* <https://www.typolexikon.de/ligatur/>
+* Questions on ligatures: <https://tex.stackexchange.com/questions/tagged/ligatures>
+* Disable ligatures in headings: <https://tex.stackexchange.com/q/198743/9075>
 
 ## Considered Options
 
@@ -41,9 +41,9 @@ Found going from <https://tex.stackexchange.com/q/28437/9075> to <https://tex.st
 
 ### Use a post-processor
 
-- perl-based solution: <http://ctan.org/pkg/rmligs>
-- java-based solution: <http://www.ctan.org/pkg/delig>  (used by @sieversmartin)
-- C-based solution (working for German documents only): <https://ctan.org/pkg/ligatex>
+* perl-based solution: <http://ctan.org/pkg/rmligs>
+* java-based solution: <http://www.ctan.org/pkg/delig>  (used by @sieversmartin)
+* C-based solution (working for German documents only): <https://ctan.org/pkg/ligatex>
 
 * Good, because proven solutions
 * Good, because pdflatex can be used
