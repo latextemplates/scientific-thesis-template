@@ -48,9 +48,8 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 ## Quick start
 
 1. Download
-    1. Go to the latest release via <https://github.com/latextemplates/scientific-thesis-template/releases>.
-    2. Download the file `source.zip`
-    3. Extract `source.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+    1. Go to the development version at <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip>. Reason: LaTeX packages change so fast over time and we cannot do a release on each change.
+    2. Extract `master.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
 2. Start texing
     - University of Stuttgart:
         - English: `main-english.tex`

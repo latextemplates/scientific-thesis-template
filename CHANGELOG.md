@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Simplified styleguide of `config.tex`
 - Removed package [dtk-logos](https://ctan.org/tex-archive/usergrps/dante/dtk), because it causes issues with lualatex
 - Removed package [amssymb] to fix compilation error. [#125](https://github.com/latextemplates/scientific-thesis-template/issues/125)
+- Change documentation to tell users to download `master.zip` instead of the latest release.
 
 ### Added
 
