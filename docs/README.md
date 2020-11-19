@@ -355,6 +355,19 @@ However, they currently do not support microtype and not the cover of the Univer
 
 We are collecting alternatives at the issue [#25](https://github.com/latextemplates/scientific-thesis-template/issues/25) and plan to add a comparison to each other template.
 
+### Q: I get `Font "LatinModernMath-Regular" not found.`. What can I do?
+
+Error message:
+
+```text
+luaotfload | db : Reload initiated (formats: otf,ttf,ttc); reason: Font "LatinModernMath-Regular" not found.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+
+! Package fontspec Error: The font "LatinModernMath-Regular" cannot be found.
+```
+
+Install the package "lm-math" manually.
+
 ## Contained Files and Directories
 
 ### Directories
