@@ -368,6 +368,15 @@ luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
 
 Install the package "lm-math" manually.
 
+### Q: I get `! Package fontspec Error: The font "LinuxLibertineO" cannot be found.`. What can I do?
+
+Install the package `libertine` manually.
+
+### Q: I get `! Package fontspec Error: The font "TeXGyreTermes" cannot be found.`. What can I do?
+
+Install the package `tex-gyre` and `tex-gyre-math` manually.
+
+
 ## Contained Files and Directories
 
 ### Directories
