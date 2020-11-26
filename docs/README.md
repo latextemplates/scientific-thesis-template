@@ -366,7 +366,7 @@ luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
 ! Package fontspec Error: The font "LatinModernMath-Regular" cannot be found.
 ```
 
-Install the package "lm-math" manually.
+Install the package `lm-math` manually.
 
 ### Q: I get `! Package fontspec Error: The font "LinuxLibertineO" cannot be found.`. What can I do?
 
@@ -376,6 +376,10 @@ Install the package `libertine` manually.
 
 Install the package `tex-gyre` and `tex-gyre-math` manually.
 
+### Q: I get `! error:  (type 1): cannot find encoding file 'ntx-ot1-tlf.enc' for reading`. What can I do?
+
+See <https://tex.stackexchange.com/a/240850/9075>: Install the package `newpx` manually. Then, Tasks -> "Refresh filename database".
+However, this does not solve the issue at lualatex.
 
 ## Contained Files and Directories
 
