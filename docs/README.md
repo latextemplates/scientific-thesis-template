@@ -378,8 +378,17 @@ Install the package `tex-gyre` and `tex-gyre-math` manually.
 
 ### Q: I get `! error:  (type 1): cannot find encoding file 'ntx-ot1-tlf.enc' for reading`. What can I do?
 
-See <https://tex.stackexchange.com/a/240850/9075>: Install the package `newpx` manually. Then, Tasks -> "Refresh filename database".
-However, this does not solve the issue at lualatex.
+See <https://tex.stackexchange.com/a/240850/9075>: Install the packages `newpx` and `newtxsf` manually.
+
+### Q: I get `! TeX capacity exceeded, sorry [main memory size=3000000].`. What can I do?
+
+Follow the steps at <https://tex.stackexchange.com/a/548335/9075>
+
+Try with following command
+
+     pdflatex -shell-escape --extra-mem-top=10000000 --synctex=1 main-german.tex
+
+See <https://tex.stackexchange.com/a/124206/9075> for details.
 
 ## Contained Files and Directories
 
