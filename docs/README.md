@@ -390,6 +390,14 @@ Try with following command
 
 See <https://tex.stackexchange.com/a/124206/9075> for details.
 
+### Q: I get `Unknown pattern ngerman-x-latest`. What can I do?
+
+On MiKTeX, one can solve it as follows:
+
+1. Disable `\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}`
+2. Compile the document. This way, miktex downloads additional packages. Including `hyphsubst`.
+3. Enable `\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}`
+
 ## Contained Files and Directories
 
 ### Directories
