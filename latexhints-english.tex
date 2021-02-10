@@ -306,26 +306,24 @@ This is described in the source code of latex-tipps.tex, but commented out.
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   The package pdfplots provides plotting of functions directly in \LaTeX~like with matlab or gnuplot. Some visual examples are available here\footnote{\url{http://texdoc.net/pkg/visualtikz}}.
   \begin{figure}[h]
-    \begin{center}
-      \begin{tikzpicture}
-        \begin{axis}[xlabel=$x$,
-            ylabel=$\sin(x)$]
-          \addplot {sin(deg(x))};  % Print sine function
-        \end{axis}
-      \end{tikzpicture}
-    \end{center}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[xlabel=$x$,
+          ylabel=$\sin(x)$]
+        \addplot {sin(deg(x))};  % Print sine function
+      \end{axis}
+    \end{tikzpicture}
     \caption{Plot of $\sin(x)$ direclty inside the figure environment with pgfplots.}
   \end{figure}
 
   \begin{figure}[h]
-    \begin{center}
-      \begin{tikzpicture}
-        \begin{axis}[xlabel=$x$,
-            ylabel=$y$]
-          \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Read coordinates from csv file and plot them
-        \end{axis}
-      \end{tikzpicture}
-    \end{center}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[xlabel=$x$,
+          ylabel=$y$]
+        \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Read coordinates from csv file and plot them
+      \end{axis}
+    \end{tikzpicture}
     \caption{Coordinates $x$ and $y$ read from csv file and plotted pgfplots.}
   \end{figure}
 
@@ -338,14 +336,13 @@ This is described in the source code of latex-tipps.tex, but commented out.
 The tikz is a package for creating graphics programmatically. With this package grids or other regular strucutres can be easliy generated.
 
 \begin{figure}[ht]
-  \begin{center}
-    \begin{tikzpicture}
-      \draw(0,0) rectangle (4,4);
-      \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
-      \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
-      \draw(\x,\y) circle (1pt);
-    \end{tikzpicture}
-  \end{center}
+  \centering
+  \begin{tikzpicture}
+    \draw(0,0) rectangle (4,4);
+    \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+    \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+    \draw(\x,\y) circle (1pt);
+  \end{tikzpicture}
   \caption{A regular grid genrated with easily with two for loops.}\label{fig:tikz_example}
 \end{figure}
 
@@ -356,41 +353,40 @@ The tikz is a package for creating graphics programmatically. With this package 
 
 \Cref{fig:uml} presents a class diagram typeset using tikz-uml.
 
-\begin{center}
 \begin{figure}
-\begin{tikzpicture}
-\begin{umlpackage}{p}
-\begin{umlpackage}{sp1}
-\umlclass[template=T]{A}{
-  n : uint \\ t : float
-}{}
-\umlclass[y=-3]{B}{
-  d : double
-}{
-  \umlvirt{setB(b : B) : void} \\ getB() : B}
-\end{umlpackage}
-\begin{umlpackage}[x=10,y=-6]{sp2}
-\umlinterface{C}{
-  n : uint \\ s : string
-}{}
-\end{umlpackage}
-\umlclass[x=2,y=-10]{D}{
-  n : uint
+  \centering
+  \begin{tikzpicture}
+  \begin{umlpackage}{p}
+  \begin{umlpackage}{sp1}
+  \umlclass[template=T]{A}{
+    n : uint \\ t : float
   }{}
-\end{umlpackage}
+  \umlclass[y=-3]{B}{
+    d : double
+  }{
+    \umlvirt{setB(b : B) : void} \\ getB() : B}
+  \end{umlpackage}
+  \begin{umlpackage}[x=10,y=-6]{sp2}
+  \umlinterface{C}{
+    n : uint \\ s : string
+  }{}
+  \end{umlpackage}
+  \umlclass[x=2,y=-10]{D}{
+    n : uint
+    }{}
+  \end{umlpackage}
 
-\umlassoc[geometry=-|-, arg1=tata, mult1=*, pos1=0.3, arg2=toto, mult2=1, pos2=2.9, align2=left]{C}{B}
-\umlunicompo[geometry=-|, arg=titi, mult=*, pos=1.7, stereo=vector]{D}{C}
-\umlimport[geometry=|-, anchors=90 and 50, name=import]{sp2}{sp1}
-\umlaggreg[arg=tutu, mult=1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{D}{D}
-\umlinherit[geometry=-|]{D}{B}
-\umlnote[x=2.5,y=-6, width=3cm]{B}{A note with respect to class B}
-\umlnote[x=7.5,y=-2]{import-2}{A anotation}
-\end{tikzpicture}
-\caption{Class diagram generated with tikz-uml. Example adapted from Nicolas Kielbasiewicz.}
-\label{fig:uml}
+  \umlassoc[geometry=-|-, arg1=tata, mult1=*, pos1=0.3, arg2=toto, mult2=1, pos2=2.9, align2=left]{C}{B}
+  \umlunicompo[geometry=-|, arg=titi, mult=*, pos=1.7, stereo=vector]{D}{C}
+  \umlimport[geometry=|-, anchors=90 and 50, name=import]{sp2}{sp1}
+  \umlaggreg[arg=tutu, mult=1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{D}{D}
+  \umlinherit[geometry=-|]{D}{B}
+  \umlnote[x=2.5,y=-6, width=3cm]{B}{A note with respect to class B}
+  \umlnote[x=7.5,y=-2]{import-2}{A anotation}
+  \end{tikzpicture}
+  \caption{Class diagram generated with tikz-uml. Example adapted from Nicolas Kielbasiewicz.}
+  \label{fig:uml}
 \end{figure}
-\end{center}
 
 \section{UML diagrams using PlantUML}
 

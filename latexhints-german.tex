@@ -327,26 +327,24 @@ Die zweite Abbildung ist um 90 Grad gedreht, um das Paket \texttt{pdflscape} zu 
   Pgfplot ist ein Paket um Graphen zu plotten ohne den Umweg über gnuplot oder matplotlib zu gehen.
   %hint by http://tex.stackexchange.com/a/3265/9075%other option is to use changepage according to http://tex.stackexchange.com/a/2639/9075. This, however, has issues with landscape%If you only have height problems, this is not needed at all%sidewaysfigure%the original layout is restored.%%\restoregeometry cannot be used as we use \addtolength
   \begin{figure}[h]
-    \begin{center}
-      \begin{tikzpicture}
-        \begin{axis}[xlabel=$x$,
-            ylabel=$\sin(x)$]
-          \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
-        \end{axis}
-      \end{tikzpicture}
-    \end{center}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[xlabel=$x$,
+          ylabel=$\sin(x)$]
+        \addplot {sin(deg(x))};  % Sinus-Funktion zeichnen
+      \end{axis}
+    \end{tikzpicture}
     \caption{$\sin(x)$ mit pgfplots.}
   \end{figure}
 
    \begin{figure}[h]
-    \begin{center}
-      \begin{tikzpicture}
-        \begin{axis}[xlabel=$x$,
-            ylabel=$y$]
-          \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Koordinaten aus einer CSV-Datei lesen und plotten
-        \end{axis}
-      \end{tikzpicture}
-    \end{center}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[xlabel=$x$,
+          ylabel=$y$]
+        \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Koordinaten aus einer CSV-Datei lesen und plotten
+      \end{axis}
+    \end{tikzpicture}
     \caption{Koordianten $x$ und $y$ aus einer CSV-Datei geplottet mit pgfplots.}
   \end{figure}
 
@@ -358,14 +356,13 @@ Dieses Paket eignet sich um Gitter zu erstellen oder andere regelmäßige Strukt
 Hier gibt es sehr viele visuelle Beispiele was tikz alles kann\footnote{\url{http://texdoc.net/pkg/visualtikz}}.
 
 \begin{figure}[ht]
-  \begin{center}
-    \begin{tikzpicture}
-      \draw(0,0) rectangle (4,4);
-      \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
-      \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
-      \draw(\x,\y) circle (1pt);
-    \end{tikzpicture}
-  \end{center}
+  \centering
+  \begin{tikzpicture}
+    \draw(0,0) rectangle (4,4);
+    \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+    \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+    \draw(\x,\y) circle (1pt);
+  \end{tikzpicture}
   \caption{Eine tikz-Graphik.}\label{fig:tikz_example}
 \end{figure}
 
@@ -374,41 +371,40 @@ Hier gibt es sehr viele visuelle Beispiele was tikz alles kann\footnote{\url{htt
 
 \Cref{fig:uml} zeigt ein Klassendiagramm, das mittels tikz-uml gesetzt wurde.
 
-\begin{center}
 \begin{figure}
-\begin{tikzpicture}
-\begin{umlpackage}{p}
-\begin{umlpackage}{sp1}
-\umlclass[template=T]{A}{
-  n : uint \\ t : float
-}{}
-\umlclass[y=-3]{B}{
-  d : double
-}{
-  \umlvirt{setB(b : B) : void} \\ getB() : B}
-\end{umlpackage}
-\begin{umlpackage}[x=10,y=-6]{sp2}
-\umlinterface{C}{
-  n : uint \\ s : string
-}{}
-\end{umlpackage}
-\umlclass[x=2,y=-10]{D}{
-  n : uint
+  \centering
+  \begin{tikzpicture}
+  \begin{umlpackage}{p}
+  \begin{umlpackage}{sp1}
+  \umlclass[template=T]{A}{
+    n : uint \\ t : float
   }{}
-\end{umlpackage}
+  \umlclass[y=-3]{B}{
+    d : double
+  }{
+    \umlvirt{setB(b : B) : void} \\ getB() : B}
+  \end{umlpackage}
+  \begin{umlpackage}[x=10,y=-6]{sp2}
+  \umlinterface{C}{
+    n : uint \\ s : string
+  }{}
+  \end{umlpackage}
+  \umlclass[x=2,y=-10]{D}{
+    n : uint
+    }{}
+  \end{umlpackage}
 
-\umlassoc[geometry=-|-, arg1=tata, mult1=*, pos1=0.3, arg2=toto, mult2=1, pos2=2.9, align2=left]{C}{B}
-\umlunicompo[geometry=-|, arg=titi, mult=*, pos=1.7, stereo=vector]{D}{C}
-\umlimport[geometry=|-, anchors=90 and 50, name=import]{sp2}{sp1}
-\umlaggreg[arg=tutu, mult=1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{D}{D}
-\umlinherit[geometry=-|]{D}{B}
-\umlnote[x=2.5,y=-6, width=3cm]{B}{Eine Notiz f\"ur die Klasse B}
-\umlnote[x=7.5,y=-2]{import-2}{Eine Anmerkung}
-\end{tikzpicture}
-\caption{Ein Klassendiagramm mit tikz-uml generiert. Beispiel von Nicolas Kielbasiewicz adaptiert.}
-\label{fig:uml}
+  \umlassoc[geometry=-|-, arg1=tata, mult1=*, pos1=0.3, arg2=toto, mult2=1, pos2=2.9, align2=left]{C}{B}
+  \umlunicompo[geometry=-|, arg=titi, mult=*, pos=1.7, stereo=vector]{D}{C}
+  \umlimport[geometry=|-, anchors=90 and 50, name=import]{sp2}{sp1}
+  \umlaggreg[arg=tutu, mult=1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{D}{D}
+  \umlinherit[geometry=-|]{D}{B}
+  \umlnote[x=2.5,y=-6, width=3cm]{B}{Eine Notiz f\"ur die Klasse B}
+  \umlnote[x=7.5,y=-2]{import-2}{Eine Anmerkung}
+  \end{tikzpicture}
+  \caption{Ein Klassendiagramm mit tikz-uml generiert. Beispiel von Nicolas Kielbasiewicz adaptiert.}
+  \label{fig:uml}
 \end{figure}
-\end{center}
 
 \section{Tabellen}
 
