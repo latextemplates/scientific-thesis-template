@@ -7,37 +7,37 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v1
       - name: Compile main-german.tex
-        uses: dante-ev/latex-action@master
+        uses: dante-ev/latex-action@latest
         with:
           root_file: main-german.tex
           compiler: pdflatex
           args:
       - name: biber main-german
-        uses: dante-ev/latex-action@master
+        uses: dante-ev/latex-action@latest
         with:
           root_file: main-german
           compiler: biber
           args:
       - name: Compile main-minted-german.tex
-        uses: dante-ev/latex-action@master
+        uses: dante-ev/latex-action@latest
         with:
           root_file: main-minted-german.tex
           compiler: pdflatex
           args: -shell-escape
       - name: Compile main-english.tex
-        uses: dante-ev/latex-action@master
+        uses: dante-ev/latex-action@latest
         with:
           root_file: main-english.tex
           compiler: pdflatex
           args:
       - name: Compile main-paderborn-german.tex
-        uses: dante-ev/latex-action@master
+        uses: dante-ev/latex-action@latest
         with:
           root_file: main-paderborn-german.tex
           compiler: pdflatex
           args:
       - name: Compile main-paderborn-english.tex
-        uses: dante-ev/latex-action@master
+        uses: dante-ev/latex-action@latest
         with:
           root_file: main-paderborn-english.tex
           compiler: pdflatex
