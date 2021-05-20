@@ -48,8 +48,8 @@ Even though AuToLaTeX is [more powerful than latexmk](http://www.arakhne.org/aut
 ## Quick start
 
 1. Download
-    1. Go to the development version at <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip>. Reason: LaTeX packages change so fast over time and we cannot do a release on each change.
-    2. Extract `master.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+    1. Go to the development version at <https://github.com/latextemplates/scientific-thesis-template/archive/main.zip>. Reason: LaTeX packages change so fast over time and we cannot do a release on each change.
+    2. Extract `scientific-thesis-template-main.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
 2. Start texing
     - University of Stuttgart:
         - English: `main-english.tex`
@@ -67,7 +67,7 @@ See [overleaf](overleaf.md).
 ### Usage using plain git
 
 We do not recommend to fork this project as a fork denotes that you work on improving the template itself.
-Thus, just create a new git repository and populate it using the files provided at `source.zip`, which you downloaded at the [latest release page](https://github.com/latextemplates/scientific-thesis-template/releases/latest).
+Thus, just create a new git repository and populate it using the files provided at `scientific-thesis-template-<VERSION>.zip`, which you downloaded at the [latest release page](https://github.com/latextemplates/scientific-thesis-template/releases/latest).
 
 ## Recommended LaTeX environments
 
