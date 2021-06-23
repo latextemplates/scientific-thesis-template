@@ -10,8 +10,7 @@ Keep in mind that these steps are wrote for <https://help.jabref.org>, but they 
 
 ## Rights
 
-By contributing, you agree that your contribution is made available under CC0, but that the current maintainer of this work may change the license as it fits.
-
+By contributing, you agree that your contribution is made available under [BSD0](https://choosealicense.com/licenses/0bsd/#), but that the current maintainer of this work may change the license as it fits.
 
 ## Create a pull request
 
