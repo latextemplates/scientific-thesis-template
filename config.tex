@@ -417,10 +417,10 @@
 
 % EN: Enable typesetting values with SI units.
 \ifdeutsch
-  \usepackage[mode=text,group-four-digits]{siunitx}
+  \usepackage[mode=text,group-minimum-digits=4]{siunitx}
   \sisetup{locale=DE}
 \else
-  \usepackage[mode=text,group-four-digits,group-separator={,}]{siunitx}
+  \usepackage[mode=text,group-minimum-digits=4,group-separator={,}]{siunitx}
   \sisetup{locale=US}
 \fi
 
