@@ -82,20 +82,12 @@
 
 % EN: Times Roman for all text
 \ifluatex
-  % source: Second proposed fix from the following answer: https://tex.stackexchange.com/a/394137
-  \usepackage[no-math]{fontspec}
-  \setmainfont{TeXGyreTermes-Regular}[
-       BoldFont       = TeXGyreTermes-Bold ,
-       ItalicFont     = TeXGyreTermes-Italic ,
-       BoldItalicFont = TeXGyreTermes-BoldItalic,
-       NFSSFamily     = ntxtlf]
-  \setsansfont{TeX Gyre Heros Regular}[
-       Scale=.9,
-       BoldFont       = TeX Gyre Heros Bold,
-       ItalicFont     = TeX Gyre Heros Italic,
-       BoldItalicFont = TeX Gyre Heros BoldItalic]
+  \RequirePackage{amsmath}
+  \RequirePackage{unicode-math}
+  \setmainfont{TeX Gyre Termes}
+  \setmathfont{texgyretermes-math.otf}
+  \setsansfont[Scale=.9]{TeX Gyre Heros}
   \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
-  \RequirePackage{newtxmath}
 \else
   \RequirePackage{newtxtext}
   \RequirePackage{newtxmath}
@@ -103,7 +95,25 @@
   %     therefore replaced with inconsolata
   %\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
   \RequirePackage[varl,scaled=.9]{inconsolata}
+
+  % DE: Symbole
+  % unicode-math scheint für die meisten schon etwas anzubieten
+  %
+  %\usepackage[geometry]{ifsym} % \BigSquare
+
+  % EN: The euro sign
+  % DE: Das Euro Zeichen
+  %     Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
+  %     Alternative: \usepackage{eurosym}
+  \newcommand{\EUR}{\ppleuro}
 \fi
+
+
+% DE: Noch mehr Symbole
+%\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
+%\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
+%\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
+%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
 
 % EN: Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
 %     This is the modern package for "Computer Modern".
@@ -149,19 +159,6 @@
 %     - https://tex.stackexchange.com/a/47451/9075
 %     - https://tex.stackexchange.com/a/166791/9075
 \usepackage{upquote}
-
-% DE: Symbole
-%
-%\usepackage[geometry]{ifsym} % \BigSquare
-%\usepackage{mathabx}
-%\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
-%\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
-%\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
-%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
-%durch mathpazo ist das schon definiert
-
-%
-%\usepackage{amssymb}
 
 % EN: For \texttrademark{}
 \usepackage{textcomp}
@@ -1034,11 +1031,6 @@
 \fi
 
 
-% EN: The euro sign
-% DE: Das Euro Zeichen
-%     Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
-%     Alternative: \usepackage{eurosym}
-\newcommand{\EUR}{\ppleuro}
 
 
 % Float-placements - http://dcwww.camd.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html#figplacement
