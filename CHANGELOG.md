@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fixed examples in latexhints
+
 ### Removed
 
 ## [3.0.0] &ndash; 2020-09-03
