@@ -46,7 +46,7 @@ Referenzen werden mittels \texttt{\textbackslash cite[key]} gesetzt.
 Beispiel: \cite{WSPA} oder mit Autorenangabe: \citet{WSPA}.
 
 Der folgende Satz demonstriert
-\begin{filecontents*}{\democodefile}
+\begin{filecontents*}[overwrite]{\democodefile}
 \begin{inparaenum}[1.]
   \item die Großschreibung von Autorennamen am Satzanfang,
   \item die richtige Zitation unter Verwendung von Autorennamen und der Referenz,
@@ -73,7 +73,7 @@ Beispielsweise $\mathbb{N}$ für die Menge der natürlichen Zahlen.
 Für eine vollständige Dokumentation für mathematischen Formelsatz sollte die Dokumentation zu \texttt{amsmath}, \url{http://texdoc.net/pkg/amsmath} gelesen werden.
 
 Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} verwendet wurde.
-\begin{filecontents*}{\democodefile}
+\begin{filecontents*}[overwrite]{\democodefile}
 \begin{equation*}
   x = y
 \end{equation*}
@@ -82,7 +82,7 @@ Folgende Gleichung erhält keine Nummer, da \texttt{\textbackslash equation*} ve
 \PrintDemo{style=parallel}
 
 Die Gleichung~\ref{eq:test} erhält eine Nummer:
-\begin{filecontents*}{\democodefile}
+\begin{filecontents*}[overwrite]{\democodefile}
 \begin{equation}
   \label{eq:test}
   x = y
