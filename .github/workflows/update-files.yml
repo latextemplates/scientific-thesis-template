@@ -1,0 +1,139 @@
+name: Update Files
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: update-files
+  cancel-in-progress: true
+jobs:
+  generatetex:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [en, de]
+        latexcompiler: [pdflatex, lualatex]
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          path: 'code'
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: Update npm
+        run: npm i -g npm@latest
+      - run: npm i npm@latest
+      - name: Make generator available globally
+        working-directory: ${{ github.workspace }}/code/generator-latex-template
+        run: |
+          npm install
+          npm link
+          npm install -g yo
+      - run: mkdir /tmp/ltg
+      - name: Generate template
+        shell: bash
+        working-directory: /tmp/ltg
+        run: |
+          yo latex-template\
+           --githubpublish\
+           --docker=reitzig\
+           --documentclass=scientific-thesis\
+           --papersize=a4\
+           --latexcompiler=${{ matrix.latexcompiler }}\
+           --bibtextool=biblatex\
+           --texlive=2021\
+           --language=${{ matrix.language }}\
+           --font=default\
+           --listings=minted\
+           --cleveref=true\
+           --enquotes=csquotes\
+           --tweak_outerquote=babel\
+           --todo=pdfcomment\
+           --examples=true\
+           --howtotext=true
+        env:
+          yeoman_test: true
+      - name: Prepare files
+        working-directory: /tmp/ltg
+        run: |
+          ls -la
+          mv main.tex main-${{ matrix.latexcompiler }}-${{ matrix.language }}.tex
+
+          # remove files which should not be overwritten
+
+          # the LICENSE of the repository should be kept
+          rm LICENSE
+
+          # latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
+          rm latexmkrc
+
+          # copy everything
+          cp -r * ${{ github.workspace }}/code/
+
+          cd ${{ github.workspace }}/code/
+          git status
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v8
+        with:
+          message: 'Update files based on generated files by template generator'
+          committer_email: actions@github.com
+          push: false
+          cwd: 'code'
+      - name: Push changes
+        run: |
+          cd code
+          parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
+  publish:
+    runs-on: ubuntu-latest
+    needs: [generatetex]
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - 5000:5000
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver-opts: network=host
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: localhost:5000/name/app:latest
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - run: |
+          mkdir /tmp/out
+      - name: Build main-pdflatex-en.tex
+        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-pdflatex-en.tex"
+      - name: Build main-pdflatex-de.tex
+        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-pdflatex-de.tex"
+      - name: Build main-lualuatex-en.tex
+        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-lualuatex-en.tex"
+      - name: Build main-lualuatex-de.tex
+        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-lualuatex-de.tex"
+      - run: |
+          mkdir publish
+          cp /tmp/out/*.pdf publish/
+          cp README.md publish/
+          cp .github/_config.yml publish/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: publish
+          path: publish/
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./publish
+          enable_jekyll: true
