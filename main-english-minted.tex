@@ -1,0 +1,1029 @@
+% !TeX spellcheck = en-US
+% !TeX encoding = utf8
+% !TeX program = pdflatex
+% !BIB program = biblatex
+% -*- coding:utf-8 mod:LaTeX -*-
+
+% EN: The following package allows \\ at the title page
+%     For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
+\RequirePackage{kvoptions-patch}
+\documentclass[
+  % fontsize=11pt is the standard
+  numbers=noenddot,
+  english,  % English as main language; this parameter is passed to other packages (e.g., selnolig in the case of lualatex)
+  a4paper,  % Standard format - only KOMAScript uses paper=a4 - https://tex.stackexchange.com/a/61044/9075
+  twoside,  % we are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
+  bibliography=totoc,
+  %               idxtotoc,   %Index ins Inhaltsverzeichnis
+  %               liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
+  headsepline,
+  cleardoublepage=empty,
+  parskip=half,
+  %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
+  draft=false
+]{scrbook}
+\usepackage{scrlayer-scrpage}
+\ihead[]{}
+\chead[]{}
+\ohead[]{\headmark}
+\cfoot[]{}
+\ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
+\ifoot[]{}
+
+% backticks (`) are rendered as such in verbatim environments.
+% See following links for details:
+%   - https://tex.stackexchange.com/a/341057/9075
+%   - https://tex.stackexchange.com/a/47451/9075
+%   - https://tex.stackexchange.com/a/166791/9075
+\usepackage{upquote}
+
+% Set English as language and allow to write hyphenated"=words
+%
+% Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
+% english has to go last to set it as default language
+\usepackage[ngerman,main=english]{babel}
+%
+% Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+
+% Links behave as they should. Enables "\url{...}" for URL typesettings.
+% Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
+% See https://tex.stackexchange.com/a/3034/9075.
+\usepackage[hyphens]{url}
+
+% When activated, use text font as url font, not the monospaced one.
+% For all options see https://tex.stackexchange.com/a/261435/9075.
+% \urlstyle{same}
+
+% Improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+% nicer // - solution by http://tex.stackexchange.com/a/98470/9075
+% DO NOT ACTIVATE -> prevents line breaks
+%\makeatletter
+%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+%\makeatother
+
+% This is the modern package for "Computer Modern".
+% In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+\usepackage[%
+    rm={oldstyle=false,proportional=true},%
+    sf={oldstyle=false,proportional=true},%
+    % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
+    % However, this makes listings look ugly.
+    tt={oldstyle=false,proportional=true,variable=false},%
+    qt=false%
+]{cfr-lm}
+
+\usepackage{setspace}
+\setstretch{1.2}
+
+% Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+\usepackage[T1]{fontenc}
+
+% Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
+
+\usepackage[
+  babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
+  expansion=alltext,
+  protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
+  final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
+        % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
+]{microtype}
+
+% \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
+\DisableLigatures{encoding = T1, family = tt* }
+
+%\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
+%\SetTracking{ encoding = *, shape = sc }{ 45 }
+% Source: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
+% Deactiviated, because does not look good
+
+\usepackage{graphicx}
+
+% Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+% Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
+\usepackage{diagbox}
+
+\usepackage{xcolor}
+
+\usepackage[newfloat]{minted}
+
+% Line numbers not flowing out of the margin
+\setminted{numbersep=5pt, xleftmargin=12pt}
+
+\usemintedstyle{bw} %black and white style
+%\usemintedstyle{vs} %visual studio
+%\usemintedstyle{friendlygrayscale} % custom style - submitted as pull request https://bitbucket.org/birkenfeld/pygments-main/pull-requests/748/add-style-friendly-grayscale/diff
+%\usemintedstyle{friendly}
+%\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
+%\usemintedstyle{autumn}
+%\usemintedstyle{rrt}
+%\usemintedstyle{borland}
+
+% We need to load caption to have a bold font on the label
+% The other parameters mimic the layout of the LNCS class
+\usepackage[labelfont=bf,font=small,skip=4pt]{caption}
+\SetupFloatingEnvironment{listing}{name=List.,within=none}
+
+% When using both minted and listings
+% Compatibility of packages minted and listings with respect to the numbering of "List." caption
+% Source: https://tex.stackexchange.com/a/269510/9075
+% \AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
+% \AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+
+% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\labelline}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\refline}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+
+% For easy quotations: \enquote{text}
+% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+\usepackage[autostyle=true]{csquotes}
+
+% Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
+\defineshorthand{"`}{\openautoquote}
+\defineshorthand{"'}{\closeautoquote}
+
+% Nicer tables (\toprule, \midrule, \bottomrule)
+\usepackage{booktabs}
+
+% Extended enumerate, such as \begin{compactenum}
+\usepackage{paralist}
+\usepackage[
+  backend       = biber, %biber does not work with 64x versions alternative: bibtex8
+%minalphanames only works with biber backend
+  sortcites     = true,
+  bibstyle      = alphabetic,
+  citestyle     = alphabetic,
+  giveninits    = true,
+  useprefix     = false, %"von, van, etc." will be printed, too. See below.
+  minnames      = 1,
+  minalphanames = 3,
+  maxalphanames = 4,
+  maxbibnames   = 99,
+  maxcitenames  = 2,
+  natbib        = true,
+  eprint        = true,
+  url           = true,
+  doi           = true,
+  isbn          = true,
+  backref       = true]{biblatex}
+
+% enable more breaks at URLs. See https://tex.stackexchange.com/a/134281.
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+%\bibliography{bibliography}
+%\addbibresource[datatype=bibtex]{bibliography.bib}
+
+% Do not put "vd" in the label, but put it at "\citeauthor"
+% Source: http://tex.stackexchange.com/a/30277/9075
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\togglefalse{blx@useprefix}}
+\makeatother
+
+% Thin spaces between initials
+% http://tex.stackexchange.com/a/11083/9075
+\renewrobustcmd*{\bibinitdelim}{\,}
+
+% Keep first and last name together in the bibliography
+% http://tex.stackexchange.com/a/196192/9075
+\renewcommand*\bibnamedelimc{\addnbspace}
+\renewcommand*\bibnamedelimd{\addnbspace}
+
+% Replace last "and" by comma in bibliography
+% See http://tex.stackexchange.com/a/41532/9075
+\AtBeginBibliography{%
+  \renewcommand*{\finalnamedelim}{\addcomma\space}%
+}
+
+% enable hyperlinked author names when using \citeauthor
+% source: http://tex.stackexchange.com/a/75916/9075
+\DeclareCiteCommand{\citeauthor}
+{\boolfalse{citetracker}%
+\boolfalse{pagetracker}%
+\usebibmacro{prenote}}
+{\ifciteindex
+{\indexnames{labelname}}
+{}%
+\printtext[bibhyperref]{\printnames{labelname}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+% Enable nice comments
+\usepackage{pdfcomment}
+
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+
+% Compatibality with packages todo, easy-todo, todonotes
+\newcommand{\todo}[1]{\commentatside{#1}}
+
+% Compatiblity with package fixmetodonotes
+\newcommand{\TODO}[1]{\commentatside{#1}}
+
+% Put footnotes below floats
+% Source: https://tex.stackexchange.com/a/32993/9075
+\usepackage{stfloats}
+\fnbelowfloat
+
+\usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
+\addto\extrasgerman{\sisetup{locale = DE}}
+
+% Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
+\usepackage{hyperref}
+
+% Enable hyperref without colors and without bookmarks
+\hypersetup{
+  hidelinks,
+  colorlinks=true,
+  allcolors=black,
+  pdfstartview=Fit,
+  breaklinks=true
+}
+
+% Enable correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+
+\usepackage[caption=false,font=footnotesize]{subfig}
+
+\usepackage{mindflow}
+
+% Extensions for references inside the document (\cref{fig:sample}, ...)
+% Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
+% That means, "Figure 5" is a full link instead of just "5".
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+
+\crefname{listing}{Listing}{Listings}
+\Crefname{listing}{Listing}{Listings}
+\crefname{lstlisting}{Listing}{Listings}
+\Crefname{lstlisting}{Listing}{Listings}
+
+\usepackage{lipsum}
+
+% For demonstration purposes only
+% These packages can be removed when all examples have been deleted
+\usepackage[math]{blindtext}
+\usepackage{mwe}
+\usepackage[realmainfile]{currfile}
+\usepackage{tcolorbox}
+\tcbuselibrary{en}
+
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+  <-6>    MnSymbolC5
+  <6-7>   MnSymbolC6
+  <7-8>   MnSymbolC7
+  <8-9>   MnSymbolC8
+  <9-10>  MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+\usepackage{xspace}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+
+% Enable hyphenation at other places as the dash.
+% Example: applicaiton\hydash specific
+\makeatletter
+\newcommand{\hydash}{\penalty\@M-\hskip\z@skip}
+% Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
+\makeatother
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\usepackage[
+  abbreviations,% create "abbreviations" glossary
+  nomain,% don't create "main" glossary
+  stylemods=longbooktabs% do the adjustments for the longbooktabs styles
+]{glossaries-extra}
+
+% Following is required if the abbreviation list should be sorted automatically (\printglossary)
+% Not required, because we print the entries in-order (using \printunsrtglossaries)
+% \makeglossaries
+
+\input{acronyms}
+
+\setglossarystyle{long-booktabs}
+% Package URL: https://ctan.org/pkg/scientific-thesis-cover
+\usepackage[
+  title={Is Oil the future?},
+  author={Lars K.},
+  type=bachelor,
+  institute=iaas, % or other institute names - or just a plain string using {Demo\\Demo...}
+  course={Medieninformatik},
+  examiner={Prof.\ Dr.\ Uwe Fessor},
+  supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
+  startdate={July 5, 2018},
+  enddate={January 5, 2019}
+]{scientific-thesis-cover}
+
+
+% Enable copy and paste of text from the PDF
+% Only required for pdflatex. It "just works" in the case of lualatex.
+% Alternative: cmap or mmap package
+% mmap enables mathematical symbols, but does not work with the newtx font set
+% See: https://tex.stackexchange.com/a/64457/9075
+% Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+% Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+%
+% According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
+\input glyphtounicode
+\pdfgentounicode=1
+
+\begin{document}
+\pagenumbering{arabic}
+\Titelblatt
+
+\pagestyle{plain.scrheadings}
+\renewcommand*{\chapterpagestyle}{plain.scrheadings}
+
+% Kurzfassung / abstract
+% auch im Stil vom Inhaltsverzeichnis
+\emph{Write an abstract for your work. Replace each of the points below with one sentence (two if you must) and you have your abstract. Write it when you finished your entire report.\footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
+
+\emph{Introduction.} In one sentence, what’s the topic? Phrase it in a way that your reader will understand. If you’re writing a PhD thesis, your readers are the examiners – assume they are familiar with the general field of research, so you need to tell them specifically what topic your thesis addresses. Same advice works for scientific papers – the readers are the peer reviewers, and eventually others in your field interested in your research, so again they know the background work, but want to know specifically what topic your paper covers.
+
+\emph{State the problem you tackle.} What’s the key research question? Again, in one sentence. (Note: For a more general essay, I’d adjust this slightly to state the central question that you want to address) Remember, your first sentence introduced the overall topic, so now you can build on that, and focus on one key question within that topic. If you can’t summarize your thesis/paper/essay in one key question, then you don’t yet understand what you’re trying to write about. Keep working at this step until you have a single, concise (and understandable) question.
+
+\emph{Summarize (in one sentence) why nobody else has adequately answered the research question yet.} For a PhD thesis, you’ll have an entire chapter, covering what’s been done previously in the literature. Here you have to boil that down to one sentence. But remember, the trick is not to try and cover all the various ways in which people have tried and failed; the trick is to explain that there’s this one particular approach that nobody else tried yet (hint: it’s the thing that your research does). But here you’re phrasing it in such a way that it’s clear it’s a gap in the literature. So use a phrase such as “previous work has failed to address…”. (if you’re writing a more general essay, you still need to summarize the source material you’re drawing on, so you can pull the same trick – explain in a few words what the general message in the source material is, but expressed in terms of what’s missing)
+
+\emph{Explain, in one sentence, how you tackled the research question.} What’s your big new idea? (Again for a more general essay, you might want to adapt this slightly: what’s the new perspective you have adopted? or: What’s your overall view on the question you introduced in step 2?)
+
+\emph{In one sentence, how did you go about doing the research that follows from your big idea.} Did you run experiments? Build a piece of software? Carry out case studies? This is likely to be the longest sentence, especially if it’s a PhD thesis – after all you’re probably covering several years worth of research. But don’t overdo it – we’re still looking for a sentence that you could read aloud without having to stop for breath. Remember, the word ‘abstract’ means a summary of the main ideas with most of the detail left out. So feel free to omit detail! (For those of you who got this far and are still insisting on writing an essay rather than signing up for a PhD, this sentence is really an elaboration of sentence 4 – explore the consequences of your new perspective).
+
+\emph{As a single sentence, what’s the key impact of your research? Here we’re not looking for the outcome of an experiment.} We’re looking for a summary of the implications. What’s it all mean? Why should other people care? What can they do with your research. (Essay folks: all the same questions apply: what conclusions did you draw, and why would anyone care about them?)
+
+\microtypesetup{protrusion=false}
+
+% In case you have trouble with headings reaching into the page numbers, enable the following three lines.
+% Hint by http://golatex.de/inhaltsverzeichnis-schreibt-ueber-rand-t3106.html
+%
+%\makeatletter
+%\renewcommand{\@pnumwidth}{2em}
+%\makeatother
+%
+% In case of a strange break in the table of contents,
+% a page break can be inserted by issuing the following command at the "right" place in the main text:
+%   \addtocontents{toc}{\protect\newpage}
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+\listof{Listing}{List of Listings}
+
+%mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
+%Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
+%\listof{Algorithmus}{List of Algorithms}
+%\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
+
+% Abbreviations
+\printunsrtglossaries
+
+\microtypesetup{protrusion=true}
+
+% Headline and footline
+\renewcommand*{\chapterpagestyle}{scrplain}
+\pagestyle{scrheadings}
+
+%%% ===============================================================================
+\chapter{Introduction}\label{sec:introduction}
+%%% ===============================================================================
+
+\emph{Purpose and scope of your entire report}. The purpose of your entire report is to make a \emph{scientific argument using the scientific method}. A scientific argument always has the following steps that all must come in this order.
+%
+\begin{itemize}
+    \item[SM1] \emph{Explicate the assumptions and state of the art} on which you are going to conduct your research to investigate your research problem/test the hypothesis.
+    \item[SM2] Clearly and precisely \emph{formulate a research problem or hypothesis}.
+    \item[SM3] \emph{Describe the (research) method} that you followed to investigate the problem / to test the hypothesis in a way that \emph{allows someone else to reproduce your steps}. The method must includes steps and criteria for evaluating whether you answered your question successfully or not.
+    \item[SM4] \emph{Provide execution details} on how you followed the method in the given, specific situation.
+    \item[SM5] \emph{Report your results} by describing and summarizing your measurements. You must not interpret your results.
+    \item[SM6] \emph{Now interpret your results} by contextualizing the measurements and drawing conclusion that lead to answering your research problem or defining further follow-up research problems.
+\end{itemize}
+%
+This template will mark various parts of the structure with SM1-SM6 to recall to you which step of a scientific argument is used and where.
+
+\emph{Purpose and scope of \cref{sec:introduction}}. The introduction chapter is a summary of your work and your scientific argument that shall be understandable to anyone in your scientific field, e.g., anyone in Data Science. A reader must be able to comprehend the problem, method, relevant execution details, results, and their interpretation by reading the introduction and the introduction alone. Section~\ref{sec:introduction:topic} introduces the general topic of your research. Section~\ref{sec:introduction:state-of-art} discusses the state of the art and identifies a research. Section~\ref{sec:introduction:research-question} then states the research problem to investigate. Section~\ref{sec:problem-exposition:research-method} explains the research method that was followed, possibly with execution details. Section~\ref{sec:introduction:results} then presents the results and their interpretation. Only if a reader thinks they are not convinced or they need more details to reproduce your study, they shall have to read further. The individual chapters and sections provide the details for each of the steps in your scientific argument.
+
+You usually write the introduction chapter \emph{after} you wrote all other chapters, but you should keep on making notes for each of the sections as you write the later chapters..
+
+\emph{Purpose and scope of the introduction paragraph to a chapter}. The paragraph you are reading above is a typical introductory paragraph to a chapter. It is a high-level summary of the chapters' topic (SM1 and SM2). It gives the reader some guidance by breaking down the chapter topic into subtopics that are clearly named (SM3) in the right order with forward references to the corresponding sections (SM4). It may close with announcing the result you obtain (SM6) but this is usually not done in the opening paragraph of the introduction.
+
+% ---------------------------------------------------------------------------------
+\section{Context and Topic (SM1)}\label{sec:introduction:topic}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}. You begin with providing the general scientific audience an introduction into the specific topic of your work. The aim of this section is to first introduce the \emph{general subject of study} (``Giraffes are well-known animals and everyone's favorite''), the \emph{specific topic of societal or scientific interest} to investigate (``Giraffes have blue tongues'') and the \emph{objective of society/science towards} this topic (``it is unknown at the moment how the blue color tone evolved'').
+It must be understandable by the general scientific public. Every \emph{term} with a specific meaning must be highlighted and introduced in precise language/concepts that only builds on a general scientific background.
+
+At the end of this section, you have explained and established a general goal that society/science universally agrees to be worth achieving (``knowing how everyone's favorite animal evolved the colour of their tongue'').
+
+% ---------------------------------------------------------------------------------
+\section{State of the Art (SM1)}\label{sec:introduction:state-of-art}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}. You provide a more in-depth introduction into the research topic by contrasting the current state of the art in society/science in relation to the research topic you introduced in \cref{sec:introduction:topic}. This introduction has to
+
+\begin{itemize}
+    \item present established facts, methods, and results that provide a deeper understanding of the research topic (``prior work on giraffe genomes, relevance of giraffes for societal well-being, giraffes being a model-animal for various other studies, etc.'')
+    \item discuss in which ways prior and recent ideas still fall short of reaching the general goal you explained in \cref{sec:introduction:topic} (``prior work only sequenced the genome of one giraffe and did not consider genes of ancient ancestors'')
+\end{itemize}
+
+You have to provide citations/literature references for each of the statements and claims you are making. This section is usually a summary of the related work discussion in \cref{sec:background}.
+
+At the end of this section, you have established a \emph{knowledge gap} between the state of the art and the general objective you developed in \cref{sec:introduction:topic}. \emph{Stating a (knowledge) gap between a status quo and a desired situation is the \emph{first step} of a writing scientific argument.}
+
+
+% ---------------------------------------------------------------------------------
+\section{Research Question (SM2)}\label{sec:introduction:research-question}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}. In this section you state in which way you will address the knowledge gap you identified at the end of \cref{sec:introduction:state-of-art}. You usually cannot address and resolve the entire knowledge gap in your work. The purpose of this section is to clearly detail the specific part of the knowledge that you will address. You thereby make all the assumptions explicit that underlie your work (``in this report we focus on genomes of female giraffes who lived in the years 1950-2000 in South Africa'').
+
+Your general research question states
+\begin{itemize}
+    \item The starting point/assumptions you are making from which your research starts (``for the given 13 genomes of female giraffes...''), and
+    \item the final objective/solution you want to reach (``...identify the genes involved in color expression of giraffe tongues...'')
+    \item and the evaluation criteria that will determine whether you are successful (``...that are present in at least 75\% of the studied giraffes'')
+\end{itemize}
+
+You will usually break your general research question down into sub-research questions. You may do this here. The sub-research questions have to form a chain that take you in smaller steps from the starting point/assumptions of your general research question to your final objective and evaluation.
+
+% ---------------------------------------------------------------------------------
+\section{Method or Approach (SM3, SM4)}\label{sec:introduction:method}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}. In this section you outline the method that you applied to answer the research questions, or the new technical approach that you developed to answer it. It is a summary of the steps that someone else has to take in order to reproduce your steps. Mention here the data sets you had to obtain/gather/analyze, interviews with stakeholders you had to make to further develop the research questions, technical artifacts (programs, algorithms, models) you could apply or that you had to develop (and how they work).
+
+The section is most readable if you give each of the steps in your method its own paragraph. In each paragraph you first briefly explain the concept of the step in your method (SM3, ``we explored the data through visual analytics'') and then provide details in execution (SM4, ``we used tool X, we developed dashboard Y'') include a forward reference to the respective chapter that provides more details.
+
+% ---------------------------------------------------------------------------------
+\section{Findings (SM5, SM6)}\label{sec:introduction:results}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}. You close the introduction by clearly stating the evaluation setup you designed to evaluate the success of your study regarding the research objective, which comes in two steps. It is most likely a summary of your evaluation in \cref{sec:evaluation}.
+
+\subsection*{Results (SM5)}
+
+You state the evaluation method that is in line with your research question from \cref{sec:introduction:research-question} and summarize the measurements you obtained but you do not interpret them, i.e., you only report the numbers but you do not include judging statements.
+
+\subsection*{Interpretation (SM6)}
+
+You summarize your interpretation of the results and draw conclusions. State whether and to which degree the research question from \cref{sec:introduction:research-question} has been answered successfully or not.
+
+Finally state briefly how much closer society and science have come in answering the general objective you outlined in \cref{sec:introduction:topic}.
+
+%%% ===============================================================================
+\chapter{Background (SM1)}\label{sec:background}
+%%% ===============================================================================
+
+\emph{Purpose and scope}. The background chapter has multiple roles.
+\begin{itemize}
+
+    \item \emph{Preliminaries.} It has to provide all (and exactly the) information that is necessary to understand the methodological and technical parts of your work in the specific area of study. Assume as starting point another student in your degree who did not study the specific subject you are studying but has the task to understand your work. Which concepts, terms, definitions, etc. does the student have to know? Which formulas, symbols, etc. are standard in this topic? Only introduce definitions if you actually need them in any of the subsequent chapters.
+
+    \item \emph{Related Work.} It has to provide a comprehensive discussion of all prior work in the area on this subject. Your discussion has to summarize these prior works and has to explain in which way the research question you are solving (\cref{sec:introduction:research-question}) has not bee solved yet because prior work had more limiting assumptions, addressed a different angle, their results are not complete etc. Depending on the subject you are studying, the related work part can be larger and warrant an entire chapter on its own, or be fully concluded within \cref{sec:introduction:state-of-art}.
+
+    You can close the related work discussion by clarifying the positioning and formulation of your research question (SM2) in relation to all the prior work, making more explicit whether you address an existing research question under different premises or whether you work on a modified or completely new research question.
+\end{itemize}
+
+%%% ===============================================================================
+\chapter{Problem Exposition (optional)}\label{sec:problem-exposition}
+%%% ===============================================================================
+
+\emph{Purpose and scope}. Introduce the problem context in more detail if \cref{sec:introduction:topic} does not provide all necessary information about the problem to follow the rest of the report. This can include further details on the data you studied, context assumptions and requirements, etc.
+
+If you have to expose the problem in more detail here, then this chapter should also provide a more detailed explanation of research question and the method you are applying, i.e., you can now provide more concrete sub-problems compared to \cref{sec:introduction:research-question} more details for the method \cref{sec:introduction:method} because you now have explained the problem much better. A typical structure can be.
+
+% ---------------------------------------------------------------------------------
+\section{Context/Business Understanding (SM1)}\label{sec:problem-exposition:context-understanding}
+% ---------------------------------------------------------------------------------
+
+provide details
+
+% ---------------------------------------------------------------------------------
+\section{Data Understanding (SM1)}\label{sec:problem-exposition:data-understanding}
+% ---------------------------------------------------------------------------------
+
+provide details
+
+% ---------------------------------------------------------------------------------
+\section{Detailed Research Questions (SM2)}\label{sec:problem-exposition:research-problems}
+% ---------------------------------------------------------------------------------
+
+provide details based on \cref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
+
+% ---------------------------------------------------------------------------------
+\section{Detailed Method (SM3)}\label{sec:problem-exposition:research-method}
+% ---------------------------------------------------------------------------------
+
+provide details based on \cref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
+
+%%% ===============================================================================
+\chapter{First Real Chapter addressing first Research Problem}\label{sec:problem1}
+%%% ===============================================================================
+
+\emph{Purpose and scope}. After you stated research context (SM1), research problem (SM2), and research method (SM3) in \cref{sec:introduction} and possibly \cref{sec:problem-exposition}, the remainder of your entire report addresses execution (SM4), results (SM5), and interpretation (SM6). You usually do this by addressing various sub-problems again through scientific arguments following the 6 steps SM1-SM6.
+
+Have a short chapter introduction that recalls and explains the first research problem of your thesis. The problem has to show up in the introduction in \cref{sec:introduction:research-question} or in \cref{sec:problem-exposition:research-problems} already. This provides the background (SM1) for this chapter while the first research problem of the thesis becomes the research question/hypothesis (SM2) for this chapter.
+
+Next, explain in the chapter intro how you solve the research problem in this chapter by breaking it down in further sub-problems. By this, you outline the method (SM3) through which you are going to solve the problem of this chapter. This is necessary to give the reader guidance of what's to come in this chapter and how it fits into the thesis as a whole. Explain that you will address the first sub-problem in \cref{sec:problem1:subproblem1} and the second sub-problem in \cref{sec:problem1:subproblem2}, etc. The sections then provide the details for execution and results.
+
+% ---------------------------------------------------------------------------------
+\section{First Sub-Problem}\label{sec:problem1:subproblem1}
+% ---------------------------------------------------------------------------------
+
+\emph{The first paragraph describes the first sub-problem and develops the requirements a solution has to satisfy (SM2 for this section).} The requirements have to be based on the knowledge and reasoning developing in the preceding chapters and sections. Try to use an example to illustrate the problem and the desired properties of the solution. Check that every term/concept you use here has already been defined already in a previous section. If you cannot describe your problem without defining new terms, you may have to add another section before this one that develops the terms and concepts you need to explain the problem.
+
+\emph{The second paragraph describes the method/approach how you address the problem (SM3 for this section).} Describe the method in a level of detail that allows another student to reproduce your steps.
+Make use of appendices % (see \cref{sec:appendix1})
+if certain details take too much space.
+
+\emph{The third, fourth, and following paragraph provides details on applying the method or developing a new approach, i.e., execution (SM4) and may explain results (SM5)}, i.e. details on the steps needed to reproduce the results.
+
+Results (SM5) can come in many forms, e.g., conceptual diagrams, algorithms, tables, charts, a list of articles from a literature research etc. You must reference them (``\cref{fig:my_label} shows...'') and describe the results in text. If you use diagrams, tables, or charts, you cannot expect the reader to know what to you expect them to see in a diagram, table or chart. Describe to them how to read these, explain the meaning of particular elements, point out special observations. But you may only describe the results you must not interpret them. Make use of appendices if certain details take too much space.
+
+\begin{figure}
+    \centering
+    %%%\includegraphics{/path/to/figure.pdf}
+    \caption{A scientific figure that has to be explained in the text}
+    \label{fig:my_label}
+\end{figure}
+
+\emph{After describing the results, you may interpret them (SM6).} Here you can infer what a particular observation means (for you), how it can be applied, or what others can do with it. You must not write interpretations before completely describing your results. This is a common mistake done by most beginner writers. You want to quickly get to the point, which is the final finding or interpretation. But you forget that your reader does not understand yet what you are interpreting - they do not know yet what you do know. An interpretation can only be followed after all results have been described. The interpretation must be based on the written description only. Then you can be sure that your readers can follow your interpretation and reach the same conclusions as you have.
+
+Ideally, your interpretation leads to the next sub-problem in \cref{sec:problem1:subproblem2}.
+
+% ---------------------------------------------------------------------------------
+\section{Second Sub-Problem}\label{sec:problem1:subproblem2}
+% ---------------------------------------------------------------------------------
+
+You now build on the solution to the first sub-problem of \cref{sec:problem1:subproblem1} (SM1) and recall second sub-problem (SM2, you detailed in the introduction of this chapter) and follow the same pattern as before (SM3-SM6).
+
+Note that not all sections may not include all parts SM1-SM6 in all detail. Some sections do not require to repeatedly state the background (SM1) or the research problem (SM2) if they were already clearly defined in a previous section. Sometimes, a section is only dedicated to describing the method (SM3) and execution (SM4) and does not contain any results or interpretations. Sometimes results (SM5) and interpretations (SM6) only come in the evaluation chapter.
+
+What is important for you when you are writing a scientific argument is not to slavishly have SM1-SM6 in each section explicitly, but that you are always fully aware of the following:
+%
+\begin{itemize}
+    \item Which step of a scientific argument am I currently writing (SM1, SM2, ..., SM6)?
+    \item Does the step that I am writing come in the right order, i.e., if you are writing about execution (SM4, e.g., details of building a model), is there a preceding paragraph or section that describes the method (SM3) and is that one preceded by a clear statement of the (sub-)problem addressed (SM2)?
+    \item Are you really \emph{not} writing interpretation SM6 before SM5, SM4, or SM3?
+    \item Is it clear to the reader which part of the scientific argument you are currently making?
+\end{itemize}
+
+%%% ===============================================================================
+\chapter{Second Real Chapter}\label{sec:sub-problem2}
+%%% ===============================================================================
+
+Have a short chapter introduction that recalls what you already achieved in \cref{sec:problem1} and explain the second research problem of your thesis. The problem has to show up in the introduction in \cref{sec:introduction:research-question} or in \cref{sec:problem-exposition:research-problems} already. etc.
+
+%%% ===============================================================================
+\chapter{Evaluation}\label{sec:evaluation}
+%%% ===============================================================================
+
+\emph{Purpose and scope}. The evaluation chapter should be the most formal and rigorously structured chapter of your thesis as the validity of your evaluation argument depends on it.
+
+% ---------------------------------------------------------------------------------
+\section{Objective (SM2)}\label{sec:evaluation:objective}
+% ---------------------------------------------------------------------------------
+
+Clearly state what you want to evaluate and what you want to measure.
+
+% ---------------------------------------------------------------------------------
+\section{Setup (SM3)}\label{sec:evaluation:setup}
+% ---------------------------------------------------------------------------------
+
+State which data, participants, tools, etc. you chose and why. Clearly state how you measure outcomes and how you compare them to baselines, reference groups, etc.
+
+% ---------------------------------------------------------------------------------
+\section{Execution (SM4)}\label{sec:evaluation:execution}
+% ---------------------------------------------------------------------------------
+
+Provide all details on the execution that are necessary to allows another person to reproduce your results at a later point.
+
+% ---------------------------------------------------------------------------------
+\section{Results (SM5)}\label{sec:evaluation:results}
+% ---------------------------------------------------------------------------------
+
+You only report the measurements. You must present and reference them (``\cref{fig:my_label2} shows...'') and describe the results in text. If you use diagrams, tables, or charts, you cannot expect the reader to know what to you expect them to see in a diagram, table or chart. Describe to them how to read these, explain the meaning of particular elements, point out special observations. But you may only describe the results you must not interpret them. Make use of appendices if certain details take too much space.
+
+\begin{figure}
+    \centering
+    %%%\includegraphics{/path/to/figure.pdf}
+    \caption{Another scientific figure that has to be explained in the text}
+    \label{fig:my_label2}
+\end{figure}
+
+% ---------------------------------------------------------------------------------
+\section{Discussion (SM6)}\label{sec:evaluation:discussion}
+% ---------------------------------------------------------------------------------
+
+An interpretation can only be followed after all results have been described. The interpretation must be based on the written description in \cref{sec:evaluation:results} only. Then you can be sure that your readers can follow your interpretation and reach the same conclusions as you have.
+
+
+\chapter{LaTeX Hints}
+\label{chap:latexhints}
+
+% Required for proper example rendering in the compiled PDF
+\newcount\LTGbeginlineexample
+\newcount\LTGendlineexample
+\newenvironment{ltgexample}%
+{\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
+{\LTGendlineexample=\numexpr\inputlineno-1\relax%
+%
+\tcbinputlisting{%
+  listing only,
+  listing file=\currfilepath,
+  colback=green!5!white,
+  colframe=green!25,
+  coltitle=black!90,
+  coltext=black!90,
+  left=8mm,
+  title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
+    minted language=TeX,
+    minted style=vs,
+    minted options={
+      fontsize=\footnotesize,
+      firstline=\the\LTGbeginlineexample,
+      lastline=\the\LTGendlineexample,
+      firstnumber=\the\LTGbeginlineexample,
+      breaklines,
+      linenos,
+      numbersep=8pt
+    }
+}
+}%
+
+This chapter contains hints on writing LaTeX.
+It focuses on minimal examples, which can be directly adapted to the content
+
+\section{Handling of paragraphs}
+
+\begin{ltgexample}
+One sentence per line.
+This rule is important for the usage of version control systems.
+A new line is generated with a blank line.
+As you would do in Word:
+New paragraphs are generated by pressing enter.
+In LaTeX, this does not lead to a new paragraph as LaTeX joins subsequent lines.
+In case you want a new paragraph, just press enter twice (!).
+This leads to an empty line.
+In word, there is the functionality to press shift and enter.
+This leads to a hard line break.
+The text starts at the beginning of a new line.
+In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).\\
+This is rarely used.
+
+Please do \textit{not} use two backslashes for new paragraphs.
+For instance, this sentence belongs to the same paragraph, whereas the last one started a new one.
+A long motivation for that is provided at \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
+\end{ltgexample}
+
+\section{Notes separated from the text}
+
+The package mindflow enables writing down notes and annotations in a way so that they are separated from the main text.
+
+\begin{ltgexample}
+\begin{mindflow}
+This is a small note.
+\end{mindflow}
+\end{ltgexample}
+
+\section{Hyphenation}
+
+\LaTeX{} automatically hyphenates words.
+When using microtype, there should be less hypnetations than in other settings.
+It might be necessary to tweak the hyphenations nevertheless.
+Here are some hints:
+
+\begin{ltgexample}
+In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
+You can also write \verb1applica\allowbreak{}tion-specific1 (result: applica\allowbreak{}tion-specific), but this is much more effort.
+
+You can now write words containing hyphens which are hyphenated at other places in the word.
+For instance, \verb1application"=specific1 gets application"=specific.
+This is enabled by an additional configuration of the babel package.
+\end{ltgexample}
+
+\section{Typesetting Units}
+
+\begin{ltgexample}
+Numbers can written plain text (such as 100), by using the siunitx package like that:
+\SI{100}{\km\per\hour},
+or by using plain \LaTeX{} (and math mode):
+$100 \frac{\mathit{km}}{h}$.
+\end{ltgexample}
+
+\begin{ltgexample}
+\SI{5}{\percent} of \SI{10}{kg}
+\end{ltgexample}
+
+\begin{ltgexample}
+Numbers are automatically grouped: \num{123456}.
+\end{ltgexample}
+
+\section{Surrounding Text by Quotes}
+
+\begin{ltgexample}
+Please use the \enquote{enquote command} to quote something.
+Quoting with "`quote"' or ``quote'' also works.
+
+\end{ltgexample}
+
+\section{Cleveref examples}
+\label{sec:ex:cref}
+
+Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.75\linewidth]{example-image-a}
+    \caption{Example figure for cref demo}
+    \label{fig:ex:cref}
+\end{figure}
+
+\begin{table}
+    \centering
+    \begin{tabular}{ll}
+      \toprule
+      Heading1 & Heading2 \\
+      \midrule
+      One      & Two      \\
+      Thee     & Four     \\
+      \bottomrule
+    \end{tabular}
+    \caption{Example table for cref demo}
+    \label{tab:ex:cref}
+\end{table}
+
+\begin{ltgexample}
+\Cref{fig:ex:cref} shows a simple fact, although \cref{fig:ex:cref} could also show something else.
+
+\Cref{tab:ex:cref} shows a simple fact, although \cref{tab:ex:cref} could also show something else.
+
+\Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
+\end{ltgexample}
+
+\section{Figures}
+
+\begin{ltgexample}
+\Cref{fig:label} shows something interesting.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\linewidth]{example-image-golden}
+  \caption[Simple Figure]{Simple Figure. Based on \citet{mwe}.}
+  \label{fig:label}
+\end{figure}
+\end{ltgexample}
+
+
+\section{Sub Figures}
+
+An example of two sub figures is shown in \cref{fig:two_sub_figures}.
+
+\begin{ltgexample}
+\begin{figure}[!b]
+    \centering
+    \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
+    \label{fig:first_case}}
+  \hfil
+    \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
+    \label{fig:second_case}}
+  \caption{Example figure with two sub figures.}
+  \label{fig:two_sub_figures}
+\end{figure}
+\end{ltgexample}
+
+\section{Tables}
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Simple Table}
+  \label{tab:simple}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2 \\
+    \midrule
+    One      & Two      \\
+    Thee     & Four     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ltgexample}
+
+\begin{ltgexample}
+% Source: https://tex.stackexchange.com/a/468994/9075
+\begin{table}
+\caption{Table with diagonal line}
+\label{tab:diag}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & Second & Third \\
+\hline
+& foo & bar \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{ltgexample}
+
+
+\section{Source Code}
+
+\href{https://github.com/gpoore/minted}{minted} is a sophisticated packes to enable properly highlighted listings.
+It uses the \href{http://pygments.org/}{pygments} library, which in turn requires Python.
+
+\begin{ltgexample}
+\Cref{lst:XML} shows source code written in XML.
+\refline{line:comment} contains a comment.
+
+\begin{listing}[htbp]
+    \begin{minted}[linenos=true,escapeinside=||]{xml}
+<listing name="example">
+  <!-- comment --> |\labelline{line:comment}|
+  <content>not interesting</content>
+</listing>
+\end{minted}
+  \caption{Example XML listing using minted}
+  \label{lst:XML}
+\end{listing}
+\end{ltgexample}
+
+One can also typeset JSON as shown in \cref{lst:flJSON}.
+
+\begin{ltgexample}
+\begin{listing}[htbp]
+    \begin{minted}[linenos=true,escapeinside=||]{json}
+{
+  key: "value"
+}
+\end{minted}
+  \caption{Example JSON listing using minted}
+  \label{lst:flJSON}
+\end{listing}
+\end{ltgexample}
+
+Java is also possible as shown in \cref{lst:flJava}.
+
+\begin{ltgexample}
+\begin{listing}[htbp]
+    \begin{minted}[linenos=true,escapeinside=||]{java}
+public class Hello {
+    public static void main (String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+\end{minted}
+  \caption{Java code rendered using minted}
+  \label{lst:java}
+\end{listing}
+\end{ltgexample}
+
+\section{Itemization}
+
+One can list items as follows:
+
+\begin{ltgexample}
+\begin{itemize}
+\item Item One
+\item Item Two
+\end{itemize}
+\end{ltgexample}
+
+With the package paralist, one can create itemizations with lesser spacing:
+
+\begin{ltgexample}
+\begin{compactitem}
+\item Item One
+\item Item Two
+\end{compactitem}
+\end{ltgexample}
+
+One can enumerate items as follows:
+
+\begin{ltgexample}
+\begin{enumerate}
+  \item Item One
+  \item Item Two
+\end{enumerate}
+\end{ltgexample}
+
+With the package paralist, one can create enumerations with lesser spacing:
+
+\begin{ltgexample}
+\begin{compactenum}
+  \item Item One
+  \item Item Two
+\end{compactenum}
+\end{ltgexample}
+
+With paralist, one can even have all items typset after each other and have them clean in the tex document:
+
+\begin{ltgexample}
+\begin{inparaenum}
+  \item All these items...
+  \item ...appear in one line
+  \item This is enabled by the paralist package.
+\end{inparaenum}
+\end{ltgexample}
+
+\section{Abbreviations}
+
+With \verb+\gls{...}+ you can enter abbreviations, the first time you call it, the long form is used.
+When reusing \verb+\gls{..}+ the short form is automatically displayed.
+The abbreviation is also automatically inserted in the abbreviation list.
+With \verb+\glspl{...}+ the plural form is used.
+If you want the short form to appear directly at the first use, you can use \verb+\glsunset{..}+ to mark an abbreviation as already used.
+The opposite is achieved with \verb+\glsreset{..}+.
+
+Abbreviations are defined in \verb+\content\ausarbeitung.tex+ by means of \verb+\newacronym{...}{...}{...}+.
+
+More information at: \url{https://ctan.org/pkg/bib2gls}.
+
+\begin{ltgexample}
+At the first pass the \gls{fr} was 5.
+At the second pass was \gls{fr} 3.
+The plural form can be seen here: \glspl{er}.
+To demonstrate what the list of abbreviations looks like for longer description texts, \glspl{rdbms} must be mentioned here.
+
+\gls{dante} is a local \TeX\ user group.
+The German-speaking local \TeX\ user group is \gls{dante}.
+A \gls{gp} is a medical doctor.
+I went to my surgery to see the \gls{gp}.
+\end{ltgexample}
+
+\section{Other Features}
+
+\begin{ltgexample}
+The words \enquote{workflow} and \enquote{dwarflike} can be copied from the PDF and pasted to a text file.
+\end{ltgexample}
+
+\begin{ltgexample}
+The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\wp$).
+
+$\powerset({1,2,3})$
+\end{ltgexample}
+
+\begin{ltgexample}
+Brackets work as designed:
+<test>
+One can also input backquotes in verbatim text: \verb|`test`|.
+\end{ltgexample}
+
+
+%%% ===============================================================================
+\chapter{Conclusion}\label{sec:conclusion}
+%%% ===============================================================================
+
+Your conclusions are not just a factual summary of your work, but they position, interpret, and defend your findings against the state of the art that you discussed in \cref{sec:introduction:state-of-art}. You specifically outline which concrete findings or methodological contributions advance our knowledge towards the general objective you introduced in \cref{sec:introduction:topic}. Objectively discuss which parts you solved and in which parts you failed.
+
+You should explicitly discuss limitations and shortcomings of your work and detail what kind of future studies are needed to overcome these limitations. Be specific in the sense that your arguments for future work should be based on concrete findings and insights you obtained in your report.
+
+
+%%% ===============================================================================
+%%% Bibliography
+%%% ===============================================================================
+
+In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
+E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
+When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
+See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
+\printbibliography
+
+% Enfore empty line after bibliography
+\ \\
+%
+All links were last followed on October 5, 2020.
+
+
+%%% ===============================================================================
+\appendix
+\addcontentsline{toc}{chapter}{Appendices}
+
+%\listoffigures
+%\listoftables
+%%% ===============================================================================
+
+%%% ===============================================================================
+%\chapter{My first appendix}\label{sec:appendix1}
+%%% ===============================================================================
+
+\pagestyle{empty}
+\renewcommand*{\chapterpagestyle}{empty}
+\Versicherung
+\end{document}
