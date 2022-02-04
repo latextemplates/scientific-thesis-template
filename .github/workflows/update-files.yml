@@ -69,7 +69,7 @@ jobs:
           rm latexmkrc
 
           # We need to Dockerfile of lualatex
-          if [ ${{ matrix.latexompiler }} != "lualatex" ]; then
+          if [ ${{ matrix.latexcompiler }} != "lualatex" ]; then
             rm Dockerfile
           fi
 
