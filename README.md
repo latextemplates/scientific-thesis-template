@@ -1,4 +1,4 @@
-# LaTeX Document
+# # LaTeX Template for a Scientific Thesis
 
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
@@ -7,7 +7,7 @@ Note that this requires a working perl installation.
 
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
-    lualatex main
+    pdflatex main
 
 ## Benefits
 
