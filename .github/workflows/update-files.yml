@@ -68,6 +68,11 @@ jobs:
           # latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
           rm latexmkrc
 
+          # We need to Dockerfile of lualatex
+          if [ ${{ matrix.latexompiler }} != "lualatex" ]; then
+            rm Dockerfile
+          fi
+
           # copy everything
           cp -r * ${{ github.workspace }}/code/
 
