@@ -1,17 +1,49 @@
 % !TeX spellcheck = en-US
 % !TeX encoding = utf8
-% !TeX program = lualatex
-% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
-% !BIB program = biblatex
+% !TeX program = pdflatex
+% !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
+
+
+% vv  scroll down to line 200 for content  vv
+
+
+% EN: This file is loaded before the \documentclass command in the main document
 
 % EN: The following package allows \\ at the title page
 %     For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
 \RequirePackage{kvoptions-patch}
+
+\ifenglisch
+  \PassOptionsToClass{numbers=noenddot}{scrbook}
+\else
+  %()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
+  %Nach DUDEN steht in Gliederungen, in denen ausschließlich arabische Ziffern für die Nummerierung
+  %verwendet werden, am Ende der Gliederungsnummern kein abschließender Punkt
+  %(siehe [DUD96, R3]). Wird hingegen innerhalb der Gliederung auch mit römischen Zahlen
+  %oder Groß- oder Kleinbuchstaben gearbeitet, so steht am Ende aller Gliederungsnummern ein
+  %abschließender Punkt (siehe [DUD96, R4])
+  \PassOptionsToClass{numbers=autoendperiod}{scrbook}
+\fi
+
+% Warns about outdated packages and missing caption declarations
+% See https://www.ctan.org/pkg/nag
+\RequirePackage[l2tabu, orthodox]{nag}
+
+%DE: Neue deutsche Trennmuster
+%    Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
+%    Nur für pdflatex, nicht für lualatex
+\RequirePackage{ifluatex}
+\ifluatex
+  % do not load anything
+\else
+  \ifdeutsch
+    \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+  \fi
+\fi
+
 \documentclass[
   % fontsize=11pt is the standard
-  numbers=noenddot,
-  english,  % English as main language; this parameter is passed to other packages (e.g., selnolig in the case of lualatex)
   a4paper,  % Standard format - only KOMAScript uses paper=a4 - https://tex.stackexchange.com/a/61044/9075
   twoside,  % we are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
   bibliography=totoc,
@@ -23,157 +55,661 @@
   %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
   draft=false
 ]{scrbook}
-\usepackage{scrlayer-scrpage}
-\ihead[]{}
-\chead[]{}
-\ohead[]{\headmark}
-\cfoot[]{}
-\ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
-\ifoot[]{}
 
-% backticks (`) are rendered as such in verbatim environments.
-% See following links for details:
-%   - https://tex.stackexchange.com/a/341057/9075
-%   - https://tex.stackexchange.com/a/47451/9075
-%   - https://tex.stackexchange.com/a/166791/9075
+% EN: This file includes basic packages and sets options. The order of package
+%     loading is important
+
+% DE: In dieser Datei werden zuerst die benoetigten Pakete eingebunden und
+%     danach diverse Optionen gesetzt. Achtung Reihenfolge ist entscheidend!
+
+
+% EN: Styleguide:
+% - English comments are prefixed with "EN", German comments are prefixed with "DE"
+% - Prefixed headings define the language for the subsequent paragraphs
+% - It is tried to organize packages in blocks. Bocks are separated by two empty lines.
+
+% DE: Styleguide:
+%
+% Ein sehr kleiner Styleguide. Packages werden in Blöcken organisiert.
+% Zwischen zwei Blöcken sind 2 Leerzeilen!
+
+
+% EN: Enable copy and paste of text from the PDF
+%     Only required for pdflatex. It "just works" in the case of lualatex.
+%     mmap enables mathematical symbols, but does not work with the newtx font set
+%     See: https://tex.stackexchange.com/a/64457/9075
+%     Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+%     Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+
+\ifluatex
+\else
+  \usepackage{cmap}
+\fi
+
+
+% EN: File encoding
+% DE: Codierung
+%     Wir sind im 21 Jahrhundert, utf-8 löst so viele Probleme.
+%
+% Mit UTF-8 funktionieren folgende Pakete nicht mehr. Bitte beachten!
+%   * fancyvrb mit §
+%   * easylist -> http://www.ctan.org/tex-archive/macros/latex/contrib/easylist/
+\ifluatex
+  % EN: See https://tex.stackexchange.com/a/158517/9075
+  %     Not required, because of usage of fontspec package
+  %\usepackage[utf8]{luainputenc}
+\else
+  \usepackage[utf8]{inputenc}
+\fi
+
+
+% DE: Parallelbetrieb tex4ht und pdflatex
+
+\makeatletter
+\@ifpackageloaded{tex4ht}{
+  \def\iftex4ht{\iftrue}
+}{
+  \def\iftex4ht{\iffalse}
+}
+\makeatother
+
+
+% EN: Mathematics
+% DE: Mathematik
+%
+% DE: Viele Mathematik-Sachen. Siehe https://texdoc.net/pkg/amsmath
+%
+% EN: Options must be passed this way, otherwise it does not work with glossaries
+% DE: fleqn (=Gleichungen linksbündig platzieren) funktioniert nicht direkt. Es muss noch ein Patch gemacht werden:
+\PassOptionsToPackage{fleqn,leqno}{amsmath}
+%
+% DE: amsmath Muss nicht mehr geladen werden, da es von newtxmath automatisch geladen wird
+% \usepackage{amsmath}
+
+
+%% EN: Fonts
+%% DE: Schriften
+%%
+%% !!! If you change the font, be sure that words such as "workflow" can
+%% !!! still be copied from the PDF. If this is not the case, you have
+%% !!! to use glyphtounicode. See comment at cmap package
+
+
+% EN: Times Roman for all text
+\ifluatex
+  \RequirePackage{amsmath}
+  \RequirePackage{unicode-math}
+  \setmainfont{TeX Gyre Termes}
+  \setmathfont{texgyretermes-math.otf}
+  \setsansfont[Scale=.9]{TeX Gyre Heros}
+  \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
+\else
+  \RequirePackage{newtxtext}
+  \RequirePackage{newtxmath}
+  % EN: looks good with times, but no equivalent for lualatex found,
+  %     therefore replaced with inconsolata
+  %\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+  \RequirePackage[varl,scaled=.9]{inconsolata}
+
+  % DE: Symbole
+  % unicode-math scheint für die meisten schon etwas anzubieten
+  %
+  %\usepackage[geometry]{ifsym} % \BigSquare
+
+  % EN: The euro sign
+  % DE: Das Euro Zeichen
+  %     Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
+  %     Alternative: \usepackage{eurosym}
+  \newcommand{\EUR}{\ppleuro}
+\fi
+
+
+% DE: Noch mehr Symbole
+%\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
+%\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
+%\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
+%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
+
+% EN: Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
+%     This is the modern package for "Computer Modern".
+%     In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+% DE: Fallback-Schriftart
+%\usepackage[%
+%    rm={oldstyle=false,proportional=true},%
+%    sf={oldstyle=false,proportional=true},%
+%    tt={oldstyle=false,proportional=true,variable=true},%
+%    qt=false%
+%]{cfr-lm}
+
+% EN: Headings are typset in Helvetica (which is similar to Arial)
+% DE: Schriftart fuer die Ueberschriften - ueberschreibt lmodern
+%\usepackage[scaled=.95]{helvet}
+
+% DE: Für Schreibschrift würde tun, muss aber nicht
+%\usepackage{mathrsfs} %  \mathscr{ABC}
+
+% EN: Font for the main text
+% DE: Schriftart fuer den Fliesstext - ueberschreibt lmodern
+%     Linux Libertine, siehe http://www.linuxlibertine.org/
+%     Packageparamter [osf] = Minuskel-Ziffern
+%     rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
+%\usepackage[rm]{libertine}
+
+% EN: Alternative Font: Palantino. It is recommeded by Prof. Ludewig for German texts
+% DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
+%     Bitte nur in deutschen Texten
+%\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
+
+% DE: Schriftart fuer Programmcode - ueberschreibt lmodern
+%     Falls auskommentiert, wird die Standardschriftart lmodern genommen
+%     Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
+%\usepackage[scaled=.92]{luximono}
+%\usepackage{courier}
+% DE: BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
+%\usepackage[scaled=0.83]{beramono}
+
+% EN: backticks (`) are rendered as such in verbatim environments.
+%     See following links for details:
+%     - https://tex.stackexchange.com/a/341057/9075
+%     - https://tex.stackexchange.com/a/47451/9075
+%     - https://tex.stackexchange.com/a/166791/9075
 \usepackage{upquote}
 
-% Set English as language and allow to write hyphenated"=words
-%
-% Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
-% english has to go last to set it as default language
-\usepackage[ngerman,main=english]{babel}
-%
-% Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
-\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+% EN: For \texttrademark{}
+\usepackage{textcomp}
 
-% Links behave as they should. Enables "\url{...}" for URL typesettings.
-% Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
-% See https://tex.stackexchange.com/a/3034/9075.
+% EN: name-clashes von marvosym und mathabx vermeiden:
+\def\delsym#1{%
+  %  \expandafter\let\expandafter\origsym\expandafter=\csname#1\endcsname
+  %  \expandafter\let\csname orig#1\endcsname=\origsym
+  \expandafter\let\csname#1\endcsname=\relax
+}
+
+%\usepackage{pifont}
+%\usepackage{bbding}
+%\delsym{Asterisk}
+%\delsym{Sun}\delsym{Mercury}\delsym{Venus}\delsym{Earth}\delsym{Mars}
+%\delsym{Jupiter}\delsym{Saturn}\delsym{Uranus}\delsym{Neptune}
+%\delsym{Pluto}\delsym{Aries}\delsym{Taurus}\delsym{Gemini}
+%\delsym{Rightarrow}
+%\usepackage{mathabx} - Ueberschreibt leider zu viel - und die \le-Zeichen usw. sehen nicht gut aus!
+
+
+% EN: Modern font encoding
+%     Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+\ifluatex
+\else
+  \usepackage[T1]{fontenc}
+\fi
+%
+
+
+% EN: Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
+% DE: Optischer Randausgleich und Grauwertkorrektur
+
+\usepackage[
+  babel=true, % EN: Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
+  expansion=alltext,
+  protrusion=alltext-nott, % EN: Ensure that at listings, there is no change at the margin of the listing
+  final % EN: Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
+        %     In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
+]{microtype}
+
+
+% EN: \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
+\DisableLigatures{encoding = T1, family = tt* }
+
+% DE: fuer microtype
+% DE: tracking=true muss als Parameter des microtype-packages mitgegeben werden
+% DE: Deaktiviert, da dies bei Algorithmen seltsam aussieht
+
+%\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
+%\SetTracking{ encoding = *, shape = sc }{ 45 }
+% DE: Hier wird festgelegt,
+%     dass alle Passagen in Kapitälchen automatisch leicht
+%     gesperrt werden.
+%     Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
+%    Deaktiviert, da sonst "BPEL", "BPMN" usw. wirklich komisch aussehen.
+%     Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
+
+
+% EN: amsmath teaks
+
+
+% EN: Fixes bugs in AMS math
+%     Corrently conflicts with unicode-math
+% \usepackage{mathtools}
+
+%\numberwithin{equation}{section}
+%\renewcommand{\theequation}{\thesection.\Roman{equation}}
+
+% EN: work-around ams-math problem with align and 9 -> 10. Does not work with glossaries, No visual changes.
+%\addtolength\mathindent{1em}
+
+
+% EN: For theorems, replacement for amsthm
+\usepackage[amsmath,hyperref]{ntheorem}
+\theorempreskipamount 2ex plus1ex minus0.5ex
+\theorempostskipamount 2ex plus1ex minus0.5ex
+\theoremstyle{break}
+\newtheorem{definition}{Definition}[section]
+
+
+% CTAN: https://ctan.org/pkg/lccaps
+% Doc: http://texdoc.net/pkg/lccaps
+%
+% Required for DE/EN \initialism
+\usepackage{lccaps}
+
+
+% EN: Defintion of colors. Argument "hyperref" is not used as we do not want to change border colors of links: Links are not colored anymore.
+% DE: Farbdefinitionen
+\usepackage[dvipsnames]{xcolor}
+
+
+% EN: Required for custom acronyms/glossaries style.
+%     Left aligned Columns in tables with fixed width.
+%     See http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
+\usepackage{ragged2e}
+
+
+% DE: Wichtig, ansonsten erscheint "No room for a new \write"
+\usepackage{scrwfile}
+
+
+% EN: Support for language-specific hyphenation
+% DE: Neue deutsche Rechtschreibung und Literatur statt "Literature"
+%     Die folgende Einstellung ist der Nachfolger von ngerman.sty
+\ifdeutsch
+  % DE: letzte Sprache ist default, Einbindung von "american" ermöglicht \begin{otherlanguage}{amercian}...\end{otherlanguage} oder \foreignlanguage{american}{Text in American}
+  %     Siehe auch http://tex.stackexchange.com/a/50638/9075
+  \usepackage[american,main=ngerman]{babel}
+  % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+  \addto\captionsngerman{%
+    \renewcommand\abstractname{Kurzfassung}%
+  }
+  \ifluatex
+    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
+    %     for a discussion
+    \usepackage[ngerman]{selnolig}
+  \fi
+\else
+  % EN: Set English as language and allow to write hyphenated"=words
+  %     `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish).
+  %      "english" has to go last to set it as default language
+  \usepackage[ngerman,main=english]{babel}
+  % EN: Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+  \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+  \ifluatex
+    % EN: conditionally disable ligatures. See https://github.com/latextemplates/scientific-thesis-template/issues/54
+    %     for a discussion
+    \usepackage[english]{selnolig}
+  \fi
+\fi
+%
+
+
+% EN: For easy quotations: \enquote{text}
+%     This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+%     Note that this package results in a warning when it is loaded before minted (actually fvextra).
+% DE: Anführungszeichen
+%     Zitate in \enquote{...} setzen, dann werden automatisch die richtigen Anführungszeichen verwendet.
+%     Dieses package erzeugt eine Warnung, wenn es vor minted (genauer fvextra) geladen wird.
+\usepackage{csquotes}
+
+
+% EN: For even easier quotations: \qq{text}.
+%     Is not smart in the case of nesting, but good enough for the most cases
+\usepackage{textcmds}
+\ifdeutsch
+  % EN: German quotes are different. So do not use the English quotes, but the ones provided by the csquotes package.
+  \renewcommand{\qq}[1]{\enquote{#1}}
+\fi
+
+
+% EN: extended enumarations
+% DE: erweitertes Enumerate
+\usepackage{paralist}
+
+
+% DE: Gestaltung der Kopf- und Fußteilen
+
+\usepackage[automark]{scrlayer-scrpage}
+
+\automark[section]{chapter}
+\setkomafont{pageheadfoot}{\normalfont\sffamily}
+\setkomafont{pagenumber}{\normalfont\sffamily}
+
+% DE: funktioniert nicht: Alle Linien sind hier weg
+%\setheadsepline[.4pt]{.4pt}
+
+
+% DE: Intelligentes Leerzeichen um hinter Abkürzungen die richtigen Abstände zu erhalten, auch leere.
+%     Siehe commands.tex \gq{}
+\usepackage{xspace}
+% DE: Macht \xspace und \enquote kompatibel
+\makeatletter
+\xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
+\makeatother
+
+
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+
+
+% EN: introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+  <-6>    MnSymbolC5
+  <6-7>   MnSymbolC6
+  <7-8>   MnSymbolC7
+  <8-9>   MnSymbolC8
+  <9-10>  MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+
+% EN: Package for the appendix
+% DE: Anhang
+\usepackage{appendix}
+%[toc,page,title,header]
+%
+
+
+% EN: Graphics
+% DE: Grafikeinbindungen
+%
+% EN: The parameter "pdftex" is not required
+\usepackage{graphicx}
+\graphicspath{{\getgraphicspath}}
+\newcommand{\getgraphicspath}{graphics/}
+
+
+% EN: Enables inclusion of SVG graphics - 1:1 approach
+%    This is NOT the approach of https://ctan.org/pkg/svg-inkscape,
+%     which allows text in SVG to be typeset using LaTeX
+%     We just include the SVG as is.
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.svg}{pdf}{.pdf}{%
+  inkscape -z -D --file=#1 --export-pdf=\OutputFile
+}
+
+
+% EN: Enables inclusion of SVG graphics - text-rendered-with-LaTeX-approach
+%     This is the approach of https://ctan.org/pkg/svg-inkscape,
+\newcommand{\executeiffilenewer}[3]{%
+  \IfFileExists{#2}
+  {
+    %\message{file #2 exists}
+    \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+      {\pdffilemoddate{#2}}>0%
+      {\immediate\write18{#3}}
+    \else
+      {%\message{file up to date #2}
+      }
+    \fi%
+  }{
+    %\message{file #2 doesn't exist}
+    %\message{argument: #3}
+    %\immediate\write18{echo "test" > xoutput.txt}
+    \immediate\write18{#3}
+  }
+}
+\newcommand{\includesvg}[1]{%
+  \executeiffilenewer{#1.svg}{#1.pdf}%
+  {
+    inkscape -z -D --file=\getgraphicspath#1.svg %
+    --export-pdf=\getgraphicspath#1.pdf --export-latex}%
+  \input{\getgraphicspath#1.pdf_tex}%
+}
+
+
+% EN: Enable typesetting values with SI units.
+\ifdeutsch
+  \usepackage[mode=text,group-minimum-digits=4]{siunitx}
+  \sisetup{locale=DE}
+\else
+  \usepackage[mode=text,group-minimum-digits=4,group-separator={,}]{siunitx}
+  \sisetup{locale=US}
+\fi
+
+
+% EN: Extensions for tables
+% DE: Tabellenerweiterungen
+\usepackage{array} %increases tex's buffer size and enables ``>'' in tablespecs
+\usepackage{longtable}
+\usepackage{dcolumn} %Aligning numbers by decimal points in table columns
+\ifdeutsch
+  \newcolumntype{d}[1]{D{.}{,}{#1}}
+\else
+  \newcolumntype{d}[1]{D{.}{.}{#1}}
+\fi
+\setlength{\extrarowheight}{1pt}
+
+
+% DE: Eine Zelle, die sich über mehrere Zeilen erstreckt.
+%     Siehe Beispieltabelle in Kapitel 2
+\usepackage{multirow}
+
+
+% DE: Fuer Tabellen mit Variablen Spaltenbreiten
+%\usepackage{tabularx}
+%\usepackage{tabulary}
+
+
+% EN: Links behave as they should. Enables "\url{...}" for URL typesettings.
+%     Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
+%     See https://tex.stackexchange.com/a/3034/9075.
+% DE: Links verhalten sich so, wie sie sollen
+%     Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
+%     Siehe https://tex.stackexchange.com/a/3034/9075.
 \usepackage[hyphens]{url}
-
-% When activated, use text font as url font, not the monospaced one.
-% For all options see https://tex.stackexchange.com/a/261435/9075.
+%
+%  EN: When activated, use text font as url font, not the monospaced one.
+%      For all options see https://tex.stackexchange.com/a/261435/9075.
 % \urlstyle{same}
-
-% Improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+%
+% EN: Hint by http://tex.stackexchange.com/a/10419/9075.
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
-% nicer // - solution by http://tex.stackexchange.com/a/98470/9075
-% DO NOT ACTIVATE -> prevents line breaks
-%\makeatletter
-%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
-%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
-%\makeatother
 
-\usepackage[no-math]{fontspec}
-\usepackage{unicode-math}
+% DE: Index über Begriffe, Abkürzungen
+%\usepackage{makeidx} makeidx ist out -> http://xindy.sf.net verwenden
 
 
-% Typewriter font (for source code etc)
-% Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
-% Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
+% DE: lustiger Hack fuer das Abkuerzungsverzeichnis
+%     nach latex durchlauf folgendes ausfuehren
+%     makeindex ausarbeitung.nlo -s nomencl.ist -o ausarbeitung.nls
+%     danach nochmal latex
+%\usepackage{nomencl}
+%    \let\abk\nomenclature %Deutsche Ueberschrift setzen
+%          \renewcommand{\nomname}{List of Abbreviations}
+%        %Punkte zw. Abkuerzung und Erklaerung
+%          \setlength{\nomlabelwidth}{.2\hsize}
+%          \renewcommand{\nomlabel}[1]{#1 \dotfill}
+%        %Zeilenabstaende verkleinern
+%          \setlength{\nomitemsep}{-\parsep}
+%    \makenomenclature
 
-\setmainfont[%
-ItalicFont=NewCM10-Italic.otf,%
-BoldFont=NewCM10-Bold.otf,%
-BoldItalicFont=NewCM10-BoldItalic.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
 
-\setsansfont[%
-ItalicFont=NewCMSans10-Oblique.otf,%
-BoldFont=NewCMSans10-Bold.otf,%
-BoldItalicFont=NewCMSans10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
+% EN: Logic for TeX - enables if-then-else in commands
+% DE: Logik für TeX
+%     FÜr if-then-else @ commands.tex
+\usepackage{ifthen}
 
-\setmonofont[ItalicFont=NewCMMono10-Italic.otf,%
-BoldFont=NewCMMono10-Bold.otf,%
-BoldItalicFont=NewCMMono10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 
-\setmathfont{NewCMMath-Regular.otf}
+% EN: Code Listings
+% DE: Listings
+\usepackage{listings}
+\lstset{language=XML,
+  showstringspaces=false,
+  extendedchars=true,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\slshape,
+  % DE: Original: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
+  stringstyle=\ttfamily,
+  breaklines=true,
+  breakatwhitespace=true,
+  % EN: alternative: fixed
+  columns=flexible,
+  numbers=left,
+  numberstyle=\tiny,
+  basewidth=.5em,
+  xleftmargin=.5cm,
+  % aboveskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  % belowskip=0mm, %DE: deaktivieren, falls man lstlistings direkt als floating object benutzt (\begin{lstlisting}[float,...])
+  captionpos=b
+}
 
-% Enable proper ligatures
-% For more information see https://ctan.org/pkg/selnolig
-% language "english" or "ngerman" is passed to selnolig by the document class
-\usepackage{selnolig}
+\ifluatex
+\else
+  % EN: Enable UTF-8 support - see https://tex.stackexchange.com/q/419327/9075
+  \usepackage{listingsutf8}
+  \lstset{inputencoding=utf8/latin1}
+\fi
 
-\usepackage{setspace}
-\setstretch{1.2}
+\ifdeutsch
+  \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
+\fi
 
-% Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
 
-\usepackage[
-  babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
-  expansion=alltext,
-  protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
-  final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
-        % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
-]{microtype}
+% EN: Alternative to listings could be fancyvrb. Can be used together.
+% DE: Alternative zu Listings ist fancyvrb. Kann auch beides gleichzeitig benutzt werden.
+\usepackage{fancyvrb}
+%
+% EN: Font size for the normal text
+% DE: Groesse fuer den Fliesstext. Falls deaktiviert: \normalsize
+%\fvset{fontsize=\small}
+%
+% DE: Somit kann im Text ganz einfach §verbatim§ text gesetzt werden.
+%     Disabled, because UTF-8 does not work any more and lualatex causes issues
+%\DefineShortVerb{\§}
+%
+% EN: Shrink font size of listings
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{fontsize=\footnotesize}
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{fontsize=\footnotesize}
+%
+% EN: Hack for fancyvrb based on http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-12/msg00075.html
+%     Change of the solution: \Vref somehow collidated with cleveref/varioref as the output of \Vref{} was "Abschnitt 4.3 auf Seite 85"; therefore changed to \myVref -- so completely removed
+%     See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
-% \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
-\DisableLigatures{encoding = T1, family = tt* }
 
-%\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
-%\SetTracking{ encoding = *, shape = sc }{ 45 }
-% Source: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
-% Deactiviated, because does not look good
+% EN: Tunings of captions for floats, listings, ...
+% DE: Bildunterschriften bei floats genauso formatieren wie bei Listings
+%     Anpassung wird unten bei den newfloat-Deklarationen vorgenommen
+%     https://www.ctan.org/pkg/caption2 is superseeded by this package.
+\usepackage{caption}
 
-\usepackage{graphicx}
 
-% Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
-% Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
-\usepackage{diagbox}
+% EN: Provides rotating figures, where the PDF page is also turned
+% DE: Ermoeglicht es, Abbildungen um 90 Grad zu drehen
+%     Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
+%     Das Paket lscape dreht die Seite auch nicht
+\usepackage{pdflscape}
 
-\usepackage{xcolor}
 
-\usepackage[newfloat]{minted}
+% EN: Required for proper environments of fancyvrb and lstlistings
+%    There is also the newfloat pacakge (recommended by minted), but we currently have no expericene with that
+% DE: Wird für fancyvrb und für lstlistings verwendet
+\usepackage{float}
+%
+% EN: Alternative to float package
+%\usepackage{floatrow}
+% DE: zustäzlich für den Paramter [H] = Floats WIRKLICH da wo sie deklariert wurden paltzieren - ganz ohne Kompromisse
+%     floatrow ist der Nachfolger von float
+%     Allerdings macht floatrow in manchen Konstellationen Probleme. Deshalb ist das Paket deaktiviert.
+%
+% EN: See http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats
+% DE: floats IMMER nach einer Referenzierung platzieren
+%\usepackage{flafter}
 
-% Line numbers not flowing out of the margin
-\setminted{numbersep=5pt, xleftmargin=12pt}
 
-\usemintedstyle{bw} %black and white style
-%\usemintedstyle{vs} %visual studio
-%\usemintedstyle{friendlygrayscale} % custom style - submitted as pull request https://bitbucket.org/birkenfeld/pygments-main/pull-requests/748/add-style-friendly-grayscale/diff
-%\usemintedstyle{friendly}
-%\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
-%\usemintedstyle{autumn}
-%\usemintedstyle{rrt}
-%\usemintedstyle{borland}
+% EN: Put footnotes below floats
+%     Source: https://tex.stackexchange.com/a/32993/9075
+\usepackage{stfloats}
+\fnbelowfloat
 
-% We need to load caption to have a bold font on the label
-% The other parameters mimic the layout of the LNCS class
-\usepackage[labelfont=bf,font=small,skip=4pt]{caption}
-\SetupFloatingEnvironment{listing}{name=List.,within=none}
 
-% When using both minted and listings
-% Compatibility of packages minted and listings with respect to the numbering of "List." caption
-% Source: https://tex.stackexchange.com/a/269510/9075
-% \AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
-% \AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+% EN: For nested figures
+% DE: Fuer Abbildungen innerhalb von Abbildungen
+%     Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
+\usepackage[hypcap=true]{subcaption}
 
-% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
-\newcommand{\labelline}[1]{\label[line]{#1}\hypertarget{#1}{}}
-\newcommand{\refline}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
-% For easy quotations: \enquote{text}
-% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
-\usepackage[autostyle=true]{csquotes}
+% EN: Extended support for footnotes
+% DE: Fußnoten
+%
+%\usepackage{dblfnote}  %Zweispaltige Fußnoten
+%
+% Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
+%\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
+%
+% Abstand zwischen Fußnoten vergrößern:
+%\setlength{\footnotesep}{.85\baselineskip}
+%
+% EN: Following command disables the separting line of the footnote
+% DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+%\renewcommand{\footnoterule}{}
+%
+\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
+%
+% Fußnoten immer ganz unten auf einer \raggedbottom-Seite
+% fnpos kommt aus dem yafoot package
+\usepackage{fnpos}
+\makeFNbelow
+\makeFNbottom
 
-% Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
-\defineshorthand{"`}{\openautoquote}
-\defineshorthand{"'}{\closeautoquote}
 
-% Nicer tables (\toprule, \midrule, \bottomrule)
+% EN: Variable page heights
+% DE: Variable Seitenhöhen zulassen
+\raggedbottom
+
+
+% DE: Falls die Seitenzahl bei einer Referenz auf eine Abbildung nur dann angegeben werden soll,
+%     falls sich die Abbildung nicht auf der selben Seite befindet...
+\iftex4ht
+  %tex4ht does not work well with vref, therefore we emulate vref behavior
+  \newcommand{\vref}[1]{\ref{#1}}
+\else
+  \ifdeutsch
+    \usepackage[ngerman]{varioref}
+  \else
+    \usepackage{varioref}
+  \fi
+\fi
+
+
+% EN: More beautiful tables if one uses \toprule, \midrule, \bottomrule
+% DE: Noch schoenere Tabellen als mit booktabs mit http://www.zvisionwelt.de/downloads.html
 \usepackage{booktabs}
+%
+%\usepackage[section]{placeins}
 
-% Extended enumerate, such as \begin{compactenum}
-\usepackage{paralist}
+
+% EN: Graphs and Automata
+%
+% TODO: Since version 3.0 (2013-10-01), it supports pdflatex via the auto-pst-pdf package
+%       Requires -shell-escape
+%\usepackage{gastex}
+
+
+%\usepackage{multicol}
+
+% DE: kollidiert mit diplomarbeit.sty
+%\usepackage{setspace}
+
+
+% DE: biblatex statt bibtex
 \usepackage[
   backend       = biber, %biber does not work with 64x versions alternative: bibtex8
-%minalphanames only works with biber backend
+  %minalphanames only works with biber backend
   sortcites     = true,
   bibstyle      = alphabetic,
   citestyle     = alphabetic,
@@ -195,149 +731,534 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
 
-%\bibliography{bibliography}
+\bibliography{bibliography}
 %\addbibresource[datatype=bibtex]{bibliography.bib}
 
-% Do not put "vd" in the label, but put it at "\citeauthor"
-% Source: http://tex.stackexchange.com/a/30277/9075
+%Do not put "vd" in the label, but put it at "\citeauthor"
+%Source: http://tex.stackexchange.com/a/30277/9075
 \makeatletter
 \AtBeginDocument{\toggletrue{blx@useprefix}}
 \AtBeginBibliography{\togglefalse{blx@useprefix}}
 \makeatother
 
-% Thin spaces between initials
-% http://tex.stackexchange.com/a/11083/9075
+%Thin spaces between initials
+%http://tex.stackexchange.com/a/11083/9075
 \renewrobustcmd*{\bibinitdelim}{\,}
 
-% Keep first and last name together in the bibliography
-% http://tex.stackexchange.com/a/196192/9075
+%Keep first and last name together in the bibliography
+%http://tex.stackexchange.com/a/196192/9075
 \renewcommand*\bibnamedelimc{\addnbspace}
 \renewcommand*\bibnamedelimd{\addnbspace}
 
-% Replace last "and" by comma in bibliography
-% See http://tex.stackexchange.com/a/41532/9075
+%Replace last "and" by comma in bibliography
+%See http://tex.stackexchange.com/a/41532/9075
 \AtBeginBibliography{%
   \renewcommand*{\finalnamedelim}{\addcomma\space}%
 }
 
-% enable hyperlinked author names when using \citeauthor
-% source: http://tex.stackexchange.com/a/75916/9075
+\DefineBibliographyStrings{ngerman}{
+  backrefpage  = {zitiert auf S\adddot},
+  backrefpages = {zitiert auf S\adddot},
+  andothers    = {et\ \addabbrvspace al\adddot},
+  %Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
+  bibliography = {Literaturverzeichnis}
+}
+
+% EN: enable hyperlinked author names when using \citeauthor
+%     source: http://tex.stackexchange.com/a/75916/9075
 \DeclareCiteCommand{\citeauthor}
 {\boolfalse{citetracker}%
-\boolfalse{pagetracker}%
-\usebibmacro{prenote}}
+  \boolfalse{pagetracker}%
+  \usebibmacro{prenote}}
 {\ifciteindex
-{\indexnames{labelname}}
-{}%
-\printtext[bibhyperref]{\printnames{labelname}}}
+  {\indexnames{labelname}}
+  {}%
+  \printtext[bibhyperref]{\printnames{labelname}}}
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-% Enable nice comments
-\usepackage{pdfcomment}
+% EN: natbib compatibility
+%\newcommand{\citep}[1]{\cite{#1}}
+%\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
+% EN: Beginning of sentence - analogous to cleveref - important for names such as "zur Muehlen"
+%\newcommand{\Citep}[1]{\cite{#1}}
+%\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
 
-\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+% DE: Blindtext. Paket "blindtext" ist fortgeschritterner als "lipsum" und kann auch Mathematik im Text (http://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/)
+%     kantlipsum (https://www.ctan.org/tex-archive/macros/latex/contrib/kantlipsum) ist auch ganz nett, aber eben auch keine Mathematik
+%     Wird verwendet, um etwas Text zu erzeugen, um eine volle Seite wegen Layout zu sehen.
+\usepackage[math]{blindtext}
 
-% Compatibality with packages todo, easy-todo, todonotes
-\newcommand{\todo}[1]{\commentatside{#1}}
 
-% Compatiblity with package fixmetodonotes
-\newcommand{\TODO}[1]{\commentatside{#1}}
+% EN: Make LaTeX logos available by commands. E.g., \lualatex
+%     Disabled, because currently causes \not= already defined
+%\usepackage{dtk-logos}
 
-% Put footnotes below floats
-% Source: https://tex.stackexchange.com/a/32993/9075
-\usepackage{stfloats}
-\fnbelowfloat
+% quick replacement:
+\newcommand{\LuaLaTeX}{Lua\LaTeX\xspace}
+\newcommand{\lualatex}{\LuaLaTeX}
 
-\usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
-\addto\extrasgerman{\sisetup{locale = DE}}
+% DE: Neue Pakete bitte VOR hyperref einbinden. Insbesondere bei Verwendung des
+%     Pakets "index" wichtig, da sonst die Referenzierung nicht funktioniert.
+%     Für die Indizierung selbst ist unter http://xindy.sourceforge.net
+%     ein gutes Tool zu erhalten.
+%     Hier also neue packages einbinden.
+% EN: Add new packages at this place.
 
-% Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
-\usepackage{hyperref}
 
-% Enable hyperref without colors and without bookmarks
+% EN: Provides hyperlinks
+%     Option "unicode" fixes umlauts in the PDF bookmarks - see https://tex.stackexchange.com/a/338770/9075
+%
+% DE: Erlaubt Hyperlinks im Dokument.
+%     Alle Optionen nach \hypersetup verschoben, sonst crash
+%     Siehe auch: "Praktisches LaTeX" - www.itp.uni-hannover.de/~kreutzm
+\usepackage[unicode]{hyperref}
+
+
+% EN: Define colors
+% DE: Da es mit KOMA 3 und xcolor zu Problemen mit den global Options kommt MÜSSEN die Optionen so gesetzt werden.
+%     Eigene Farbdefinitionen ohne die Namen des xcolor packages
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{black}{rgb}{0,0,0}
+
+
+% EN: Define color of links and more
 \hypersetup{
-  hidelinks,
+  % have both title and number hyperlinking to content
+  linktoc=all,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  bookmarksopenlevel=1,
+  breaklinks=true,
   colorlinks=true,
-  allcolors=black,
   pdfstartview=Fit,
-  breaklinks=true
+  pdfpagelayout=SinglePage, % DE: Alterntaive: TwoPageRight -- zweiseitige Darstellung: ungerade Seiten rechts im PDF-Viewer - siehe auch http://tex.stackexchange.com/a/21109/9075
+  %pdfencoding=utf8, % EN: This is probably the same as passing the option "unicode" at \usepackage{hyperref}
+  filecolor=darkblue,
+  urlcolor=darkblue,
+  linkcolor=black,
+  citecolor=black
 }
 
-% Enable correct jumping to figures when referencing
+
+% EN: Abbreviations - has to be loaded after hyperref
+% DE: Abkürzungsverzeichnis - muss nach hyperref geladen werden
+%
+% DE: siehe http://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#glsnewwriteexceeded
+\usepackage[acronym,indexonlyfirst,nomain]{glossaries}
+\ifdeutsch
+  \addto\captionsngerman % DE: siehe https://tex.stackexchange.com/a/154566
+  {%
+    \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+  }
+\else
+  \renewcommand*{\acronymname}{List of Abbreviations}
+\fi
+\renewcommand*{\glsgroupskip}{}
+%
+% EN: Removed Glossarie as a table as a quick fix to get the template working again
+%     See http://tex.stackexchange.com/questions/145579/how-to-print-acronyms-of-glossaries-into-a-table
+%
+\makenoidxglossaries
+
+
+% EN: Extensions for references inside the document (\cref{fig:sample}, ...)
+% DE: cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+\ifdeutsch
+  \crefname{table}{Tabelle}{Tabellen}
+  \Crefname{table}{Tabelle}{Tabellen}
+  \crefname{figure}{\figurename}{\figurename}
+  \Crefname{figure}{Abbildung}{Abbildungen}
+  \crefname{equation}{Gleichung}{Gleichungen}
+  \Crefname{equation}{Gleichung}{Gleichungen}
+  \crefname{theorem}{Theorem}{Theoreme}
+  \Crefname{theorem}{Theorem}{Theoreme}
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+  \crefname{section}{Abschnitt}{Abschnitte}
+  \Crefname{section}{Abschnitt}{Abschnitte}
+  \crefname{paragraph}{Abschnitt}{Abschnitte}
+  \Crefname{paragraph}{Abschnitt}{Abschnitte}
+  \crefname{subparagraph}{Abschnitt}{Abschnitte}
+  \Crefname{subparagraph}{Abschnitt}{Abschnitte}
+\else
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+\fi
+
+
+% DE: Zur Darstellung von Algorithmen
+%     Algorithm muss nach hyperref geladen werden
+\usepackage[chapter]{algorithm}
+\usepackage[]{algpseudocode}
+
+
+% DE: Links auf Gleitumgebungen springen nicht zur Beschriftung,
+%     Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/oberdiek/hypcap.pdf
+%     sondern zum Anfang der Gleitumgebung
 \usepackage[all]{hypcap}
 
-\usepackage[caption=false,font=footnotesize]{subfig}
 
-\usepackage{mindflow}
+% DE: Deckblattstyle
+%
+\ifdeutsch
+  \PassOptionsToPackage{language=german}{scientific-thesis-cover}
+\else
+  \PassOptionsToPackage{language=english}{scientific-thesis-cover}
+\fi
 
-% Extensions for references inside the document (\cref{fig:sample}, ...)
-% Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
-% That means, "Figure 5" is a full link instead of just "5".
-\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
 
-\crefname{listing}{Listing}{Listings}
-\Crefname{listing}{Listing}{Listings}
+% EN: Bugfixes packages
+%\usepackage{fixltx2e} %Fuer neueste LaTeX-Installationen nicht mehr benoetigt - bereinigte einige Ungereimtheiten, die auf Grund von Rueckwaertskompatibilitaet beibahlten wurden.
+%\usepackage{mparhack} %Fixt die Position von marginpars (die in DAs selten bis gar nicht gebraucht werden}
+%\usepackage{ellipsis} %Fixt die Abstaende vor \ldots. Wird wohl auch nicht benoetigt.
 
-% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
-\newcommand{\llabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
-\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
-\usepackage{lipsum}
+% EN: Settings for captions of floats
+% DE: Formatierung der Beschriftungen
+%
+\captionsetup{
+  format=hang,
+  labelfont=bf,
+  justification=justified,
+  %single line captions should be centered, multiline captions justified
+  singlelinecheck=true
+}
 
-% For demonstration purposes only
-% These packages can be removed when all examples have been deleted
-\usepackage[math]{blindtext}
-\usepackage{mwe}
-\usepackage[realmainfile]{currfile}
-\usepackage{tcolorbox}
-\tcbuselibrary{minted}
 
-%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
-\DeclareFontFamily{U}{MnSymbolC}{}
-\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
-\DeclareFontShape{U}{MnSymbolC}{m}{n}{
-  <-6>    MnSymbolC5
-  <6-7>   MnSymbolC6
-  <7-8>   MnSymbolC7
-  <8-9>   MnSymbolC8
-  <9-10>  MnSymbolC9
-  <10-12> MnSymbolC10
-  <12->   MnSymbolC12%
-}{}
-\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+% EN: New float environments for listings and algorithms
+%
+% \floatstyle{ruled} % TODO: enabled or disabled causes no change - listings and algorithms are always ruled
+%
+\newfloat{Listing}{tbp}{code}[chapter]
+\crefname{Listing}{Listing}{Listings}
 
-\usepackage{xspace}
-%\newcommand{\eg}{e.\,g.\xspace}
-%\newcommand{\ie}{i.\,e.\xspace}
-\newcommand{\eg}{e.\,g.,\ }
-\newcommand{\ie}{i.\,e.,\ }
+\newfloat{Algorithmus}{tbp}{alg}[chapter]
+\ifdeutsch
+  \crefname{Algorithmus}{Algorithmus}{Algorithmus}
+\else
+  \crefname{Algorithmus}{Algorithm}{Algorithms}
+  \floatname{Algorithmus}{Algorithm}
+\fi
 
-% Enable hyphenation at other places as the dash.
-% Example: applicaiton\hydash specific
+
+
+% EN: Various chapter styles
+% DE: unterschiedliche Chapter-Styles
+%     u.a. Paket fncychap
+
+% Andere Kapitelueberschriften
+% falls einem der Standard von KOMA nicht gefaellt...
+% Falls man zurück zu KOMA moechte, dann muss jede der vier folgenden Moeglichkeiten deaktiviert sein.
+
+%\usepackage[Sonny]{fncychap}
+
+%\usepackage[Bjarne]{fncychap}
+
+%\usepackage[Lenny]{fncychap}
+
+%DE: Zur Aktivierung eines der folgenden Möglichkeiten ein Paar von "\iffalse" und "\fi" auskommentieren
+
+\iffalse
+  \usepackage[Bjarne]{fncychap}
+  \ChNameVar{\Large\sf} \ChNumVar{\Huge} \ChTitleVar{\Large\sf}
+  \ChRuleWidth{0.5pt} \ChNameUpperCase
+\fi
+
+\iffalse
+  \usepackage[Rejne]{fncychap}
+  \ChNameVar{\centering\Huge\rm\bfseries}
+  \ChNumVar{\Huge}
+  \ChTitleVar{\centering\Huge\rm}
+  \ChNameUpperCase
+  \ChTitleUpperCase
+  \ChRuleWidth{1pt}
+\fi
+
+\iffalse
+  \usepackage{fncychap}
+  \ChNameUpperCase
+  \ChTitleUpperCase
+  \ChNameVar{\raggedright\normalsize} %\rm
+  \ChNumVar{\bfseries\Large}
+  \ChTitleVar{\raggedright\Huge}
+  \ChRuleWidth{1pt}
+\fi
+
+\iffalse
+  \usepackage[Bjornstrup]{fncychap}
+  \ChNumVar{\fontsize{76}{80}\selectfont\sffamily\bfseries}
+  \ChTitleVar{\raggedright\Large\sffamily\bfseries}
+\fi
+
+% EN: Complete different chapter style - self made
+
+% Innen drin kann man dann noch zwischen
+%   * serifenloser Schriftart (eingestellt)
+%   * serifenhafter Schriftart (wenn kein zusaetzliches Kommando aktiviert ist) und
+%   * Kapitälchen wählen
+\iffalse
+  \makeatletter
+  %\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+
+  %Fuer Kapitel mit Kapitelnummer
+  \def\@makechapterhead#1{%
+    \vspace*{10\p@}%
+    {\parindent \z@ \raggedright \reset@font
+      %Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+      %A) Fuer serifenlose Schrift:
+      \fontfamily{phv}\selectfont
+      %B) Fuer Kapitaelchen:
+      %\fontseries{m}\fontshape{sc}\selectfont
+      %C) Fuer ganz "normale" Schrift:
+      %\normalfont
+      %
+      \Large \@chapapp{} \thechapter
+      \par\nobreak\vspace*{10\p@}%
+      \interlinepenalty\@M
+      {\Huge\bfseries\baselineskip3ex
+        %Fuer Kapitaelchen folgende Zeile aktivieren:
+        %\fontseries{m}\fontshape{sc}\selectfont
+        #1\par\nobreak}
+      \vspace*{10\p@}%
+      \makebox[\textwidth]{\hrulefill}%    \hrulefill alone does not work
+      \par\nobreak
+      \vskip 40\p@
+    }}
+
+  %Fuer Kapitel ohne Kapitelnummer (z.B. Inhaltsverzeichnis)
+  \def\@makeschapterhead#1{%
+    \vspace*{10\p@}%
+    {\parindent \z@ \raggedright \reset@font
+      \normalfont \vphantom{\@chapapp{} \thechapter}
+      \par\nobreak\vspace*{10\p@}%
+      \interlinepenalty\@M
+      {\Huge \bfseries %
+        %Default-Schrift: Serifenhaft (gut fuer englische Dokumente)
+        %A) Fuer serifenlose Schrift folgende Zeile aktivieren:
+        \fontfamily{phv}\selectfont
+        %B) Fuer Kapitaelchen folgende Zeile aktivieren:
+        %\fontseries{m}\fontshape{sc}\selectfont
+        #1\par\nobreak}
+      \vspace*{10\p@}%
+      \makebox[\textwidth]{\hrulefill}%    \hrulefill does not work
+      \par\nobreak
+      \vskip 40\p@
+    }}
+  %
+  \makeatother
+\fi
+
+
+% DE: Minitoc-Einstellungen
+%\dominitoc
+%\renewcommand{\mtctitle}{Inhaltsverzeichnis dieses Kapitels}
+
+
+% EN: Nicer paragraph line placement:
+%     - Disable single lines at the start of a paragraph (Schusterjungen)
+%     - Disable single lines at the end of a paragraph (Hurenkinder)
+%     Normally, this is clubpenalty and widowpenalty, but using a package, it feels more non-hacky
+\usepackage[all,defaultlines=3]{nowidow}
+%
+\displaywidowpenalty = 10000
+
+
+% EN: Try to get rid of "overfull hbox" things and let text flow batter
+%     See also
+%       - http://groups.google.de/group/de.comp.text.tex/browse_thread/thread/f97da71d90442816/f5da290593fd647e?lnk=st&q=tolerance+emergencystretch&rnum=5&hl=de#f5da290593fd647e
+%       - http://www.tex.ac.uk/cgi-bin/texfaq2html?label=overfull
+\tolerance=2000
+%
+% EN: This could be increased to 20pt
+\setlength{\emergencystretch}{3pt}
+%
+% EN: Suppress hbox warnings if less than 1pt
+\setlength{\hfuzz}{1pt}
+
+
+% EN: Fix names for algorithms in German
+% DE: fuer algorithm.sty: - falls Deutsch und nicht Englisch.
+\ifdeutsch
+  \floatname{algorithm}{Algorithmus}
+  \renewcommand{\listalgorithmname}{Verzeichnis der Algorithmen}
+\fi
+
+
+
+
+% Float-placements - http://dcwww.camd.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html#figplacement
+% and http://people.cs.uu.nl/piet/floats/node1.html
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+%\setcounter{totalnumber}{5}
+
+% EN: ensure that floats covering a whole page are placed at the top of the page
+%    see http://tex.stackexchange.com/a/28565/9075
 \makeatletter
-\newcommand{\hydash}{\penalty\@M-\hskip\z@skip}
-% Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
 \makeatother
 
-% correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
 
+
+% DE: Bei Gleichungen nur dann die Nummer zeigen, wenn die Gleichung auch referenziert wird
+%     Funktioniert mit MiKTeX Stand 2012-01-13 nicht. Deshalb ist dieser Schalter deaktiviert.
+%
+%\mathtoolsset{showonlyrefs}
+
+
+% EN: Margins
+% DE: Ränder
+%     Viele Moeglichkeiten, die Raender im Dokument einzustellen.
+%
+%     Satzspiegel neu berechnen. Dokumentation dazu ist in "scrguide.pdf" von KOMA-Skript zu finden
+%     Optionen werden bei \documentclass[] in ausarbeitung.tex mitgegeben.
+% \typearea[current]{current} %neu berechnen, da neue Schrift eingebunden
+
+%\usepackage{a4}
+%\usepackage{a4wide}
+%\areaset{170mm}{277mm} %a4:29,7hochx21mbreit
+
+%Wer die Masse direkt eingeben moechte:
+%Bei diesem Beispiel wird die Regel nicht beachtet, dass der innere Rand halb so gross wie der aussere Rand und der obere Rand halb so gross wie der untere Rand sein sollte
+%\usepackage[inner=2.5cm, outer=2.5cm, includefoot, top=3cm, bottom=1.5cm]{geometry}
+
+% EN: Package geometry to enlarge on page
+%
+%     Normally, geometry should not be used as the typearea package calculates the margins perfectly for printing
+%     However, we want better screen-readable documents where the content does not "jump"
+%     Thus, we fix the margins left and right to the same value
+%
+%     Source: http://www.howtotex.com/tips-tricks/change-margins-of-a-single-page/
+%
 \usepackage[
-  abbreviations,% create "abbreviations" glossary
-  nomain,% don't create "main" glossary
-  stylemods=longbooktabs% do the adjustments for the longbooktabs styles
-]{glossaries-extra}
+  left=3cm,right=3cm,top=2.5cm,bottom=2.5cm,
+  headsep=18pt,
+  footskip=30pt,
+  includehead,
+  includefoot
+]{geometry}
 
-% Following is required if the abbreviation list should be sorted automatically (\printglossary)
-% Not required, because we print the entries in-order (using \printunsrtglossaries)
-% \makeglossaries
 
-\input{acronyms}
+% EN: Provides todo notes
+% DE: schoene TODOs
+\ifdeutsch
+  \usepackage[colorinlistoftodos,ngerman]{todonotes}
+\else
+  \usepackage[colorinlistoftodos]{todonotes}
+\fi
+\setlength{\marginparwidth}{2,5cm}
 
-\setglossarystyle{long-booktabs}
-% Package URL: https://ctan.org/pkg/scientific-thesis-cover
+\let\xtodo\todo
+\renewcommand{\todo}[1]{\xtodo[inline,color=black!5]{#1}}
+\newcommand{\utodo}[1]{\xtodo[inline,color=green!5]{#1}}
+\newcommand{\itodo}[1]{\xtodo[inline]{#1}}
+
+
+% EN: Enable footnotes in tables.
+%     This package superseeds the 1997 package "footnote"
+\usepackage{footnotehyper}
+% TODO: The footnotehyper author recommends to enclose the respective area with \begin{savenotes} ... \end{savenotes}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+% Reuse of footnotes, see http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
+\crefformat{footnote}{#2\footnotemark[#1]#3}
+
+
+% EN: pgfplots (optional if the ppackage is installed)
+%     PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
+\IfFileExists{pgfplots.sty}{
+  \usepackage{pgfplots}
+  % EN: highest version supported by overleaf as of 2018-03-16
+  \pgfplotsset{compat=1.14}
+}{}
+
+
+% EN: pgfplotstable (optional if the ppackage is installed)
+%     PGFPlots generates tables from csv files
+\IfFileExists{pgfplotstable.sty}{
+  \usepackage{pgfplotstable}
+}{}
+
+
+% EN: Package for creating graphics programmatically
+\usepackage{tikz}
+
+
+% EN: Package for creating uml diagramms
+\usepackage{tikz-uml}
+
+
+% EN: Forest: apgf/TikZ-based package for drawing linguistic trees - https://ctan.org/pkg/forest
+\usepackage{forest}
+
+
+% EN: Enable PlantUML listings in the environment "plantuml"
+\IfFileExists{plantuml.sty}{
+  \usepackage[output=latex]{plantuml}
+}{}
+
+
+% EN: Layout: bottoms of pages not aligned to each other
+% DE: Der untere Rand darf "flattern"
+\raggedbottom
+
+
+% DE: Wie tief wird das Inhaltsverzeichnis aufgeschlüsselt
+% 0 --\chapter
+% 1 --\section % fuer kuerzeres Inhaltsverzeichnis verwenden - oder minitoc benutzen
+% 2 --\subsection
+% 3 --\subsubsection
+% 4 --\paragraph
+\setcounter{tocdepth}{1}
+
+
+% EN: Fixes wrong spacing in the TOC.
+%     Source: https://tex.stackexchange.com/a/33842/9075 -> comment by esdd
+\RedeclareSectionCommand[tocnumwidth=2.8em]{section}
+
+
+% DE: Angaben in die PDF-Infos uebernehmen
+\makeatletter
+\hypersetup{
+  pdftitle={}, %Titel der Arbeit
+  pdfauthor={}, %Author
+  pdfkeywords={}, % CR-Klassifikation und ggf. weitere Stichworte
+  pdfsubject={}
+}
+\makeatother
+
+
+% EN: Higher compression of the output PDF
+\pdfcompresslevel=9
+
+
+% EN: Required for recent version of komascript, as some packges are not that compatible with KOMAScript as they should be
+%     Has to be loaded at the *very* end, so we use "\AtEndPreamble" by etoolsbox
+\usepackage{etoolbox}
+\AtEndPreamble{\usepackage{scrhack}}
+
+
+% EN: Provide tables over multiple pages
+\usepackage{longtable}
+
+
+% EN: Show LaTeX commands and their results in the document
+%     Enables the command \PrintDemo
+% See https://github.com/latextemplates/scientific-thesis-template/issues/82 for further discussion
+\usepackage{latexdemo}
+
+
+% DE: Fuer deutsche Texte: Weniger Silbentrennung, mehr Abstand zwischen den Woertern
+\ifdeutsch
+  \setlength{\emergencystretch}{3em} % Silbentrennung reduzieren durch mehr frei Raum zwischen den Worten
+\fi
+
+
 \usepackage[
   title={Is Oil the future?},
   author={Lars K.},
@@ -350,337 +1271,262 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   enddate={January 5, 2019}
 ]{scientific-thesis-cover}
 
+\input{acronyms}
+
+\makeindex
 
 \begin{document}
+
+%tex4ht-Konvertierung verschönern
+\iftex4ht
+  % tell tex4ht to create picures also for formulas starting with '$'
+  % WARNING: a tex4ht run now takes forever!
+  \Configure{$}{\PicMath}{\EndPicMath}{}
+  %$ % <- syntax highlighting fix for emacs
+  \Css{body {text-align:justify;}}
+
+  %conversion of .pdf to .png
+  \Configure{graphics*}
+  {pdf}
+  {\Needs{"convert \csname Gin@base\endcsname.pdf
+      \csname Gin@base\endcsname.png"}%
+    \Picture[pict]{\csname Gin@base\endcsname.png}%
+  }
+\fi
+
+%\VerbatimFootnotes %verbatim text in Fußnoten erlauben. Geht normalerweise nicht.
+
+% DE: wird fuer Tabellen benötigt (z.B. >{centering\RBS}p{2.5cm} erzeugt einen zentrierten 2,5cm breiten Absatz in einer Tabelle
+\newcommand{\RBS}{\let\\=\tabularnewline}
+
+% EN: To avoid issues with Springer's \mathplus
+%     See also http://tex.stackexchange.com/q/212644/9075
+\providecommand\mathplus{+}
+
+% DE: typoraphisch richtige Abkürzungen
+\newcommand{\zB}{z.\,B.\xspace}
+\newcommand{\bzw}{bzw.\xspace}
+\newcommand{\usw}{usw.\xspace}
+\renewcommand{\dh}{d.\,h.\xspace}
+
+% EN: from hmks makros.tex - \indexify
+\newcommand{\toindex}[1]{\index{#1}#1}
+
+% DE: Tipp aus "The Comprehensive LaTeX Symbol List"
+\newcommand{\dotcup}{\ensuremath{\,\mathaccent\cdot\cup\,}}
+
+% DE: Anstatt $|x|$ $\abs{x}$ verwenden.
+%     Die Betragsstriche skalieren automatisch, falls "x" etwas größer sein sollte...
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+% DE: für Zitate
+\newcommand{\citeS}[2]{\cite[S.~#1]{#2}}
+\newcommand{\citeSf}[2]{\cite[S.~#1\,f.]{#2}}
+\newcommand{\citeSff}[2]{\cite[S.~#1\,ff.]{#2}}
+\newcommand{\vgl}{vgl.\ }
+\newcommand{\Vgl}{Vgl.\ }
+
+% EN: For the algorithmic package
+\newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
+\algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
+
+% DE: Seitengrößen - Gegen Schusterjungen und Hurenkinder...
+\newcommand{\largepage}{\enlargethispage{\baselineskip}}
+\newcommand{\shortpage}{\enlargethispage{-\baselineskip}}
+
+\newcommand{\initialism}[1]{%
+  \ifdeutsch%
+    \textsc{#1}\xspace%
+  \else%
+    \textlcc{#1}\xspace%
+  \fi%
+}
+\newcommand{\OMG}{\initialism{OMG}}
+\newcommand{\BPEL}{\initialism{BPEL}}
+\newcommand{\BPMN}{\initialism{BPMN}}
+\newcommand{\UML}{\initialism{UML}}
+
+
 \pagenumbering{arabic}
 \Titelblatt
 
-\pagestyle{plain.scrheadings}
-\renewcommand*{\chapterpagestyle}{plain.scrheadings}
+%Eigener Seitenstil fuer die Kurzfassung und das Inhaltsverzeichnis
+\deftriplepagestyle{preamble}{}{}{}{}{}{\pagemark}
+%Doku zu deftriplepagestyle: scrguide.pdf
+\pagestyle{preamble}
+\renewcommand*{\chapterpagestyle}{preamble}
 
-% Kurzfassung / abstract
-% auch im Stil vom Inhaltsverzeichnis
-\emph{Write an abstract for your work. Replace each of the points below with one sentence (two if you must) and you have your abstract. Write it when you finished your entire report.\footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
 
-\emph{Introduction.} In one sentence, what’s the topic? Phrase it in a way that your reader will understand. If you’re writing a PhD thesis, your readers are the examiners – assume they are familiar with the general field of research, so you need to tell them specifically what topic your thesis addresses. Same advice works for scientific papers – the readers are the peer reviewers, and eventually others in your field interested in your research, so again they know the background work, but want to know specifically what topic your paper covers.
 
-\emph{State the problem you tackle.} What’s the key research question? Again, in one sentence. (Note: For a more general essay, I’d adjust this slightly to state the central question that you want to address) Remember, your first sentence introduced the overall topic, so now you can build on that, and focus on one key question within that topic. If you can’t summarize your thesis/paper/essay in one key question, then you don’t yet understand what you’re trying to write about. Keep working at this step until you have a single, concise (and understandable) question.
+%Kurzfassung / abstract
+%auch im Stil vom Inhaltsverzeichnis
+\ifdeutsch
+  \section*{Kurzfassung}
+\else
+  \section*{Abstract}
+\fi
 
-\emph{Summarize (in one sentence) why nobody else has adequately answered the research question yet.} For a PhD thesis, you’ll have an entire chapter, covering what’s been done previously in the literature. Here you have to boil that down to one sentence. But remember, the trick is not to try and cover all the various ways in which people have tried and failed; the trick is to explain that there’s this one particular approach that nobody else tried yet (hint: it’s the thing that your research does). But here you’re phrasing it in such a way that it’s clear it’s a gap in the literature. So use a phrase such as “previous work has failed to address…”. (if you’re writing a more general essay, you still need to summarize the source material you’re drawing on, so you can pull the same trick – explain in a few words what the general message in the source material is, but expressed in terms of what’s missing)
+<Short summary of the thesis>
 
-\emph{Explain, in one sentence, how you tackled the research question.} What’s your big new idea? (Again for a more general essay, you might want to adapt this slightly: what’s the new perspective you have adopted? or: What’s your overall view on the question you introduced in step 2?)
+\cleardoublepage
 
-\emph{In one sentence, how did you go about doing the research that follows from your big idea.} Did you run experiments? Build a piece of software? Carry out case studies? This is likely to be the longest sentence, especially if it’s a PhD thesis – after all you’re probably covering several years worth of research. But don’t overdo it – we’re still looking for a sentence that you could read aloud without having to stop for breath. Remember, the word ‘abstract’ means a summary of the main ideas with most of the detail left out. So feel free to omit detail! (For those of you who got this far and are still insisting on writing an essay rather than signing up for a PhD, this sentence is really an elaboration of sentence 4 – explore the consequences of your new perspective).
 
-\emph{As a single sentence, what’s the key impact of your research? Here we’re not looking for the outcome of an experiment.} We’re looking for a summary of the implications. What’s it all mean? Why should other people care? What can they do with your research. (Essay folks: all the same questions apply: what conclusions did you draw, and why would anyone care about them?)
+% BEGIN: Verzeichnisse
 
-\microtypesetup{protrusion=false}
+\iftex4ht
+\else
+  \microtypesetup{protrusion=false}
+\fi
 
-% In case you have trouble with headings reaching into the page numbers, enable the following three lines.
-% Hint by http://golatex.de/inhaltsverzeichnis-schreibt-ueber-rand-t3106.html
+%%%
+% Literaturverzeichnis ins TOC mit aufnehmen, aber nur wenn nichts anderes mehr hilft!
+% \addcontentsline{toc}{chapter}{Literaturverzeichnis}
+%
+% oder zB
+%\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+%
+%%%
+
+%Produce table of contents
+%
+%In case you have trouble with headings reaching into the page numbers, enable the following three lines.
+%Hint by http://golatex.de/inhaltsverzeichnis-schreibt-ueber-rand-t3106.html
 %
 %\makeatletter
 %\renewcommand{\@pnumwidth}{2em}
 %\makeatother
 %
-% In case of a strange break in the table of contents,
-% a page break can be inserted by issuing the following command at the "right" place in the main text:
-%   \addtocontents{toc}{\protect\newpage}
 \tableofcontents
 
-\listoffigures
+% Bei einem ungünstigen Seitenumbruch im Inhaltsverzeichnis, kann dieser mit
+% \addtocontents{toc}{\protect\newpage}
+% an der passenden Stelle im Fließtext erzwungen werden.
 
+\listoffigures
 \listoftables
-\listof{Listing}{List of Listings}
+
+%Wird nur bei Verwendung von der lstlisting-Umgebung mit dem "caption"-Parameter benoetigt
+%\lstlistoflistings
+%ansonsten:
+\ifdeutsch
+  \listof{Listing}{Verzeichnis der Listings}
+\else
+  \listof{Listing}{List of Listings}
+\fi
 
 %mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
 %Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
-%\listof{Algorithmus}{List of Algorithms}
+\ifdeutsch
+  \listof{Algorithmus}{Verzeichnis der Algorithmen}
+\else
+  \listof{Algorithmus}{List of Algorithms}
+\fi
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
 
-% Abbreviations
-\printunsrtglossaries
+% Abkürzungsverzeichnis
+\printnoidxglossaries
 
-\microtypesetup{protrusion=true}
+\iftex4ht
+\else
+  %Optischen Randausgleich und Grauwertkorrektur wieder aktivieren
+  \microtypesetup{protrusion=true}
+\fi
+
+% END: Verzeichnisse
+
 
 % Headline and footline
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
+\pagestyle{scrheadings}
+\ihead[]{}
+\chead[]{}
+\ohead[]{\headmark}
+\cfoot[]{}
+\ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
+\ifoot[]{}
 
-%%% ===============================================================================
-\chapter{Introduction}\label{sec:introduction}
-%%% ===============================================================================
 
-\emph{Purpose and scope of your entire report}. The purpose of your entire report is to make a \emph{scientific argument using the scientific method}. A scientific argument always has the following steps that all must come in this order.
+%% vv  scroll down for content  vv %%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\begin{itemize}
-    \item[SM1] \emph{Explicate the assumptions and state of the art} on which you are going to conduct your research to investigate your research problem/test the hypothesis.
-    \item[SM2] Clearly and precisely \emph{formulate a research problem or hypothesis}.
-    \item[SM3] \emph{Describe the (research) method} that you followed to investigate the problem / to test the hypothesis in a way that \emph{allows someone else to reproduce your steps}. The method must includes steps and criteria for evaluating whether you answered your question successfully or not.
-    \item[SM4] \emph{Provide execution details} on how you followed the method in the given, specific situation.
-    \item[SM5] \emph{Report your results} by describing and summarizing your measurements. You must not interpret your results.
-    \item[SM6] \emph{Now interpret your results} by contextualizing the measurements and drawing conclusion that lead to answering your research problem or defining further follow-up research problems.
-\end{itemize}
+% Main content starts here
 %
-This template will mark various parts of the structure with SM1-SM6 to recall to you which step of a scientific argument is used and where.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\emph{Purpose and scope of \cref{sec:introduction}}. The introduction chapter is a summary of your work and your scientific argument that shall be understandable to anyone in your scientific field, e.g., anyone in Data Science. A reader must be able to comprehend the problem, method, relevant execution details, results, and their interpretation by reading the introduction and the introduction alone. Section~\ref{sec:introduction:topic} introduces the general topic of your research. Section~\ref{sec:introduction:state-of-art} discusses the state of the art and identifies a research. Section~\ref{sec:introduction:research-question} then states the research problem to investigate. Section~\ref{sec:problem-exposition:research-method} explains the research method that was followed, possibly with execution details. Section~\ref{sec:introduction:results} then presents the results and their interpretation. Only if a reader thinks they are not convinced or they need more details to reproduce your study, they shall have to read further. The individual chapters and sections provide the details for each of the steps in your scientific argument.
 
-You usually write the introduction chapter \emph{after} you wrote all other chapters, but you should keep on making notes for each of the sections as you write the later chapters..
+\chapter{Introduction}
 
-\emph{Purpose and scope of the introduction paragraph to a chapter}. The paragraph you are reading above is a typical introductory paragraph to a chapter. It is a high-level summary of the chapters' topic (SM1 and SM2). It gives the reader some guidance by breaking down the chapter topic into subtopics that are clearly named (SM3) in the right order with forward references to the corresponding sections (SM4). It may close with announcing the result you obtain (SM6) but this is usually not done in the opening paragraph of the introduction.
+This thesis starts with \cref{chap:k2}.
 
-% ---------------------------------------------------------------------------------
-\section{Context and Topic (SM1)}\label{sec:introduction:topic}
-% ---------------------------------------------------------------------------------
+We can also typeset \verb|<text>verbatim text</text>|.
+Backticks are also rendered correctly: \verb|`words in backticks`|.
 
-\emph{Purpose and scope}. You begin with providing the general scientific audience an introduction into the specific topic of your work. The aim of this section is to first introduce the \emph{general subject of study} (``Giraffes are well-known animals and everyone's favorite''), the \emph{specific topic of societal or scientific interest} to investigate (``Giraffes have blue tongues'') and the \emph{objective of society/science towards} this topic (``it is unknown at the moment how the blue color tone evolved'').
-It must be understandable by the general scientific public. Every \emph{term} with a specific meaning must be highlighted and introduced in precise language/concepts that only builds on a general scientific background.
+\chapter{Chapter Two}
+\label{chap:k2}
 
-At the end of this section, you have explained and established a general goal that society/science universally agrees to be worth achieving (``knowing how everyone's favorite animal evolved the colour of their tongue'').
+LaTeX hints are provided in \cref{chap:latexhints}.
 
-% ---------------------------------------------------------------------------------
-\section{State of the Art (SM1)}\label{sec:introduction:state-of-art}
-% ---------------------------------------------------------------------------------
+\blinddocument
 
-\emph{Purpose and scope}. You provide a more in-depth introduction into the research topic by contrasting the current state of the art in society/science in relation to the research topic you introduced in \cref{sec:introduction:topic}. This introduction has to
+\chapter{Related Work}
 
-\begin{itemize}
-    \item present established facts, methods, and results that provide a deeper understanding of the research topic (``prior work on giraffe genomes, relevance of giraffes for societal well-being, giraffes being a model-animal for various other studies, etc.'')
-    \item discuss in which ways prior and recent ideas still fall short of reaching the general goal you explained in \cref{sec:introduction:topic} (``prior work only sequenced the genome of one giraffe and did not consider genes of ancient ancestors'')
-\end{itemize}
+Describe relevant scientific literature related to your work.
 
-You have to provide citations/literature references for each of the statements and claims you are making. This section is usually a summary of the related work discussion in \cref{sec:background}.
+\chapter{Conclusion and Outlook}
+\label{chap:zusfas}
 
-At the end of this section, you have established a \emph{knowledge gap} between the state of the art and the general objective you developed in \cref{sec:introduction:topic}. \emph{Stating a (knowledge) gap between a status quo and a desired situation is the \emph{first step} of a writing scientific argument.}
+\section*{Outlook}
 
+\printbibliography
 
-% ---------------------------------------------------------------------------------
-\section{Research Question (SM2)}\label{sec:introduction:research-question}
-% ---------------------------------------------------------------------------------
+All links were last followed on March 17, 2018.
 
-\emph{Purpose and scope}. In this section you state in which way you will address the knowledge gap you identified at the end of \cref{sec:introduction:state-of-art}. You usually cannot address and resolve the entire knowledge gap in your work. The purpose of this section is to clearly detail the specific part of the knowledge that you will address. You thereby make all the assumptions explicit that underlie your work (``in this report we focus on genomes of female giraffes who lived in the years 1950-2000 in South Africa'').
+\appendix
+% !TeX root = main-english.tex
+% !TeX spellcheck = en-US
+% !TeX encoding = utf8
+% -*- coding:utf-8 mod:LaTeX -*-
 
-Your general research question states
-\begin{itemize}
-    \item The starting point/assumptions you are making from which your research starts (``for the given 13 genomes of female giraffes...''), and
-    \item the final objective/solution you want to reach (``...identify the genes involved in color expression of giraffe tongues...'')
-    \item and the evaluation criteria that will determine whether you are successful (``...that are present in at least 75\% of the studied giraffes'')
-\end{itemize}
-
-You will usually break your general research question down into sub-research questions. You may do this here. The sub-research questions have to form a chain that take you in smaller steps from the starting point/assumptions of your general research question to your final objective and evaluation.
-
-% ---------------------------------------------------------------------------------
-\section{Method or Approach (SM3, SM4)}\label{sec:introduction:method}
-% ---------------------------------------------------------------------------------
-
-\emph{Purpose and scope}. In this section you outline the method that you applied to answer the research questions, or the new technical approach that you developed to answer it. It is a summary of the steps that someone else has to take in order to reproduce your steps. Mention here the data sets you had to obtain/gather/analyze, interviews with stakeholders you had to make to further develop the research questions, technical artifacts (programs, algorithms, models) you could apply or that you had to develop (and how they work).
-
-The section is most readable if you give each of the steps in your method its own paragraph. In each paragraph you first briefly explain the concept of the step in your method (SM3, ``we explored the data through visual analytics'') and then provide details in execution (SM4, ``we used tool X, we developed dashboard Y'') include a forward reference to the respective chapter that provides more details.
-
-% ---------------------------------------------------------------------------------
-\section{Findings (SM5, SM6)}\label{sec:introduction:results}
-% ---------------------------------------------------------------------------------
-
-\emph{Purpose and scope}. You close the introduction by clearly stating the evaluation setup you designed to evaluate the success of your study regarding the research objective, which comes in two steps. It is most likely a summary of your evaluation in \cref{sec:evaluation}.
-
-\subsection*{Results (SM5)}
-
-You state the evaluation method that is in line with your research question from \cref{sec:introduction:research-question} and summarize the measurements you obtained but you do not interpret them, i.e., you only report the numbers but you do not include judging statements.
-
-\subsection*{Interpretation (SM6)}
-
-You summarize your interpretation of the results and draw conclusions. State whether and to which degree the research question from \cref{sec:introduction:research-question} has been answered successfully or not.
-
-Finally state briefly how much closer society and science have come in answering the general objective you outlined in \cref{sec:introduction:topic}.
-
-%%% ===============================================================================
-\chapter{Background (SM1)}\label{sec:background}
-%%% ===============================================================================
-
-\emph{Purpose and scope}. The background chapter has multiple roles.
-\begin{itemize}
-
-    \item \emph{Preliminaries.} It has to provide all (and exactly the) information that is necessary to understand the methodological and technical parts of your work in the specific area of study. Assume as starting point another student in your degree who did not study the specific subject you are studying but has the task to understand your work. Which concepts, terms, definitions, etc. does the student have to know? Which formulas, symbols, etc. are standard in this topic? Only introduce definitions if you actually need them in any of the subsequent chapters.
-
-    \item \emph{Related Work.} It has to provide a comprehensive discussion of all prior work in the area on this subject. Your discussion has to summarize these prior works and has to explain in which way the research question you are solving (\cref{sec:introduction:research-question}) has not bee solved yet because prior work had more limiting assumptions, addressed a different angle, their results are not complete etc. Depending on the subject you are studying, the related work part can be larger and warrant an entire chapter on its own, or be fully concluded within \cref{sec:introduction:state-of-art}.
-
-    You can close the related work discussion by clarifying the positioning and formulation of your research question (SM2) in relation to all the prior work, making more explicit whether you address an existing research question under different premises or whether you work on a modified or completely new research question.
-\end{itemize}
-
-%%% ===============================================================================
-\chapter{Problem Exposition (optional)}\label{sec:problem-exposition}
-%%% ===============================================================================
-
-\emph{Purpose and scope}. Introduce the problem context in more detail if \cref{sec:introduction:topic} does not provide all necessary information about the problem to follow the rest of the report. This can include further details on the data you studied, context assumptions and requirements, etc.
-
-If you have to expose the problem in more detail here, then this chapter should also provide a more detailed explanation of research question and the method you are applying, i.e., you can now provide more concrete sub-problems compared to \cref{sec:introduction:research-question} more details for the method \cref{sec:introduction:method} because you now have explained the problem much better. A typical structure can be.
-
-% ---------------------------------------------------------------------------------
-\section{Context/Business Understanding (SM1)}\label{sec:problem-exposition:context-understanding}
-% ---------------------------------------------------------------------------------
-
-provide details
-
-% ---------------------------------------------------------------------------------
-\section{Data Understanding (SM1)}\label{sec:problem-exposition:data-understanding}
-% ---------------------------------------------------------------------------------
-
-provide details
-
-% ---------------------------------------------------------------------------------
-\section{Detailed Research Questions (SM2)}\label{sec:problem-exposition:research-problems}
-% ---------------------------------------------------------------------------------
-
-provide details based on \cref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
-
-% ---------------------------------------------------------------------------------
-\section{Detailed Method (SM3)}\label{sec:problem-exposition:research-method}
-% ---------------------------------------------------------------------------------
-
-provide details based on \cref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
-
-%%% ===============================================================================
-\chapter{First Real Chapter addressing first Research Problem}\label{sec:problem1}
-%%% ===============================================================================
-
-\emph{Purpose and scope}. After you stated research context (SM1), research problem (SM2), and research method (SM3) in \cref{sec:introduction} and possibly \cref{sec:problem-exposition}, the remainder of your entire report addresses execution (SM4), results (SM5), and interpretation (SM6). You usually do this by addressing various sub-problems again through scientific arguments following the 6 steps SM1-SM6.
-
-Have a short chapter introduction that recalls and explains the first research problem of your thesis. The problem has to show up in the introduction in \cref{sec:introduction:research-question} or in \cref{sec:problem-exposition:research-problems} already. This provides the background (SM1) for this chapter while the first research problem of the thesis becomes the research question/hypothesis (SM2) for this chapter.
-
-Next, explain in the chapter intro how you solve the research problem in this chapter by breaking it down in further sub-problems. By this, you outline the method (SM3) through which you are going to solve the problem of this chapter. This is necessary to give the reader guidance of what's to come in this chapter and how it fits into the thesis as a whole. Explain that you will address the first sub-problem in \cref{sec:problem1:subproblem1} and the second sub-problem in \cref{sec:problem1:subproblem2}, etc. The sections then provide the details for execution and results.
-
-% ---------------------------------------------------------------------------------
-\section{First Sub-Problem}\label{sec:problem1:subproblem1}
-% ---------------------------------------------------------------------------------
-
-\emph{The first paragraph describes the first sub-problem and develops the requirements a solution has to satisfy (SM2 for this section).} The requirements have to be based on the knowledge and reasoning developing in the preceding chapters and sections. Try to use an example to illustrate the problem and the desired properties of the solution. Check that every term/concept you use here has already been defined already in a previous section. If you cannot describe your problem without defining new terms, you may have to add another section before this one that develops the terms and concepts you need to explain the problem.
-
-\emph{The second paragraph describes the method/approach how you address the problem (SM3 for this section).} Describe the method in a level of detail that allows another student to reproduce your steps.
-Make use of appendices % (see \cref{sec:appendix1})
-if certain details take too much space.
-
-\emph{The third, fourth, and following paragraph provides details on applying the method or developing a new approach, i.e., execution (SM4) and may explain results (SM5)}, i.e. details on the steps needed to reproduce the results.
-
-Results (SM5) can come in many forms, e.g., conceptual diagrams, algorithms, tables, charts, a list of articles from a literature research etc. You must reference them (``\cref{fig:my_label} shows...'') and describe the results in text. If you use diagrams, tables, or charts, you cannot expect the reader to know what to you expect them to see in a diagram, table or chart. Describe to them how to read these, explain the meaning of particular elements, point out special observations. But you may only describe the results you must not interpret them. Make use of appendices if certain details take too much space.
-
-\begin{figure}
-    \centering
-    %%%\includegraphics{/path/to/figure.pdf}
-    \caption{A scientific figure that has to be explained in the text}
-    \label{fig:my_label}
-\end{figure}
-
-\emph{After describing the results, you may interpret them (SM6).} Here you can infer what a particular observation means (for you), how it can be applied, or what others can do with it. You must not write interpretations before completely describing your results. This is a common mistake done by most beginner writers. You want to quickly get to the point, which is the final finding or interpretation. But you forget that your reader does not understand yet what you are interpreting - they do not know yet what you do know. An interpretation can only be followed after all results have been described. The interpretation must be based on the written description only. Then you can be sure that your readers can follow your interpretation and reach the same conclusions as you have.
-
-Ideally, your interpretation leads to the next sub-problem in \cref{sec:problem1:subproblem2}.
-
-% ---------------------------------------------------------------------------------
-\section{Second Sub-Problem}\label{sec:problem1:subproblem2}
-% ---------------------------------------------------------------------------------
-
-You now build on the solution to the first sub-problem of \cref{sec:problem1:subproblem1} (SM1) and recall second sub-problem (SM2, you detailed in the introduction of this chapter) and follow the same pattern as before (SM3-SM6).
-
-Note that not all sections may not include all parts SM1-SM6 in all detail. Some sections do not require to repeatedly state the background (SM1) or the research problem (SM2) if they were already clearly defined in a previous section. Sometimes, a section is only dedicated to describing the method (SM3) and execution (SM4) and does not contain any results or interpretations. Sometimes results (SM5) and interpretations (SM6) only come in the evaluation chapter.
-
-What is important for you when you are writing a scientific argument is not to slavishly have SM1-SM6 in each section explicitly, but that you are always fully aware of the following:
-%
-\begin{itemize}
-    \item Which step of a scientific argument am I currently writing (SM1, SM2, ..., SM6)?
-    \item Does the step that I am writing come in the right order, i.e., if you are writing about execution (SM4, e.g., details of building a model), is there a preceding paragraph or section that describes the method (SM3) and is that one preceded by a clear statement of the (sub-)problem addressed (SM2)?
-    \item Are you really \emph{not} writing interpretation SM6 before SM5, SM4, or SM3?
-    \item Is it clear to the reader which part of the scientific argument you are currently making?
-\end{itemize}
-
-%%% ===============================================================================
-\chapter{Second Real Chapter}\label{sec:sub-problem2}
-%%% ===============================================================================
-
-Have a short chapter introduction that recalls what you already achieved in \cref{sec:problem1} and explain the second research problem of your thesis. The problem has to show up in the introduction in \cref{sec:introduction:research-question} or in \cref{sec:problem-exposition:research-problems} already. etc.
-
-%%% ===============================================================================
-\chapter{Evaluation}\label{sec:evaluation}
-%%% ===============================================================================
-
-\emph{Purpose and scope}. The evaluation chapter should be the most formal and rigorously structured chapter of your thesis as the validity of your evaluation argument depends on it.
-
-% ---------------------------------------------------------------------------------
-\section{Objective (SM2)}\label{sec:evaluation:objective}
-% ---------------------------------------------------------------------------------
-
-Clearly state what you want to evaluate and what you want to measure.
-
-% ---------------------------------------------------------------------------------
-\section{Setup (SM3)}\label{sec:evaluation:setup}
-% ---------------------------------------------------------------------------------
-
-State which data, participants, tools, etc. you chose and why. Clearly state how you measure outcomes and how you compare them to baselines, reference groups, etc.
-
-% ---------------------------------------------------------------------------------
-\section{Execution (SM4)}\label{sec:evaluation:execution}
-% ---------------------------------------------------------------------------------
-
-Provide all details on the execution that are necessary to allows another person to reproduce your results at a later point.
-
-% ---------------------------------------------------------------------------------
-\section{Results (SM5)}\label{sec:evaluation:results}
-% ---------------------------------------------------------------------------------
-
-You only report the measurements. You must present and reference them (``\cref{fig:my_label2} shows...'') and describe the results in text. If you use diagrams, tables, or charts, you cannot expect the reader to know what to you expect them to see in a diagram, table or chart. Describe to them how to read these, explain the meaning of particular elements, point out special observations. But you may only describe the results you must not interpret them. Make use of appendices if certain details take too much space.
-
-\begin{figure}
-    \centering
-    %%%\includegraphics{/path/to/figure.pdf}
-    \caption{Another scientific figure that has to be explained in the text}
-    \label{fig:my_label2}
-\end{figure}
-
-% ---------------------------------------------------------------------------------
-\section{Discussion (SM6)}\label{sec:evaluation:discussion}
-% ---------------------------------------------------------------------------------
-
-An interpretation can only be followed after all results have been described. The interpretation must be based on the written description in \cref{sec:evaluation:results} only. Then you can be sure that your readers can follow your interpretation and reach the same conclusions as you have.
-
-
+%This smart spell only works if no changes have been made to the chapter
+%using the options proposed in preambel/chapterheads.tex.
+\setchapterpreamble[u]{%
+  \dictum[Albert Einstein]{We cannot solve our problems with the same level of thinking that created them}
+}
 \chapter{LaTeX Hints}
 \label{chap:latexhints}
 
-% Required for proper example rendering in the compiled PDF
-\newcount\LTGbeginlineexample
-\newcount\LTGendlineexample
-\newenvironment{ltgexample}%
-{\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
-{\LTGendlineexample=\numexpr\inputlineno-1\relax%
-%
-\tcbinputlisting{%
-  listing only,
-  listing file=\currfilepath,
-  colback=green!5!white,
-  colframe=green!25,
-  coltitle=black!90,
-  coltext=black!90,
-  left=8mm,
-  title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
-    minted language=TeX,
-    minted style=vs,
-    minted options={
-      fontsize=\footnotesize,
-      firstline=\the\LTGbeginlineexample,
-      lastline=\the\LTGendlineexample,
-      firstnumber=\the\LTGbeginlineexample,
-      breaklines,
-      linenos,
-      numbersep=8pt
-    }
-}
-}%
-
-This chapter contains hints on writing LaTeX.
-It focuses on minimal examples, which can be directly adapted to the content
-
-\section{Handling of paragraphs}
-
-\begin{ltgexample}
 One sentence per line.
 This rule is important for the usage of version control systems.
 A new line is generated with a blank line.
@@ -692,266 +1538,569 @@ This leads to an empty line.
 In word, there is the functionality to press shift and enter.
 This leads to a hard line break.
 The text starts at the beginning of a new line.
-In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).\\
+In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).
 This is rarely used.
 
-Please do \textit{not} use two backslashes for new paragraphs.
+Please do \textit{not} use two backslahes for new paragraphs.
 For instance, this sentence belongs to the same paragraph, whereas the last one started a new one.
 A long motivation for that is provided at \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
-\end{ltgexample}
 
-\section{Notes separated from the text}
+One can write \emph{emphasized text (rendered in italics)} and \textbf{bold text}.
 
-The package mindflow enables writing down notes and annotations in a way so that they are separated from the main text.
+\section{File Encoding and Support of Umlauts}
+\label{sec:firstsectioninlatexhints}
+The template offers foll UTF-8 support.
+All recent editors should not have issues with that.
 
-\begin{ltgexample}
-\begin{mindflow}
-This is a small note.
-\end{mindflow}
-\end{ltgexample}
-
-\section{Hyphenation}
-
-\LaTeX{} automatically hyphenates words.
-When using microtype, there should be less hypnetations than in other settings.
-It might be necessary to tweak the hyphenations nevertheless.
-Here are some hints:
-
-\begin{ltgexample}
-In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
-You can also write \verb1applica\allowbreak{}tion-specific1 (result: applica\allowbreak{}tion-specific), but this is much more effort.
-
-You can now write words containing hyphens which are hyphenated at other places in the word.
-For instance, \verb1application"=specific1 gets application"=specific.
-This is enabled by an additional configuration of the babel package.
-\end{ltgexample}
-
-\section{Typesetting Units}
-
-\begin{ltgexample}
-Numbers can written plain text (such as 100), by using the siunitx package like that:
-\SI{100}{\km\per\hour},
-or by using plain \LaTeX{} (and math mode):
-$100 \frac{\mathit{km}}{h}$.
-\end{ltgexample}
-
-\begin{ltgexample}
-\SI{5}{\percent} of \SI{10}{kg}
-\end{ltgexample}
-
-\begin{ltgexample}
-Numbers are automatically grouped: \num{123456}.
-\end{ltgexample}
-
-\section{Surrounding Text by Quotes}
-
-\begin{ltgexample}
-Please use the \enquote{enquote command} to quote something.
-Quoting with "`quote"' or ``quote'' also works.
-
-\end{ltgexample}
-
-\section{Cleveref examples}
-\label{sec:ex:cref}
-
-Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=.75\linewidth]{example-image-a}
-    \caption{Example figure for cref demo}
-    \label{fig:ex:cref}
-\end{figure}
-
-\begin{table}
-    \centering
-    \begin{tabular}{ll}
-      \toprule
-      Heading1 & Heading2 \\
-      \midrule
-      One      & Two      \\
-      Thee     & Four     \\
-      \bottomrule
-    \end{tabular}
-    \caption{Example table for cref demo}
-    \label{tab:ex:cref}
-\end{table}
-
-\begin{ltgexample}
-\Cref{fig:ex:cref} shows a simple fact, although \cref{fig:ex:cref} could also show something else.
-
-\Cref{tab:ex:cref} shows a simple fact, although \cref{tab:ex:cref} could also show something else.
-
-\Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
-\end{ltgexample}
-
-\section{Figures}
-
-\begin{ltgexample}
-\Cref{fig:label} shows something interesting.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=.8\linewidth]{example-image-golden}
-  \caption[Simple Figure]{Simple Figure. Based on \citet{mwe}.}
-  \label{fig:label}
-\end{figure}
-\end{ltgexample}
+\section{Citations}
 
 
-\section{Sub Figures}
+References are set by means of \texttt{\textbackslash cite[key]}.
 
-An example of two sub figures is shown in \cref{fig:two_sub_figures}.
+\begin{filecontents*}[overwrite]{\democodefile}
+Example: \cite{WSPA} or by author input: \citet{WSPA}.
+\end{filecontents*}
+\PrintDemo{style=parallel}
 
-\begin{ltgexample}
-\begin{figure}[!b]
-    \centering
-    \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
-    \label{fig:first_case}}
-  \hfil
-    \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
-    \label{fig:second_case}}
-  \caption{Example figure with two sub figures.}
-  \label{fig:two_sub_figures}
-\end{figure}
-\end{ltgexample}
+The following sentence demonstrates
+\begin{inparaenum}[1.]
+  \item the capitalization of author names at the beginning of the sentence,
+  \item the correct citation using author names and the reference,
+  \item that the author names are a hyperlink to the bibliography and that
+  \item the bibliography contains the name prefix \qq{van der} of \qq{Wil M.\,P.\ van der Aalst}.
+\end{inparaenum}
 
-\section{Tables}
+\begin{filecontents*}[overwrite]{\democodefile}
+\Citet{RVvdA2016} present a study on the effectiveness of workflow management systems.
+\end{filecontents*}
+\PrintDemo{style=parallel}
 
-\begin{ltgexample}
-\begin{table}
-  \caption{Simple Table}
-  \label{tab:simple}
-  \centering
-  \begin{tabular}{ll}
-    \toprule
-    Heading1 & Heading2 \\
-    \midrule
-    One      & Two      \\
-    Thee     & Four     \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-\end{ltgexample}
+The following sentence demonstrates that you can overwrite the text part of the generated label using \texttt{label} in a bibliopgrahie"=entry, but the year and the uniqueness is still generated by biber.
 
-\begin{ltgexample}
-% Source: https://tex.stackexchange.com/a/468994/9075
-\begin{table}
-\caption{Table with diagonal line}
-\label{tab:diag}
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & Second & Third \\
-\hline
-& foo & bar \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-\end{ltgexample}
+\begin{filecontents*}[overwrite]{\democodefile}
+The workflow engine Apache ODE \cite{ApacheODE} executes \BPEL processes reliably.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+\begin{filecontents*}[overwrite]{\democodefile}
+Words are best enclosed using \texttt{\textbackslash qq\{..\}}, then the correct quotes are used.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+When creating the Bibtex file it is recommended to make sure that the DOI is listed.
+
+\section{Formulas and Equations}
+\label{sec:mf}
+
+\begin{filecontents*}[overwrite]{\democodefile}
+Equations $f(x)=x$ inside the text can be provided.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+A list with all available mathematical symbols is provided at \url{http://texdoc.net/pkg/symbols-a4}.
+
+\begin{filecontents*}[overwrite]{\democodefile}
+As example the set of natural numbers is given by $\mathbb{N}$.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+For the documentation of editing mathematical formulas read the package documentation of \texttt{amsmath}\footnote{\url{http://texdoc.net/pkg/amsmath}}.
+
+Equation~\ref{eq:test} is numbered and can be referenced in the text:
+\begin{filecontents*}[overwrite]{\democodefile}
+\begin{align}
+  \label{eq:test}
+  x = y
+\end{align}
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+Following equation is not numbered because of using \texttt{\textbackslash align*} as environment.
+\begin{filecontents*}[overwrite]{\democodefile}
+\begin{align*}
+  x = y
+\end{align*}
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+The template offers \verb+\abs+ to enable the bars scaling well at the absolute value:
+
+\begin{filecontents*}[overwrite]{\democodefile}
+$\abs{X}$.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+More details about mathematical environments provides the documentation available at \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html}.
 
 
-\section{Source Code}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sourcecode}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Cref{lst:ListingANDlstlisting} shows how to emmbed source code.
+With \texttt{\textbackslash lstinputlisting} the source code can be loaded directly from files.
 
-\href{https://github.com/gpoore/minted}{minted} is a sophisticated packes to enable properly highlighted listings.
-It uses the \href{http://pygments.org/}{pygments} library, which in turn requires Python.
-
-\begin{ltgexample}
-\Cref{lst:XML} shows source code written in XML.
-\refline{line:comment} contains a comment.
-
-\begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{xml}
-<listing name="example">
-  <!-- comment --> |\labelline{line:comment}|
+%Listing-Umgebung wurde durch \newfloat{Listing} definiert
+\begin{Listing}
+  \begin{lstlisting}
+<listing name="second sample">
   <content>not interesting</content>
 </listing>
-\end{minted}
-  \caption{Example XML listing using minted}
-  \label{lst:XML}
-\end{listing}
-\end{ltgexample}
+\end{lstlisting}
+  \caption{The code is separated by two horizontal lines in the listings environment.}
+  \label{lst:ListingANDlstlisting}
+\end{Listing}
 
-One can also typeset JSON as shown in \cref{lst:flJSON}.
+\begin{filecontents*}[overwrite]{\democodefile}
+Source code is also available in the text \lstinline|<listing />|.
+\end{filecontents*}
+\PrintDemo{style=parallel}
 
-\begin{ltgexample}
-\begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{json}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pseudocode}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Cref{alg:sample} shows a sample algorithm.
+\begin{Algorithmus} %Use the environment only if you want to place the algorithm similar to graphics from TeX
+  \caption{Sample algorithm}
+  \label{alg:sample}
+  \begin{algorithmic}
+\Procedure{Sample}{$a$,$v_e$}
+\State $\mathsf{parentHandled} \gets (a = \mathsf{process}) \lor \mathsf{visited}(a'), (a',c,a) \in \mathsf{HR}$
+\State \Comment $(a',c'a) \in \mathsf{HR}$ denotes that $a'$ is the parent of $a$
+\If{$\mathsf{parentHandled}\,\land(\mathcal{L}_\mathit{in}(a)=\emptyset\,\lor\,\forall l \in \mathcal{L}_\mathit{in}(a): \mathsf{visited}(l))$}
+\State $\mathsf{visited}(a) \gets \text{true}$
+\State $\mathsf{writes}_\circ(a,v_e) \gets
+\begin{cases}
+\mathsf{joinLinks}(a,v_e) & \abs{\mathcal{L}_\mathit{in}(a)} > 0\\
+\mathsf{writes}_\circ(p,v_e)
+& \exists p: (p,c,a) \in \mathsf{HR}\\
+(\emptyset, \emptyset, \emptyset, false) & \text{otherwise}
+\end{cases}
+$
+\If{$a\in\mathcal{A}_\mathit{basic}$}
+  \State \Call{HandleBasicActivity}{$a$,$v_e$}
+\ElsIf{$a\in\mathcal{A}_\mathit{flow}$}
+  \State \Call{HandleFlow}{$a$,$v_e$}
+\ElsIf{$a = \mathsf{process}$} \Comment Directly handle the contained activity
+  \State \Call{HandleActivity}{$a'$,$v_e$}, $(a,\bot,a') \in \mathsf{HR}$
+  \State $\mathsf{writes}_\bullet(a) \gets \mathsf{writes}_\bullet(a')$
+\EndIf
+\ForAll{$l \in \mathcal{L}_\mathit{out}(a)$}
+  \State \Call{HandleLink}{$l$,$v_e$}
+\EndFor
+\EndIf
+\EndProcedure
+  \end{algorithmic}
+\end{Algorithmus}
+
+\clearpage
+And if you want to write an algorithm that goes over several pages, you can only do this with the following \textbf{dirty} hack:
+
 {
-  key: "value"
+\begin{minipage}{\textwidth}
+  \hrule height .8pt width\textwidth
+  \vskip.3em%\vskip\abovecaptionskip\relax
+  \stepcounter{Algorithmus}
+  \addcontentsline{alg}{Algorithmus}{\protect\numberline{\theAlgorithmus}{\ignorespaces Description \relax}}
+  \noindent\textbf{Algorithmus \theAlgorithmus} Description
+  %\stepcounter{algorithm}
+  %\addcontentsline{alg}{Algorithmus}{\thealgorithm{}\hskip0em Description}
+  %\textbf{Algorithmus \thealgorithm} Description
+  \vskip.3em%\vskip\belowcaptionskip\relax
+  \hrule height .5pt width\textwidth
+\end{minipage}
+%without the following line, the text is nerer at the rule
+\vskip-.3em
+%
+code goes here\\
+test2\\
+%
+\vskip-.7em
+\hrule height .5pt width\textwidth
 }
-\end{minted}
-  \caption{Example JSON listing using minted}
-  \label{lst:flJSON}
-\end{listing}
-\end{ltgexample}
 
-Java is also possible as shown in \cref{lst:flJava}.
 
-\begin{ltgexample}
-\begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{java}
-public class Hello {
-    public static void main (String[] args) {
-        System.out.println("Hello World!");
-    }
-}
-\end{minted}
-  \caption{Java code rendered using minted}
-  \label{lst:java}
-\end{listing}
-\end{ltgexample}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Figures}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The \cref{fig:chor1} and \ref{fig:chor2} are important to understand this document.
+In the appendix \vref{fig:AnhangsChor} shows again the complete choreography.
 
-\section{Itemization}
+%The parameters in square brackets are optional - e.g. [htb!]
+%htb! means: Dear LaTeX, please place this image here first ("_h_ere"). If this does not work, place it at the "_t_op" of the page. And if this is not possible, please place it at the "_b_ottom" of the page. And please, please prefer here and above, even if it doesn't look so optimal ("!")
+%These should NOT be used if possible. LaTeX's algorithm for placing the glide environment is already very good!
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{choreography.pdf}
+  \caption{Example Choreography}
+  \label{fig:chor1}
+\end{figure}
 
-One can list items as follows:
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{choreography.pdf}
+  \caption[Example Choreography]{The example choreography. Now slightly smaller to demonstrate \texttt{\textbackslash textwidth}. And also the use of alternative captions for the list of images. However, the latter is only conditionally recommended, because who reads so much text under a picture? Or is it just a matter of style?}
+  \label{fig:chor2}
+\end{figure}
 
-\begin{ltgexample}
-\begin{itemize}
-\item Item One
-\item Item Two
-\end{itemize}
-\end{ltgexample}
 
-With the package paralist, one can create itemizations with lesser spacing:
+\begin{figure}
+  \hfill
+  \begin{subfigure}{.3\textwidth}
+    \includegraphics[width=\textwidth]{choreography.pdf}
+    \caption{Choreography 1}
+    \label{fig:subfigA}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.3\textwidth}
+    \includegraphics[width=\textwidth]{choreography.pdf}
+    \caption{Choreography 2}
+    \label{fig:subfigB}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.3\textwidth}
+    \includegraphics[width=.9\textwidth]{choreography.pdf}
+    \caption{Choreography 3}
+    \label{fig:subfigC}
+  \end{subfigure}
+  \caption{Example to place 3 illustrations next to each other. Further, it is possible to reference each separately.}
+  \label{fig:subfig_example}
+\end{figure}
 
-\begin{ltgexample}
-\begin{compactitem}
-\item Item One
-\item Item Two
-\end{compactitem}
-\end{ltgexample}
+\Cref{fig:subfig_example} shows the usage of the package subcaption.
+It is indeed possible to reference to sub figures: \Cref{fig:subfigA}.
 
-One can enumerate items as follows:
+It is possible to convert SVGs to PDF directly during compilation.
+This is described in the source code of latex-tipps.tex, but commented out.
 
-\begin{ltgexample}
-\begin{enumerate}
-  \item Item One
-  \item Item Two
-\end{enumerate}
-\end{ltgexample}
+\iffalse % <-- Take this away if inkscape is in the path
+  The SVG in \cref{fig:directSVG} is directly included, while the text in the SVG in \cref{fig:latexSVG} is set using pdflatex.
+  If you want to see the graphics, inkscape must be in PATH and in the text source \texttt{\textbackslash{}iffalse} and \text{\textbackslash{}iftrue} have to be commented out.
 
-With the package paralist, one can create enumerations with lesser spacing:
+  \begin{figure}
+    \centering
+    \includegraphics{svgexample.svg}
+    \caption{SVG directly included}
+    \label{fig:directSVG}
+  \end{figure}
 
-\begin{ltgexample}
-\begin{compactenum}
-  \item Item One
-  \item Item Two
-\end{compactenum}
-\end{ltgexample}
+  \begin{figure}
+    \centering
+    \def\svgwidth{.4\textwidth}
+    \includesvg{svgexample}
+    \caption{Text in SVN set via \LaTeX{}}
+    \label{fig:latexSVG}
+  \end{figure}
+\fi % <-- Take this away if inkscape is in the path
 
-With paralist, one can even have all items typset after each other and have them clean in the tex document:
 
-\begin{ltgexample}
-\begin{inparaenum}
-  \item All these items...
-  \item ...appear in one line
-  \item This is enabled by the paralist package.
-\end{inparaenum}
-\end{ltgexample}
 
+\section{More Illustrations}
+\Cref{fig:AnhangsChor,fig:AnhangsChor2} show two choreographies, which should further explain the facts. The second figure is rotated 90 degrees to demonstrate the \texttt{pdflscape} package.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{choreography.pdf}
+  \caption{Example Choreography I}
+  \label{fig:AnhangsChor}
+\end{figure}
+
+\begin{landscape}
+  %sidewaysfigure
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{choreography.pdf}
+    \caption{Example Choreography II}
+    \label{fig:AnhangsChor2}
+  \end{figure}
+\end{landscape}
+
+
+\IfFileExists{pgfplots.sty}{
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Plots with pgfplots}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  The package pdfplots provides plotting of functions directly in \LaTeX~like with matlab or gnuplot. Some visual examples are available here\footnote{\url{http://texdoc.net/pkg/visualtikz}}.
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[xlabel=$x$,
+          ylabel=$\sin(x)$]
+        \addplot {sin(deg(x))};  % Print sine function
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Plot of $\sin(x)$ direclty inside the figure environment with pgfplots.}
+  \end{figure}
+
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[xlabel=$x$,
+          ylabel=$y$]
+        \addplot table [x=a, y=c, col sep=comma] {data/data.csv};  % Read coordinates from csv file and plot them
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Coordinates $x$ and $y$ read from csv file and plotted pgfplots.}
+  \end{figure}
+
+}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Figures with tikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The tikz is a package for creating graphics programmatically. With this package grids or other regular strucutres can be easliy generated.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \draw(0,0) rectangle (4,4);
+    \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+    \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+    \draw(\x,\y) circle (1pt);
+  \end{tikzpicture}
+  \caption{A regular grid genrated with easily with two for loops.}\label{fig:tikz_example}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{UML diagrams using tikz-uml}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Cref{fig:uml} presents a class diagram typeset using tikz-uml.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+  \begin{umlpackage}{p}
+  \begin{umlpackage}{sp1}
+  \umlclass[template=T]{A}{
+    n : uint \\ t : float
+  }{}
+  \umlclass[y=-3]{B}{
+    d : double
+  }{
+    \umlvirt{setB(b : B) : void} \\ getB() : B}
+  \end{umlpackage}
+  \begin{umlpackage}[x=10,y=-6]{sp2}
+  \umlinterface{C}{
+    n : uint \\ s : string
+  }{}
+  \end{umlpackage}
+  \umlclass[x=2,y=-10]{D}{
+    n : uint
+    }{}
+  \end{umlpackage}
+
+  \umlassoc[geometry=-|-, arg1=tata, mult1=*, pos1=0.3, arg2=toto, mult2=1, pos2=2.9, align2=left]{C}{B}
+  \umlunicompo[geometry=-|, arg=titi, mult=*, pos=1.7, stereo=vector]{D}{C}
+  \umlimport[geometry=|-, anchors=90 and 50, name=import]{sp2}{sp1}
+  \umlaggreg[arg=tutu, mult=1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{D}{D}
+  \umlinherit[geometry=-|]{D}{B}
+  \umlnote[x=2.5,y=-6, width=3cm]{B}{A note with respect to class B}
+  \umlnote[x=7.5,y=-2]{import-2}{A anotation}
+  \end{tikzpicture}
+  \caption{Class diagram generated with tikz-uml. Example adapted from Nicolas Kielbasiewicz.}
+  \label{fig:uml}
+\end{figure}
+
+\section{UML diagrams using PlantUML}
+
+In case \lualatex{} is used and PlantUML is installed, UML diagrams can be defined using PlantUML.
+
+% Only works if "--shell-escape" is activated. Please activate only if you are sure, your compilation settings are correct
+%\IfFileExists{plantuml.sty}{\input{latexhints-english-plantuml}}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linguistic Forests}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{filecontents*}[overwrite]{\democodefile}
+\begin{forest}
+  [VP
+    [DP]
+    [V’
+      [V]
+      [DP]
+    ]
+  ]
+\end{forest}
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cref{tab:Ergebnisse} shows results and \cref{tab:Werte} shows how numerical data can be represented in a table.
+\begin{table}
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \multicolumn{2}{c}{\textbf{summed}} & \textbf{Title}                                                          \\ \midrule
+    Table                                      & as                                                           & in      \\
+    \url{tabsatz.pdf}                            & recommended                                                     & gesetzt \\
+
+    \multirow{2}{*}{Example}                    & \multicolumn{2}{c}{a nice example}                                \\
+                                                 & \multicolumn{2}{c}{for using \qq{multirow}}           \\
+    \bottomrule
+  \end{tabular}
+  \caption[Example Table]{Exampe Table -- see \url{http://www.ctan.org/tex-archive/info/german/tabsatz/}}
+  \label{tab:Ergebnisse}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{l *{8}{d{3.2}}}
+    \toprule
+
+                         & \multicolumn{2}{c}{\textbf{Parameter 1}} & \multicolumn{2}{c}{\textbf{Parameter 2}} & \multicolumn{2}{c}{\textbf{Parameter 3}} & \multicolumn{2}{c}{\textbf{Parameter 4}}                                                                                                                                       \\
+    \cmidrule(r){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
+
+    \textbf{Bedingungen} & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}}           & \multicolumn{1}{c}{\textbf{SD}}          & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} & \multicolumn{1}{c}{\textbf{M}} & \multicolumn{1}{c}{\textbf{SD}} \\
+    \midrule
+
+    W                    & 1.1                                      & 5.55                                     & 6.66                                     & .01                                      &                                &                                 &                                &                                 \\
+    X                    & 22.22                                    & 0.0                                      & 77.5                                     & .1                                       &                                &                                 &                                &                                 \\
+    Y                    & 333.3                                    & .1                                       & 11.11                                    & .05                                      &                                &                                 &                                &                                 \\
+    Z                    & 4444.44                                  & 77.77                                    & 14.06                                    & .3                                       &                                &                                 &                                &                                 \\
+    \bottomrule
+  \end{tabular}
+
+  \caption{Example table for 4 constraints (W-Z), each having 4 parameters with (M und SD). Note: use always the same number of decimal places.}
+  \label{tab:Werte}
+\end{table}
+
+\IfFileExists{pgfplotstable.sty}{
+
+\subsection{Tables with pgfplots}
+With the pgfplotstable package tables can be directly generated from a csv file.
+
+\begin{table}[h]
+\centering
+\pgfplotstabletypeset[
+col sep = comma,
+every head row/.style={before row=\toprule,after row=\midrule},
+every last row/.style={after row=\bottomrule},
+display columns/0/.style={string type,column name={}}
+]
+{data/data.csv}
+\caption{Table direclty generated from the values of a csf file.}
+\end{table}
+}{}
+
+
+\section{Tables spanning multiple pages}
+
+
+\begin{longtable}{|l|l|l|}
+\caption{A sample long table.} \label{tab:long} \\
+
+\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+\endhead
+
+\hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+A & BC & D \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abbreviations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+At the first pass the \gls{fr} was 5.
+At the second pass was \gls{fr} 3.
+The plural form can be seen here: \glspl{er}.
+To demonstrate what the list of abbreviations looks like for longer description texts, \glspl{rdbms} must be mentioned here.
 
 With \verb+\gls{...}+ you can enter abbreviations, the first time you call it, the long form is used.
 When reusing \verb+\gls{..}+ the short form is automatically displayed.
@@ -962,75 +2111,79 @@ The opposite is achieved with \verb+\glsreset{..}+.
 
 Abbreviations are defined in \verb+\content\ausarbeitung.tex+ by means of \verb+\newacronym{...}{...}{...}+.
 
-More information at: \url{https://ctan.org/pkg/bib2gls}.
+More information at: \url{http://tug.ctan.org/macros/latex/contrib/glossaries/glossariesbegin.pdf}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+For distant sections \qq{varioref} is recommended:
+\qq{See \vref{sec:mf}}.
+The command \texttt{\textbackslash{}vref} works similar to \texttt{\textbackslash{}cref} the difference beeing that a reference to the page is additionally added.
+\texttt{vref}: \qq{\vref{sec:firstsectioninlatexhints}}, \texttt{cref}: \qq{\cref{sec:firstsectioninlatexhints}}, \texttt{ref}: \qq{\ref{sec:firstsectioninlatexhints}}.
 
-\begin{ltgexample}
-At the first pass the \gls{fr} was 5.
-At the second pass was \gls{fr} 3.
-The plural form can be seen here: \glspl{er}.
-To demonstrate what the list of abbreviations looks like for longer description texts, \glspl{rdbms} must be mentioned here.
+If \qq{varioref} causes difficulties, then \qq{cref} can be used instead.
+This also creates the word \qq{section} automatically: \cref{sec:mf}.
+This is also possible for illustrations etc.
+In English please use \verb1\Cref{...}1 (with large \qq{C} at the beginning).
 
-\gls{dante} is a local \TeX\ user group.
-The German-speaking local \TeX\ user group is \gls{dante}.
-A \gls{gp} is a medical doctor.
-I went to my surgery to see the \gls{gp}.
-\end{ltgexample}
+%With MiKTeX installation from 2012-01-16 no longer necessary.
+%If a section becomes longer than one page and you want to refer to a specific place in the section with \texttt{\textbackslash{}vref}, then you should use \texttt{\textbackslash{}phantomsection} then using \texttt{vref} will also display the correct page number.
 
-\section{Other Features}
+%%The link location will be placed on the line below.
+%%Tipp von http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#The_hyperref_package_and_.5Cphantomsection
+%\phantomsection
+%\label{alabel}
+%View the example for \texttt{\textbackslash{}phantomsection} in the \LaTeX{} source code.
 
-\begin{ltgexample}
-The words \enquote{workflow} and \enquote{dwarflike} can be copied from the PDF and pasted to a text file.
-\end{ltgexample}
+%Here is the example: See Section \vref{hack1} and Section \vref{hack2}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definitions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{definition}[Title]
+  \label{def:def1}
+  Definition Text
+\end{definition}
 
-\begin{ltgexample}
-The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\wp$).
+\Cref{def:def1} shows \ldots
 
-$\powerset({1,2,3})$
-\end{ltgexample}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Footnotes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Footnotes are provided by the command \verb+\footnote{...}+\footnote{\label{fussnote}Example footnote.}. Citing footnotes is possible by provinding a label\verb+\footnote{\label{...}...}+ and cite the footnote with \verb+\cref{...}+ in the text\cref{fussnote}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{ltgexample}
-Brackets work as designed:
-<test>
-One can also input backquotes in verbatim text: \verb|`test`|.
-\end{ltgexample}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Various Things}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:diff}
+\ifdeutsch
+  Numbers (123\,654\,789) are nicely set.
+  Either in a line or as non-lining figure.
+  The latter is reached by parameter \texttt{osf} at package \texttt{libertine} or.\ \texttt{mathpazo} in \text{fonts.tex}.
+\fi
+
+\begin{filecontents*}[overwrite]{\democodefile}
+\begin{compactenum}[I.]
+  \item You can also keep the numbering compact thanks to paralist
+  \item and switch to a different numbering
+\end{compactenum}
+\end{filecontents*}
+\PrintDemo{style=parallel}
+
+The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
+
+\begin{filecontents*}[overwrite]{\democodefile}
+In case \LuaLaTeX{} is used as compiler, there is no ligature at \qq{f\/l} in the word \qq{dwarflike} (in contrast to \qq{fl} at \qq{workflow}).
+In other words: \qq{dwarflike} and \qq{dwarf\/like} look the same in the PDF.
+In case they do not, there is an issue with Lua\LaTeX{} and the selnolig package.
+\end{filecontents*}
+\PrintDemo{style=parallel}
+% Meta comment: The precise form of the optimal ligation suppression command may vary depending on the character pairs involved - see https://tex.stackexchange.com/q/28437/9075
 
 
-%%% ===============================================================================
-\chapter{Conclusion}\label{sec:conclusion}
-%%% ===============================================================================
-
-Your conclusions are not just a factual summary of your work, but they position, interpret, and defend your findings against the state of the art that you discussed in \cref{sec:introduction:state-of-art}. You specifically outline which concrete findings or methodological contributions advance our knowledge towards the general objective you introduced in \cref{sec:introduction:topic}. Objectively discuss which parts you solved and in which parts you failed.
-
-You should explicitly discuss limitations and shortcomings of your work and detail what kind of future studies are needed to overcome these limitations. Be specific in the sense that your arguments for future work should be based on concrete findings and insights you obtained in your report.
-
-
-%%% ===============================================================================
-%%% Bibliography
-%%% ===============================================================================
-
-In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
-E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
-When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
-See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
-\printbibliography
-
-% Enfore empty line after bibliography
-\ \\
-%
-All links were last followed on October 5, 2020.
-
-
-%%% ===============================================================================
-\appendix
-\addcontentsline{toc}{chapter}{Appendices}
-
-%\listoffigures
-%\listoftables
-%%% ===============================================================================
-
-%%% ===============================================================================
-%\chapter{My first appendix}\label{sec:appendix1}
-%%% ===============================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Closing remarks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Please feel free to provide enhancements for this template and create a new ticket on GitHub (\url{https://github.com/latextemplates/uni-stuttgart-computer-science-template/issues}).
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
