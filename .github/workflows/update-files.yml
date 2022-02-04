@@ -83,6 +83,7 @@ jobs:
       - name: Push changes
         run: |
           cd code
+          git status
           parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
   publish:
     runs-on: ubuntu-latest
