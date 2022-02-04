@@ -1,4 +1,4 @@
-FROM reitzig/texlive-base-luatex:2021.5
+FROM reitzig/texlive-base:2021.5
 RUN apk update && apk add --no-cache bash perl python3 py3-pip
 RUN pip3 install pygments
 
@@ -12,6 +12,3 @@ RUN tlmgr update --self --repository https://mirror.mwt.me/ctan/systems/texlive/
 # make latexmk and texlogsieve available
 RUN cp /usr/local/texlive/2021/bin/x86_64-linuxmusl/latexmk /usr/local/bin && \
     cp /usr/local/texlive/2021/bin/x86_64-linuxmusl/texlogsieve /usr/local/bin
-
-# update font index
-RUN luaotfload-tool --update

@@ -7,7 +7,7 @@ Note that this requires a working perl installation.
 
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
-    lualatex main
+    pdflatex main
 
 ## Benefits
 
