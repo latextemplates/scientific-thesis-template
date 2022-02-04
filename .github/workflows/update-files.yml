@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        language: [en, de]
+        language: [en]
         latexcompiler: [pdflatex, lualatex]
     steps:
       - name: Set up Git repository
