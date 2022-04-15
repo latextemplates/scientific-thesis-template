@@ -1,6 +1,7 @@
 % !TeX spellcheck = en-US
 % !TeX encoding = utf8
 % !TeX program = pdflatex
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 % !BIB program = biblatex
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -260,8 +261,10 @@
 
 \crefname{listing}{Listing}{Listings}
 \Crefname{listing}{Listing}{Listings}
-\crefname{lstlisting}{Listing}{Listings}
-\Crefname{lstlisting}{Listing}{Listings}
+
+% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\llabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
 \usepackage{lipsum}
 
@@ -271,7 +274,7 @@
 \usepackage{mwe}
 \usepackage[realmainfile]{currfile}
 \usepackage{tcolorbox}
-\tcbuselibrary{en}
+\tcbuselibrary{minted}
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}

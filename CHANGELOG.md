@@ -2,16 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/).
+From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver.org/).
 
 ## [Unreleased]
 
 ### Added
 
+- Added initial `Dockerfile` to enable building using Docker.
+- Added package [mindflow](https://www.ctan.org/pkg/mindflow), which supports quickly noting down thoughts with a) a proper rendering of LaTeX and b) a proper differentiation from the main text
+- Added more LaTeX hints
+
 ### Changed
 
-- Cleanup lualatex math and font config
+- Switch to pdflatex (to speed up compile time)
+- Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
+- Replaced `\ifluatex` statements by separate `.tex` documents. This makes each `.tex` document smaller and simpler to understand.
+- Updated to TeXLive 2021
 
 ### Fixed
 

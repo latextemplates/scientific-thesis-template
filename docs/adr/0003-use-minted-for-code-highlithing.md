@@ -11,7 +11,6 @@ Source code needs to be highlighted
 * [pygmentex](https://www.ctan.org/pkg/pygmentex)
 * [texments](https://www.ctan.org/pkg/texments)
 
-
 ## Decision Outcome
 
 Chosen option: "minted", because
