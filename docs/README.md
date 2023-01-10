@@ -102,17 +102,17 @@ Always working solution: Use the [docker image](https://hub.docker.com/r/danteev
 This is provides a perfectly configured latex distribution with all required tools.
 
 1. Execute `sudo visudo` to edit the sudoers file
-2. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: <https://unix.stackexchange.com/a/13058/18033>)
-3. Execute `sudo docker pull danteev/texlive`.
+1. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: <https://unix.stackexchange.com/a/13058/18033>)
+1. Execute `sudo docker pull danteev/texlive`.
    This should not ask for any password.
    Will download approx. 4GB.
-4. Open TeXstudio
-5. Options > Configure TeXstudio > Commands
-6. Set "PdfLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-7. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-8. Set "Biber" to `docker run --rm -v DIROFTEXDOCUMENT:/home danteev/texlive biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-9. Check if the "docker pull" command from step 3 succeed. If not, wait.
-10. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
+1. Open TeXstudio
+1. Options > Configure TeXstudio > Commands
+1. Set "PdfLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT danteev/texlive pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+1. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT danteev/texlive lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+1. Set "Biber" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT danteev/texlive biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+1. Check if the "docker pull" command from step 3 succeed. If not, wait.
+1. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
 
 ## Installation hints for Windows
 
