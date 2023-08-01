@@ -162,6 +162,58 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
      8. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see <https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270>)
      9. Execute `initexmf --mklinks --force`
 
+# Using VSCode to Edit, Compile, and Preview PDFs
+***Note: The configuration of LaTeX Workshop on [Fast Guide on Writing LaTeX with LaTeX Workshop in VS Code](https://mathjiajia.github.io/vscode-and-latex/) may require some modifications to work with this template.***
+
+## Prerequisites
+1. Install [VSCode](https://code.visualstudio.com/).
+2. Install [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop).
+3. Install a LaTeX distribution (e.g., [MiKTeX](https://miktex.org/download) or [TeX Live](https://www.tug.org/texlive/)).
+
+## Recommended Setup of VSCode
+1. Open VSCode.
+2. Press <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>P</kbd> to open the command palette. Then type "JSON" and select "Preferences: Open Settings (JSON)" to open `settings.json`.
+3. Now copy and paste the following two snippets into your `settings.json` file (inside the brackets `{}` of your file).
+
+```json
+"latex-workshop.latex.tools": [
+  {
+    "name": "pdflatex",
+    "command": "pdflatex",
+    "args": [
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "%DOC%"
+    ],
+    "env": {}
+  },
+  {
+    "name": "biber",
+    "command": "biber",
+    "args": [
+      "%DOCFILE%"
+    ],
+    "env": {}
+  }
+],
+
+"latex-workshop.latex.recipes": [
+  {
+    "name": "pdflatex ➞ biber ➞ pdflatexX2",
+    "tools": [
+      "pdflatex",
+      "biber",
+      "pdflatex",
+      "pdflatex"
+    ]
+  }
+],
+```
+4. (optional) if you add the folwing line into your `settings.json`, the LaTeX Workshop extension will not automatically compile the code after any changes. You can manually trigger compilation by hitting the green button in the extension or using other methods provided by LaTeX Workshop.
+```json
+  "latex-workshop.latex.autoBuild.run": "never",    
+```
 ## LaTeX compilation
 
 The template is compiled using normal compilation commands.
