@@ -15,7 +15,7 @@
   ngerman,
   % fontsize=11pt is the standard
   a4paper,  % Standard format - only KOMAScript uses paper=a4 - https://tex.stackexchange.com/a/61044/9075
-  twoside,  % we are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
+  twoside,  % we are optimizing for both screen and two-sided printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
   bibliography=totoc,
   %               idxtotoc,   %Index ins Inhaltsverzeichnis
   %               liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
@@ -27,7 +27,7 @@
 ]{scrbook}
 \input{config}
 
-% Packages required for title page of Paderborn University
+% Packages required for the title page of Paderborn University
 \usepackage{tikz}
 \usepackage{eso-pic}
 \usepackage{textpos}
@@ -57,7 +57,7 @@
 
 %tex4ht-Konvertierung verschönern
 \iftex4ht
-  % tell tex4ht to create picures also for formulas starting with '$'
+  % tell tex4ht to create pictures also for formulas starting with '$'
   % WARNING: a tex4ht run now takes forever!
   \Configure{$}{\PicMath}{\EndPicMath}{}
   %$ % <- syntax highlighting fix for emacs

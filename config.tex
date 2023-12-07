@@ -21,10 +21,10 @@
 
 % EN: Enable copy and paste of text from the PDF
 %     Only required for pdflatex. It "just works" in the case of lualatex.
-%     mmap enables mathematical symbols, but does not work with the newtx font set
+%     mmap enables mathematical symbols but does not work with the newtx font set
 %     See: https://tex.stackexchange.com/a/64457/9075
 %     Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-%     Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+%     Troubleshooting outlined at https://tex.stackexchange.com/a/100618/9075
 
 \ifluatex
 \else
@@ -140,7 +140,7 @@
 %     rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
 %\usepackage[rm]{libertine}
 
-% EN: Alternative Font: Palantino. It is recommeded by Prof. Ludewig for German texts
+% EN: Alternative Font: Palantino. It is recommended by Prof. Ludewig for German texts
 % DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
 %     Bitte nur in deutschen Texten
 %\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
@@ -154,7 +154,7 @@
 %\usepackage[scaled=0.83]{beramono}
 
 % EN: backticks (`) are rendered as such in verbatim environments.
-%     See following links for details:
+%     See the following links for details:
 %     - https://tex.stackexchange.com/a/341057/9075
 %     - https://tex.stackexchange.com/a/47451/9075
 %     - https://tex.stackexchange.com/a/166791/9075
@@ -193,7 +193,7 @@
 % DE: Optischer Randausgleich und Grauwertkorrektur
 
 \usepackage[
-  babel=true, % EN: Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
+  babel=true, % EN: Enable language-specific kerning. Take language-settings from the language of the current document (see Section 6 of microtype.pdf)
   expansion=alltext,
   protrusion=alltext-nott, % EN: Ensure that at listings, there is no change at the margin of the listing
   final % EN: Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
@@ -222,7 +222,7 @@
 
 
 % EN: Fixes bugs in AMS math
-%     Corrently conflicts with unicode-math
+%     Currently conflicts with unicode-math
 % \usepackage{mathtools}
 
 %\numberwithin{equation}{section}
@@ -247,7 +247,7 @@
 \usepackage{lccaps}
 
 
-% EN: Defintion of colors. Argument "hyperref" is not used as we do not want to change border colors of links: Links are not colored anymore.
+% EN: Definition of colors. The "hyperref" argument is not used as we do not want to change the border colors of links: Links are not colored anymore.
 % DE: Farbdefinitionen
 \usepackage[dvipsnames]{xcolor}
 
@@ -279,9 +279,9 @@
     \usepackage[ngerman]{selnolig}
   \fi
 \else
-  % EN: Set English as language and allow to write hyphenated"=words
+  % EN: Set English as the language and allow to write hyphenated"=words
   %     `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish).
-  %      "english" has to go last to set it as default language
+  %      "english" has to go last to set it as the default language
   \usepackage[ngerman,main=english]{babel}
   % EN: Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
   \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
@@ -304,7 +304,7 @@
 
 
 % EN: For even easier quotations: \qq{text}.
-%     Is not smart in the case of nesting, but good enough for the most cases
+%     Is not smart in the case of nesting, but good enough for most cases
 \usepackage{textcmds}
 \ifdeutsch
   % EN: German quotes are different. So do not use the English quotes, but the ones provided by the csquotes package.
@@ -453,7 +453,7 @@
 %     Siehe https://tex.stackexchange.com/a/3034/9075.
 \usepackage[hyphens]{url}
 %
-%  EN: When activated, use text font as url font, not the monospaced one.
+%  EN: When activated, use text font as URL font, not the monospaced one.
 %      For all options see https://tex.stackexchange.com/a/261435/9075.
 % \urlstyle{same}
 %
@@ -540,7 +540,7 @@
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{fontsize=\footnotesize}
 %
 % EN: Hack for fancyvrb based on http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-12/msg00075.html
-%     Change of the solution: \Vref somehow collidated with cleveref/varioref as the output of \Vref{} was "Abschnitt 4.3 auf Seite 85"; therefore changed to \myVref -- so completely removed
+%     Change of the solution: \Vref somehow collided with cleveref/varioref as the output of \Vref{} was "Abschnitt 4.3 auf Seite 85"; therefore changed to \myVref -- so completely removed
 %     See https://tex.stackexchange.com/q/132420/9075 for more information.
 \newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
 \newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
@@ -561,7 +561,7 @@
 
 
 % EN: Required for proper environments of fancyvrb and lstlistings
-%    There is also the newfloat pacakge (recommended by minted), but we currently have no expericene with that
+%    There is also the newfloat package (recommended by minted), but we currently have no experience with that
 % DE: Wird für fancyvrb und für lstlistings verwendet
 \usepackage{float}
 %
@@ -599,7 +599,7 @@
 % Abstand zwischen Fußnoten vergrößern:
 %\setlength{\footnotesep}{.85\baselineskip}
 %
-% EN: Following command disables the separting line of the footnote
+% EN: Following command disables the separating line of the footnote
 % DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
 %\renewcommand{\footnoterule}{}
 %
@@ -695,7 +695,7 @@
 \renewcommand*\bibnamedelimc{\addnbspace}
 \renewcommand*\bibnamedelimd{\addnbspace}
 
-%Replace last "and" by comma in bibliography
+%Replace last "and" with a comma in bibliography
 %See http://tex.stackexchange.com/a/41532/9075
 \AtBeginBibliography{%
   \renewcommand*{\finalnamedelim}{\addcomma\space}%
@@ -767,7 +767,7 @@
 \definecolor{black}{rgb}{0,0,0}
 
 
-% EN: Define color of links and more
+% EN: Define the color of links and more
 \hypersetup{
   % have both title and number hyperlinking to content
   linktoc=all,
@@ -937,7 +937,7 @@
   \ChTitleVar{\raggedright\Large\sffamily\bfseries}
 \fi
 
-% EN: Complete different chapter style - self made
+% EN: Complete different chapter style - self-made
 
 % Innen drin kann man dann noch zwischen
 %   * serifenloser Schriftart (eingestellt)
@@ -1010,7 +1010,7 @@
 \displaywidowpenalty = 10000
 
 
-% EN: Try to get rid of "overfull hbox" things and let text flow batter
+% EN: Try to get rid of "overfull hbox" things and let the text flow better
 %     See also
 %       - http://groups.google.de/group/de.comp.text.tex/browse_thread/thread/f97da71d90442816/f5da290593fd647e?lnk=st&q=tolerance+emergencystretch&rnum=5&hl=de#f5da290593fd647e
 %       - http://www.tex.ac.uk/cgi-bin/texfaq2html?label=overfull
@@ -1105,7 +1105,7 @@
 
 
 % EN: Enable footnotes in tables.
-%     This package superseeds the 1997 package "footnote"
+%     This package supersedes the 1997 package "footnote"
 \usepackage{footnotehyper}
 % TODO: The footnotehyper author recommends to enclose the respective area with \begin{savenotes} ... \end{savenotes}
 \makesavenoteenv{tabular}
@@ -1114,7 +1114,7 @@
 \crefformat{footnote}{#2\footnotemark[#1]#3}
 
 
-% EN: pgfplots (optional if the ppackage is installed)
+% EN: pgfplots (optional if the package is installed)
 %     PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing
 \IfFileExists{pgfplots.sty}{
   \usepackage{pgfplots}
@@ -1123,8 +1123,8 @@
 }{}
 
 
-% EN: pgfplotstable (optional if the ppackage is installed)
-%     PGFPlots generates tables from csv files
+% EN: pgfplotstable (optional if the package is installed)
+%     PGFPlots generates tables from CSV files
 \IfFileExists{pgfplotstable.sty}{
   \usepackage{pgfplotstable}
 }{}
@@ -1148,7 +1148,7 @@
 }{}
 
 
-% EN: Layout: bottoms of pages not aligned to each other
+% EN: Layout: bottoms of pages not aligned with each other
 % DE: Der untere Rand darf "flattern"
 \raggedbottom
 
@@ -1182,7 +1182,7 @@
 \pdfcompresslevel=9
 
 
-% EN: Required for recent version of komascript, as some packges are not that compatible with KOMAScript as they should be
+% EN: Required for a recent version of komascript, as some packages are not as compatible with KOMAScript as they should be
 %     Has to be loaded at the *very* end, so we use "\AtEndPreamble" by etoolsbox
 \usepackage{etoolbox}
 \AtEndPreamble{\usepackage{scrhack}}
