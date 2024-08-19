@@ -797,7 +797,9 @@
     \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
   }
 \else
-  \renewcommand*{\acronymname}{List of Abbreviations}
+  \addto\captionsenglish{%
+    \renewcommand*{\acronymname}{List of Abbreviations}%
+  }
 \fi
 \renewcommand*{\glsgroupskip}{}
 %
