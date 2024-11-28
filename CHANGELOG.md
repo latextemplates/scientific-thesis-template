@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fixed examples in latexhints
+- Fixed typo in latexmk action name
+- Fixed mention of license in README
 
 ### Removed
 
