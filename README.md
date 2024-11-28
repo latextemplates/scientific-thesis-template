@@ -8,7 +8,7 @@ See [docs/](docs/) or <http://latextemplates.github.io/scientific-thesis-templat
 
 ## License
 
-The license of this work is [CC0](https://creativecommons.org/publicdomain/zero/1.0/), which corresponds to "public domain".
+The license of this work is [0BSD](https://spdx.org/licenses/0BSD.html) which corresponds to "public domain". Any derived work can freely be relicensed and can omit original copyright and license information.
 
 ### Exceptions
 
