@@ -1,6 +1,9 @@
 name: Update Files
 on:
+  pull_request:
   push:
+    branches:
+      - main
   workflow_dispatch:
 concurrency:
   group: update-files
@@ -14,18 +17,15 @@ jobs:
         listings: [listings, minted]
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
-          path: 'code'
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
-          node-version: '14'
-      - name: Update npm
-        run: npm i -g npm@latest
-      - run: npm i npm@latest
+          node-version: '22'
+          cache: 'npm'
       - name: Make generator available globally
-        working-directory: ${{ github.workspace }}/code/generator-latex-template
+        working-directory: ${{ github.workspace }}/generator-latex-template
         run: |
           npm install
           npm link
@@ -35,14 +35,13 @@ jobs:
         shell: bash
         working-directory: /tmp/ltg
         run: |
-          yo latex-template\
+          yo $GITHUB_WORKSPACE/generator-latex-template/generators/app/index.js \
            --githubpublish\
-           --docker=reitzig\
            --documentclass=scientific-thesis\
            --papersize=a4\
-           --latexcompiler=pdflatex\
+           --latexcompiler=both\
            --bibtextool=biblatex\
-           --texlive=2021\
+           --texlive=2024\
            --language=${{ matrix.language }}\
            --font=default\
            --listings=${{ matrix.language }}\
@@ -79,11 +78,6 @@ jobs:
           # latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
           rm latexmkrc
 
-          # We need to Dockerfile of lualatex
-          if [ ${{ matrix.latexcompiler }} != "lualatex" ]; then
-            rm Dockerfile
-          fi
-
           # copy everything
           cp -r * ${{ github.workspace }}/code/
 
@@ -104,52 +98,37 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [generatetex]
-    services:
-      registry:
-        image: registry:2
-        ports:
-          - 5000:5000
     steps:
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          driver-opts: network=host
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx
-      - name: Build Docker image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: localhost:5000/name/app:latest
-      - name: Set up Git repository
-        uses: actions/checkout@v2
+      - name: Set up Git repositor4
+        uses: actions/checkout@v4
       - run: |
-          mkdir /tmp/out
-      - name: Build main-english.tex
-        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-english.tex"
-      - name: Build main-english-minted.tex
-        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-english-minted.tex"
-      - name: Build main-german.tex
-        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-german.tex"
-      - name: Build main-german-minted.tex
-        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk main-german-minted.tex"
+          # use latexmkrc (which is disabled due to easy overleaf usage)
+          cp _latexmkrc latexmkrc
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+      - name: Prepare latexmk
+        run: |
+          updmap -sys
+          texhash
+          tlmgr generate language --rebuild-sys
+      - run: latexmk main-english.tex
+      - run: "latexmk main-english-minted.tex"
+      - run: "latexmk main-german.tex"
+      - run: "latexmk main-german-minted.tex"
       - run: |
           mkdir publish
-          cp /tmp/out/*.pdf publish/
+          cp main*.pdf publish/
           cp README.md publish/
           cp .github/_config.yml publish/
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: publish
           path: publish/
       - name: Deploy
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./publish
