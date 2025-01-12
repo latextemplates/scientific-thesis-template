@@ -23,6 +23,8 @@ From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver
 ### Fixed
 
 - Fixed examples in latexhints
+- Fixed typo in latexmk action name
+- Fixed mention of license in README
 
 ### Removed
 
