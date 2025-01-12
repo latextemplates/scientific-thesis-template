@@ -1,4 +1,4 @@
-name: Build with lualatex (and publish to gh-pages)
+name: Build with latexmk (and publish to gh-pages)
 on:
   push:
   pull_request:
