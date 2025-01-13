@@ -47,7 +47,7 @@ jobs:
            --texlive=2024\
            --lang=${{ matrix.language }}\
            --font=default\
-           --listings=${{ matrix.language }}\
+           --listings=${{ matrix.listings }}\
            --cleveref=true\
            --enquotes=csquotes\
            --tweak_outerquote=babel\
@@ -75,11 +75,13 @@ jobs:
 
           # remove files which should not be overwritten
 
+          # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
+          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.lang }}" != "en" ]; then
+            rm _latexmkrc
+          fi
+
           # the LICENSE of the repository should be kept
           rm LICENSE
-
-          # latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
-          rm latexmkrc
 
           # copy everything
           cp -r * ${{ github.workspace }}/code/
