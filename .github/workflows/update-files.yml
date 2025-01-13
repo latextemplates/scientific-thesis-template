@@ -39,6 +39,7 @@ jobs:
         run: |
           yo $GITHUB_WORKSPACE/generator-latex-template/generators/app/index.js \
            --githubpublish\
+           --overleaf=true\
            --docker=iot\
            --documentclass=scientific-thesis\
            --papersize=a4\
