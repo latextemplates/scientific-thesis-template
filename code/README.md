@@ -17,7 +17,6 @@ The template will be extended to support theses from different institutions.
 
 For [architectural decision records](https://adr.github.io) see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
 
-
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
 
@@ -53,7 +52,6 @@ You can run the [latex template generator] to enable the features.
 Congratulations. You chose to use all available features.
 
 ## Tool hints
-
 
 MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
 
