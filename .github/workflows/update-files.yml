@@ -101,7 +101,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: '${{ github.event.pull_request.head.ref }}'
-      - run: |
+      - name: Create latexmkrc
+        run: |
+          ls -la
           # ensure latest updates
           git pull
           # use latexmkrc (which is disabled due to easy overleaf usage)
