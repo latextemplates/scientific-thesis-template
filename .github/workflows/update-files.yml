@@ -77,7 +77,7 @@ jobs:
           # remove files which should not be overwritten
 
           # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
-          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.lang }}" != "en" ]; then
+          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.language }}" != "en" ]; then
             rm _latexmkrc
           fi
 
