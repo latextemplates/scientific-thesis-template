@@ -1,4 +1,21 @@
-# # LaTeX Template for a Scientific Thesis
+# LaTeX Template for a Scientific Thesis
+
+This template is a general template for scientific theses.
+Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
+
+- University of Stuttgart, Computer Science
+  - [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
+  - [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
+  - [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
+<!--
+- Paderborn University, Computer Science - to be confirmed.
+  - [English example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)
+  - [German example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)
+-->
+
+The template will be extended to support theses from different institutions.
+
+For [architectural decision records](https://adr.github.io) see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
 
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
@@ -7,7 +24,7 @@ Note that this requires a working perl installation.
 
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
-    pdflatex main
+    lualatex main
 
 ## Benefits
 
@@ -24,6 +41,8 @@ Following features are enabled in this template:
 - Modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [booktabs].
 - (Optional) LaTeX compilation using the modern lualatex compiler.
 - Ready-to-go configuration for [latexindent].
+- Proper hyphenation and microtype for English texts.
+- Hints on writing an abstract and thesis by Dirk Fahland.
 
 ## Disabled features
 
@@ -33,7 +52,6 @@ You can run the [latex template generator] to enable the features.
 Congratulations. You chose to use all available features.
 
 ## Tool hints
-
 
 MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
 
@@ -47,17 +65,16 @@ To have minted running properly, you have to do following steps on Windows:
 
 1. Install python: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
 2. Install [pygments]: `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
-3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
-   You can also just execute `latexmk paper`.
+3. When latexing, use `-shell-escape`: `pdflatex -shell-escape main`.
+   You can also just execute `latexmk main`.
 
 ## Usage with docker
 
-The generated `Dockerfile` is based on the [Dockerfile by reitzig](https://github.com/reitzig/texlive-docker).
-The idea of that system is to host the document sources in a directory separated from the output directory.
+The generated `Dockerfile` is based on the [Dockerfile by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
 
-    docker run --rm -v "c:\users\example\latex-document:/work/src" -v "c:\users\example\latex-document\out:/work/out" ltg work latexmk
+    docker run --rm -v "c:\users\example\latex-document:/workdir" latexmk
 
-Following one-time setup is requried:
+Following one-time setup is required:
 
     docker build -t ltg .
 
@@ -72,7 +89,7 @@ Following one-time setup is requried:
 After that you can use and push the `main` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 
-### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
+### Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
 Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: <https://tex.stackexchange.com/a/324972/9075>)
 
@@ -82,7 +99,7 @@ A: You have activated `\MakeOuterQuote{"}` and used some special babel command t
 Now, you have to decide whether you want keep using plain quotes to enquote a word or use the special hyphenation command.
 In other words: Do you want `"quote"` and `app\-lication\-specific` or `\enquote{quote} and  application"=specific`?
 
-Note that this should not happen when the template is generated as the setting `tweak_outerquote` ensures that these two options are mutually exclusive.
+Note that this should not happen when the template is generated as the setting `tweakouterquote` ensures that these two options are mutually exclusive.
 
 ### Q: I need more space. What can I do?
 
@@ -106,12 +123,15 @@ Attention! This is work in progress and does not always produce best results.
 
 Yes. You can regenerate the template and choose "German" as language.
 
+### Q: `ngerman-x-latest` is reported missing
+
+Install the package `dehyph-exptl`.
+
 ## Further information
 
 - Other templates: <https://latextemplates.github.io/>
 
 [booktabs]: https://ctan.org/pkg/booktabs
-[cfr-lm]: https://www.ctan.org/pkg/cfr-lm
 [cleveref]: https://ctan.org/pkg/cleveref
 [csquotes]: https://www.ctan.org/pkg/csquotes
 [hypcap]: https://www.ctan.org/pkg/hypcap
@@ -120,7 +140,6 @@ Yes. You can regenerate the template and choose "German" as language.
 [microtype]: https://ctan.org/pkg/microtype
 [minted]: https://ctan.org/pkg/minted
 [natbib]: https://ctan.org/pkg/natbib
-[newtx]: https://ctan.org/pkg/newtx
 [paralist]: https://www.ctan.org/pkg/paralist
 [pdfcomment]: https://www.ctan.org/pkg/pdfcomment
 [upquote]: https://www.ctan.org/pkg/upquote

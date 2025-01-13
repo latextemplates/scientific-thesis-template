@@ -1,34 +1,31 @@
 % !TeX spellcheck = en-US
+% LTeX: language=en-US
 % !TeX encoding = utf8
-% !TeX program = pdflatex
+% !TeX program = lualatex
+% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
 % !BIB program = biblatex
 % -*- coding:utf-8 mod:LaTeX -*-
 
-% EN: The following package allows \\ at the title page
-%     For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
+% The following package allows \\ at the title page
+% For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
 \RequirePackage{kvoptions-patch}
 \documentclass[
   % fontsize=11pt is the standard
   numbers=noenddot,
   english,  % English as main language; this parameter is passed to other packages (e.g., selnolig in the case of lualatex)
-  a4paper,  % Standard format - only KOMAScript uses paper=a4 - https://tex.stackexchange.com/a/61044/9075
-  twoside,  % we are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
+  a4paper,  % KOMAScript allows for both paper=a4 and (standard) a4paper - https://tex.stackexchange.com/a/61044/9075
+  twoside,  % We are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
   bibliography=totoc,
-  %               idxtotoc,   %Index ins Inhaltsverzeichnis
-  %               liststotoc, %List of X ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
+  % idxtotoc,   % Index ins Inhaltsverzeichnis
+  % liststotoc, % List of * ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
   headsepline,
   cleardoublepage=empty,
   parskip=half,
   %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
   draft=false
 ]{scrbook}
-\usepackage{scrlayer-scrpage}
-\ihead[]{}
-\chead[]{}
-\ohead[]{\headmark}
-\cfoot[]{}
-\ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
-\ifoot[]{}
+
+\usepackage{iftex}
 
 % backticks (`) are rendered as such in verbatim environments.
 % See following links for details:
@@ -67,22 +64,169 @@
 %\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
 %\makeatother
 
-% This is the modern package for "Computer Modern".
-% In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
-\usepackage[%
-    rm={oldstyle=false,proportional=true},%
-    sf={oldstyle=false,proportional=true},%
-    % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
-    % However, this makes listings look ugly.
-    tt={oldstyle=false,proportional=true,variable=false},%
-    qt=false%
-]{cfr-lm}
+%math stuff
+\usepackage[
+   centertags, % (default) center tags vertically
+   %tbtags,    % 'Top-or-bottom tags': For a split equation, place equation numbers level
+               % with the last (resp. first) line, if numbers are on the right (resp. left).
+   sumlimits,  %(default) Place the subscripts and superscripts of summation
+               % symbols above and below
+   %nosumlimits, % Always place the subscripts and superscripts of summation-type
+               % symbols to the side, even in displayed equations.
+   intlimits,  % Like sumlimits, but for integral symbols.
+   %nointlimits, % (default) Opposite of intlimits.
+   namelimits, % (default) Like sumlimits, but for certain 'operator names' such as
+               % det, inf, lim, max, min, that traditionally have subscripts placed underneath
+               % when they occur in a displayed equation.
+   %nonamelimits, % Opposite of namelimits.
+   %leqno,     % Place equation numbers on the left.
+   %reqno,     % Place equation numbers on the right.
+   fleqn,     % Position equations at a fixed indent from the left margin
+   			  % rather than centered in the text column.
+]{amsmath} %
+\SetMathAlphabet{\mathcal}{normal}{OMS}{amsa}{m}{n} %% AMS font for mathcal
 
-\usepackage{setspace}
-\setstretch{1.2}
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/mh/doc/mathtools.pdf
+% Erweitert amsmath und behebt einige Bugs
+\usepackage[fixamsmath,disallowspaces]{mathtools}
+
+%%% Doc: http://www.ctan.org/info?id=fixmath
+% LaTeX's default style of typesetting mathematics does not comply
+% with the International Standards ISO31-0:1992 to ISO31-13:1992
+% which indicate that uppercase Greek letters always be typset
+% upright, as opposed to italic (even though they usually
+% represent variables) and allow for typsetting of variables in a
+% boldface italic style (even though the required fonts are
+% available). This package ensures that uppercase Greek be typeset
+% in italic style, that upright $\Delta$ and $\Omega$ symbols are
+% available through the commands \upDelta and \upOmega; and
+% provides a new math alphabet \mathbold for boldface
+% italic letters, including Greek.
+\usepackage{fixmath}
+
+%for theorems, replacement for amsthm
+\usepackage[amsmath,hyperref]{ntheorem}
+\theorempreskipamount 2ex plus1ex minus0.5ex
+\theorempostskipamount 2ex plus1ex minus0.5ex
+\theoremstyle{break}
+\newtheorem{definition}{Definition}[chapter]
+
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/onlyamsmath/onlyamsmath.dvi
+% Warnt bei Benutzung von Befehlen die mit amsmath inkompatibel sind.
+
+% Braucht man evtl. nicht.
+% \usepackage[
+% 	all,
+% 	warning
+% ]{onlyamsmath}
+
+\ifluatex
+\usepackage[no-math]{fontspec}
+\usepackage{unicode-math}
+
+% See https://tug.org/FontCatalogue/texgyretermes/ for more information
+\setmainfont{texgyretermes}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Ligatures=TeX
+]
+% See https://tug.org/FontCatalogue/texgyreheros/ for more information
+\setsansfont[Scale=.9]{TeX Gyre Heros Regular}
+% shapely l, upright quotes
+% Normal scaling is too large --> thus, we use ",Scale=.9"
+\setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolatazi4}
+
+% Enable proper ligatures
+% For more information see https://ctan.org/pkg/selnolig
+% language "english" or "ngerman" is passed to selnolig by the document class
+\usepackage{selnolig}
+\else
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
+\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
 
 % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
 \usepackage[T1]{fontenc}
+\fi
+
+% DE: Noch mehr Symbole
+%\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
+%\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
+%\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
+%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
+
+% EN: Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
+%     This is the modern package for "Computer Modern".
+%     In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+% DE: Fallback-Schriftart
+%\usepackage[%
+%    rm={oldstyle=false,proportional=true},%
+%    sf={oldstyle=false,proportional=true},%
+%    tt={oldstyle=false,proportional=true,variable=true},%
+%    qt=false%
+%]{cfr-lm}
+
+% EN: Headings are typset in Helvetica (which is similar to Arial)
+% DE: Schriftart fuer die Ueberschriften - ueberschreibt lmodern
+%\usepackage[scaled=.95]{helvet}
+
+% DE: Für Schreibschrift würde tun, muss aber nicht
+%\usepackage{mathrsfs} %  \mathscr{ABC}
+
+% EN: Font for the main text
+% DE: Schriftart fuer den Fliesstext - ueberschreibt lmodern
+%     Linux Libertine, siehe http://www.linuxlibertine.org/
+%     Packageparamter [osf] = Minuskel-Ziffern
+%     rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
+%\usepackage[rm]{libertine}
+
+% EN: Alternative Font: Palantino. It is recommeded by Prof. Ludewig for German texts
+% DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
+%     Bitte nur in deutschen Texten
+%\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
+% EN: The euro sign
+% DE: Das Euro Zeichen
+%     Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
+%     Alternative: \usepackage{eurosym}
+% \newcommand{\EUR}{\ppleuro}
+
+% DE: Schriftart fuer Programmcode - ueberschreibt lmodern
+%     Falls auskommentiert, wird die Standardschriftart lmodern genommen
+%     Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
+%\usepackage[scaled=.92]{luximono}
+%\usepackage{courier}
+% DE: BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
+%\usepackage[scaled=0.83]{beramono}
+
+\usepackage{setspace}
+% Alternative package: https://ctan.org/pkg/leading
+
+% Symbole Check und Cross
+\usepackage{pifont}
+\newcommand{\dingcheck}{\ding{51}}
+\newcommand{\dingcross}{\ding{55}}
+%for scaling see http://tex.stackexchange.com/a/130236/9075
+
+% DE: Noch mehr Symbole
+%\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
+%\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
+%\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
+%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
+
+\usepackage[automark]{scrlayer-scrpage}
+\automark[section]{chapter}
+\setkomafont{pageheadfoot}{\normalfont\sffamily}
+\setkomafont{pagenumber}{\normalfont\sffamily}
+
+\ihead[]{}
+\chead[]{}
+\ohead[]{\headmark}
+\cfoot[]{}
+\ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
+\ifoot[]{}
 
 % Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
 
@@ -108,16 +252,27 @@
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
 
-\usepackage{xcolor}
-
+\usepackage[dvipsnames, table]{xcolor}
+% See https://github.com/gpoore/minted
 \usepackage[newfloat]{minted}
 
-% Line numbers not flowing out of the margin
-\setminted{numbersep=5pt, xleftmargin=12pt}
+\setminted{
+    % Line numbers not flowing out of the margin
+    numbersep=5pt,
+    xleftmargin=12pt,
+    %
+    % Better listing breaking
+    breakafter=-/\{,
+    breakbefore=\\
+    %
+    % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
+    % breakbytoken=true,
+    % breakbytokenanywhere=true
+}
 
-\usemintedstyle{bw} %black and white style
+%\usemintedstyle{bw} %black and white style
 %\usemintedstyle{vs} %visual studio
-%\usemintedstyle{friendlygrayscale} % custom style - submitted as pull request https://bitbucket.org/birkenfeld/pygments-main/pull-requests/748/add-style-friendly-grayscale/diff
+\usemintedstyle{friendly_grayscale}
 %\usemintedstyle{friendly}
 %\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
 %\usemintedstyle{autumn}
@@ -168,16 +323,16 @@
   natbib        = true,
   eprint        = true,
   url           = true,
-  doi           = true,
-  isbn          = true,
+  doi           = true, %source: http://tex.stackexchange.com/a/23118/9075
+  isbn          = true, %source: http://tex.stackexchange.com/a/23118/9075
   backref       = true]{biblatex}
 
 % enable more breaks at URLs. See https://tex.stackexchange.com/a/134281.
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
 
-%\bibliography{bibliography}
-%\addbibresource[datatype=bibtex]{bibliography.bib}
+\bibliography{bibliography}
+%\addbibresource[datatype=bibtex]{\bibliography{bibliography}}
 
 % Do not put "vd" in the label, but put it at "\citeauthor"
 % Source: http://tex.stackexchange.com/a/30277/9075
@@ -214,25 +369,129 @@
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-% Enable nice comments
-\usepackage{pdfcomment}
+% Farbige Tabellen
+% ----------------
+% Das Paket colortbl wird inzwischen automatisch durch xcolor geladen
+%
+% Erweiterte Funktionen innerhalb von Tabellen
+% --------------------------------------------
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/multirow/multirow.sty
+\usepackage{multirow} % Mehrfachspalten
+%
+%%% Doc: Documentation inside dtx Package
+\usepackage{dcolumn}  % Ausrichtung an Komma oder Punkt
 
-\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
+%\usepackage{supertabular}
 
-% Compatibality with packages todo, easy-todo, todonotes
-\newcommand{\todo}[1]{\commentatside{#1}}
+%%% Fussnoten/Endnoten ===================================================
 
-% Compatiblity with package fixmetodonotes
-\newcommand{\TODO}[1]{\commentatside{#1}}
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/footmisc/footmisc.pdf
+%
+\usepackage[
+   bottom,      % Footnotes appear always on bottom. This is necessary
+                % especially when floats are used
+   stable,      % Make footnotes stable in section titles
+   % perpage,     % Reset on each page
+   %para,       % Place footnotes side by side of in one paragraph.
+   %side,       % Place footnotes in the margin
+   ragged,      % Use RaggedRight
+   %norule,     % suppress rule above footnotes
+   multiple,    % rearrange multiple footnotes intelligent in the text.
+   %symbol,     % use symbols instead of numbers
+]{footmisc}
 
-% Put footnotes below floats
+\counterwithout{footnote}{chapter} % Continuous numbering of footnotes across chapters
+
+\interfootnotelinepenalty=10000 % Verhindert das Fortsetzen von
+                                % Fussnoten auf der gegenüberligenden Seite
+
+% EN: Put footnotes below floats
+% DE: Fußnoten unter Gleitumgebungen ("floats") platzieren
 % Source: https://tex.stackexchange.com/a/32993/9075
 \usepackage{stfloats}
 \fnbelowfloat
 
+% EN: Extended support for footnotes
+% DE: Fußnoten
+%
+%\usepackage{dblfnote}  %Zweispaltige Fußnoten
+%
+% Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
+%\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
+%
+% Abstand zwischen Fußnoten vergrößern:
+%\setlength{\footnotesep}{.85\baselineskip}
+%
+% EN: Following command disables the separting line of the footnote
+% DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+%\renewcommand{\footnoterule}{}
+%
+%\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
+
+% DE: Fußnoten immer ganz unten auf einer \raggedbottom-Seite
+% DE: fnpos kommt aus dem yafoot package
+%\usepackage{fnpos}
+%\makeFNbelow
+%\makeFNbottom
+
+% TODO (and comment) configuration
+%
+% - \todo (from todo, easy-todo, todonotes) / \TODO (from fixmetodonotes) - for "normal" TODOs
+% - \todofix - "important" TODOs
+%
+% - \textcomment - highlights text and has a hover comment
+% - \sidecomment - just puts a comment to the side. Note: \comment MUST NOT be used as command name, it is already defined by much packages (mathdesign, mindflow, verbatim, and others)
+%
+% - \missingfigure
+%
+% - \textmarker
+% - \modified
+% - \change      - adresses a review comment
+
+% Enable nice comments
+\usepackage{pdfcomment}
+
+\newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+
+% Small PDF comment
+% 1. Parameter: Comment
+\newcommand{\sidecomment}[1]{\pdfcomment[color={0.045 0.278 0.643},voffset=4pt,icon=Note]{#1}}
+% Disabled variant - for the final PDF
+%\newcommand{\sidecomment}[1]{}
+
+\newcommand{\todo}[1]{TODO!\sidecomment{#1}}
+
+% Änderungen
+%
+% 1. Parameter: Review-Kommentar
+% 2. Parameter: Neuer Text
+\newcommand{\change}[2]{{\color{red}#2}\pdfcomment[color={0.234 0.867 0.211},voffset=8pt,opacity=0.5]{#1}}
+% Disabled variant - for the final PDF
+%\newcommand{\change}[2]{#2}
+
+% Define default commands
+\makeatletter
+\@ifundefined{missingfigure}{\newcommand{\missingfigure}{... missing figure ...}}{}
+\@ifundefined{textcomment}{\newcommand{\textcomment}[2]{#1 \todo{#2}}}{}
+\@ifundefined{sidecomment}{\newcommand{\sidecomment}[1]{\marginpar{#1}}}{}
+\@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
+\@ifundefined{TODO}{\newcommand{\TODO}[1]{\todo{#1}}}{}
+\@ifundefined{todofix}{\newcommand{\todofix}[1]{\todo{#1}}}{}
+\@ifundefined{change}{\newcommand{\change}[2]{#1 $\rightarrow$ #2}}{}
+\makeatother
+
+% Textmarker (Textfarbe rot)
+\newcommand{\textmarker}[1]{{\color{red} #1}\xspace}
+
+% Modified (Text blau)
+\newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
+
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
-\addto\extrasgerman{\sisetup{locale = DE}}
+
+% See http://tex.stackexchange.com/a/83051/9075
+% Normally, doesn't work with hyperref, but cleveref fixes that
+\usepackage{varioref}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -240,18 +499,48 @@
 % Enable hyperref without colors and without bookmarks
 \hypersetup{
   hidelinks,
-  colorlinks=true,
+  colorlinks=true,       % Links erhalten Farben statt Kaeten
+  raiselinks=true,       % calculate real height of the link
   allcolors=black,
   pdfstartview=Fit,
-  breaklinks=true
+  breaklinks=true,       % Links ueberstehen Zeilenumbruch
+  hypertexnames=false,   % Fix jumping to algorithm line - http://tex.stackexchange.com/a/156404/9075
 }
 
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
+
+%%%
+% Ermoeglicht es, Abbildungen um 90 Grad zu drehen
+% Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
+%Das Paket lscape dreht die Seite auch nicht
+\usepackage{pdflscape}
+
 \usepackage[caption=false,font=footnotesize]{subfig}
 
+% Alternative for making subfigures:
+% Part of the caption package. See http://www.ctan.org/pkg/caption
+% Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
+%
+% (subfigure is outdated. subfig is maintained, but subcaption is better)
+% See: http://tex.stackexchange.com/questions/13625/subcaption-vs-subfig-best-package-for-referencing-a-subfigure
+%\usepackage[hypcap=true]{subcaption}
+
 \usepackage{mindflow}
+
+% https://ctan.org/pkg/algorithms
+% Consists of two environments: algorithm and algorithmic
+% Although oudated, it defines the "algorithm" float enviornment
+% TODO: Define floating environment "algorithm" in other ways
+\usepackage[chapter]{algorithm}
+
+% https://ctan.org/pkg/algpseudocodex
+% Successor of algorithmicx; more modern than https://ctan.org/pkg/algorithms
+\usepackage{algpseudocodex}
+
+\floatname{algorithm}{Algorithmus}
+\renewcommand{\listalgorithmname}{Algorithmenverzeichnis}
 
 % Extensions for references inside the document (\cref{fig:sample}, ...)
 % Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
@@ -260,8 +549,10 @@
 
 \crefname{listing}{Listing}{Listings}
 \Crefname{listing}{Listing}{Listings}
-\crefname{lstlisting}{Listing}{Listings}
-\Crefname{lstlisting}{Listing}{Listings}
+
+% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\llabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
 \usepackage{lipsum}
 
@@ -271,7 +562,7 @@
 \usepackage{mwe}
 \usepackage[realmainfile]{currfile}
 \usepackage{tcolorbox}
-\tcbuselibrary{en}
+\tcbuselibrary{minted}
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
@@ -287,11 +578,33 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
+\usepackage[
+  translate=babel,
+  abbreviations,         % create "abbreviations" glossary
+  nomain,                % don't create "main" glossary
+  stylemods=longbooktabs % do the adjustments for the longbooktabs styles
+]{glossaries-extra}
+\setglossarystyle{long3col-booktabs}
+
+% Hint by https://tex.stackexchange.com/a/463188/9075
+% \usepackage{glossary-longextra}
+
+% Following is required if the abbreviation list should be sorted automatically (\printglossary / \printglossaries)
+% Not required, if we printed the entries in-order (using \printunsrtglossaries)
+% Required to have the German chapter name % Source: https://tex.stackexchange.com/a/426392/9075
+\makeglossaries
+
+\input{abbreviations}
+
+% Allows for defining commands that don't eat spaces.
 \usepackage{xspace}
-%\newcommand{\eg}{e.\,g.\xspace}
-%\newcommand{\ie}{i.\,e.\xspace}
-\newcommand{\eg}{e.\,g.,\ }
-\newcommand{\ie}{i.\,e.,\ }
+% Adds compatibility to \xspace und \enquote
+\makeatletter
+\xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
+\makeatother
+
+\newcommand{\eg}{e.g.,\ }
+\newcommand{\ie}{i.e.,\ }
 
 % Enable hyphenation at other places as the dash.
 % Example: applicaiton\hydash specific
@@ -300,22 +613,23 @@
 % Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
 \makeatother
 
+% Add manual adapted hyphenation of English words
+% See https://ctan.org/pkg/hyphenex and https://tex.stackexchange.com/a/22892/9075 for details
+\input{ushyphex}
+
+\ifluatex
+% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/selnolig
+% See ADR-0009 for alternatives
+\usepackage{selnolig}
+\fi
+
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+\hyphenation{
+  op-tical net-works semi-conduc-tor
+  % May not be hypphenated
+  AROMA TOSCA BPMN OASIS OMG DMTF IT DevOps
+}
 
-\usepackage[
-  abbreviations,% create "abbreviations" glossary
-  nomain,% don't create "main" glossary
-  stylemods=longbooktabs% do the adjustments for the longbooktabs styles
-]{glossaries-extra}
-
-% Following is required if the abbreviation list should be sorted automatically (\printglossary)
-% Not required, because we print the entries in-order (using \printunsrtglossaries)
-% \makeglossaries
-
-\input{acronyms}
-
-\setglossarystyle{long-booktabs}
 % Package URL: https://ctan.org/pkg/scientific-thesis-cover
 \usepackage[
   title={Is Oil the future?},
@@ -330,6 +644,7 @@
 ]{scientific-thesis-cover}
 
 
+\ifpdftex
 % Enable copy and paste of text from the PDF
 % Only required for pdflatex. It "just works" in the case of lualatex.
 % Alternative: cmap or mmap package
@@ -341,16 +656,125 @@
 % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
 \input glyphtounicode
 \pdfgentounicode=1
+\fi
+% DM: line-breaking-description env vom daniel w.
 
+% credit goes to daniel w. :-)
+%% --- Descriptions with line breaks in labels ---------------------------------
+\usepackage{calc}
+
+\newcommand*\Descriptionlabel[1]
+{\raisebox{0pt}[1ex][0pt]
+  {\makebox[\labelwidth][1]
+    {\parbox[t]{\labelwidth}
+      {\hspace{0pt}\textbf{#1:}}}}}
+
+\newcommand*\Descriptionlabelx[1]
+{\parbox[t]{\textwidth}
+  {\textbf{#1}\\\mbox{}}
+}
+
+\newenvironment{Description}
+{\begin{list}{}{\let\makelabel\Descriptionlabelx
+    \setlength\labelwidth{1em}
+    \setlength\leftmargin{\labelwidth+\labelsep}}}
+{\end{list}}
+
+
+% globally change line spacing of lists
+% paralist has suspended development since 10 years.
+% enumitem has been updated 2011-09-28
+\usepackage[inline]{enumitem}
+\setlist{partopsep=0pt,itemsep=1pt}
+
+%------------------------------------------------------------------------
+% fquote Fancy Quotation environment
+% supports empty/optional author
+
+% Use \sloppy to make right-margin easier?
+% Set picture units to be relative to font size (em)?
+% Use begingroup to rest units afterwards?
+
+\usepackage{xifthen}% provides \isempty test
+\definecolor{quotemark}{gray}{0.7}
+
+%fquote environment with author as optional parameter
+%usage: \begin{fquote}quote\end{fquote} or \begin{fquote}[Author]quote\end{fquote}
+\newenvironment{fquote}[1][]{%
+  \newcommand{\fqauthor}{\relax}
+  \ifthenelse{\isempty{#1}}
+  	{}% do nothing
+  	{\renewcommand{\fqauthor}{\hfill\textsc{--- #1}}}
+  \vspace{1em}
+  \begin{list}{}{%
+      \setlength{\leftmargin}{0.2\textwidth}
+      \setlength{\rightmargin}{0.2\textwidth}
+    }
+    \item[]%
+    \begin{picture}(0,0)(0,0)
+      \put(-15,-5){\makebox(0,0){%
+	  \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
+      }
+    \end{picture}\em\ignorespaces%
+}{%
+  \newline%
+  \makebox[0pt][l]{\hspace{0.6\textwidth}%
+  \begin{picture}(0,0)(0,0)
+    \put(15,10){\makebox(0,0){%
+	\scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
+    }
+  \end{picture}}%
+  \fqauthor
+  \end{list}
+}
+
+%German fquote
+%  1 parameter for the author's name, may be empty ("{}")
+%  guaranteed German quotes (works with lualatex and babel package)
+%  usage: \begin{gfquote}{Author}quote\end{gfquote}
+\newenvironment{gfquote}[1]{%
+  \newcommand{\fqauthor}{\relax}
+  \ifthenelse{\isempty{#1}}
+   {}% do nothing
+   {\renewcommand{\fqauthor}{\hfill\textsc{\textemdash #1}}}
+  \vspace{1em}
+  \begin{list}{}{%
+      \setlength{\leftmargin}{0.2\textwidth}
+      \setlength{\rightmargin}{0.2\textwidth}
+    }
+    \item[]%
+    \begin{picture}(0,0)(0,0)
+      \put(-15,-5){\makebox(0,0){%
+   \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
+      }
+    \end{picture}\em\ignorespaces%
+}{%
+  \newline%
+  \makebox[0pt][l]{\hspace{0.6\textwidth}%
+  \begin{picture}(0,0)(0,0)
+    \put(15,10){\makebox(0,0){%
+ \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
+    }
+  \end{picture}}%
+  \fqauthor
+  \end{list}
+}
+
+% fix incompatibilities between KOMA and other packages, mainly float.
+% should be loaded at the very end - see http://tex.stackexchange.com/a/156256/9075
+\usepackage{scrhack}
 \begin{document}
+\setstretch{1.2}
+\raggedbottom
 \pagenumbering{arabic}
 \Titelblatt
 
 \pagestyle{plain.scrheadings}
 \renewcommand*{\chapterpagestyle}{plain.scrheadings}
 
-% Kurzfassung / abstract
-% auch im Stil vom Inhaltsverzeichnis
+% abstract
+% Same style as table of contents
+\section*{Abstract}
 \emph{Write an abstract for your work. Replace each of the points below with one sentence (two if you must) and you have your abstract. Write it when you finished your entire report.\footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
 
 \emph{Introduction.} In one sentence, what’s the topic? Phrase it in a way that your reader will understand. If you’re writing a PhD thesis, your readers are the examiners – assume they are familiar with the general field of research, so you need to tell them specifically what topic your thesis addresses. Same advice works for scientific papers – the readers are the peer reviewers, and eventually others in your field interested in your research, so again they know the background work, but want to know specifically what topic your paper covers.
@@ -376,21 +800,24 @@
 %
 % In case of a strange break in the table of contents,
 % a page break can be inserted by issuing the following command at the "right" place in the main text:
-%   \addtocontents{toc}{\protect\newpage}
+%  \addtocontents{toc}{\protect\newpage}
 \tableofcontents
 
 \listoffigures
 
 \listoftables
-\listof{Listing}{List of Listings}
+\listoflistings
 
-%mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
-%Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
+% mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
+% Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
 %\listof{Algorithmus}{List of Algorithms}
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
 
-% Abbreviations
-\printunsrtglossaries
+% Abbreviations / Acronyms
+\printglossary[type=\acronymtype,title={Abbreviations}]
+% \printglossaries
+% \printnoidxglossaries
+% \printunsrtglossaries cannot be used, because then no indexing happens; source: https://tex.stackexchange.com/a/287128/9075
 
 \microtypesetup{protrusion=true}
 
@@ -634,7 +1061,7 @@ An interpretation can only be followed after all results have been described. Th
 
 
 \chapter{LaTeX Hints}
-\label{chap:latexhints}
+\label{sec:latexhints}
 
 % Required for proper example rendering in the compiled PDF
 \newcount\LTGbeginlineexample
@@ -701,6 +1128,35 @@ This is a small note.
 \end{mindflow}
 \end{ltgexample}
 
+\section{Handling TODOs}
+
+\begin{ltgexample}
+\textmarker{Markierter Text.}
+\end{ltgexample}
+
+Bei \verb1\textmarker1 wird nur die Textfarbe geändert, da dies auch bei einigen Worten gut funktioniert.
+
+\begin{ltgexample}
+\textcomment{Markierter Text.}{Kommentar dazu.}
+\end{ltgexample}
+
+\begin{ltgexample}
+\modified{Manuelle Markierung für Text, der seit der letzten Version geändert wurde.}
+\end{ltgexample}
+
+\begin{ltgexample}
+Das ist ein Text.
+\change{FL1: Text angepasst}{Geänderter Text}.
+\end{ltgexample}
+
+\begin{ltgexample}
+Hier nur ein Kommentar\sidecomment{Kommentar}.
+\end{ltgexample}
+
+\begin{ltgexample}
+\todo{Hier muss noch kräftig Text produziert werden}
+\end{ltgexample}
+
 \section{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
@@ -720,7 +1176,7 @@ This is enabled by an additional configuration of the babel package.
 \section{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can written plain text (such as 100), by using the siunitx package like that:
+Numbers can be written plain text (such as 100), by using the siunitx package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -789,7 +1245,6 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 \end{figure}
 \end{ltgexample}
 
-
 \section{Sub Figures}
 
 An example of two sub figures is shown in \cref{fig:two_sub_figures}.
@@ -845,7 +1300,7 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 
 \section{Source Code}
 
-\href{https://github.com/gpoore/minted}{minted} is a sophisticated packes to enable properly highlighted listings.
+\href{https://github.com/gpoore/minted}{minted} is a sophisticated package to enable properly highlighted listings.
 It uses the \href{http://pygments.org/}{pygments} library, which in turn requires Python.
 
 \begin{ltgexample}
@@ -890,7 +1345,7 @@ public class Hello {
 }
 \end{minted}
   \caption{Java code rendered using minted}
-  \label{lst:java}
+  \label{lst:flJava}
 \end{listing}
 \end{ltgexample}
 
@@ -967,6 +1422,8 @@ A \gls{gp} is a medical doctor.
 I went to my surgery to see the \gls{gp}.
 \end{ltgexample}
 
+\todo{Include difference between acronym and abbreviation - \url{https://tex.stackexchange.com/a/154566/9075}}
+
 \section{Other Features}
 
 \begin{ltgexample}
@@ -986,8 +1443,154 @@ One can also input backquotes in verbatim text: \verb|`test`|.
 \end{ltgexample}
 
 
+\section{Varioref examples}
+\label{sec:ex:vref}
+
+Varioref demonstration: Vref at beginning of sentence, vref in all other cases.
+
+\begin{ltgexample}
+\Vref{fig:ex:cref} shows a simple fact, although \vref{fig:ex:cref} could also show something else.
+
+\Vref{tab:ex:cref} shows a simple fact, although \vref{tab:ex:cref} could also show something else.
+
+\Vref{sec:ex:cref} shows a simple fact, although \vref{sec:ex:cref} could also show something else.
+\end{ltgexample}
+\section{Miscellaneous Examles}
+\label{ssec:example}
+
+Referencetest: \Cref{ssec:example}, \cref{fig:Abbildung} und \cref{alg:example}.
+
+\begin{ltgexample}
+Checkmark: \dingcheck. Crossmark: \dingcross.
+\end{ltgexample}
+
+\begin{figure}
+  \missingfigure{}
+  \caption{Abbildung}
+  \label{fig:Abbildung}
+\end{figure}
+
+\begin{landscape}
+  \begin{figure}
+    \missingfigure{}
+    \caption{Gedrehte Abbildung}
+    \label{fig:AbbildungGedreht}
+  \end{figure}
+\end{landscape}
+
+\subsection{Algorithmen}
+
+\begin{algorithm}
+  \caption{$algo$}
+  \label{alg:example}
+  \begin{algorithmic}[1]
+    \State $a \gets 0$
+    \State State 2\label{alg1:state2}
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Algorithmus 2}
+\label{alg:example2}
+\begin{algorithmic}[1]
+\State $a \gets 0$
+\State State 2\label{alg2:state2}
+\end{algorithmic}
+\end{algorithm}
+
+\Cref{alg:example} hat bereits einen Algorithmus gezeigt.
+Test der Zeilenreferenzierung: Zeile~\ref{alg1:state2} (\cref{alg:example}) und Zeile~\ref{alg2:state2} (\cref{alg:example2}).
+
+\subsection{Definitionen}
+\begin{definition}[Title]
+\label{def:def1}
+Definition Text
+\end{definition}
+
+\Cref{def:def1} zeigt \ldots
+
+\subsection{Aufzählungen}
+
+\begin{enumerate}[label=\alph*)]
+\item a
+\item b
+\item c
+\item d
+\end{enumerate}
+
+Equivalent to paralist's inparaenum:
+\begin{enumerate*}[label=\alph*)]
+\item a
+\item b
+\item c
+\item d
+\end{enumerate*}
+
+\begin{description}
+\item[first] Erstens
+\item[second] Zweitens
+\item[third] Drittens
+\end{description}
+
+\begin{description}
+\item[\texttt{first}] Erstens
+\item[\texttt{second}] Zweitens
+\item[\texttt{third}] Drittens
+\end{description}
+
+%works only if package enumitem is loaded
+\begin{description}[font=\ttfamily]
+\item[first] Erstens
+\item[second] Zweitens
+\item[third] Drittens
+\end{description}
+
+\begin{description}[style=unboxed]
+\item[first label with a long description text breaking over one line. Enabled by enumitem package] Erstens
+\item[second] Zweitens
+\item[third] Drittens
+\end{description}
+
+\begin{Description}
+\item[first label with a long description text breaking over one line. Defined in template.tex] Erstens
+\item[second] Zweitens
+\item[third] Drittens
+\end{Description}
+
+\begin{itemize}
+\item Erstens
+\item Zweitens
+\item Drittens
+\end{itemize}
+
+Optionaler Parameter ändert den Marker, der vorangestellt ist. Siehe \url{http://www.weinelt.de/latex/item.html}.
+\begin{itemize}
+\item[A] Erstens
+\item[B] Zweitens
+\item[C] Drittens
+\end{itemize}
+
+Falsche Benutzung des optionalen Parameters wie folgt:
+\begin{itemize}
+\item[first] Erstens
+\item[second] Zweitens
+\item[third] Drittens
+\end{itemize}
+Dabei ist zu beachten, dass es sich bei Einbindung von \texttt{enumitem} anders verhält als bei \texttt{paralist}.
+
+\subsection{fquote}
+
+\begin{fquote}[T.\ Informatiker]
+Bis nächsten Freitag ist das Programm fertig.
+\end{fquote}
+
+\begin{gfquote}{T.\ Informatiker}
+Bis nächsten Freitag ist das Programm fertig.
+\end{gfquote}
+
+
 %%% ===============================================================================
-\chapter{Conclusion}\label{sec:conclusion}
+\chapter{Conclusion and Outlook}\label{sec:conclusion}
 %%% ===============================================================================
 
 Your conclusions are not just a factual summary of your work, but they position, interpret, and defend your findings against the state of the art that you discussed in \cref{sec:introduction:state-of-art}. You specifically outline which concrete findings or methodological contributions advance our knowledge towards the general objective you introduced in \cref{sec:introduction:topic}. Objectively discuss which parts you solved and in which parts you failed.
@@ -1003,25 +1606,32 @@ In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st
 E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
 When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
 See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
+
 \printbibliography
 
 % Enfore empty line after bibliography
 \ \\
 %
+\noindent
 All links were last followed on October 5, 2020.
 
-
 %%% ===============================================================================
+
+%\IfDefined{printindex}{\printindex}
+%\IfDefined{printnomenclature}{\printnomenclature}
+
+\clearpage
 \appendix
-\addcontentsline{toc}{chapter}{Appendices}
+% 'Anhang' ins Inhaltsverzeichnis
+%\phantomsection
+%\addcontentsline{toc}{chapter}{Appendix}
+\addcontentsline{toc}{part}{Appendix}
 
-%\listoffigures
-%\listoftables
+%%% ===============================================================================
+\chapter{My first appendix}\label{sec:appendix1}
 %%% ===============================================================================
 
-%%% ===============================================================================
-%\chapter{My first appendix}\label{sec:appendix1}
-%%% ===============================================================================
+\lipsum[1]
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
