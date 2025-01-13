@@ -51,7 +51,7 @@ jobs:
            --listings=${{ matrix.listings }}\
            --cleveref=true\
            --enquotes=csquotes\
-           --tweak_outerquote=babel\
+           --tweakouterquote=babel\
            --todo=pdfcomment\
            --examples=true\
            --howtotext=true
