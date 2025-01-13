@@ -85,9 +85,10 @@ jobs:
           # the LICENSE of the repository should be kept
           rm LICENSE
 
-          ls -la
-          git status
-          ls -la _latexmkrc || true
+          # Files are ready
+          # Overwrite old versions in $GITHUB_WORKSPACE
+          cp -r * $GITHUB_WORKSPACE
+          cp -r .* $GITHUB_WORKSPACE
       - name: Commit changes
         uses: EndBug/add-and-commit@v8
         with:
