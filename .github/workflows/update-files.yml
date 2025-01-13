@@ -85,6 +85,9 @@ jobs:
           # the LICENSE of the repository should be kept
           rm LICENSE
 
+          # We do not want to update GitHub workflows
+          rm -rf .github/workflows
+
           # Files are ready
           # Overwrite old versions in $GITHUB_WORKSPACE
           cp -r * $GITHUB_WORKSPACE
