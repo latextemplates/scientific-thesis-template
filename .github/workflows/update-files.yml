@@ -45,7 +45,7 @@ jobs:
            --latexcompiler=both\
            --bibtextool=biblatex\
            --texlive=2024\
-           --language=${{ matrix.language }}\
+           --lang=${{ matrix.language }}\
            --font=default\
            --listings=${{ matrix.language }}\
            --cleveref=true\
