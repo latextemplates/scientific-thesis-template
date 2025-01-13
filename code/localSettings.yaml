@@ -1,0 +1,28 @@
+indentPreamble: 1
+defaultIndent: '  '
+maxNumberOfBackUps: 9
+modifyLineBreaks:
+    preserveBlankLines: 1
+    condenseMultipleBlankLinesInto: 0
+    oneSentencePerLine:
+        manipulateSentences: 1
+        removeSentenceLineBreaks: 0
+        sentencesFollow:
+            par: 1
+            blankLine: 1
+            fullStop: 1
+            exclamationMark: 1
+            questionMark: 1
+            rightBrace: 1
+            commentOnPreviousLine: 1
+            other: 0
+        sentencesBeginWith:
+            A-Z: 1
+            a-z: 0
+            other: 0
+        sentencesEndWith:
+            basicFullStop: 0
+            betterFullStop: 1
+            exclamationMark: 1
+            questionMark: 1
+            other: '(?:\.\)(?!\h*[a-z]))|(?:(?<!(?:(?:e\.g)|(?:i\.e)|(?:etc))))\.(?!(?:[a-z]|[A-Z]|\-|\,|\.|[0-9]))'
