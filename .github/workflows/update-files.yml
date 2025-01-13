@@ -83,19 +83,12 @@ jobs:
 
           # the LICENSE of the repository should be kept
           rm LICENSE
-
-          # copy everything
-          cp -r * ${{ github.workspace }}/code/
-
-          cd ${{ github.workspace }}/code/
-          git status
       - name: Commit changes
         uses: EndBug/add-and-commit@v8
         with:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
           push: false
-          cwd: 'code'
       - name: Push changes
         run: |
           parallel --retries 10 --delay 9 ::: "git pull --rebase; git push"
