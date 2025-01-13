@@ -89,6 +89,11 @@ jobs:
           # Overwrite old versions in $GITHUB_WORKSPACE
           cp -r * $GITHUB_WORKSPACE
           cp -r .* $GITHUB_WORKSPACE
+
+          # output current status
+          cd ${{ github.workspace }}
+          git status
+          git diff
       - name: Commit changes
         uses: EndBug/add-and-commit@v8
         with:
