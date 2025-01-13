@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+          cache-dependency-path: 'generator-latex-template/package-lock.json'
       - name: Make generator available globally
         working-directory: ${{ github.workspace }}/generator-latex-template
         run: |
