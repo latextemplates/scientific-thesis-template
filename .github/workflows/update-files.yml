@@ -78,6 +78,7 @@ jobs:
 
           # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
           if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.language }}" != "en" ]; then
+            echo "REMOVING _laetxmkrc"
             rm _latexmkrc
           fi
 
