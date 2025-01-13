@@ -105,9 +105,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [generatetex]
     steps:
-      - name: Set up Git repositor4
+      - name: Set up Git repository
         uses: actions/checkout@v4
+        with:
+          ref: '${{ github.event.pull_request.head.ref }}'
       - run: |
+          # ensure latest updates
+          git pull
           # use latexmkrc (which is disabled due to easy overleaf usage)
           cp _latexmkrc latexmkrc
       - name: Install TeX Live
