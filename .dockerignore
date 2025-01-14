@@ -1,8 +1,10 @@
+.github
 Dockerfile
+generator-latex-template
 
 main.pdf
 main-*.pdf
-graphics/*.pdf_tex
+figures/*.pdf_tex
 democode.tex
 
 # plantuml
