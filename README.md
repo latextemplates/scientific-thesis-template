@@ -22,6 +22,8 @@ Note that this requires a working perl installation.
 
     latexmk main
 
+To enable this, please move `_latexmkrc` to `latexmkrc`.
+
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
     lualatex main
@@ -126,6 +128,12 @@ Yes. You can regenerate the template and choose "German" as language.
 ### Q: `ngerman-x-latest` is reported missing
 
 Install the package `dehyph-exptl`.
+
+### Q: I get ``! I can't find file `clmr28t10+20'.``
+
+You seem to use `latexmk` locally.
+Please move `_latexmkrc` to `latexmkrc` to get `latexmk` working.
+If you don't do this, `latexmk` tries to execute `latex`, which tries to produce a DVI file (and not a PDF file).
 
 ## Further information
 
