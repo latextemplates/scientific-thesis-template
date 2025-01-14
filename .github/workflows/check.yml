@@ -20,6 +20,9 @@ jobs:
           updmap -sys
           texhash
           tlmgr generate language --rebuild-sys
+          if [ ! -f "latexmkrc" ]; then
+            cp "_latexmkrc" "latexmkrc"
+          fi
       - run: latexmk main
       - uses: actions/upload-artifact@v4
         with:
