@@ -25,8 +25,8 @@ democode.tex
 
 
 
-# Created by https://www.toptal.com/developers/gitignore/api/emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice
-# Edit at https://www.toptal.com/developers/gitignore?templates=emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice
+# Created by https://www.toptal.com/developers/gitignore/api/emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -464,6 +464,25 @@ Backup of *.doc*
 # Visio autosave temporary files
 *.~vsd*
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -490,4 +509,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice
+# End of https://www.toptal.com/developers/gitignore/api/emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode
