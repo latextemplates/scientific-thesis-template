@@ -20,7 +20,7 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](https
 ## Usage
 
 - `thesis-example.tex` is the main document
-- Use "lualatex + biblatex" in your TeX editor or `latexmk  main` / `make` in the command line
+- Use "lualatex + biblatex" in your TeX editor or `latexmk  main-german` / `make` in the command line
 
 ### Using `latexmk`
 
@@ -31,7 +31,7 @@ To build the whole document, execute following command.
 Note that this requires a working perl installation.
 
 ```bash
-latexmk main
+latexmk main-german
 ```
 
 To enable latexmk, please move `_latexmkrc` to `latexmkrc`.
@@ -39,7 +39,7 @@ To enable latexmk, please move `_latexmkrc` to `latexmkrc`.
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
 ```bash
-lualatex main
+lualatex main-german
 ```
 
 ### Advanced usage
@@ -91,8 +91,8 @@ To have minted running properly, you have to do following steps on Windows:
 
 1. Install python: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
 2. Install [pygments]: `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
-3. When latexing, use `-shell-escape`: `pdflatex -shell-escape main`.
-   You can also just execute `latexmk main`.
+3. When latexing, use `-shell-escape`: `pdflatex -shell-escape main-german`.
+   You can also just execute `latexmk main-german`.
 
 ### VSCode configuration
 
@@ -217,7 +217,7 @@ The most simple solution to get more space is to exchange the font.
 Execute following command:
 
 ```bash
-latexindent -l -s -sl -w main.tex
+latexindent -l -s -sl -w main-german.tex
 ```
 
 ### Q: I want to obey the one-sentence-per-line rule. How can I do that?
@@ -225,7 +225,7 @@ latexindent -l -s -sl -w main.tex
 Execute following command:
 
 ```bash
-latexindent -m -l -s -sl -w main.tex
+latexindent -m -l -s -sl -w main-german.tex
 ```
 
 ### Q: Can I also write in German?
