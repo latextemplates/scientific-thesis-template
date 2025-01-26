@@ -2,8 +2,8 @@
 Dockerfile
 generator-latex-template
 
-main-german.pdf
-main-german-*.pdf
+main-english.pdf
+main-english-*.pdf
 graphics/*.pdf_tex
 
 # spelling
