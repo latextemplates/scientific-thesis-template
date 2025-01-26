@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
+
 ## [2025-01-26]
 
 ### Added
@@ -286,7 +292,8 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[2025-01-26]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-01-26...HEAD
+[2025-01-26]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0...2025-01-26
 [3.0.0]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.4...3.0.0
 [3.0.0-beta.4]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.3...3.0.0-beta.4
 [3.0.0-beta.3]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.2...3.0.0-beta.3
@@ -303,3 +310,5 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 [1.3.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.0.0...v1.1.0
+
+<!-- markdownlint-disable-file MD024 MD033 -->
