@@ -5,13 +5,9 @@ Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, an
 
 - University of Stuttgart, Computer Science
   - [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
+  - [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english.pdf)
   - [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
   - [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
-<!--
-- Paderborn University, Computer Science - to be confirmed.
-  - [English example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)
-  - [German example](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)
--->
 
 The template will be extended to support theses from different institutions.
 
