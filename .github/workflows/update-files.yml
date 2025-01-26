@@ -69,7 +69,7 @@ jobs:
           fi
 
           if [ ${{ matrix.listings }} == "minted" ]; then
-            mv main-$LANGUAGE.tex main-$LANGUAGE-minted.tex
+            mv main-$LANGUAGE.tex main-minted-$LANGUAGE.tex
           fi
 
           # remove files which should not be overwritten
