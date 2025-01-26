@@ -68,10 +68,8 @@ jobs:
             LANGUAGE=german
           fi
 
-          if [ ${{ matrix.listings }} == "listings" ]; then
-            mv main.tex main-$LANGUAGE.tex
-          else
-            mv main.tex main-$LANGUAGE-minted.tex
+          if [ ${{ matrix.listings }} == "minted" ]; then
+            mv main-$LANGUAGE.tex main-$LANGUAGE-minted.tex
           fi
 
           # remove files which should not be overwritten
