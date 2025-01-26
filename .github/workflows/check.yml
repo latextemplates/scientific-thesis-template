@@ -1,12 +1,15 @@
-name: latexmk main
+name: Check
 on:
   push:
+  schedule:
+    - cron: "5 6 * * 1"
   workflow_dispatch:
 concurrency:
   group: "${{ github.workflow }}-${{ github.head_ref || github.ref }}"
   cancel-in-progress: true
 jobs:
-  check:
+  pdf:
+    name: latexmk main
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -24,8 +27,117 @@ jobs:
             cp "_latexmkrc" "latexmkrc"
           fi
       - run: latexmk main
+
+      # Highlight mis-spelled words in the PDF
+      - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
+        with:
+          packages: aspell aspell-en aspell-de
+          version: 1.0
+          execute_install_scripts: true
+      - name: aspell
+        run: |
+          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
+            # The lualatex package "spelling" requires the content to be in a file ending with ".spell.bad"
+            aspell --mode=tex -l de_DE --run-together --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | sort | uniq >> main.spell.bad
+          done
+      - run: latexmk main
+
+      - name: Job summary using texlogsieve
+        run: |
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          texlogsieve < main.log >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
       - uses: actions/upload-artifact@v4
         with:
           name: test-result
           path: |
             main.pdf
+            main.log
+  word-count:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+      - name: Count words
+        run: |
+          texcount -utf8 -inc main.tex > texcount.txt
+          echo "## TeXcount word count" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat "texcount.txt" >> $GITHUB_STEP_SUMMARY
+
+          texcount -utf8 -inc -v -html main.tex > texcount.html
+
+          # output for summary
+          # too verbose - therefore disabled
+          #
+          # texcount -utf8 -inc -v -htmlcore main.tex > texcount.html-body
+          # echo "" >> $GITHUB_STEP_SUMMARY
+          # echo "## TeXcount LaTeX interpretation" >> $GITHUB_STEP_SUMMARY
+          # echo "" >> $GITHUB_STEP_SUMMARY
+          # cat "texcount.html-body" >> $GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: word-count
+          path: |
+            texcount.txt
+            texcount.html
+  spell-check:
+    # This is based on https://github.com/mh61503891/action-paper-aspell/tree/master
+    #
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      # Original action does not work well - see https://github.com/awalsh128/cache-apt-pkgs-action/pull/136
+      # The action is not updated - and thus the dictionaries are not updated
+      - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
+        with:
+          packages: aspell aspell-en aspell-de
+          version: 1.0
+          execute_install_scripts: true
+
+      - name: aspell
+        run: |
+          echo "| file | status |" >> $GITHUB_STEP_SUMMARY
+          echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
+          failure=0
+          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
+            # One could add a personal dictionary using --personal=.aspell.en.pws
+            # Words are output in the order they appear in the document
+            words=$(aspell --mode=tex -l de_DE --run-together --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | tr '\n' ' ')
+            if [ -z "$words" ]; then
+              echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
+              if [[ "$tex" == "main.tex" ]]; then
+                failure=1
+              fi
+            fi
+          done
+          if [[ "$failure" -eq 1 ]]; then
+             echo "" >> $GITHUB_STEP_SUMMARY
+             echo "If you want to ignore words, add them to `.aspell.en.pws` (your personal aspell dictionary)"
+            exit 1
+          fi
+  indent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
+        with:
+          packages: libyaml-tiny-perl libfile-homedir-perl
+          version: 1.0
+          execute_install_scripts: true
+      - name: Install latexindent
+        uses: zauguin/install-texlive@v3
+        with:
+          packages: latexindent
+      - run: make format
+      - name: No changes made by latexindent
+        run: git diff --exit-code
