@@ -10,6 +10,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 ### Changed
 
 - Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
+- One `main-*` document for both pdflatex and lualatex.
 
 ## [2025-01-26]
 
