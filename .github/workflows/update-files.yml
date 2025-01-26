@@ -81,6 +81,9 @@ jobs:
             rm README.md
             rm _latexmkrc
             rm -rf .github/workflows
+            rm .dockerignore
+            rm .gitignore
+            rm abbreviations.tex
           fi
 
           # Files are ready
