@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        language: [en]
+        language: [en, de]
         listings: [listings, minted]
     steps:
       - name: Set up Git repository
