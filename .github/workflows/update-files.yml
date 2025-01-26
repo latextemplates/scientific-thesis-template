@@ -78,6 +78,7 @@ jobs:
           if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.language }}" != "en" ]; then
             echo "REMOVING _latexmkrc"
             rm Makefile
+            rm README.md
             rm _latexmkrc
             rm -rf .github/workflows
           fi
