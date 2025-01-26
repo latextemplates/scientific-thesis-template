@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   pdf:
-    name: latexmk main
+    name: latexmk main-english
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -26,7 +26,7 @@ jobs:
           if [ ! -f "latexmkrc" ]; then
             cp "_latexmkrc" "latexmkrc"
           fi
-      - run: latexmk main
+      - run: latexmk main-english
 
       # Highlight mis-spelled words in the PDF
       - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
@@ -38,21 +38,21 @@ jobs:
         run: |
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
             # The lualatex package "spelling" requires the content to be in a file ending with ".spell.bad"
-            aspell --mode=tex -l de_DE --run-together --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | sort | uniq >> main.spell.bad
+            aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | sort | uniq >> main-english.spell.bad
           done
-      - run: latexmk main
+      - run: latexmk main-english
 
       - name: Job summary using texlogsieve
         run: |
           echo '```' >> $GITHUB_STEP_SUMMARY
-          texlogsieve < main.log >> $GITHUB_STEP_SUMMARY || true
+          texlogsieve < main-english.log >> $GITHUB_STEP_SUMMARY || true
           echo '```' >> $GITHUB_STEP_SUMMARY
       - uses: actions/upload-artifact@v4
         with:
           name: test-result
           path: |
-            main.pdf
-            main.log
+            main-english.pdf
+            main-english.log
   word-count:
     runs-on: ubuntu-latest
     steps:
@@ -64,17 +64,17 @@ jobs:
           package_file: '${{ github.workspace }}/Texlivefile'
       - name: Count words
         run: |
-          texcount -utf8 -inc main.tex > texcount.txt
+          texcount -utf8 -inc main-english.tex > texcount.txt
           echo "## TeXcount word count" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           cat "texcount.txt" >> $GITHUB_STEP_SUMMARY
 
-          texcount -utf8 -inc -v -html main.tex > texcount.html
+          texcount -utf8 -inc -v -html main-english.tex > texcount.html
 
           # output for summary
           # too verbose - therefore disabled
           #
-          # texcount -utf8 -inc -v -htmlcore main.tex > texcount.html-body
+          # texcount -utf8 -inc -v -htmlcore main-english.tex > texcount.html-body
           # echo "" >> $GITHUB_STEP_SUMMARY
           # echo "## TeXcount LaTeX interpretation" >> $GITHUB_STEP_SUMMARY
           # echo "" >> $GITHUB_STEP_SUMMARY
@@ -97,7 +97,7 @@ jobs:
       # The action is not updated - and thus the dictionaries are not updated
       - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
         with:
-          packages: aspell aspell-en aspell-de
+          packages: aspell aspell-en
           version: 1.0
           execute_install_scripts: true
 
@@ -109,12 +109,12 @@ jobs:
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
             # One could add a personal dictionary using --personal=.aspell.en.pws
             # Words are output in the order they appear in the document
-            words=$(aspell --mode=tex -l de_DE --run-together --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | tr '\n' ' ')
+            words=$(aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | tr '\n' ' ')
             if [ -z "$words" ]; then
               echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
             else
               echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
-              if [[ "$tex" == "main.tex" ]]; then
+              if [[ "$tex" == "main-english.tex" ]]; then
                 failure=1
               fi
             fi
