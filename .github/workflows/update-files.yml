@@ -93,7 +93,7 @@ jobs:
           git status
           git diff
       - name: Commit changes
-        uses: EndBug/add-and-commit@v8
+        uses: EndBug/add-and-commit@v9
         with:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
@@ -125,10 +125,18 @@ jobs:
           updmap -sys
           texhash
           tlmgr generate language --rebuild-sys
-      - run: latexmk main-english.tex
-      - run: "latexmk main-english-minted.tex"
-      - run: "latexmk main-german.tex"
-      - run: "latexmk main-german-minted.tex"
+      - name: Build all examples
+        run: |
+          for doc in main*.tex; do
+            latexmk "$doc"
+
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "## $doc" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            texlogsieve < "${doc%.tex}.log" >> "$GITHUB_STEP_SUMMARY" || true
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          done
       - run: |
           mkdir publish
           cp main*.pdf publish/
