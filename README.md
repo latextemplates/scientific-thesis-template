@@ -17,16 +17,38 @@ The template will be extended to support theses from different institutions.
 
 For [architectural decision records](https://adr.github.io) see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
 
+## Usage
+
+- `thesis-example.tex` is the main document
+- Use "lualatex + biblatex" in your TeX editor or `latexmk  main` / `make` in the command line
+
+### Using `latexmk`
+
+[latexmk] is a very smart tool for latex compilation.
+It executes the latex tools as often as needed to get the final PDF.
+
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
 
-    latexmk main
+```bash
+latexmk main
+```
 
-To enable this, please move `_latexmkrc` to `latexmkrc`.
+To enable latexmk, please move `_latexmkrc` to `latexmkrc`.
 
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
-    lualatex main
+```bash
+lualatex main
+```
+
+### Advanced usage
+
+On the command line, there are additional features:
+
+- `latexmk -C` or `make clean` for cleaning up
+- `make format` to reformat the `.tex` files (one sentence per line and indent)
+- `make aspell` for interactive spell checking
 
 ## Benefits
 
@@ -38,10 +60,12 @@ Following features are enabled in this template:
 - Support of hyperlinked references without extra color thanx to [hyperref].
 - Better breaking of long URLs.
 - Support for `\powerset` command.
-- (Optional) Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
+- Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 - [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
 - Modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [booktabs].
-- (Optional) LaTeX compilation using the modern lualatex compiler.
+- LaTeX compilation using the modern lualatex compiler.
+- [biblatex]+[biber] instead of plain [bibtex] to have a more intuitive `.bib` file.
+- [latexmk] for easy compilation of the LaTeX document.
 - Ready-to-go configuration for [latexindent].
 - Proper hyphenation and microtype for English texts.
 - Hints on writing an abstract and thesis by Dirk Fahland.
@@ -55,13 +79,13 @@ Congratulations. You chose to use all available features.
 
 ## Tool hints
 
-MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
+### Prerequisites
 
-- Grammar and spell checking is available at [TeXstudio].
-  Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
-  Note that it is enough to point to `languagetool.jar`.
-  **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
-- Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
+- Windows: Recent [MiKTeX](http://miktex.org/). MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
+- Mac OS X: Recent [TeX Live](https://www.tug.org/texlive/) (e.g. through [MacTeX](https://tug.org/mactex/)) - Try `sudo tlmgr update --all` if you encounter issues with biblatex
+- Linux: Recent TeX Live distribution
+
+### Usage of `minted`
 
 To have minted running properly, you have to do following steps on Windows:
 
@@ -70,22 +94,103 @@ To have minted running properly, you have to do following steps on Windows:
 3. When latexing, use `-shell-escape`: `pdflatex -shell-escape main`.
    You can also just execute `latexmk main`.
 
+### VSCode configuration
+
+Currently, following extensionsa re recommended:
+
+- [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) to support LaTeX in VSCode and
+- [LaTeX Utilities](https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities) to enhance LaTeX Workshop
+- [LTeX+] to have a nice spell checker that also identifies grammar issues
+
+Then, change the setting of LaTeX Workshop to use biber:
+Update the following lines in the VSCode `settings.json` to contain:
+
+```javascript
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "lualatex ➞ biblatex ➞ lualatex × 2 🔃",
+            "tools": [
+                "lualatex",
+                "biblatex",
+                "lualatex",
+                "lualatex"
+            ]
+        },
+    ],
+    "latex-workshop.latex.tools": [
+        // ...
+        {
+            "name": "biblatex",
+            "command": "biblatex",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        // ...
+    ],
+```
+
+The following settings are additionally recommended:
+
+```javascript
+{
+    "editor.wordWrap": "on",                              // enable soft line breaks
+    "latex-workshop.view.pdf.viewer": "tab",              // display the generaded PDF in a separate tab
+    "latex-workshop.view.pdf.backgroundColor": "#cccccc", // use a darker background in de PDF viewer to lift of the pages from it
+    "latex-workshop.latex.autoBuild.run": "onSave",       // automatically build on saving .tex files
+    "editor.renderWhitespace": "all",                     // display all whitespaces
+}
+```
+
+Alternatively, just copy and paste the contents of the [vscode.settings.json](./vscode.settings.json) file to your VSCode settings file.
+
+### LTeX+ tips and tricks
+
+[LTeX+] is an offline grammar and spell checker with support for LaTeX and Markdown.
+
+Add a magic comment to your files to tell LTeX+ which language to use:
+
+```latex
+% LTeX: language=de-DE
+```
+
+If you want to use different languages in the text, use the `\foreignlanguage{language}{text}` command.
+LTeX+ will detect these elements and automatically switch the spell checker's language.
+For example:
+
+```latex
+\foreignlanguage{english}{Therefore, our proposed approach will change the world.}
+```
+
+### Other hints
+
+- Grammar and spell checking is available at [TeXstudio].
+  Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+  Note that it is enough to point to `languagetool.jar`.
+  **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
+- Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
+
 ## Usage with docker
 
 The generated `Dockerfile` is based on the [Dockerfile by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
 
-    docker run --rm -v "c:\users\example\latex-document:/workdir" latexmk
+```cmd
+docker run --rm -v "c:\users\example\latex-document:/workdir" ltg latexmk
+```
 
 Following one-time setup is required:
 
-    docker build -t ltg .
+```cmd
+docker build -t ltg .
+```
 
 ## FAQs
 
 ### Q: How can I synchronize updates from the template to my repository?
 
 1. Initialize your git repository as usual
-2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/LNCS.git`
+2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/{template}.git`
 3. Merge the branch `upstream/main` into your `main` branch: `git merge upstream/main`.
 
 After that you can use and push the `main` branch as usual.
@@ -111,15 +216,17 @@ The most simple solution to get more space is to exchange the font.
 
 Execute following command:
 
-    latexindent -l -s -sl -w main.tex
+```bash
+latexindent -l -s -sl -w main.tex
+```
 
 ### Q: I want to obey the one-sentence-per-line rule. How can I do that?
 
 Execute following command:
 
-    latexindent -m -l -s -sl -w main.tex
-
-Attention! This is work in progress and does not always produce best results.
+```bash
+latexindent -m -l -s -sl -w main.tex
+```
 
 ### Q: Can I also write in German?
 
@@ -139,12 +246,16 @@ If you don't do this, `latexmk` tries to execute `latex`, which tries to produce
 
 - Other templates: <https://latextemplates.github.io/>
 
+[biber]: https://www.ctan.org/pkg/biber
+[biblatex]: http://tex.stackexchange.com/tags/biblatex/info
+[bibtex]: https://www.ctan.org/pkg/bibtex
 [booktabs]: https://ctan.org/pkg/booktabs
 [cleveref]: https://ctan.org/pkg/cleveref
 [csquotes]: https://www.ctan.org/pkg/csquotes
 [hypcap]: https://www.ctan.org/pkg/hypcap
 [hyperref]: https://ctan.org/pkg/hyperref
 [latexindent]: https://ctan.org/pkg/latexindent
+[latexmk]: http://tex.stackexchange.com/tags/latexmk/info
 [microtype]: https://ctan.org/pkg/microtype
 [minted]: https://ctan.org/pkg/minted
 [natbib]: https://ctan.org/pkg/natbib
@@ -155,6 +266,7 @@ If you don't do this, `latexmk` tries to execute `latex`, which tries to produce
 [JabRef]: https://www.jabref.org
 [LanguageTool]: https://languagetool.org/
 [latex template generator]: https://www.npmjs.com/package/generator-latex-template
+[LTeX+]: https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus
 [pygments]: http://pygments.org/
 [TeXstudio]: http://texstudio.sourceforge.net/
 

@@ -1,4 +1,5 @@
 scheme-basic
+latexindent
 latexmk
 texlogsieve
 
@@ -18,6 +19,7 @@ bigfoot
 bigintcalc
 bitset
 blindtext
+bookcover
 booktabs
 caption
 catchfile
@@ -42,6 +44,7 @@ epstopdf
 etexcmds
 etoolbox
 everyshi
+fgruler
 fifo-stack
 filehook
 fixmath
@@ -89,6 +92,7 @@ luacode
 lualatex-math
 luatex85
 luatexbase
+luaxml
 ly1
 marginnote
 mathdesign
@@ -132,12 +136,15 @@ siunitx
 snapshot
 soul
 soulpos
+spelling
 stringenc
 sttools
 subfig
 svn-prov
 tabto-ltx
 tcolorbox
+texcount
+texlogsieve
 tex-gyre
 tikzmark
 times
