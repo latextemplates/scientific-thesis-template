@@ -4,10 +4,10 @@ This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
 - University of Stuttgart, Computer Science
-  - [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
-  - [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english.pdf)
-  - [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
-  - [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
+  - 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
+  - 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english.pdf)
+  - 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
+  - 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
 
 The template will be extended to support theses from different institutions.
 
@@ -15,7 +15,7 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](docs/
 
 ## Usage
 
-- `thesis-example.tex` is the main document
+- `main-english.tex` is the main document
 - Use "lualatex + biblatex" in your TeX editor or `latexmk  main-english` / `make` in the command line
 
 ### Using `latexmk`
@@ -45,6 +45,9 @@ On the command line, there are additional features:
 - `latexmk -C` or `make clean` for cleaning up
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
 - `make aspell` for interactive spell checking
+- `make stand`: Creates a new PDF with the current status of the thesis.
+- `make view`: Opens the configured viewer
+- `make mrproper`: Cleans up and removes also editor backup files.
 
 ## Benefits
 
@@ -181,6 +184,29 @@ Following one-time setup is required:
 docker build -t ltg .
 ```
 
+
+## Contained Directories and Files
+
+### Directories
+
+- [figures](graphics/) Directory containing the figures.
+  By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
+
+### Files
+
+- `main-english.tex` - The main `.tex` file loading all LaTeX packages and their configurations.
+  - Add text here
+  - Adjust title etc. here
+- [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
+- [abbreviations.tex](abbreviations.tex) - Acronyms and abbreviations.
+- [commands.tex](commands.tex) - Example LaTeX macros.
+
+Following additional files are included, which do not need to be adapted:
+
+- [localSettings.yaml](localSettings.yaml) - Settings for [latexindent](https://ctan.org/pkg/latexindent)
+- [Makefile](Makefile) - The Makefile. Builds on latexmk.
+- [Texlivefile](Texlivefile) - List of packages required for a minimal TeXLive installation.
+
 ## FAQs
 
 ### Q: How can I synchronize updates from the template to my repository?
@@ -210,23 +236,38 @@ The most simple solution to get more space is to exchange the font.
 
 ### Q: How can I reformat my `.tex` files?
 
-Execute following command:
+Execute `latexindent -l -s -sl -w main-english.tex`
 
-```bash
-latexindent -l -s -sl -w main-english.tex
-```
+Alternatively, execute `make format`.
 
-### Q: I want to obey the one-sentence-per-line rule. How can I do that?
+### Q: How I want to obey the one-sentence-per-line rule. How to do?
 
-Execute following command:
+See "How can I reformat my `.tex` files?"
 
-```bash
-latexindent -m -l -s -sl -w main-english.tex
-```
+### Q: I want to use minted, because I think its syntax highlighting seems to be better.
+
+You can re-generate the template and choose `minted` as listings environment.
+Moreover, ensure that python and [pygments](https://pygments.org/) are installed properly:
+
+- `choco install python`
+- `pip install pygments`
 
 ### Q: Can I also write in German?
 
 Yes. You can regenerate the template and choose "German" as language.
+
+### Q: I was recommended the Harvard style
+
+This template uses the alphabetic style.
+That style is explained at the [biblatex documentation](http://texdoc.net/texmf-dist/doc/latex/biblatex/biblatex.pdf) on page 60:
+
+> The alphabetic labels resemble a compact author-year
+> style to some extent, but the way they are employed is similar to a numeric citation
+> scheme. For example, instead of “Jones 1995” this style would use the label “[Jon95]”.
+> “Jones and Williams 1986” would be rendered as “[JW86]”.
+
+We are aware that the University of Stuttgart [recommends to use the Hardvard style](https://ilias3.uni-stuttgart.de/ilias.php?ref_id=12257&from_page=11895&obj_id=11896&cmd=layout&cmdClass=illmpresentationgui&cmdNode=dn&baseClass=ilLMPresentationGUI).
+However, this style is not common in natural sciences and information science.
 
 ### Q: `ngerman-x-latest` is reported missing
 
@@ -238,14 +279,69 @@ You seem to use `latexmk` locally.
 Please move `_latexmkrc` to `latexmkrc` to get `latexmk` working.
 If you don't do this, `latexmk` tries to execute `latex`, which tries to produce a DVI file (and not a PDF file).
 
+### Q: I get `Font "LatinModernMath-Regular" not found.`. What can I do?
+
+Error message:
+
+```text
+luaotfload | db : Reload initiated (formats: otf,ttf,ttc); reason: Font "LatinModernMath-Regular" not found.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+
+! Package fontspec Error: The font "LatinModernMath-Regular" cannot be found.
+```
+
+Install the package `lm-math` manually.
+
+### Q: I get `! Package fontspec Error: The font "LinuxLibertineO" cannot be found.`. What can I do?
+
+Install the package `libertine` manually.
+
+### Q: I get `! Package fontspec Error: The font "TeXGyreTermes" cannot be found.`. What can I do?
+
+Install the package `tex-gyre` and `tex-gyre-math` manually.
+
+### Q: I get `! error:  (type 1): cannot find encoding file 'ntx-ot1-tlf.enc' for reading`. What can I do?
+
+See <https://tex.stackexchange.com/a/240850/9075>: Install the packages `newpx` and `newtxsf` manually.
+
+### Q: I get `! TeX capacity exceeded, sorry [main memory size=3000000].`. What can I do?
+
+Follow the steps at <https://tex.stackexchange.com/a/548335/9075>
+
+Try with following command
+
+```bash
+lualatex -shell-escape --extra-mem-top=10000000 --synctex=1 main-english.tex
+```
+
+See <https://tex.stackexchange.com/a/124206/9075> for details.
+
+### Q: Aren't there other templates?
+
+Sure. The [Hagenberg Thesis Document Collection](https://github.com/Digital-Media/HagenbergThesis) seems to be the most promising.
+However, they currently do not support microtype and not the cover of the University of Stuttgart.
+
+We are collecting alternatives at the issue [#25](https://github.com/latextemplates/scientific-thesis-template/issues/25) and plan to add a comparison to each other template.
+
+### Q: `main-minted-german.tex` does not compile: ``File `main-minted-german-plantuml.latex' not found. \end{plantuml}``. What can I do?
+
+You did not setup the [plantuml package](https://www.ctan.org/pkg/plantuml) correctly.
+Please head to <https://koppor.github.io/plantuml/> for installation instructions.
+
 ## Further information
 
 - Other templates: <https://latextemplates.github.io/>
+- For German users, go to <https://texfragen.de/>.
+- Frank Mittelbach with Ulrike Fischer: [The LaTeX Companion](https://www.latex-project.org/news/2023/03/17/TLC3/) is the ultimate guide for LaTeX: The authors went through all packages offered by [CTAN](https://ctan.org/), selected the most promising ones, described them, and provide minimal working example for each of it.
+- Lutz Hering, Heike Hering: [How to Write Technial Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
+- Marcus Deininger et al.: [Studienarbeiten - Ein Leitfaden zur Erstellung, Durchführung und Präsentation wissenschaftlicher Abschlussarbeiten am Beispiel Informatik](https://vdf.ch/studienarbeiten.html?author_id=2877), vdf. - Recommended as guideline for planning and working on the whole thesis.
+- Charles Lipson, [Cite Right, Second Edition: A Quick Guide to Citation Styles--MLA, APA, Chicago, the Sciences, Professions, and More](http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo10702043.html), Chicago Guides to Writing, Editing, and Publishing, 2011. - Recommended in case you are unsure about how to correctly cite something.
 
 ## License
 
 The license of this work is [0BSD](https://spdx.org/licenses/0BSD.html) which corresponds to "public domain".
 Any derived work can freely be relicensed and can omit original copyright and license information.
+
 [biber]: https://www.ctan.org/pkg/biber
 [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
 [bibtex]: https://www.ctan.org/pkg/bibtex
