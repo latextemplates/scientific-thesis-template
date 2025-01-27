@@ -1,6 +1,10 @@
+.github
+Dockerfile
+generator-latex-template
+
 main-english.pdf
 main-english-*.pdf
-figures/*.pdf_tex
+graphics/*.pdf_tex
 
 # spelling
 *.spell.bad
