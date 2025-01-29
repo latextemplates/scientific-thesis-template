@@ -550,6 +550,9 @@
 \floatname{algorithm}{Algorithmus}
 \renewcommand{\listalgorithmname}{Algorithmenverzeichnis}
 
+\newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
+\algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
+
 % Extensions for references inside the document (\cref{fig:sample}, ...)
 % Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 % That means, "Figure 5" is a full link instead of just "5".
