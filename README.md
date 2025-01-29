@@ -92,7 +92,7 @@ On the command line, there are additional features:
 Following features are enabled in this template:
 
 - (Optional) Typesetting of listings using advanced highlighting powered by the [minted] package.
-  `mitned` provides better output than [listings], but requires [pygments] to be installed.
+  `minted` provides better output than [listings], but requires [pygments] to be installed.
 - Generated PDF allows for copy and paste of text without getting words with [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) such as "workflow" destroyed.
   This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
 - Ligatures are removed if they are typeset at the wrong place.
