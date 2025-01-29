@@ -648,6 +648,9 @@
 \floatname{algorithm}{Algorithmus}
 \renewcommand{\listalgorithmname}{Algorithmenverzeichnis}
 
+\newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
+\algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
+
 % cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}
 
