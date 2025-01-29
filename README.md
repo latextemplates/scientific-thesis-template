@@ -13,6 +13,21 @@ The template will be extended to support theses from different institutions.
 
 For [architectural decision records](https://adr.github.io) see [docs/adr](docs/adr/).
 
+## Quick start
+
+1. Download
+    1. Go to the development version at <https://github.com/latextemplates/scientific-thesis-template/archive/main.zip>. Reason: LaTeX packages change so fast over time and we cannot do a release on each change.
+    2. Extract `scientific-thesis-template-main.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+2. Start texing
+    - University of Stuttgart:
+        - English: `main-english.tex`
+        - German: `main-german.tex`
+        - German advanced usage: `main-minted-german.tex` (see below)
+
+### Usage at overleaf
+
+See [overleaf](overleaf/).
+
 ## Usage
 
 - `main-english.tex` is the main document
@@ -22,6 +37,7 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](docs/
 
 [latexmk] is a very smart tool for latex compilation.
 It executes the latex tools as often as needed to get the final PDF.
+(More information about why `latexmk` is great can be found at <https://tex.stackexchange.com/a/249243/9075>.)
 
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
@@ -32,11 +48,33 @@ latexmk main-english
 
 To enable latexmk, please move `_latexmkrc` to `latexmkrc`.
 
+If you want automatic compilation use following command:
+
+```bash
+latexmk -pvc main-english
+```
+
+This will also open a [Sumatra PDF] and only works with the supplied configuration.
+
+#### latexmk configuration
+
+This repository ships a `.latexmkrc` which is read by latexmk.
+In case there is a `_latexmkrc` file, you need to rename it to `.latexmkrc`.
+It is configured for Windows and especially sets Sumatra PDF as default PDF viewer.
+You can make this local configuration a global configuration, when you put it at [the right place](http://tex.stackexchange.com/a/41149/9075).
+
+If you want to add more packages, configure it there.
+For instance, for support of makeglossaries see <http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries>.
+
+### Debugging LaTeX errors
+
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
 ```bash
-lualatex main-english
+lualatex --synctex=1 --shell-escape main-english
 ```
+
+Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
 
 ### Advanced usage
 
@@ -54,16 +92,21 @@ On the command line, there are additional features:
 Following features are enabled in this template:
 
 - (Optional) Typesetting of listings using advanced highlighting powered by the [minted] package.
-- Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
+ `mitned` provides better output than [listings], but requires [pygments] to be installed.
+- Generated PDF allows for copy and paste of text without getting words with [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) such as "workflow" destroyed.
   This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
+- Ligatures are removed if they are typeset at the wrong place.
+  This is enabled by the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package.
 - Support of hyperlinked references without extra color thanx to [hyperref].
 - Better breaking of long URLs.
 - Support for `\powerset` command.
 - Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 - [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
 - Modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [booktabs].
-- LaTeX compilation using the modern lualatex compiler.
-- [biblatex]+[biber] instead of plain [bibtex] to have a more intuitive `.bib` file.
+- LaTeX compilation using the modern [lualatex] compiler.
+  For older systems, [pdflatex](https://en.wikipedia.org/wiki/PdfTeX) is still supported.
+- [biblatex]+[biber] instead of plain [bibtex] to have a more intuitive `.bib` file:
+  Unicode (UTF-8) is fully supported and commands such as `\citeauthor{...}` work out of the box. See also <https://tex.stackexchange.com/q/8411/9075>.
 - [latexmk] for easy compilation of the LaTeX document.
 - Ready-to-go configuration for [latexindent].
 - Proper hyphenation and microtype for English texts.
@@ -84,6 +127,9 @@ Congratulations. You chose to use all available features.
 - Mac OS X: Recent [TeX Live](https://www.tug.org/texlive/) (e.g. through [MacTeX](https://tug.org/mactex/)) - Try `sudo tlmgr update --all` if you encounter issues with biblatex
 - Linux: Recent TeX Live distribution
 
+See [docs/latex-setup](docs/latex-setup) for refined installation instructions.
+
+
 ### Usage of `minted`
 
 To have minted running properly, you have to do following steps on Windows:
@@ -95,14 +141,18 @@ To have minted running properly, you have to do following steps on Windows:
 
 ### VSCode configuration
 
-Currently, following extensionsa re recommended:
+Currently, following extensions are recommended:
 
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) to support LaTeX in VSCode and
 - [LaTeX Utilities](https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities) to enhance LaTeX Workshop
 - [LTeX+] to have a nice spell checker that also identifies grammar issues
 
 Then, change the setting of LaTeX Workshop to use biber:
-Update the following lines in the VSCode `settings.json` to contain:
+
+Press <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>P</kbd> to open the command palette.
+Then type "JSON" and select "Preferences: Open Settings (JSON)" to open `settings.json`.
+
+Update the following lines in VSCode's `settings.json` to contain:
 
 ```javascript
     "latex-workshop.latex.recipes": [
@@ -137,12 +187,18 @@ The following settings are additionally recommended:
     "editor.wordWrap": "on",                              // enable soft line breaks
     "latex-workshop.view.pdf.viewer": "tab",              // display the generaded PDF in a separate tab
     "latex-workshop.view.pdf.backgroundColor": "#cccccc", // use a darker background in de PDF viewer to lift of the pages from it
-    "latex-workshop.latex.autoBuild.run": "onSave",       // automatically build on saving .tex files
+    "latex-workshop.latex.autoBuild.run": "never",        // never automatically build; alternative: "onSave" (on saving .tex files)
     "editor.renderWhitespace": "all",                     // display all whitespaces
 }
 ```
 
-Alternatively, just copy and paste the contents of the [vscode.settings.json](./vscode.settings.json) file to your VSCode settings file.
+Alternatively, just copy and paste the contents of the [vscode.settings.json](vscode.settings.json) file to your VSCode settings file.
+
+You can manually trigger compilation by hitting the green button in the extension or using other methods provided by LaTeX Workshop.
+
+Please remove the magic comments (`% !TeX program ...`) at the top of the `main-....tex` file.
+Although [LaTeX-Workshop supports magic comments](https://github.com/James-Yu/LaTeX-Workshop/blob/master/README.md#magic-comments), it currently does not work reliably.
+Without the magic comments, compilation works.
 
 ### LTeX+ tips and tricks
 
@@ -161,14 +217,6 @@ For example:
 ```latex
 \foreignlanguage{english}{Therefore, our proposed approach will change the world.}
 ```
-
-### Other hints
-
-- Grammar and spell checking is available at [TeXstudio].
-  Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
-  Note that it is enough to point to `languagetool.jar`.
-  **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
-- Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
 
 ## Usage with docker
 
@@ -212,8 +260,8 @@ Following additional files are included, which do not need to be adapted:
 ### Q: How can I synchronize updates from the template to my repository?
 
 1. Initialize your git repository as usual
-2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/{template}.git`
-3. Merge the branch `upstream/main` into your `main` branch: `git merge upstream/main`.
+2. Add this repository as git remote: `git remote add template https://github.com/latextemplates/{template}.git`
+3. Merge the branch `template/main` into your `main` branch: `git merge template/main`.
 
 After that you can use and push the `main` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
@@ -316,6 +364,34 @@ lualatex -shell-escape --extra-mem-top=10000000 --synctex=1 main-english.tex
 
 See <https://tex.stackexchange.com/a/124206/9075> for details.
 
+### Q: There is an output that biber/biblatex too old
+
+See installation hints of how to update them at different systems.
+
+### Q: MiKTeX complains about missing `.sty` files.
+
+Use the [MiKTeX console](https://miktex.org/howto/miktex-console) to refresh the package index.
+Then, automatic installation should work again.
+
+### Q: I cannot get minted to run. There is this `-shell-escape` warning.
+
+Please ensure that your compilation command includes `-shell-escape`.
+E.g., `lualatex -shell-escape -synctex=1 main-minted-german.tex`.
+When compiling `main-minted-german.tex` with TeXStudio, you will see a dialog warning about overriding the compilation command.
+Just answer "(a) allow for this document" and it will work.
+
+### Q: How to include Excel charts properly?
+
+1. Select the Excel chart you want to use.
+2. Print to PDF with the option "Print Selected Chart".
+3. Remove empty space of the created PDF page with `pdfcrop chart.pdf chart_cropped.pdf` (install via MikTeX first, if not available; check via `pdfcrop --version`).
+4. Use [pdfscissors](https://sites.google.com/site/pdfscissors) to crop the borders and title (maybe you have to allow <https://sites.google.com> in the Java security center in the control panel).
+5. Include the PDF in LaTeX via `\includegraphics{chart_cropped.pdf}`.
+
+### Q: How do I change the appearance of chapter headings?
+
+Look for `% Code for my fancy chapters.` in your main `.tex` file and play around with parameters.
+
 ### Q: Aren't there other templates?
 
 Sure. The [Hagenberg Thesis Document Collection](https://github.com/Digital-Media/HagenbergThesis) seems to be the most promising.
@@ -323,6 +399,13 @@ However, they currently do not support microtype and not the cover of the Univer
 
 We are collecting alternatives at the issue [#25](https://github.com/latextemplates/scientific-thesis-template/issues/25) and plan to add a comparison to each other template.
 
+### Q: Do I have to do something special for the final version?
+
+- If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
+- By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
+- Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in your main `.tex` file.
+- Ensure that you run `lualatex` at least three times and that there are no "undefined references".
+- The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
 ### Q: `main-minted-german.tex` does not compile: ``File `main-minted-german-plantuml.latex' not found. \end{plantuml}``. What can I do?
 
 You did not setup the [plantuml package](https://www.ctan.org/pkg/plantuml) correctly.
@@ -352,6 +435,8 @@ Any derived work can freely be relicensed and can omit original copyright and li
 [hyperref]: https://ctan.org/pkg/hyperref
 [latexindent]: https://ctan.org/pkg/latexindent
 [latexmk]: http://tex.stackexchange.com/tags/latexmk/info
+[listings]: https://ctan.org/pkg/listings
+[lualatex]: http://www.luatex.org/
 [microtype]: https://ctan.org/pkg/microtype
 [minted]: https://ctan.org/pkg/minted
 [natbib]: https://ctan.org/pkg/natbib
@@ -363,8 +448,8 @@ Any derived work can freely be relicensed and can omit original copyright and li
 [LanguageTool]: https://languagetool.org/
 [latex template generator]: https://www.npmjs.com/package/generator-latex-template
 [LTeX+]: https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus
-[pygments]: http://pygments.org/
-[TeXstudio]: http://texstudio.sourceforge.net/
+[pygments]: https://pygments.org/
+[Sumatra PDF]: https://www.sumatrapdfreader.org/free-pdf-reader
 
 <!-- disable markdown-lint rules contradicting our writing of FAQs -->
 <!-- markdownlint-disable-file MD001 MD013 MD026 -->
