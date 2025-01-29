@@ -4,6 +4,12 @@
 % 🇺🇸 To avoid issues with Springer's \mathplus. See also http://tex.stackexchange.com/q/212644/9075
 \providecommand\mathplus{+}
 
+% 🇩🇪 typoraphisch richtige Abkürzungen
+\newcommand{\zB}{z.\,B.\xspace}
+\newcommand{\bzw}{bzw.\xspace}
+\newcommand{\usw}{usw.\xspace}
+\renewcommand{\dh}{d.\,h.\xspace}
+
 % 🇺🇸 from hmks makros.tex - \indexify
 \newcommand{\toindex}[1]{\index{#1}#1}
 
@@ -12,6 +18,13 @@
 
 % 🇩🇪 Anstatt $|x|$ $\abs{x}$ verwenden. Die Betragsstriche skalieren automatisch, falls "x" etwas größer sein sollte...
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+% 🇩🇪 für Zitate
+\newcommand{\citeS}[2]{\cite[S.~#1]{#2}}
+\newcommand{\citeSf}[2]{\cite[S.~#1\,f.]{#2}}
+\newcommand{\citeSff}[2]{\cite[S.~#1\,ff.]{#2}}
+\newcommand{\vgl}{vgl.\ }
+\newcommand{\Vgl}{Vgl.\ }
 
 % 🇺🇸 For the algorithmic package
 \newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
@@ -22,7 +35,7 @@
 \newcommand{\shortpage}{\enlargethispage{-\baselineskip}}
 
 \newcommand{\initialism}[1]{%
-  \textlcc{#1}\xspace%
+  \textsc{#1}\xspace%
 }
 \newcommand{\OMG}{\initialism{OMG}}
 \newcommand{\BPEL}{\initialism{BPEL}}
