@@ -84,6 +84,7 @@ jobs:
             rm .dockerignore
             rm .gitignore
             rm abbreviations.tex
+            rm commands.tex
           fi
 
           # Files are ready
