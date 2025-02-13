@@ -15,17 +15,19 @@
 2. Choose "Upload Zip"  
    ![Upload Zip](overleaf-step-2.png)
 
-3. Select <https://github.com/latextemplates/scientific-thesis-template/archive/master.zip> for uploading  
-   ![select master.zip for uploading](overleaf-step-3.png)
+3. Select <https://github.com/latextemplates/scientific-thesis-template/archive/main.zip> for uploading  
+   ![select main.zip for uploading](overleaf-step-3.png)
 
-4. Upload master.zip  
-   ![upload master.zip](overleaf-step-4.png)
+4. Upload main.zip  
+   ![upload main.zip](overleaf-step-4.png)
 
-5. Ignore import error of `.latexmkrc`  
+5. Ignore import error of `latexmkrc`  
   ![Ignore import errors](overleaf-step-5.png)
 
 6. Choose main file: For English, choose `main-english.tex`. For German, choose `main-german.tex`.  
   ![Choose main file](overleaf-step-6.png)
+
+<!--
 
 7. See error missing `sty` files.  
   You get following error:  
