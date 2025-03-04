@@ -29,7 +29,7 @@ jobs:
       - run: latexmk main-english
 
       # Highlight mis-spelled words in the PDF
-      - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
+      - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: aspell aspell-en aspell-de
           version: 1.0
