@@ -53,6 +53,7 @@ jobs:
           path: |
             main-english.pdf
             main-english.log
+            main-english.fls
   word-count:
     runs-on: ubuntu-latest
     steps:
