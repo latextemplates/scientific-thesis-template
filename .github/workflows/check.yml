@@ -59,9 +59,10 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: Install TeX Live
-        uses: zauguin/install-texlive@v3
+        uses: zauguin/install-texlive@v4
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
+          texlive_version: 2024
       - name: Count words
         run: |
           texcount -utf8 -inc main-english.tex > texcount.txt
@@ -135,9 +136,10 @@ jobs:
           version: 1.0
           execute_install_scripts: true
       - name: Install latexindent
-        uses: zauguin/install-texlive@v3
+        uses: zauguin/install-texlive@v4
         with:
           packages: latexindent
+          texlive_version: 2024
       - run: make format
       - name: No changes made by latexindent
         run: git diff --exit-code
