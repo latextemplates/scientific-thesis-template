@@ -1,6 +1,6 @@
 name: Update Files
 on:
-  pull_request:
+  push:
     branches:
       - switch-to-ltg
       - update-ltg
