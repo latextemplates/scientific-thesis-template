@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   pdf:
-    name: latexmk main-english
+    name: pdf (latexmk main-english)
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
