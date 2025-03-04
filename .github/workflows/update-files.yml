@@ -146,8 +146,8 @@ jobs:
           cp README.md publish/
           cp .github/_config.yml publish/
 
-          mkdir docs
-          cp -r docs/adr docs/
+          mkdir publish/docs
+          cp -r docs/adr publish/docs/
       - uses: actions/upload-artifact@v4
         with:
           name: publish
