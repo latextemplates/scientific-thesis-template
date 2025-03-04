@@ -1,9 +1,9 @@
 name: Update Files
 on:
   pull_request:
-  push:
     branches:
-      - main
+      - switch-to-ltg
+      - update-ltg
   workflow_dispatch:
 concurrency:
   group: update-files
