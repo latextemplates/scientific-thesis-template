@@ -1,9 +1,9 @@
 name: Update Files
 on:
-  pull_request:
   push:
     branches:
-      - main
+      - switch-to-ltg
+      - update-ltg
   workflow_dispatch:
 concurrency:
   group: update-files
@@ -100,7 +100,8 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Update files based on generated files by template generator'
-          committer_email: actions@github.com
+          author_name: 'github-actions[bot]'
+          author_email: 'github-actions[bot]@users.noreply.github.com'
           push: false
       - name: Push changes
         run: |
@@ -145,8 +146,8 @@ jobs:
           cp README.md publish/
           cp .github/_config.yml publish/
 
-          mkdir docs
-          cp -r docs/adr docs/
+          mkdir publish/docs
+          cp -r docs/adr publish/docs/
       - uses: actions/upload-artifact@v4
         with:
           name: publish

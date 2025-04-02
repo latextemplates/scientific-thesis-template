@@ -31,7 +31,7 @@ See [overleaf](overleaf/).
 ## Usage
 
 - `main-english.tex` is the main document
-- Use "lualatex + biblatex" in your TeX editor or `latexmk  main-english` / `make` in the command line
+- Use "lualatex + biblatex" in your TeX editor or `latexmk main-english` / `make` in the command line
 
 ### Using `latexmk`
 
