@@ -1,4 +1,4 @@
-personal_ws-1.1 en 26
+personal_ws-1.1 en 97
 TODOs
 LaTeX
 JabRef
@@ -6,7 +6,6 @@ JSON
 backticks
 breaklines
 dwarflike
-
 OldStyle
 Cleveref
 cref
@@ -25,7 +24,6 @@ paralist
 powerset
 pygments
 siunitx
-
 tt
 eclipseStrings
 RGB
