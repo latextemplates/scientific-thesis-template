@@ -109,7 +109,6 @@ jobs:
           echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
           failure=0
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
-            # One could add a personal dictionary using --personal=.aspell.en.pws
             # Words are output in the order they appear in the document
             words=$(aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | tr '\n' ' ')
             if [ -z "$words" ]; then
@@ -123,7 +122,7 @@ jobs:
           done
           if [[ "$failure" -eq 1 ]]; then
              echo "" >> $GITHUB_STEP_SUMMARY
-             echo "If you want to ignore words, add them to `.aspell.en.pws` (your personal aspell dictionary)"
+             echo 'If you want to ignore words, add them to `.aspell.en.pws` (your personal aspell dictionary)' >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
   indent:
