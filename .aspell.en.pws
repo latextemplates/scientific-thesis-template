@@ -1,4 +1,4 @@
-personal_ws-1.1 en 97 utf-8
+personal_ws-1.1 en 98 utf-8
 BPEL
 BPMN
 Bei
@@ -37,6 +37,7 @@ basicstyle
 bei
 belowskip
 breaklines
+cls
 commentstyle
 cref
 da
