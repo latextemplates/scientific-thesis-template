@@ -146,6 +146,7 @@
   % For more information see https://ctan.org/pkg/selnolig
   % language "english" or "ngerman" is passed to selnolig by the document class
   \usepackage{selnolig}
+
 \else
   \RequirePackage{newtxtext}
   \RequirePackage{newtxmath}
@@ -692,12 +693,6 @@
 % Add manual adapted hyphenation of English words
 % See https://ctan.org/pkg/hyphenex and https://tex.stackexchange.com/a/22892/9075 for details
 \input{ushyphex}
-
-\ifluatex
-  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/selnolig
-  % See ADR-0009 for alternatives
-  \usepackage{selnolig}
-\fi
 
 % correct bad hyphenation here
 \hyphenation{
