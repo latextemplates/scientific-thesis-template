@@ -142,7 +142,11 @@
   \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
   % shapely l, upright quotes
   % Normal scaling is too large --> thus, we use ",Scale=.9"
-  \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolatazi4}
+  \ifwindows
+    \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolata}
+  \else
+    \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolatazi4}
+  \fi
 
   % Enable proper ligatures
   % For more information see https://ctan.org/pkg/selnolig
