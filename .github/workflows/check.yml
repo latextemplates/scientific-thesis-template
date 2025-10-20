@@ -43,6 +43,8 @@ jobs:
         run: |
           sudo apt-get install -y aspell-en aspell-de
       - name: aspell
+        # Needs more adaption for scientific thesis; therefore disabled
+        if: false
         run: |
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
             if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
