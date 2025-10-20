@@ -1,0 +1,161 @@
+name: Update Files
+on:
+  push:
+    branches:
+      - switch-to-ltg
+      - update-ltg
+  workflow_dispatch:
+concurrency:
+  group: update-files
+  cancel-in-progress: true
+jobs:
+  generatetex:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [en, de]
+        listings: [listings, minted]
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+          ref: '${{ github.event.pull_request.head.ref }}'
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'generator-latex-template/package-lock.json'
+      - name: Make generator available globally
+        working-directory: ${{ github.workspace }}/generator-latex-template
+        run: |
+          npm install
+          npm link
+          npm install -g yo
+      - run: mkdir /tmp/ltg
+      - name: Generate template
+        shell: bash
+        working-directory: /tmp/ltg
+        run: |
+          yo $GITHUB_WORKSPACE/generator-latex-template/generators/app/index.js \
+           --githubpublish\
+           --overleaf=true\
+           --docker=iot\
+           --documentclass=scientific-thesis\
+           --papersize=a4\
+           --latexcompiler=both\
+           --bibtextool=biblatex\
+           --texlive=2025\
+           --lang=${{ matrix.language }}\
+           --font=default\
+           --listings=${{ matrix.listings }}\
+           --cleveref=true\
+           --enquotes=csquotes\
+           --tweakouterquote=babel\
+           --todo=pdfcomment\
+           --examples=true\
+           --howtotext=true
+        env:
+          yeoman_test: true
+      - name: Prepare files
+        working-directory: /tmp/ltg
+        run: |
+          ls -la
+
+          if [ ${{ matrix.language }} == "en" ]; then
+            LANGUAGE=english
+          else
+            LANGUAGE=german
+          fi
+
+          if [ ${{ matrix.listings }} == "minted" ]; then
+            mv main-$LANGUAGE.tex main-minted-$LANGUAGE.tex
+          fi
+
+          # remove files which should not be overwritten
+
+          # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
+          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.language }}" != "en" ]; then
+            echo "REMOVING _latexmkrc"
+            rm Makefile
+            rm README.md
+            rm _latexmkrc
+            rm -rf .github/workflows
+            rm .dockerignore
+            rm .gitignore
+            rm abbreviations.tex
+            rm commands.tex
+          fi
+
+          # Files are ready
+          # Overwrite old versions in $GITHUB_WORKSPACE
+          cp -r * $GITHUB_WORKSPACE
+          cp -r .* $GITHUB_WORKSPACE
+
+          # output current status
+          cd ${{ github.workspace }}
+          git status
+          git diff
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Update files based on generated files by template generator'
+          author_name: 'github-actions[bot]'
+          author_email: 'github-actions[bot]@users.noreply.github.com'
+          push: false
+      - name: Push changes
+        run: |
+          parallel --retries 10 --delay 9 ::: "git pull --rebase; git push"
+  publish:
+    runs-on: ubuntu-latest
+    needs: [generatetex]
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v5
+        with:
+          ref: '${{ github.event.pull_request.head.ref }}'
+      - name: Create latexmkrc
+        run: |
+          ls -la
+          # use latexmkrc (which is disabled due to easy overleaf usage)
+          cp _latexmkrc latexmkrc
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v4
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+      - name: Prepare latexmk
+        run: |
+          updmap -sys
+          texhash
+          tlmgr generate language --rebuild-sys
+      - name: Build all examples
+        run: |
+          for doc in main*.tex; do
+            latexmk "$doc"
+
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "## $doc" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            texlogsieve < "${doc%.tex}.log" >> "$GITHUB_STEP_SUMMARY" || true
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          done
+      - run: |
+          mkdir publish
+          cp main*.pdf publish/
+          cp README.md publish/
+          cp .github/_config.yml publish/
+
+          mkdir publish/docs
+          cp -r docs/adr publish/docs/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: publish
+          path: publish/
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./publish
+          enable_jekyll: true

@@ -1,14 +1,10 @@
+.github
+Dockerfile
+generator-latex-template
+
 main-english.pdf
 main-english-*.pdf
-figures/*.pdf_tex
-
-printer-version--cover/cover.pdf
-
-# glossaries
-*.glo-abr
-
-# glossaries-extra
-*.ist
+graphics/*.pdf_tex
 
 # spelling
 *.spell.bad
@@ -34,8 +30,8 @@ printer-version--cover/cover.pdf
 # IntelliJ
 .idea/
 
-# new minted
-*.data.minted
+
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode

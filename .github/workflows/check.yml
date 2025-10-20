@@ -1,0 +1,175 @@
+name: Check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: "5 6 * * 1"
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.head_ref || github.ref }}"
+  cancel-in-progress: true
+jobs:
+  pdf:
+    name: pdf (latexmk main-english)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v5
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v4
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+          texlive_version: 2025
+      - name: Prepare latexmk
+        run: |
+          updmap -sys
+          texhash
+          tlmgr generate language --rebuild-sys
+          if [ ! -f "latexmkrc" ]; then
+            cp "_latexmkrc" "latexmkrc"
+          fi
+      - run: latexmk main-english
+
+      # Highlight mis-spelled words in the PDF
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: aspell aspell-en aspell-de
+          version: 1.0
+          execute_install_scripts: true
+      - name: post-setup aspell
+        # refs https://github.com/awalsh128/cache-apt-pkgs-action/issues/157
+        run: |
+          sudo apt-get install -y aspell-en aspell-de
+      - name: aspell
+        # Needs more adaption for scientific thesis; therefore disabled
+        if: false()
+        run: |
+          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
+            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+              continue
+            fi
+
+            # The lualatex package "spelling" requires the content to be in a file ending with ".spell.bad"
+            aspell --mode=tex\
+              -l en_US\
+              --encoding=utf-8\
+              --conf=./.aspell.conf\
+              -p ./.aspell.en.pws list\
+              < $tex | sort | uniq >> main-english.spell.bad
+          done
+      - run: latexmk main-english
+
+      - name: Job summary using texlogsieve
+        run: |
+          texlogsieve --version | head -n 1
+
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          texlogsieve main-english.log | tee -a "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-result
+          path: |
+            main-english.pdf
+            main-english.log
+            main-english.fls
+  word-count:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v5
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v4
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+          texlive_version: 2025
+      - name: Count words
+        run: |
+          texcount -utf8 -inc main-english.tex > texcount.txt
+          echo "## TeXcount word count" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat "texcount.txt" >> $GITHUB_STEP_SUMMARY
+
+          texcount -utf8 -inc -v -html main-english.tex > texcount.html
+
+          # output for summary
+          # too verbose - therefore disabled
+          #
+          # texcount -utf8 -inc -v -htmlcore main-english.tex > texcount.html-body
+          # echo "" >> $GITHUB_STEP_SUMMARY
+          # echo "## TeXcount LaTeX interpretation" >> $GITHUB_STEP_SUMMARY
+          # echo "" >> $GITHUB_STEP_SUMMARY
+          # cat "texcount.html-body" >> $GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: word-count
+          path: |
+            texcount.txt
+            texcount.html
+  spell-check:
+    # This is based on https://github.com/mh61503891/action-paper-aspell/tree/master
+    #
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v5
+
+      # Original action does not work well - see https://github.com/awalsh128/cache-apt-pkgs-action/pull/136
+      # The action is not updated - and thus the dictionaries are not updated
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: aspell aspell-en aspell-de
+          version: 1.0
+          execute_install_scripts: true
+      - name: post-setup aspell
+        # refs https://github.com/awalsh128/cache-apt-pkgs-action/issues/157
+        run: |
+          sudo apt-get install -y aspell-en aspell-de
+      - name: aspell
+        run: |
+          echo "| file | status |" >> $GITHUB_STEP_SUMMARY
+          echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
+          failure=0
+          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
+            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+              echo "$tex skipped"
+              continue
+            fi
+            echo "Checking $tex..."
+
+            # Words are output in the order they appear in the document
+            words=$(aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | tr '\n' ' ')
+            if [ -z "$words" ]; then
+              echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
+              if [[ "$tex" == "main-english.tex" ]]; then
+                failure=1
+              fi
+            fi
+          done
+          if [[ "$failure" -eq 1 ]]; then
+             echo "" >> $GITHUB_STEP_SUMMARY
+             echo 'If you want to ignore words, add them to `.aspell.en.pws` (your personal aspell dictionary)' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+  indent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v5
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: libyaml-tiny-perl libfile-homedir-perl
+          version: 1.0
+          execute_install_scripts: true
+      - name: Install latexindent
+        uses: zauguin/install-texlive@v4
+        with:
+          packages: latexindent
+          texlive_version: 2025
+      - run: make format
+      - name: No changes made by latexindent
+        run: git diff --exit-code

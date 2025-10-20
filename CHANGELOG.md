@@ -5,13 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
+- One `main-*` document for both pdflatex and lualatex.
+
+### Removed
+
+- Removed support for Paderborn
+
 ## [2025-01-26]
 
 ### Added
 
+- Added initial `Dockerfile` to enable building using Docker.
+- Added package [mindflow](https://www.ctan.org/pkg/mindflow), which supports quickly noting down thoughts with a) a proper rendering of LaTeX and b) a proper differentiation from the main text
+- Added more LaTeX hints
+
 ### Changed
 
-- Cleanup lualatex math and font config
+- Switch to pdflatex (to speed up compile time)
+- Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
+- Replaced `\ifluatex` statements by separate `.tex` documents. This makes each `.tex` document smaller and simpler to understand.
+- Updated to TeXLive 2021
 
 ### Fixed
 
@@ -279,7 +297,8 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[2025-01-26]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-01-26...HEAD
+[2025-01-26]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0...2025-01-26
 [3.0.0]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.4...3.0.0
 [3.0.0-beta.4]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.3...3.0.0-beta.4
 [3.0.0-beta.3]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.2...3.0.0-beta.3
@@ -296,3 +315,5 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 [1.3.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/latextemplates/scientific-thesis-template/compare/v1.0.0...v1.1.0
+
+<!-- markdownlint-disable-file MD024 MD033 -->
