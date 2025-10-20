@@ -1,2 +1,2 @@
-FROM registry.gitlab.com/islandoftex/images/texlive:TL2024-historic
+FROM registry.gitlab.com/islandoftex/images/texlive:latest
 WORKDIR /workdir
