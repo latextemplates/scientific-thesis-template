@@ -42,6 +42,7 @@ jobs:
            --overleaf=true\
            --docker=iot\
            --documentclass=scientific-thesis\
+           --thesisvariant=ustutt\
            --papersize=a4\
            --latexcompiler=both\
            --bibtextool=biblatex\
