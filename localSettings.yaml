@@ -2,27 +2,55 @@ indentPreamble: 1
 defaultIndent: '  '
 maxNumberOfBackUps: 9
 modifyLineBreaks:
-    preserveBlankLines: 1
-    condenseMultipleBlankLinesInto: 0
-    oneSentencePerLine:
-        manipulateSentences: 1
-        removeSentenceLineBreaks: 0
-        sentencesFollow:
-            par: 1
-            blankLine: 1
-            fullStop: 1
-            exclamationMark: 1
-            questionMark: 1
-            rightBrace: 1
-            commentOnPreviousLine: 1
-            other: 0
-        sentencesBeginWith:
-            A-Z: 1
-            a-z: 0
-            other: 0
-        sentencesEndWith:
-            basicFullStop: 0
-            betterFullStop: 1
-            exclamationMark: 1
-            questionMark: 1
-            other: '(?:\.\)(?!\h*[a-z]))|(?:(?<!(?:(?:e\.g)|(?:i\.e)|(?:etc))))\.(?!(?:[a-z]|[A-Z]|\-|\,|\.|[0-9]))'
+  preserveBlankLines: 1
+  condenseMultipleBlankLinesInto: 0
+  oneSentencePerLine:
+    manipulateSentences: 1
+    removeSentenceLineBreaks: 0
+    sentencesFollow:
+      par: 1
+      blankLine: 1
+      fullStop: 1
+      exclamationMark: 1
+      questionMark: 1
+      rightBrace: 1
+      commentOnPreviousLine: 1
+      other: 0
+    sentencesBeginWith:
+      A-Z: 1
+      a-z: 0
+      other: 0
+    sentencesEndWith:
+      basicFullStop: 0
+      betterFullStop: 1
+      exclamationMark: 1
+      questionMark: 1
+      other: '(?:\.\)(?!\h*[a-z]))|(?:(?<!(?:(?:e\.g)|(?:i\.e)|(?:etc))))\.(?!(?:[a-z]|[A-Z]|\-|\,|\.|[0-9]))'
+
+noAdditionalIndent:
+  abstract: 1
+  # ifluatex: 1
+  ltgexample: 1
+
+specialBeginEnd:
+  begingroup:
+    begin: '\\begingroup'
+    end: '\\endgroup'
+    lookForThis: 1
+  bgroup:
+    begin: '\\bgroup'
+    end: '\\egroup'
+
+verbatimCommands:
+  verb: 1
+  lstinline: 1
+
+# documentation: https://latexindentpl.readthedocs.io/en/latest/sec-default-user-local.html#verbatim-code-blocks
+verbatimEnvironments:
+  lstlisting: 1
+  markdown: 1
+  mindflow: 1
+  minted: 1
+  verbatim: 1
+
+  # TODO: algorithm configuration - see https://latexindentpl.readthedocs.io/en/latest/sec-default-user-local.html#lst-special2-mod1
