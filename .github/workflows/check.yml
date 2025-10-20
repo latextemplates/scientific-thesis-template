@@ -1,6 +1,9 @@
 name: Check
 on:
   push:
+    branches:
+      - main
+  pull_request:
   schedule:
     - cron: "5 6 * * 1"
   workflow_dispatch:
@@ -13,11 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install TeX Live
-        uses: zauguin/install-texlive@v3
+        uses: zauguin/install-texlive@v4
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
+          texlive_version: 2025
       - name: Prepare latexmk
         run: |
           updmap -sys
@@ -34,18 +38,33 @@ jobs:
           packages: aspell aspell-en aspell-de
           version: 1.0
           execute_install_scripts: true
+      - name: post-setup aspell
+        # refs https://github.com/awalsh128/cache-apt-pkgs-action/issues/157
+        run: |
+          sudo apt-get install -y aspell-en aspell-de
       - name: aspell
         run: |
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
+            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+              continue
+            fi
+
             # The lualatex package "spelling" requires the content to be in a file ending with ".spell.bad"
-            aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | sort | uniq >> main-english.spell.bad
+            aspell --mode=tex\
+              -l en_US\
+              --encoding=utf-8\
+              --conf=./.aspell.conf\
+              -p ./.aspell.en.pws list\
+              < $tex | sort | uniq >> main-english.spell.bad
           done
       - run: latexmk main-english
 
       - name: Job summary using texlogsieve
         run: |
+          texlogsieve --version | head -n 1
+
           echo '```' >> $GITHUB_STEP_SUMMARY
-          texlogsieve < main-english.log >> $GITHUB_STEP_SUMMARY || true
+          texlogsieve main-english.log | tee -a "$GITHUB_STEP_SUMMARY" || true
           echo '```' >> $GITHUB_STEP_SUMMARY
       - uses: actions/upload-artifact@v4
         with:
@@ -58,12 +77,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install TeX Live
         uses: zauguin/install-texlive@v4
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
-          texlive_version: 2024
+          texlive_version: 2025
       - name: Count words
         run: |
           texcount -utf8 -inc main-english.tex > texcount.txt
@@ -93,22 +112,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Original action does not work well - see https://github.com/awalsh128/cache-apt-pkgs-action/pull/136
       # The action is not updated - and thus the dictionaries are not updated
-      - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
+      - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: aspell aspell-en
+          packages: aspell aspell-en aspell-de
           version: 1.0
           execute_install_scripts: true
-
+      - name: post-setup aspell
+        # refs https://github.com/awalsh128/cache-apt-pkgs-action/issues/157
+        run: |
+          sudo apt-get install -y aspell-en aspell-de
       - name: aspell
         run: |
           echo "| file | status |" >> $GITHUB_STEP_SUMMARY
           echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
           failure=0
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
+            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+              echo "$tex skipped"
+              continue
+            fi
+            echo "Checking $tex..."
+
             # Words are output in the order they appear in the document
             words=$(aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | tr '\n' ' ')
             if [ -z "$words" ]; then
@@ -129,8 +157,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v4
-      - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
+        uses: actions/checkout@v5
+      - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: libyaml-tiny-perl libfile-homedir-perl
           version: 1.0
@@ -139,7 +167,7 @@ jobs:
         uses: zauguin/install-texlive@v4
         with:
           packages: latexindent
-          texlive_version: 2024
+          texlive_version: 2025
       - run: make format
       - name: No changes made by latexindent
         run: git diff --exit-code
