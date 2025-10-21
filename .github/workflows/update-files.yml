@@ -79,7 +79,9 @@ jobs:
           if [ ${{ matrix.listings }} == "minted" ]; then
             mv main-$LANGUAGE.tex main-minted-$LANGUAGE$VARIANT.tex
           else
-            mv main-$LANGUAGE.tex main-$LANGUAGE$VARIANT.tex
+            if [ -n "$VARIANT" ]; then
+              mv main-$LANGUAGE.tex main-$LANGUAGE$VARIANT.tex
+            fi
           fi
 
           # remove files which should not be overwritten
