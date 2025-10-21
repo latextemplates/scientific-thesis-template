@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
-## [Unreleased]
+## [2025-10-20]
 
 ### Changed
 
@@ -297,7 +297,8 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-01-26...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-10-20...HEAD
+[2025-10-20]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-01-26...2025-10-20
 [2025-01-26]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0...2025-01-26
 [3.0.0]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.4...3.0.0
 [3.0.0-beta.4]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0-beta.3...3.0.0-beta.4
