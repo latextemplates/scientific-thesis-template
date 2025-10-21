@@ -257,6 +257,12 @@
 
 \usepackage{graphicx}
 
+% Base folder, so there is no need to repeat this over and over again.
+\graphicspath{ {figures/} }
+
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/pdfpages/pdfpages.pdf
+\usepackage{pdfpages} % Include pages from external PDF documents in LaTeX documents
+
 % Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
@@ -847,6 +853,8 @@
 % fix incompatibilities between KOMA and other packages, mainly float.
 % should be loaded at the very end - see http://tex.stackexchange.com/a/156256/9075
 \usepackage{scrhack}
+
+
 \begin{document}
 \setstretch{1.2}
 \raggedbottom
