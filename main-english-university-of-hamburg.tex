@@ -257,6 +257,12 @@
 
 \usepackage{graphicx}
 
+% Base folder, so there is no need to repeat this over and over again.
+\graphicspath{ {figures/} }
+
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/pdfpages/pdfpages.pdf
+\usepackage{pdfpages} % Include pages from external PDF documents in LaTeX documents
+
 % Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
@@ -267,6 +273,8 @@
 \fi
 
 \usepackage[dvipsnames, table]{xcolor}
+
+\definecolor{uhhred}{cmyk}{0,100,100,0}
 % Code Listings
 \usepackage{listings}
 
@@ -709,6 +717,7 @@
 
 \input{commands}
 
+\usepackage{geometry}
 % Package URL: https://ctan.org/pkg/scientific-thesis-cover
 \usepackage[
   title={Is Oil the future?},
@@ -847,11 +856,45 @@
 % fix incompatibilities between KOMA and other packages, mainly float.
 % should be loaded at the very end - see http://tex.stackexchange.com/a/156256/9075
 \usepackage{scrhack}
+
+
 \begin{document}
 \setstretch{1.2}
 \raggedbottom
 \pagenumbering{arabic}
-\Titelblatt
+\frontmatter
+\newgeometry{centering,left=2cm,right=2cm,top=2cm,bottom=2cm}
+\begin{titlepage}
+%\includegraphics[scale=0.3]{figures/UHH-Logo_2010_Farbe_CMYK.pdf}
+\includegraphics[scale=0.3]{figures/UHH-Logo_2010_Farbe_CMYK.png}
+\vspace*{2cm}
+\Large
+\begin{center}
+              {\color{uhhred}\textbf{\so{BACHELORTHESIS}}}
+%TODO ...oder {\color{uhhred}\textbf{\so{MASTERTHESIS}}}
+\vspace*{2.0cm}\\
+{\LARGE \textbf{Titel}}
+\vspace*{2.0cm}\\
+vorgelegt von
+\vspace*{0.4cm}\\
+Max Musterstudent
+\end{center}
+\vfill
+
+\noindent
+{\small
+MIN-Fakultät\\[.2cm]
+Fachbereich Informatik \\[.2cm]
+Ggf. Professur/Institut \\[.2cm]       %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+Studiengang: Wirtschaftsinformatik \\[.2cm]
+Matrikelnummer: 1234567 \\[.5cm]
+Ggf. Abgabedatum: XX.XX.20XX \\[.5cm]  %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+Erstgutachterin: Prof. Dr. Bertha Beispiel \\[.25cm]
+Zweitgutachter: Dr. Eduard Exempel               %TODO Bei Bedarf Geschlechter der Gutachter/innen anpassen
+}
+\end{titlepage}
+
+\restoregeometry
 
 \pagestyle{plain.scrheadings}
 \renewcommand*{\chapterpagestyle}{plain.scrheadings}
@@ -950,6 +993,7 @@ What can they do with your research.
 % Headline and footline
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
+\mainmatter
 
 %%% ===============================================================================
 \chapter{Introduction}\label{sec:introduction}
@@ -1881,5 +1925,31 @@ All links were last followed on October 5, 2020.
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
-\Versicherung
+\clearpage
+\backmatter
+\thispagestyle{empty}
+
+\vspace*{\fill}
+\pagestyle{empty}
+
+{\normalsize
+\begin{center}\textbf{Eidesstattliche Erklärung}\end{center}
+\blindtext[1]
+\vspace*{1cm}\\
+Hamburg, den XX.XX.20XX
+\hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+\makebox[5cm]{Vorname Nachname}
+\end{tabular}
+\vspace*{3cm}
+
+%TODO Dies ist optional, ggf. löschen!
+\begin{center}\textbf{Veröffentlichung}\end{center}
+\blindtext[1]
+\vspace*{1cm}\\
+Hamburg, den XX.XX.20XX
+\hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+\makebox[5cm]{Vorname Nachname}
+\end{tabular}
+}
+\vspace*{\fill}
 \end{document}
