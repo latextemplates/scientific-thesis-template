@@ -15,6 +15,7 @@ jobs:
       matrix:
         language: [en, de]
         listings: [listings, minted]
+        variant: [ustutt,university-of-hamburg]
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v5
@@ -42,6 +43,7 @@ jobs:
            --overleaf=true\
            --docker=iot\
            --documentclass=scientific-thesis\
+           --thesisvariant=${{ matrix.variant }}\
            --papersize=a4\
            --latexcompiler=both\
            --bibtextool=biblatex\
@@ -68,8 +70,18 @@ jobs:
             LANGUAGE=german
           fi
 
+          if [ ${{ matrix.variant }} == "ustutt" ]; then
+            VARIANT=""
+          else
+            VARIANT="-university-of-hamburg"
+          fi
+
           if [ ${{ matrix.listings }} == "minted" ]; then
-            mv main-$LANGUAGE.tex main-minted-$LANGUAGE.tex
+            mv main-$LANGUAGE.tex main-minted-$LANGUAGE$VARIANT.tex
+          else
+            if [ -n "$VARIANT" ]; then
+              mv main-$LANGUAGE.tex main-$LANGUAGE$VARIANT.tex
+            fi
           fi
 
           # remove files which should not be overwritten

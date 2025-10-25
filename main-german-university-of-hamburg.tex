@@ -1,5 +1,5 @@
-% !TeX spellcheck = en-US
-% LTeX: language=en-US
+% !TeX spellcheck = de-DE
+% LTeX: language=de-DE
 % !TeX encoding = utf8
 % !TeX program = lualatex
 % !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
@@ -11,8 +11,14 @@
 \RequirePackage{kvoptions-patch}
 \documentclass[
   % fontsize=11pt is the standard
-  numbers=noenddot,
-  english,  % English as main language; this parameter is passed to other packages (e.g., selnolig in the case of lualatex)
+  % ()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
+  % Nach DUDEN steht in Gliederungen, in denen ausschließlich arabische Ziffern für die Nummerierung
+  % verwendet werden, am Ende der Gliederungsnummern kein abschließender Punkt
+  % (siehe [DUD96, R3]). Wird hingegen innerhalb der Gliederung auch mit römischen Zahlen
+  % oder Groß- oder Kleinbuchstaben gearbeitet, so steht am Ende aller Gliederungsnummern ein
+  % abschließender Punkt (siehe [DUD96, R4])
+  numbers=autoendperiod,
+  ngerman,  % Neue deutsche Rechtschreibung; der Parameter wird an andere Pakete weiter gegeben
   a4paper,  % KOMAScript allows for both paper=a4 and (standard) a4paper - https://tex.stackexchange.com/a/61044/9075
   twoside,  % We are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
   bibliography=totoc,
@@ -30,42 +36,37 @@
 
 \usepackage{ifplatform}
 
-% backticks (`) are rendered as such in verbatim environments.
-% See following links for details:
+% backticks (`) werden als solches in verbatim-Umgebungen dargestellt
+% Details unter:
 %   - https://tex.stackexchange.com/a/341057/9075
 %   - https://tex.stackexchange.com/a/47451/9075
 %   - https://tex.stackexchange.com/a/166791/9075
 \usepackage{upquote}
 
-% Set English as language and allow to write hyphenated"=words
+% Setze Deutsch als Sprache
+\usepackage[english,main=ngerman]{babel}
+% Neue deutsche Trennmuster
+\babelprovide[hyphenrules=ngerman-x-latest]{german}
 %
-% Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
-% english has to go last to set it as default language
-\usepackage[ngerman,main=english]{babel}
-%
-% Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+% Hinweis von http://tex.stackexchange.com/a/321066/9075
+% Ermögliche die Benutzung von "= als Trennstriche
 \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
 
-% Links behave as they should. Enables "\url{...}" for URL typesettings.
-% Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
-% See https://tex.stackexchange.com/a/3034/9075.
+% Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
+\addto\captionsngerman{%
+  \renewcommand\abstractname{Kurzfassung}%
+}
+
+% Links verhalten sich so, wie sie sollen
+% Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
+% Siehe https://tex.stackexchange.com/a/3034/9075.
 \usepackage[hyphens]{url}
-
-% When activated, use text font as url font, not the monospaced one.
-% For all options see https://tex.stackexchange.com/a/261435/9075.
 % \urlstyle{same}
-
-% Improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+%
+% Hinweis von http://tex.stackexchange.com/a/10419/9075.
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
-
-% nicer // - solution by http://tex.stackexchange.com/a/98470/9075
-% DO NOT ACTIVATE -> prevents line breaks
-%\makeatletter
-%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
-%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
-%\makeatother
 
 %math stuff
 \usepackage[
@@ -237,23 +238,28 @@
 \ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
 \ifoot[]{}
 
-% Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
+% Optischer Randausgleich und Grauwertkorrektur. Siehe See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
 
 \usepackage[
-  babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
+  babel=true,
   expansion=alltext,
-  protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
-  % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
-  final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
+  protrusion=alltext-nott,
+  final
 ]{microtype}
 
-% \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
+% \texttt{test -- test} - diese Einstellung behält "--" bei (und konveriert sie nicht zu einem Bindestrich)
 \DisableLigatures{encoding = T1, family = tt* }
 
+% tracking=true muss als Parameter des microtype-packages mitgegeben werden
+% Deaktiviert, da dies bei Algorithmen seltsam aussieht
+
 %\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
+
+% Hier wird festgelegt, dass alle Passagen in Kapitälchen automatisch leicht gesperrt werden.
+% Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
+% Deaktiviert, da sonst "BPEL", "BPMN" usw. wirklich komisch aussehen.
+% Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
 %\SetTracking{ encoding = *, shape = sc }{ 45 }
-% Source: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
-% Deactiviated, because does not look good
 
 \usepackage{graphicx}
 
@@ -273,6 +279,9 @@
 \fi
 
 \usepackage[dvipsnames, table]{xcolor}
+
+\definecolor{uhhred}{cmyk}{0,100,100,0}
+
 % Code Listings
 \usepackage{listings}
 
@@ -325,14 +334,14 @@
   %
   commentstyle=\slshape,
   %
-  % default: \rmfamily
+  % Default: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
   stringstyle=\ttfamily,
   %
   breaklines=true,            % Zeilen werden umbrochen
   %
   breakatwhitespace=true,
   %
-  % alternative: fixed
+  % Alternative: fixed
   columns=flexible,
   %
   tabsize=2,                  % Groesse von Tabs
@@ -351,11 +360,11 @@
   %
   captionpos=b
 }
-\ifpdftex
 
-  % Enable Umlauts when using \lstinputputlisting.
-  % See https://stackoverflow.com/a/29260603/873282 für details.
-  % listingsutf8 did not work in June 2020.
+\ifpdftex
+  % Ermögliche Umlaute falls \lstinputputlisting genutzt wird
+  % Siehe https://stackoverflow.com/a/29260603/873282 für Details.
+  % listingsutf8 hat im Juni 2020 nicht funktioniert.
   \lstset{literate=
     {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -389,7 +398,10 @@
 \defineshorthand{"`}{\openautoquote}
 \defineshorthand{"'}{\closeautoquote}
 
-% Nicer tables (\toprule, \midrule, \bottomrule)
+% bessere Abstaende innerhalb der Tabelle (Layout))
+% -------------------------------------------------
+% \toprule, \midrule, \bottomrule
+% Doc: https://texdoc.org/serve/booktabs/0
 \usepackage{booktabs}
 
 % Extended enumerate, such as \begin{compactenum}
@@ -576,10 +588,12 @@
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
+\addto\extrasgerman{\sisetup{locale = DE}}
 
 % See http://tex.stackexchange.com/a/83051/9075
 % Normally, doesn't work with hyperref, but cleveref fixes that
-\usepackage{varioref}
+\usepackage[ngerman]{varioref}
+
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -597,6 +611,13 @@
 
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
+
+% Hint by https://tex.stackexchange.com/a/193370/9075 to suppress strange outputs of the babel package
+% Example strange output: Package babel Info: Redefining ngerman shorthand "|
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@decl@short}{\bbl@info}{\@gobble}{}{}
+\makeatother
 
 
 %%%
@@ -633,15 +654,25 @@
 \newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
 \algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
 
-% Extensions for references inside the document (\cref{fig:sample}, ...)
-% Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
-% That means, "Figure 5" is a full link instead of just "5".
+% cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}
 
+\crefname{table}{Tabelle}{Tabellen}
+\Crefname{table}{Tabelle}{Tabellen}
+\crefname{figure}{Abbildung}{Abbildungen}
+\Crefname{figure}{Abbildung}{Abbildungen}
+\crefname{equation}{Gleichung}{Gleichungen}
+\Crefname{equation}{Gleichung}{Gleichungen}
+\crefname{theorem}{Theorem}{Theoreme}
+\Crefname{theorem}{Theorem}{Theoreme}
 \crefname{listing}{Listing}{Listings}
 \Crefname{listing}{Listing}{Listings}
-\crefname{lstlisting}{Listing}{Listings}
-\Crefname{lstlisting}{Listing}{Listings}
+\crefname{section}{Abschnitt}{Abschnitte}
+\Crefname{section}{Abschnitt}{Abschnitte}
+\crefname{paragraph}{Abschnitt}{Abschnitte}
+\Crefname{paragraph}{Abschnitt}{Abschnitte}
+\crefname{subparagraph}{Abschnitt}{Abschnitte}
+\Crefname{subparagraph}{Abschnitt}{Abschnitte}
 
 \usepackage{lipsum}
 
@@ -667,6 +698,9 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
+\addto\captionsngerman{%
+  \renewcommand*{\glossaryname}{Bedeutung}%
+}
 \usepackage[
   translate=babel,
   abbreviations,         % create "abbreviations" glossary
@@ -685,15 +719,12 @@
 
 \input{abbreviations}
 
-% Allows for defining commands that don't eat spaces.
+
 \usepackage{xspace}
-% Adds compatibility to \xspace und \enquote
+% Macht \xspace und \enquote kompatibel
 \makeatletter
 \xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
 \makeatother
-
-\newcommand{\eg}{e.g.,\ }
-\newcommand{\ie}{i.e.,\ }
 
 % Enable hyphenation at other places as the dash.
 % Example: applicaiton\hydash specific
@@ -702,19 +733,28 @@
 % Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
 \makeatother
 
-% Add manual adapted hyphenation of English words
-% See https://ctan.org/pkg/hyphenex and https://tex.stackexchange.com/a/22892/9075 for details
-\input{ushyphex}
+\ifluatex
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+  % See ADR-0008 for alternatives
+  \usepackage{autotype}
+\fi
 
 % correct bad hyphenation here
 \hyphenation{
-  op-tical net-works semi-conduc-tor
+  Spe-zi-fi-ka-tion
+  In-te-gra-tion
+  An-for-de-rung An-for-de-run-gen
+  Be-nut-zer-ober-flä-che
+  Mes-sung-en
+  aus-zu-tau-schen
+  Lauf-zeit-in-for-ma-tionen
   % May not be hypphenated
   AROMA TOSCA BPMN OASIS OMG DMTF IT DevOps
 }
 
 \input{commands}
 
+\usepackage{geometry}
 % Package URL: https://ctan.org/pkg/scientific-thesis-cover
 \usepackage[
   title={Is Oil the future?},
@@ -856,67 +896,107 @@
 
 
 \begin{document}
-\raggedbottom
+\raggedbottom     % Variable Seitenhoehen zulassen
+\ifluatex
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+  % See ADR-0008 for alternatives
+  \autotypelangoptions{ngerman}{ligbreak}
+\fi
+
 \pagenumbering{arabic}
-\Titelblatt
+\frontmatter
+\newgeometry{centering,left=2cm,right=2cm,top=2cm,bottom=2cm}
+\begin{titlepage}
+%\includegraphics[scale=0.3]{figures/UHH-Logo_2010_Farbe_CMYK.pdf}
+\includegraphics[scale=0.3]{figures/UHH-Logo_2010_Farbe_CMYK.png}
+\vspace*{2cm}
+\Large
+\begin{center}
+              {\color{uhhred}\textbf{\so{BACHELORTHESIS}}}
+%TODO ...oder {\color{uhhred}\textbf{\so{MASTERTHESIS}}}
+\vspace*{2.0cm}\\
+{\LARGE \textbf{Titel}}
+\vspace*{2.0cm}\\
+vorgelegt von
+\vspace*{0.4cm}\\
+Max Musterstudent
+\end{center}
+\vfill
+
+\noindent
+{\small
+MIN-Fakultät\\[.2cm]
+Fachbereich Informatik \\[.2cm]
+Ggf. Professur/Institut \\[.2cm]       %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+Studiengang: Wirtschaftsinformatik \\[.2cm]
+Matrikelnummer: 1234567 \\[.5cm]
+Ggf. Abgabedatum: XX.XX.20XX \\[.5cm]  %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+Erstgutachterin: Prof. Dr. Bertha Beispiel \\[.25cm]
+Zweitgutachter: Dr. Eduard Exempel               %TODO Bei Bedarf Geschlechter der Gutachter/innen anpassen
+}
+\end{titlepage}
+
+\restoregeometry
 
 \pagestyle{plain.scrheadings}
 \renewcommand*{\chapterpagestyle}{plain.scrheadings}
 
-% abstract
-% Same style as table of contents
-\section*{Abstract}
-\emph{Write an abstract for your work.
-  Replace each of the points below with one sentence (two if you must) and you have your abstract.
-  Write it when you finished your entire report.
-  \footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
+% Kurzfassung / abstract
+% auch im Stil vom Inhaltsverzeichnis
+\section*{Kurzfassung}
+% Silbentrennung auf Englisch
+\begin{otherlanguage}{american}
+  \emph{Write an abstract for your work.
+    Replace each of the points below with one sentence (two if you must) and you have your abstract.
+    Write it when you finished your entire report.
+    \footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
 
-\emph{Introduction.}
-In one sentence, what’s the topic?
-Phrase it in a way that your reader will understand.
-If you’re writing a PhD thesis, your readers are the examiners – assume they are familiar with the general field of research, so you need to tell them specifically what topic your thesis addresses.
-Same advice works for scientific papers – the readers are the peer reviewers, and eventually others in your field interested in your research, so again they know the background work, but want to know specifically what topic your paper covers.
+  \emph{Introduction.}
+  In one sentence, what’s the topic?
+  Phrase it in a way that your reader will understand.
+  If you’re writing a PhD thesis, your readers are the examiners – assume they are familiar with the general field of research, so you need to tell them specifically what topic your thesis addresses.
+  Same advice works for scientific papers – the readers are the peer reviewers, and eventually others in your field interested in your research, so again they know the background work, but want to know specifically what topic your paper covers.
 
-\emph{State the problem you tackle.}
-What’s the key research question?
-Again, in one sentence.
-(Note: For a more general essay, I’d adjust this slightly to state the central question that you want to address)
-Remember, your first sentence introduced the overall topic, so now you can build on that, and focus on one key question within that topic.
-If you can’t summarize your thesis/paper/essay in one key question, then you don’t yet understand what you’re trying to write about.
-Keep working at this step until you have a single, concise (and understandable) question.
+  \emph{State the problem you tackle.}
+  What’s the key research question?
+  Again, in one sentence.
+  (Note: For a more general essay, I’d adjust this slightly to state the central question that you want to address)
+  Remember, your first sentence introduced the overall topic, so now you can build on that, and focus on one key question within that topic.
+  If you can’t summarize your thesis/paper/essay in one key question, then you don’t yet understand what you’re trying to write about.
+  Keep working at this step until you have a single, concise (and understandable) question.
 
-\emph{Summarize (in one sentence) why nobody else has adequately answered the research question yet.}
-For a PhD thesis, you’ll have an entire chapter, covering what’s been done previously in the literature.
-Here you have to boil that down to one sentence.
-But remember, the trick is not to try and cover all the various ways in which people have tried and failed; the trick is to explain that there’s this one particular approach that nobody else tried yet (hint: it’s the thing that your research does).
-But here you’re phrasing it in such a way that it’s clear it’s a gap in the literature.
-So use a phrase such as “previous work has failed to address…”.
-(if you’re writing a more general essay, you still need to summarize the source material you’re drawing on, so you can pull the same trick – explain in a few words what the general message in the source material is, but expressed in terms of what’s missing)
+  \emph{Summarize (in one sentence) why nobody else has adequately answered the research question yet.}
+  For a PhD thesis, you’ll have an entire chapter, covering what’s been done previously in the literature.
+  Here you have to boil that down to one sentence.
+  But remember, the trick is not to try and cover all the various ways in which people have tried and failed; the trick is to explain that there’s this one particular approach that nobody else tried yet (hint: it’s the thing that your research does).
+  But here you’re phrasing it in such a way that it’s clear it’s a gap in the literature.
+  So use a phrase such as “previous work has failed to address…”.
+  (if you’re writing a more general essay, you still need to summarize the source material you’re drawing on, so you can pull the same trick – explain in a few words what the general message in the source material is, but expressed in terms of what’s missing)
 
-\emph{Explain, in one sentence, how you tackled the research question.}
-What’s your big new idea?
-(Again for a more general essay, you might want to adapt this slightly: what’s the new perspective you have adopted? or:
-What’s your overall view on the question you introduced in step 2?)
+  \emph{Explain, in one sentence, how you tackled the research question.}
+  What’s your big new idea?
+  (Again for a more general essay, you might want to adapt this slightly: what’s the new perspective you have adopted? or:
+  What’s your overall view on the question you introduced in step 2?)
 
-\emph{In one sentence, how did you go about doing the research that follows from your big idea.}
-Did you run experiments?
-Build a piece of software?
-Carry out case studies?
-This is likely to be the longest sentence, especially if it’s a PhD thesis – after all you’re probably covering several years worth of research.
-But don’t overdo it – we’re still looking for a sentence that you could read aloud without having to stop for breath.
-Remember, the word ‘abstract’ means a summary of the main ideas with most of the detail left out.
-So feel free to omit detail!
-(For those of you who got this far and are still insisting on writing an essay rather than signing up for a PhD, this sentence is really an elaboration of sentence 4 – explore the consequences of your new perspective).
+  \emph{In one sentence, how did you go about doing the research that follows from your big idea.}
+  Did you run experiments?
+  Build a piece of software?
+  Carry out case studies?
+  This is likely to be the longest sentence, especially if it’s a PhD thesis – after all you’re probably covering several years worth of research.
+  But don’t overdo it – we’re still looking for a sentence that you could read aloud without having to stop for breath.
+  Remember, the word ‘abstract’ means a summary of the main ideas with most of the detail left out.
+  So feel free to omit detail!
+  (For those of you who got this far and are still insisting on writing an essay rather than signing up for a PhD, this sentence is really an elaboration of sentence 4 – explore the consequences of your new perspective).
 
-\emph{As a single sentence, what’s the key impact of your research?
-  Here we’re not looking for the outcome of an experiment.
-}
-We’re looking for a summary of the implications.
-What’s it all mean?
-Why should other people care?
-What can they do with your research.
-(Essay folks: all the same questions apply: what conclusions did you draw, and why would anyone care about them?)
-
+  \emph{As a single sentence, what’s the key impact of your research?
+    Here we’re not looking for the outcome of an experiment.
+  }
+  We’re looking for a summary of the implications.
+  What’s it all mean?
+  Why should other people care?
+  What can they do with your research.
+  (Essay folks: all the same questions apply: what conclusions did you draw, and why would anyone care about them?)
+\end{otherlanguage}
 
 \microtypesetup{protrusion=false}
 
@@ -927,9 +1007,9 @@ What can they do with your research.
 %\renewcommand{\@pnumwidth}{2em}
 %\makeatother
 %
-% In case of a strange break in the table of contents,
-% a page break can be inserted by issuing the following command at the "right" place in the main text:
+% Bei einem ungünstigen Seitenumbruch im Inhaltsverzeichnis, kann dieser mit
 %  \addtocontents{toc}{\protect\newpage}
+% an der passenden Stelle im Fließtext erzwungen werden.
 \tableofcontents
 
 \listoffigures
@@ -941,13 +1021,13 @@ What can they do with your research.
 % Alternative: \listof{Listing}{List of Listings}
 \lstlistoflistings
 
-% mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
-% Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
-%\listof{Algorithmus}{List of Algorithms}
+%mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
+%Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
+%\listof{Algorithmus}{Verzeichnis der Algorithmen}
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
 
-% Abbreviations / Acronyms
-\printglossary[type=\acronymtype,title={Abbreviations}]
+% Abkürzungsverzeichnis / Acronyms / Abbreviations
+\printglossary[type=\acronymtype,title={Abkürzungsverzeichnis}]
 % \printglossaries
 % \printnoidxglossaries
 % \printunsrtglossaries cannot be used, because then no indexing happens; source: https://tex.stackexchange.com/a/287128/9075
@@ -957,6 +1037,7 @@ What can they do with your research.
 % Headline and footline
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
+\mainmatter
 
 %%% ===============================================================================
 \chapter{Introduction}\label{sec:introduction}
@@ -1282,10 +1363,10 @@ The interpretation must be based on the written description in \cref{sec:evaluat
 Then you can be sure that your readers can follow your interpretation and reach the same conclusions as you have.
 
 
-\chapter{LaTeX Hints}
+\chapter{LaTeX Hinweise}
 \label{sec:latexhints}
 
-% Required for proper example rendering in the compiled PDF
+% Benötigt für eine korrekte Darstellung der Hinweise im erzeugten PDF
 \newcount\LTGbeginlineexample
 \newcount\LTGendlineexample
 \newenvironment{ltgexample}%
@@ -1299,7 +1380,7 @@ Then you can be sure that your readers can follow your interpretation and reach 
     coltitle=black!90,
     coltext=black!90,
     left=8mm,
-    title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
+    title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
     listing options={
         frame=none,
         language={[LaTeX]TeX},
@@ -1318,31 +1399,32 @@ Then you can be sure that your readers can follow your interpretation and reach 
   }
 }%
 
-This chapter contains hints on writing LaTeX.
-It focuses on minimal examples, which can be directly adapted to the content
+Hier sollen allgemeine \LaTeX-Hinweise gegeben werden, damit man Minimalbeispiele vorliegen hat, um sofort loszulegen.
 
-\section{Handling of paragraphs}
+\section{Trennung von Absätzen}
 
 \begin{ltgexample}
-One sentence per line.
-This rule is important for the usage of version control systems.
-A new line is generated with a blank line.
-As you would do in Word:
-New paragraphs are generated by pressing enter.
-In LaTeX, this does not lead to a new paragraph as LaTeX joins subsequent lines.
-In case you want a new paragraph, just press enter twice!
-This leads to an empty line.
-In word, there is the functionality to press shift and enter.
-This leads to a hard line break.
-The text starts at the beginning of a new line.
-In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).
+Pro Satz eine neue Zeile.
+Das ist wichtig, um sauber versionieren zu können.
+In LaTeX werden Absätze durch eine Leerzeile getrennt.
+Analogie zu Word: Bei Word werden neue Absätze durch einmal Eingabetaste herbeigeführt.
+Dies führt bei LaTeX jedoch nicht zu einem neuen Absatz, da LaTeX direkt aufeinanderfolgende Zeilen zu einer Zeile zusammenfügt.
+Mächte man nun einen Absatz haben, muss man zweimal die Eingabetaste drücken.
+Dies führt zu einer leeren Zeile.
+In Word gibt es die Funktion Großschreibetaste und Eingabetaste gleichzeitig.
+Wenn man dies drückt, wird einer harter Umbruch erzwungen.
+Der Text fängt am Anfang der neuen Zeile an.
+In LaTeX erreicht man dies durch Doppelbackslashes (\textbackslash\textbackslash) erzeugt.
 \\
-This is rarely used.
+Dies verwendet man quasi nie.
 
-Please do \textit{not} use two backslashes for new paragraphs.
-For instance, this sentence belongs to the same paragraph, whereas the last one started a new one.
-A long motivation for that is provided at \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
+Folglich werden neue Abstäze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
+Beispielsweise begann der letzte Satz in einem neuen Absatz.
+Eine ausführliche Motivation hierfür findet sich in \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
 \end{ltgexample}
+
+Möchte man die Art des Absatzes ändern, so kann man die Dokumentklassenoption \texttt{parskip} verwenden.
+Beispielsweise kann man mit \texttt{parskip=off} erreichen, dass statt eines freien Bereichs die erste Zeile des Absatzes eingezogen wird.
 
 \section{Notes separated from the text}
 
@@ -1463,18 +1545,15 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 \Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
 \end{ltgexample}
 
-\section{Figures}
+\section{Abbildungen}
 
 \begin{ltgexample}
-\Cref{fig:label} shows something interesting.
+\Cref{fig:label} zeigt etwas Interessantes
 
 \begin{figure}
   \centering
-  \includegraphics[width=.8\linewidth]{example-image-golden}
-  \caption[Simple Figure]{
-    Simple Figure.
-    Based on \citet{mwe}.
-  }
+  Füge deine Abbildung hier ein.
+  \caption{Bildunterschrift.}
   \label{fig:label}
 \end{figure}
 \end{ltgexample}
@@ -1532,15 +1611,15 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \end{ltgexample}
 
 
-\section{Source Code}
+\section{Quellcode}
 
 \begin{ltgexample}
-\Cref{lst:XML} shows source code written in XML.
-\Cref{line:comment} contains a comment.
+\Cref{lst:XML} zeigt XML-Quelltext.
+\Cref{line:comment} enthält einen Kommentar.
 
 \begin{lstlisting}[
   language=XML,
-  caption={Example XML Listing},
+  caption={Beispiel-XML-Listing},
   label={lst:XML}]
 <listing name="example">
   <!-- comment --> (* \label{line:comment} *)
@@ -1549,17 +1628,17 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \end{lstlisting}
 \end{ltgexample}
 
-One can also add \verb+float+ as parameter to have the listing floating.
-\Cref{lst:flXML} shows the floating listing.
+Der zusätzliche Paramter \verb+float+ führt dazu, dass das Listing auch floated.
+\Cref{lst:flXML} zeigt das gleitendede Listing.
 
 \begin{ltgexample}
 \begin{lstlisting}[
-  % one can adjust spacing here if required
+  % Es ist möglcih, die Abstände bei Bedarf einzustellen
   % aboveskip=2.5\baselineskip,
   % belowskip=-.8\baselineskip,
   float,
   language=XML,
-  caption={Example XML listing -- placed as floating figure},
+  caption={Beispiel-XML-Listing -- gleitend},
   label={lst:flXML}]
 <listing name="example">
   Floating
@@ -1567,13 +1646,13 @@ One can also add \verb+float+ as parameter to have the listing floating.
 \end{lstlisting}
 \end{ltgexample}
 
-One can also typeset JSON as shown in \cref{lst:json}.
+Es ist möglich auch JSON zu setzen, wie in \cref{lst:json} gezeigt.
 
 \begin{ltgexample}
 \begin{lstlisting}[
   float,
   language=json,
-  caption={Example JSON listing -- placed as floating figure},
+  caption={Beispiel-JSON-listing},
   label={lst:json}]
 {
   key: "value"
@@ -1581,7 +1660,7 @@ One can also typeset JSON as shown in \cref{lst:json}.
 \end{lstlisting}
 \end{ltgexample}
 
-Java is also possible as shown in \cref{lst:java}.
+Java ist auch möglich -- \cref{lst:java}.
 
 \begin{ltgexample}
 \begin{lstlisting}[
@@ -1645,32 +1724,30 @@ With paralist, one can even have all items typeset after each other and have the
 \end{inparaenum}
 \end{ltgexample}
 
-\section{Abbreviations}
+\section{Abkürzungen}
 
-With \verb+\gls{...}+ you can enter abbreviations, the first time you call it, the long form is used.
-When reusing \verb+\gls{..}+ the short form is automatically displayed.
-The abbreviation is also automatically inserted in the abbreviation list.
-With \verb+\glspl{...}+ the plural form is used.
-If you want the short form to appear directly at the first use, you can use \verb+\glsunset{..}+ to mark an abbreviation as already used.
-The opposite is achieved with \verb+\glsreset{..}+.
+Mit \verb+\gls{...}+ können Abkürzungen eingebaut werden, beim ersten Aufrufen wird die lange Form eingesetzt.
+Beim wiederholten Verwenden von \verb+\gls{...}+ wird automatisch die Kurzform angezeigt.
+Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt.
+Mit \verb+\glspl{...}+ wird die Pluralform verwendet.
+Möchte man, dass bei der ersten Verwendung direkt die Kurzform erscheint, so kann man mit \verb+\glsunset{...}+ eine Abkürzung als bereits verwendet markieren.
+Das Gegenteil erreicht man mit \verb+\glsreset{...}+.
 
-Abbreviations are defined in \verb+\content\ausarbeitung.tex+ by means of \verb+\newacronym{...}{...}{...}+.
+Definiert werden Abkürzungen in der Datei \textit{abbreviationstex} mithilfe von \verb+\newacronym{...}{...}{...}+.
 
-More information at: \url{https://ctan.org/pkg/bib2gls}.
+Mehr Infos unter: \url{https://ctan.org/pkg/bib2gls}.
 
 \begin{ltgexample}
-At the first pass the \gls{fr} was 5.
-At the second pass was \gls{fr} 3.
-The plural form can be seen here: \glspl{er}.
-To demonstrate what the list of abbreviations looks like for longer description texts, \glspl{rdbms} must be mentioned here.
+Beim ersten Durchlauf betrug die \gls{fr} 5.
+Beim zweiten Durchlauf war die \gls{fr} 3.
+Die Pluralform sieht man hier: \glspl{er}.
+Um zu demonstrieren, wie das Abkürzungsverzeichnis bei längeren Beschreibungstexten aussieht, muss hier noch \glspl{rdbms} erwähnt werden.
 
 \gls{dante} is a local \TeX\ user group.
 The German-speaking local \TeX\ user group is \gls{dante}.
 A \gls{gp} is a medical doctor.
 I went to my surgery to see the \gls{gp}.
 \end{ltgexample}
-
-\todo{Include difference between acronym and abbreviation - \url{https://tex.stackexchange.com/a/154566/9075}}
 
 \section{Other Features}
 
@@ -1838,9 +1915,8 @@ Dabei ist zu beachten, dass es sich bei Einbindung von \texttt{enumitem} anders 
   Bis nächsten Freitag ist das Programm fertig.
 \end{gfquote}
 
-
 %%% ===============================================================================
-\chapter{Conclusion and Outlook}\label{sec:conclusion}
+\chapter{Zusammenfassung und Ausblick}\label{sec:conclusion}
 %%% ===============================================================================
 
 Your conclusions are not just a factual summary of your work, but they position, interpret, and defend your findings against the state of the art that you discussed in \cref{sec:introduction:state-of-art}.
@@ -1866,7 +1942,7 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 \ \\
 %
 \noindent
-All links were last followed on October 5, 2020.
+Alle Links wurden zuletzt am 29.03.2021 geprüft.
 
 %%% ===============================================================================
 
@@ -1877,8 +1953,8 @@ All links were last followed on October 5, 2020.
 \appendix
 % 'Anhang' ins Inhaltsverzeichnis
 %\phantomsection
-%\addcontentsline{toc}{chapter}{Appendix}
-\addcontentsline{toc}{part}{Appendix}
+%\addcontentsline{toc}{chapter}{Anhang}
+\addcontentsline{toc}{part}{Anhang}
 
 %%% ===============================================================================
 \chapter{My first appendix}\label{sec:appendix1}
@@ -1888,5 +1964,31 @@ All links were last followed on October 5, 2020.
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
-\Versicherung
+\clearpage
+\backmatter
+\thispagestyle{empty}
+
+\vspace*{\fill}
+\pagestyle{empty}
+
+{\normalsize
+\begin{center}\textbf{Eidesstattliche Erklärung}\end{center}
+\blindtext[1]
+\vspace*{1cm}\\
+Hamburg, den XX.XX.20XX
+\hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+\makebox[5cm]{Vorname Nachname}
+\end{tabular}
+\vspace*{3cm}
+
+%TODO Dies ist optional, ggf. löschen!
+\begin{center}\textbf{Veröffentlichung}\end{center}
+\blindtext[1]
+\vspace*{1cm}\\
+Hamburg, den XX.XX.20XX
+\hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+\makebox[5cm]{Vorname Nachname}
+\end{tabular}
+}
+\vspace*{\fill}
 \end{document}
