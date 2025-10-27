@@ -160,7 +160,7 @@ jobs:
 
           mkdir publish/docs
           cp -r docs/adr publish/docs/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: publish
           path: publish/
