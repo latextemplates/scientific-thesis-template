@@ -1,0 +1,54 @@
+name: gh pages
+on:
+  push:
+    branches:
+      - main
+      - add-gh-pages-workflow
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.head_ref || github.ref }}"
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: ${{ github.repository == 'latextemplates/scientific-thesis-template' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v5
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v4
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+          texlive_version: 2025
+      - name: Prepare latexmk
+        run: |
+          updmap -sys
+          texhash
+          tlmgr generate language --rebuild-sys
+          if [ ! -f "latexmkrc" ]; then
+            cp "_latexmkrc" "latexmkrc"
+          fi
+      - run: latexmk main-english
+      - run: latexmk main-english-university-of-hamburg.tex
+      - run: latexmk main-german.tex
+      - run: latexmk main-german-university-of-hamburg.tex
+      - run: latexmk main-minted-english
+      - run: latexmk main-minted-english-university-of-hamburg.tex
+      - run: latexmk main-minted-german.tex
+      - run: latexmk main-minted-german-university-of-hamburg.tex
+      - name: prepare publish
+        run: |
+          mkdir publish
+          cp README.md publish/index.md
+          cd publish
+          cp -r ../docs/* .
+          cp ../*.pdf .
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: gh-pages
+          build_dir: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
