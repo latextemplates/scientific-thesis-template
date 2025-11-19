@@ -45,6 +45,7 @@ jobs:
           cp README.md publisch
           cd publish
           cp -r ../docs/* .
+          cp ../*.pdf .
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
