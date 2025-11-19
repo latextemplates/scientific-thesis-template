@@ -1,4 +1,4 @@
-name: Check
+name: gh pages
 on:
   push:
     branches:
