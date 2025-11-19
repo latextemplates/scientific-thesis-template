@@ -12,7 +12,6 @@ permissions:
   contents: write
 jobs:
   publish:
-    name: pdf (latexmk main-english)
     if: ${{ github.repository == 'latextemplates/scientific-thesis-template' }}
     runs-on: ubuntu-latest
     steps:
