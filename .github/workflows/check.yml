@@ -68,7 +68,7 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           texlogsieve main-english.log | tee -a "$GITHUB_STEP_SUMMARY" || true
           echo '```' >> $GITHUB_STEP_SUMMARY
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: test-result
           path: |
@@ -102,7 +102,7 @@ jobs:
           # echo "## TeXcount LaTeX interpretation" >> $GITHUB_STEP_SUMMARY
           # echo "" >> $GITHUB_STEP_SUMMARY
           # cat "texcount.html-body" >> $GITHUB_STEP_SUMMARY
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: word-count
           path: |
