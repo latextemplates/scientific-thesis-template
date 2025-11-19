@@ -41,7 +41,7 @@ jobs:
       - name: prepare publish
         run: |
           mkdir publish
-          cp README.md publisch
+          cp README.md publish/index.md
           cd publish
           cp -r ../docs/* .
           cp ../*.pdf .
