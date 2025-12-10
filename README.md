@@ -4,10 +4,13 @@ This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
 - University of Stuttgart, Computer Science
+
   - 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
   - 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english.pdf)
+  - 🇺🇸 [English example with minted and PlantUML (University of Hamburg)](https://latextemplates.github.io/scientific-thesis-template/main-minted-english-university-of-hamburg.pdf)
   - 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
   - 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
+  - 🇩🇪 [German example with minted and PlantUML (Universität Hamburg)](https://latextemplates.github.io/scientific-thesis-template/main-minted-german-university-of-hamburg.pdf)
 
 The template will be extended to support theses from different institutions.
 
@@ -16,9 +19,12 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](docs/
 ## Quick start
 
 1. Download
+
     1. Go to the development version at <https://github.com/latextemplates/scientific-thesis-template/archive/main.zip>. Reason: LaTeX packages change so fast over time and we cannot do a release on each change.
     2. Extract `scientific-thesis-template-main.zip` to the directory you want to work. E.g., `c:\users\user\documents\thesis`.
+
 2. Start texing
+
     - University of Stuttgart:
         - English: `main-english.tex`
         - German: `main-german.tex`
@@ -26,7 +32,7 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](docs/
 
 ### Usage at overleaf
 
-See [overleaf](overleaf/).
+See [docs/overleaf](docs/overleaf/).
 
 ## Usage
 
@@ -127,7 +133,7 @@ Congratulations. You chose to use all available features.
 - Mac OS X: Recent [TeX Live](https://www.tug.org/texlive/) (e.g. through [MacTeX](https://tug.org/mactex/)) - Try `sudo tlmgr update --all` if you encounter issues with biblatex
 - Linux: Recent TeX Live distribution
 
-See [docs/latex-setup](docs/latex-setup) for refined installation instructions.
+See <docs/latex-setup.md> for refined installation instructions.
 
 ### Usage of `minted`
 

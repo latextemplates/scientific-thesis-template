@@ -319,8 +319,6 @@
   %
   showstringspaces=false,
   %
-  extendedchars=true,
-  %
   basicstyle=\footnotesize\ttfamily,
   %
   commentstyle=\slshape,
@@ -351,12 +349,12 @@
   %
   captionpos=b
 }
-\ifpdftex
 
+\ifpdftex
   % Enable Umlauts when using \lstinputputlisting.
-  % See https://stackoverflow.com/a/29260603/873282 für details.
+  % See https://stackoverflow.com/a/29260603/873282 and https://tex.stackexchange.com/a/24532/9075 for details.
   % listingsutf8 did not work in June 2020.
-  \lstset{literate=
+  \lstset{extendedchars=true, literate=
     {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
@@ -1030,7 +1028,6 @@ This section is usually a summary of the related work discussion in \cref{sec:ba
 At the end of this section, you have established a \emph{knowledge gap} between the state of the art and the general objective you developed in \cref{sec:introduction:topic}.
 \emph{Stating a (knowledge) gap between a status quo and a desired situation is the \emph{first step} of a writing scientific argument.}
 
-
 % ---------------------------------------------------------------------------------
 \section{Research Question (SM2)}\label{sec:introduction:research-question}
 % ---------------------------------------------------------------------------------
@@ -1703,6 +1700,28 @@ Varioref demonstration: Vref at beginning of sentence, vref in all other cases.
 
 \Vref{sec:ex:cref} shows a simple fact, although \vref{sec:ex:cref} could also show something else.
 \end{ltgexample}
+
+\section{Citations}
+
+When referencing something from the bibliography file, it will automatically appear in the references section.
+If a reference is not cited, it is not appearing there.
+
+\begin{ltgexample}
+Standard case: Citing indirectly citing something~\cite{mwe}.
+In case one wants to name the author: \textcite{mwe} shows a minimal \LaTeX{} example.
+\end{ltgexample}
+
+Note that \texttt{\textbackslash textcite\{mwe\}} prints both the author and the reference to the bibliography entry.
+
+Remember that you have to call \texttt{biber main-english} to generate the bibliography data for \texttt{lualatex}.
+You will need to run \texttt{lualatex} twice to ensure that the page numbers are updated correctly.
+
+
+In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
+E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
+When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
+See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
+
 \section{Miscellaneous Examles}
 \label{ssec:example}
 
@@ -1854,11 +1873,6 @@ Be specific in the sense that your arguments for future work should be based on 
 %%% ===============================================================================
 %%% Bibliography
 %%% ===============================================================================
-
-In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
-E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
-When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
-See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
 
 \printbibliography
 
