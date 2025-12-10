@@ -1659,6 +1659,27 @@ Varioref demonstration: Vref at beginning of sentence, vref in all other cases.
 
 \Vref{sec:ex:cref} shows a simple fact, although \vref{sec:ex:cref} could also show something else.
 \end{ltgexample}
+\section{Citations}
+
+When referencing something from the bibliography file, it will automatically appear in the references section.
+If a reference is not cited, it is not appearing there.
+
+\begin{ltgexample}
+Standard case: Citing indirectly citing something~\cite{mwe}.
+In case one wants to name the author: \textcite{mwe} shows a minimal \LaTeX{} example.
+\end{ltgexample}
+
+Note that \texttt{\textbackslash textcite\{mwe\}} prints both the author and the reference to the bibliography entry.
+
+Remember that you have to call \texttt{biber main-german} to generate the bibliography data for \texttt{lualatex}.
+You will need to run \texttt{lualatex} twice to ensure that the page numbers are updated correctly.
+
+
+In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
+E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
+When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
+See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
+
 \section{Miscellaneous Examles}
 \label{ssec:example}
 
@@ -1810,10 +1831,6 @@ Be specific in the sense that your arguments for future work should be based on 
 %%% Bibliography
 %%% ===============================================================================
 
-In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
-E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
-When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
-See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
 
 \printbibliography
 
