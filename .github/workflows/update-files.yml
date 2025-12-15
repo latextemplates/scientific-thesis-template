@@ -18,7 +18,7 @@ jobs:
         variant: [ustutt,university-of-hamburg]
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           ref: '${{ github.event.pull_request.head.ref }}'
@@ -123,7 +123,7 @@ jobs:
     needs: [generatetex]
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: '${{ github.event.pull_request.head.ref }}'
       - name: Create latexmkrc
