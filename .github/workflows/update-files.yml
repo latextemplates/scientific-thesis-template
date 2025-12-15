@@ -17,8 +17,12 @@ jobs:
         listings: [listings, minted]
         variant: [ustutt,university-of-hamburg]
     steps:
+      - name: 'Setup Git username and email'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
       - name: Set up Git repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           ref: '${{ github.event.pull_request.head.ref }}'
