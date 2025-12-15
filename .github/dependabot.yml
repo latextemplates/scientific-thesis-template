@@ -4,3 +4,7 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    ignore:
+      # reason https://github.com/actions/checkout/issues/664#issuecomment-3587010423
+      - dependency-name: "actions/checkout"
+        update-types: ["version-update:semver-major"]
