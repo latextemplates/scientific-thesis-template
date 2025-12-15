@@ -18,11 +18,11 @@ jobs:
         variant: [ustutt,university-of-hamburg]
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           ref: '${{ github.event.pull_request.head.ref }}'
-          token: $${ secrets.GH_TOKEN_WRITE }}
+          token: ${{ secrets.GH_TOKEN_WRITE }}
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
