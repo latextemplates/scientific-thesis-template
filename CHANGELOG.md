@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [2026-06-10]
+
+### Changed
+
+- Use a local version of scientific-thesis-cover.sty to enable the current declaration for all TeX versions
+
 ## [2025-10-25]
 
 ### Added
