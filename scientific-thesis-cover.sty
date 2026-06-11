@@ -1,14 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \newcommand{\USCCover@Pgkname}{scientific-thesis-cover}
-\ProvidesPackage{\USCCover@Pgkname}[2018/06/03 Cover and affirmation for scientific works.]
-\typeout{Package: `\USCCover@Pgkname' v4.0.2}
+\ProvidesPackage{\USCCover@Pgkname}[2026/06/12 Cover and affirmation for scientific works.]
+\typeout{Package: `\USCCover@Pgkname' v4.1.0}
 % ------------------------------
 % required packages
 % ------------------------------
 % kvoptions for key value options support
 \RequirePackage{kvoptions}
 \RequirePackage{ifthen}
-%\RequirePackage{ifluatex}
+\RequirePackage{iftex}
+\RequirePackage{ifluatex}
+% csquotes provides \enquote, used in the affirmation text
+\RequirePackage{csquotes}
 
 % this package requires utf8 inputenc
 \def\USCCover@utf8warning{\PackageWarningNoLine{\USCCover@Pgkname}
