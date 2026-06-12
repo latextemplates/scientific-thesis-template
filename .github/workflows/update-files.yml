@@ -48,7 +48,7 @@ jobs:
            --papersize=a4\
            --latexcompiler=both\
            --bibtextool=biblatex\
-           --texlive=2025\
+           --texlive=2026\
            --lang=${{ matrix.language }}\
            --font=default\
            --listings=${{ matrix.listings }}\
