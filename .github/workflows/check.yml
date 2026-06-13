@@ -21,7 +21,7 @@ jobs:
         uses: zauguin/install-texlive@v4
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
-          texlive_version: 2025
+          texlive_version: 2026
       - name: Prepare latexmk
         run: |
           updmap -sys
@@ -84,7 +84,7 @@ jobs:
         uses: zauguin/install-texlive@v4
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
-          texlive_version: 2025
+          texlive_version: 2026
       - name: Count words
         run: |
           texcount -utf8 -inc main-english.tex > texcount.txt
@@ -111,6 +111,8 @@ jobs:
   spell-check:
     # This is based on https://github.com/mh61503891/action-paper-aspell/tree/master
     #
+    # Disabled for scientific-thesis: the example content trips too many aspell false positives to maintain
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -169,7 +171,7 @@ jobs:
         uses: zauguin/install-texlive@v4
         with:
           packages: latexindent
-          texlive_version: 2025
+          texlive_version: 2026
       - run: make format
       - name: No changes made by latexindent
         run: git diff --exit-code

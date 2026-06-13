@@ -1,0 +1,28 @@
+name: Check CHANGELOG
+
+# Validate CHANGELOG.md against the Keep a Changelog conventions with heylogs.
+# "--format github-actions" emits ::error:: annotations so problems show up
+# inline on the pull request.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.head_ref || github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  heylogs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Check CHANGELOG.md with heylogs
+        uses: jbangdev/jbang-action@v0.138.0
+        with:
+          script: com.github.nbbrd.heylogs:heylogs-cli:0.18.1:bin
+          scriptargs: check --format github-actions CHANGELOG.md

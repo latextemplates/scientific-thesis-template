@@ -2,13 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
 ## [Unreleased]
 
 ### Changed
 
+- Use a full example author name on the title page (`Bernhard Diener` instead of the abbreviated `Lars K.`)
 - Use a local version of [`scientific-thesis-cover.sty`](https://github.com/latextemplates/scientific-thesis-cover) to enable the current declaration for all TeX versions
 
 ## [2025-10-25]
