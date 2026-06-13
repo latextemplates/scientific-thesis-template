@@ -698,12 +698,12 @@
 
 \newenvironment{Description}{
   \begin{list}{}{
-      \let\makelabel\Descriptionlabelx
-      \setlength\labelwidth{1em}
-      \setlength\leftmargin{\labelwidth+\labelsep}
-    }
-    }
-    {
+    \let\makelabel\Descriptionlabelx
+    \setlength\labelwidth{1em}
+    \setlength\leftmargin{\labelwidth+\labelsep}
+  }
+}
+{
   \end{list}
 }
 
@@ -733,24 +733,24 @@
   {\renewcommand{\fqauthor}{\hfill\textsc{--- #1}}}
   \vspace{1em}
   \begin{list}{}{%
-      \setlength{\leftmargin}{0.2\textwidth}
-      \setlength{\rightmargin}{0.2\textwidth}
+    \setlength{\leftmargin}{0.2\textwidth}
+    \setlength{\rightmargin}{0.2\textwidth}
+  }
+  \item[]%
+  \begin{picture}(0,0)(0,0)
+    \put(-15,-5){\makebox(0,0){%
+        \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
     }
-    \item[]%
-          \begin{picture}(0,0)(0,0)
-            \put(-15,-5){\makebox(0,0){%
-                \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
-            }
-          \end{picture}\em\ignorespaces%
-          }{%
-          \newline%
-          \makebox[0pt][l]{\hspace{0.6\textwidth}%
-            \begin{picture}(0,0)(0,0)
-              \put(15,10){\makebox(0,0){%
-                  \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
-              }
-            \end{picture}}%
-          \fqauthor
+  \end{picture}\em\ignorespaces%
+}{%
+  \newline%
+  \makebox[0pt][l]{\hspace{0.6\textwidth}%
+    \begin{picture}(0,0)(0,0)
+      \put(15,10){\makebox(0,0){%
+          \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
+      }
+    \end{picture}}%
+  \fqauthor
   \end{list}
 }
 
@@ -765,24 +765,24 @@
   {\renewcommand{\fqauthor}{\hfill\textsc{\textemdash #1}}}
   \vspace{1em}
   \begin{list}{}{%
-      \setlength{\leftmargin}{0.2\textwidth}
-      \setlength{\rightmargin}{0.2\textwidth}
+    \setlength{\leftmargin}{0.2\textwidth}
+    \setlength{\rightmargin}{0.2\textwidth}
+  }
+  \item[]%
+  \begin{picture}(0,0)(0,0)
+    \put(-15,-5){\makebox(0,0){%
+        \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
     }
-    \item[]%
-          \begin{picture}(0,0)(0,0)
-            \put(-15,-5){\makebox(0,0){%
-                \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
-            }
-          \end{picture}\em\ignorespaces%
-          }{%
-          \newline%
-          \makebox[0pt][l]{\hspace{0.6\textwidth}%
-            \begin{picture}(0,0)(0,0)
-              \put(15,10){\makebox(0,0){%
-                  \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
-              }
-            \end{picture}}%
-          \fqauthor
+  \end{picture}\em\ignorespaces%
+}{%
+  \newline%
+  \makebox[0pt][l]{\hspace{0.6\textwidth}%
+    \begin{picture}(0,0)(0,0)
+      \put(15,10){\makebox(0,0){%
+          \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
+      }
+    \end{picture}}%
+  \fqauthor
   \end{list}
 }
 
