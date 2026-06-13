@@ -362,18 +362,18 @@
   % Siehe https://stackoverflow.com/a/29260603/873282 und https://tex.stackexchange.com/a/24532/9075 für Details.
   % listingsutf8 hat im Juni 2020 nicht funktioniert.
   \lstset{extendedchars=true, literate=
-    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-  {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
-  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+      {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+      {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+      {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+      {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+      {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+      {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+      {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+      {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
   }
 \fi
 
@@ -798,12 +798,12 @@
 
 \newenvironment{Description}{
   \begin{list}{}{
-      \let\makelabel\Descriptionlabelx
-      \setlength\labelwidth{1em}
-      \setlength\leftmargin{\labelwidth+\labelsep}
-    }
-    }
-    {
+    \let\makelabel\Descriptionlabelx
+    \setlength\labelwidth{1em}
+    \setlength\leftmargin{\labelwidth+\labelsep}
+  }
+}
+{
   \end{list}
 }
 
@@ -833,24 +833,24 @@
   {\renewcommand{\fqauthor}{\hfill\textsc{--- #1}}}
   \vspace{1em}
   \begin{list}{}{%
-      \setlength{\leftmargin}{0.2\textwidth}
-      \setlength{\rightmargin}{0.2\textwidth}
+    \setlength{\leftmargin}{0.2\textwidth}
+    \setlength{\rightmargin}{0.2\textwidth}
+  }
+  \item[]%
+  \begin{picture}(0,0)(0,0)
+    \put(-15,-5){\makebox(0,0){%
+        \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
     }
-    \item[]%
-          \begin{picture}(0,0)(0,0)
-            \put(-15,-5){\makebox(0,0){%
-                \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
-            }
-          \end{picture}\em\ignorespaces%
-          }{%
-          \newline%
-          \makebox[0pt][l]{\hspace{0.6\textwidth}%
-            \begin{picture}(0,0)(0,0)
-              \put(15,10){\makebox(0,0){%
-                  \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
-              }
-            \end{picture}}%
-          \fqauthor
+  \end{picture}\em\ignorespaces%
+}{%
+  \newline%
+  \makebox[0pt][l]{\hspace{0.6\textwidth}%
+    \begin{picture}(0,0)(0,0)
+      \put(15,10){\makebox(0,0){%
+          \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
+      }
+    \end{picture}}%
+  \fqauthor
   \end{list}
 }
 
@@ -865,24 +865,24 @@
   {\renewcommand{\fqauthor}{\hfill\textsc{\textemdash #1}}}
   \vspace{1em}
   \begin{list}{}{%
-      \setlength{\leftmargin}{0.2\textwidth}
-      \setlength{\rightmargin}{0.2\textwidth}
+    \setlength{\leftmargin}{0.2\textwidth}
+    \setlength{\rightmargin}{0.2\textwidth}
+  }
+  \item[]%
+  \begin{picture}(0,0)(0,0)
+    \put(-15,-5){\makebox(0,0){%
+        \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
     }
-    \item[]%
-          \begin{picture}(0,0)(0,0)
-            \put(-15,-5){\makebox(0,0){%
-                \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
-            }
-          \end{picture}\em\ignorespaces%
-          }{%
-          \newline%
-          \makebox[0pt][l]{\hspace{0.6\textwidth}%
-            \begin{picture}(0,0)(0,0)
-              \put(15,10){\makebox(0,0){%
-                  \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
-              }
-            \end{picture}}%
-          \fqauthor
+  \end{picture}\em\ignorespaces%
+}{%
+  \newline%
+  \makebox[0pt][l]{\hspace{0.6\textwidth}%
+    \begin{picture}(0,0)(0,0)
+      \put(15,10){\makebox(0,0){%
+          \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
+      }
+    \end{picture}}%
+  \fqauthor
   \end{list}
 }
 
