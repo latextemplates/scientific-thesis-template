@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Check CHANGELOG.md with heylogs
-        uses: jbangdev/jbang-action@v0.138.0
+        uses: jbangdev/jbang-action@v0.139.3
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.18.1:bin
           scriptargs: check --format github-actions CHANGELOG.md
