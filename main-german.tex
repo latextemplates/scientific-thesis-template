@@ -266,11 +266,12 @@
 % Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
 %\SetTracking{ encoding = *, shape = sc }{ 45 }
 
-% EN: Avoid single lines at the start (Schusterjungen) and end (Hurenkinder) of a paragraph.
-%     Using a package feels less hacky than tuning \clubpenalty and \widowpenalty manually.
+% Avoid orphans and widows (a single line of a paragraph left at the bottom or top
+% of a page). Using a package feels less hacky than tuning \clubpenalty and
+% \widowpenalty manually.
 \usepackage[all,defaultlines=3]{nowidow}
 
-% EN: Avoid a widow line being split off a displayed equation.
+% Avoid a widow line being split off a displayed equation.
 \displaywidowpenalty=10000
 
 % Fuer deutsche Texte: Weniger Silbentrennung durch mehr frei Raum zwischen den Worten
@@ -645,7 +646,7 @@
 % The lscape package does not rotate the page either
 \usepackage{pdflscape}
 
-% EN: Align floats to the top on float-only pages instead of vertically centering them.
+% Align floats to the top on float-only pages instead of vertically centering them.
 %     See http://tex.stackexchange.com/a/28565/9075
 \makeatletter
 \setlength{\@fptop}{0pt}
