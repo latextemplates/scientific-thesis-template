@@ -2,7 +2,6 @@
 % LTeX: language=en-US
 % !TeX encoding = utf8
 % !TeX program = lualatex
-% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -254,6 +253,12 @@
 %\SetTracking{ encoding = *, shape = sc }{ 45 }
 % Source: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
 % Deactiviated, because does not look good
+% EN: Avoid single lines at the start (Schusterjungen) and end (Hurenkinder) of a paragraph.
+%     Using a package feels less hacky than tuning \clubpenalty and \widowpenalty manually.
+\usepackage[all,defaultlines=3]{nowidow}
+
+% EN: Avoid a widow line being split off a displayed equation.
+\displaywidowpenalty=10000
 
 \usepackage{graphicx}
 
@@ -469,8 +474,19 @@
 %%% Doc: Documentation inside dtx Package
 \usepackage{dcolumn}  % Ausrichtung an Komma oder Punkt
 
+% Etwas mehr Luft zwischen den Tabellenzeilen (\extrarowheight wird von array bereitgestellt, das dcolumn lädt)
+\setlength{\extrarowheight}{1pt}
+
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
 %\usepackage{supertabular}
+% Packages used only by the "LaTeX Hints" example sections.
+%
+% pgfplots: plot functions and data directly in LaTeX (loads tikz)
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+%
+% longtable: tables spanning multiple pages
+\usepackage{longtable}
 
 %%% Fussnoten/Endnoten ===================================================
 
@@ -602,6 +618,13 @@
 % Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
 %Das Paket lscape dreht die Seite auch nicht
 \usepackage{pdflscape}
+
+% EN: Align floats to the top on float-only pages instead of vertically centering them.
+%     See http://tex.stackexchange.com/a/28565/9075
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
 
 \usepackage[caption=false,font=footnotesize]{subfig}
 
@@ -1470,6 +1493,42 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 \Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
 \end{ltgexample}
 
+\section{Formulas and Equations}
+
+\begin{ltgexample}
+Equations $f(x)=x$ inside the text can be provided.
+\end{ltgexample}
+
+A list with all available mathematical symbols is provided at \url{http://texdoc.net/pkg/symbols-a4}.
+
+\begin{ltgexample}
+As an example, the set of natural numbers is given by $\mathbb{N}$.
+\end{ltgexample}
+
+For the documentation of editing mathematical formulas, read the package documentation of \texttt{amsmath}\footnote{\url{http://texdoc.net/pkg/amsmath}}.
+
+\Cref{eq:test} is numbered and can be referenced in the text:
+\begin{ltgexample}
+\begin{align}
+  \label{eq:test}
+  x = y
+\end{align}
+\end{ltgexample}
+
+The following equation is not numbered because of using \texttt{\textbackslash align*} as environment.
+\begin{ltgexample}
+\begin{align*}
+  x = y
+\end{align*}
+\end{ltgexample}
+
+The template offers \verb+\abs+ to enable the bars to scale well at the absolute value:
+\begin{ltgexample}
+$\abs{X}$.
+\end{ltgexample}
+
+The documentation available at \url{http://www.ctan.org/tex-archive/help/Catalogue/entries/voss-mathmode.html} provides more details about mathematical environments.
+
 \section{Figures}
 
 \begin{ltgexample}
@@ -1500,6 +1559,56 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
     \label{fig:second_case}}
   \caption{Example figure with two sub figures.}
   \label{fig:two_sub_figures}
+\end{figure}
+\end{ltgexample}
+
+\section{Figures with tikz}
+
+The \href{https://ctan.org/pkg/pgf}{tikz} package creates graphics programmatically.
+With this package, grids or other regular structures can be generated easily.
+
+\begin{ltgexample}
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \draw(0,0) rectangle (4,4);
+    \foreach \x in {0.5,1,1.5,2,2.5,3,3.5}
+    \foreach \y in {0.5,1,1.5,2,2.5,3,3.5}
+    \draw(\x,\y) circle (1pt);
+  \end{tikzpicture}
+  \caption{A regular grid generated easily with two for loops.}\label{fig:tikz_example}
+\end{figure}
+\end{ltgexample}
+
+\section{Plots with pgfplots}
+
+The \href{https://ctan.org/pkg/pgfplots}{pgfplots} package plots functions directly in \LaTeX{}, similar to MATLAB or gnuplot.
+Some visual examples are available in the package documentation\footnote{\url{http://texdoc.net/pkg/pgfplots}}.
+
+\begin{ltgexample}
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[xlabel=$x$, ylabel=$\sin(x)$]
+      \addplot {sin(deg(x))};  % Plot the sine function
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Plot of $\sin(x)$ directly inside the figure environment with pgfplots.}
+  \label{fig:pgfplots_example}
+\end{figure}
+\end{ltgexample}
+
+Coordinates can also be given explicitly instead of as a function:
+\begin{ltgexample}
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[xlabel=$x$, ylabel=$y$]
+      \addplot coordinates {(0,0) (1,1) (2,4) (3,9)};  % Plot explicit coordinates
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Explicit coordinates plotted with pgfplots.}
+  \label{fig:pgfplots_coords}
 \end{figure}
 \end{ltgexample}
 
@@ -1538,6 +1647,44 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \end{table}
 \end{ltgexample}
 
+
+\section{Tables spanning multiple pages}
+
+The \href{https://ctan.org/pkg/longtable}{longtable} package typesets tables that automatically break across page boundaries.
+The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on every page; once enough rows are added, the table spans several pages on its own.
+
+\begin{ltgexample}
+\begin{longtable}{|l|l|l|}
+  \caption{A sample long table.}\label{tab:long} \\
+  \hline
+  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+  \endfirsthead
+
+  \multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+  \hline
+  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+  \endhead
+
+  \hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+  \endfoot
+
+  \hline\hline
+  \endlastfoot
+
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+  A & BC & D \\
+\end{longtable}
+\end{ltgexample}
 
 \section{Source Code}
 
