@@ -92,7 +92,7 @@
 \makeatother
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/mh/doc/mathtools.pdf
-% Erweitert amsmath und behebt einige Bugs
+% Extends amsmath and fixes some bugs
 \usepackage[fixamsmath,disallowspaces]{mathtools}
 
 %%% Doc: http://www.ctan.org/info?id=fixmath
@@ -119,7 +119,7 @@
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/onlyamsmath/onlyamsmath.dvi
 % Warnt bei Benutzung von Befehlen die mit amsmath inkompatibel sind.
 
-% Braucht man evtl. nicht.
+% Probably not needed.
 % \usepackage[
 % 	all,
 % 	warning
@@ -170,16 +170,15 @@
   \usepackage[T1]{fontenc}
 \fi
 
-% DE: Noch mehr Symbole
-%\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
-%\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
-%\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
-%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
+% Even more symbols
+%\usepackage{stmaryrd} % for \ovee, \owedge, \otimes
+%\usepackage{marvosym} % for \Writinghand %patched to not redefine \Rightarrow
+%\usepackage{mathrsfs} % nice cursive letters via \mathscr{}
+%\usepackage{calrsfs} % slightly bolder \mathcal{} letters - does not look that good.
 
-% EN: Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
+% Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
 %     This is the modern package for "Computer Modern".
 %     In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
-% DE: Fallback-Schriftart
 %\usepackage[%
 %    rm={oldstyle=false,proportional=true},%
 %    sf={oldstyle=false,proportional=true},%
@@ -187,51 +186,50 @@
 %    qt=false%
 %]{cfr-lm}
 
-% EN: Headings are typeset in Helvetica (which is similar to Arial)
-% DE: Schriftart fuer die Ueberschriften - ueberschreibt lmodern
+% Headings are typeset in Helvetica (which is similar to Arial)
+% Font for the headings - overrides lmodern
 %\usepackage[scaled=.95]{helvet}
 
-% DE: Für Schreibschrift würde tun, muss aber nicht
+% A calligraphic font would work, but is not required
 %\usepackage{mathrsfs} %  \mathscr{ABC}
 
-% EN: Font for the main text
-% DE: Schriftart fuer den Fliesstext - ueberschreibt lmodern
-%     Linux Libertine, siehe http://www.linuxlibertine.org/
-%     Packageparamter [osf] = Minuskel-Ziffern
-%     rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
+% Font for the main text
+%     Font for the body text - overrides lmodern
+%     Linux Libertine, see http://www.linuxlibertine.org/
+%     Package parameter [osf] = lowercase (old-style) figures
+%     rm = libertine in the body text, Linux Biolinum NOT as sans-serif font, but keep helvet (from above)
 %\usepackage[rm]{libertine}
 
-% EN: Alternative Font: Palantino. It is recommended by Prof. Ludewig for German texts
-% DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
-%     Bitte nur in deutschen Texten
-%\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
-% EN: The euro sign
-% DE: Das Euro Zeichen
-%     Fuer Palatino (mathpazo.sty): richtiges Euro-Zeichen
+% Alternative Font: Palantino. It is recommended by Prof. Ludewig for German texts
+%     Package parameter [osf] = lowercase (old-style) figures
+%     Please only in German texts
+%\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - tip from DE-TEX-FAQ 8.2.1
+% The euro sign
+%     For Palatino (mathpazo.sty): proper euro sign
 %     Alternative: \usepackage{eurosym}
 % \newcommand{\EUR}{\ppleuro}
 
-% DE: Schriftart fuer Programmcode - ueberschreibt lmodern
-%     Falls auskommentiert, wird die Standardschriftart lmodern genommen
-%     Fuer schreibmaschinenartige Schluesselwoerter in den Listings - geht bei alten Installationen nicht, da einige Fontshapes (<>=) fehlen
+% Font for program code - overrides lmodern
+%     If commented out, the default font lmodern is used
+%     For typewriter-style keywords in the listings - does not work on old installations, since some font shapes (<>=) are missing
 %\usepackage[scaled=.92]{luximono}
 %\usepackage{courier}
-% DE: BeraMono als Typewriter-Schrift, Tipp von http://tex.stackexchange.com/a/71346/9075
+% BeraMono as typewriter font, tip from http://tex.stackexchange.com/a/71346/9075
 %\usepackage[scaled=0.83]{beramono}
 
 \usepackage{setspace}
 % Alternative package: https://ctan.org/pkg/leading
 
-% Symbole Check und Cross
+% Check and cross symbols
 \usepackage{pifont}
 \newcommand{\dingcheck}{\ding{51}}
 \newcommand{\dingcross}{\ding{55}}
 %for scaling see http://tex.stackexchange.com/a/130236/9075
 
-% DE: Noch mehr Symbole
-%\usepackage{stmaryrd} %fuer \ovee, \owedge, \otimes
-%\usepackage{marvosym} %fuer \Writinghand %patched to not redefine \Rightarrow
-%\usepackage{mathrsfs} %mittels \mathscr{} schoenen geschwungenen Buchstaben erzeugen
+% Even more symbols
+%\usepackage{stmaryrd} % for \ovee, \owedge, \otimes
+%\usepackage{marvosym} % for \Writinghand %patched to not redefine \Rightarrow
+%\usepackage{mathrsfs} % nice cursive letters via \mathscr{}
 %\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
 
 \automark[section]{chapter}
@@ -267,6 +265,7 @@
 % Deaktiviert, da sonst "BPEL", "BPMN" usw. wirklich komisch aussehen.
 % Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
 %\SetTracking{ encoding = *, shape = sc }{ 45 }
+
 % EN: Avoid single lines at the start (Schusterjungen) and end (Hurenkinder) of a paragraph.
 %     Using a package feels less hacky than tuning \clubpenalty and \widowpenalty manually.
 \usepackage[all,defaultlines=3]{nowidow}
@@ -500,14 +499,16 @@
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
 %\usepackage{supertabular}
+
 % tikz / pgfplots stack used by the "Figures with tikz" and "Plots with pgfplots"
 % examples. Loading pgfplots pulls in tikz.
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
+
 % longtable: tables that automatically break across page boundaries.
 \usepackage{longtable}
 
-%%% Fussnoten/Endnoten ===================================================
+%%% Footnotes/Endnotes ===================================================
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/footmisc/footmisc.pdf
 %
@@ -525,33 +526,30 @@
 
 \counterwithout{footnote}{chapter} % Continuous numbering of footnotes across chapters
 
-\interfootnotelinepenalty=10000 % Verhindert das Fortsetzen von Fussnoten auf der gegenüberligenden Seite
+\interfootnotelinepenalty=10000 % Prevents footnotes from continuing onto the facing page
 
-% EN: Put footnotes below floats
-% DE: Fußnoten unter Gleitumgebungen ("floats") platzieren
+% Put footnotes below floats
 % Source: https://tex.stackexchange.com/a/32993/9075
 \usepackage{stfloats}
 \fnbelowfloat
 
-% EN: Extended support for footnotes
-% DE: Fußnoten
+% Extended support for footnotes
 %
-%\usepackage{dblfnote}  %Zweispaltige Fußnoten
+%\usepackage{dblfnote}  % Two-column footnotes
 %
-% Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
+% No superscript numbers in the footnote (KOMA-Script-specific):
 %\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
 %
-% Abstand zwischen Fußnoten vergrößern:
+% Increase the spacing between footnotes:
 %\setlength{\footnotesep}{.85\baselineskip}
 %
-% EN: Following command disables the separating line of the footnote
-% DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+% Following command disables the separating line of the footnote
 %\renewcommand{\footnoterule}{}
 %
-%\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
+%\addtolength{\skip\footins}{\baselineskip} % Spacing text <-> footnote
 
-% DE: Fußnoten immer ganz unten auf einer \raggedbottom-Seite
-% DE: fnpos kommt aus dem yafoot package
+% Always place footnotes at the very bottom on a \raggedbottom page
+% fnpos comes from the yafoot package
 %\usepackage{fnpos}
 %\makeFNbelow
 %\makeFNbottom
@@ -576,17 +574,17 @@
 \newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 
 % Small PDF comment
-% 1. Parameter: Comment
+% 1st parameter: comment
 \newcommand{\sidecomment}[1]{\pdfcomment[color={0.045 0.278 0.643},voffset=4pt,icon=Note]{#1}}
 % Disabled variant - for the final PDF
 %\newcommand{\sidecomment}[1]{}
 
 \newcommand{\todo}[1]{TODO!\sidecomment{#1}}
 
-% Änderungen
+% Changes
 %
-% 1. Parameter: Review-Kommentar
-% 2. Parameter: Neuer Text
+% 1st parameter: review comment
+% 2nd parameter: new text
 \newcommand{\change}[2]{{\color{red}#2}\pdfcomment[color={0.234 0.867 0.211},voffset=8pt,opacity=0.5]{#1}}
 % Disabled variant - for the final PDF
 %\newcommand{\change}[2]{#2}
@@ -642,9 +640,9 @@
 
 
 %%%
-% Ermoeglicht es, Abbildungen um 90 Grad zu drehen
-% Alternatives Paket: rotating Allerdings wird hier nur das Bild gedreht, während bei lscape auch die PDF-Seite gedreht wird.
-%Das Paket lscape dreht die Seite auch nicht
+% Allows rotating figures by 90 degrees
+% Alternative package: rotating. However, that only rotates the image, whereas lscape also rotates the PDF page.
+% The lscape package does not rotate the page either
 \usepackage{pdflscape}
 
 % EN: Align floats to the top on float-only pages instead of vertically centering them.
@@ -658,7 +656,7 @@
 
 % Alternative for making subfigures:
 % Part of the caption package. See http://www.ctan.org/pkg/caption
-% Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
+% Replaces the subfigure and subfig packages - see https://tex.stackexchange.com/a/13778/9075
 %
 % (subfigure is outdated. subfig is maintained, but subcaption is better)
 % See: http://tex.stackexchange.com/questions/13625/subcaption-vs-subfig-best-package-for-referencing-a-subfigure
@@ -1920,10 +1918,10 @@ E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
 When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
 See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
 
-\section{Miscellaneous Examles}
+\section{Miscellaneous Examples}
 \label{ssec:example}
 
-Referencetest: \Cref{ssec:example}, \cref{fig:Abbildung} und \cref{alg:example}.
+Reference test: \Cref{ssec:example}, \cref{fig:Abbildung} and \cref{alg:example}.
 
 \begin{ltgexample}
 Checkmark: \dingcheck.
@@ -1932,19 +1930,19 @@ Crossmark: \dingcross.
 
 \begin{figure}
   \missingfigure{}
-  \caption{Abbildung}
+  \caption{Figure}
   \label{fig:Abbildung}
 \end{figure}
 
 \begin{landscape}
   \begin{figure}
     \missingfigure{}
-    \caption{Gedrehte Abbildung}
+    \caption{Rotated figure}
     \label{fig:AbbildungGedreht}
   \end{figure}
 \end{landscape}
 
-\subsection{Algorithmen}
+\subsection{Algorithms}
 
 \begin{algorithm}
   \caption{$algo$}
@@ -1956,7 +1954,7 @@ Crossmark: \dingcross.
 \end{algorithm}
 
 \begin{algorithm}
-  \caption{Algorithmus 2}
+  \caption{Algorithm 2}
   \label{alg:example2}
   \begin{algorithmic}[1]
     \State $a \gets 0$
@@ -1964,18 +1962,18 @@ Crossmark: \dingcross.
   \end{algorithmic}
 \end{algorithm}
 
-\Cref{alg:example} hat bereits einen Algorithmus gezeigt.
-Test der Zeilenreferenzierung: Zeile~\ref{alg1:state2} (\cref{alg:example}) und Zeile~\ref{alg2:state2} (\cref{alg:example2}).
+\Cref{alg:example} has already shown an algorithm.
+Test of line referencing: line~\ref{alg1:state2} (\cref{alg:example}) and line~\ref{alg2:state2} (\cref{alg:example2}).
 
-\subsection{Definitionen}
+\subsection{Definitions}
 \begin{definition}[Title]
   \label{def:def1}
   Definition Text
 \end{definition}
 
-\Cref{def:def1} zeigt \ldots
+\Cref{def:def1} shows \ldots
 
-\subsection{Aufzählungen}
+\subsection{Enumerations}
 
 \begin{enumerate}[label=\alph*)]
   \item a
@@ -1993,66 +1991,66 @@ Equivalent to paralist's inparaenum:
 \end{enumerate*}
 
 \begin{description}
-  \item[first] Erstens
-  \item[second] Zweitens
-  \item[third] Drittens
+  \item[first] First
+  \item[second] Second
+  \item[third] Third
 \end{description}
 
 \begin{description}
-  \item[\texttt{first}] Erstens
-  \item[\texttt{second}] Zweitens
-  \item[\texttt{third}] Drittens
+  \item[\texttt{first}] First
+  \item[\texttt{second}] Second
+  \item[\texttt{third}] Third
 \end{description}
 
 %works only if package enumitem is loaded
 \begin{description}[font=\ttfamily]
-  \item[first] Erstens
-  \item[second] Zweitens
-  \item[third] Drittens
+  \item[first] First
+  \item[second] Second
+  \item[third] Third
 \end{description}
 
 \begin{description}[style=unboxed]
-  \item[first label with a long description text breaking over one line. Enabled by enumitem package] Erstens
-  \item[second] Zweitens
-  \item[third] Drittens
+  \item[first label with a long description text breaking over one line. Enabled by enumitem package] First
+  \item[second] Second
+  \item[third] Third
 \end{description}
 
 \begin{Description}
-  \item[first label with a long description text breaking over one line. Defined in template.tex] Erstens
-  \item[second] Zweitens
-  \item[third] Drittens
+  \item[first label with a long description text breaking over one line. Defined in template.tex] First
+  \item[second] Second
+  \item[third] Third
 \end{Description}
 
 \begin{itemize}
-  \item Erstens
-  \item Zweitens
-  \item Drittens
+  \item First
+  \item Second
+  \item Third
 \end{itemize}
 
-Optionaler Parameter ändert den Marker, der vorangestellt ist.
-Siehe \url{http://www.weinelt.de/latex/item.html}.
+The optional parameter changes the marker that is prepended.
+See \url{http://www.weinelt.de/latex/item.html}.
 \begin{itemize}
-  \item[A] Erstens
-  \item[B] Zweitens
-  \item[C] Drittens
+  \item[A] First
+  \item[B] Second
+  \item[C] Third
 \end{itemize}
 
-Falsche Benutzung des optionalen Parameters wie folgt:
+Incorrect use of the optional parameter as follows:
 \begin{itemize}
-  \item[first] Erstens
-  \item[second] Zweitens
-  \item[third] Drittens
+  \item[first] First
+  \item[second] Second
+  \item[third] Third
 \end{itemize}
-Dabei ist zu beachten, dass es sich bei Einbindung von \texttt{enumitem} anders verhält als bei \texttt{paralist}.
+Note that, when \texttt{enumitem} is loaded, this behaves differently than with \texttt{paralist}.
 
 \subsection{fquote}
 
-\begin{fquote}[T.\ Informatiker]
-  Bis nächsten Freitag ist das Programm fertig.
+\begin{fquote}[T.\ Scientist]
+  The program will be finished by next Friday.
 \end{fquote}
 
-\begin{gfquote}{T.\ Informatiker}
-  Bis nächsten Freitag ist das Programm fertig.
+\begin{gfquote}{T.\ Scientist}
+  The program will be finished by next Friday.
 \end{gfquote}
 
 %%% ===============================================================================
