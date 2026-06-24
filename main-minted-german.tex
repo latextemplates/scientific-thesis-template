@@ -20,7 +20,7 @@
   numbers=autoendperiod,
   ngerman,  % Neue deutsche Rechtschreibung; der Parameter wird an andere Pakete weiter gegeben
   a4paper,  % KOMAScript allows for both paper=a4 and (standard) a4paper - https://tex.stackexchange.com/a/61044/9075
-  twoside,  % We are optimizing for both screen and two-side printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
+  twoside,  % We are optimizing for both screen and two-sided printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
   bibliography=totoc,
   % idxtotoc,   % Index ins Inhaltsverzeichnis
   % liststotoc, % List of * ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
@@ -194,7 +194,7 @@
 %     rm = libertine im Brottext, Linux Biolinum NICHT als serifenlose Schrift, sondern helvet (von oben) beibehalten
 %\usepackage[rm]{libertine}
 
-% EN: Alternative Font: Palantino. It is recommeded by Prof. Ludewig for German texts
+% EN: Alternative Font: Palantino. It is recommended by Prof. Ludewig for German texts
 % DE: Alternative Schriftart: Palantino, Packageparamter [osf] = Minuskel-Ziffern
 %     Bitte nur in deutschen Texten
 %\usepackage{mathpazo} %ftp://ftp.dante.de/tex-archive/fonts/mathpazo/ - Tipp aus DE-TEX-FAQ 8.2.1
@@ -454,7 +454,7 @@
 % Abstand zwischen Fußnoten vergrößern:
 %\setlength{\footnotesep}{.85\baselineskip}
 %
-% EN: Following command disables the separting line of the footnote
+% EN: Following command disables the separating line of the footnote
 % DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
 %\renewcommand{\footnoterule}{}
 %
@@ -708,10 +708,10 @@
   % Enable copy and paste of text from the PDF
   % Only required for pdflatex. It "just works" in the case of lualatex.
   % Alternative: cmap or mmap package
-  % mmap enables mathematical symbols, but does not work with the newtx font set
+  % mmap enables mathematical symbols but does not work with the newtx font set
   % See: https://tex.stackexchange.com/a/64457/9075
   % Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-  % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+  % Troubleshooting outlined at https://tex.stackexchange.com/a/100618/9075
   %
   % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
   \input{glyphtounicode}
@@ -1329,7 +1329,7 @@ This is a small note.
 \end{mindflow}
 \end{ltgexample}
 
-\section{Handling TODOs}
+\section{Umgang mit TODOs}
 
 \begin{ltgexample}
 \textmarker{Markierter Text.}
