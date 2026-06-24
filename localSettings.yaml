@@ -32,6 +32,12 @@ noAdditionalIndent:
   # ifluatex: 1
   ltgexample: 1
 
+# Do not column-align longtable cells: alignment pads every cell to the width of
+# the widest header, which bloats both the source and the echoed example code of
+# the longtable example.
+lookForAlignDelims:
+  longtable: 0
+
 specialBeginEnd:
   begingroup:
     begin: '\\begingroup'
