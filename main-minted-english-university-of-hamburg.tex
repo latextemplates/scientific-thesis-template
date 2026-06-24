@@ -83,6 +83,14 @@
 ]{amsmath}
 \SetMathAlphabet{\mathcal}{normal}{OMS}{amsa}{m}{n} %% AMS font for mathcal
 
+% Provide \mathbb (blackboard bold, e.g. for number sets) when the active math
+% font does not already define it. The thesis math fonts (mathdesign / newtxmath /
+% unicode-math) supply it -- and amssymb clashes with mathdesign -- so only load
+% amssymb as a fallback when \mathbb is still missing.
+\makeatletter
+\@ifundefined{mathbb}{\usepackage{amssymb}}{}
+\makeatother
+
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/mh/doc/mathtools.pdf
 % Erweitert amsmath und behebt einige Bugs
 \usepackage[fixamsmath,disallowspaces]{mathtools}
@@ -417,13 +425,11 @@
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
 %\usepackage{supertabular}
-% Packages used only by the "LaTeX Hints" example sections.
-%
-% pgfplots: plot functions and data directly in LaTeX (loads tikz)
+% tikz / pgfplots stack used by the "Figures with tikz" and "Plots with pgfplots"
+% examples. Loading pgfplots pulls in tikz.
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-%
-% longtable: tables spanning multiple pages
+% longtable: tables that automatically break across page boundaries.
 \usepackage{longtable}
 
 %%% Fussnoten/Endnoten ===================================================
@@ -1765,8 +1771,8 @@ Abbreviations are defined in \verb+\content\ausarbeitung.tex+ by means of \verb+
 More information at: \url{https://ctan.org/pkg/bib2gls}.
 
 \begin{ltgexample}
-At the first pass, the \gls{fr} was 5.
-At the second pass was \gls{fr} 3.
+At the first pass, the \gls{er} was 5.
+At the second pass was \gls{er} 3.
 The plural form can be seen here: \glspl{er}.
 To demonstrate what the list of abbreviations looks like for longer description texts, \glspl{rdbms} must be mentioned here.
 
