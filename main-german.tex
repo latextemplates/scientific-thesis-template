@@ -83,6 +83,14 @@
 ]{amsmath}
 \SetMathAlphabet{\mathcal}{normal}{OMS}{amsa}{m}{n} %% AMS font for mathcal
 
+% Provide \mathbb (blackboard bold, e.g. for number sets) when the active math
+% font does not already define it. The thesis math fonts (mathdesign / newtxmath /
+% unicode-math) supply it -- and amssymb clashes with mathdesign -- so only load
+% amssymb as a fallback when \mathbb is still missing.
+\makeatletter
+\@ifundefined{mathbb}{\usepackage{amssymb}}{}
+\makeatother
+
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/mh/doc/mathtools.pdf
 % Erweitert amsmath und behebt einige Bugs
 \usepackage[fixamsmath,disallowspaces]{mathtools}
@@ -492,13 +500,11 @@
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
 %\usepackage{supertabular}
-% Packages used only by the "LaTeX Hints" example sections.
-%
-% pgfplots: plot functions and data directly in LaTeX (loads tikz)
+% tikz / pgfplots stack used by the "Figures with tikz" and "Plots with pgfplots"
+% examples. Loading pgfplots pulls in tikz.
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-%
-% longtable: tables spanning multiple pages
+% longtable: tables that automatically break across page boundaries.
 \usepackage{longtable}
 
 %%% Fussnoten/Endnoten ===================================================
@@ -1852,7 +1858,7 @@ Mehr Infos unter: \url{https://ctan.org/pkg/bib2gls}.
 \begin{ltgexample}
 Beim ersten Durchlauf betrug die \gls{fr} 5.
 Beim zweiten Durchlauf war die \gls{fr} 3.
-Die Pluralform sieht man hier: \glspl{er}.
+Die Pluralform sieht man hier: \glspl{fr}.
 Um zu demonstrieren, wie das Abkürzungsverzeichnis bei längeren Beschreibungstexten aussieht, muss hier noch \glspl{rdbms} erwähnt werden.
 
 \gls{dante} is a local \TeX\ user group.
