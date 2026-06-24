@@ -12,6 +12,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Use a full example author name on the title page (`Bernhard Diener` instead of the abbreviated `Lars K.`)
 - Use a local version of [`scientific-thesis-cover.sty`](https://github.com/latextemplates/scientific-thesis-cover) to enable the current declaration for all TeX versions
 
+### Removed
+
+- Removed obsolete files left over from the pre-generator structure: `config.tex`, `latexhints-english.tex`, `latexhints-german.tex`, `latexhints-german-plantuml.tex`, `latexhints-minted-german.tex`, and `pre-documentclass.tex`. Their content is generated inline into the `main-*.tex` files.
+
 ## [2025-10-25]
 
 ### Added
