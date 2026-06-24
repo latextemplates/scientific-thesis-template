@@ -1,4 +1,4 @@
-personal_ws-1.1 en 122 utf-8
+personal_ws-1.1 en 128 utf-8
 ACM
 Atlantic
 BPEL
@@ -50,6 +50,7 @@ breaklines
 category
 cls
 commentstyle
+compat
 cref
 da
 dante
@@ -72,6 +73,7 @@ fr
 funktioniert
 für
 geändert
+gnuplot
 gp
 html
 hypertext
@@ -85,6 +87,7 @@ lastname
 letzten
 linenos
 longplural
+longtable
 lst
 lstlisting
 markup
@@ -100,8 +103,10 @@ numberstyle
 nur
 oldstyle
 paralist
+pgfplots
 powerset
 produziert
+programmatically
 pygments
 rdbms
 seit
@@ -114,6 +119,7 @@ subcaption
 subfig
 subfigure
 subfigures
+tikz
 tion
 tt
 werden
