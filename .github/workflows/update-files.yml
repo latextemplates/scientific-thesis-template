@@ -57,7 +57,8 @@ jobs:
            --tweakouterquote=babel\
            --todo=pdfcomment\
            --examples=true\
-           --howtotext=true
+           --howtotext=true\
+           --uml=none
         env:
           yeoman_test: true
       - name: Prepare files
