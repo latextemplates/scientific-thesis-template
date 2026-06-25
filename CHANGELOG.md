@@ -329,7 +329,8 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Add initial [CONTRIBUTING.md](CONTRIBUTING.md).
 - `number` for a thesis is now completely optional.
 
-[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-10-25...HEAD
+[Unreleased]: https://github.com/latextemplates/scientific-thesis-template/compare/2026-06-25...HEAD
+[2026-06-25]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-10-25...2026-06-25
 [2025-10-25]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-10-20...2025-10-25
 [2025-10-20]: https://github.com/latextemplates/scientific-thesis-template/compare/2025-01-26...2025-10-20
 [2025-01-26]: https://github.com/latextemplates/scientific-thesis-template/compare/3.0.0...2025-01-26
