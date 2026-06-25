@@ -141,8 +141,15 @@ jobs:
             fi
             echo "Checking $tex..."
 
+            # Pick the dictionary that matches the file's language: the "-de"
+            # variants are German, everything else uses the document's language.
+            case "$tex" in
+              *-de.tex|*-de-*.tex) aspell_lang="-l de_DE --run-together"; aspell_pws=de ;;
+              *) aspell_lang="-l en_US"; aspell_pws=en ;;
+            esac
+
             # Words are output in the order they appear in the document
-            words=$(aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | tr '\n' ' ')
+            words=$(aspell --mode=tex $aspell_lang --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.$aspell_pws.pws list < $tex | tr '\n' ' ')
             if [ -z "$words" ]; then
               echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
             else
