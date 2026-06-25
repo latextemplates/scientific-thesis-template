@@ -5,16 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
-## [Unreleased]
+## [2026-06-25]
+
+### Added
+
+- New example sections in the "LaTeX Hints" chapter: Formulas and Equations, Figures with TikZ, Plots with pgfplots, tables spanning multiple pages (`longtable`), and an optional UML diagram example (`tikz-uml` or PlantUML).
+- A German "Kurzfassung" section in the English document, for courses of study that require both a German and an English abstract.
+- Instructions for using VS Code with the LaTeX Workshop extension.
 
 ### Changed
 
 - Use a full example author name on the title page (`Bernhard Diener` instead of the abbreviated `Lars K.`)
 - Use a local version of [`scientific-thesis-cover.sty`](https://github.com/latextemplates/scientific-thesis-cover) to enable the current declaration for all TeX versions
+- Typesetting improvements: widow/orphan control, top-aligned floats on float-only pages, more table row spacing, and reduced hyphenation for German.
 
 ### Removed
 
 - Removed obsolete files left over from the pre-generator structure: `config.tex`, `latexhints-english.tex`, `latexhints-german.tex`, `latexhints-german-plantuml.tex`, `latexhints-minted-german.tex`, and `pre-documentclass.tex`. Their content is generated inline into the `main-*.tex` files.
+
+### Fixed
+
+- Restored grammar and spelling improvements that a regeneration had overwritten.
 
 ## [2025-10-25]
 
