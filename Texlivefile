@@ -80,6 +80,8 @@ koma-script
 kvdefinekeys
 kvoptions
 kvsetkeys
+lccaps
+textcase
 letltxmacro
 libertine
 libertinus-fonts
