@@ -781,6 +781,9 @@
   AROMA TOSCA BPMN OASIS OMG DMTF IT DevOps
 }
 
+% lccaps provides \textlcc (lowercase caps), used by \initialism in commands.tex.
+% Doc: https://ctan.org/pkg/lccaps
+\usepackage{lccaps}
 \input{commands}
 
 \usepackage{geometry}
@@ -1918,6 +1921,13 @@ $\powerset({1,2,3})$
 Brackets work as designed:
 <test>
 One can also input backticks in verbatim text: \verb|`test`|.
+\end{ltgexample}
+
+Acronyms can be typeset in running text with \verb+\initialism+, which sets them as small caps that blend into the surrounding lowercase text. It is the lightweight alternative to the full acronym and glossary management (\verb+\gls+, with an automatic list of abbreviations) provided by the thesis variants: \verb+\initialism+ only typesets the acronym and does not add it to any list. The macro and a few ready-made acronyms (\verb+\OMG+, \verb+\BPEL+, \verb+\BPMN+, \verb+\UML+) are defined in \texttt{commands.tex}, where you can add your own.
+
+\begin{ltgexample}
+The \UML is maintained by the \OMG; related standards include \BPEL and \BPMN.
+Any acronym can be set inline with \initialism{REST} or \initialism{HTTP}.
 \end{ltgexample}
 
 
