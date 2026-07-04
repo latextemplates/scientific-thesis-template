@@ -96,6 +96,11 @@ luatexbase
 luaxml
 ly1
 marginnote
+markdown
+
+csvsimple
+fancyvrb
+verse
 mathdesign
 mathtools
 mfirstuc
@@ -174,3 +179,4 @@ xkeyval
 xpatch
 xstring
 zref
+zref-clever
