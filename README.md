@@ -89,7 +89,7 @@ On the command line, there are additional features:
 - `latexmk -C` or `make clean` for cleaning up
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
 - `make aspell` for interactive spell checking
-- `make stand`: Creates a new PDF with the current status of the thesis.
+- `make stand`: Creates a new PDF with the current status of the document.
 - `make view`: Opens the configured viewer
 - `make mrproper`: Cleans up and removes also editor backup files.
 
@@ -201,7 +201,7 @@ Alternatively, just copy and paste the contents of the [vscode.settings.json](vs
 
 You can manually trigger compilation by hitting the green button in the extension or using other methods provided by LaTeX Workshop.
 
-Please remove the magic comments (`% !TeX program ...`) at the top of the `main-....tex` file.
+Please remove the magic comments (`% !TeX program ...`) at the top of the `main-english.tex` file.
 Although [LaTeX-Workshop supports magic comments](https://github.com/James-Yu/LaTeX-Workshop/blob/master/README.md#magic-comments), it currently does not work reliably.
 Without the magic comments, compilation works.
 
