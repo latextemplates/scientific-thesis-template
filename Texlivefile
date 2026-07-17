@@ -15,6 +15,7 @@ babel-english
 babel-german
 biber
 biblatex
+biblatex-lncs
 bigfoot
 bigintcalc
 bitset
