@@ -23,7 +23,7 @@ jobs:
           submodules: recursive
           ref: '${{ github.event.pull_request.head.ref }}'
           token: ${{ secrets.GH_TOKEN_WRITE }}
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: 'npm'
