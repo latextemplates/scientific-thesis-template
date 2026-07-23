@@ -3,6 +3,7 @@ latexindent
 latexmk
 texlogsieve
 
+accsupp
 acmart
 algorithmicx
 algorithms
