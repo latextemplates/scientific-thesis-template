@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- Soft-wrapped lines in code listings now show a gray hook arrow (↪) at the start of each continuation line, so they are distinguishable from real line breaks; the arrow is not copied when you select the code from the PDF.
 - The compiled PDF now embeds `bibliography.bib`, so the reference data can be extracted from the PDF (e.g., with JabRef).
 
 ## [2026-06-30]
