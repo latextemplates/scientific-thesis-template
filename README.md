@@ -34,6 +34,8 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](docs/
 
 See [docs/overleaf](docs/overleaf/).
 
+The LaTeX snippets this template is assembled from can be inspected at <https://latextemplates.github.io/latex-snippets/>.
+
 ## Usage
 
 - `main-english.tex` is the main document
