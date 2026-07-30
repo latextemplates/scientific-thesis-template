@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- The README now links the [latex-snippets site](https://latextemplates.github.io/latex-snippets/) near the top, so you can inspect the source snippets this template is assembled from.
+- Soft-wrapped lines in code listings now show a gray hook arrow (↪) at the start of each continuation line, so they are distinguishable from real line breaks; the arrow is not copied when you select the code from the PDF.
+- The compiled PDF now embeds `bibliography.bib`, so the reference data can be extracted from the PDF (e.g., with JabRef).
+
 ## [2026-06-30]
 
 ### Added

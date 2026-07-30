@@ -301,6 +301,9 @@
 % Code Listings
 \usepackage{listings}
 
+% accsupp hält den Pfeil (siehe postbreak unten) aus dem kopierten Text heraus
+\usepackage{accsupp}
+
 \definecolor{eclipseStrings}{RGB}{42,0.0,255}
 \definecolor{eclipseKeywords}{RGB}{127,0,85}
 \colorlet{numb}{magenta!60!black}
@@ -352,6 +355,10 @@
   stringstyle=\ttfamily,
   %
   breaklines=true,            % Zeilen werden umbrochen
+  %
+  % Umbrochene Zeilen mit einem grauen Pfeil markieren. Dank accsupp wird der
+  % Pfeil nicht in den kopierten Text übernommen. Quelle: https://tex.stackexchange.com/a/649475/9075
+  postbreak=\raisebox{0ex}[0ex][0ex]{\BeginAccSupp{ActualText={}}\ensuremath{\color{gray}\hookrightarrow\space}\EndAccSupp{}},
   %
   breakatwhitespace=true,
   %
@@ -484,6 +491,11 @@
 }
 {\multicitedelim}
 {\usebibmacro{postnote}}
+
+% Embed the bibliography data into the PDF so that readers can extract it
+% (e.g., with JabRef via "Import into library" on the PDF)
+\usepackage{embedfile}
+\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
 
 % Farbige Tabellen
 % ----------------

@@ -3,6 +3,7 @@ latexindent
 latexmk
 texlogsieve
 
+accsupp
 acmart
 algorithmicx
 algorithms
@@ -15,6 +16,7 @@ babel-english
 babel-german
 biber
 biblatex
+biblatex-lncs
 bigfoot
 bigintcalc
 bitset
@@ -38,6 +40,7 @@ datetime2-english
 datetime2-german
 dehyph-exptl
 diagbox
+embedfile
 enumitem
 environ
 epstopdf
@@ -73,6 +76,7 @@ hyphenex
 ifmtarg
 ifplatform
 iftex
+impnattypo
 inconsolata
 infwarerr
 intcalc
@@ -96,6 +100,11 @@ luatexbase
 luaxml
 ly1
 marginnote
+markdown
+
+csvsimple
+fancyvrb
+verse
 mathdesign
 mathtools
 mfirstuc
@@ -174,3 +183,4 @@ xkeyval
 xpatch
 xstring
 zref
+zref-clever

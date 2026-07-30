@@ -111,7 +111,7 @@ jobs:
   spell-check:
     # This is based on https://github.com/mh61503891/action-paper-aspell/tree/master
     #
-    # Disabled for scientific-thesis: the example content trips too many aspell false positives to maintain
+    # Disabled: the example content trips too many aspell false positives to maintain
     if: false
     runs-on: ubuntu-latest
     steps:
