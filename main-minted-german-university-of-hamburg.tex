@@ -625,12 +625,14 @@
 \algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
 
 % Extensions for references inside the document (\zcref{fig:sample}, ...)
-% Use \zcref{...} (and \zcref[S]{...} at the beginning of a sentence) instead of \ref: Type of reference included in the link
+% Use \zcref{...} (and \Zcref{...} at the beginning of a sentence) instead of \ref: Type of reference included in the link
 % That means, "Figure 5" is a full link instead of just "5".
 % The names follow the document language (babel); zref-clever is compatible with tagged PDFs.
 % Each \label also sets a zref label, so \zcref works with standard \label.
 \usepackage{zref-clever}
 \zcsetup{cap, nameinlink=true}
+% \Zcref{...} is short for \zcref[S]{...}: capitalized, unabbreviated name at the beginning of a sentence
+\NewDocumentCommand{\Zcref}{s O{} m}{\IfBooleanTF{#1}{\zcref*[S,#2]{#3}}{\zcref[S,#2]{#3}}}
 
 % Page-aware references: \zvref{...} (and \zvref[S]{...}) reads like "Figure 5 on the next page"
 \usepackage{zref-vario}
@@ -1479,7 +1481,7 @@ Quoting with "`quote"' or ``quote'' also works.
 \section{Zref-clever examples}
 \label{sec:ex:cref}
 
-zref-clever demonstration: zcref[S] at beginning of sentence, zcref in all other cases.
+zref-clever demonstration: Zcref (short for zcref[S]) at beginning of sentence, zcref in all other cases.
 
 \begin{figure}
   \centering
@@ -1503,11 +1505,11 @@ zref-clever demonstration: zcref[S] at beginning of sentence, zcref in all other
 \end{table}
 
 \begin{ltgexample}
-\zcref[S]{fig:ex:cref} shows a simple fact, although \zcref{fig:ex:cref} could also show something else.
+\Zcref{fig:ex:cref} shows a simple fact, although \zcref{fig:ex:cref} could also show something else.
 
-\zcref[S]{tab:ex:cref} shows a simple fact, although \zcref{tab:ex:cref} could also show something else.
+\Zcref{tab:ex:cref} shows a simple fact, although \zcref{tab:ex:cref} could also show something else.
 
-\zcref[S]{sec:ex:cref} shows a simple fact, although \zcref{sec:ex:cref} could also show something else.
+\Zcref{sec:ex:cref} shows a simple fact, although \zcref{sec:ex:cref} could also show something else.
 \end{ltgexample}
 
 \section{Formulas and Equations}
@@ -1524,7 +1526,7 @@ As an example, the set of natural numbers is given by $\mathbb{N}$.
 
 For the documentation of editing mathematical formulas, read the package documentation of \texttt{amsmath}\footnote{\url{http://texdoc.net/pkg/amsmath}}.
 
-\zcref[S]{eq:test} is numbered and can be referenced in the text:
+\Zcref{eq:test} is numbered and can be referenced in the text:
 \begin{ltgexample}
 \begin{align}
   \label{eq:test}
@@ -1549,7 +1551,7 @@ The documentation available at \url{http://www.ctan.org/tex-archive/help/Catalog
 \section{Abbildungen}
 
 \begin{ltgexample}
-\zcref[S]{fig:label} zeigt etwas Interessantes
+\Zcref{fig:label} zeigt etwas Interessantes
 
 \begin{figure}
   \centering
@@ -1706,7 +1708,7 @@ The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on e
 It uses the \href{http://pygments.org/}{pygments} library, which in turn requires Python.
 
 \begin{ltgexample}
-\zcref[S]{lst:XML} shows source code written in XML.
+\Zcref{lst:XML} shows source code written in XML.
 \refline{line:comment} contains a comment.
 
 \begin{listing}[htbp]
@@ -1887,7 +1889,7 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 \section{Miscellaneous Examples}
 \label{ssec:example}
 
-Reference test: \zcref[S]{ssec:example}, \zcref{fig:Abbildung} and \zcref{alg:example}.
+Reference test: \Zcref{ssec:example}, \zcref{fig:Abbildung} and \zcref{alg:example}.
 
 \begin{ltgexample}
 Checkmark: \dingcheck.
@@ -1928,7 +1930,7 @@ Crossmark: \dingcross.
   \end{algorithmic}
 \end{algorithm}
 
-\zcref[S]{alg:example} has already shown an algorithm.
+\Zcref{alg:example} has already shown an algorithm.
 Test of line referencing: line~\ref{alg1:state2} (\zcref{alg:example}) and line~\ref{alg2:state2} (\zcref{alg:example2}).
 
 \subsection{Definitions}
@@ -1937,7 +1939,7 @@ Test of line referencing: line~\ref{alg1:state2} (\zcref{alg:example}) and line~
   Definition Text
 \end{definition}
 
-\zcref[S]{def:def1} shows \ldots
+\Zcref{def:def1} shows \ldots
 
 \subsection{Enumerations}
 
