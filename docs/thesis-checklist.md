@@ -14,7 +14,8 @@ For much more advice on organizing, conducting, writing, and presenting a thesis
 
 A reader who opens the thesis anywhere and has ten minutes must find their way.
 
-- [ ] Each chapter starts with an introductory paragraph that outlines its sections.
+- [ ] No heading is directly followed by another heading: there is always text after a heading.
+- [ ] After a chapter heading, this text is an introductory paragraph that outlines the chapter's sections.
 - [ ] This paragraph refers back to what the chapter builds on and forward to where its results are used.
 - [ ] The introduction alone summarizes the whole argument: problem, method, results, and their interpretation.
 
