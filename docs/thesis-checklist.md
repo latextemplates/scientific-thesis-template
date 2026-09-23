@@ -30,6 +30,7 @@ A reader who opens the thesis anywhere and has ten minutes must find their way.
 
 - [ ] Every statement that is not your own has a citation; direct quotes are marked as such.
 - [ ] Bibliography entries are complete (authors, title, venue, year, DOI where available).
+- [ ] The library is cleaned up with [JabRef's cleanup entries](https://docs.jabref.org/finding-sorting-and-cleaning-entries/cleanupentries) (consistent formatting, e.g., of dates, page ranges, and DOIs).
 - [ ] The use of AI tools is declared as your examination regulations require.
 
 ## Figures, tables, and listings
