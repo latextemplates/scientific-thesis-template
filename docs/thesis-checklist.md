@@ -31,6 +31,7 @@ A reader who opens the thesis anywhere and has ten minutes must find their way.
 
 - [ ] Every statement that is not your own has a citation; direct quotes are marked as such.
 - [ ] Bibliography entries are complete (authors, title, venue, year, DOI where available).
+- [ ] Every cited web page states when you last accessed it (`urldate` field, printed as "visited on …").
 - [ ] The library is cleaned up with [JabRef's cleanup entries](https://docs.jabref.org/finding-sorting-and-cleaning-entries/cleanupentries) (consistent formatting, e.g., of dates, page ranges, and DOIs).
 - [ ] The use of AI tools is declared as your examination regulations require.
 
@@ -45,7 +46,6 @@ A reader who opens the thesis anywhere and has ten minutes must find their way.
 - [ ] The PDF shows no `??` (undefined references or citations).
 - [ ] All TODO notes are resolved.
 - [ ] All hints and examples of this template are removed.
-- [ ] The spell check passes (see the README).
-- [ ] The textlint findings are reviewed: remove weakening words such as "clearly" or "just" where they add nothing (see the README).
+- [ ] The text is spell-checked and grammar-checked (see the README for tools).
 - [ ] The title page is correct: title, your name, supervisors, dates.
 - [ ] The formal requirements of your examination office are met (page limit, signed declaration, number of copies, file format).
