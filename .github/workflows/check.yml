@@ -185,6 +185,7 @@ jobs:
           npx --yes \
             --package textlint \
             --package textlint-plugin-latex2e \
+            --package textlint-filter-rule-allowlist \
             --package textlint-rule-terminology \
             --package textlint-rule-write-good \
             textlint --format github $files \
