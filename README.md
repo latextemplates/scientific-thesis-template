@@ -36,6 +36,12 @@ See [docs/overleaf](docs/overleaf/).
 
 The LaTeX snippets this template is assembled from can be inspected at <https://latextemplates.github.io/latex-snippets/>.
 
+## Writing your thesis
+
+- Read [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html) by Lichter, Ludewig, Deininger, and Schneider.
+  The open-access book explains how to organize, conduct, write, and present a thesis.
+- Before handing in, work through the [thesis checklist](docs/thesis-checklist.md).
+
 ## Usage
 
 - `main-english.tex` is the main document
