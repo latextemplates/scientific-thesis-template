@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Cross-references use [zref-clever](https://ctan.org/pkg/zref-clever) instead of [cleveref](https://ctan.org/pkg/cleveref), because zref-clever works with tagged (accessible) PDFs: write `\zcref{...}` (and `\zcref[S]{...}` at the start of a sentence) instead of `\cref`/`\Cref`. Page-aware references use `\zvref` ([zref-vario](https://ctan.org/pkg/zref-vario)) instead of `\vref`.
+
 ## [2026-07-30]
 
 ### Added
