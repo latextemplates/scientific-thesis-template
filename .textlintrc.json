@@ -2,10 +2,16 @@
   "plugins": {
     "latex2e": true
   },
+  "filters": {
+    "allowlist": {
+      "allow": ["/\\bonly\\b/i"]
+    }
+  },
   "rules": {
     "terminology": true,
     "write-good": {
-      "tooWordy": false
+      "tooWordy": false,
+      "whitelist": ["only"]
     }
   }
 }
