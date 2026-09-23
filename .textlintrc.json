@@ -1,0 +1,11 @@
+{
+  "plugins": {
+    "latex2e": true
+  },
+  "rules": {
+    "terminology": true,
+    "write-good": {
+      "tooWordy": false
+    }
+  }
+}
