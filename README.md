@@ -36,6 +36,12 @@ See [docs/overleaf](docs/overleaf/).
 
 The LaTeX snippets this template is assembled from can be inspected at <https://latextemplates.github.io/latex-snippets/>.
 
+## Writing your thesis
+
+- Read [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html) by Lichter, Ludewig, Deininger, and Schneider.
+  The open-access book explains how to organize, conduct, write, and present a thesis.
+- Before handing in, work through the [thesis checklist](docs/thesis-checklist.md).
+
 ## Usage
 
 - `main-english.tex` is the main document
@@ -95,6 +101,13 @@ On the command line, there are additional features:
 - `make view`: Opens the configured viewer
 - `make mrproper`: Cleans up and removes also editor backup files.
 
+The `textlint` job of the `Check` workflow reports weakening words (e.g., "clearly", "just") in the English `.tex` files as annotations.
+Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
+
+```bash
+npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex
+```
+
 ## Benefits
 
 Following features are enabled in this template:
@@ -110,7 +123,7 @@ Following features are enabled in this template:
 - Support for `\powerset` command.
 - Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 - [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
-- Modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [booktabs].
+- Modern packages such as [microtype], [zref-clever], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [booktabs].
 - LaTeX compilation using the modern [lualatex] compiler.
   For older systems, [pdflatex](https://en.wikipedia.org/wiki/PdfTeX) is still supported.
 - [biblatex]+[biber] instead of plain [bibtex] to have a more intuitive `.bib` file:
@@ -457,7 +470,7 @@ Any derived work can freely be relicensed and can omit original copyright and li
 [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
 [bibtex]: https://www.ctan.org/pkg/bibtex
 [booktabs]: https://ctan.org/pkg/booktabs
-[cleveref]: https://ctan.org/pkg/cleveref
+[zref-clever]: https://ctan.org/pkg/zref-clever
 [csquotes]: https://www.ctan.org/pkg/csquotes
 [hypcap]: https://www.ctan.org/pkg/hypcap
 [hyperref]: https://ctan.org/pkg/hyperref

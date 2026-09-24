@@ -609,10 +609,10 @@
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 
 % See http://tex.stackexchange.com/a/83051/9075
-% Normally, doesn't work with hyperref, but cleveref fixes that
+% Normally, doesn't work with hyperref, but cleveref (or zref-vario) fixes that
 \usepackage{varioref}
 
-% Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
+% Enable that parameters of \zcref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
 
 % Enable hyperref without colors and without bookmarks
@@ -671,15 +671,19 @@
 \newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
 \algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
 
-% Extensions for references inside the document (\cref{fig:sample}, ...)
-% Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
+% Extensions for references inside the document (\zcref{fig:sample}, ...)
+% Use \zcref{...} (and \Zcref{...} at the beginning of a sentence) instead of \ref: Type of reference included in the link
 % That means, "Figure 5" is a full link instead of just "5".
-\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+% The names follow the document language (babel); zref-clever is compatible with tagged PDFs.
+% Each \label also sets a zref label, so \zcref works with standard \label.
+\usepackage{zref-clever}
+\zcsetup{cap, nameinlink=true}
+% \Zcref{...} is short for \zcref[S]{...}: capitalized, unabbreviated name at the beginning of a sentence
+\NewDocumentCommand{\Zcref}{s O{} m}{\IfBooleanTF{#1}{\zcref*[S,#2]{#3}}{\zcref[S,#2]{#3}}}
 
-\crefname{listing}{Listing}{Listings}
-\Crefname{listing}{Listing}{Listings}
-\crefname{lstlisting}{Listing}{Listings}
-\Crefname{lstlisting}{Listing}{Listings}
+% Page-aware references: \zvref{...} (and \zvref[S]{...}) reads like "Figure 5 on the next page"
+\usepackage{zref-vario}
+\zcLanguageSetup{english}{type=page, Name-sg=page, Name-pl=pages} % "on page 5", not "on Page 5"
 
 \usepackage{lipsum}
 
@@ -1030,15 +1034,15 @@ A scientific argument always has the following steps that all must come in this 
 %
 This template will mark various parts of the structure with SM1-SM6 to recall to you which step of a scientific argument is used and where.
 
-\emph{Purpose and scope of \cref{sec:introduction}}.
-The introduction chapter is a summary of your work and your scientific argument that shall be understandable to anyone in your scientific field, e.g., anyone in Data Science.
+\emph{Purpose and scope of \zcref{sec:introduction}}.
+The introduction chapter is a summary of your work and your scientific argument that must be understandable to anyone in your scientific field, e.g., anyone in Data Science.
 A reader must be able to comprehend the problem, method, relevant execution details, results, and their interpretation by reading the introduction and the introduction alone.
 Section~\ref{sec:introduction:topic} introduces the general topic of your research.
 Section~\ref{sec:introduction:state-of-art} discusses the state of the art and identifies a research.
 Section~\ref{sec:introduction:research-question} then states the research problem to investigate.
 Section~\ref{sec:problem-exposition:research-method} explains the research method that was followed, possibly with execution details.
 Section~\ref{sec:introduction:results} then presents the results and their interpretation.
-Only if a reader thinks they are not convinced or they need more details to reproduce your study, they shall have to read further.
+A reader should need to read further only if they are not convinced or need more details to reproduce your study.
 The individual chapters and sections provide the details for each of the steps in your scientific argument.
 
 You usually write the introduction chapter \emph{after} you wrote all other chapters, but you should keep on making notes for each of the sections as you write the later chapters.
@@ -1047,8 +1051,16 @@ You usually write the introduction chapter \emph{after} you wrote all other chap
 \emph{Purpose and scope of the introduction paragraph to a chapter}.
 The paragraph you are reading above is a typical introductory paragraph to a chapter.
 It is a high-level summary of the chapters' topic (SM1 and SM2).
-It gives the reader some guidance by breaking down the chapter topic into subtopics that are clearly named (SM3) in the right order with forward references to the corresponding sections (SM4).
+It gives the reader some guidance by breaking down the chapter topic into subtopics that are named (SM3) in the right order with forward references to the corresponding sections (SM4).
 It may close with announcing the result you obtain (SM6) but this is usually not done in the opening paragraph of the introduction.
+
+\emph{Two kinds of readers}.
+Write your report so that it can be read from beginning to end: introduce every concept before you use it.
+Backward references are fine; forward references in the running text should be rare.
+At the same time, guide the reader who opens your report somewhere and has ten minutes:
+each chapter starts with an introductory paragraph as described above, which outlines the coming sections and links back to what the chapter builds on and forward to where its results are used.
+The book \enquote{Student Thesis Projects}~\cite{Lichter2026} (open access) explains in detail how to organize, conduct, write, and present a thesis.
+Before you hand in, work through the checklist in \href{https://github.com/latextemplates/scientific-thesis-template/blob/main/docs/thesis-checklist.md}{\texttt{docs/thesis-checklist.md}} and remove all these hints.
 
 % ---------------------------------------------------------------------------------
 \section{Context and Topic (SM1)}\label{sec:introduction:topic}
@@ -1067,18 +1079,18 @@ At the end of this section, you have explained and established a general goal th
 % ---------------------------------------------------------------------------------
 
 \emph{Purpose and scope}.
-You provide a more in-depth introduction into the research topic by contrasting the current state of the art in society/science in relation to the research topic you introduced in \cref{sec:introduction:topic}.
+You provide a more in-depth introduction into the research topic by contrasting the current state of the art in society/science in relation to the research topic you introduced in \zcref{sec:introduction:topic}.
 This introduction has to
 
 \begin{itemize}
   \item present established facts, methods, and results that provide a deeper understanding of the research topic (``prior work on giraffe genomes, relevance of giraffes for societal well-being, giraffes being a model-animal for various other studies, etc.'')
-  \item discuss in which ways prior and recent ideas still fall short of reaching the general goal you explained in \cref{sec:introduction:topic} (``prior work only sequenced the genome of one giraffe and did not consider genes of ancient ancestors'')
+  \item discuss in which ways prior and recent ideas still fall short of reaching the general goal you explained in \zcref{sec:introduction:topic} (``prior work only sequenced the genome of one giraffe and did not consider genes of ancient ancestors'')
 \end{itemize}
 
 You have to provide citations/literature references for each of the statements and claims you are making.
-This section is usually a summary of the related work discussion in \cref{sec:background}.
+This section is usually a summary of the related work discussion in \zcref{sec:background}.
 
-At the end of this section, you have established a \emph{knowledge gap} between the state of the art and the general objective you developed in \cref{sec:introduction:topic}.
+At the end of this section, you have established a \emph{knowledge gap} between the state of the art and the general objective you developed in \zcref{sec:introduction:topic}.
 \emph{Stating a (knowledge) gap between a status quo and a desired situation is the \emph{first step} of a writing scientific argument.}
 
 % ---------------------------------------------------------------------------------
@@ -1086,9 +1098,9 @@ At the end of this section, you have established a \emph{knowledge gap} between 
 % ---------------------------------------------------------------------------------
 
 \emph{Purpose and scope}.
-In this section you state in which way you will address the knowledge gap you identified at the end of \cref{sec:introduction:state-of-art}.
+In this section you state in which way you will address the knowledge gap you identified at the end of \zcref{sec:introduction:state-of-art}.
 You usually cannot address and resolve the entire knowledge gap in your work.
-The purpose of this section is to clearly detail the specific part of the knowledge that you will address.
+The purpose of this section is to detail the specific part of the knowledge that you will address.
 You thereby make all the assumptions explicit that underlie your work (``in this report we focus on genomes of female giraffes who lived in the years 1950-2000 in South Africa'').
 
 Your general research question states
@@ -1119,19 +1131,19 @@ In each paragraph you first briefly explain the concept of the step in your meth
 % ---------------------------------------------------------------------------------
 
 \emph{Purpose and scope}.
-You close the introduction by clearly stating the evaluation setup you designed to evaluate the success of your study regarding the research objective, which comes in two steps.
-It is most likely a summary of your evaluation in \cref{sec:evaluation}.
+You close the introduction by stating the evaluation setup you designed to evaluate the success of your study regarding the research objective, which comes in two steps.
+It is most likely a summary of your evaluation in \zcref{sec:evaluation}.
 
 \section*{Results (SM5)}
 
-You state the evaluation method that is in line with your research question from \cref{sec:introduction:research-question} and summarize the measurements you obtained but you do not interpret them, i.e., you only report the numbers but you do not include judging statements.
+You state the evaluation method that is in line with your research question from \zcref{sec:introduction:research-question} and summarize the measurements you obtained but you do not interpret them, i.e., you only report the numbers but you do not include judging statements.
 
 \section*{Interpretation (SM6)}
 
 You summarize your interpretation of the results and draw conclusions.
-State whether and to which degree the research question from \cref{sec:introduction:research-question} has been answered successfully or not.
+State whether and to which degree the research question from \zcref{sec:introduction:research-question} has been answered successfully or not.
 
-Finally state briefly how much closer society and science have come in answering the general objective you outlined in \cref{sec:introduction:topic}.
+Finally state briefly how much closer society and science have come in answering the general objective you outlined in \zcref{sec:introduction:topic}.
 
 %%% ===============================================================================
 \section{Background (SM1)}\label{sec:background}
@@ -1150,7 +1162,7 @@ The background chapter has multiple roles.
 
   \item \emph{Related Work.}
         It has to provide a comprehensive discussion of all prior work in the area on this subject.
-        Your discussion has to summarize these prior works and has to explain in which way the research question you are solving (\cref{sec:introduction:research-question}) has not bee solved yet because prior work had more limiting assumptions, addressed a different angle, their results are not complete etc. Depending on the subject you are studying, the related work part can be larger and warrant an entire chapter on its own, or be fully concluded within \cref{sec:introduction:state-of-art}.
+        Your discussion has to summarize these prior works and has to explain in which way the research question you are solving (\zcref{sec:introduction:research-question}) has not bee solved yet because prior work had more limiting assumptions, addressed a different angle, their results are not complete etc. Depending on the subject you are studying, the related work part can be larger and warrant an entire chapter on its own, or be fully concluded within \zcref{sec:introduction:state-of-art}.
 
         You can close the related work discussion by clarifying the positioning and formulation of your research question (SM2) in relation to all the prior work, making more explicit whether you address an existing research question under different premises or whether you work on a modified or completely new research question.
 \end{itemize}
@@ -1160,10 +1172,10 @@ The background chapter has multiple roles.
 %%% ===============================================================================
 
 \emph{Purpose and scope}.
-Introduce the problem context in more detail if \cref{sec:introduction:topic} does not provide all necessary information about the problem to follow the rest of the report.
+Introduce the problem context in more detail if \zcref{sec:introduction:topic} does not provide all necessary information about the problem to follow the rest of the report.
 This can include further details on the data you studied, context assumptions and requirements, etc.
 
-If you have to expose the problem in more detail here, then this chapter should also provide a more detailed explanation of research question and the method you are applying, i.e., you can now provide more concrete sub-problems compared to \cref{sec:introduction:research-question} more details for the method \cref{sec:introduction:method} because you now have explained the problem much better.
+If you have to expose the problem in more detail here, then this chapter should also provide a more detailed explanation of research question and the method you are applying, i.e., you can now provide more concrete sub-problems compared to \zcref{sec:introduction:research-question} more details for the method \zcref{sec:introduction:method} because you now have explained the problem much better.
 A typical structure can be.
 
 % ---------------------------------------------------------------------------------
@@ -1182,30 +1194,30 @@ provide details
 \section{Detailed Research Questions (SM2)}\label{sec:problem-exposition:research-problems}
 % ---------------------------------------------------------------------------------
 
-provide details based on \cref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
+provide details based on \zcref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
 
 % ---------------------------------------------------------------------------------
 \section{Detailed Method (SM3)}\label{sec:problem-exposition:research-method}
 % ---------------------------------------------------------------------------------
 
-provide details based on \cref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
+provide details based on \zcref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
 
 %%% ===============================================================================
 \section{First Real Chapter addressing first Research Problem}\label{sec:problem1}
 %%% ===============================================================================
 
 \emph{Purpose and scope}.
-After you stated research context (SM1), research problem (SM2), and research method (SM3) in \cref{sec:introduction} and possibly \cref{sec:problem-exposition}, the remainder of your entire report addresses execution (SM4), results (SM5), and interpretation (SM6).
+After you stated research context (SM1), research problem (SM2), and research method (SM3) in \zcref{sec:introduction} and possibly \zcref{sec:problem-exposition}, the remainder of your entire report addresses execution (SM4), results (SM5), and interpretation (SM6).
 You usually do this by addressing various sub-problems again through scientific arguments following the 6 steps SM1-SM6.
 
 Have a short chapter introduction that recalls and explains the first research problem of your thesis.
-The problem has to show up in the introduction in \cref{sec:introduction:research-question} or in \cref{sec:problem-exposition:research-problems} already.
+The problem has to show up in the introduction in \zcref{sec:introduction:research-question} or in \zcref{sec:problem-exposition:research-problems} already.
 This provides the background (SM1) for this chapter while the first research problem of the thesis becomes the research question/hypothesis (SM2) for this chapter.
 
 Next, explain in the chapter intro how you solve the research problem in this chapter by breaking it down in further sub-problems.
 By this, you outline the method (SM3) through which you are going to solve the problem of this chapter.
 This is necessary to give the reader guidance of what's to come in this chapter and how it fits into the thesis as a whole.
-Explain that you will address the first sub-problem in \cref{sec:problem1:subproblem1} and the second sub-problem in \cref{sec:problem1:subproblem2}, etc. The sections then provide the details for execution and results.
+Explain that you will address the first sub-problem in \zcref{sec:problem1:subproblem1} and the second sub-problem in \zcref{sec:problem1:subproblem2}, etc. The sections then provide the details for execution and results.
 
 % ---------------------------------------------------------------------------------
 \section{First Sub-Problem}\label{sec:problem1:subproblem1}
@@ -1219,16 +1231,16 @@ If you cannot describe your problem without defining new terms, you may have to 
 
 \emph{The second paragraph describes the method/approach how you address the problem (SM3 for this section).}
 Describe the method in a level of detail that allows another student to reproduce your steps.
-Make use of appendices % (see \cref{sec:appendix1})
+Make use of appendices % (see \zcref{sec:appendix1})
 if certain details take too much space.
 
 \emph{The third, fourth, and following paragraph provides details on applying the method or developing a new approach, i.e., execution (SM4) and may explain results (SM5)}, i.e. details on the steps needed to reproduce the results.
 
-Results (SM5) can come in many forms, e.g., conceptual diagrams, algorithms, tables, charts, a list of articles from a literature research etc. You must reference them (``\cref{fig:my_label} shows.
+Results (SM5) can come in many forms, e.g., conceptual diagrams, algorithms, tables, charts, a list of articles from a literature research etc. You must reference them (``\zcref{fig:my_label} shows.
 ..'') and describe the results in text.
 If you use diagrams, tables, or charts, you cannot expect the reader to know what to you expect them to see in a diagram, table or chart.
 Describe to them how to read these, explain the meaning of particular elements, point out special observations.
-But you may only describe the results you must not interpret them.
+Describe the results, but do not interpret them.
 Make use of appendices if certain details take too much space.
 
 \begin{figure}
@@ -1240,24 +1252,24 @@ Make use of appendices if certain details take too much space.
 
 \emph{After describing the results, you may interpret them (SM6).}
 Here you can infer what a particular observation means (for you), how it can be applied, or what others can do with it.
-You must not write interpretations before completely describing your results.
+Do not interpret your results before you have described all of them.
 This is a common mistake done by most beginner writers.
 You want to quickly get to the point, which is the final finding or interpretation.
 But you forget that your reader does not understand yet what you are interpreting - they do not know yet what you do know.
-An interpretation can only be followed after all results have been described.
+Interpret the results only after describing all of them.
 The interpretation must be based on the written description only.
 Then you can be sure that your readers can follow your interpretation and reach the same conclusions as you have.
 
-Ideally, your interpretation leads to the next sub-problem in \cref{sec:problem1:subproblem2}.
+Ideally, your interpretation leads to the next sub-problem in \zcref{sec:problem1:subproblem2}.
 
 % ---------------------------------------------------------------------------------
 \section{Second Sub-Problem}\label{sec:problem1:subproblem2}
 % ---------------------------------------------------------------------------------
 
-You now build on the solution to the first sub-problem of \cref{sec:problem1:subproblem1} (SM1) and recall second sub-problem (SM2, you detailed in the introduction of this chapter) and follow the same pattern as before (SM3-SM6).
+You now build on the solution to the first sub-problem of \zcref{sec:problem1:subproblem1} (SM1) and recall second sub-problem (SM2, you detailed in the introduction of this chapter) and follow the same pattern as before (SM3-SM6).
 
 Note that not all sections may not include all parts SM1-SM6 in all detail.
-Some sections do not require to repeatedly state the background (SM1) or the research problem (SM2) if they were already clearly defined in a previous section.
+Some sections need not restate the background (SM1) or the research problem (SM2) if a previous section already defined them.
 Sometimes, a section is only dedicated to describing the method (SM3) and execution (SM4) and does not contain any results or interpretations.
 Sometimes results (SM5) and interpretations (SM6) only come in the evaluation chapter.
 
@@ -1274,8 +1286,8 @@ What is important for you when you are writing a scientific argument is not to s
 \section{Second Real Chapter}\label{sec:sub-problem2}
 %%% ===============================================================================
 
-Have a short chapter introduction that recalls what you already achieved in \cref{sec:problem1} and explain the second research problem of your thesis.
-The problem has to show up in the introduction in \cref{sec:introduction:research-question} or in \cref{sec:problem-exposition:research-problems} already.
+Have a short chapter introduction that recalls what you already achieved in \zcref{sec:problem1} and explain the second research problem of your thesis.
+The problem has to show up in the introduction in \zcref{sec:introduction:research-question} or in \zcref{sec:problem-exposition:research-problems} already.
 etc.
 
 %%% ===============================================================================
@@ -1289,14 +1301,14 @@ The evaluation chapter should be the most formal and rigorously structured chapt
 \section{Objective (SM2)}\label{sec:evaluation:objective}
 % ---------------------------------------------------------------------------------
 
-Clearly state what you want to evaluate and what you want to measure.
+State what you want to evaluate and what you want to measure.
 
 % ---------------------------------------------------------------------------------
 \section{Setup (SM3)}\label{sec:evaluation:setup}
 % ---------------------------------------------------------------------------------
 
 State which data, participants, tools, etc. you chose and why.
-Clearly state how you measure outcomes and how you compare them to baselines, reference groups, etc.
+State how you measure outcomes and how you compare them to baselines, reference groups, etc.
 
 % ---------------------------------------------------------------------------------
 \section{Execution (SM4)}\label{sec:evaluation:execution}
@@ -1309,11 +1321,11 @@ Provide all details on the execution that are necessary to allows another person
 % ---------------------------------------------------------------------------------
 
 You only report the measurements.
-You must present and reference them (``\cref{fig:my_label2} shows.
+You must present and reference them (``\zcref{fig:my_label2} shows.
 ..'') and describe the results in text.
 If you use diagrams, tables, or charts, you cannot expect the reader to know what to you expect them to see in a diagram, table or chart.
 Describe to them how to read these, explain the meaning of particular elements, point out special observations.
-But you may only describe the results you must not interpret them.
+Describe the results, but do not interpret them.
 Make use of appendices if certain details take too much space.
 
 \begin{figure}
@@ -1327,8 +1339,8 @@ Make use of appendices if certain details take too much space.
 \section{Discussion (SM6)}\label{sec:evaluation:discussion}
 % ---------------------------------------------------------------------------------
 
-An interpretation can only be followed after all results have been described.
-The interpretation must be based on the written description in \cref{sec:evaluation:results} only.
+Interpret the results only after describing all of them.
+The interpretation must be based on the written description in \zcref{sec:evaluation:results} only.
 Then you can be sure that your readers can follow your interpretation and reach the same conclusions as you have.
 
 
@@ -1380,7 +1392,7 @@ A new line is generated with a blank line.
 As you would do in Word:
 New paragraphs are generated by pressing enter.
 In LaTeX, this does not lead to a new paragraph as LaTeX joins subsequent lines.
-In case you want a new paragraph, just press enter twice!
+To start a new paragraph, press enter twice.
 This leads to an empty line.
 In word, there is the functionality to press shift and enter.
 This leads to a hard line break.
@@ -1431,7 +1443,7 @@ This is some text.
 \end{ltgexample}
 
 \begin{ltgexample}
-Here just a comment\sidecomment{Comment}.
+Here is a comment\sidecomment{Comment}.
 \end{ltgexample}
 
 \begin{ltgexample}
@@ -1442,7 +1454,7 @@ Here just a comment\sidecomment{Comment}.
 
 \LaTeX{} automatically hyphenates words.
 When using \href{https://ctan.org/pkg/microtype}{microtype}, there should be fewer hyphenations than in other settings.
-It might be necessary to tweak the hyphenations nevertheless.
+You might still need to tweak the hyphenation.
 Here are some hints:
 
 \begin{ltgexample}
@@ -1479,15 +1491,15 @@ Quoting with "`quote"' or ``quote'' also works.
 
 \end{ltgexample}
 
-\section{Cleveref examples}
+\section{Zref-clever examples}
 \label{sec:ex:cref}
 
-Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
+zref-clever demonstration: Zcref (short for zcref[S]) at beginning of sentence, zcref in all other cases.
 
 \begin{figure}
   \centering
   \includegraphics[width=.75\linewidth]{example-image-a}
-  \caption{Example figure for cref demo}
+  \caption{Example figure for zcref demo}
   \label{fig:ex:cref}
 \end{figure}
 
@@ -1501,16 +1513,16 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
     Thee     & Four     \\
     \bottomrule
   \end{tabular}
-  \caption{Example table for cref demo}
+  \caption{Example table for zcref demo}
   \label{tab:ex:cref}
 \end{table}
 
 \begin{ltgexample}
-\Cref{fig:ex:cref} shows a simple fact, although \cref{fig:ex:cref} could also show something else.
+\Zcref{fig:ex:cref} shows a simple fact, although \zcref{fig:ex:cref} could also show something else.
 
-\Cref{tab:ex:cref} shows a simple fact, although \cref{tab:ex:cref} could also show something else.
+\Zcref{tab:ex:cref} shows a simple fact, although \zcref{tab:ex:cref} could also show something else.
 
-\Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
+\Zcref{sec:ex:cref} shows a simple fact, although \zcref{sec:ex:cref} could also show something else.
 \end{ltgexample}
 
 \section{Formulas and Equations}
@@ -1527,7 +1539,7 @@ As an example, the set of natural numbers is given by $\mathbb{N}$.
 
 For the documentation of editing mathematical formulas, read the package documentation of \texttt{amsmath}\footnote{\url{http://texdoc.net/pkg/amsmath}}.
 
-\Cref{eq:test} is numbered and can be referenced in the text:
+\Zcref{eq:test} is numbered and can be referenced in the text:
 \begin{ltgexample}
 \begin{align}
   \label{eq:test}
@@ -1552,7 +1564,7 @@ The documentation available at \url{http://www.ctan.org/tex-archive/help/Catalog
 \section{Figures}
 
 \begin{ltgexample}
-\Cref{fig:label} shows something interesting.
+\Zcref{fig:label} shows something interesting.
 
 \begin{figure}
   \centering
@@ -1567,7 +1579,7 @@ The documentation available at \url{http://www.ctan.org/tex-archive/help/Catalog
 
 \section{Sub Figures}
 
-An example of two sub figures is shown in \cref{fig:two_sub_figures}.
+An example of two sub figures is shown in \zcref{fig:two_sub_figures}.
 
 \begin{ltgexample}
 \begin{figure}[!b]
@@ -1585,7 +1597,7 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \section{Figures with tikz}
 
 The \href{https://ctan.org/pkg/pgf}{tikz} package creates graphics programmatically.
-With this package, grids or other regular structures can be generated easily.
+This package generates grids and other regular structures.
 
 \begin{ltgexample}
 \begin{figure}[ht]
@@ -1709,8 +1721,8 @@ The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on e
 \section{Source Code}
 
 \begin{ltgexample}
-\Cref{lst:XML} shows source code written in XML.
-\Cref{line:comment} contains a comment.
+\Zcref{lst:XML} shows source code written in XML.
+\Zcref{line:comment} contains a comment.
 
 \begin{lstlisting}[
   language=XML,
@@ -1724,7 +1736,7 @@ The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on e
 \end{ltgexample}
 
 One can also add \verb+float+ as parameter to have the listing floating.
-\Cref{lst:flXML} shows the floating listing.
+\Zcref{lst:flXML} shows the floating listing.
 
 \begin{ltgexample}
 \begin{lstlisting}[
@@ -1741,7 +1753,7 @@ One can also add \verb+float+ as parameter to have the listing floating.
 \end{lstlisting}
 \end{ltgexample}
 
-One can also typeset JSON as shown in \cref{lst:json}.
+One can also typeset JSON as shown in \zcref{lst:json}.
 
 \begin{ltgexample}
 \begin{lstlisting}[
@@ -1755,7 +1767,7 @@ One can also typeset JSON as shown in \cref{lst:json}.
 \end{lstlisting}
 \end{ltgexample}
 
-Java is also possible as shown in \cref{lst:java}.
+Java is also possible as shown in \zcref{lst:java}.
 
 \begin{ltgexample}
 \begin{lstlisting}[
@@ -1872,17 +1884,17 @@ Any acronym can be set inline with \initialism{REST} or \initialism{HTTP}.
 \end{ltgexample}
 
 
-\section{Varioref examples}
+\section{Zref-vario examples}
 \label{sec:ex:vref}
 
-Varioref demonstration: Vref at beginning of sentence, vref in all other cases.
+zref-vario demonstration: zvref[S] at beginning of sentence, zvref in all other cases.
 
 \begin{ltgexample}
-\Vref{fig:ex:cref} shows a simple fact, although \vref{fig:ex:cref} could also show something else.
+\zvref[S]{fig:ex:cref} shows a simple fact, although \zvref{fig:ex:cref} could also show something else.
 
-\Vref{tab:ex:cref} shows a simple fact, although \vref{tab:ex:cref} could also show something else.
+\zvref[S]{tab:ex:cref} shows a simple fact, although \zvref{tab:ex:cref} could also show something else.
 
-\Vref{sec:ex:cref} shows a simple fact, although \vref{sec:ex:cref} could also show something else.
+\zvref[S]{sec:ex:cref} shows a simple fact, although \zvref{sec:ex:cref} could also show something else.
 \end{ltgexample}
 
 \section{Citations}
@@ -1898,7 +1910,7 @@ In case one wants to name the author: \textcite{mwe} shows a minimal \LaTeX{} ex
 Note that \texttt{\textbackslash textcite\{mwe\}} prints both the author and the reference to the bibliography entry.
 
 Remember that you have to call \texttt{biber main-english} to generate the bibliography data for \texttt{lualatex}.
-You will need to run \texttt{lualatex} twice to ensure that the page numbers are updated correctly.
+You will need to run \texttt{lualatex} twice so that the page numbers are up to date.
 
 
 In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
@@ -1909,7 +1921,7 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 \section{Miscellaneous Examples}
 \label{ssec:example}
 
-Reference test: \Cref{ssec:example}, \cref{fig:Abbildung} and \cref{alg:example}.
+Reference test: \Zcref{ssec:example}, \zcref{fig:Abbildung} and \zcref{alg:example}.
 
 \begin{ltgexample}
 Checkmark: \dingcheck.
@@ -1950,8 +1962,8 @@ Crossmark: \dingcross.
   \end{algorithmic}
 \end{algorithm}
 
-\Cref{alg:example} has already shown an algorithm.
-Test of line referencing: line~\ref{alg1:state2} (\cref{alg:example}) and line~\ref{alg2:state2} (\cref{alg:example2}).
+\Zcref{alg:example} has already shown an algorithm.
+Test of line referencing: line~\ref{alg1:state2} (\zcref{alg:example}) and line~\ref{alg2:state2} (\zcref{alg:example2}).
 
 \subsection{Definitions}
 \begin{definition}[Title]
@@ -1959,7 +1971,7 @@ Test of line referencing: line~\ref{alg1:state2} (\cref{alg:example}) and line~\
   Definition Text
 \end{definition}
 
-\Cref{def:def1} shows \ldots
+\Zcref{def:def1} shows \ldots
 
 \subsection{Enumerations}
 
@@ -2046,8 +2058,8 @@ Note that, when \texttt{enumitem} is loaded, this behaves differently than with 
 \chapter{Conclusion and Outlook}\label{sec:conclusion}
 %%% ===============================================================================
 
-Your conclusions are not just a factual summary of your work, but they position, interpret, and defend your findings against the state of the art that you discussed in \cref{sec:introduction:state-of-art}.
-You specifically outline which concrete findings or methodological contributions advance our knowledge towards the general objective you introduced in \cref{sec:introduction:topic}.
+Your conclusions are not just a factual summary of your work, but they position, interpret, and defend your findings against the state of the art that you discussed in \zcref{sec:introduction:state-of-art}.
+You specifically outline which concrete findings or methodological contributions advance our knowledge towards the general objective you introduced in \zcref{sec:introduction:topic}.
 Objectively discuss which parts you solved and in which parts you failed.
 
 You should explicitly discuss limitations and shortcomings of your work and detail what kind of future studies are needed to overcome these limitations.

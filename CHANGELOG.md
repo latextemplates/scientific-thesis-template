@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- The `Check` workflow has a `textlint` job that reports weakening words (e.g., "clearly", "just") in the English `.tex` files as annotations, without failing the build ("only" is allowed). Configure it in `.textlintrc.json`; the README shows how to run it locally.
+- [`docs/thesis-checklist.md`](docs/thesis-checklist.md): a checklist to work through before handing in your thesis, linked from the README and the writing hints.
+- The README and the writing hints recommend the open-access book [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html), and the writing hints explain how to write both for readers who read from beginning to end and for readers who open the thesis anywhere.
+
+### Changed
+
+- Cross-references use [zref-clever](https://ctan.org/pkg/zref-clever) instead of [cleveref](https://ctan.org/pkg/cleveref), because zref-clever works with tagged (accessible) PDFs: write `\zcref{...}` instead of `\cref` and, at the start of a sentence, `\Zcref{...}` (short for `\zcref[S]{...}`) instead of `\Cref`. Page-aware references use `\zvref` ([zref-vario](https://ctan.org/pkg/zref-vario)) instead of `\vref`.
+
 ## [2026-07-30]
 
 ### Added

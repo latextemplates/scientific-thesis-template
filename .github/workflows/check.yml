@@ -164,6 +164,34 @@ jobs:
              echo 'If you want to ignore words, add them to `.aspell.en.pws` (your personal aspell dictionary)' >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
+  textlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Lint English prose with textlint
+        run: |
+          # Report-only: findings show up as annotations, the job does not fail.
+          # Rules come from .textlintrc.json. Only English documents (marked by
+          # "% !TeX spellcheck = en-US") are linted: write-good targets English.
+          files=$(grep -l '^% !TeX spellcheck = en' *.tex || true)
+          if [ -z "$files" ]; then
+            echo "No English .tex files to lint." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          npx --yes \
+            --package textlint \
+            --package textlint-plugin-latex2e \
+            --package textlint-filter-rule-allowlist \
+            --package textlint-rule-terminology \
+            --package textlint-rule-write-good \
+            textlint --format github $files \
+            | sed "s|${GITHUB_WORKSPACE}/||g" | tee annotations.txt || true
+          count=$(grep -c '^::\(error\|warning\)' annotations.txt || true)
+          echo "textlint reported ${count} finding(s) in: ${files//$'\n'/, }" >> "$GITHUB_STEP_SUMMARY"
   indent:
     runs-on: ubuntu-latest
     steps:

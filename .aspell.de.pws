@@ -1,5 +1,6 @@
-personal_ws-1.1 de 122 utf-8
+personal_ws-1.1 de 134 utf-8
 ACM
+Access
 Atlantic
 BPEL
 BPMN
@@ -9,6 +10,7 @@ Das
 Database
 Diag
 Firstname
+Fließtext
 Geänderter
 Hier
 IEEEtran
@@ -25,15 +27,21 @@ North
 OMG
 ORCID
 OldStyle
+Open
 Organization
 Practitioner
+Projects
 RDBMS
 RGB
+Rückverweise
 TODOs
 Textfarbe
+Thesis
 Treaty
 UML
+Vorwärtsverweise
 Worten
+Zcref
 abbreviationdot
 aboveskip
 acmnumeric
@@ -116,8 +124,12 @@ subfigure
 subfigures
 tion
 tt
+vorausverweist
 werden
 wird
 wurde
 xleftmargin
+zcref
+zref
+zvref
 œ

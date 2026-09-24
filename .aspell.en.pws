@@ -1,4 +1,4 @@
-personal_ws-1.1 en 128 utf-8
+personal_ws-1.1 en 132 utf-8
 ACM
 Atlantic
 BPEL
@@ -34,6 +34,7 @@ Textfarbe
 Treaty
 UML
 Worten
+Zcref
 abbreviationdot
 aboveskip
 acmnumeric
@@ -126,4 +127,7 @@ werden
 wird
 wurde
 xleftmargin
+zcref
+zref
+zvref
 œ
