@@ -1,4 +1,4 @@
-personal_ws-1.1 en 132 utf-8
+personal_ws-1.1 en 137 utf-8
 ACM
 Atlantic
 BPEL
@@ -26,6 +26,7 @@ OMG
 ORCID
 OldStyle
 Organization
+PNG
 Practitioner
 RDBMS
 RGB
@@ -33,6 +34,8 @@ TODOs
 Textfarbe
 Treaty
 UML
+Ulm
+Wikimedia
 Worten
 Zcref
 abbreviationdot
@@ -47,6 +50,7 @@ basewidth
 basicstyle
 bei
 belowskip
+breakatwhitespace
 breaklines
 category
 cls
@@ -125,6 +129,7 @@ tion
 tt
 werden
 wird
+wkrauth
 wurde
 xleftmargin
 zcref
