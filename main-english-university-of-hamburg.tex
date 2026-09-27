@@ -1406,6 +1406,8 @@ Then you can be sure that your readers can follow your interpretation and reach 
         lastline=\the\LTGendlineexample,
         firstnumber=\the\LTGbeginlineexample,
         basewidth=.5em,
+        % break long lines even without whitespace (e.g., \includegraphics[...]{...}); otherwise they run out of the box
+        breakatwhitespace=false,
         aboveskip=0mm,
         belowskip=0mm,
         numbers=left,
