@@ -1191,7 +1191,7 @@ The background chapter has multiple roles.
 
   \item \emph{Related Work.}
         It has to provide a comprehensive discussion of all prior work in the area on this subject.
-        Your discussion has to summarize these prior works and has to explain in which way the research question you are solving (\zcref{sec:introduction:research-question}) has not bee solved yet because prior work had more limiting assumptions, addressed a different angle, their results are not complete etc. Depending on the subject you are studying, the related work part can be larger and warrant an entire chapter on its own, or be fully concluded within \zcref{sec:introduction:state-of-art}.
+        Your discussion has to summarize these prior works and has to explain in which way the research question you are solving (\zcref{sec:introduction:research-question}) has not been solved yet because prior work had more limiting assumptions, addressed a different angle, their results are not complete etc. Depending on the subject you are studying, the related work part can be larger and warrant an entire chapter on its own, or be fully concluded within \zcref{sec:introduction:state-of-art}.
 
         You can close the related work discussion by clarifying the positioning and formulation of your research question (SM2) in relation to all the prior work, making more explicit whether you address an existing research question under different premises or whether you work on a modified or completely new research question.
 \end{itemize}
@@ -1399,6 +1399,8 @@ Then you can be sure that your readers can follow your interpretation and reach 
         lastline=\the\LTGendlineexample,
         firstnumber=\the\LTGbeginlineexample,
         basewidth=.5em,
+        % lange Zeilen auch ohne Leerzeichen umbrechen (z.B. \includegraphics[...]{...}); sonst ragen sie aus der Box
+        breakatwhitespace=false,
         aboveskip=0mm,
         belowskip=0mm,
         numbers=left,
@@ -1428,7 +1430,7 @@ In LaTeX erreicht man dies durch Doppelbackslashes (\textbackslash\textbackslash
 \\
 Dies verwendet man quasi nie.
 
-Folglich werden neue Abstäze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
+Folglich werden neue Absätze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
 Beispielsweise begann der letzte Satz in einem neuen Absatz.
 Eine ausführliche Motivation hierfür findet sich in \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
 \end{ltgexample}
@@ -1540,7 +1542,7 @@ zref-clever demonstration: Zcref (short for zcref[S]) at beginning of sentence, 
     Heading1 & Heading2 \\
     \midrule
     One      & Two      \\
-    Thee     & Four     \\
+    Three    & Four     \\
     \bottomrule
   \end{tabular}
   \caption{Example table for zcref demo}
@@ -1601,6 +1603,17 @@ The documentation available at \url{http://www.ctan.org/tex-archive/help/Catalog
   Füge deine Abbildung hier ein.
   \caption{Bildunterschrift.}
   \label{fig:label}
+\end{figure}
+\end{ltgexample}
+
+Fotos im JPEG- oder PNG-Format werden genauso eingebunden, wie \zcref{fig:jpg} zeigt.
+
+\begin{ltgexample}
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\linewidth]{figures/ulm-minster.jpg}
+  \caption{Ulmer Münster. Foto: wkrauth, CC0, via Wikimedia Commons.}
+  \label{fig:jpg}
 \end{figure}
 \end{ltgexample}
 
@@ -1683,7 +1696,7 @@ Coordinates can also be given explicitly instead of as a function:
     Heading1 & Heading2 \\
     \midrule
     One      & Two      \\
-    Thee     & Four     \\
+    Three    & Four     \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -1762,8 +1775,8 @@ The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on e
 \end{lstlisting}
 \end{ltgexample}
 
-Der zusätzliche Paramter \verb+float+ führt dazu, dass das Listing auch floated.
-\Zcref{lst:flXML} zeigt das gleitendede Listing.
+Der zusätzliche Parameter \verb+float+ führt dazu, dass das Listing auch floated.
+\Zcref{lst:flXML} zeigt das gleitende Listing.
 
 \begin{ltgexample}
 \begin{lstlisting}[
