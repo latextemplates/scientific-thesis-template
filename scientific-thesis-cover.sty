@@ -1,4 +1,4 @@
-\NeedsTeXFormat{LaTeX2e}
+\NeedsTeXFormat{LaTeX2e}[2020/10/01] % shipout hooks
 \newcommand{\USCCover@Pgkname}{scientific-thesis-cover}
 \ProvidesPackage{\USCCover@Pgkname}[2026/06/12 Cover and affirmation for scientific works.]
 \typeout{Package: `\USCCover@Pgkname' v4.1.0}
@@ -50,9 +50,11 @@
 \DeclareStringOption[bachelor]{type}
 \DeclareStringOption[fac]{institute}
 \DeclareStringOption[]{number} % running number
-\DeclareStringOption[cs]{course}
+\DeclareStringOption[cs]{studyprogram}
+\define@key{MCS}{course}{\def\MCS@studyprogram{#1}} % old name of studyprogram, kept for backwards compatibility
 \DeclareStringOption[examiner not set]{examiner}
-\DeclareStringOption[supervisor not set]{supervisor}
+\DeclareStringOption[advisor not set]{advisor}
+\define@key{MCS}{supervisor}{\def\MCS@advisor{#1}} % old name of advisor, kept for backwards compatibility
 \DeclareStringOption[startdate not set]{startdate}
 \DeclareStringOption[enddate not set]{enddate}
 \DeclareStringOption[]{logo}
@@ -76,12 +78,11 @@
 \def\labelsenglish{
     \gdef\@labelExaminer{Examiner}%
     %\gdef\@labelprueferin{Examiner}%
-    \gdef\@labelSupvervisor{Supervisor}%
-    %\gdef\@labelbetreuerin{Supervisor}%
-    \gdef\@labelCourse{Course of Study}%
-    \gdef\@labelStartdate{Commenced}%
-    \gdef\@labelEnddate{Completed}%
-    \gdef\@labelUniversity{~\newline University of Stuttgart}%
+    \gdef\@labelAdvisor{Advisor}%
+    \gdef\@labelCourse{Study program}%
+    \gdef\@labelStartdate{Start date}%
+    \gdef\@labelEnddate{End date}%
+    \gdef\@labelUniversity{University of Stuttgart}%
     \gdef\@labelDept{Faculty of Computer Science}%
 
     %the labels are written in German, because these are the official terms given by the regulations ("Prüfungsordnung")
@@ -133,11 +134,11 @@
 
 \def\labelsgerman{
     \gdef\@labelExaminer{Prüfer/in}%
-    \gdef\@labelSupvervisor{Betreuer/in}%
+    \gdef\@labelAdvisor{Betreuer/in}%
     \gdef\@labelCourse{Studiengang}%
     \gdef\@labelStartdate{Beginn am}%
     \gdef\@labelEnddate{Beendet am}%
-    \gdef\@labelUniversity{~\newline Universität Stuttgart}%
+    \gdef\@labelUniversity{Universität Stuttgart}%
     \gdef\@labelDept{Fakultät Informatik, Elektrotechnik und Informationstechnik}%
 
     \gdef\@labelTypeStudy{Studienarbeit}%
@@ -171,9 +172,9 @@
 
     \gdef\@labelAffirmation{Erklärung}%
     \gdef\@AffirmationText{%
-        Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig verfasst und dabei keine anderen als die angegebenen Quellen und Hilfsmitel benutzt habe.
+        Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig verfasst und dabei keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
         Sämtliche wörtlichen oder sinngemäßen Übernahmen und Zitate aus anderen Werken sind kenntlich gemacht und nachgewiesen.
-        Ich versichere, dass ich keine Hilfsmitel verwendet habe, deren Nutzung die Prüferin oder der Prüfer explizit ausgeschlossen hat.\par\vspace{0.5em}
+        Ich versichere, dass ich keine Hilfsmittel verwendet habe, deren Nutzung die Prüferin oder der Prüfer explizit ausgeschlossen hat.\par\vspace{0.5em}
         Im Anhang \enquote{Nutzung von KI-Tools} habe ich dokumentiert, inwiefern KI-Tools zur Erstellung wesentlicher Teile dieser Arbeit verwendet wurden.
         Mit Abgabe der Arbeit übernehme ich die volle Verantwortung für alle Inhalte.
         Die \textit{Grundsätze zur KI-Nutzung für Studierende an der Universität Stuttgart} habe ich zur Kenntnis genommen und befolgt.\par\vspace{0.5em}
@@ -213,35 +214,37 @@
 % ------------------------------
 
 % general university address
-\gdef\@labelAddress{\@labelUniversity\\Universitätsstra{\ss}e 38\\D--70569 Stuttgart}
+\gdef\@labelAddress{Universitätsstra{\ss}e 38\\70569 Stuttgart}
 
 \newcommand{\USCCover@setInstitute}{
     % use specified text if institute does not match
     \gdef\@labelInstitute{\MCS@institute}
+    \gdef\@labelInstituteAddress{}
 
     \def\1{\MCS@institute}
-    % do not remove last two braces / empty else clause
-    \def\0{ipvs}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labelipvs\\\@labelAddress}}{}
-    \def\0{iaas}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labeliaas\\\@labelAddress}}{}
-    \def\0{fmi}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labelfmi\\\@labelAddress}}{}
-    \def\0{ims}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labelims\\\@labelUniversity\\Pfaffenwaldring 5B\\D--70569 Stuttgart}}{}
-    \def\0{iste}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labeliste\\\@labelAddress}}{}
-    \def\0{iti}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labeliti\\\@labelUniversity\\Pfaffenwaldring 47\\D--70569 Stuttgart}}{}
-    \def\0{iris}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labeliris\\\@labelAddress}}{}
-    \def\0{vis}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labelvis\\\@labelAddress}}{}
-    \def\0{visus}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labelvisus\\\@labelUniversity\\Allmandring 19\\D--70569 Stuttgart}}{}
-    \def\0{sec}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labelsec\\\@labelAddress}}{}
-    \def\0{fac}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{\@labelDept\\\@labelAddress}}{}
+    % #1: key, #2: name, #3: address
+    \def\2##1##2##3{\def\0{##1}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelInstitute{##2}\gdef\@labelInstituteAddress{##3}}{}}
+    \2{ipvs}{\@labelipvs}{\@labelAddress}
+    \2{iaas}{\@labeliaas}{\@labelAddress}
+    \2{fmi}{\@labelfmi}{\@labelAddress}
+    \2{ims}{\@labelims}{Pfaffenwaldring 5B\\70569 Stuttgart}
+    \2{iste}{\@labeliste}{\@labelAddress}
+    \2{iti}{\@labeliti}{Pfaffenwaldring 47\\70569 Stuttgart}
+    \2{iris}{\@labeliris}{\@labelAddress}
+    \2{vis}{\@labelvis}{\@labelAddress}
+    \2{visus}{\@labelvisus}{Allmandring 19\\70569 Stuttgart}
+    \2{sec}{\@labelsec}{\@labelAddress}
+    \2{fac}{\@labelDept}{\@labelAddress}
 }
 
 % ------------------------------
-% Evaluate course option and set course
+% Evaluate studyprogram option and set study program
 % ------------------------------
 \newcommand{\USCCover@setCourse}{
-    % use specified text if course does not match
-    \gdef\@labelCourseValue{\MCS@course}
+    % use specified text if study program does not match
+    \gdef\@labelCourseValue{\MCS@studyprogram}
 
-    \def\1{\MCS@course}
+    \def\1{\MCS@studyprogram}
     % dont remove last two braces / empty else clause
     \def\0{cs}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseCS}}{}
     \def\0{se}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseSE}}{}
@@ -264,31 +267,63 @@
 % ------------------------------
 % helping commands
 % ------------------------------
-% - \USCCover@umrandet
-% - \USCCover@TBlabel
-% - \USCCover@TBlist
+% - \USCCover@umrandet: frame the title box (for debugging the layout)
+% - \USCCover@at: place content at an absolute position on the paper
 % ------------------------------
 \def\USCCover@umrandet{\global\let\@USCCover@umrandet=\fbox}
 \let\@USCCover@umrandet\relax
 
-\newcommand{\USCCover@TBlabel}[1]{\textbf{#1}\hfil}
+% #1: distance from the top edge of the paper to the first baseline,
+% #2: width, #3: content (centered horizontally on the paper)
+% To be used inside \USCCover@page only.
+\newcommand{\USCCover@at}[3]{%
+    \put(\dimexpr(\paperwidth-#2)/2\relax,-#1){\parbox[t]{#2}{\centering #3}}}
 
-\newenvironment{USCCover@TBlist}{%
-    \list{}{\labelwidth 45mm \leftmargin 70mm % alt: 35/60 mm
-        \rightmargin 20mm \let\makelabel\USCCover@TBlabel}%
-}{\endlist}
+% #1: distance from the top edge of the paper to the baseline, #2: label, #3: value
+% The label column starts 50mm left of the middle of the paper, the value column 33mm after that.
+\newcommand{\USCCover@field}[3]{%
+    \put(\dimexpr\paperwidth/2-50mm\relax,-#1){\textbf{#2:}}%
+    \put(\dimexpr\paperwidth/2-17mm\relax,-#1){\parbox[t]{85mm}{\raggedright #3}}}
 
 % Only include package if a logo is provided, otherwise it is not needed.
 \ifx\MCS@logo\empty
 \else
-    \usepackage{graphicx}
+    \RequirePackage{graphicx}
 \fi
+
+% The cover page is laid out at absolute positions on the paper,
+% following the layout requirements of the Faculty of Computer Science.
+% It does not depend on margins set by the document class or packages such as geometry.
+\newsavebox{\USCCover@page}
+\newcommand{\USCCover@typeset}{%
+    \global\sbox{\USCCover@page}{%
+        \sffamily\frenchspacing\fontsize{11pt}{13.6pt}\selectfont
+        \begin{picture}(0,0)
+            \ifx\MCS@logo\empty
+                \USCCover@at{20mm}{100mm}{\fontsize{14pt}{17pt}\selectfont\textbf{\@labelUniversity}}
+            \else
+                \put(0,-26mm){\makebox[\paperwidth]{\includegraphics[height=14mm]{\MCS@logo}}}
+            \fi
+            \USCCover@at{33mm}{100mm}{\@labelInstitute}
+            \USCCover@at{53mm}{100mm}{\@labelInstituteAddress}
+            \USCCover@at{100mm}{100mm}{\fontsize{12pt}{14pt}\selectfont\textbf{%
+                    \@labelType\ifx\MCS@number\empty\else\ Nr.\,\MCS@number\fi}}
+            % title box: 104mm to 147mm from the top, title centered vertically
+            \put(\dimexpr(\paperwidth-100mm)/2\relax,-147mm){\fboxsep=0pt\@USCCover@umrandet{%
+                    \parbox[b][43mm][c]{100mm}{\centering\fontsize{17.28pt}{22pt}\selectfont\textbf{\MCS@title}}}}
+            \USCCover@at{152mm}{100mm}{\fontsize{12pt}{14pt}\selectfont\MCS@author}
+            \USCCover@field{224mm}{\@labelCourse}{\@labelCourseValue}
+            \USCCover@field{232mm}{\@labelExaminer}{\MCS@examiner}
+            \USCCover@field{247mm}{\@labelAdvisor}{\MCS@advisor}
+            \USCCover@field{262mm}{\@labelStartdate}{\MCS@startdate}
+            \USCCover@field{270mm}{\@labelEnddate}{\MCS@enddate}
+        \end{picture}}}
+
 % ------------------------------
 % usable commands
 % ------------------------------
 % - \Titelblatt
 % - \Versicherung
-% (contain code from old diplomtitel.sty)
 % ------------------------------
 \newcommand{\Titelblatt}{%
     \cleardoublepage
@@ -296,106 +331,9 @@
     \begingroup
     \newcommand{\USCCover@isTwoColumn}{false}
     \if@twocolumn \renewcommand{\USCCover@isTwoColumn}{true} \onecolumn \fi
-    \sffamily
-    \pagestyle{empty}%
-    \thispagestyle{empty}%
-    %\fontfamily{ppl}\selectfont
-    %
-    \@normalsize \@setsize\normalsize{13.6pt}\xipt\@xipt
-    %
-    \frenchspacing    % besser, da viele Abk. (<- da ist schon eine)
-    \parskip=0pt\parindent=0pt\null
-    %
-    % Damit alles richtig funktioniert, mu"s der Ursprung auf die
-    % tats"achliche linke obere Ecke des Blattes gelegt werden (ohne den
-    % bekannten 1in Offset also).
-    % Ausserdem werden die beiden Seitenr"ander auf 28mm + 4.5mm Falz
-    % gesetzt, die Seitenh"ohe auf DIN A4-H"ohe.
-    %
-    \hsize=154mm       %% DIN A4: 210mm - 2*28mm
-    \columnwidth=\hsize \linewidth=\hsize
-    %
-    \dimen0=0pt
-    \advance\dimen0-\oddsidemargin
-    \advance\dimen0 2.6mm %%
-    \advance\dimen0 4.5mm %%
-    \hbox to 0pt{\kern\dimen0\vbox to\topskip{%
-                \dimen0=-1in
-                \advance\dimen0-\topmargin
-                \advance\dimen0-\headheight
-                \advance\dimen0-\headsep
-                \vskip\dimen0\relax
-                %
-
-                \vskip 20mm\relax %%%
-
-                % Height of the institute vbox
-                \newcommand{\instituteHeight}{70}
-
-                \ifx\MCS@logo\empty
-                \else
-                    \vbox to 15mm{
-                        \begin{center}
-                            \includegraphics[height=14mm]{\MCS@logo}
-                        \end{center}
-                       \vfill}
-                    % Height of institute vbox reduced to accomodate logo
-                    \renewcommand{\instituteHeight}{55}
-                \fi
-
-                \vbox to \instituteHeight mm{
-                        \begin{center}%
-                            \@labelInstitute
-                        \end{center}
-                        \vfill}%
-
-                \vskip -4mm\relax
-                %%%%% ==> 155mm (Titel: 165mm/Autor: 195mm) von oben
-                %%% Die Box kann max. 100mm breit und 60mmm hoch sein,
-                %%% au"serdem wird noch ein Rand von mind. 2.5mm gelassen
-                %%% Even if \centering is not recommended (see l2tabu or nag package), just replacing it with {\centering{...}} doesn't work as \centering doesn't center on the complete page
-                \centerline{\fboxsep=0pt
-                    \@USCCover@umrandet{\hbox to 100mm{\hfil
-                                \vbox to 60mm{\hsize=95mm\parindent=0pt
-                                        \vskip 10mm plus 30mm minus 7.5mm
-                                        \begin{center}\@setsize\large{14pt}\xiipt\@xiipt %%\large
-                                            \ifx\MCS@number\empty
-                                                \@labelType
-                                            \else
-                                                \@labelType\ Nr.\,\MCS@number
-                                            \fi
-                                        \end{center}%
-                                        \vskip 12.5mm plus 12.5mm minus 10mm
-                                        \begin{center}\@setsize\LARGE{22pt}\xviipt\@xviipt %%\LARGE
-                                            \textbf{ \MCS@title}
-                                        \end{center}%
-                                        \vskip 10mm plus 10mm minus 7.5mm
-                                        \begin{center}\@setsize\large{14pt}\xiipt\@xiipt %%\large
-                                            \MCS@author
-                                        \end{center}%
-                                        \vskip 17.5mm plus 35mm minus 12.5mm}\hfil}}}%
-                \vskip 20mm %%%%%
-
-                \vbox to 15mm{%
-                        \begin{USCCover@TBlist}%
-                            \item[\@labelCourse: ]\@labelCourseValue
-                        \end{USCCover@TBlist}%
-                        \vfill}%
-                \vbox to 45mm{%
-                        \begin{USCCover@TBlist}%
-                            \item[\@labelExaminer:]\MCS@examiner
-                            \item[\@labelSupvervisor:]\MCS@supervisor
-                        \end{USCCover@TBlist}%
-                        \vfill}%
-                \vbox to 70mm{%%%%% ==> 85 mm von oben
-                        \begin{USCCover@TBlist}%
-                            \item[\@labelStartdate:]\MCS@startdate
-                            \item[\@labelEnddate:]\MCS@enddate
-                        \end{USCCover@TBlist}%
-                        \vfill}%
-
-                \vss}\hss}%
-    %
+    \USCCover@typeset
+    \AddToHookNext{shipout/foreground}{\put(0,0){\usebox{\USCCover@page}}}%
+    \null
     \thispagestyle{empty}%
     \cleardoublepage % if twoside add a blank page after cover
     % set counter to start at 1 after the clear(double)page
