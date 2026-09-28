@@ -721,16 +721,15 @@
 
 % Package URL: https://ctan.org/pkg/scientific-thesis-cover
 \usepackage[
-  title={Is Oil the future?},
+  title={Förderungswürdigkeit der F\"{o}rderung von Öl},
   author={Bernhard Diener},
   type=bachelor,
-  institute=iaas, % or other institute names - or just a plain string using {Demo\\Demo...}
+  institute=iaas, % oder einfach {Demo\\Demo...}
   course={Medieninformatik},
   examiner={Prof.\ Dr.\ Uwe Fessor},
   supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
-  startdate={July 5, 2018},
-  enddate={January 5, 2019},
-  language=english
+  startdate={5.\ Juli 2013},
+  enddate={5.\ Januar 2014}
 ]{scientific-thesis-cover}
 
 
@@ -2038,6 +2037,26 @@ Alle Links wurden zuletzt am 29.03.2021 geprüft.
 %%% ===============================================================================
 
 \lipsum[1]
+
+%%% ===============================================================================
+\chapter{Nutzung von KI-Tools}\label{sec:ai-tools}
+%%% ===============================================================================
+
+% Hier wird dokumentiert, inwiefern KI-Tools zur Erstellung wesentlicher Teile dieser Arbeit verwendet wurden.
+% Die Erklärung am Ende dieser Arbeit fordert diesen Anhang.
+% Die Struktur ist mit der Prüferin oder dem Prüfer abzustimmen.
+% Nur übernommene KI-Outputs (z.B. Text, Abbildungen) müssen aufgeführt werden; die Nutzung von KI zur Recherche oder Rechtschreibprüfung nicht.
+% Wurden keine KI-Outputs als wesentliche Teile übernommen, ist dies statt der Tabelle zu erklären.
+
+\begin{tabular}{lll}
+  \toprule
+  KI-Tool          & Genutzt für                    & Genutzt in                \\
+  \midrule
+  ChatGPT5         & Erstellung von Abbildungen     & \zcref{fig:label,fig:jpg} \\
+  Google AI search & Pseudocode für Algorithmus XYZ & \zcref{alg:example}       \\
+  DeepL Write      & Umformulierung der Einleitung  & \zcref{sec:introduction}  \\
+  \bottomrule
+\end{tabular}
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
