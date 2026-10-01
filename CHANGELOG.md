@@ -14,6 +14,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The README and the writing hints recommend the open-access book [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html), and the writing hints explain how to write both for readers who read from beginning to end and for readers who open the thesis anywhere.
 - Appendix "Use of AI Tools" (German: "Nutzung von KI-Tools") with the example table of the [layout requirements of the CS department](https://www.f05.uni-stuttgart.de/informatik/dokumente/Formulare/Formvorgaben-Abschlussarbeiten_en.pdf), as required by its new declaration. [#191](https://github.com/latextemplates/scientific-thesis-template/issues/191)
 - The figure examples show how to include a JPEG photo (`figures/ulm-minster.jpg`, CC0 from Wikimedia Commons).
+- The listings example shows a listing spanning multiple pages: use a non-floating listing for long code, because floating listings cannot break across pages. [#96](https://github.com/latextemplates/scientific-thesis-template/issues/96)
 
 ### Changed
 

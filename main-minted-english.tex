@@ -1701,6 +1701,82 @@ public class Hello {
 \end{listing}
 \end{ltgexample}
 
+Listings longer than the remaining space continue on the next page if they are \emph{not} floating.
+A floating listing is always placed on a single page.
+Thus, use \verb+\captionof{listing}+ instead of the \verb+listing+ environment.
+\Zcref{lst:long} spans multiple pages.
+
+\begin{minted}[linenos=true]{java}
+public class Squares {
+
+    /** Returns the square of 1. */
+    public int square1() {
+        return 1 * 1;
+    }
+
+    /** Returns the square of 2. */
+    public int square2() {
+        return 2 * 2;
+    }
+
+    /** Returns the square of 3. */
+    public int square3() {
+        return 3 * 3;
+    }
+
+    /** Returns the square of 4. */
+    public int square4() {
+        return 4 * 4;
+    }
+
+    /** Returns the square of 5. */
+    public int square5() {
+        return 5 * 5;
+    }
+
+    /** Returns the square of 6. */
+    public int square6() {
+        return 6 * 6;
+    }
+
+    /** Returns the square of 7. */
+    public int square7() {
+        return 7 * 7;
+    }
+
+    /** Returns the square of 8. */
+    public int square8() {
+        return 8 * 8;
+    }
+
+    /** Returns the square of 9. */
+    public int square9() {
+        return 9 * 9;
+    }
+
+    /** Returns the square of 10. */
+    public int square10() {
+        return 10 * 10;
+    }
+
+    /** Returns the square of 11. */
+    public int square11() {
+        return 11 * 11;
+    }
+
+    /** Returns the square of 12. */
+    public int square12() {
+        return 12 * 12;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Squares().square12());
+    }
+}
+\end{minted}
+\captionof{listing}{Long Java listing spanning multiple pages}
+\label{lst:long}
+
 \section{Itemization}
 
 One can list items as follows:
