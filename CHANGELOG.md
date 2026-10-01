@@ -12,16 +12,22 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The `Check` workflow has a `textlint` job that reports weakening words (e.g., "clearly", "just") in the English `.tex` files as annotations, without failing the build ("only" is allowed). Configure it in `.textlintrc.json`; the README shows how to run it locally.
 - [`docs/thesis-checklist.md`](docs/thesis-checklist.md): a checklist to work through before handing in your thesis, linked from the README and the writing hints.
 - The README and the writing hints recommend the open-access book [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html), and the writing hints explain how to write both for readers who read from beginning to end and for readers who open the thesis anywhere.
+- Appendix "Use of AI Tools" (German: "Nutzung von KI-Tools") with the example table of the [layout requirements of the CS department](https://www.f05.uni-stuttgart.de/informatik/dokumente/Formulare/Formvorgaben-Abschlussarbeiten_en.pdf), as required by its new declaration. [#191](https://github.com/latextemplates/scientific-thesis-template/issues/191)
 - The figure examples show how to include a JPEG photo (`figures/ulm-minster.jpg`, CC0 from Wikimedia Commons).
 
 ### Changed
 
 - Cross-references use [zref-clever](https://ctan.org/pkg/zref-clever) instead of [cleveref](https://ctan.org/pkg/cleveref), because zref-clever works with tagged (accessible) PDFs: write `\zcref{...}` instead of `\cref` and, at the start of a sentence, `\Zcref{...}` (short for `\zcref[S]{...}`) instead of `\Cref`. Page-aware references use `\zvref` ([zref-vario](https://ctan.org/pkg/zref-vario)) instead of `\vref`.
+- Updated [scientific-thesis-cover](https://github.com/latextemplates/scientific-thesis-cover) to its latest version: the cover page elements are placed at fixed positions, and the options `course` and `supervisor` are now called `studyprogram` and `advisor` (the old names still work).
+- `_latexmkrc` is organized in sections and lists commented-out alternatives for continuous preview (`-pvc`), the job name, and the PDF viewer (e.g., evince). [#141](https://github.com/latextemplates/scientific-thesis-template/issues/141)
 
 ### Fixed
 
 - Long code lines without spaces (e.g., `\includegraphics[width=.4\linewidth]{example-image-a}`) in the "Corresponding LaTeX code" boxes of the `listings` variant are wrapped instead of running out of the box.
 - Fixed typos in the example and writing-hint texts.
+- German theses show the German title page and declaration instead of the English ones.
+- The German declaration spells "Hilfsmittel" correctly.
+- `latexmk -pv` opens the PDF on Linux and macOS: the SumatraPDF viewer is only configured on Windows.
 
 ## [2026-07-30]
 
