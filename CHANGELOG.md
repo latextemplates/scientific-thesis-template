@@ -21,6 +21,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Cross-references use [zref-clever](https://ctan.org/pkg/zref-clever) instead of [cleveref](https://ctan.org/pkg/cleveref), because zref-clever works with tagged (accessible) PDFs: write `\zcref{...}` instead of `\cref` and, at the start of a sentence, `\Zcref{...}` (short for `\zcref[S]{...}`) instead of `\Cref`. Page-aware references use `\zvref` ([zref-vario](https://ctan.org/pkg/zref-vario)) instead of `\vref`.
 - Updated [scientific-thesis-cover](https://github.com/latextemplates/scientific-thesis-cover) to its latest version: the cover page elements are placed at fixed positions, and the options `course` and `supervisor` are now called `studyprogram` and `advisor` (the old names still work).
 - `_latexmkrc` is organized in sections and lists commented-out alternatives for continuous preview (`-pvc`), the job name, and the PDF viewer (e.g., evince). [#141](https://github.com/latextemplates/scientific-thesis-template/issues/141)
+- The example texts avoid words that textlint's `write-good` rule flags (`rarely`, `a few`, `several`). A sentence-initial `Finally,` is allowed in `.textlintrc.json`, because it marks a sequence rather than weakening a statement.
 
 ### Fixed
 
