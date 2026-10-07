@@ -1356,7 +1356,7 @@ This leads to a hard line break.
 The text starts at the beginning of a new line.
 In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).
 \\
-This is rarely used.
+Running text seldom needs a hard line break.
 
 Please do \textit{not} use two backslashes for new paragraphs.
 For instance, this sentence belongs to the same paragraph, whereas the last one started a new one.
@@ -1651,7 +1651,7 @@ Coordinates can also be given explicitly instead of as a function:
 \section{Tables spanning multiple pages}
 
 The \href{https://ctan.org/pkg/longtable}{longtable} package typesets tables that automatically break across page boundaries.
-The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on every page; once enough rows are added, the table spans several pages on its own.
+The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on every page; once enough rows are added, the table spans more than one page on its own.
 
 \begin{ltgexample}
 \begin{longtable}{|l|l|l|}
@@ -1906,7 +1906,7 @@ Brackets work as designed:
 One can also input backticks in verbatim text: \verb|`test`|.
 \end{ltgexample}
 
-Acronyms can be typeset in running text with \verb+\initialism+, which sets them as small caps that blend into the surrounding lowercase text. It is the lightweight alternative to the full acronym and glossary management (\verb+\gls+, with an automatic list of abbreviations) provided by the thesis variants: \verb+\initialism+ only typesets the acronym and does not add it to any list. The macro and a few ready-made acronyms (\verb+\OMG+, \verb+\BPEL+, \verb+\BPMN+, \verb+\UML+) are defined in \texttt{commands.tex}, where you can add your own.
+Acronyms can be typeset in running text with \verb+\initialism+, which sets them as small caps that blend into the surrounding lowercase text. It is the lightweight alternative to the full acronym and glossary management (\verb+\gls+, with an automatic list of abbreviations) provided by the thesis variants: \verb+\initialism+ only typesets the acronym and does not add it to any list. The macro and the ready-made acronyms (\verb+\OMG+, \verb+\BPEL+, \verb+\BPMN+, \verb+\UML+) are defined in \texttt{commands.tex}, where you can add your own.
 
 \begin{ltgexample}
 The \UML is maintained by the \OMG; related standards include \BPEL and \BPMN.
