@@ -1441,7 +1441,7 @@ Running text seldom needs a hard line break.
 
 Please do \textit{not} use two backslashes for new paragraphs.
 For instance, this sentence belongs to the same paragraph, whereas the last one started a new one.
-A long motivation for that is provided at \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
+Andrew Stacey gives a long motivation for that in the section \enquote{Line Wrapping} of his \href{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}{\emph{Document Revision System}}\footnote{\url{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/}}.
 \end{ltgexample}
 
 \section{Notes separated from the text}
@@ -1497,10 +1497,10 @@ Here are some hints:
 
 \begin{ltgexample}
 In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
-You can also write \verb1applica\allowbreak{}tion-specific1 (result: applica\allowbreak{}tion-specific), but this is much more effort.
+You can also insert \verb1\allowbreak{}1 into the word, as in applica\allowbreak{}tion-specific, but this is much more effort.
 
 You can now write words containing hyphens which are hyphenated at other places in the word.
-For instance, \verb1application"=specific1 gets application"=specific.
+For that, write \verb1"=1 instead of \verb1-1, as in application"=specific.
 This is enabled by an additional configuration of the babel package.
 \end{ltgexample}
 
