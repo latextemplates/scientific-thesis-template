@@ -35,7 +35,43 @@ Quick installation using [Chocolatey]: `choco install texstudio languagetool jab
 A comparison to other literature management software is available at <https://ultimate-comparisons.github.io/ultimate-reference-management-software-comparison/>.
 See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
 
-## Installation hints for Ubuntu
+## LaTeX distribution
+
+Choose one of the two setups: Docker-based or traditional.
+
+### Docker-based (recommended)
+
+The [TeX Live docker image by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image) provides a perfectly configured LaTeX distribution with all required tools.
+It works the same on Windows, macOS, and Linux and ships `latexmk`, `biber`, `latexindent`, Python, and `latexminted`.
+Thus, `minted` works without further setup - also on Windows.
+
+1. Install Docker: [Docker Desktop](https://docs.docker.com/desktop/) on Windows and macOS, [Docker Engine](https://docs.docker.com/engine/install/) on Linux.
+   On Linux, follow the [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) to run `docker` without `sudo`.
+1. Execute `docker pull registry.gitlab.com/islandoftex/images/texlive:latest`.
+   This downloads approx. 3 GB.
+1. Compile on the command line.
+   Replace `DIROFTEXDOCUMENT` by the directory of your document (e.g., `/home/user/thesis` or `c:\users\user\thesis`) and `main-english` by the main file you use:
+
+   ```shell
+   docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
+   ```
+
+1. To compile from [TeXstudio], open Options > Configure TeXstudio > Commands and set
+   - "PdfLaTeX" to `docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`,
+   - "LuaLaTeX" to `docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, and
+   - "Biber" to `docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest biber %`.
+
+   On Linux and macOS, you can mount the directory at the same path instead (`-v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT`).
+   Then, the paths in the generated SyncTeX file match your machine, and jumping between source and PDF keeps working.
+1. Press "Compile" (<kbd>F6</kbd>) in TeXstudio.
+
+For VS Code, see ["Using VSCode to Edit, Compile, and Preview PDFs"](#using-vscode-to-edit-compile-and-preview-pdfs).
+
+### Traditional
+
+Install a LaTeX distribution on your machine: [MiKTeX](https://miktex.org/download) on Windows, [TeX Live](https://www.tug.org/texlive/) on macOS and Linux.
+
+#### Installation hints for Ubuntu
 
 - From Ubuntu 18.10 onwards, the basic version of the template works without issues.
   Advanced usages such as cool syntax highlighting with [minted](https://www.ctan.org/pkg/minted) needs more configuration.
@@ -44,30 +80,14 @@ See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questio
   Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
   If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
 
-Always working solution: Use the [docker image](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
-This provides a perfectly configured latex distribution with all required tools.
-
-1. Execute `sudo visudo` to edit the sudoers file
-1. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: <https://unix.stackexchange.com/a/13058/18033>)
-1. Execute `sudo docker pull registry.gitlab.com/islandoftex/images/texlive:latest`.
-   This should not ask for any password.
-   Will download approx. 4GB.
-1. Open TeXstudio
-1. Options > Configure TeXstudio > Commands
-1. Set "PdfLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT registry.gitlab.com/islandoftex/images/texlive:latest pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-1. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT registry.gitlab.com/islandoftex/images/texlive:latest lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-1. Set "Biber" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT registry.gitlab.com/islandoftex/images/texlive:latest biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
-1. Check if the "docker pull" command from step 3 succeed. If not, wait.
-1. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
-
-## Installation hints for Windows
+#### Installation hints for Windows
 
 Note: The default installation of MiKTeX might ship with incompatible biblatex and biber packages.
 **You have to keep your MiKTeX up to date.**
 In case you followed the linked installation steps, you only have to run "Update MiKTeX".
 If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see <http://tex.stackexchange.com/a/108490/9075>).
-  
-### Preparations
+
+##### Preparations
 
 1. Install [chocolatey]:
     1. Open `cmd.exe` as Administartor
@@ -77,7 +97,7 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
 1. In case [PlantUML](http://plantuml.com/) should be used, follow the installation instructions at <https://koppor.github.io/plantuml/> listed at the "pre-conditions" section.
 1. For more recommended tooling see <https://github.com/koppor/koppors-chocolatey-scripts>.
 
-### Recommended setup of MiKTeX
+##### Recommended setup of MiKTeX
 
 1. Download the basic installer from <http://miktex.org/download>
 1. Start it
@@ -116,7 +136,13 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
 
 1. Install [VSCode](https://code.visualstudio.com/).
 2. Install [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop).
-3. Install a LaTeX distribution (e.g., [MiKTeX](https://miktex.org/download) or [TeX Live](https://www.tug.org/texlive/)).
+3. Install a LaTeX distribution (see ["LaTeX distribution"](#latex-distribution)).
+   With the Docker-based setup, LaTeX Workshop can run the tools in the container (an experimental feature of LaTeX Workshop); add the following to `settings.json`:
+
+   ```json
+   "latex-workshop.docker.enabled": true,
+   "latex-workshop.docker.image.latex": "registry.gitlab.com/islandoftex/images/texlive:latest",
+   ```
 
 ### Recommended Setup of VSCode
 
