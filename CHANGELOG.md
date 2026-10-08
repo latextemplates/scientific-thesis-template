@@ -22,6 +22,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Updated [scientific-thesis-cover](https://github.com/latextemplates/scientific-thesis-cover) to its latest version: the cover page elements are placed at fixed positions, and the options `course` and `supervisor` are now called `studyprogram` and `advisor` (the old names still work).
 - `_latexmkrc` is organized in sections and lists commented-out alternatives for continuous preview (`-pvc`), the job name, and the PDF viewer (e.g., evince). [#141](https://github.com/latextemplates/scientific-thesis-template/issues/141)
 - The example texts and the writing hints (abstract guide, chapter-structure hints) avoid words that textlint's `write-good` rule flags (`rarely`, `a few`, `several`, `usually`, `various`, `likely`), so a fresh thesis has no textlint annotations. A sentence-initial `Finally,` is allowed in `.textlintrc.json`, because it marks a sequence rather than weakening a statement.
+- The paragraph example links Andrew Stacey's *Document Revision System* by title with the URL in a footnote, and the hyphenation example shows the short `\verb` snippets `\allowbreak{}` and `"=` instead of whole words, so that neither runs out of a narrow column.
 
 ### Fixed
 
