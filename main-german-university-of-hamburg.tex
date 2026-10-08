@@ -1467,7 +1467,7 @@ Dies verwendet man quasi nie.
 
 Folglich werden neue Absätze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
 Beispielsweise begann der letzte Satz in einem neuen Absatz.
-Eine ausführliche Motivation hierfür findet sich in \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
+Andrew Stacey begründet dies ausführlich im Abschnitt \enquote{Line Wrapping} seines \href{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}{\emph{Document Revision System}}\footnote{\url{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/}}.
 \end{ltgexample}
 
 Möchte man die Art des Absatzes ändern, so kann man die Dokumentklassenoption \texttt{parskip} verwenden.
@@ -1526,10 +1526,10 @@ Here are some hints:
 
 \begin{ltgexample}
 In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
-You can also write \verb1applica\allowbreak{}tion-specific1 (result: applica\allowbreak{}tion-specific), but this is much more effort.
+You can also insert \verb1\allowbreak{}1 into the word, as in applica\allowbreak{}tion-specific, but this is much more effort.
 
 You can now write words containing hyphens which are hyphenated at other places in the word.
-For instance, \verb1application"=specific1 gets application"=specific.
+For that, write \verb1"=1 instead of \verb1-1, as in application"=specific.
 This is enabled by an additional configuration of the babel package.
 \end{ltgexample}
 
