@@ -14,12 +14,15 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The README and the writing hints recommend the open-access book [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html), and the writing hints explain how to write both for readers who read from beginning to end and for readers who open the thesis anywhere.
 - Appendix "Use of AI Tools" (German: "Nutzung von KI-Tools") with the example table of the [layout requirements of the CS department](https://www.f05.uni-stuttgart.de/informatik/dokumente/Formulare/Formvorgaben-Abschlussarbeiten_en.pdf), as required by its new declaration. [#191](https://github.com/latextemplates/scientific-thesis-template/issues/191)
 - The figure examples show how to include a JPEG photo (`figures/ulm-minster.jpg`, CC0 from Wikimedia Commons).
+- The listings example shows a listing spanning multiple pages: use a non-floating listing for long code, because floating listings cannot break across pages. [#96](https://github.com/latextemplates/scientific-thesis-template/issues/96)
 
 ### Changed
 
 - Cross-references use [zref-clever](https://ctan.org/pkg/zref-clever) instead of [cleveref](https://ctan.org/pkg/cleveref), because zref-clever works with tagged (accessible) PDFs: write `\zcref{...}` instead of `\cref` and, at the start of a sentence, `\Zcref{...}` (short for `\zcref[S]{...}`) instead of `\Cref`. Page-aware references use `\zvref` ([zref-vario](https://ctan.org/pkg/zref-vario)) instead of `\vref`.
 - Updated [scientific-thesis-cover](https://github.com/latextemplates/scientific-thesis-cover) to its latest version: the cover page elements are placed at fixed positions, and the options `course` and `supervisor` are now called `studyprogram` and `advisor` (the old names still work).
 - `_latexmkrc` is organized in sections and lists commented-out alternatives for continuous preview (`-pvc`), the job name, and the PDF viewer (e.g., evince). [#141](https://github.com/latextemplates/scientific-thesis-template/issues/141)
+- The example texts and the writing hints (abstract guide, chapter-structure hints) avoid words that textlint's `write-good` rule flags (`rarely`, `a few`, `several`, `usually`, `various`, `likely`), so a fresh thesis has no textlint annotations. A sentence-initial `Finally,` is allowed in `.textlintrc.json`, because it marks a sequence rather than weakening a statement.
+- The paragraph example links Andrew Stacey's *Document Revision System* by title with the URL in a footnote, and the hyphenation example shows the short `\verb` snippets `\allowbreak{}` and `"=` instead of whole words, so that neither runs out of a narrow column.
 
 ### Fixed
 
