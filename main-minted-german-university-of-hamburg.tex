@@ -6,8 +6,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 887 (\begin{document}); die erste
-%           Überschrift (\chapter{Introduction}) steht in Zeile 1028.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 906 (\begin{document}); die erste
+%           Überschrift (\chapter{Introduction}) steht in Zeile 1047.
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
 % The following package allows \\ at the title page
@@ -563,16 +563,34 @@
 \ifluatex
   \usepackage[
     citations,          % [@key] citation syntax
-    hybrid,             % pass raw LaTeX through (e.g., \zcref)
+    hybrid,             % pass raw LaTeX through
     notes,              % [^label] referenced footnotes
     inlineNotes,        % ^[inline footnote text]
     pipeTables,         % | a | b | style tables
     tableCaptions,      % : Caption text below a table
     tableAttributes,    % {#id} identifier on a table caption
     headerAttributes,   % {#id} identifier on a heading
-    relativeReferences, % <#id> to reference an id defined via {#id}
+    relativeReferences, % <#id> to reference an id defined via {#id} (typeset by \zcref, see below)
     hashEnumerators,    % 1) 2) 3) style enumerators
   ]{markdown}
+  % Markdown's own reference syntax <#id> typesets the bare number (\ref).
+  % Typeset it with \zcref instead, so that "<#tbl:example> shows" reads "Table 1 shows".
+  % Other links are rendered as before.
+  \ExplSyntaxOn
+  \cs_new_protected:Npn \ltg_markdown_link:nnnn #1#2#3#4
+  {
+    \tl_set:Nx \l_tmpa_tl { \tl_range:nnn {#3} { 1 } { 1 } }
+    \bool_lazy_all:nTF
+    {
+      { \str_if_eq_p:nn {#1} {#2} }
+      { \str_if_eq_p:VV \l_tmpa_tl \c_hash_str }
+      { \tl_if_empty_p:n {#4} }
+    }
+    { \exp_args:Nx \zcref { \tl_range:nnn {#3} { 2 } { -1 } } }
+    { \markdownRendererLinkPrototype {#1} {#2} {#3} {#4} }
+  }
+  \markdownSetup{ renderers = { link = { \ltg_markdown_link:nnnn {#1} {#2} {#3} {#4} } } }
+  \ExplSyntaxOff
 \fi
 
 % See http://tex.stackexchange.com/a/83051/9075
@@ -666,6 +684,7 @@
 % These packages can be removed when all examples have been deleted
 \usepackage[math]{blindtext}
 \usepackage{mwe}
+\usepackage{hologo} % logos such as \hologo{LuaLaTeX} (used in the Markdown example)
 \usepackage[realmainfile]{currfile}
 \usepackage{tcolorbox}
 \tcbuselibrary{minted}
@@ -1915,7 +1934,7 @@ With paralist, one can even have all items typeset after each other and have the
   If you are new to \LaTeX{}, you can start by writing your text in Markdown using the \href{https://ctan.org/pkg/markdown}{markdown} package.
   \LaTeX{} then takes care of the typesetting.
   Markdown and \LaTeX{} can be mixed:
-  \Zcref{tbl:markdown} is referenced from within the Markdown text below.
+  \Zcref{tbl:markdown} is written in Markdown and referenced from \LaTeX{}.
   A longer part, such as a whole chapter, can be placed in a separate file included by \verb|\markdownInput{introduction.md}|.
   The \href{https://github.com/latextemplates/markdown-latex-quickstart}{markdown-latex-quickstart} shows a complete document written in Markdown.
 
@@ -1938,12 +1957,13 @@ A citation looks like this [@mwe], and here is a footnote.^[This is an inline fo
 
 : A table written in Markdown {#tbl:markdown}
 
-\Zcref{tbl:markdown} shows that tables get a caption and a label.
+<#tbl:markdown> shows a table with caption.
+Its identifier `{#tbl:markdown}` is referenced by `<#tbl:markdown>`.
 \end{markdown}
   \end{ltgexample}
 \else
-  This example requires Lua\LaTeX{}.
-  Compile the document with Lua\LaTeX{} to see it.
+  This example requires \hologo{LuaLaTeX}.
+  Compile the document with \hologo{LuaLaTeX} to see it.
 \fi
 
 \section{Abkürzungen}
