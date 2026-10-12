@@ -49,11 +49,25 @@ Thus, `minted` works without further setup - also on Windows.
    On Linux, follow the [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) to run `docker` without `sudo`.
 1. Execute `docker pull registry.gitlab.com/islandoftex/images/texlive:latest`.
    This downloads approx. 3 GB.
-1. Compile on the command line.
-   Replace `DIROFTEXDOCUMENT` by the directory of your document (e.g., `/home/user/thesis` or `c:\users\user\thesis`) and `main-english` by the main file you use:
+1. Compile on the command line: open a terminal in the directory of your document and run the command for your system.
+   Replace `main-english` by the main file you use.
+
+   Windows (PowerShell):
+
+   ```powershell
+   docker run --rm -v "${PWD}:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
+   ```
+
+   Windows (Command Prompt):
+
+   ```cmd
+   docker run --rm -v "%cd%:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
+   ```
+
+   Linux and macOS:
 
    ```shell
-   docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
+   docker run --rm -v "$PWD:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
    ```
 
 1. To compile from [TeXstudio], open Options > Configure TeXstudio > Commands and set

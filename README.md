@@ -154,17 +154,27 @@ It ships a complete TeX Live including `latexmk`, `biber`, `latexindent`, Python
 Thus, `minted` works out of the box - also on Windows, without a separate Python setup.
 
 1. Install [Docker](https://docs.docker.com/get-started/get-docker/) ([Docker Desktop](https://docs.docker.com/desktop/) on Windows and macOS).
-1. Build the image once: `docker build -t ltg .`.
-   The generated `Dockerfile` is based on the image of the Island of TeX and selects the TeX Live version of this template.
-   The first build downloads the image (approx. 3 GB).
-1. Compile in the container:
+1. Open a terminal in the directory of this document and compile in the container.
+   The first run downloads the image (approx. 3 GB); its tag selects the TeX Live version of this template.
 
-   ```cmd
-   docker run --rm -v "c:\users\example\latex-document:/workdir" ltg latexmk main-english
+   Windows (PowerShell):
+
+   ```powershell
+   docker run --rm -v "${PWD}:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
    ```
 
-   Replace `c:\users\example\latex-document` by the directory of this document.
-   On Linux and macOS, use `-v "$PWD:/workdir"`.
+   Windows (Command Prompt):
+
+   ```cmd
+   docker run --rm -v "%cd%:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
+   ```
+
+   Linux and macOS:
+
+   ```shell
+   docker run --rm -v "$PWD:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
+   ```
+
 1. Optional: Let VS Code compile in the container, see ["VS Code configuration"](#vs-code-configuration).
 
 #### Traditional
@@ -244,7 +254,7 @@ This is an experimental feature of LaTeX Workshop; the recipes and tools stay th
 
 ```javascript
     "latex-workshop.docker.enabled": true,
-    "latex-workshop.docker.image.latex": "ltg",
+    "latex-workshop.docker.image.latex": "registry.gitlab.com/islandoftex/images/texlive:latest",
 ```
 
 You can manually trigger compilation by hitting the green button in the extension or using other methods provided by LaTeX Workshop.
@@ -273,21 +283,10 @@ For example:
 
 ## Usage with docker
 
-The generated `Dockerfile` is based on the [Dockerfile by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
-It selects the image matching the TeX Live version of this template.
-See ["Prerequisites"](#prerequisites) for the installation of Docker.
+The [TeX Live image by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image) is used as is - there is no need to build an own image.
+See ["Docker-based (recommended)"](#docker-based-recommended) for the installation of Docker and the commands to compile on Windows, Linux, and macOS.
 
-```cmd
-docker run --rm -v "c:\users\example\latex-document:/workdir" ltg latexmk main-english
-```
-
-On Linux and macOS, use `-v "$PWD:/workdir"`.
-
-Following one-time setup is required:
-
-```cmd
-docker build -t ltg .
-```
+If you need additional tools in the image (for instance, PlantUML), extend the generated `Dockerfile`, build it with `docker build -t ltg .`, and use `ltg` instead of the image name.
 
 ## Contained Directories and Files
 
