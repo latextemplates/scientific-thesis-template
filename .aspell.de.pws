@@ -1,4 +1,4 @@
-personal_ws-1.1 de 134 utf-8
+personal_ws-1.1 de 139 utf-8
 ACM
 Access
 Atlantic
@@ -20,6 +20,7 @@ Kommentar
 LaTeX
 LaTeXing
 Lastname
+Lua
 Manuelle
 Markierter
 Markierung
@@ -96,8 +97,10 @@ longplural
 lst
 lstlisting
 markup
+md
 microtype
 mindflow
+monospaced
 morecomment
 nato
 nd
@@ -111,6 +114,7 @@ paralist
 powerset
 produziert
 pygments
+quickstart
 rdbms
 seit
 shortplural
@@ -122,6 +126,7 @@ subcaption
 subfig
 subfigure
 subfigures
+tbl
 tion
 tt
 vorausverweist
