@@ -7,8 +7,14 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ## [Unreleased]
 
+### Added
+
+- The LaTeX hints show how to write text in Markdown using the [markdown](https://ctan.org/pkg/markdown) package - easing the start for LaTeX newcomers. The example is shown when compiling with LuaLaTeX; with pdfLaTeX, a hint is shown instead. The package's cache directory (`_markdown_*/`) is ignored by git.
+- The header of the main file states in which lines `\begin{document}` and the first heading are, so the content is found without scrolling through the long preamble.
+
 ### Changed
 
+- The how-to text references sections via `\Zcref` instead of a hardcoded `Section~\ref`.
 - The README's tool hints distinguish a Docker-based setup (recommended) from a traditional installation: the [TeX Live image by the Island of TeX](https://gitlab.com/islandoftex/images/texlive) works the same on Windows, macOS, and Linux and makes `minted` work without a separate Python setup. The "Usage with docker" section and the VS Code hints (LaTeX Workshop can compile in the container) are linked from there.
 - `docs/latex-setup.md` is structured the same way: "Docker-based (recommended)" with the Docker installation, the command line, and the TeXstudio commands for all operating systems, and "Traditional" with the former Ubuntu and Windows hints.
 
