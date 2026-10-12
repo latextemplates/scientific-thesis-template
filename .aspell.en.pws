@@ -1,4 +1,4 @@
-personal_ws-1.1 en 143 utf-8
+personal_ws-1.1 en 156 utf-8
 ACM
 Atlantic
 BPEL
@@ -19,10 +19,13 @@ LaTeX
 LaTeXing
 Lastname
 Lua
+LuaLaTeX
 Manuelle
 Markierter
 Markierung
 North
+Npn
+Nx
 OMG
 ORCID
 OldStyle
@@ -37,6 +40,7 @@ Textfarbe
 Treaty
 UML
 Ulm
+VV
 Wikimedia
 Worten
 Zcref
@@ -69,6 +73,7 @@ eclipseStrings
 ein
 einigen
 enquote
+eq
 error
 escapeinside
 ff
@@ -103,9 +108,13 @@ microtype
 mindflow
 monospaced
 morecomment
+nTF
 nato
 nd
 nm
+nn
+nnn
+nnnn
 noch
 numbersep
 numberstyle
@@ -119,11 +128,13 @@ programmatically
 pygments
 quickstart
 rdbms
+renderers
 seit
 shortplural
 showstringspaces
 siunitx
 stepnumber
+str
 stringstyle
 subcaption
 subfig
@@ -132,6 +143,8 @@ subfigures
 tbl
 tikz
 tion
+tl
+tmpa
 tt
 werden
 wird
