@@ -18,6 +18,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The Universität Hamburg variant uses the logo as vector graphic `figures/uhh-logo.pdf` ([public domain, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:UHH_Universit%C3%A4t_Hamburg_Logo_mit_Schrift_2010_Farbe_CMYK.svg)) instead of `figures/UHH-Logo_2010_Farbe_CMYK.png`.
 - The README lists the example PDFs per institution.
 
+### Fixed
+
+- The README links the `figures/` directory (instead of the old `graphics/`), and `.dockerignore` excludes the generated `figures/*.pdf_tex` files. [generator-latex-template#586](https://github.com/latextemplates/generator-latex-template/pull/586)
+
 ## [2026-10-14]
 
 ### Added
