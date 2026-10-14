@@ -1,4 +1,4 @@
-personal_ws-1.1 de 134 utf-8
+personal_ws-1.1 de 152 utf-8
 ACM
 Access
 Atlantic
@@ -20,10 +20,14 @@ Kommentar
 LaTeX
 LaTeXing
 Lastname
+Lua
+LuaLaTeX
 Manuelle
 Markierter
 Markierung
 North
+Npn
+Nx
 OMG
 ORCID
 OldStyle
@@ -39,6 +43,7 @@ Textfarbe
 Thesis
 Treaty
 UML
+VV
 Vorwärtsverweise
 Worten
 Zcref
@@ -69,6 +74,7 @@ eclipseStrings
 ein
 einigen
 enquote
+eq
 error
 escapeinside
 ff
@@ -96,12 +102,18 @@ longplural
 lst
 lstlisting
 markup
+md
 microtype
 mindflow
+monospaced
 morecomment
+nTF
 nato
 nd
 nm
+nn
+nnn
+nnnn
 noch
 numbersep
 numberstyle
@@ -111,18 +123,24 @@ paralist
 powerset
 produziert
 pygments
+quickstart
 rdbms
+renderers
 seit
 shortplural
 showstringspaces
 siunitx
 stepnumber
+str
 stringstyle
 subcaption
 subfig
 subfigure
 subfigures
+tbl
 tion
+tl
+tmpa
 tt
 vorausverweist
 werden

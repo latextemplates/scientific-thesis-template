@@ -5,6 +5,10 @@
 % !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
+%
+% vvvvvvvv  Der Inhalt beginnt in Zeile 906 (\begin{document}); die erste
+%           Überschrift (\chapter{Introduction}) steht in Zeile 1047.
+%           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
 % The following package allows \\ at the title page
 % For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
@@ -553,6 +557,42 @@
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 \addto\extrasgerman{\sisetup{locale = DE}}
 
+% Write text in Markdown instead of LaTeX: \begin{markdown} ... \end{markdown}, or \markdownInput{chapter.md} for a whole file.
+% Doc: https://ctan.org/pkg/markdown
+% LuaLaTeX only: under pdfLaTeX, the package needs --shell-escape.
+\ifluatex
+  \usepackage[
+    citations,          % [@key] citation syntax
+    hybrid,             % pass raw LaTeX through
+    notes,              % [^label] referenced footnotes
+    inlineNotes,        % ^[inline footnote text]
+    pipeTables,         % | a | b | style tables
+    tableCaptions,      % : Caption text below a table
+    tableAttributes,    % {#id} identifier on a table caption
+    headerAttributes,   % {#id} identifier on a heading
+    relativeReferences, % <#id> to reference an id defined via {#id} (typeset by \zcref, see below)
+    hashEnumerators,    % 1) 2) 3) style enumerators
+  ]{markdown}
+  % Markdown's own reference syntax <#id> typesets the bare number (\ref).
+  % Typeset it with \zcref instead, so that "<#tbl:example> shows" reads "Table 1 shows".
+  % Other links are rendered as before.
+  \ExplSyntaxOn
+  \cs_new_protected:Npn \ltg_markdown_link:nnnn #1#2#3#4
+  {
+    \tl_set:Nx \l_tmpa_tl { \tl_range:nnn {#3} { 1 } { 1 } }
+    \bool_lazy_all:nTF
+    {
+      { \str_if_eq_p:nn {#1} {#2} }
+      { \str_if_eq_p:VV \l_tmpa_tl \c_hash_str }
+      { \tl_if_empty_p:n {#4} }
+    }
+    { \exp_args:Nx \zcref { \tl_range:nnn {#3} { 2 } { -1 } } }
+    { \markdownRendererLinkPrototype {#1} {#2} {#3} {#4} }
+  }
+  \markdownSetup{ renderers = { link = { \ltg_markdown_link:nnnn {#1} {#2} {#3} {#4} } } }
+  \ExplSyntaxOff
+\fi
+
 % See http://tex.stackexchange.com/a/83051/9075
 % Normally, doesn't work with hyperref, but cleveref (or zref-vario) fixes that
 \usepackage[ngerman]{varioref}
@@ -644,6 +684,7 @@
 % These packages can be removed when all examples have been deleted
 \usepackage[math]{blindtext}
 \usepackage{mwe}
+\usepackage{hologo} % logos such as \hologo{LuaLaTeX} (used in the Markdown example)
 \usepackage[realmainfile]{currfile}
 \usepackage{tcolorbox}
 \tcbuselibrary{minted}
@@ -1026,11 +1067,11 @@ This template marks the parts of the structure with SM1-SM6 to recall to you whi
 \emph{Purpose and scope of \zcref{sec:introduction}}.
 The introduction chapter is a summary of your work and your scientific argument that must be understandable to anyone in your scientific field, e.g., anyone in Data Science.
 A reader must be able to comprehend the problem, method, relevant execution details, results, and their interpretation by reading the introduction and the introduction alone.
-Section~\ref{sec:introduction:topic} introduces the general topic of your research.
-Section~\ref{sec:introduction:state-of-art} discusses the state of the art and identifies a research.
-Section~\ref{sec:introduction:research-question} then states the research problem to investigate.
-Section~\ref{sec:problem-exposition:research-method} explains the research method that was followed, possibly with execution details.
-Section~\ref{sec:introduction:results} then presents the results and their interpretation.
+\Zcref{sec:introduction:topic} introduces the general topic of your research.
+\Zcref{sec:introduction:state-of-art} discusses the state of the art and identifies a research.
+\Zcref{sec:introduction:research-question} then states the research problem to investigate.
+\Zcref{sec:problem-exposition:research-method} explains the research method that was followed, possibly with execution details.
+\Zcref{sec:introduction:results} then presents the results and their interpretation.
 A reader should need to read further only if they are not convinced or need more details to reproduce your study.
 The individual chapters and sections provide the details for each of the steps in your scientific argument.
 
@@ -1183,13 +1224,13 @@ provide details
 \section{Detailed Research Questions (SM2)}\label{sec:problem-exposition:research-problems}
 % ---------------------------------------------------------------------------------
 
-provide details based on \zcref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
+provide details based on \zcref{sec:problem-exposition:context-understanding,sec:problem-exposition:data-understanding}
 
 % ---------------------------------------------------------------------------------
 \section{Detailed Method (SM3)}\label{sec:problem-exposition:research-method}
 % ---------------------------------------------------------------------------------
 
-provide details based on \zcref{sec:problem-exposition:context-understanding} and \ref{sec:problem-exposition:data-understanding}
+provide details based on \zcref{sec:problem-exposition:context-understanding,sec:problem-exposition:data-understanding}
 
 %%% ===============================================================================
 \section{First Real Chapter addressing first Research Problem}\label{sec:problem1}
@@ -1886,6 +1927,44 @@ With paralist, one can even have all items typeset after each other and have the
   \item This is enabled by the paralist package.
 \end{inparaenum}
 \end{ltgexample}
+
+\section{Writing in Markdown}\label{sec:markdown}
+
+\ifluatex
+  If you are new to \LaTeX{}, you can start by writing your text in Markdown using the \href{https://ctan.org/pkg/markdown}{markdown} package.
+  \LaTeX{} then takes care of the typesetting.
+  Markdown and \LaTeX{} can be mixed:
+  \Zcref{tbl:markdown} is written in Markdown and referenced from \LaTeX{}.
+  A longer part, such as a whole chapter, can be placed in a separate file included by \verb|\markdownInput{introduction.md}|.
+  The \href{https://github.com/latextemplates/markdown-latex-quickstart}{markdown-latex-quickstart} shows a complete document written in Markdown.
+
+  \begin{ltgexample}
+  \begin{markdown}
+Text can be *emphasized* or **bold**, and `code` is set in a monospaced font.
+A citation looks like this [@mwe], and here is a footnote.^[This is an inline footnote.]
+
+- first point
+- second point
+  - sub-point
+
+1) firstly
+2) secondly
+
+| Right | Left | Centered |
+|------:|:-----|:--------:|
+|    12 | 12   |    12    |
+|   123 | 123  |   123    |
+
+: A table written in Markdown {#tbl:markdown}
+
+<#tbl:markdown> shows a table with caption.
+Its identifier `{#tbl:markdown}` is referenced by `<#tbl:markdown>`.
+\end{markdown}
+  \end{ltgexample}
+\else
+  This example requires \hologo{LuaLaTeX}.
+  Compile the document with \hologo{LuaLaTeX} to see it.
+\fi
 
 \section{Abkürzungen}
 
