@@ -1782,6 +1782,25 @@ Coordinates can also be given explicitly instead of as a function:
 \end{table}
 \end{ltgexample}
 
+Rows and cells can be colored with \verb|\rowcolor| and \verb|\cellcolor| from the \href{https://ctan.org/pkg/colortbl}{colortbl} package, which \href{https://ctan.org/pkg/xcolor}{xcolor} loads with its option \verb|table|.
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Table with colored cells}
+  \label{tab:colored}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    \rowcolor{gray!20}
+    Test & Result                   \\
+    \midrule
+    A    & \cellcolor{green!20}pass \\
+    B    & \cellcolor{red!20}fail   \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ltgexample}
+
 \begin{ltgexample}
 % Adapted from https://tex.stackexchange.com/a/468994/9075
 \begin{table}
