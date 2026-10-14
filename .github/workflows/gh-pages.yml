@@ -32,12 +32,16 @@ jobs:
           fi
       - run: latexmk main-english
       - run: latexmk main-english-university-of-hamburg.tex
+      - run: latexmk main-english-thu.tex
       - run: latexmk main-german.tex
       - run: latexmk main-german-university-of-hamburg.tex
+      - run: latexmk main-german-thu.tex
       - run: latexmk main-minted-english
       - run: latexmk main-minted-english-university-of-hamburg.tex
+      - run: latexmk main-minted-english-thu.tex
       - run: latexmk main-minted-german.tex
       - run: latexmk main-minted-german-university-of-hamburg.tex
+      - run: latexmk main-minted-german-thu.tex
       - name: prepare publish
         run: |
           mkdir publish
