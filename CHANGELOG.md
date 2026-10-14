@@ -10,6 +10,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 ### Added
 
 - Variant for the Technische Hochschule Ulm (THU): `main-english-thu.tex`, `main-german-thu.tex`, and the minted variants have a title page with the THU logo ([CC BY-SA 4.0 by Hochschule Ulm](https://commons.wikimedia.org/wiki/File:THU_Logo_Subline_deutsch_RGB.png)) and the declaration signed in Ulm.
+- The LaTeX hints show how to color table rows and cells (`\rowcolor`, `\cellcolor`). [scientific-thesis-template#87](https://github.com/latextemplates/scientific-thesis-template/pull/87)
 
 ### Changed
 
