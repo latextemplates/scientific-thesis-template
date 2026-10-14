@@ -300,7 +300,7 @@ If you need additional tools in the image (for instance, PlantUML), extend the g
 
 ### Directories
 
-- [figures](graphics/) Directory containing the figures.
+- [figures](figures/) Directory containing the figures.
   By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
 
 ### Files
