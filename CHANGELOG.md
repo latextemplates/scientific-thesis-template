@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Variant for the Technische Hochschule Ulm (THU): `main-english-thu.tex`, `main-german-thu.tex`, and the minted variants have a title page with the THU logo ([CC BY-SA 4.0 by Hochschule Ulm](https://commons.wikimedia.org/wiki/File:THU_Logo_Subline_deutsch_RGB.png)) and the declaration signed in Ulm.
+
+### Changed
+
+- The thesis is laid out single-sided, because it is read on screen: every page has the same margins, the page number stays at the bottom right, and there are no blank pages before chapters or after the cover. The header shows the chapter on the left and the current section on the right. For two-sided printing, replace `twoside=false, open=any` by `twoside, open=right` (see the comment at the document class options).
+- The Universität Hamburg variant uses the logo as vector graphic `figures/uhh-logo.pdf` ([public domain, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:UHH_Universit%C3%A4t_Hamburg_Logo_mit_Schrift_2010_Farbe_CMYK.svg)) instead of `figures/UHH-Logo_2010_Farbe_CMYK.png`.
+- The README lists the example PDFs per institution.
+
 ## [2026-10-14]
 
 ### Added
