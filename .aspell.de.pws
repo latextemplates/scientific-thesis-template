@@ -1,4 +1,4 @@
-personal_ws-1.1 de 152 utf-8
+personal_ws-1.1 de 154 utf-8
 ACM
 Access
 Atlantic
@@ -62,6 +62,7 @@ belowskip
 breaklines
 category
 cls
+colortbl
 commentstyle
 cref
 da
@@ -146,6 +147,7 @@ vorausverweist
 werden
 wird
 wurde
+xcolor
 xleftmargin
 zcref
 zref

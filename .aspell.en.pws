@@ -1,4 +1,4 @@
-personal_ws-1.1 en 156 utf-8
+personal_ws-1.1 en 158 utf-8
 ACM
 Atlantic
 BPEL
@@ -60,6 +60,7 @@ breakatwhitespace
 breaklines
 category
 cls
+colortbl
 commentstyle
 compat
 cref
@@ -150,6 +151,7 @@ werden
 wird
 wkrauth
 wurde
+xcolor
 xleftmargin
 zcref
 zref
