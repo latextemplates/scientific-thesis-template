@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 945 (\begin{document}); the first
-%           heading (\chapter{Introduction}) is in line 1058.
+% vvvvvvvv  The content starts in line 950 (\begin{document}); the first
+%           heading (\chapter{Introduction}) is in line 1063.
 %           Everything above is the preamble: document class, packages, and settings.
 
 % The following package allows \\ at the title page
@@ -17,7 +17,9 @@
   numbers=noenddot,
   english,  % English as main language; this parameter is passed to other packages (e.g., selnolig in the case of lualatex)
   a4paper,  % KOMAScript allows for both paper=a4 and (standard) a4paper - https://tex.stackexchange.com/a/61044/9075
-  twoside,  % We are optimizing for both screen and two-sided printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
+  twoside=false,  % optimized for reading on screen: the same margins on every page and no blank pages
+  open=any,       % a chapter starts on the next page, not necessarily on a right-hand one
+  % For two-sided printing, replace the two lines above by "twoside, open=right,"
   bibliography=totoc,
   % idxtotoc,   % Index ins Inhaltsverzeichnis
   % liststotoc, % List of * ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
@@ -235,13 +237,16 @@
 %\usepackage{mathrsfs} % nice cursive letters via \mathscr{}
 %\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
 
+% Header: the chapter on the left, the current section on the right.
+% autooneside=false keeps the section mark in a single-sided document.
+\KOMAoptions{autooneside=false}
 \automark[section]{chapter}
 \setkomafont{pageheadfoot}{\normalfont\sffamily}
 \setkomafont{pagenumber}{\normalfont\sffamily}
 
-\ihead[]{}
+\ihead[]{\leftmark}
 \chead[]{}
-\ohead[]{\headmark}
+\ohead[]{\rightmark}
 \cfoot[]{}
 \ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
 \ifoot[]{}
