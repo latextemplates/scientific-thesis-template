@@ -6,7 +6,7 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 %
 % vvvvvvvv  The content starts in line 953 (\begin{document}); the first
-%           heading (\chapter{Introduction}) is in line 1099.
+%           heading (\chapter{Introduction}) is in line 1098.
 %           Everything above is the preamble: document class, packages, and settings.
 
 % The following package allows \\ at the title page
@@ -956,33 +956,32 @@
 \frontmatter
 \newgeometry{centering,left=2cm,right=2cm,top=2cm,bottom=2cm}
 \begin{titlepage}
-%\includegraphics[scale=0.3]{figures/UHH-Logo_2010_Farbe_CMYK.pdf}
-\includegraphics[scale=0.3]{figures/UHH-Logo_2010_Farbe_CMYK.png}
-\vspace*{2cm}
-\Large
-\begin{center}
-              {\color{uhhred}\textbf{\so{BACHELORTHESIS}}}
-%TODO ...oder {\color{uhhred}\textbf{\so{MASTERTHESIS}}}
-\vspace*{2.0cm}\\
-{\LARGE \textbf{Titel}}
-\vspace*{2.0cm}\\
-vorgelegt von
-\vspace*{0.4cm}\\
-Max Musterstudent
-\end{center}
-\vfill
+  \includegraphics[width=10cm]{figures/uhh-logo.pdf}
+  \vspace*{2cm}
+  \Large
+  \begin{center}
+    {\color{uhhred}\textbf{\so{BACHELORTHESIS}}}
+    %TODO ...oder {\color{uhhred}\textbf{\so{MASTERTHESIS}}}
+    \vspace*{2.0cm}\\
+    {\LARGE \textbf{Titel}}
+    \vspace*{2.0cm}\\
+    vorgelegt von
+    \vspace*{0.4cm}\\
+    Max Musterstudent
+  \end{center}
+  \vfill
 
-\noindent
-{\small
-MIN-Fakultät\\[.2cm]
-Fachbereich Informatik \\[.2cm]
-Ggf. Professur/Institut \\[.2cm]       %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
-Studiengang: Wirtschaftsinformatik \\[.2cm]
-Matrikelnummer: 1234567 \\[.5cm]
-Ggf. Abgabedatum: XX.XX.20XX \\[.5cm]  %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
-Erstgutachterin: Prof. Dr. Bertha Beispiel \\[.25cm]
-Zweitgutachter: Dr. Eduard Exempel               %TODO Bei Bedarf Geschlechter der Gutachter/innen anpassen
-}
+  \noindent
+  {\small
+    MIN-Fakultät\\[.2cm]
+    Fachbereich Informatik \\[.2cm]
+    Ggf. Professur/Institut \\[.2cm]       %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+    Studiengang: Wirtschaftsinformatik \\[.2cm]
+    Matrikelnummer: 1234567 \\[.5cm]
+    Ggf. Abgabedatum: XX.XX.20XX \\[.5cm]  %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+    Erstgutachterin: Prof. Dr. Bertha Beispiel \\[.25cm]
+    Zweitgutachter: Dr. Eduard Exempel               %TODO Bei Bedarf Geschlechter der Gutachter/innen anpassen
+  }
 \end{titlepage}
 
 \restoregeometry
@@ -2334,23 +2333,23 @@ All links were last followed on October 5, 2020.
 \pagestyle{empty}
 
 {\normalsize
-\begin{center}\textbf{Eidesstattliche Erklärung}\end{center}
-\blindtext[1]
-\vspace*{1cm}\\
-Hamburg, den XX.XX.20XX
-\hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
-\makebox[5cm]{Vorname Nachname}
-\end{tabular}
-\vspace*{3cm}
+  \begin{center}\textbf{Eidesstattliche Erklärung}\end{center}
+  \blindtext[1]
+  \vspace*{1cm}\\
+  Hamburg, den XX.XX.20XX
+  \hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+    \makebox[5cm]{Vorname Nachname}
+  \end{tabular}
+  \vspace*{3cm}
 
-%TODO Dies ist optional, ggf. löschen!
-\begin{center}\textbf{Veröffentlichung}\end{center}
-\blindtext[1]
-\vspace*{1cm}\\
-Hamburg, den XX.XX.20XX
-\hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
-\makebox[5cm]{Vorname Nachname}
-\end{tabular}
+  %TODO Dies ist optional, ggf. löschen!
+  \begin{center}\textbf{Veröffentlichung}\end{center}
+  \blindtext[1]
+  \vspace*{1cm}\\
+  Hamburg, den XX.XX.20XX
+  \hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+    \makebox[5cm]{Vorname Nachname}
+  \end{tabular}
 }
 \vspace*{\fill}
 \end{document}
