@@ -97,6 +97,7 @@ lscapeenhanced
 ltxcmds
 luacode
 lualatex-math
+luamplib
 luatex85
 luatexbase
 luaxml
@@ -109,6 +110,7 @@ fancyvrb
 verse
 mathdesign
 mathtools
+metauml
 mfirstuc
 microtype
 mindflow
@@ -135,6 +137,7 @@ pdfpages
 pdftexcmds
 pgf
 pgfplots
+pgf-umlsd
 pict2e
 placeins
 plantuml
