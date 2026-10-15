@@ -240,7 +240,7 @@ You can manually trigger compilation by hitting the green button in the extensio
 
 [LTeX+] is an offline grammar and spell checker with support for LaTeX and Markdown.
 
-The main file starts with a magic comment that tells LTeX+ the language of the document: `% LTeX: language=en-US`.
+The main file starts with a magic comment that tells LTeX+ the language of the document, e.g., `% LTeX: language=en-US`.
 Add the same comment to further `.tex` files.
 
 ## FAQs
