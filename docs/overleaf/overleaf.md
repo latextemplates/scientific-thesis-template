@@ -21,10 +21,7 @@
 4. Upload main.zip  
    ![upload main.zip](overleaf-step-4.png)
 
-5. Ignore import error of `latexmkrc`  
-  ![Ignore import errors](overleaf-step-5.png)
-
-6. Choose main file: For English, choose `main-english.tex`. For German, choose `main-german.tex`.  
+5. Choose main file: For English, choose `main-english.tex`. For German, choose `main-german.tex`.  
   ![Choose main file](overleaf-step-6.png)
 
 <!--
@@ -57,7 +54,6 @@
 1. create new overleaf project
 2. clone the overleaf project using git
 3. copy the files to that directory. Follow the steps at "Download" above
-4. delete `.latexmkrc`
-5. `git add .`
-6. `git commit -m"initial import"`
-7. `git push`
+4. `git add .`
+5. `git commit -m"initial import"`
+6. `git push`
