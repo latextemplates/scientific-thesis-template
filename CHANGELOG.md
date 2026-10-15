@@ -7,6 +7,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ## [Unreleased]
 
+### Added
+
+- The LaTeX hints show UML diagrams without further tools: MetaUML class and component diagrams (LuaLaTeX) and a pgf-umlsd sequence diagram.
+
 ### Changed
 
 - `main-*.tex` use minted; the variants using the listings package are `main-basic-listings-*.tex`.
