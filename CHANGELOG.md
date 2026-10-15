@@ -17,6 +17,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - `main-*.tex` use minted; the variants using the listings package are `main-basic-listings-*.tex`.
 
+### Fixed
+
+- Example texts: spelling and grammar fixed.
+
 ## [2026-10-15]
 
 ### Added
