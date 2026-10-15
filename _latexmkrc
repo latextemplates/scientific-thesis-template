@@ -51,4 +51,4 @@ sub run_makeglossaries {
 
 # remove more files than in the default configuration
 @generated_exts = qw(acn acr alg aux code fls glg glo glo-abr gls glsdefs idx ind ist lof lol lot out run.xml synctex thm toc tpt upa upb wrt);
-$clean_ext .= ' %R.ist %R.xdy';
+$clean_ext .= ' %R.ist %R.xdy %R.markdown.in';

@@ -27,6 +27,7 @@ main-minted-german-university-of-hamburg.tex
 
 # markdown package (cache of converted Markdown)
 _markdown_*/
+*.markdown.in
 
 # latexindent
 *.bak

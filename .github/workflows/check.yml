@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install TeX Live
-        uses: zauguin/install-texlive@v4
+        uses: zauguin/install-texlive@6671d0c62046c7e349fe154d5208fe746b07e037 # v4.4.0
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
           texlive_version: 2026
@@ -33,7 +33,7 @@ jobs:
       - run: latexmk main-english
 
       # Highlight mis-spelled words in the PDF
-      - uses: awalsh128/cache-apt-pkgs-action@latest
+      - uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
           packages: aspell aspell-en aspell-de
           version: 1.0
@@ -68,7 +68,7 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           texlogsieve main-english.log | tee -a "$GITHUB_STEP_SUMMARY" || true
           echo '```' >> $GITHUB_STEP_SUMMARY
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: test-result
           path: |
@@ -79,9 +79,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install TeX Live
-        uses: zauguin/install-texlive@v4
+        uses: zauguin/install-texlive@6671d0c62046c7e349fe154d5208fe746b07e037 # v4.4.0
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
           texlive_version: 2026
@@ -102,7 +102,7 @@ jobs:
           # echo "## TeXcount LaTeX interpretation" >> $GITHUB_STEP_SUMMARY
           # echo "" >> $GITHUB_STEP_SUMMARY
           # cat "texcount.html-body" >> $GITHUB_STEP_SUMMARY
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: word-count
           path: |
@@ -116,11 +116,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # Original action does not work well - see https://github.com/awalsh128/cache-apt-pkgs-action/pull/136
       # The action is not updated - and thus the dictionaries are not updated
-      - uses: awalsh128/cache-apt-pkgs-action@latest
+      - uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
           packages: aspell aspell-en aspell-de
           version: 1.0
@@ -168,8 +168,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'
       - name: Lint English prose with textlint
@@ -196,14 +196,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v7
-      - uses: awalsh128/cache-apt-pkgs-action@latest
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
           packages: libyaml-tiny-perl libfile-homedir-perl
           version: 1.0
           execute_install_scripts: true
       - name: Install latexindent
-        uses: zauguin/install-texlive@v4
+        uses: zauguin/install-texlive@6671d0c62046c7e349fe154d5208fe746b07e037 # v4.4.0
         with:
           packages: latexindent
           texlive_version: 2026
