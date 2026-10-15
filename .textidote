@@ -1,4 +1,4 @@
---check en
+--check de
 --dict .textidote.dict
 --replace .textidote.replacements
 --remove otherlanguage,listing,minted,lstlisting,verbatim,tikzpicture,mplibcode,sequencediagram,markdown,plantuml,mermaid,algorithm,algorithmic,equation,equation*,align,align*,tabular,tabularx,longtable,tblr
