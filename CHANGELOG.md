@@ -9,7 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
-- `main-*.tex` use minted; the variants with listings are `main-basic-listings-*.tex`.
+- `main-*.tex` use minted; the variants using the listings package are `main-basic-listings-*.tex`.
 
 ## [2026-10-15]
 
