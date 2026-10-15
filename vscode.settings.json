@@ -9,19 +9,19 @@
     "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.latex.recipes": [
         {
-            "name": "lualatex ➞ biblatex ➞ lualatex × 2 🔃",
+            "name": "lualatex ➞ biber ➞ lualatex × 2 🔃",
             "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
+                "lualatex",
+                "biber",
+                "lualatex",
+                "lualatex"
             ]
         },
         {
-            "name": "pdflatex ➞ biblatex ➞ pdflatex × 2 🔃",
+            "name": "pdflatex ➞ biber ➞ pdflatex × 2 🔃",
             "tools": [
                 "pdflatex",
-                "bibtex",
+                "biber",
                 "pdflatex",
                 "pdflatex"
             ]
@@ -59,8 +59,8 @@
             "env": {}
         },
         {
-            "name": "biblatex",
-            "command": "biblatex",
+            "name": "biber",
+            "command": "biber",
             "args": [
                 "%DOCFILE%"
             ],
