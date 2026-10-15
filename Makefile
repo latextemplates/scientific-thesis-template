@@ -110,14 +110,14 @@ aspell:
 		done
 
 ## Spelling, grammar, and style with TeXtidote (https://github.com/sylvainhalle/textidote): writes textidote.html
-## Needs Java (contained in the Docker image); the options are in .textidote.
+## Needs Java (contained in the Docker image); the options are in .textidote (its --check en is overridden here).
 ## -Djdk.xml.totalEntitySizeLimit=0: TeXtidote 0.9 fails on Java 24+ otherwise (fixed after 0.9: sylvainhalle/textidote#274)
 textidote.jar:
 	curl -sSfL -o $@ https://github.com/sylvainhalle/textidote/releases/download/v0.9/textidote.jar
 
 textidote: textidote.jar
 	@# TeXtidote exits with the number of findings, which is no failure here
-	$(RUN) java -Djdk.xml.totalEntitySizeLimit=0 -jar textidote.jar --output html $(MASTER_TEX) > textidote.html || test -s textidote.html
+	$(RUN) java -Djdk.xml.totalEntitySizeLimit=0 -jar textidote.jar --check en --output html $(MASTER_TEX) > textidote.html || test -s textidote.html
 	@echo "Report: textidote.html"
 
 ## Show only the relevant messages of the last LaTeX run
