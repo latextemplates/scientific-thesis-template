@@ -94,7 +94,7 @@ Congratulations. You chose to use all available features.
 
 - `main-english.tex` - The main `.tex` file loading all LaTeX packages and their configurations.
   - Add text here
-  - Adjust title etc. here
+  - Adjust title, … here
 - [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
 - [abbreviations.tex](abbreviations.tex) - Acronyms and abbreviations.
 - [commands.tex](commands.tex) - Example LaTeX macros.
