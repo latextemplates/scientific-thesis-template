@@ -203,7 +203,8 @@ jobs:
         run: |
           # Report-only: findings show up as annotations, the job does not fail.
           # TeXtidote (https://github.com/sylvainhalle/textidote) reads its options from .textidote.
-          java -jar "$RUNNER_TEMP/textidote.jar" --output singleline --no-color main-english.tex > textidote.txt || true
+          # -Djdk.xml.totalEntitySizeLimit=0: TeXtidote 0.9 fails on Java 24+ otherwise (fixed after 0.9: sylvainhalle/textidote#274)
+          java -Djdk.xml.totalEntitySizeLimit=0 -jar "$RUNNER_TEMP/textidote.jar" --output singleline --no-color main-english.tex > textidote.txt || true
           # A finding looks like: file.tex(L25C1-L25C25): message "excerpt"
           perl -ne 'if (/^(.+?)\(L(\d+)C(\d+)-L(\d+)C(\d+)\): (.*)$/) { my ($f, $l, $c, $el, $ec, $m) = ($1, $2, $3, $4, $5, $6); $m =~ s/%/%25/g; print "::warning file=$f,line=$l,col=$c,endLine=$el,endColumn=$ec,title=TeXtidote::$m\n" }' textidote.txt
           echo "TeXtidote reported $(grep -c . textidote.txt) finding(s) in main-english.tex" >> "$GITHUB_STEP_SUMMARY"

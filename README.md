@@ -188,6 +188,7 @@ On the command line, there are additional features:
 - `make` builds the PDF in the Docker container; `make LOCAL=1` uses your local LaTeX distribution (this works for all `make` targets)
 - `latexmk -C` or `make clean` for cleaning up
 - `make log` shows only the relevant messages of the last LaTeX run (using [texlogsieve](https://ctan.org/pkg/texlogsieve))
+- `make textidote` checks spelling, grammar, and style with [TeXtidote](https://github.com/sylvainhalle/textidote) (report in `textidote.html`)
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
 - `make aspell` for interactive spell checking
 - `make stand`: Creates a new PDF with the current status of the document.
@@ -203,11 +204,7 @@ npx --yes --package textlint --package textlint-plugin-latex2e --package textlin
 
 The `textidote` job of the `Check` workflow checks spelling, grammar, and style of English documents with [TeXtidote](https://github.com/sylvainhalle/textidote) and reports its findings as annotations.
 Its options are in `.textidote`.
-Run it locally with Java and the [`textidote.jar`](https://github.com/sylvainhalle/textidote/releases):
-
-```bash
-java -jar textidote.jar --output html main-english.tex > textidote.html
-```
+Run it locally with `make textidote`: it downloads `textidote.jar` once and writes the report `textidote.html`.
 
 ### UML diagrams with PlantUML or Mermaid
 
