@@ -14,7 +14,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
-- The thesis is laid out single-sided, because it is read on screen: every page has the same margins, the page number stays at the bottom right, and there are no blank pages before chapters or after the cover. The header shows the chapter on the left and the current section on the right. For two-sided printing, replace `twoside=false, open=any` by `twoside, open=right` (see the comment at the document class options).
+- The thesis is laid out single-sided; the header shows the chapter on the left and the section on the right.
 - The Universität Hamburg variant uses the logo as vector graphic `figures/uhh-logo.pdf` ([public domain, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:UHH_Universit%C3%A4t_Hamburg_Logo_mit_Schrift_2010_Farbe_CMYK.svg)) instead of `figures/UHH-Logo_2010_Farbe_CMYK.png`.
 - The README lists the example PDFs per institution.
 - `make format` (and thus CI) indents all main files (`main*.tex`), not only `MASTER_TEX`.
