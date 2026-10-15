@@ -1,28 +1,27 @@
 # LaTeX Template for a Scientific Thesis
 
 This template is a general template for scientific theses.
-Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
+Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at the institutions listed below, each with example PDFs.
+The template will be extended to support theses from more institutions.
 
-- University of Stuttgart, Computer Science
+## Supported institutions
 
-  - 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
-  - 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english.pdf)
-  - 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
-  - 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
+### University of Stuttgart, Computer Science
 
-- Universität Hamburg
+- 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
+- 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english.pdf)
+- 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
+- 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
 
-  - 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english-university-of-hamburg.pdf)
-  - 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german-university-of-hamburg.pdf)
+### Universität Hamburg
 
-- Technische Hochschule Ulm (THU)
+- 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english-university-of-hamburg.pdf)
+- 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german-university-of-hamburg.pdf)
 
-  - 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english-thu.pdf)
-  - 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german-thu.pdf)
+### Technische Hochschule Ulm (THU)
 
-The template will be extended to support theses from different institutions.
-
-For [architectural decision records](https://adr.github.io) see [docs/adr](docs/adr/).
+- 🇺🇸 [English example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-english-thu.pdf)
+- 🇩🇪 [German example with minted and PlantUML](https://latextemplates.github.io/scientific-thesis-template/main-minted-german-thu.pdf)
 
 ## Quick start
 
@@ -490,6 +489,7 @@ Please head to <https://koppor.github.io/plantuml/> for installation instruction
 
 ## Further information
 
+- [Architectural decision records](https://adr.github.io) of this template: [docs/adr](docs/adr/)
 - Other templates: <https://latextemplates.github.io/>
 - For German users, go to <https://texfragen.de/>.
 - Frank Mittelbach with Ulrike Fischer: [The LaTeX Companion](https://www.latex-project.org/news/2023/03/17/TLC3/) is the ultimate guide for LaTeX: The authors went through all packages offered by [CTAN](https://ctan.org/), selected the most promising ones, described them, and provide minimal working example for each of it.
