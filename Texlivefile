@@ -99,6 +99,7 @@ ltxcmds
 luacode
 lualatex-math
 luamplib
+metapost
 luatex85
 luatexbase
 luaxml
