@@ -1,17 +1,21 @@
-personal_ws-1.1 en 158 utf-8
+personal_ws-1.1 en 168 utf-8
 ACM
 Atlantic
 BPEL
 BPMN
 Bei
 Cleveref
+Crossmark
 Das
 Database
 Diag
+enumitem
 Firstname
+fquote
 Geänderter
 Hier
 IEEEtran
+inparaenum
 JSON
 JabRef
 Kommentar
@@ -20,9 +24,12 @@ LaTeXing
 Lastname
 Lua
 LuaLaTeX
+luamplib
 Manuelle
 Markierter
 Markierung
+MetaPost
+MetaUML
 North
 Npn
 Nx
@@ -30,11 +37,13 @@ OMG
 ORCID
 OldStyle
 Organization
+pdfcomment
 PNG
 Practitioner
 RDBMS
 RGB
 ScienceOS
+soulpos
 TODOs
 Textfarbe
 Treaty
@@ -155,5 +164,6 @@ xcolor
 xleftmargin
 zcref
 zref
+Zref
 zvref
 œ
