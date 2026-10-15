@@ -35,6 +35,8 @@ $bibtex_use = 2;
 # Glossaries inclusion inspired by https://tex.stackexchange.com/a/44316/9075
 add_cus_dep('glo', 'gls', 0, 'run_makeglossaries');
 add_cus_dep('acn', 'acr', 0, 'run_makeglossaries');
+# glossaries-extra's "abbreviations" option writes to .glo-abr instead
+add_cus_dep('glo-abr', 'gls-abr', 0, 'run_makeglossaries');
 
 sub run_makeglossaries {
   if ( $silent ) {
@@ -50,5 +52,5 @@ sub run_makeglossaries {
 # cleanup
 
 # remove more files than in the default configuration
-@generated_exts = qw(acn acr alg aux code fls glg glo glo-abr gls glsdefs idx ind ist lof lol lot out run.xml synctex thm toc tpt upa upb wrt);
+@generated_exts = qw(acn acr alg aux code fls glg glg-abr glo glo-abr gls gls-abr glsdefs idx ind ist lof lol lot out run.xml synctex thm toc tpt upa upb wrt);
 $clean_ext .= ' %R.ist %R.xdy %R.markdown.in';
