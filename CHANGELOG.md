@@ -11,6 +11,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - Variant for the Technische Hochschule Ulm (THU): `main-english-thu.tex`, `main-german-thu.tex`, and the minted variants have a title page with the THU logo ([CC BY-SA 4.0 by Hochschule Ulm](https://commons.wikimedia.org/wiki/File:THU_Logo_Subline_deutsch_RGB.png)) and the declaration signed in Ulm.
 - The LaTeX hints show how to color table rows and cells (`\rowcolor`, `\cellcolor`). [scientific-thesis-template#87](https://github.com/latextemplates/scientific-thesis-template/pull/87)
+- `make log` shows the relevant messages of the LaTeX log (texlogsieve).
 
 ### Changed
 
@@ -42,6 +43,9 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - textlint ignores expl3 function names, Markdown reference IDs, and the name of the markdown package.
 - German documents load only `autotype` (not additionally `selnolig`) for correct ligatures.
 - `make view` opens the PDF on Linux and macOS.
+- German documents configure `autotype` with `ligatures=selective` instead of the outdated `ligbreak`.
+- The sans-serif font TeX Gyre Heros is available in bold.
+- `kvoptions-patch` is no longer loaded; LaTeX 2026-06-01 aborts loading it.
 
 ## [2026-10-14]
 
