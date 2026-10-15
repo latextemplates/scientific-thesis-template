@@ -24,6 +24,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Dependabot groups all GitHub Actions updates into one weekly PR.
 - `check.yml` pins all GitHub Actions to commit SHAs.
 - README.md: sections reordered.
+- README.md: on Overleaf, select TeX Live 2026.
 - README.md: passages in another language are an FAQ.
 - README.md: links the decision records of the template generator.
 - The decision records moved to the [template generator](https://github.com/latextemplates/generator-latex-template/tree/main/docs/decisions).
