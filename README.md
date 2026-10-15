@@ -9,19 +9,19 @@ The template will be extended to support theses from more institutions.
 ### University of Stuttgart, Computer Science
 
 - 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
-- 🇺🇸 [English example with minted](https://latextemplates.github.io/scientific-thesis-template/main-minted-english.pdf)
+- 🇺🇸 [English example with listings instead of minted](https://latextemplates.github.io/scientific-thesis-template/main-basic-listings-english.pdf)
 - 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
-- 🇩🇪 [German example with minted](https://latextemplates.github.io/scientific-thesis-template/main-minted-german.pdf)
+- 🇩🇪 [German example with listings instead of minted](https://latextemplates.github.io/scientific-thesis-template/main-basic-listings-german.pdf)
 
 ### Universität Hamburg, Computer Science
 
-- 🇺🇸 [English example with minted](https://latextemplates.github.io/scientific-thesis-template/main-minted-english-university-of-hamburg.pdf)
-- 🇩🇪 [German example with minted](https://latextemplates.github.io/scientific-thesis-template/main-minted-german-university-of-hamburg.pdf)
+- 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english-university-of-hamburg.pdf)
+- 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german-university-of-hamburg.pdf)
 
 ### Technische Hochschule Ulm (THU), Computer Science
 
-- 🇺🇸 [English example with minted](https://latextemplates.github.io/scientific-thesis-template/main-minted-english-thu.pdf)
-- 🇩🇪 [German example with minted](https://latextemplates.github.io/scientific-thesis-template/main-minted-german-thu.pdf)
+- 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english-thu.pdf)
+- 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german-thu.pdf)
 
 ## Quick start
 
@@ -35,7 +35,7 @@ The template will be extended to support theses from more institutions.
     - University of Stuttgart:
         - English: `main-english.tex`
         - German: `main-german.tex`
-        - German advanced usage: `main-minted-german.tex` (see below)
+        - Without Python (see below): `main-basic-listings-english.tex`, `main-basic-listings-german.tex`
 
 3. Compile with "lualatex + biber" in your TeX editor or with `latexmk main-english` / `make` on the command line.
 
