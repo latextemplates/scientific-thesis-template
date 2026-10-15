@@ -32,6 +32,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - `make` runs the LaTeX tools in the Docker image (`make LOCAL=1` runs them locally).
 - `vscode.settings.json` compiles with `latexmk` in the Docker image.
 - README.md: compilation hints consolidated in "LaTeX compilation".
+- docs/overleaf: no step for `latexmkrc` any more.
 
 ### Fixed
 
