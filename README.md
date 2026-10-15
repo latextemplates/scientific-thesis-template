@@ -171,16 +171,6 @@ You can make this local configuration a global configuration, when you put it at
 If you want to add more packages, configure it there.
 For instance, for support of `makeglossaries` see <http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries>.
 
-### Debugging LaTeX errors
-
-In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
-
-```bash
-lualatex --synctex=1 --shell-escape main-english
-```
-
-Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
-
 ### Advanced usage
 
 On the command line, there are additional features:
@@ -317,6 +307,16 @@ Following additional files are included, which do not need to be adapted:
 - [Texlivefile](Texlivefile) - List of packages required for a minimal TeXLive installation.
 
 ## FAQs
+
+### Q: How do I find the cause of a LaTeX error?
+
+In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
+
+```bash
+lualatex --synctex=1 --shell-escape main-english
+```
+
+Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
 
 ### Q: How can I synchronize updates from the template to my repository?
 
