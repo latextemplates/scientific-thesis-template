@@ -6,8 +6,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 911 (\begin{document}); die erste
-%           Überschrift (\chapter{Introduction}) steht in Zeile 1051.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 910 (\begin{document}); die erste
+%           Überschrift (\chapter{Introduction}) steht in Zeile 1050.
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
 % The following package allows \\ at the title page
@@ -430,10 +430,9 @@
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-% Embed the bibliography data into the PDF so that readers can extract it
-% (e.g., with JabRef via "Import into library" on the PDF)
-\usepackage{embedfile}
-\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
+% To embed the bibliography into the PDF (readers can extract it, e.g., with JabRef via "Import into library" on the PDF), uncomment:
+%\usepackage{embedfile}
+%\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
 
 % Farbige Tabellen
 % ----------------
