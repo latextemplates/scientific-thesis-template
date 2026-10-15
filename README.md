@@ -201,6 +201,14 @@ Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
 npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex
 ```
 
+The `textidote` job of the `Check` workflow checks spelling, grammar, and style of English documents with [TeXtidote](https://github.com/sylvainhalle/textidote) and reports its findings as annotations.
+Its options are in `.textidote`.
+Run it locally with Java and the [`textidote.jar`](https://github.com/sylvainhalle/textidote/releases):
+
+```bash
+java -jar textidote.jar --output html main-english.tex > textidote.html
+```
+
 ### UML diagrams with PlantUML or Mermaid
 
 The "LaTeX Hints" chapter shows UML diagrams drawn with MetaUML and pgf-umlsd, which need no further tools.
