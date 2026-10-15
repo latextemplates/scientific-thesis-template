@@ -18,6 +18,8 @@ LITERATURE = bibliography.bib
 ## Derived file names
 SRC = $(shell basename $(MASTER_TEX) .tex)
 TEX_FILES = $(wildcard *.tex content/*.tex)
+## All main files, including variants of MASTER_TEX (e.g., other languages): "make format" indents each of them
+MAIN_TEX_FILES = $(wildcard main*.tex)
 GFX_FILES = $(wildcard figures/*)
 
 PDF = $(SRC).pdf
@@ -99,7 +101,7 @@ showundef:
 ## Reformatierung
 
 format:
-	latexindent -l -s -sl -w $(SRC)
+	for f in $(MAIN_TEX_FILES); do latexindent -l -s -sl -w "$$f" || exit 1; done
 
 indent:
 	latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w $(SRC)
