@@ -1,0 +1,6 @@
+--check en
+--dict .textidote.dict
+--replace .textidote.replacements
+--remove otherlanguage,listing,minted,lstlisting,verbatim,tikzpicture,mplibcode,sequencediagram,markdown,plantuml,mermaid,tabular,tabularx,longtable,tblr
+--remove-macros pagestyle,thispagestyle,pagenumbering,renewcommand,newcommand,setcounter,addtocounter,label,includegraphics,printbibliography,printglossaries,printglossary,printunsrtglossary,printacronyms,tableofcontents,listoffigures,listoftables,listoflistings,lstlistoflistings,raggedbottom,microtypesetup,Titelblatt,bibliographystyle,IEEEpubid,lipsum,frontmatter,mainmatter,backmatter,appendix
+--ignore sh:capperiod,sh:figref,sh:nobreak,sh:seclen

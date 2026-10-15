@@ -1,0 +1,20 @@
+# TeXtidote applies these replacements before checking (see .textidote).
+# Each line: a regular expression, a tab, and its replacement.
+# Cross-references and glossary entries become plain words.
+\\[Zz]cref(\[[^]]*\])?\{[^}]*\}	Section 1
+\\[Zz]vref(\[[^]]*\])?\{[^}]*\}	Section 1
+\\[Cc]ref\{[^}]*\}	Section 1
+\\[Gg]ls(pl)?(\[[^]]*\])?\{[^}]*\}	term
+\\[Aa]cr[a-z]*\{[^}]*\}	term
+\\LaTeX(\{\})?	LaTeX
+\\TeX(\{\})?	TeX
+\\SI\{[^}]*\}\{[^}]*\}	5 m
+# Code names and the lines beginning and ending the example, theorem, and list environments are no prose.
+# (\begin{document} and the environments removed in .textidote must stay.)
+\\texttt\{[^}]*\}	code
+\\(begin|end)\{(ltgexample|mindflow|theorem|proposition|lemma|corollary|definition|proof|remark|example|enumerate\*?|itemize\*?|description)\}(\[[^]]*\])?	
+\\textbackslash	backslash
+\\(iffalse|else|fi)\b	
+\\renewcommand\*?\{[^}]*\}\{[^}]*\}	
+# The abstract in the other language is removed (environment otherlanguage), its heading as well.
+\\(chapter|section)\*\{(Kurzfassung|Abstract)\}	
