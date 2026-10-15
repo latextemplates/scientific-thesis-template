@@ -1679,6 +1679,8 @@ A comparison of the packages for UML diagrams is given at \url{https://github.co
       beginfig(1);
       Component.Client("Client")();
       Component.Server("Server")();
+      % MetaUML has no automatic layout: each object is placed relative to another one;
+      % here, the left edge of Server is 140 PostScript points (1/72 inch, about 5 cm) right of the right edge of Client
       Server.w = Client.e + (140, 0);
       drawObjects(Client, Server);
       % the interface: Server provides it (ball), Client requires it (socket)
@@ -1701,6 +1703,7 @@ A comparison of the packages for UML diagrams is given at \url{https://github.co
   \sffamily
   \begin{sequencediagram}
     \newthread{client}{Client}
+    % [3]: horizontal gap (in cm) to the box of the previous instance; the default (0.2) leaves no room for the message labels
     \newinst[3]{server}{Server}
     \begin{call}{client}{request()}{server}{response}
     \end{call}
