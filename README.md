@@ -38,6 +38,8 @@ For [architectural decision records](https://adr.github.io) see [docs/adr](docs/
         - German: `main-german.tex`
         - German advanced usage: `main-minted-german.tex` (see below)
 
+3. Compile with "lualatex + biber" in your TeX editor or with `latexmk main-english` / `make` on the command line.
+
 ### Usage at overleaf
 
 See [docs/overleaf](docs/overleaf/).
@@ -49,72 +51,6 @@ The LaTeX snippets this template is assembled from can be inspected at <https://
 - Read [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html) by Lichter, Ludewig, Deininger, and Schneider.
   The open-access book explains how to organize, conduct, write, and present a thesis.
 - Before handing in, work through the [thesis checklist](docs/thesis-checklist.md).
-
-## Usage
-
-- `main-english.tex` is the main document
-- Use "lualatex + biblatex" in your TeX editor or `latexmk main-english` / `make` in the command line
-
-### Using `latexmk`
-
-[latexmk] is a very smart tool for latex compilation.
-It executes the latex tools as often as needed to get the final PDF.
-(More information about why `latexmk` is great can be found at <https://tex.stackexchange.com/a/249243/9075>.)
-
-To build the whole document, execute following command.
-Note that this requires a working perl installation.
-
-```bash
-latexmk main-english
-```
-
-To enable latexmk, please move `_latexmkrc` to `latexmkrc`.
-
-If you want automatic compilation use following command:
-
-```bash
-latexmk -pvc main-english
-```
-
-This will also open a [Sumatra PDF] and only works with the supplied configuration.
-
-#### latexmk configuration
-
-This repository ships a `.latexmkrc` which is read by latexmk.
-In case there is a `_latexmkrc` file, you need to rename it to `.latexmkrc`.
-It is configured for Windows and especially sets Sumatra PDF as default PDF viewer.
-You can make this local configuration a global configuration, when you put it at [the right place](http://tex.stackexchange.com/a/41149/9075).
-
-If you want to add more packages, configure it there.
-For instance, for support of `makeglossaries` see <http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries>.
-
-### Debugging LaTeX errors
-
-In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
-
-```bash
-lualatex --synctex=1 --shell-escape main-english
-```
-
-Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
-
-### Advanced usage
-
-On the command line, there are additional features:
-
-- `latexmk -C` or `make clean` for cleaning up
-- `make format` to reformat the `.tex` files (one sentence per line and indent)
-- `make aspell` for interactive spell checking
-- `make stand`: Creates a new PDF with the current status of the document.
-- `make view`: Opens the configured viewer
-- `make mrproper`: Cleans up and removes also editor backup files.
-
-The `textlint` job of the `Check` workflow reports weakening words (e.g., "clearly", "just") in the English `.tex` files as annotations.
-Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
-
-```bash
-npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex
-```
 
 ## Benefits
 
@@ -201,6 +137,67 @@ To have `minted` running with a traditional installation, you have to do followi
 2. Install [latexminted]: `pip install latexminted` - that uses the Python package manager to install the minted library
 3. When latexing, use `-shell-escape`: `pdflatex -shell-escape main-english`.
    You can also just execute `latexmk main-english`.
+
+### Using `latexmk`
+
+[latexmk] is a very smart tool for latex compilation.
+It executes the latex tools as often as needed to get the final PDF.
+(More information about why `latexmk` is great can be found at <https://tex.stackexchange.com/a/249243/9075>.)
+
+To build the whole document, execute following command.
+Note that this requires a working perl installation.
+
+```bash
+latexmk main-english
+```
+
+To enable latexmk, please move `_latexmkrc` to `latexmkrc`.
+
+If you want automatic compilation use following command:
+
+```bash
+latexmk -pvc main-english
+```
+
+This will also open a [Sumatra PDF] and only works with the supplied configuration.
+
+#### latexmk configuration
+
+This repository ships a `.latexmkrc` which is read by latexmk.
+In case there is a `_latexmkrc` file, you need to rename it to `.latexmkrc`.
+It is configured for Windows and especially sets Sumatra PDF as default PDF viewer.
+You can make this local configuration a global configuration, when you put it at [the right place](http://tex.stackexchange.com/a/41149/9075).
+
+If you want to add more packages, configure it there.
+For instance, for support of `makeglossaries` see <http://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries>.
+
+### Debugging LaTeX errors
+
+In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
+
+```bash
+lualatex --synctex=1 --shell-escape main-english
+```
+
+Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
+
+### Advanced usage
+
+On the command line, there are additional features:
+
+- `latexmk -C` or `make clean` for cleaning up
+- `make format` to reformat the `.tex` files (one sentence per line and indent)
+- `make aspell` for interactive spell checking
+- `make stand`: Creates a new PDF with the current status of the document.
+- `make view`: Opens the configured viewer
+- `make mrproper`: Cleans up and removes also editor backup files.
+
+The `textlint` job of the `Check` workflow reports weakening words (e.g., "clearly", "just") in the English `.tex` files as annotations.
+Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
+
+```bash
+npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex
+```
 
 ### VS Code configuration
 
