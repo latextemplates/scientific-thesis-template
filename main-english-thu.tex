@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 953 (\begin{document}); the first
-%           heading (\chapter{Introduction}) is in line 1096.
+% vvvvvvvv  The content starts in line 952 (\begin{document}); the first
+%           heading (\chapter{Introduction}) is in line 1095.
 %           Everything above is the preamble: document class, packages, and settings.
 
 % The following package allows \\ at the title page
@@ -488,10 +488,9 @@
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-% Embed the bibliography data into the PDF so that readers can extract it
-% (e.g., with JabRef via "Import into library" on the PDF)
-\usepackage{embedfile}
-\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
+% To embed the bibliography into the PDF (readers can extract it, e.g., with JabRef via "Import into library" on the PDF), uncomment:
+%\usepackage{embedfile}
+%\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
 
 % Farbige Tabellen
 % ----------------
