@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 973 (\begin{document}); die erste
-%           Überschrift (\chapter{Introduction}) steht in Zeile 1115.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 901 (\begin{document}); die erste
+%           Überschrift (\chapter{Introduction}) steht in Zeile 1039.
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
 \documentclass[
@@ -299,118 +299,46 @@
 
 \definecolor{thublue}{RGB}{0,84,163}
 
-% Code Listings
-\usepackage{listings}
+% See https://github.com/gpoore/minted
+\usepackage[newfloat]{minted}
 
-% accsupp hält den Pfeil (siehe postbreak unten) aus dem kopierten Text heraus
-\usepackage{accsupp}
-
-\definecolor{eclipseStrings}{RGB}{42,0.0,255}
-\definecolor{eclipseKeywords}{RGB}{127,0,85}
-\colorlet{numb}{magenta!60!black}
-
-% JSON definition
-% Source: https://tex.stackexchange.com/a/433961/9075
-
-\lstdefinelanguage{json}{
-  basicstyle=\normalfont\ttfamily,
-  commentstyle=\color{eclipseStrings}, % style of comment
-  stringstyle=\color{eclipseKeywords}, % style of strings
-  numbers=left,
-  numberstyle=\scriptsize,
-  stepnumber=1,
-  numbersep=8pt,
-  showstringspaces=false,
-  breaklines=true,
-  frame=lines,
-  % backgroundcolor=\color{gray}, %only if you like
-  string=[s]{"}{"},
-  comment=[l]{:\ "},
-  morecomment=[l]{:"},
-  literate=
-    *{0}{{{\color{numb}0}}}{1}
-    {1}{{{\color{numb}1}}}{1}
-    {2}{{{\color{numb}2}}}{1}
-    {3}{{{\color{numb}3}}}{1}
-    {4}{{{\color{numb}4}}}{1}
-    {5}{{{\color{numb}5}}}{1}
-    {6}{{{\color{numb}6}}}{1}
-    {7}{{{\color{numb}7}}}{1}
-    {8}{{{\color{numb}8}}}{1}
-    {9}{{{\color{numb}9}}}{1}
+\setminted{
+  % Line numbers not flowing out of the margin
+  numbersep=5pt,
+  xleftmargin=12pt,
+  %
+  % Better listing breaking
+  breakafter=-/\{,
+  breakbefore=\\
+  %
+  % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
+  % breakbytoken=true,
+  % breakbytokenanywhere=true
 }
 
-\lstset{
-  % everything between (* *) is a latex command
-  escapeinside={(*}{*)},
-  %
-  language=json,
-  %
-  showstringspaces=false,
-  %
-  basicstyle=\footnotesize\ttfamily,
-  %
-  commentstyle=\slshape,
-  %
-  % Default: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
-  stringstyle=\ttfamily,
-  %
-  breaklines=true,            % Zeilen werden umbrochen
-  %
-  % Umbrochene Zeilen mit einem grauen Pfeil markieren. Dank accsupp wird der
-  % Pfeil nicht in den kopierten Text übernommen. Quelle: https://tex.stackexchange.com/a/649475/9075
-  postbreak=\raisebox{0ex}[0ex][0ex]{\BeginAccSupp{ActualText={}}\ensuremath{\color{gray}\hookrightarrow\space}\EndAccSupp{}},
-  %
-  breakatwhitespace=true,
-  %
-  % Alternative: fixed
-  columns=flexible,
-  %
-  tabsize=2,                  % Groesse von Tabs
-  %
-  numbers=left,
-  %
-  numberstyle=\tiny,
-  %
-  basewidth=.5em,
-  %
-  xleftmargin=.5cm,
-  %
-  % aboveskip=0mm,
-  %
-  % belowskip=0mm,
-  %
-  captionpos=b
-}
+%\usemintedstyle{bw} %black and white style
+%\usemintedstyle{vs} %visual studio
+\usemintedstyle{friendly_grayscale}
+%\usemintedstyle{friendly}
+%\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
+%\usemintedstyle{autumn}
+%\usemintedstyle{rrt}
+%\usemintedstyle{borland}
 
-\ifpdftex
-  % Ermögliche Umlaute falls \lstinputputlisting genutzt wird
-  % Siehe https://stackoverflow.com/a/29260603/873282 und https://tex.stackexchange.com/a/24532/9075 für Details.
-  % listingsutf8 hat im Juni 2020 nicht funktioniert.
-  \lstset{extendedchars=true, literate=
-      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-      {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-      {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-      {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-      {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-      {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
-      {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-      {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-      {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-  }
-\fi
+% We need to load caption to have a bold font on the label
+% The other parameters mimic the layout of the LNCS class
+\usepackage[labelfont=bf,font=small,skip=4pt]{caption}
+\SetupFloatingEnvironment{listing}{name=List.,within=none}
 
-\lstloadlanguages{% Check dokumentation for further languages...
-  %[Visual]Basic
-  %Pascal
-  %C
-  %C++
-  %XML
-  %HTML
-}
+% When using both minted and listings
+% Compatibility of packages minted and listings with respect to the numbering of "List." caption
+% Source: https://tex.stackexchange.com/a/269510/9075
+% \AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
+% \AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+
+% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\labelline}[1]{\label{#1}\hypertarget{#1}{}}
+\newcommand{\refline}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
 % For easy quotations: \enquote{text}
 % This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
@@ -754,7 +682,7 @@
 \usepackage{hologo} % logos such as \hologo{LuaLaTeX} (used in the Markdown example)
 \usepackage[realmainfile]{currfile}
 \usepackage{tcolorbox}
-\tcbuselibrary{listings}
+\tcbuselibrary{minted}
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
@@ -1087,11 +1015,7 @@
 \listoffigures
 
 \listoftables
-
-% We use lstlisting environments with caption paramters.
-% Thus, we need that command.
-% Alternative: \listof{Listing}{List of Listings}
-\lstlistoflistings
+\listoflistings
 
 %mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
 %Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
@@ -1460,22 +1384,16 @@ Then you can be sure that your readers can follow your interpretation and reach 
     coltext=black!90,
     left=8mm,
     title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
-    listing options={
-        frame=none,
-        language={[LaTeX]TeX},
-        escapeinside={},
+    minted language=TeX,
+    minted style=vs,
+    minted options={
+        fontsize=\footnotesize,
         firstline=\the\LTGbeginlineexample,
         lastline=\the\LTGendlineexample,
         firstnumber=\the\LTGbeginlineexample,
-        basewidth=.5em,
-        % lange Zeilen auch ohne Leerzeichen umbrechen (z.B. \includegraphics[...]{...}); sonst ragen sie aus der Box
-        breakatwhitespace=false,
-        aboveskip=0mm,
-        belowskip=0mm,
-        numbers=left,
-        xleftmargin=0mm,
-        numberstyle=\tiny,
-        numbersep=8pt%
+        breaklines,
+        linenos,
+        numbersep=8pt
       }
   }
 }%
@@ -1846,79 +1764,63 @@ The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on e
 \end{longtable}
 \end{ltgexample}
 
-\section{Quellcode}
+\section{Source Code}
+
+\href{https://github.com/gpoore/minted}{minted} is a sophisticated package to enable properly highlighted listings.
+It uses the \href{http://pygments.org/}{pygments} library, which in turn requires Python.
 
 \begin{ltgexample}
-\Zcref{lst:XML} zeigt XML-Quelltext.
-\Zcref{line:comment} enthält einen Kommentar.
+\Zcref{lst:XML} shows source code written in XML.
+\refline{line:comment} contains a comment.
 
-\begin{lstlisting}[
-  language=XML,
-  caption={Beispiel-XML-Listing},
-  label={lst:XML}]
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{xml}
 <listing name="example">
-  <!-- comment --> (* \label{line:comment} *)
+  <!-- comment --> |\labelline{line:comment}|
   <content>not interesting</content>
 </listing>
-\end{lstlisting}
+\end{minted}
+  \caption{Example XML listing using minted}
+  \label{lst:XML}
+\end{listing}
 \end{ltgexample}
 
-Der zusätzliche Parameter \verb+float+ führt dazu, dass das Listing auch floated.
-\Zcref{lst:flXML} zeigt das gleitende Listing.
+One can also typeset JSON as shown in \zcref{lst:flJSON}.
 
 \begin{ltgexample}
-\begin{lstlisting}[
-  % Es ist möglcih, die Abstände bei Bedarf einzustellen
-  % aboveskip=2.5\baselineskip,
-  % belowskip=-.8\baselineskip,
-  float,
-  language=XML,
-  caption={Beispiel-XML-Listing -- gleitend},
-  label={lst:flXML}]
-<listing name="example">
-  Floating
-</listing>
-\end{lstlisting}
-\end{ltgexample}
-
-Es ist möglich auch JSON zu setzen, wie in \zcref{lst:json} gezeigt.
-
-\begin{ltgexample}
-\begin{lstlisting}[
-  float,
-  language=json,
-  caption={Beispiel-JSON-listing},
-  label={lst:json}]
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{json}
 {
   key: "value"
 }
-\end{lstlisting}
+\end{minted}
+  \caption{Example JSON listing using minted}
+  \label{lst:flJSON}
+\end{listing}
 \end{ltgexample}
 
-Java ist auch möglich -- \zcref{lst:java}.
+Java is also possible as shown in \zcref{lst:flJava}.
 
 \begin{ltgexample}
-\begin{lstlisting}[
-  caption={Example Java listing},
-  label=lst:java,
-  language=Java,
-  float]
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{java}
 public class Hello {
     public static void main (String[] args) {
         System.out.println("Hello World!");
     }
 }
-\end{lstlisting}
+\end{minted}
+  \caption{Java code rendered using minted}
+  \label{lst:flJava}
+\end{listing}
 \end{ltgexample}
 
 Listings longer than the remaining space continue on the next page if they are \emph{not} floating.
 A floating listing is always placed on a single page.
+Thus, use \verb+\captionof{listing}+ instead of the \verb+listing+ environment.
 \Zcref{lst:long} spans multiple pages.
 
-\begin{lstlisting}[
-  language=Java,
-  caption={Long Java listing spanning multiple pages},
-  label={lst:long}]
+\begin{minted}[linenos=true]{java}
 public class Squares {
 
     /** Returns the square of 1. */
@@ -1985,7 +1887,9 @@ public class Squares {
         System.out.println(new Squares().square12());
     }
 }
-\end{lstlisting}
+\end{minted}
+\captionof{listing}{Long Java listing spanning multiple pages}
+\label{lst:long}
 
 \section{Itemization}
 
