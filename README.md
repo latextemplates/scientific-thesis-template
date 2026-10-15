@@ -58,7 +58,7 @@ Following features are enabled in this template:
 - (Optional) Typesetting of listings using advanced highlighting powered by the [minted] package.
   `minted` provides better output than [listings], but requires [latexminted] to be installed.
 - Generated PDF allows for copy and paste of text without getting words with [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) such as "workflow" destroyed.
-  This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
+  With pdfLaTeX, this is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters; LuaLaTeX does this by itself.
 - Ligatures are removed if they are typeset at the wrong place.
   This is enabled by the [selnolig](https://tex.meta.stackexchange.com/questions/2884/new-package-selnolig-that-automates-suppression-of-typographic-ligatures) package.
 - Support of hyperlinked references without extra color thanx to [hyperref].
@@ -255,7 +255,7 @@ lualatex --synctex=1 --shell-escape main-english
 
 Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
 
-### Q: How do I check a passage in another language?
+### Q: How do I spell check a passage in another language?
 
 Use the `\foreignlanguage{language}{text}` command.
 LTeX+ will detect these elements and automatically switch the spell checker's language.
