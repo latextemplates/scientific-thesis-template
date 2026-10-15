@@ -271,6 +271,26 @@ lualatex --synctex=1 main-english
 
 Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
 
+### Q: I get `! Package minted Error: minted v3+ executable is not installed`
+
+The complete output reads:
+
+```text
+! Package minted Error: minted v3+ executable is not installed, is not added to
+ PATH, or is not permitted with restricted shell escape; or MiKTeX is being use
+d with -aux-directory or -output-directory without setting a TEXMF_OUTPUT_DIREC
+TORY environment variable.
+```
+
+The [minted] package needs Python and the Python package [latexminted].
+The Docker image and Overleaf contain both.
+For a local installation:
+
+1. Install Python, e.g., `choco install python` on Windows.
+2. Install or repair [latexminted]: `python -m pip install --force-reinstall latexminted` (see [minted#425](https://github.com/gpoore/minted/issues/425)).
+
+Without Python, use the `*-basic-listings*.tex` variant: it typesets source code with the [listings] package.
+
 ### Q: How do I spell check a passage in another language?
 
 Use the `\foreignlanguage{language}{text}` command.
@@ -315,32 +335,6 @@ Alternatively, execute `make format`.
 ### Q: How I want to obey the one-sentence-per-line rule. How to do?
 
 See "How can I reformat my `.tex` files?"
-
-### Q: I want to use minted, because I think its syntax highlighting seems to be better.
-
-You can re-generate the template and choose `minted` as listings environment.
-Moreover, ensure that python and [latexminted] are installed properly:
-
-- `choco install python`
-- `pip install latexminted`
-
-### Q: I have troubles with minted on Windows.
-
-For instance, on gets following output:
-
-```text
-! Package minted Error: minted v3+ executable is not installed, is not added to
- PATH, or is not permitted with restricted shell escape; or MiKTeX is being use
-d with -aux-directory or -output-directory without setting a TEXMF_OUTPUT_DIREC
-TORY environment variable.
-```
-
-Try out following command to update `latexminted`.
-See [minted#425](https://github.com/gpoore/minted/issues/425) for details.
-
-```shell
-python3 -m pip install --force-reinstall latexminted
-```
 
 ### Q: Can I also write in German?
 
