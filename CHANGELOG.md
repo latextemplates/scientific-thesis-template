@@ -48,6 +48,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - German documents configure `autotype` with `ligatures=selective` instead of the outdated `ligbreak`.
 - The sans-serif font TeX Gyre Heros is available in bold.
 - `kvoptions-patch` is no longer loaded; LaTeX 2026-06-01 aborts loading it.
+- `vscode.settings.json`: the recipes run `lualatex` (resp. `pdflatex`) with the right bibliography tool.
 
 ## [2026-10-14]
 
