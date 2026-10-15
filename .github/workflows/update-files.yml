@@ -78,8 +78,8 @@ jobs:
             VARIANT="-${{ matrix.variant }}"
           fi
 
-          if [ ${{ matrix.listings }} == "minted" ]; then
-            mv main-$LANGUAGE.tex main-minted-$LANGUAGE$VARIANT.tex
+          if [ ${{ matrix.listings }} == "listings" ]; then
+            mv main-$LANGUAGE.tex main-basic-listings-$LANGUAGE$VARIANT.tex
           else
             if [ -n "$VARIANT" ]; then
               mv main-$LANGUAGE.tex main-$LANGUAGE$VARIANT.tex

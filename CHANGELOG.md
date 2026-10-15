@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- `main-*.tex` use minted; the variants with listings are `main-basic-listings-*.tex`.
+
 ## [2026-10-15]
 
 ### Added
