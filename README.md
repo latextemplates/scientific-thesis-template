@@ -161,7 +161,7 @@ To have `minted` running with a traditional installation, you have to do followi
 
 [latexmk] runs the LaTeX tools (e.g., lualatex and biber) as often as needed to get the final PDF ([why `latexmk` is great](https://tex.stackexchange.com/a/249243/9075)).
 It reads its configuration from `.latexmkrc` in the directory of the document.
-Overleaf reads `.latexmkrc`, too, so the "Compiler" setting of the Overleaf project does not matter.
+Overleaf reads `.latexmkrc`, too, so the "Compiler" setting of the Overleaf project does not matter; select TeX Live 2026 there.
 To use the configuration for all your documents, put it at [the right place](http://tex.stackexchange.com/a/41149/9075).
 
 Build the document:
