@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 952 (\begin{document}); the first
-%           heading (\chapter{Introduction}) is in line 1095.
+% vvvvvvvv  The content starts in line 951 (\begin{document}); the first
+%           heading (\chapter{Introduction}) is in line 1094.
 %           Everything above is the preamble: document class, packages, and settings.
 
 % The following package allows \\ at the title page
@@ -161,9 +161,8 @@
     \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolatazi4}
   \fi
 
-  % Enable proper ligatures
+  % Enable proper ligatures for English documents (German documents use autotype, see ADR-0008)
   % For more information see https://ctan.org/pkg/selnolig
-  % language "english" or "ngerman" is passed to selnolig by the document class
   \usepackage{selnolig}
 
 \else
