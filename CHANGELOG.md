@@ -35,6 +35,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The list of abbreviations is generated when building with `latexmk`.
 - The `.markdown.in` file of the markdown package is ignored by git and removed by `latexmk -c`.
 - textlint ignores expl3 function names, Markdown reference IDs, and the name of the markdown package.
+- German documents load only `autotype` (not additionally `selnolig`) for correct ligatures.
 
 ## [2026-10-14]
 
