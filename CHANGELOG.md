@@ -36,6 +36,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - `vscode.settings.json` contains the Docker settings of LaTeX Workshop and does not build on save.
 - README.md: compilation hints consolidated in "LaTeX compilation".
 - docs/overleaf: no step for `latexmkrc` any more.
+- minted compiles without `--shell-escape`.
 
 ### Fixed
 
@@ -49,6 +50,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The sans-serif font TeX Gyre Heros is available in bold.
 - `kvoptions-patch` is no longer loaded; LaTeX 2026-06-01 aborts loading it.
 - `vscode.settings.json`: the recipes run `lualatex` (resp. `pdflatex`) with the right bibliography tool.
+- README.md: the examples are labeled "with minted" (they contain no PlantUML).
 
 ## [2026-10-14]
 
