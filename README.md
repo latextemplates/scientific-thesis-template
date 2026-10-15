@@ -39,7 +39,7 @@ The template will be extended to support theses from more institutions.
 
 3. Compile with "lualatex + biber" in your TeX editor or with `latexmk main-english` / `make` on the command line.
 
-### Usage at overleaf
+### Usage at Overleaf
 
 See [docs/overleaf](docs/overleaf/).
 
@@ -83,7 +83,7 @@ You can run the [latex template generator] to enable the features.
 
 Congratulations. You chose to use all available features.
 
-## Contained Directories and Files
+## Contained directories and files
 
 ### Directories
 
