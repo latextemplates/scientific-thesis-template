@@ -9,9 +9,9 @@ The template will be extended to support theses from more institutions.
 ### University of Stuttgart, Computer Science
 
 - 🇺🇸 [English example](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)
-- 🇺🇸 [English example with listings instead of minted](https://latextemplates.github.io/scientific-thesis-template/main-basic-listings-english.pdf)
+- 🇺🇸 [English example using the listings package (instead of minted) for source code](https://latextemplates.github.io/scientific-thesis-template/main-basic-listings-english.pdf)
 - 🇩🇪 [German example](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)
-- 🇩🇪 [German example with listings instead of minted](https://latextemplates.github.io/scientific-thesis-template/main-basic-listings-german.pdf)
+- 🇩🇪 [German example using the listings package (instead of minted) for source code](https://latextemplates.github.io/scientific-thesis-template/main-basic-listings-german.pdf)
 
 ### Universität Hamburg, Computer Science
 
