@@ -5,13 +5,10 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 976 (\begin{document}); die erste
-%           Überschrift (\chapter{Introduction}) steht in Zeile 1118.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 973 (\begin{document}); die erste
+%           Überschrift (\chapter{Introduction}) steht in Zeile 1115.
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
-% The following package allows \\ at the title page
-% For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
-\RequirePackage{kvoptions-patch}
 \documentclass[
   % fontsize=11pt is the standard
   % ()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
@@ -153,7 +150,7 @@
     Ligatures=TeX
   ]
   % See https://tug.org/FontCatalogue/texgyreheros/ for more information
-  \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
+  \setsansfont[Scale=.9]{TeX Gyre Heros}
   % shapely l, upright quotes
   % Normal scaling is too large --> thus, we use ",Scale=.9"
   \ifwindows
@@ -978,7 +975,7 @@
 \ifluatex
   % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
   % See ADR-0008 for alternatives
-  \autotypelangoptions{ngerman}{ligbreak}
+  \autotypelangoptions{ngerman}{ligatures=selective}
 \fi
 
 \pagenumbering{arabic}
