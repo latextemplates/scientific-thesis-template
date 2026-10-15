@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Variant for the Technische Hochschule Ulm (THU): `main-english-thu.tex`, `main-german-thu.tex`, and the minted variants have a title page with the THU logo ([CC BY-SA 4.0 by Hochschule Ulm](https://commons.wikimedia.org/wiki/File:THU_Logo_Subline_deutsch_RGB.png)) and the declaration signed in Ulm.
+- The LaTeX hints show how to color table rows and cells (`\rowcolor`, `\cellcolor`). [scientific-thesis-template#87](https://github.com/latextemplates/scientific-thesis-template/pull/87)
+- `make log` shows the relevant messages of the LaTeX log (texlogsieve).
+
+### Changed
+
+- The thesis is laid out single-sided; the header shows the chapter on the left and the section on the right.
+- The Universität Hamburg variant uses the logo as vector graphic `figures/uhh-logo.pdf` ([public domain, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:UHH_Universit%C3%A4t_Hamburg_Logo_mit_Schrift_2010_Farbe_CMYK.svg)) instead of `figures/UHH-Logo_2010_Farbe_CMYK.png`.
+- The README lists the example PDFs per institution.
+- `make format` (and thus CI) indents all main files (`main*.tex`), not only `MASTER_TEX`.
+- VS Code: the recommended extension is `james-yu.latex-workshop` (`manhen.latex-workshop-2` was removed from the stores).
+- VS Code: the background of the PDF viewer follows the light or dark theme.
+- Dependabot groups all GitHub Actions updates into one weekly PR.
+- `check.yml` pins all GitHub Actions to commit SHAs.
+- README.md: sections reordered.
+- README.md: on Overleaf, select TeX Live 2026.
+- README.md: passages in another language are an FAQ.
+- README.md: links the decision records of the template generator.
+- The decision records moved to the [template generator](https://github.com/latextemplates/generator-latex-template/tree/main/docs/decisions).
+- README.md: the supported institutions are headings.
+- README.md: "Usage with docker" merged into "Docker-based (recommended)".
+- Embedding the `.bib` file into the PDF is opt-in.
+- `.latexmkrc` replaces `_latexmkrc`; it works on Overleaf, too.
+- `make` runs the LaTeX tools in the Docker image (`make LOCAL=1` runs them locally).
+- `vscode.settings.json` contains the Docker settings of LaTeX Workshop and does not build on save.
+- README.md: compilation hints consolidated in "LaTeX compilation".
+- docs/overleaf: no step for `latexmkrc` any more.
+- minted compiles without `--shell-escape`.
+
+### Fixed
+
+- The README links the `figures/` directory, and `.dockerignore` excludes the generated `figures/*.pdf_tex` files. [generator-latex-template#586](https://github.com/latextemplates/generator-latex-template/pull/586)
+- The list of abbreviations is generated when building with `latexmk`.
+- The `.markdown.in` file of the markdown package is ignored by git and removed by `latexmk -c`.
+- textlint ignores expl3 function names, Markdown reference IDs, and the name of the markdown package.
+- German documents load only `autotype` (not additionally `selnolig`) for correct ligatures.
+- `make view` opens the PDF on Linux and macOS.
+- German documents configure `autotype` with `ligatures=selective` instead of the outdated `ligbreak`.
+- The sans-serif font TeX Gyre Heros is available in bold.
+- `kvoptions-patch` is no longer loaded; LaTeX 2026-06-01 aborts loading it.
+- `vscode.settings.json`: the recipes run `lualatex` (resp. `pdflatex`) with the right bibliography tool.
+- README.md: the examples are labeled "with minted" (they contain no PlantUML).
+
 ## [2026-10-14]
 
 ### Added

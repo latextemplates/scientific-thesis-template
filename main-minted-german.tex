@@ -2,17 +2,13 @@
 % LTeX: language=de-DE
 % !TeX encoding = utf8
 % !TeX program = lualatex
-% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 903 (\begin{document}); die erste
-%           Überschrift (\chapter{Introduction}) steht in Zeile 1011.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 898 (\begin{document}); die erste
+%           Überschrift (\chapter{Introduction}) steht in Zeile 1006.
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
-% The following package allows \\ at the title page
-% For more information see https://github.com/latextemplates/scientific-thesis-cover/issues/4
-\RequirePackage{kvoptions-patch}
 \documentclass[
   % fontsize=11pt is the standard
   % ()Aus scrguide.pdf - der Dokumentation von KOMA-Script)
@@ -24,7 +20,9 @@
   numbers=autoendperiod,
   ngerman,  % Neue deutsche Rechtschreibung; der Parameter wird an andere Pakete weiter gegeben
   a4paper,  % KOMAScript allows for both paper=a4 and (standard) a4paper - https://tex.stackexchange.com/a/61044/9075
-  twoside,  % We are optimizing for both screen and two-sided printing. So the page numbers will jump, but the content is configured to stay in the middle (by using the geometry package)
+  twoside=false,  % optimiert für das Lesen am Bildschirm: gleiche Ränder auf jeder Seite und keine leeren Seiten
+  open=any,       % ein Kapitel beginnt auf der nächsten Seite, nicht unbedingt auf einer rechten
+  % Für beidseitigen Druck die beiden Zeilen darüber durch "twoside, open=right," ersetzen
   bibliography=totoc,
   % idxtotoc,   % Index ins Inhaltsverzeichnis
   % liststotoc, % List of * ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
@@ -132,7 +130,7 @@
 
 %% !!! If you change the font, be sure that words such as "workflow" can
 %% !!! still be copied from the PDF. If this is not the case, you have
-%% !!! to use glyphtounicode. See comment at cmap package.
+%% !!! to use glyphtounicode (pdflatex only). See the comment at \input{glyphtounicode}.
 %%
 %% Background: "workflow" contains "fl" which is a ligature, which in turn
 %%             is rendered as one character in the PDF and needs to be split
@@ -152,7 +150,7 @@
     Ligatures=TeX
   ]
   % See https://tug.org/FontCatalogue/texgyreheros/ for more information
-  \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
+  \setsansfont[Scale=.9]{TeX Gyre Heros}
   % shapely l, upright quotes
   % Normal scaling is too large --> thus, we use ",Scale=.9"
   \ifwindows
@@ -160,11 +158,6 @@
   \else
     \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolatazi4}
   \fi
-
-  % Enable proper ligatures
-  % For more information see https://ctan.org/pkg/selnolig
-  % language "english" or "ngerman" is passed to selnolig by the document class
-  \usepackage{selnolig}
 
 \else
   \RequirePackage{newtxtext}
@@ -183,7 +176,7 @@
 
 % Fallback font - if the subsequent font packages do not define a font (e.g., monospaced)
 %     This is the modern package for "Computer Modern".
-%     In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+%     In case this gets activated, check that ligatures can still be copied (pdflatex: glyphtounicode)
 %\usepackage[%
 %    rm={oldstyle=false,proportional=true},%
 %    sf={oldstyle=false,proportional=true},%
@@ -237,13 +230,16 @@
 %\usepackage{mathrsfs} % nice cursive letters via \mathscr{}
 %\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
 
+% Header: the chapter on the left, the current section on the right.
+% autooneside=false keeps the section mark in a single-sided document.
+\KOMAoptions{autooneside=false}
 \automark[section]{chapter}
 \setkomafont{pageheadfoot}{\normalfont\sffamily}
 \setkomafont{pagenumber}{\normalfont\sffamily}
 
-\ihead[]{}
+\ihead[]{\leftmark}
 \chead[]{}
-\ohead[]{\headmark}
+\ohead[]{\rightmark}
 \cfoot[]{}
 \ofoot[\usekomafont{pagenumber}\thepage]{\usekomafont{pagenumber}\thepage}
 \ifoot[]{}
@@ -423,10 +419,9 @@
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-% Embed the bibliography data into the PDF so that readers can extract it
-% (e.g., with JabRef via "Import into library" on the PDF)
-\usepackage{embedfile}
-\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
+% To embed the bibliography into the PDF (readers can extract it, e.g., with JabRef via "Import into library" on the PDF), uncomment:
+%\usepackage{embedfile}
+%\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
 
 % Farbige Tabellen
 % ----------------
@@ -763,12 +758,12 @@
 % Package URL: https://ctan.org/pkg/scientific-thesis-cover
 \usepackage[
   title={Förderungswürdigkeit der F\"{o}rderung von Öl},
-  author={Bernhard Diener},
+  author={Kim Sonne},
   type=bachelor,
   institute=iaas, % oder einfach {Demo\\Demo...}
   course={Medieninformatik},
-  examiner={Prof.\ Dr.\ Uwe Fessor},
-  supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
+  examiner={Prof.\ Dr.\ Eike Kraft},
+  supervisor={Luca Wind,\ M.Sc.,\\Janne Strom,\ M.Sc.},
   startdate={5.\ Juli 2013},
   enddate={5.\ Januar 2014}
 ]{scientific-thesis-cover}
@@ -905,7 +900,7 @@
 \ifluatex
   % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
   % See ADR-0008 for alternatives
-  \autotypelangoptions{ngerman}{ligbreak}
+  \autotypelangoptions{ngerman}{ligatures=selective}
 \fi
 
 \pagenumbering{arabic}
@@ -1656,6 +1651,25 @@ Coordinates can also be given explicitly instead of as a function:
     \midrule
     One      & Two      \\
     Three    & Four     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ltgexample}
+
+Rows and cells can be colored with \verb|\rowcolor| and \verb|\cellcolor| from the \href{https://ctan.org/pkg/colortbl}{colortbl} package, which \href{https://ctan.org/pkg/xcolor}{xcolor} loads with its option \verb|table|.
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Table with colored cells}
+  \label{tab:colored}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    \rowcolor{gray!20}
+    Test & Result                   \\
+    \midrule
+    A    & \cellcolor{green!20}pass \\
+    B    & \cellcolor{red!20}fail   \\
     \bottomrule
   \end{tabular}
 \end{table}

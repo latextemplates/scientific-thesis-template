@@ -4,7 +4,7 @@ generator-latex-template
 
 main-english.pdf
 main-english-*.pdf
-graphics/*.pdf_tex
+figures/*.pdf_tex
 
 # spelling
 *.spell.bad
