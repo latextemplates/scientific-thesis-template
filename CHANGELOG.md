@@ -17,11 +17,17 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The thesis is laid out single-sided, because it is read on screen: every page has the same margins, the page number stays at the bottom right, and there are no blank pages before chapters or after the cover. The header shows the chapter on the left and the current section on the right. For two-sided printing, replace `twoside=false, open=any` by `twoside, open=right` (see the comment at the document class options).
 - The Universität Hamburg variant uses the logo as vector graphic `figures/uhh-logo.pdf` ([public domain, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:UHH_Universit%C3%A4t_Hamburg_Logo_mit_Schrift_2010_Farbe_CMYK.svg)) instead of `figures/UHH-Logo_2010_Farbe_CMYK.png`.
 - The README lists the example PDFs per institution.
-- `make format` (and thus the latexindent check in CI) indents all main files (`main*.tex`), not only `MASTER_TEX`. A badly indented variant no longer goes unnoticed until it is made the `MASTER_TEX`.
+- `make format` (and thus CI) indents all main files (`main*.tex`), not only `MASTER_TEX`.
+- VS Code: the recommended extension is `james-yu.latex-workshop` (`manhen.latex-workshop-2` was removed from the stores).
+- VS Code: the background of the PDF viewer follows the light or dark theme.
+- Dependabot groups all GitHub Actions updates into one weekly PR.
+- `check.yml` pins all GitHub Actions to commit SHAs.
 
 ### Fixed
 
-- The README links the `figures/` directory (instead of the old `graphics/`), and `.dockerignore` excludes the generated `figures/*.pdf_tex` files. [generator-latex-template#586](https://github.com/latextemplates/generator-latex-template/pull/586)
+- The README links the `figures/` directory, and `.dockerignore` excludes the generated `figures/*.pdf_tex` files. [generator-latex-template#586](https://github.com/latextemplates/generator-latex-template/pull/586)
+- The list of abbreviations is generated when building with `latexmk`.
+- The `.markdown.in` file of the markdown package is ignored by git and removed by `latexmk -c`.
 
 ## [2026-10-14]
 
