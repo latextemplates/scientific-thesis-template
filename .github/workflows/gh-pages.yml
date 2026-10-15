@@ -27,9 +27,6 @@ jobs:
           updmap -sys
           texhash
           tlmgr generate language --rebuild-sys
-          if [ ! -f "latexmkrc" ]; then
-            cp "_latexmkrc" "latexmkrc"
-          fi
       - run: latexmk main-english
       - run: latexmk main-english-university-of-hamburg.tex
       - run: latexmk main-english-thu.tex
