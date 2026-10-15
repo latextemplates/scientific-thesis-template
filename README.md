@@ -143,6 +143,8 @@ Thus, `minted` works out of the box - also on Windows, without a separate Python
 
 1. Optional: Let VS Code compile in the container, see ["VS Code configuration"](#vs-code-configuration).
 
+If you need additional tools in the image (for instance, PlantUML), extend the generated `Dockerfile`, build it with `docker build -t ltg .`, and use `ltg` instead of the image name.
+
 #### Traditional
 
 Install a LaTeX distribution on your machine:
@@ -298,14 +300,6 @@ For example:
 ```latex
 \foreignlanguage{english}{Therefore, our proposed approach will change the world.}
 ```
-
-## Usage with docker
-
-The [TeX Live image by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image) is used as is - there is no need to build an own image.
-See ["Docker-based (recommended)"](#docker-based-recommended) for the installation of Docker and the commands to compile on Windows, Linux, and macOS.
-
-If you need additional tools in the image (for instance, PlantUML), extend the generated `Dockerfile`, build it with `docker build -t ltg .`, and use `ltg` instead of the image name.
-
 ## FAQs
 
 ### Q: How do I find the cause of a LaTeX error?
