@@ -211,7 +211,7 @@ Currently, following extensions are recommended:
 - [LaTeX Utilities](https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities) to enhance LaTeX Workshop
 - [LTeX+] to have a nice spell checker that also identifies grammar issues
 
-LaTeX Workshop builds with `latexmk`, which reads the configuration of this template (see ["latexmk hints"](#latexmk-hints)).
+With the settings below, LaTeX Workshop compiles with the recipe "lualatex ➞ biber ➞ lualatex × 2".
 To compile in the Docker container (see ["Docker-based (recommended)"](#docker-based-recommended)), add the following lines to VS Code's `settings.json` (<kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>P</kbd>, then "Preferences: Open Settings (JSON)"):
 
 ```javascript
