@@ -27,9 +27,6 @@ jobs:
           updmap -sys
           texhash
           tlmgr generate language --rebuild-sys
-          if [ ! -f "latexmkrc" ]; then
-            cp "_latexmkrc" "latexmkrc"
-          fi
       - run: latexmk main-english
 
       # Highlight mis-spelled words in the PDF
@@ -207,6 +204,6 @@ jobs:
         with:
           packages: latexindent
           texlive_version: 2026
-      - run: make format
+      - run: make format LOCAL=1
       - name: No changes made by latexindent
         run: git diff --exit-code
