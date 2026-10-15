@@ -201,6 +201,19 @@ Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
 npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex
 ```
 
+### UML diagrams with PlantUML or Mermaid
+
+The "LaTeX Hints" chapter shows UML diagrams drawn with MetaUML and pgf-umlsd, which need no further tools.
+PlantUML and Mermaid offer a more compact syntax and lay out the diagrams automatically, but need further tools: they are contained in the [Docker image by DANTE e.V.](https://github.com/dante-ev/docker-texlive).
+To use them, generate an own copy of this template with the [latex template generator]:
+
+```bash
+npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --uml=plantuml --docker=dante'
+```
+
+Use `--uml=mermaid` for Mermaid.
+The generator asks for the remaining options (institution, language, and package for source code), which distinguish the `main*.tex` files of this template.
+
 ### VS Code configuration
 
 Currently, following extensions are recommended:
