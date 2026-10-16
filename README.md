@@ -4,6 +4,8 @@ This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at the computer science departments listed below, each with example PDFs; other departments are untested.
 The template will be extended to support theses from more institutions.
 
+The LaTeX snippets this template is assembled from can be inspected at <https://latextemplates.github.io/latex-snippets/>.
+
 ## Supported institutions
 
 ### University of Stuttgart, Computer Science
@@ -42,8 +44,6 @@ The template will be extended to support theses from more institutions.
 ### Usage at Overleaf
 
 See [docs/overleaf](docs/overleaf/).
-
-The LaTeX snippets this template is assembled from can be inspected at <https://latextemplates.github.io/latex-snippets/>.
 
 ## Writing your thesis
 
