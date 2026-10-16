@@ -28,6 +28,9 @@
 \\renewcommand\*?\{[^}]*\}\{[^}]*\}	
 \\IEEEauthorblock[AN]\{.*	
 \\AtEndDocument\{.*	
+# \and separates authors and keywords
+^\s*\\and\s*$	
+\s*\\and\b	,
 \\subfloat\[([^]]*)\]\{.*	$1
 # Quotes and hyphens in the babel syntax
 "`	``
