@@ -43,8 +43,9 @@ jobs:
         # Needs more adaption for scientific thesis; therefore disabled
         if: ${{ false }}
         run: |
-          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
-            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+          for tex in *.tex chapters/*.tex; do
+            [ -e "$tex" ] || continue
+            if [[ "en" == "de" && ( "$tex" == thesis-example* || "$tex" == chapters/*.de.tex ) ]]; then
               continue
             fi
 
@@ -54,7 +55,7 @@ jobs:
               --encoding=utf-8\
               --conf=./.aspell.conf\
               -p ./.aspell.en.pws list\
-              < $tex | sort | uniq >> main-english.spell.bad
+              < "$tex" | sort | uniq >> main-english.spell.bad
           done
       - run: latexmk main-english
 
@@ -131,8 +132,9 @@ jobs:
           echo "| file | status |" >> $GITHUB_STEP_SUMMARY
           echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
           failure=0
-          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
-            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+          for tex in *.tex chapters/*.tex; do
+            [ -e "$tex" ] || continue
+            if [[ "en" == "de" && ( "$tex" == thesis-example* || "$tex" == chapters/*.de.tex ) ]]; then
               echo "$tex skipped"
               continue
             fi
@@ -141,17 +143,18 @@ jobs:
             # Pick the dictionary that matches the file's language: the "-de"
             # variants are German, everything else uses the document's language.
             case "$tex" in
-              *-de.tex|*-de-*.tex) aspell_lang="-l de_DE --run-together"; aspell_pws=de ;;
+              *-de.tex|*-de-*.tex|*.de.tex) aspell_lang="-l de_DE --run-together"; aspell_pws=de ;;
+              *.en.tex) aspell_lang="-l en_US"; aspell_pws=en ;;
               *) aspell_lang="-l en_US"; aspell_pws=en ;;
             esac
 
             # Words are output in the order they appear in the document
-            words=$(aspell --mode=tex $aspell_lang --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.$aspell_pws.pws list < $tex | tr '\n' ' ')
+            words=$(aspell --mode=tex $aspell_lang --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.$aspell_pws.pws list < "$tex" | tr '\n' ' ')
             if [ -z "$words" ]; then
               echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
             else
               echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
-              if [[ "$tex" == "main-english.tex" ]]; then
+              if [[ "$tex" == "main-english.tex" || "$tex" == chapters/*.en.tex ]]; then
                 failure=1
               fi
             fi
@@ -174,8 +177,15 @@ jobs:
           # Report-only: findings show up as annotations, the job does not fail.
           # Rules come from .textlintrc.json. Only English documents (marked by
           # "% !TeX spellcheck = en-US") are linted: write-good targets English.
-          files=$(grep -l '^% !TeX spellcheck = en' *.tex || true)
-          if [ -z "$files" ]; then
+          # The English chapters (chapters/*.en.tex) belong to them.
+          files=()
+          for tex in *.tex chapters/*.en.tex; do
+            [ -e "$tex" ] || continue
+            if [[ "$tex" == chapters/* ]] || grep -q '^% !TeX spellcheck = en' "$tex"; then
+              files+=("$tex")
+            fi
+          done
+          if [ ${#files[@]} -eq 0 ]; then
             echo "No English .tex files to lint." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
@@ -185,10 +195,10 @@ jobs:
             --package textlint-filter-rule-allowlist \
             --package textlint-rule-terminology \
             --package textlint-rule-write-good \
-            textlint --format github $files \
+            textlint --format github "${files[@]}" \
             | sed "s|${GITHUB_WORKSPACE}/||g" | tee annotations.txt || true
           count=$(grep -c '^::\(error\|warning\)' annotations.txt || true)
-          echo "textlint reported ${count} finding(s) in: ${files//$'\n'/, }" >> "$GITHUB_STEP_SUMMARY"
+          echo "textlint reported ${count} finding(s) in: $(IFS=,; echo "${files[*]}")" >> "$GITHUB_STEP_SUMMARY"
   textidote:
     runs-on: ubuntu-latest
     steps:
@@ -205,9 +215,14 @@ jobs:
           # TeXtidote (https://github.com/sylvainhalle/textidote) reads its options from .textidote.
           # -Djdk.xml.totalEntitySizeLimit=0: TeXtidote 0.9 fails on Java 24+ otherwise (fixed after 0.9: sylvainhalle/textidote#274)
           java -Djdk.xml.totalEntitySizeLimit=0 -jar "$RUNNER_TEMP/textidote.jar" --output singleline --no-color main-english.tex > textidote.txt || true
+          # TeXtidote mixes up the text of \include lines, so .textidote removes them and each chapter is checked on its own
+          for tex in chapters/*.en.tex; do
+            [ -e "$tex" ] || continue
+            java -Djdk.xml.totalEntitySizeLimit=0 -jar "$RUNNER_TEMP/textidote.jar" --output singleline --no-color --read-all "$tex" >> textidote.txt || true
+          done
           # A finding looks like: file.tex(L25C1-L25C25): message "excerpt"
           perl -ne 'if (/^(.+?)\(L(\d+)C(\d+)-L(\d+)C(\d+)\): (.*)$/) { my ($f, $l, $c, $el, $ec, $m) = ($1, $2, $3, $4, $5, $6); $m =~ s/%/%25/g; print "::warning file=$f,line=$l,col=$c,endLine=$el,endColumn=$ec,title=TeXtidote::$m\n" }' textidote.txt
-          echo "TeXtidote reported $(grep -c . textidote.txt) finding(s) in main-english.tex" >> "$GITHUB_STEP_SUMMARY"
+          echo "TeXtidote reported $(grep -c . textidote.txt) finding(s) in main-english.tex and its chapters" >> "$GITHUB_STEP_SUMMARY"
   indent:
     runs-on: ubuntu-latest
     steps:

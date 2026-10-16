@@ -38,6 +38,7 @@ The LaTeX snippets this template is assembled from can be inspected at <https://
         - English: `main-english.tex`
         - German: `main-german.tex`
         - Without Python (see below): `main-basic-listings-english.tex`, `main-basic-listings-german.tex`
+    - The text is in [`chapters/`](chapters/), one file per chapter and language (e.g., `chapters/01 - introduction.en.tex`), which the main files include.
 
 3. Compile with "lualatex + biber" in your TeX editor or with `latexmk main-english` / `make` on the command line.
 
@@ -87,13 +88,17 @@ Congratulations. You chose to use all available features.
 
 ### Directories
 
+- [chapters](chapters/) One file per chapter, included by the main file.
+  The suffix names the language (`.en`, `.de`).
+  The chapter on Markdown is a plain Markdown file (`.md`), included with `\markdownInput` (LuaLaTeX only).
+  The source code example of the LaTeX hints is a file of its own for each of the minted and listings packages.
 - [figures](figures/) Directory containing the figures.
   By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
 
 ### Files
 
 - `main-english.tex` - The main `.tex` file loading all LaTeX packages and their configurations.
-  - Add text here
+  - Add or remove chapters here
   - Adjust title, … here
 - [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
 - [abbreviations.tex](abbreviations.tex) - Acronyms and abbreviations.
@@ -191,7 +196,7 @@ On the command line, there are additional features:
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
 - `make spellcheck` runs all spell checkers:
   - `make spellcheck-aspell` for interactive spell checking with aspell
-  - `make spellcheck-textidote` checks spelling, grammar, and style with [TeXtidote](https://github.com/sylvainhalle/textidote) (report in `textidote.html`)
+  - `make spellcheck-textidote` checks spelling, grammar, and style with [TeXtidote](https://github.com/sylvainhalle/textidote) (report in `textidote.html`, for the chapters in `chapters/*.textidote.html`)
 - `make stand`: Creates a new PDF with the current status of the document.
 - `make view`: Opens the configured viewer
 - `make mrproper`: Cleans up and removes also editor backup files.
@@ -200,12 +205,12 @@ The `textlint` job of the `Check` workflow reports weakening words (e.g., "clear
 Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
 
 ```bash
-npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex
+npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex chapters/*.en.tex
 ```
 
 The `textidote` job of the `Check` workflow checks spelling, grammar, and style of English documents with [TeXtidote](https://github.com/sylvainhalle/textidote) and reports its findings as annotations.
 Its options are in `.textidote`.
-Run it locally with `make spellcheck-textidote`: it downloads `textidote.jar` once and writes the report `textidote.html`.
+Run it locally with `make spellcheck-textidote`: it downloads `textidote.jar` once and writes the report `textidote.html` (for the chapters: `chapters/*.textidote.html`).
 
 ### UML diagrams with PlantUML or Mermaid
 
