@@ -20,6 +20,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - README.md: minted FAQs merged and moved up.
 - docs/thesis-checklist.md: spell-checking tools named.
 - `make spellcheck` runs all spell checkers (`make aspell` is now `make spellcheck-aspell`).
+- GitHub workflows: actions pinned to commit SHAs.
 
 ### Fixed
 
