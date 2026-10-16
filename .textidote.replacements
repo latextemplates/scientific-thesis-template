@@ -24,6 +24,7 @@
 (\\textbackslash)+	backslash
 # Lines beginning and ending environments are no prose; \begin{document} and the environments removed in .textidote must stay.
 \\(begin|end)\{(?!(document|otherlanguage|listing|minted|lstlisting|verbatim|tikzpicture|mplibcode|sequencediagram|markdown|plantuml|mermaid|algorithm|algorithmic|equation\*?|align\*?|tabular|tabularx|longtable|tblr)\})[A-Za-z*]+\}(\{[^}]*\}|\[[^]]*\])*	
+\\ifdefined\\[a-zA-Z@]+	
 \\(if[a-zA-Z@]*|else|fi)\b	
 \\renewcommand\*?\{[^}]*\}\{[^}]*\}	
 \\IEEEauthorblock[AN]\{.*	
