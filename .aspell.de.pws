@@ -1,4 +1,4 @@
-personal_ws-1.1 de 154 utf-8
+personal_ws-1.1 de 165 utf-8
 ACM
 Access
 Atlantic
@@ -6,14 +6,18 @@ BPEL
 BPMN
 Bei
 Cleveref
+Crossmark
 Das
 Database
 Diag
+enumitem
 Firstname
 Fließtext
+fquote
 Geänderter
 Hier
 IEEEtran
+inparaenum
 JSON
 JabRef
 Kommentar
@@ -22,9 +26,12 @@ LaTeXing
 Lastname
 Lua
 LuaLaTeX
+luamplib
 Manuelle
 Markierter
 Markierung
+MetaPost
+MetaUML
 North
 Npn
 Nx
@@ -33,11 +40,14 @@ ORCID
 OldStyle
 Open
 Organization
+pdfcomment
 Practitioner
 Projects
 RDBMS
 RGB
 Rückverweise
+soulpos
+TODO
 TODOs
 Textfarbe
 Thesis
@@ -151,5 +161,6 @@ xcolor
 xleftmargin
 zcref
 zref
+Zref
 zvref
 œ

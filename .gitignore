@@ -2,15 +2,6 @@ main-english.pdf
 main-english-*.pdf
 figures/*.pdf_tex
 
-main-english.tex
-main-english-university-of-hamburg.tex
-main-german.tex
-main-german-university-of-hamburg.tex
-main-minted-english.tex
-main-minted-english-university-of-hamburg.tex
-main-minted-german.tex
-main-minted-german-university-of-hamburg.tex
-
 # glossaries
 *.glg-abr
 *.glo-abr
@@ -26,6 +17,13 @@ main-minted-german-university-of-hamburg.tex
 # plantuml
 *-plantuml.latex
 *-plantuml.txt
+
+# ltmermaid (rendered Mermaid diagrams)
+mermaid/
+
+# TeXtidote (make spellcheck-textidote)
+textidote.jar
+textidote.html
 
 # markdown package (cache of converted Markdown)
 _markdown_*/

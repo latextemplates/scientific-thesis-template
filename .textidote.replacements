@@ -1,0 +1,40 @@
+# TeXtidote applies these replacements before checking (see .textidote).
+# Each line: a regular expression, a tab, and its replacement.
+# Cross-references and glossary entries become plain words, captions and ellipses plain text.
+\\[Zz]cref(\[[^]]*\])?\{[^}]*\}	Section 1
+\\[Zz]vref(\[[^]]*\])?\{[^}]*\}	Section 1
+\\[Cc]ref\{[^}]*\}	Section 1
+\\refline\{[^}]*\}	Line 1
+\\[Gg]ls(pl)?(\[[^]]*\])?\{[^}]*\}	Term
+\\[Aa]cr[a-z]*\{[^}]*\}	Term
+\\captionof\{[^}]*\}\{([^}]*)\}	$1
+\\ding(check|cross)	X
+\\print[a-z]*glossar[a-z]*(\[[^]]*\])?	
+\\l?dots(\{\})?	…
+\.\.\.	…
+\\LaTeX(\{\})?	LaTeX
+\\TeX(\{\})?	TeX
+\\SI\{[^}]*\}\{[^}]*\}	5 m
+# Comments and changes (see the "LaTeX Hints"): only the visible text remains.
+\\textcomment\{([^}]*)\}\{[^}]*\}	$1
+\\change\{[^}]*\}\{([^}]*)\}	$1
+# Code is no prose.
+\\texttt\{[^}]*\}	code
+\\verb(.).*?\1	code
+(\\textbackslash)+	backslash
+# Lines beginning and ending environments are no prose; \begin{document} and the environments removed in .textidote must stay.
+\\(begin|end)\{(?!(document|otherlanguage|listing|minted|lstlisting|verbatim|tikzpicture|mplibcode|sequencediagram|markdown|plantuml|mermaid|algorithm|algorithmic|equation\*?|align\*?|tabular|tabularx|longtable|tblr)\})[A-Za-z*]+\}(\{[^}]*\}|\[[^]]*\])*	
+\\(if[a-zA-Z@]*|else|fi)\b	
+\\renewcommand\*?\{[^}]*\}\{[^}]*\}	
+\\IEEEauthorblock[AN]\{.*	
+\\AtEndDocument\{.*	
+# \and separates authors and keywords
+^\s*\\and\s*$	
+\s*\\and\b	,
+\\subfloat\[([^]]*)\]\{.*	$1
+# Quotes and hyphens in the babel syntax
+"`	``
+"'	''
+"=	-
+# The abstract in the other language is removed (environment otherlanguage), its heading as well.
+\\(chapter|section)\*\{(Kurzfassung|Abstract)\}	

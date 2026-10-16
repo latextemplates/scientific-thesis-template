@@ -10,7 +10,8 @@ Note that it is enough to point to `languagetool-server.jar`.
 The template is compiled using normal compilation commands.
 Your LaTeX environment (such as [TeXStudio]) should take care about the compilation transparently.
 
-If you open `main-minted-german.tex`, there will be a warning that the compilation command will be overridden.
+If the document needs `--shell-escape` (for PlantUML or Mermaid diagrams, or for minted with TeX Live 2024), its first lines tell TeXstudio to compile with `--shell-escape`.
+Then, TeXstudio warns that the compilation command will be overridden.
 Please answer `(a) allow for this document`:
 
 ![allow --shell-escape for this document](texstudio-confirmation-1.png)

@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- The LaTeX hints show UML diagrams without further tools: [MetaUML](https://ctan.org/pkg/metauml) class and component diagrams (LuaLaTeX) and a [pgf-umlsd](https://ctan.org/pkg/pgf-umlsd) sequence diagram.
+- README.md: how to generate an own copy with PlantUML or Mermaid.
+- [TeXtidote](https://github.com/sylvainhalle/textidote) checks spelling, grammar, and style (configuration `.textidote`, `make spellcheck-textidote`), for English documents in CI.
+- VS Code: [JabRef 4 VSCode](https://marketplace.visualstudio.com/items?itemName=jabref.jabref-4-vscode) recommended.
+
+### Changed
+
+- `main-*.tex` use minted; the variants using the listings package are `main-basic-listings-*.tex`.
+- README.md: minted FAQs merged and moved up.
+- docs/thesis-checklist.md: spell-checking tools named.
+- `make spellcheck` runs all spell checkers (`make aspell` is now `make spellcheck-aspell`).
+- GitHub workflows: actions pinned to commit SHAs.
+
+### Fixed
+
+- Example texts: spelling and grammar fixed.
+- Makefile: `.PHONY` lists all targets; `make spellcheck-aspell` and `make showundef` work.
+
 ## [2026-10-15]
 
 ### Added
