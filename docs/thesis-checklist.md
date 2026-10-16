@@ -46,6 +46,6 @@ A reader who opens the thesis anywhere and has ten minutes must find their way.
 - [ ] The PDF shows no `??` (undefined references or citations).
 - [ ] All TODO notes are resolved.
 - [ ] All hints and examples of this template are removed.
-- [ ] The text is spell-checked and grammar-checked, e.g., with LTeX+ in your editor, `make aspell`, or `make textidote` (see the README).
+- [ ] The text is spell-checked and grammar-checked, e.g., with LTeX+ in your editor, or `make spellcheck` (see the README).
 - [ ] The title page is correct: title, your name, supervisors, dates.
 - [ ] The formal requirements of your examination office are met (page limit, signed declaration, number of copies, file format).
