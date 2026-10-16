@@ -76,7 +76,7 @@ Following features are enabled in this template:
 - Proper hyphenation and microtype for English texts.
 - Hints on writing an abstract and thesis by Dirk Fahland.
 
-## Disabled features
+### Disabled features
 
 Following features were not activated for this template.
 You can run the [latex template generator] to enable the features.
