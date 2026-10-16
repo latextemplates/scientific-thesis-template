@@ -21,7 +21,7 @@ figures/*.pdf_tex
 # ltmermaid (rendered Mermaid diagrams)
 mermaid/
 
-# TeXtidote (make textidote)
+# TeXtidote (make spellcheck-textidote)
 textidote.jar
 textidote.html
 
