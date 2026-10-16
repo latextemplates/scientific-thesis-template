@@ -11,17 +11,19 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - The LaTeX hints show UML diagrams without further tools: MetaUML class and component diagrams (LuaLaTeX) and a pgf-umlsd sequence diagram.
 - README.md: how to generate an own copy with PlantUML or Mermaid.
-- [TeXtidote](https://github.com/sylvainhalle/textidote) checks spelling, grammar, and style (configuration `.textidote`, `make textidote`), for English documents in CI.
+- [TeXtidote](https://github.com/sylvainhalle/textidote) checks spelling, grammar, and style (configuration `.textidote`, `make spellcheck-textidote`), for English documents in CI.
 
 ### Changed
 
 - `main-*.tex` use minted; the variants using the listings package are `main-basic-listings-*.tex`.
 - README.md: minted FAQs merged and moved up.
 - docs/thesis-checklist.md: spell-checking tools named.
+- `make spellcheck` runs all spell checkers (`make aspell` is now `make spellcheck-aspell`).
 
 ### Fixed
 
 - Example texts: spelling and grammar fixed.
+- Makefile: `.PHONY` lists all targets; `make spellcheck-aspell` and `make showundef` work.
 
 ## [2026-10-15]
 
