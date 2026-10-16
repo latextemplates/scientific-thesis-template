@@ -209,7 +209,7 @@ Run it locally with `make spellcheck-textidote`: it downloads `textidote.jar` on
 
 ### UML diagrams with PlantUML or Mermaid
 
-The "LaTeX Hints" chapter shows UML diagrams drawn with MetaUML and pgf-umlsd, which need no further tools.
+The "LaTeX Hints" chapter shows UML diagrams drawn with [MetaUML](https://ctan.org/pkg/metauml) and [pgf-umlsd](https://ctan.org/pkg/pgf-umlsd), which need no further tools.
 PlantUML and Mermaid offer a more compact syntax and lay out the diagrams automatically, but need further tools: they are contained in the [Docker image by DANTE e.V.](https://github.com/dante-ev/docker-texlive).
 To use them, generate an own copy of this template with the [latex template generator]:
 
