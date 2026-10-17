@@ -327,11 +327,11 @@ A comparison of the packages for UML diagrams is given at \url{https://github.co
       Server.w = Client.e + (140, 0);
       drawObjects(Client, Server);
       % the interface: Server provides it (ball), Client requires it (socket)
-      pair api;
-      api = .5[Client.e, Server.w];
-      link(providedInterface)(Server.w -- api);
-      link(requiredInterface)(Client.e -- api);
-      item(iAssoc)("API")(obj.s = api + (0, 8));
+      pair iface;
+      iface = .5[Client.e, Server.w];
+      link(providedInterface)(Server.w -- iface);
+      link(requiredInterface)(Client.e -- iface);
+      item(iAssoc)("API")(obj.s = iface + (0, 8));
       endfig;
     \end{mplibcode}
     \caption{Component diagram drawn with MetaUML}
