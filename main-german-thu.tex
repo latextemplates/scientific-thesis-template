@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 945 (\begin{document}); das erste
-%           Kapitel (\include{chapters/01 - einleitung.de}) wird in Zeile 1082 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 966 (\begin{document}); das erste
+%           Kapitel (\include{chapters/01 - einleitung.de}) wird in Zeile 1103 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -421,6 +421,27 @@
 }
 {\multicitedelim}
 {\usebibmacro{postnote}}
+
+% Link the PDF of a reference ("[PDF]") stored in JabRef's "file" field.
+% Only the first file is linked; its path has to be relative to this document.
+% Useful if the cited papers are handed in together with the thesis.
+% To enable, uncomment the \toggletrue line.
+\newtoggle{bibfilelink}
+%\toggletrue{bibfilelink}
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      % JabRef stores "description:path:type", multiple files separated by ";"
+      \step[fieldsource=file, match=\regexp{\A[^:;]*:(.+?):[^:;]*(;.*)?\z}, replace=\regexp{$1}]
+    }
+  }
+}
+\DeclareFieldFormat{file}{\href{#1}{[PDF]}}
+\renewbibmacro*{finentry}{%
+  \iftoggle{bibfilelink}
+  {\iffieldundef{file}{}{\setunit{\addspace}\printfield{file}}}
+  {}%
+  \finentry}
 
 % To embed the bibliography into the PDF (readers can extract it, e.g., with JabRef via "Import into library" on the PDF), uncomment:
 %\usepackage{embedfile}
