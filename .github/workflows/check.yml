@@ -124,6 +124,10 @@ jobs:
     runs-on: ubuntu-latest
     # The DANTE e.V. image contains aspell with English and German dictionaries
     container: danteev/texlive:edge
+    # In a container, steps run with sh by default
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -209,6 +213,10 @@ jobs:
     runs-on: ubuntu-latest
     # The DANTE e.V. image contains TeXtidote
     container: danteev/texlive:edge
+    # In a container, steps run with sh by default
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
