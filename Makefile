@@ -25,11 +25,11 @@ endif
 ## LINT_IT is interactive (aspell -c)
 ifeq ($(LOCAL),)
 ifeq ($(OS),Windows_NT)
-LINT = docker run --rm -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:edge
-LINT_IT = docker run --rm -it -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:edge
+LINT = docker run --rm -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
+LINT_IT = docker run --rm -it -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
 else
-LINT = docker run --rm -u $(shell id -u):$(shell id -g) -e HOME=/tmp -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:edge
-LINT_IT = docker run --rm -it -u $(shell id -u):$(shell id -g) -e HOME=/tmp -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:edge
+LINT = docker run --rm -u $(shell id -u):$(shell id -g) -e HOME=/tmp -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
+LINT_IT = docker run --rm -it -u $(shell id -u):$(shell id -g) -e HOME=/tmp -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
 endif
 endif
 
