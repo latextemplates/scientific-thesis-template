@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 963 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1070 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 962 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1069 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -324,8 +324,7 @@
 %\usemintedstyle{rrt}
 %\usemintedstyle{borland}
 
-% We need to load caption to have a bold font on the label
-% The other parameters mimic the layout of the LNCS class
+% caption provides \captionof{listing} (used for listings spanning multiple pages) and sets the label in bold
 \usepackage[labelfont=bf,font=small,skip=4pt]{caption}
 \SetupFloatingEnvironment{listing}{name=List.,within=none}
 
