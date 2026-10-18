@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 %
 % vvvvvvvv  The content starts in line 1016 (\begin{document}); the first
-%           chapter (\include{chapters/10 - introduction.en}) is included in line 1128.
-%           The chapters are in the directory "chapters".
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1128.
+%           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
 \documentclass[
@@ -1125,17 +1125,17 @@ What can they do with your research.
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
 
-\include{chapters/10 - introduction.en}
-\include{chapters/20 - background.en}
-\include{chapters/30 - problem exposition.en}
-\include{chapters/40 - first real chapter.en}
-\include{chapters/50 - second real chapter.en}
-\include{chapters/60 - evaluation.en}
+\include{chapters-en/10 - introduction}
+\include{chapters-en/20 - background}
+\include{chapters-en/30 - problem exposition}
+\include{chapters-en/40 - first real chapter}
+\include{chapters-en/50 - second real chapter}
+\include{chapters-en/60 - evaluation}
 \ifluatex
-  \markdownInput{chapters/70 - markdown.en.md}
+  \markdownInput{chapters-en/70 - markdown.md}
 \fi
-\include{chapters/80 - latex hints.en}
-\include{chapters/90 - conclusion.en}
+\include{chapters-en/80 - latex hints}
+\include{chapters-en/90 - conclusion}
 
 %%% ===============================================================================
 %%% Bibliography
