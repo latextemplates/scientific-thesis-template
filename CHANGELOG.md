@@ -11,10 +11,11 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - A chapter written in plain Markdown (`chapters/NN - markdown.<lang>.md`, LuaLaTeX).
 - Optional `[PDF]` link to the cited paper from JabRef's `file` field.
+- Section "Threats to Validity" in the evaluation chapter of the writing hints.
 
 ### Changed
 
-- Each chapter is a file in `chapters/` (`NN - <name>.<lang>.tex`), included by the main file.
+- Each chapter is a file in `chapters/` (`NN - <name>.<lang>.tex`, numbered in steps of 10), included by the main file.
 - The parts of the writing hints (background, problem exposition, …, evaluation) are chapters.
 - Markdown example: "a whole chapter" instead of "a longer part".
 - README.md: link to the LaTeX snippets moved to the introduction.
