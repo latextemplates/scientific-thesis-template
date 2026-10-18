@@ -106,16 +106,16 @@ spellcheck: spellcheck-aspell spellcheck-textidote
 ##
 ## .aspell.en.pws - persönliches Wörterbuch
 spellcheck-aspell:
-	for tex in *.tex chapters/*.en.tex; do \
+	for tex in *.tex chapters-en/*.tex; do \
 		[ -e "$$tex" ] || continue; \
 		aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c "$$tex" || exit 1; \
 	done
-	for md in chapters/*.en.md; do \
+	for md in chapters-en/*.md; do \
 		[ -e "$$md" ] || continue; \
 		aspell --mode=markdown -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c "$$md" || exit 1; \
 	done
 
-## Spelling, grammar, and style with TeXtidote (https://github.com/sylvainhalle/textidote): writes textidote.html and chapters/*.textidote.html
+## Spelling, grammar, and style with TeXtidote (https://github.com/sylvainhalle/textidote): writes textidote.html and chapters-en/*.textidote.html
 ## Needs Java (contained in the Docker image); the options are in .textidote (its --check en is overridden here).
 ## -Djdk.xml.totalEntitySizeLimit=0: TeXtidote 0.9 fails on Java 24+ otherwise (fixed after 0.9: sylvainhalle/textidote#274)
 textidote.jar:
@@ -125,11 +125,11 @@ spellcheck-textidote: textidote.jar
 	@# TeXtidote exits with the number of findings, which is no failure here
 	$(RUN) java -Djdk.xml.totalEntitySizeLimit=0 -jar textidote.jar --check en --output html $(MASTER_TEX) > textidote.html || test -s textidote.html
 	@# TeXtidote mixes up the text of \include lines, so .textidote removes them and each chapter is checked on its own
-	for tex in chapters/*.en.tex chapters/*.en.md; do \
+	for tex in chapters-en/*.tex chapters-en/*.md; do \
 		[ -e "$$tex" ] || continue; \
 		$(RUN) java -Djdk.xml.totalEntitySizeLimit=0 -jar textidote.jar --check en --output html --read-all "$$tex" > "$${tex%.*}.textidote.html" || test -s "$${tex%.*}.textidote.html"; \
 	done
-	@echo "Reports: textidote.html and chapters/*.textidote.html"
+	@echo "Reports: textidote.html and chapters-en/*.textidote.html"
 
 ## Show only the relevant messages of the last LaTeX run
 log:
@@ -142,7 +142,7 @@ showundef:
 ## Reformatierung
 
 format:
-	for f in $(MAIN_TEX_FILES) chapters/*.tex; do \
+	for f in $(MAIN_TEX_FILES) chapters-*/*.tex; do \
 		[ -e "$$f" ] || continue; \
 		$(RUN) latexindent -l -s -sl -w "$$f" || exit 1; \
 	done

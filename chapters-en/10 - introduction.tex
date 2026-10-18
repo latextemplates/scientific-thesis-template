@@ -1,0 +1,130 @@
+%%% ===============================================================================
+\chapter{Introduction}\label{sec:introduction}
+%%% ===============================================================================
+
+\emph{Purpose and scope of your entire report}.
+The purpose of your entire report is to make a \emph{scientific argument using the scientific method}.
+A scientific argument always has the following steps that all must come in this order.
+%
+\begin{itemize}
+  \item[SM1] \emph{Explicate the assumptions and state of the art} on which you are going to conduct your research to investigate your research problem/test the hypothesis.
+  \item[SM2] Clearly and precisely \emph{formulate a research problem or hypothesis}.
+  \item[SM3] \emph{Describe the (research) method} that you followed to investigate the problem / to test the hypothesis in a way that \emph{allows someone else to reproduce your steps}.
+        The method must include steps and criteria for evaluating whether you answered your question successfully or not.
+  \item[SM4] \emph{Provide execution details} on how you followed the method in the given, specific situation.
+  \item[SM5] \emph{Report your results} by describing and summarizing your measurements.
+        You must not interpret your results.
+  \item[SM6] \emph{Now interpret your results} by contextualizing the measurements and drawing conclusion that lead to answering your research problem or defining further follow-up research problems.
+\end{itemize}
+%
+This template marks the parts of the structure with SM1-SM6 to recall to you which step of a scientific argument is used and where.
+
+\emph{Purpose and scope of \zcref{sec:introduction}}.
+The introduction chapter is a summary of your work and your scientific argument that must be understandable to anyone in your scientific field, e.g., anyone in Data Science.
+A reader must be able to comprehend the problem, method, relevant execution details, results, and their interpretation by reading the introduction and the introduction alone.
+\Zcref{sec:introduction:topic} introduces the general topic of your research.
+\Zcref{sec:introduction:state-of-art} discusses the state of the art and identifies a research gap.
+\Zcref{sec:introduction:research-question} then states the research problem to investigate.
+\Zcref{sec:problem-exposition:research-method} explains the research method that was followed, possibly with execution details.
+\Zcref{sec:introduction:results} then presents the results and their interpretation.
+A reader should need to read further only if they are not convinced or need more details to reproduce your study.
+The individual chapters and sections provide the details for each of the steps in your scientific argument.
+
+Write the introduction chapter \emph{after} you wrote all other chapters, but you should keep on making notes for each of the sections as you write the later chapters.
+
+\emph{Purpose and scope of the introduction paragraph to a chapter}.
+The paragraph you are reading above is a typical introductory paragraph to a chapter.
+It is a high-level summary of the chapters' topic (SM1 and SM2).
+It gives the reader some guidance by breaking down the chapter topic into subtopics that are named (SM3) in the right order with forward references to the corresponding sections (SM4).
+It may close with announcing the result you obtain (SM6) but the opening paragraph of the introduction is not the place for it.
+
+\emph{Two kinds of readers}.
+Write your report so that it can be read from beginning to end: introduce every concept before you use it.
+Backward references are fine; forward references in the running text should be rare.
+At the same time, guide the reader who opens your report somewhere and has ten minutes:
+each chapter starts with an introductory paragraph as described above, which outlines the coming sections and links back to what the chapter builds on and forward to where its results are used.
+The book \enquote{Student Thesis Projects}~\cite{Lichter2026} (open access) explains in detail how to organize, conduct, write, and present a thesis.
+Before you hand in, work through the checklist in \href{https://github.com/latextemplates/scientific-thesis-template/blob/main/docs/thesis-checklist.md}{\texttt{docs/thesis-checklist.md}} and remove all these hints.
+
+% ---------------------------------------------------------------------------------
+\section{Context and Topic (SM1)}\label{sec:introduction:topic}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}.
+You begin with providing the general scientific audience an introduction into the specific topic of your work.
+The aim of this section is to first introduce the \emph{general subject of study} (``Giraffes are well-known animals and everyone's favorite''), the \emph{specific topic of societal or scientific interest} to investigate (``Giraffes have blue tongues'') and the \emph{objective of society/science towards} this topic (``it is unknown at the moment how the blue color tone evolved'').
+It must be understandable by the general scientific public.
+Every \emph{term} with a specific meaning must be highlighted and introduced in precise language/concepts that only builds on a general scientific background.
+
+At the end of this section, you have explained and established a general goal that society/science universally agrees to be worth achieving (``knowing how everyone's favorite animal evolved the color of their tongue'').
+
+% ---------------------------------------------------------------------------------
+\section{State of the Art (SM1)}\label{sec:introduction:state-of-art}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}.
+You provide a more in-depth introduction into the research topic by contrasting the current state of the art in society/science in relation to the research topic you introduced in \zcref{sec:introduction:topic}.
+This introduction has to
+
+\begin{itemize}
+  \item present established facts, methods, and results that provide a deeper understanding of the research topic (``prior work on giraffe genomes, relevance of giraffes for societal well-being, giraffes being a model-animal for various other studies, etc.'')
+  \item discuss in which ways prior and recent ideas still fall short of reaching the general goal you explained in \zcref{sec:introduction:topic} (``prior work only sequenced the genome of one giraffe and did not consider genes of ancient ancestors'')
+\end{itemize}
+
+You have to provide citations/literature references for each of the statements and claims you are making.
+This section summarizes the related work discussion in \zcref{sec:background}.
+
+At the end of this section, you have established a \emph{knowledge gap} between the state of the art and the general objective you developed in \zcref{sec:introduction:topic}.
+\emph{Stating a (knowledge) gap between a status quo and a desired situation is the \emph{first step} of a writing scientific argument.}
+
+% ---------------------------------------------------------------------------------
+\section{Research Question (SM2)}\label{sec:introduction:research-question}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}.
+In this section you state in which way you will address the knowledge gap you identified at the end of \zcref{sec:introduction:state-of-art}.
+One work cannot address and resolve the entire knowledge gap.
+The purpose of this section is to detail the specific part of the knowledge that you will address.
+You thereby make all the assumptions explicit that underlie your work (``in this report we focus on genomes of female giraffes who lived in the years 1950-2000 in South Africa'').
+
+Your general research question states
+\begin{itemize}
+  \item The starting point/assumptions you are making from which your research starts (``for the given 13 genomes of female giraffes...''), and
+  \item the final objective/solution you want to reach (``...identify the genes involved in color expression of giraffe tongues...'')
+  \item and the evaluation criteria that will determine whether you are successful (``...that are present in at least 75\% of the studied giraffes'')
+\end{itemize}
+
+Break your general research question down into sub-research questions.
+You may do this here.
+The sub-research questions have to form a chain that take you in smaller steps from the starting point/assumptions of your general research question to your final objective and evaluation.
+
+% ---------------------------------------------------------------------------------
+\section{Method or Approach (SM3, SM4)}\label{sec:introduction:method}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}.
+In this section you outline the method that you applied to answer the research questions, or the new technical approach that you developed to answer it.
+It is a summary of the steps that someone else has to take in order to reproduce your steps.
+Mention here the data sets you had to obtain/gather/analyze, interviews with stakeholders you had to make to further develop the research questions, technical artifacts (programs, algorithms, models) you could apply or that you had to develop (and how they work).
+
+The section is most readable if you give each of the steps in your method its own paragraph.
+In each paragraph you first briefly explain the concept of the step in your method (SM3, ``we explored the data through visual analytics'') and then provide details in execution (SM4, ``we used tool X, we developed dashboard Y'') include a forward reference to the respective chapter that provides more details.
+
+% ---------------------------------------------------------------------------------
+\section{Findings (SM5, SM6)}\label{sec:introduction:results}
+% ---------------------------------------------------------------------------------
+
+\emph{Purpose and scope}.
+You close the introduction by stating the evaluation setup you designed to evaluate the success of your study regarding the research objective, which comes in two steps.
+It summarizes your evaluation in \zcref{sec:evaluation}.
+
+\section*{Results (SM5)}
+
+You state the evaluation method that is in line with your research question from \zcref{sec:introduction:research-question} and summarize the measurements you obtained, but you do not interpret them, i.e., you only report the numbers, but you do not include judging statements.
+
+\section*{Interpretation (SM6)}
+
+You summarize your interpretation of the results and draw conclusions.
+State whether, and to which degree, the research question from \zcref{sec:introduction:research-question} has been answered.
+
+Close by stating how much closer society and science have come in answering the general objective you outlined in \zcref{sec:introduction:topic}.
