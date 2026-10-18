@@ -122,21 +122,11 @@ jobs:
     # Disabled: the example content trips too many aspell false positives to maintain
     if: false
     runs-on: ubuntu-latest
+    # The DANTE e.V. image contains aspell with English and German dictionaries
+    container: danteev/texlive:edge
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      # Original action does not work well - see https://github.com/awalsh128/cache-apt-pkgs-action/pull/136
-      # The action is not updated - and thus the dictionaries are not updated
-      - uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
-        with:
-          packages: aspell aspell-en aspell-de
-          version: 1.0
-          execute_install_scripts: true
-      - name: post-setup aspell
-        # refs https://github.com/awalsh128/cache-apt-pkgs-action/issues/157
-        run: |
-          sudo apt-get install -y aspell-en aspell-de
       - name: aspell
         run: |
           echo "| file | status |" >> $GITHUB_STEP_SUMMARY
@@ -217,24 +207,20 @@ jobs:
           echo "textlint reported ${count} finding(s) in: $(IFS=,; echo "${files[*]}")" >> "$GITHUB_STEP_SUMMARY"
   textidote:
     runs-on: ubuntu-latest
+    # The DANTE e.V. image contains TeXtidote
+    container: danteev/texlive:edge
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Download TeXtidote
-        uses: ethanjli/cached-download-action@f1d109e4eca8d988e012ed5565366717aba90d0f # v0.1.4
-        with:
-          url: https://github.com/sylvainhalle/textidote/releases/download/v0.9/textidote.jar
-          destination: ${{ runner.temp }}/textidote.jar
       - name: Check spelling, grammar, and style with TeXtidote
         run: |
           # Report-only: findings show up as annotations, the job does not fail.
           # TeXtidote (https://github.com/sylvainhalle/textidote) reads its options from .textidote.
-          # -Djdk.xml.totalEntitySizeLimit=0: TeXtidote 0.9 fails on Java 24+ otherwise (fixed after 0.9: sylvainhalle/textidote#274)
-          java -Djdk.xml.totalEntitySizeLimit=0 -jar "$RUNNER_TEMP/textidote.jar" --output singleline --no-color main-english.tex > textidote.txt || true
+          textidote --output singleline --no-color main-english.tex > textidote.txt || true
           # TeXtidote mixes up the text of \include lines, so .textidote removes them and each chapter is checked on its own
           for tex in chapters-en/*.tex chapters-en/*.md; do
             [ -e "$tex" ] || continue
-            java -Djdk.xml.totalEntitySizeLimit=0 -jar "$RUNNER_TEMP/textidote.jar" --output singleline --no-color --read-all "$tex" >> textidote.txt || true
+            textidote --output singleline --no-color --read-all "$tex" >> textidote.txt || true
           done
           # A finding looks like: file.tex(L25C1-L25C25): message "excerpt"
           perl -ne 'if (/^(.+?)\(L(\d+)C(\d+)-L(\d+)C(\d+)\): (.*)$/) { my ($f, $l, $c, $el, $ec, $m) = ($1, $2, $3, $4, $5, $6); $m =~ s/%/%25/g; print "::warning file=$f,line=$l,col=$c,endLine=$el,endColumn=$ec,title=TeXtidote::$m\n" }' textidote.txt

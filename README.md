@@ -195,7 +195,7 @@ On the command line, there are additional features:
 - `latexmk -C` or `make clean` for cleaning up
 - `make log` shows only the relevant messages of the last LaTeX run (using [texlogsieve](https://ctan.org/pkg/texlogsieve))
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
-- `make spellcheck` runs all spell checkers:
+- `make spellcheck` runs all spell checkers (in the [Docker image by DANTE e.V.](https://hub.docker.com/r/danteev/texlive), which contains them; `make LOCAL=1 spellcheck` uses local installations):
   - `make spellcheck-aspell` for interactive spell checking with aspell
   - `make spellcheck-textidote` checks spelling, grammar, and style with [TeXtidote](https://github.com/sylvainhalle/textidote) (report in `textidote.html`, for the chapters in `chapters-*/*.textidote.html`)
 - `make stand`: Creates a new PDF with the current status of the document.
@@ -211,7 +211,7 @@ npx --yes --package textlint --package textlint-plugin-latex2e --package textlin
 
 The `textidote` job of the `Check` workflow checks spelling, grammar, and style of English documents with [TeXtidote](https://github.com/sylvainhalle/textidote) and reports its findings as annotations.
 Its options are in `.textidote`.
-Run it locally with `make spellcheck-textidote`: it downloads `textidote.jar` once and writes the report `textidote.html` (for the chapters: `chapters-*/*.textidote.html`).
+Run it locally with `make spellcheck-textidote`: it writes the report `textidote.html` (for the chapters: `chapters-*/*.textidote.html`).
 
 ### UML diagrams with PlantUML or Mermaid
 

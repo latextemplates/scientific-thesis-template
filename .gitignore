@@ -22,7 +22,6 @@ figures/*.pdf_tex
 mermaid/
 
 # TeXtidote (make spellcheck-textidote)
-textidote.jar
 textidote.html
 *.textidote.html
 
