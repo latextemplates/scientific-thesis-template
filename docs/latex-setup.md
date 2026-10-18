@@ -165,47 +165,47 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
 2. Press <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>P</kbd> to open the command palette. Then type "JSON" and select "Preferences: Open Settings (JSON)" to open `settings.json`.
 3. Now copy and paste the following snippet into your `settings.json` file (inside the brackets `{}` of your file).
 
-```json
-"latex-workshop.latex.tools": [
-  {
-    "name": "pdflatex",
-    "command": "pdflatex",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "%DOC%"
-    ],
-    "env": {}
-  },
-  {
-    "name": "biber",
-    "command": "biber",
-    "args": [
-      "%DOCFILE%"
-    ],
-    "env": {}
-  }
-],
+   ```json
+   "latex-workshop.latex.tools": [
+     {
+       "name": "pdflatex",
+       "command": "pdflatex",
+       "args": [
+         "-synctex=1",
+         "-interaction=nonstopmode",
+         "-file-line-error",
+         "%DOC%"
+       ],
+       "env": {}
+     },
+     {
+       "name": "biber",
+       "command": "biber",
+       "args": [
+         "%DOCFILE%"
+       ],
+       "env": {}
+     }
+   ],
 
-"latex-workshop.latex.recipes": [
-  {
-    "name": "pdflatex ➞ biber ➞ pdflatexX2",
-    "tools": [
-      "pdflatex",
-      "biber",
-      "pdflatex",
-      "pdflatex"
-    ]
-  }
-],
-```
+   "latex-workshop.latex.recipes": [
+     {
+       "name": "pdflatex ➞ biber ➞ pdflatexX2",
+       "tools": [
+         "pdflatex",
+         "biber",
+         "pdflatex",
+         "pdflatex"
+       ]
+     }
+   ],
+   ```
 
 4. (optional) If you add the following line into your `settings.json`, the LaTeX Workshop extension will not automatically compile the code after any changes. You can manually trigger compilation by hitting the green button in the extension or using other methods provided by LaTeX Workshop.
 
-```json
-"latex-workshop.latex.autoBuild.run": "never",
-```
+   ```json
+   "latex-workshop.latex.autoBuild.run": "never",
+   ```
 
 [chocolatey]: https://chocolatey.org/
 [JabRef]: https://www.jabref.org

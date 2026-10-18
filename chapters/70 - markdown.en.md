@@ -1,4 +1,4 @@
-# Writing in Markdown {#sec:markdown-chapter}
+# Writing in Markdown {#sec:markdown-file}
 
 This chapter is written in plain Markdown, not in \LaTeX{}.
 Its source is a Markdown file in the `chapters` directory.

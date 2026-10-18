@@ -15,6 +15,11 @@
 \\LaTeX(\{\})?	LaTeX
 \\TeX(\{\})?	TeX
 \\SI\{[^}]*\}\{[^}]*\}	5 m
+\\hologo\{([^}]*)\}	$1
+# Markdown: references <#id> become a word, identifiers {#id} and the colon starting a table caption vanish.
+<#[^>]*>	Section 1
+\s*\{#[^}]*\}	
+(?m)^: 	
 # Comments and changes (see the "LaTeX Hints"): only the visible text remains.
 \\textcomment\{([^}]*)\}\{[^}]*\}	$1
 \\change\{[^}]*\}\{([^}]*)\}	$1
