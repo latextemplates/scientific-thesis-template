@@ -17,6 +17,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 ### Changed
 
 - Each chapter is a file in `chapters-en/` or `chapters-de/` (`NN - <name>.tex`, numbered in steps of 10), included by the main file.
+- A short README.md in `chapters-en/` and `chapters-de/`.
 - The parts of the writing hints (background, problem exposition, …, evaluation) are chapters.
 - Markdown example: "a whole chapter" instead of "a longer part".
 - CI: aspell, textlint, and TeXtidote also check the Markdown chapter.
