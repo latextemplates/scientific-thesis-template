@@ -38,7 +38,8 @@ The LaTeX snippets this template is assembled from can be inspected at <https://
         - English: `main-english.tex`
         - German: `main-german.tex`
         - Without Python (see below): `main-basic-listings-english.tex`, `main-basic-listings-german.tex`
-    - The text is in [`chapters/`](chapters/), one file per chapter and language (e.g., `chapters/01 - introduction.en.tex`), which the main files include.
+    - The text is in [`chapters/`](chapters/), one file per chapter and language (e.g., `chapters/10 - introduction.en.tex`), which the main files include.
+      The numbers go in steps of 10, so a new chapter fits in between (e.g., `chapters/25 - my chapter.en.tex`).
 
 3. Compile with "lualatex + biber" in your TeX editor or with `latexmk main-english` / `make` on the command line.
 
