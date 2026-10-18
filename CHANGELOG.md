@@ -12,14 +12,17 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - A chapter written in plain Markdown (`chapters/NN - markdown.<lang>.md`, LuaLaTeX).
 - Optional `[PDF]` link to the cited paper from JabRef's `file` field.
 - Section "Threats to Validity" in the evaluation chapter of the writing hints.
+- VS Code: [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) recommended, configured by `.markdownlint.yml`.
 
 ### Changed
 
 - Each chapter is a file in `chapters/` (`NN - <name>.<lang>.tex`, numbered in steps of 10), included by the main file.
 - The parts of the writing hints (background, problem exposition, …, evaluation) are chapters.
 - Markdown example: "a whole chapter" instead of "a longer part".
+- CI: aspell, textlint, and TeXtidote also check the Markdown chapter.
 - README.md: link to the LaTeX snippets moved to the introduction.
 - README.md: "Disabled features" is a subsection of "Benefits".
+- README.md and `docs/latex-setup.md`: markdownlint findings fixed.
 
 ## [2026-10-16]
 
