@@ -1,4 +1,4 @@
-# Schreiben in Markdown {#sec:markdown-chapter}
+# Schreiben in Markdown {#sec:markdown-file}
 
 Dieses Kapitel ist in reinem Markdown geschrieben, nicht in \LaTeX{}.
 Die Quelle ist eine Markdown-Datei im Verzeichnis `chapters`.
