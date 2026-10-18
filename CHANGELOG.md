@@ -16,9 +16,9 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - Each chapter is a file in `chapters/` (`NN - <name>.<lang>.tex`), included by the main file.
 - The parts of the writing hints (background, problem exposition, …, evaluation) are chapters.
+- Markdown example: "a whole chapter" instead of "a longer part".
 - README.md: link to the LaTeX snippets moved to the introduction.
 - README.md: "Disabled features" is a subsection of "Benefits".
-- Markdown example: "a whole chapter" instead of "a longer part".
 
 ## [2026-10-16]
 
