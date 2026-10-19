@@ -59,6 +59,8 @@ Following features are enabled in this template:
 
 - (Optional) Typesetting of listings using advanced highlighting powered by the [minted] package.
   `minted` provides better output than [listings], but requires [latexminted] to be installed.
+- Numbered research questions: `\defRQ` prints "Research Question 1 (RQ1)", `\refRQ` references it as "RQ1".
+  This is enabled by the [refenums](https://github.com/koppor/refenums) package; `refenums.sty` is part of this repository, because TeX Live contains an older version.
 - Generated PDF allows for copy and paste of text without getting words with [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) such as "workflow" destroyed.
   With pdfLaTeX, this is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters; LuaLaTeX does this by itself.
 - Ligatures are removed if they are typeset at the wrong place.

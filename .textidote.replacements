@@ -4,6 +4,8 @@
 \\[Zz]cref(\[[^]]*\])?\{[^}]*\}	Section 1
 \\[Zz]vref(\[[^]]*\])?\{[^}]*\}	Section 1
 \\[Cc]ref\{[^}]*\}	Section 1
+\\refRQ(Full)?\{[^}]*\}	RQ1
+\\defRQ\{([^}]*)\}\{[^}]*\}	RQ1: $1
 \\[Gg]ls(pl)?(\[[^]]*\])?\{[^}]*\}	Term
 \\[Aa]cr[a-z]*\{[^}]*\}	Term
 \\captionof\{[^}]*\}\{([^}]*)\}	$1
