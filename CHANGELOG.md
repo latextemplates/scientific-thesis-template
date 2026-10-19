@@ -14,6 +14,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Section "Threats to Validity" in the evaluation chapter of the writing hints.
 - Numbered research questions (`\defRQ`, referenced as "RQ1" by `\refRQ`) using [refenums](https://github.com/koppor/refenums) (`refenums.sty`).
 - VS Code: [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) recommended, configured by `.markdownlint.yml`.
+- CI: [typos](https://github.com/crate-ci/typos) checks the spelling, also in comments (configured in `_typos.toml`).
 
 ### Changed
 
@@ -22,6 +23,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The parts of the writing hints (background, problem exposition, …, evaluation) are chapters.
 - The caption of the cross-reference example table is above the table.
 - Lines in minted listings are labeled with `\label` and referenced with `\zcref` like everything else (`\labelline` and `\refline` removed).
+- University of Hamburg (English): the title page shows "Thesis Title" as placeholder.
 - Markdown example: "a whole chapter" instead of "a longer part".
 - CI: aspell, textlint, and TeXtidote also check the Markdown chapter.
 - CI and `make spellcheck`: aspell and TeXtidote run in the [Docker image by DANTE e.V.](https://hub.docker.com/r/danteev/texlive).
@@ -29,6 +31,11 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - README.md: link to the LaTeX snippets moved to the introduction.
 - README.md: "Disabled features" is a subsection of "Benefits".
 - README.md and `docs/latex-setup.md`: markdownlint findings fixed.
+
+### Fixed
+
+- Typos fixed, mostly in comments; German comments in the English files translated.
+- English: algorithms are captioned "Algorithm" (instead of "Algorithmus").
 
 ## [2026-10-16]
 
