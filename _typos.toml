@@ -10,7 +10,6 @@ extend-exclude = [
   "*-de.md",
   "*.de.md",
   "chapters-de/",
-  "abbreviations.tex",
   # Bibliography, styles, and classes
   "*.bib",
   "*.bst",
