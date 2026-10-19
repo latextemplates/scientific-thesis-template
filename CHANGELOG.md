@@ -9,7 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
-- A chapter written in plain Markdown (`chapters-<lang>/NN - markdown.md`, LuaLaTeX).
+- A chapter written in plain Markdown (`chapters-<lang>/NN - markdown.md`; LuaLaTeX).
 - Optional `[PDF]` link to the cited paper from JabRef's `file` field.
 - Section "Threats to Validity" in the evaluation chapter of the writing hints.
 - Numbered research questions (`\defRQ`, referenced as "RQ1" by `\refRQ`) using [refenums](https://github.com/koppor/refenums) (`refenums.sty`).
