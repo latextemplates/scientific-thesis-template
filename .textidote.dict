@@ -36,6 +36,7 @@ Diag
 dwarflike
 eclipseKeywords
 eclipseStrings
+edef
 ein
 einigen
 enquote
@@ -43,6 +44,7 @@ enumitem
 eq
 error
 escapeinside
+FancyVerbLine
 ff
 firstline
 Firstname
@@ -130,6 +132,7 @@ pygments
 quickstart
 rdbms
 RDBMS
+refstepcounter
 renderers
 RGB
 Rückverweise
@@ -139,6 +142,7 @@ shortplural
 showstringspaces
 siunitx
 soulpos
+StepLineNo
 stepnumber
 str
 stringstyle

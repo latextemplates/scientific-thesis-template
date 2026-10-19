@@ -1,4 +1,4 @@
-personal_ws-1.1 de 165 utf-8
+personal_ws-1.1 de 169 utf-8
 ACM
 Access
 Atlantic
@@ -10,7 +10,9 @@ Crossmark
 Das
 Database
 Diag
+edef
 enumitem
+FancyVerbLine
 Firstname
 Fließtext
 fquote
@@ -44,9 +46,11 @@ pdfcomment
 Practitioner
 Projects
 RDBMS
+refstepcounter
 RGB
 Rückverweise
 soulpos
+StepLineNo
 TODO
 TODOs
 Textfarbe
