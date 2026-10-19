@@ -15,6 +15,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Numbered research questions (`\defRQ`, referenced as "RQ1" by `\refRQ`) using [refenums](https://github.com/koppor/refenums) (`refenums.sty`).
 - VS Code: [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) recommended, configured by `.markdownlint.yml`.
 - VS Code: LTeX+ knows the words of the aspell word lists (`.vscode/ltex.dictionary.<language>.txt`).
+- `make dictionaries` merges the word lists of aspell, LTeX+, and TeXtidote.
 - CI: [typos](https://github.com/crate-ci/typos) checks the spelling, also in comments (configured in `.typos.toml`).
 
 ### Changed
