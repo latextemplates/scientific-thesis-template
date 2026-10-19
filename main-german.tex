@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 981 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1088 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 982 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1089 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -439,8 +439,9 @@
 \DeclareSourcemap{
   \maps[datatype=bibtex]{
     \map{
-      % JabRef stores "description:path:type", multiple files separated by ";"
-      \step[fieldsource=file, match=\regexp{\A[^:;]*:(.+?):[^:;]*(;.*)?\z}, replace=\regexp{$1}]
+      % JabRef stores "description:path:type", multiple files separated by ";"; the steps keep the path of the first file
+      \step[fieldsource=file, match=\regexp{\A[^:;]*:}, replace={}]
+      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}]
     }
   }
 }
