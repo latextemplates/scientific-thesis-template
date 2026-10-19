@@ -214,7 +214,7 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      # Finds common misspellings (configured in _typos.toml)
+      # Finds common misspellings (configured in .typos.toml)
       - uses: crate-ci/typos@7f9d0819ca1c008ade73f4b41fa9d258d48f605b # v1.51.1
   textidote:
     runs-on: ubuntu-latest
