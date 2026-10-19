@@ -5,12 +5,12 @@ It uses the \href{http://pygments.org/}{pygments} library, which in turn require
 
 \begin{ltgexample}
 \Zcref{lst:XML} shows source code written in XML.
-\refline{line:comment} contains a comment.
+\Zcref{line:comment} contains a comment.
 
 \begin{listing}[htbp]
   \begin{minted}[linenos=true,escapeinside=||]{xml}
 <listing name="example">
-  <!-- comment --> |\labelline{line:comment}|
+  <!-- comment --> |\label{line:comment}|
   <content>not interesting</content>
 </listing>
 \end{minted}
