@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1044 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1187 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1050 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1193 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -781,6 +781,12 @@
 % Page-aware references: \zvref{...} (and \zvref[S]{...}) reads like "Figure 5 on the next page"
 \usepackage{zref-vario}
 \zcLanguageSetup{english}{type=page, Name-sg=page, Name-pl=pages} % "on page 5", not "on Page 5"
+
+% Numbered research questions: \defRQ{<question>}{<label>} prints "Forschungsfrage 1 (RQ1): <question>", \refRQ{<label>} prints "RQ1"
+% Further kinds of items (requirements, hypotheses, ...) can be set up the same way; see https://github.com/koppor/refenums
+% refenums.sty is part of this repository, because TeX Live contains an older version of refenums (based on cleveref)
+\usepackage{refenums}
+\setupRefEnum[separator={}, plural={Forschungsfragen}]{RQ}{Forschungsfrage}
 
 \usepackage{lipsum}
 
