@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1026 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1170.
+% vvvvvvvv  The content starts in line 1024 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1166.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -232,7 +232,7 @@
 %\usepackage{stmaryrd} % for \ovee, \owedge, \otimes
 %\usepackage{marvosym} % for \Writinghand %patched to not redefine \Rightarrow
 %\usepackage{mathrsfs} % nice cursive letters via \mathscr{}
-%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
+%\usepackage{calrsfs} %\mathcal{} with slightly bolder letters - does not look that good.
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
@@ -511,19 +511,19 @@
 %\usepackage{embedfile}
 %\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
 
-% Farbige Tabellen
-% ----------------
-% Das Paket colortbl wird inzwischen automatisch durch xcolor geladen
+% Colored tables
+% --------------
+% xcolor loads the package colortbl
 %
-% Erweiterte Funktionen innerhalb von Tabellen
-% --------------------------------------------
+% Extended functions within tables
+% --------------------------------
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/multirow/multirow.sty
-\usepackage{multirow} % Mehrfachspalten
+\usepackage{multirow} % cells spanning multiple rows
 %
 %%% Doc: Documentation inside dtx Package
-\usepackage{dcolumn}  % Ausrichtung an Komma oder Punkt
+\usepackage{dcolumn}  % alignment at the decimal separator
 
-% Etwas mehr Luft zwischen den Tabellenzeilen (\extrarowheight wird von array bereitgestellt, das dcolumn lädt)
+% A bit more space between the rows of a table (\extrarowheight is provided by array, which dcolumn loads)
 \setlength{\extrarowheight}{1pt}
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
@@ -610,7 +610,7 @@
 %
 % - \textmarker
 % - \modified
-% - \change      - adresses a review comment
+% - \change      - addresses a review comment
 
 % Enable nice comments
 \usepackage{pdfcomment}
@@ -737,7 +737,7 @@
 
 % https://ctan.org/pkg/algorithms
 % Consists of two environments: algorithm and algorithmic
-% Although oudated, it defines the "algorithm" float enviornment
+% Although outdated, it defines the "algorithm" float environment
 % TODO: Define floating environment "algorithm" in other ways
 \usepackage[chapter]{algorithm}
 
@@ -745,8 +745,6 @@
 % Successor of algorithmicx; more modern than https://ctan.org/pkg/algorithms
 \usepackage{algpseudocodex}
 
-\floatname{algorithm}{Algorithmus}
-\renewcommand{\listalgorithmname}{Algorithmenverzeichnis}
 
 \newcommand{\commentchar}{\ensuremath{/\mkern-4mu/}}
 \algrenewcommand{\algorithmiccomment}[1]{\hfill $\commentchar$ #1}
@@ -859,7 +857,7 @@
 \newcommand{\ie}{i.e.,\ }
 
 % Enable hyphenation at other places as the dash.
-% Example: applicaiton\hydash specific
+% Example: application\hydash specific
 \makeatletter
 \newcommand{\hydash}{\penalty\@M-\hskip\z@skip}
 % Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
@@ -1034,9 +1032,9 @@
   \Large
   \begin{center}
     {\color{uhhred}\textbf{\so{BACHELORTHESIS}}}
-    %TODO ...oder {\color{uhhred}\textbf{\so{MASTERTHESIS}}}
+    %TODO ...or {\color{uhhred}\textbf{\so{MASTERTHESIS}}}
     \vspace*{2.0cm}\\
-    {\LARGE \textbf{Titel}}
+    {\LARGE \textbf{Thesis Title}}
     \vspace*{2.0cm}\\
     vorgelegt von
     \vspace*{0.4cm}\\
@@ -1048,12 +1046,12 @@
   {\small
     MIN-Fakultät\\[.2cm]
     Fachbereich Informatik \\[.2cm]
-    Ggf. Professur/Institut \\[.2cm]       %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+    Ggf. Professur/Institut \\[.2cm]       %TODO Optional: delete either "Ggf. " or the whole line
     Studiengang: Wirtschaftsinformatik \\[.2cm]
     Matrikelnummer: 1234567 \\[.5cm]
-    Ggf. Abgabedatum: XX.XX.20XX \\[.5cm]  %TODO Optional, entweder "Ggf. " oder ganze Zeile löschen
+    Ggf. Abgabedatum: XX.XX.20XX \\[.5cm]  %TODO Optional: delete either "Ggf. " or the whole line
     Erstgutachterin: Prof. Dr. Eike Kraft \\[.25cm]
-    Zweitgutachter: Dr. Luca Wind               %TODO Bei Bedarf Geschlechter der Gutachter/innen anpassen
+    Zweitgutachter: Dr. Luca Wind               %TODO Adjust the gender of the reviewers if needed
   }
 \end{titlepage}
 
@@ -1144,15 +1142,13 @@ What can they do with your research.
 
 \listoftables
 
-% We use lstlisting environments with caption paramters.
+% We use lstlisting environments with caption parameters.
 % Thus, we need that command.
 % Alternative: \listof{Listing}{List of Listings}
 \lstlistoflistings
 
-% mittels \newfloat wurde die Algorithmus-Gleitumgebung definiert.
-% Mit folgendem Befehl werden alle floats dieses Typs ausgegeben
-%\listof{Algorithmus}{List of Algorithms}
-%\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
+% List of the algorithms (only for algorithms within \begin{algorithm} ... \end{algorithm})
+%\listofalgorithms
 
 % Abbreviations / Acronyms
 \printglossary[type=\acronymtype,title={Abbreviations}]
@@ -1185,7 +1181,7 @@ What can they do with your research.
 
 \printbibliography
 
-% Enfore empty line after bibliography
+% Enforce empty line after bibliography
 \ \\
 %
 \noindent
@@ -1248,7 +1244,7 @@ All links were last followed on October 5, 2020.
   \end{tabular}
   \vspace*{3cm}
 
-  %TODO Dies ist optional, ggf. löschen!
+  %TODO This is optional; delete it if not needed
   \begin{center}\textbf{Veröffentlichung}\end{center}
   \blindtext[1]
   \vspace*{1cm}\\
