@@ -9,15 +9,11 @@ Crossmark
 Das
 Database
 Diag
-edef
-enumitem
 FancyVerbLine
 Firstname
-fquote
 Geänderter
 Hier
 IEEEtran
-inparaenum
 JSON
 JabRef
 Kommentar
@@ -26,7 +22,6 @@ LaTeXing
 Lastname
 Lua
 LuaLaTeX
-luamplib
 Manuelle
 Markierter
 Markierung
@@ -39,14 +34,11 @@ OMG
 ORCID
 OldStyle
 Organization
-pdfcomment
 PNG
 Practitioner
 RDBMS
-refstepcounter
 RGB
 ScienceOS
-soulpos
 StepLineNo
 TODO
 TODOs
@@ -58,6 +50,7 @@ VV
 Wikimedia
 Worten
 Zcref
+Zref
 abbreviationdot
 aboveskip
 acmnumeric
@@ -85,9 +78,11 @@ der
 dwarflike
 eclipseKeywords
 eclipseStrings
+edef
 ein
 einigen
 enquote
+enumitem
 eq
 error
 escapeinside
@@ -96,6 +91,7 @@ firstline
 firstnumber
 flXML
 fontsize
+fquote
 fr
 funktioniert
 für
@@ -104,6 +100,7 @@ gnuplot
 gp
 html
 hypertext
+inparaenum
 ist
 itemizations
 json
@@ -117,6 +114,7 @@ longplural
 longtable
 lst
 lstlisting
+luamplib
 markup
 md
 microtype
@@ -136,6 +134,7 @@ numberstyle
 nur
 oldstyle
 paralist
+pdfcomment
 pgfplots
 powerset
 produziert
@@ -143,11 +142,13 @@ programmatically
 pygments
 quickstart
 rdbms
+refstepcounter
 renderers
 seit
 shortplural
 showstringspaces
 siunitx
+soulpos
 stepnumber
 str
 stringstyle
@@ -169,6 +170,5 @@ xcolor
 xleftmargin
 zcref
 zref
-Zref
 zvref
 œ
