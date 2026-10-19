@@ -229,7 +229,7 @@
 %\usepackage{stmaryrd} % for \ovee, \owedge, \otimes
 %\usepackage{marvosym} % for \Writinghand %patched to not redefine \Rightarrow
 %\usepackage{mathrsfs} % nice cursive letters via \mathscr{}
-%\usepackage{calrsfs} %\mathcal{} ein bisserl dickeren buchstaben erzeugen - sieht net so gut aus.
+%\usepackage{calrsfs} %\mathcal{} with slightly bolder letters - does not look that good.
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
@@ -520,19 +520,19 @@
 %\usepackage{embedfile}
 %\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
 
-% Farbige Tabellen
-% ----------------
-% Das Paket colortbl wird inzwischen automatisch durch xcolor geladen
+% Colored tables
+% --------------
+% xcolor loads the package colortbl
 %
-% Erweiterte Funktionen innerhalb von Tabellen
-% --------------------------------------------
+% Extended functions within tables
+% --------------------------------
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/multirow/multirow.sty
-\usepackage{multirow} % Mehrfachspalten
+\usepackage{multirow} % cells spanning multiple rows
 %
 %%% Doc: Documentation inside dtx Package
-\usepackage{dcolumn}  % Ausrichtung an Komma oder Punkt
+\usepackage{dcolumn}  % alignment at the decimal separator
 
-% Etwas mehr Luft zwischen den Tabellenzeilen (\extrarowheight wird von array bereitgestellt, das dcolumn lädt)
+% A bit more space between the rows of a table (\extrarowheight is provided by array, which dcolumn loads)
 \setlength{\extrarowheight}{1pt}
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
@@ -619,7 +619,7 @@
 %
 % - \textmarker
 % - \modified
-% - \change      - adresses a review comment
+% - \change      - addresses a review comment
 
 % Enable nice comments
 \usepackage{pdfcomment}
@@ -755,7 +755,7 @@
 
 % https://ctan.org/pkg/algorithms
 % Consists of two environments: algorithm and algorithmic
-% Although oudated, it defines the "algorithm" float enviornment
+% Although outdated, it defines the "algorithm" float environment
 % TODO: Define floating environment "algorithm" in other ways
 \usepackage[chapter]{algorithm}
 
@@ -877,7 +877,7 @@
 \makeatother
 
 % Enable hyphenation at other places as the dash.
-% Example: applicaiton\hydash specific
+% Example: application\hydash specific
 \makeatletter
 \newcommand{\hydash}{\penalty\@M-\hskip\z@skip}
 % Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
@@ -1166,7 +1166,7 @@
 
 \listoftables
 
-% We use lstlisting environments with caption paramters.
+% We use lstlisting environments with caption parameters.
 % Thus, we need that command.
 % Alternative: \listof{Listing}{List of Listings}
 \lstlistoflistings
@@ -1208,7 +1208,7 @@
 
 \printbibliography
 
-% Enfore empty line after bibliography
+% Enforce empty line after bibliography
 \ \\
 %
 \noindent
