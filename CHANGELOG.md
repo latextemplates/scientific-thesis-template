@@ -14,6 +14,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Section "Threats to Validity" in the evaluation chapter of the writing hints.
 - Numbered research questions (`\defRQ`, referenced as "RQ1" by `\refRQ`) using [refenums](https://github.com/koppor/refenums) (`refenums.sty`).
 - VS Code: [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) recommended, configured by `.markdownlint.yml`.
+- VS Code: LTeX+ knows the words of the aspell word lists (`.vscode/ltex.dictionary.<language>.txt`).
 - CI: [typos](https://github.com/crate-ci/typos) checks the spelling, also in comments (configured in `.typos.toml`).
 
 ### Changed
@@ -31,6 +32,11 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - README.md: link to the LaTeX snippets moved to the introduction.
 - README.md: "Disabled features" is a subsection of "Benefits".
 - README.md and `docs/latex-setup.md`: markdownlint findings fixed.
+
+### Removed
+
+- `stfloats.sty`: MiKTeX ships the package `sttools` again ([miktex-packaging#492](https://github.com/MiKTeX/miktex-packaging/issues/492)).
+- `tikz-uml.sty` and `data/data.csv`: no longer used.
 
 ### Fixed
 
