@@ -14,7 +14,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Section "Threats to Validity" in the evaluation chapter of the writing hints.
 - Numbered research questions (`\defRQ`, referenced as "RQ1" by `\refRQ`) using [refenums](https://github.com/koppor/refenums) (`refenums.sty`).
 - VS Code: [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) recommended, configured by `.markdownlint.yml`.
-- CI: [typos](https://github.com/crate-ci/typos) checks the spelling, also in comments (configured in `_typos.toml`).
+- CI: [typos](https://github.com/crate-ci/typos) checks the spelling, also in comments (configured in `.typos.toml`).
 
 ### Changed
 
