@@ -29,7 +29,7 @@ jobs:
           tlmgr generate language --rebuild-sys
       - run: latexmk main-english
 
-      # Highlight mis-spelled words in the PDF
+      # Highlight misspelled words in the PDF
       - uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
           packages: aspell aspell-en aspell-de
@@ -209,6 +209,13 @@ jobs:
             | sed "s|${GITHUB_WORKSPACE}/||g" | tee annotations.txt || true
           count=$(grep -c '^::\(error\|warning\)' annotations.txt || true)
           echo "textlint reported ${count} finding(s) in: $(IFS=,; echo "${files[*]}")" >> "$GITHUB_STEP_SUMMARY"
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Finds common misspellings (configured in _typos.toml)
+      - uses: crate-ci/typos@7f9d0819ca1c008ade73f4b41fa9d258d48f605b # v1.51.1
   textidote:
     runs-on: ubuntu-latest
     # The DANTE e.V. image contains TeXtidote

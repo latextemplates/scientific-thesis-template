@@ -95,7 +95,7 @@ Congratulations. You chose to use all available features.
   The chapter on Markdown is a plain Markdown file (`.md`), included with `\markdownInput` (LuaLaTeX only).
   The source code example of the LaTeX hints is a file of its own for each of the minted and listings packages.
 - [figures](figures/) Directory containing the figures.
-  By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
+  By using LuaLaTex/PDFLaTeX it is possible to use PDF, JPG, and PNG files. We recommend to use PDFs to enable smooth scaling.
 
 ### Files
 
@@ -455,7 +455,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 - Other templates: <https://latextemplates.github.io/>
 - For German users, go to <https://texfragen.de/>.
 - Frank Mittelbach with Ulrike Fischer: [The LaTeX Companion](https://www.latex-project.org/news/2023/03/17/TLC3/) is the ultimate guide for LaTeX: The authors went through all packages offered by [CTAN](https://ctan.org/), selected the most promising ones, described them, and provide minimal working example for each of it.
-- Lutz Hering, Heike Hering: [How to Write Technial Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
+- Lutz Hering, Heike Hering: [How to Write Technical Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
 - Marcus Deininger et al.: [Studienarbeiten - Ein Leitfaden zur Erstellung, Durchführung und Präsentation wissenschaftlicher Abschlussarbeiten am Beispiel Informatik](https://vdf.ch/studienarbeiten.html?author_id=2877), vdf. - Recommended as guideline for planning and working on the whole thesis.
 - Charles Lipson, [Cite Right, Second Edition: A Quick Guide to Citation Styles--MLA, APA, Chicago, the Sciences, Professions, and More](http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo10702043.html), Chicago Guides to Writing, Editing, and Publishing, 2011. - Recommended in case you are unsure about how to correctly cite something.
 
