@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 940 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1080.
+% vvvvvvvv  The content starts in line 953 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1093.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -330,9 +330,20 @@
 % \AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
 % \AtEndEnvironment{listing}{\stepcounter{lstlisting}}
 
-% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
-\newcommand{\labelline}[1]{\label{#1}\hypertarget{#1}{}}
-\newcommand{\refline}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+% Enable \label in listing lines (via escapeinside) and referencing them using \zcref, e.g., "Line 2".
+% fancyvrb steps the line counter without \refstepcounter: no counter for \zcref and no target for the hyperlink.
+% See https://github.com/gusbrs/zref-clever/issues/65 and https://tex.stackexchange.com/q/132420/9075.
+\makeatletter
+\def\FV@refstepcounter#1{%
+  \refstepcounter{#1}%
+  \protected@edef\@currentlabel{\csname p@#1\endcsname\arabic{#1}}%
+}
+% Unique hyperlink targets in each listing
+\newcounter{FancyVerbListing}
+\let\FV@StepLineNo@orig\FV@StepLineNo
+\def\FV@StepLineNo{\stepcounter{FancyVerbListing}\FV@StepLineNo@orig}
+\def\theHFancyVerbLine{\arabic{FancyVerbListing}.\arabic{FancyVerbLine}}
+\makeatother
 
 % For easy quotations: \enquote{text}
 % This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
@@ -686,6 +697,8 @@
 \zcsetup{cap, nameinlink=true}
 % \Zcref{...} is short for \zcref[S]{...}: capitalized, unabbreviated name at the beginning of a sentence
 \NewDocumentCommand{\Zcref}{s O{} m}{\IfBooleanTF{#1}{\zcref*[S,#2]{#3}}{\zcref[S,#2]{#3}}}
+% Lines of minted listings are referenced as "Line 2"
+\zcsetup{countertype={FancyVerbLine=line}}
 
 % Page-aware references: \zvref{...} (and \zvref[S]{...}) reads like "Figure 5 on the next page"
 \usepackage{zref-vario}
