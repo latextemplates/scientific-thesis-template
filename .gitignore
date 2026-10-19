@@ -494,6 +494,8 @@ Backup of *.doc*
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+# Word lists of LTeX+ (see "make dictionaries")
+!.vscode/ltex.*.txt
 
 # Local History for Visual Studio Code
 .history/
