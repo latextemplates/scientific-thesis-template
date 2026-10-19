@@ -1,13 +1,13 @@
 # Writing in Markdown {#sec:markdown-file}
 
-This chapter is written in plain Markdown, not in \LaTeX{}.
+This chapter uses plain Markdown, not \LaTeX{}.
 Its source is a Markdown file in the `chapters-en` directory.
-The main file includes it with the `markdownInput` command of the [markdown package](https://ctan.org/pkg/markdown), and \LaTeX{} takes care of the typesetting.
+The main file includes it with the `markdownInput` command of the [`markdown` package](https://ctan.org/pkg/markdown), and \LaTeX{} takes care of the typesetting.
 This needs \hologo{LuaLaTeX}.
 
 ## Text
 
-Text can be *emphasized* or **bold**, and `code` is set in a monospaced font.
+Text can be *emphasized* or **bold**, and a monospaced font shows `code`.
 A citation looks like this [@mwe], and here is a footnote.^[This is an inline footnote.]
 
 > A quote is a paragraph starting with a greater-than sign.
@@ -31,5 +31,5 @@ A citation looks like this [@mwe], and here is a footnote.^[This is an inline fo
 : A table written in Markdown {#tbl:markdown-chapter}
 
 <#tbl:markdown-chapter> shows a table with caption.
-Headings and tables get an identifier in curly braces, which is referenced in angle brackets.
+Headings and tables get an identifier in curly braces; a reference puts it in angle brackets.
 For instance, <#sec:latexhints> presents hints on writing \LaTeX{}.
