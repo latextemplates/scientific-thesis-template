@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1016 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1128.
+% vvvvvvvv  The content starts in line 1022 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1134.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -761,6 +761,12 @@
 % Page-aware references: \zvref{...} (and \zvref[S]{...}) reads like "Figure 5 on the next page"
 \usepackage{zref-vario}
 \zcLanguageSetup{english}{type=page, Name-sg=page, Name-pl=pages} % "on page 5", not "on Page 5"
+
+% Numbered research questions: \defRQ{<question>}{<label>} prints "Research Question 1 (RQ1): <question>", \refRQ{<label>} prints "RQ1"
+% Further kinds of items (requirements, hypotheses, ...) can be set up the same way; see https://github.com/koppor/refenums
+% refenums.sty is part of this repository, because TeX Live contains an older version of refenums (based on cleveref)
+\usepackage{refenums}
+\setupRefEnum[separator={}, plural={Research Questions}]{RQ}{Research Question}
 
 \usepackage{lipsum}
 
