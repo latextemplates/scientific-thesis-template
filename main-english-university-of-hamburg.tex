@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 959 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1099.
+% vvvvvvvv  The content starts in line 960 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1100.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -432,8 +432,9 @@
 \DeclareSourcemap{
   \maps[datatype=bibtex]{
     \map{
-      % JabRef stores "description:path:type", multiple files separated by ";"
-      \step[fieldsource=file, match=\regexp{\A[^:;]*:(.+?):[^:;]*(;.*)?\z}, replace=\regexp{$1}]
+      % JabRef stores "description:path:type", multiple files separated by ";"; the steps keep the path of the first file
+      \step[fieldsource=file, match=\regexp{\A[^:;]*:}, replace={}]
+      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}]
     }
   }
 }
