@@ -335,6 +335,7 @@ Each spell checker reads its own word list; add the word as a new line:
 
 The word lists of aspell, LTeX+, and TeXtidote contain the same words.
 Instead of editing each of them, add the word to the aspell or the LTeX+ word list and run `make dictionaries`: it merges both and writes the word into all of them (hyphenated words not into aspell's).
+On GitHub, the workflow `Dictionaries` does this after each push that changes one of these word lists and commits the result.
 To remove a word, delete it from the aspell and the LTeX+ word list and run `make dictionaries`.
 
 ### Q: How can I synchronize updates from the template to my repository?
