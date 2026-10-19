@@ -205,6 +205,16 @@ On the command line, there are additional features:
 - `make view`: Opens the configured viewer
 - `make mrproper`: Cleans up and removes also editor backup files.
 
+Without `make` (e.g., on Windows), run a target with `make` in the [Docker image by DANTE e.V.](https://hub.docker.com/r/danteev/texlive), which contains `make` and all tools, e.g., `dictionaries`:
+
+```powershell
+docker run --rm -it -v "${PWD}:/workdir" -w /workdir danteev/texlive:2026-C make LOCAL=1 dictionaries
+```
+
+```bash
+docker run --rm -it -u "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD:/workdir" -w /workdir danteev/texlive:2026-C make LOCAL=1 dictionaries
+```
+
 The `textlint` job of the `Check` workflow reports weakening words (e.g., "clearly", "just") in the English `.tex` files as annotations.
 Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
 
