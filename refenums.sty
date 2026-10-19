@@ -1,0 +1,251 @@
+\NeedsTeXFormat{LaTeX2e}[2023/06/01]
+\ProvidesPackage{refenums}
+  [2026/10/19 v2.0.0 Referenceable enumerated items (refenums.sty)]
+
+% This package provides commands to define enumerable items with a number
+% and a long name, which can be referenced referenced later with the name
+% or just the short form. For instance, "Milestone M1: Specification created"
+% can be defined and later on be referenced with `M1` or
+% `M1 ("Specification created")`. The text in the references is derived from
+% the definition and also rendered as hyperlink to the definition.
+% Thus, a change of the definition also leads to a change of all references
+% to the text. This ensures consistency in the text.
+
+% The latest source code is available at https://github.com/koppor/refenums
+
+% Option shorthands=true|false (default: true): \setupRefEnums{<EnumId>}{...} also defines \def<EnumId>, \def<EnumId>Inline, \ref<EnumId>, \ref<EnumId>Full, \ref<EnumId>FullColon, and \ref<EnumId>Title
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=refenums,prefix=refenums@}
+\DeclareBoolOption[true]{shorthands}
+\ProcessKeyvalOptions*
+
+\RequirePackage{csquotes}
+\RequirePackage{ifthen}
+\RequirePackage{hyperref}
+% 0.4.0 sets a \zlabel alongside each \label, so the labels refenums sets work with \zcref
+\RequirePackage{zref-clever}[2023/06/14]
+
+%Defines command \refenumenclosing and \refenuminlineenclosing if it is not already defined
+\ifthenelse{\isundefined{\refenumenclosing}}{\newcommand{\refenumenclosing}[1]{#1}}{}
+\ifthenelse{\isundefined{\refenuminlineenclosing}}{\newcommand{\refenuminlineenclosing}[1]{\emph{#1}}}{}
+
+% tip by http://tex.stackexchange.com/a/73710/9075
+\newcommand{\labelname}[1]{% \labelname{<stuff>}
+  \def\@currentlabelname{#1}}%
+
+% Setup environment
+% Called ONCE for each enum
+%
+% #1: (optional) the seperator between EnumId and Number. Default: "-". If set to COMBINED, the output format changes to <PrintName> <EnumId><Number>
+% #2: (optional) name of the command to wrap each element in, e.g. "subsection". Default: refenumenclosing
+% #3: Enum Id (no spaces, only characters), also used later in defineReferenceableEnumElement
+% #4: Print Name of enum type, if "ONLYSHORT" then only the short name is used and a long name never printed
+\NewDocumentCommand{\setupRefEnums}{O{-}O{refenumenclosing}mm}{\refenums@setup{#1}{#3}{#4}%
+% Stored as a name, not a command, so that \refenumenclosing may still be redefined after \setupRefEnums
+\expandafter\def\csname #3Enclosing\endcsname{#2}%
+% A sectioning command sets the title apart already; a run-in title needs italics to stand out from the following text
+\ifthenelse{\equal{#2}{refenumenclosing}}%
+{\expandafter\def\csname #3TitleFormat\endcsname{emph}}%
+{\expandafter\def\csname #3TitleFormat\endcsname{@firstofone}}%
+% \newcommand, not \def: a clash with an existing command must not go unnoticed
+\ifrefenums@shorthands
+\expandafter\newcommand\csname def#3\endcsname[2]{\defRefEnum{#3}{##1}{##2}}%
+\expandafter\newcommand\csname def#3Inline\endcsname[2]{\defRefEnumInline{#3}{##1}{##2}}%
+\expandafter\NewDocumentCommand\csname ref#3\endcsname{sm}{\IfBooleanTF{##1}{\refEnum*{#3}{##2}}{\refEnum{#3}{##2}}}%
+\expandafter\NewDocumentCommand\csname ref#3Full\endcsname{sm}{\IfBooleanTF{##1}{\refEnumFull*{#3}{##2}}{\refEnumFull{#3}{##2}}}%
+\expandafter\NewDocumentCommand\csname ref#3FullColon\endcsname{sm}{\IfBooleanTF{##1}{\refEnumFullColon*{#3}{##2}}{\refEnumFullColon{#3}{##2}}}%
+\expandafter\newcommand\csname ref#3Title\endcsname[1]{\refEnumTitle{#3}{##1}}%
+\fi}
+
+% Same as \setupRefEnums, with key-value options instead of positional ones
+%
+% #1: (optional) keys:
+%     separator=<text>     the separator between EnumId and Number. Default: "-"
+%     enclosing=<name>     name of the command to wrap each element in, e.g. "subsection". Default: refenumenclosing
+%     combined             output format <PrintName> <EnumId><Number>
+%     plural=<text>        plural of the print name, used by \zcref for several items. Default: <PrintName>s
+%     titleformat=<name>   name of the command the title is wrapped in when an element is defined, e.g. "emph". Default: "emph" if enclosing is refenumenclosing, none otherwise. Empty: none
+% #2: Enum Id
+% #3: Print Name of enum type, if "ONLYSHORT" then only the short name is used and a long name never printed
+\ExplSyntaxOn
+\keys_define:nn { refenums }
+  {
+    separator .tl_set:N = \l__refenums_separator_tl ,
+    enclosing .tl_set:N = \l__refenums_enclosing_tl ,
+    combined  .code:n   = \tl_set:Nn \l__refenums_separator_tl { COMBINED } ,
+    combined  .value_forbidden:n = true ,
+    plural .code:n =
+      {
+        \bool_set_true:N \l__refenums_plural_bool
+        \tl_set:Nn \l__refenums_plural_tl {#1}
+      } ,
+    titleformat .code:n =
+      {
+        \bool_set_true:N \l__refenums_titleformat_bool
+        \tl_set:Nn \l__refenums_titleformat_tl {#1}
+      } ,
+  }
+\bool_new:N \l__refenums_titleformat_bool
+\bool_new:N \l__refenums_plural_bool
+\NewDocumentCommand \setupRefEnum { O{} m m }
+  {
+    % No group around \keys_set:nn: \setupRefEnums defines macros locally, so the defaults are reset explicitly
+    \bool_set_false:N \l__refenums_titleformat_bool
+    \bool_set_false:N \l__refenums_plural_bool
+    \keys_set:nn { refenums } { separator = - , enclosing = refenumenclosing , #1 }
+    \use:x
+      {
+        \exp_not:N \setupRefEnums
+          [ \exp_not:V \l__refenums_separator_tl ]
+          [ \exp_not:V \l__refenums_enclosing_tl ]
+          { \exp_not:n {#2} } { \exp_not:n {#3} }
+      }
+    \bool_if:NT \l__refenums_plural_bool
+      {
+        \zcRefTypeSetup {#2}
+          { name-pl = \l__refenums_plural_tl , Name-pl = \l__refenums_plural_tl }
+      }
+    % Without titleformat, \setupRefEnums has chosen the default
+    \bool_if:NT \l__refenums_titleformat_bool
+      {
+        \tl_if_empty:NTF \l__refenums_titleformat_tl
+          { \tl_set:cn { #2TitleFormat } { @firstofone } }
+          { \tl_set_eq:cN { #2TitleFormat } \l__refenums_titleformat_tl }
+      }
+  }
+\ExplSyntaxOff
+
+\newcommand{\refenums@setup}[3]{%
+%Define global counter
+\newcounter{#2}
+
+%Store print name
+\expandafter\newcommand\csname #2PrintName\endcsname{#3}
+
+%Store separator
+%tipp by http://tex.stackexchange.com/a/64019/9075
+\expandafter\newcommand\csname #2Separator\endcsname{#1}
+
+%Store COMBINED and setup references
+\newtoggle{#2Combined}
+\ifthenelse{%
+\equal{#1}{COMBINED}}{%
+\toggletrue{#2Combined}
+\refenums@refsetup{#2}{}{#3}%
+}{%
+\togglefalse{#2Combined}
+\refenums@refsetup{#2}{#1}{#3}%
+}
+
+%Store ONLYSHORTCONFIG
+\newtoggle{#2OnlyShort}
+\ifthenelse{%
+\equal{#3}{ONLYSHORT}}{%
+\toggletrue{#2OnlyShort}
+}{%
+\togglefalse{#2OnlyShort}
+}
+
+%End of definition of setupRefEnums
+}
+
+% The counter prints as the identifier <EnumId><separator><Number>, so \ref, \zcref[noname] and \cref print it as well
+% \zcref prefixes the print name, e.g., "Risk R1" or "Risks R1 and R2"; zref-clever names a reference by its counter, which is the Enum Id
+% cleveref's \cref gets the same format if cleveref is loaded before \setupRefEnums
+% #1: Enum Id
+% #2: separator
+% #3: Print Name
+\newcommand{\refenums@refsetup}[3]{%
+\expandafter\def\csname the#1\endcsname{#1#2\arabic{#1}}%
+\ifthenelse{\equal{#3}{ONLYSHORT}}%
+{\zcRefTypeSetup{#1}{name-sg={}, Name-sg={}, name-pl={}, Name-pl={}, namesep={}}}%
+{\zcRefTypeSetup{#1}{name-sg={#3}, Name-sg={#3}, name-pl={#3s}, Name-pl={#3s}}}%
+\ifdefined\crefformat
+\crefformat{#1}{##2##1##3}%
+\Crefformat{#1}{##2##1##3}%
+\fi
+}
+
+% Title #2 of an element of enum #1, wrapped in the enum's title format
+% Expandable, because headings end up in the table of contents and in bookmarks
+\newcommand{\refenums@formattitle}[2]{\csname\csname #1TitleFormat\endcsname\endcsname{#2}}
+
+%internal command, used only at defineReferenceableEnumElement
+% #1: Enum Id (no spaces, only characters), also used to print short form of enum and to reference the setup at setupRefEnums
+% #2: Full Name of the enum to be defined
+\newcommand{\defRefEnumHelper}[2]{%
+% \arabic{#1} returns the counter value
+\iftoggle{#1OnlyShort}{%
+#1\csname #1Separator\endcsname\arabic{#1}: \refenums@formattitle{#1}{#2}%
+}{%
+\iftoggle{#1Combined}{%
+\csname #1PrintName\endcsname\ #1\arabic{#1}: \refenums@formattitle{#1}{#2}%
+}{%
+\csname #1PrintName\endcsname\ \arabic{#1} (#1\csname #1Separator\endcsname\arabic{#1}): \refenums@formattitle{#1}{#2}%
+}%
+}%
+}%
+
+% Generic command to define counter elements
+% Called for EACH element
+%
+% #1: (optional) the command to wrap the text under. Defaults to the one given at \setupRefEnums
+% #2: Enum Id (no spaces, only characters), also used to print short form of enum and to reference the setup at setupRefEnums
+% #3: Full Name of the enum to be defined
+% #4: Label Id of the enum when referencing it
+\newcommand{\defRefEnum}[4][]{%
+%increase counter
+\refstepcounter{#2}%
+%
+%store the ``caption'' into a sepcial variable being used later for referencing
+\labelname{#3}%
+%
+%label directly put after refstepcounter to enable sectioning commands to be used as enumeration
+\label{enum:#2:#4}%
+%
+%Print out the thing
+\ifthenelse{\equal{#1}{}}{\edef\refenums@enclosing{\csname #2Enclosing\endcsname}}{\def\refenums@enclosing{#1}}%
+\csname\refenums@enclosing\endcsname{\defRefEnumHelper{#2}{#3}}%
+%
+}
+
+
+% Same as \defRefEnum but for inline referenceable elements!
+% One uses either without ``Inline'' or with ``Inline'' for a group of types
+\newcommand{\defRefEnumInline}[4][refenuminlineenclosing]{%
+ \refstepcounter{#2}%
+ \csname #1\endcsname{(#2\csname #2Separator\endcsname\arabic{#2}) #3}%
+ \labelname{#3}%
+ \label{enum:#2:#4}%
+}
+
+
+% References to an element
+% The starred forms prefix the print name of the enum, e.g., "Requirement Req-1" instead of "Req-1"
+%
+% #1: (star) prefix the print name
+% #2: Enum Id
+% #3: Label Id
+
+% Output: <EnumId><Num>
+\NewDocumentCommand{\refEnum}{smm}{%
+\IfBooleanTF{#1}{\zcref{enum:#2:#3}}{\zcref[noname]{enum:#2:#3}}%
+}
+
+% Output: <FullName>
+\newcommand{\refEnumTitle}[2]{\nameref{enum:#1:#2}}
+
+% Output: <EnumId><Num> (``<FullName>'')
+\NewDocumentCommand{\refEnumFull}{smm}{%
+\IfBooleanTF{#1}{\refEnum*{#2}{#3}}{\refEnum{#2}{#3}} (\enquote{\refEnumTitle{#2}{#3}})%
+}
+
+% Output: <EnumId><Num>: ``<FullName>''
+\NewDocumentCommand{\refEnumFullColon}{smm}{%
+\IfBooleanTF{#1}{\refEnum*{#2}{#3}}{\refEnum{#2}{#3}}: \enquote{\refEnumTitle{#2}{#3}}%
+}
+
+% Older names, kept for existing documents
+\NewCommandCopy\refEnumFullP\refEnumFull
+\NewCommandCopy\refEnumFullT\refEnumFullColon
+\endinput

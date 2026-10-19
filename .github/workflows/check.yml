@@ -29,7 +29,7 @@ jobs:
           tlmgr generate language --rebuild-sys
       - run: latexmk main-english
 
-      # Highlight mis-spelled words in the PDF
+      # Highlight misspelled words in the PDF
       - uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
           packages: aspell aspell-en aspell-de
@@ -43,18 +43,29 @@ jobs:
         # Needs more adaption for scientific thesis; therefore disabled
         if: ${{ false }}
         run: |
-          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
-            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+          for tex in *.tex chapters-*/*.tex content-markdown*.md chapters-*/*.md; do
+            [ -e "$tex" ] || continue
+            if [[ "en" == "de" && ( "$tex" == thesis-example* || "$tex" == chapters-de/* ) ]]; then
               continue
             fi
 
             # The lualatex package "spelling" requires the content to be in a file ending with ".spell.bad"
-            aspell --mode=tex\
-              -l en_US\
-              --encoding=utf-8\
-              --conf=./.aspell.conf\
-              -p ./.aspell.en.pws list\
-              < $tex | sort | uniq >> main-english.spell.bad
+            # Markdown files may contain LaTeX commands and references (<#id>, {#id}), which are no words.
+            if [[ "$tex" == *.md ]]; then
+              sed -E 's/\\[A-Za-z]+//g; s/<#[^>]*>//g; s/\{#[^}]*\}//g' "$tex" | aspell --mode=markdown\
+                -l en_US\
+                --encoding=utf-8\
+                --conf=./.aspell.conf\
+                -p ./.aspell.en.pws list\
+                | sort | uniq >> main-english.spell.bad
+            else
+              aspell --mode=tex\
+                -l en_US\
+                --encoding=utf-8\
+                --conf=./.aspell.conf\
+                -p ./.aspell.en.pws list\
+                < "$tex" | sort | uniq >> main-english.spell.bad
+            fi
           done
       - run: latexmk main-english
 
@@ -111,28 +122,23 @@ jobs:
     # Disabled: the example content trips too many aspell false positives to maintain
     if: false
     runs-on: ubuntu-latest
+    # The DANTE e.V. image contains aspell with English and German dictionaries
+    container: danteev/texlive:2026-C
+    # In a container, steps run with sh by default
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      # Original action does not work well - see https://github.com/awalsh128/cache-apt-pkgs-action/pull/136
-      # The action is not updated - and thus the dictionaries are not updated
-      - uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
-        with:
-          packages: aspell aspell-en aspell-de
-          version: 1.0
-          execute_install_scripts: true
-      - name: post-setup aspell
-        # refs https://github.com/awalsh128/cache-apt-pkgs-action/issues/157
-        run: |
-          sudo apt-get install -y aspell-en aspell-de
       - name: aspell
         run: |
           echo "| file | status |" >> $GITHUB_STEP_SUMMARY
           echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
           failure=0
-          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
-            if [[ "en" == "de" && "$tex" == thesis-example* ]]; then
+          for tex in *.tex chapters-*/*.tex content-markdown*.md chapters-*/*.md; do
+            [ -e "$tex" ] || continue
+            if [[ "en" == "de" && ( "$tex" == thesis-example* || "$tex" == chapters-de/* ) ]]; then
               echo "$tex skipped"
               continue
             fi
@@ -141,17 +147,23 @@ jobs:
             # Pick the dictionary that matches the file's language: the "-de"
             # variants are German, everything else uses the document's language.
             case "$tex" in
-              *-de.tex|*-de-*.tex) aspell_lang="-l de_DE --run-together"; aspell_pws=de ;;
+              *-de.tex|*-de-*.tex|*.de.md|chapters-de/*) aspell_lang="-l de_DE --run-together"; aspell_pws=de ;;
+              chapters-en/*) aspell_lang="-l en_US"; aspell_pws=en ;;
               *) aspell_lang="-l en_US"; aspell_pws=en ;;
             esac
 
-            # Words are output in the order they appear in the document
-            words=$(aspell --mode=tex $aspell_lang --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.$aspell_pws.pws list < $tex | tr '\n' ' ')
+            # Words are output in the order they appear in the document.
+            # Markdown files may contain LaTeX commands and references (<#id>, {#id}), which are no words.
+            if [[ "$tex" == *.md ]]; then
+              words=$(sed -E 's/\\[A-Za-z]+//g; s/<#[^>]*>//g; s/\{#[^}]*\}//g' "$tex" | aspell --mode=markdown $aspell_lang --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.$aspell_pws.pws list | tr '\n' ' ')
+            else
+              words=$(aspell --mode=tex $aspell_lang --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.$aspell_pws.pws list < "$tex" | tr '\n' ' ')
+            fi
             if [ -z "$words" ]; then
               echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
             else
               echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
-              if [[ "$tex" == "main-english.tex" ]]; then
+              if [[ "$tex" == "main-english.tex" || "$tex" == chapters-en/* || "$tex" == content-markdown.md ]]; then
                 failure=1
               fi
             fi
@@ -174,9 +186,17 @@ jobs:
           # Report-only: findings show up as annotations, the job does not fail.
           # Rules come from .textlintrc.json. Only English documents (marked by
           # "% !TeX spellcheck = en-US") are linted: write-good targets English.
-          files=$(grep -l '^% !TeX spellcheck = en' *.tex || true)
-          if [ -z "$files" ]; then
-            echo "No English .tex files to lint." >> "$GITHUB_STEP_SUMMARY"
+          # The English Markdown files (content-markdown.md, chapters-en/*.md) belong to them.
+          # The English chapters (chapters-en/*.tex) belong to them.
+          files=()
+          for tex in *.tex chapters-en/*.tex chapters-en/*.md; do
+            [ -e "$tex" ] || continue
+            if [[ "$tex" == chapters-en/* || "$tex" == *.md ]] || grep -q '^% !TeX spellcheck = en' "$tex"; then
+              files+=("$tex")
+            fi
+          done
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No English files to lint." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           npx --yes \
@@ -185,29 +205,41 @@ jobs:
             --package textlint-filter-rule-allowlist \
             --package textlint-rule-terminology \
             --package textlint-rule-write-good \
-            textlint --format github $files \
+            textlint --format github "${files[@]}" \
             | sed "s|${GITHUB_WORKSPACE}/||g" | tee annotations.txt || true
           count=$(grep -c '^::\(error\|warning\)' annotations.txt || true)
-          echo "textlint reported ${count} finding(s) in: ${files//$'\n'/, }" >> "$GITHUB_STEP_SUMMARY"
-  textidote:
+          echo "textlint reported ${count} finding(s) in: $(IFS=,; echo "${files[*]}")" >> "$GITHUB_STEP_SUMMARY"
+  typos:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Download TeXtidote
-        uses: ethanjli/cached-download-action@f1d109e4eca8d988e012ed5565366717aba90d0f # v0.1.4
-        with:
-          url: https://github.com/sylvainhalle/textidote/releases/download/v0.9/textidote.jar
-          destination: ${{ runner.temp }}/textidote.jar
+      # Finds common misspellings (configured in .typos.toml)
+      - uses: crate-ci/typos@7f9d0819ca1c008ade73f4b41fa9d258d48f605b # v1.51.1
+  textidote:
+    runs-on: ubuntu-latest
+    # The DANTE e.V. image contains TeXtidote
+    container: danteev/texlive:2026-C
+    # In a container, steps run with sh by default
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check spelling, grammar, and style with TeXtidote
         run: |
           # Report-only: findings show up as annotations, the job does not fail.
           # TeXtidote (https://github.com/sylvainhalle/textidote) reads its options from .textidote.
-          # -Djdk.xml.totalEntitySizeLimit=0: TeXtidote 0.9 fails on Java 24+ otherwise (fixed after 0.9: sylvainhalle/textidote#274)
-          java -Djdk.xml.totalEntitySizeLimit=0 -jar "$RUNNER_TEMP/textidote.jar" --output singleline --no-color main-english.tex > textidote.txt || true
+          textidote --output singleline --no-color main-english.tex > textidote.txt || true
+          # TeXtidote mixes up the text of \include lines, so .textidote removes them and each chapter is checked on its own
+          for tex in chapters-en/*.tex chapters-en/*.md; do
+            [ -e "$tex" ] || continue
+            textidote --output singleline --no-color --read-all "$tex" >> textidote.txt || true
+          done
           # A finding looks like: file.tex(L25C1-L25C25): message "excerpt"
           perl -ne 'if (/^(.+?)\(L(\d+)C(\d+)-L(\d+)C(\d+)\): (.*)$/) { my ($f, $l, $c, $el, $ec, $m) = ($1, $2, $3, $4, $5, $6); $m =~ s/%/%25/g; print "::warning file=$f,line=$l,col=$c,endLine=$el,endColumn=$ec,title=TeXtidote::$m\n" }' textidote.txt
-          echo "TeXtidote reported $(grep -c . textidote.txt) finding(s) in main-english.tex" >> "$GITHUB_STEP_SUMMARY"
+          echo "TeXtidote reported $(grep -c . textidote.txt) finding(s) in main-english.tex and its chapters" >> "$GITHUB_STEP_SUMMARY"
   indent:
     runs-on: ubuntu-latest
     steps:

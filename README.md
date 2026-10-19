@@ -4,6 +4,8 @@ This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at the computer science departments listed below, each with example PDFs; other departments are untested.
 The template will be extended to support theses from more institutions.
 
+The LaTeX snippets this template is assembled from can be inspected at <https://latextemplates.github.io/latex-snippets/>.
+
 ## Supported institutions
 
 ### University of Stuttgart, Computer Science
@@ -36,14 +38,14 @@ The template will be extended to support theses from more institutions.
         - English: `main-english.tex`
         - German: `main-german.tex`
         - Without Python (see below): `main-basic-listings-english.tex`, `main-basic-listings-german.tex`
+    - The text is in [`chapters-en/`](chapters-en/) (English) and [`chapters-de/`](chapters-de/) (German), one file per chapter (e.g., `chapters-en/10 - introduction.tex`), which the main files include.
+      The numbers go in steps of 10, so a new chapter fits in between (e.g., `chapters-en/25 - my chapter.tex`).
 
 3. Compile with "lualatex + biber" in your TeX editor or with `latexmk main-english` / `make` on the command line.
 
 ### Usage at Overleaf
 
 See [docs/overleaf](docs/overleaf/).
-
-The LaTeX snippets this template is assembled from can be inspected at <https://latextemplates.github.io/latex-snippets/>.
 
 ## Writing your thesis
 
@@ -57,6 +59,8 @@ Following features are enabled in this template:
 
 - (Optional) Typesetting of listings using advanced highlighting powered by the [minted] package.
   `minted` provides better output than [listings], but requires [latexminted] to be installed.
+- Numbered research questions: `\defRQ` prints "Research Question 1 (RQ1)", `\refRQ` references it as "RQ1".
+  This is enabled by the [refenums](https://github.com/koppor/refenums) package; `refenums.sty` is part of this repository, because TeX Live contains an older version.
 - Generated PDF allows for copy and paste of text without getting words with [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature) such as "workflow" destroyed.
   With pdfLaTeX, this is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters; LuaLaTeX does this by itself.
 - Ligatures are removed if they are typeset at the wrong place.
@@ -76,7 +80,7 @@ Following features are enabled in this template:
 - Proper hyphenation and microtype for English texts.
 - Hints on writing an abstract and thesis by Dirk Fahland.
 
-## Disabled features
+### Disabled features
 
 Following features were not activated for this template.
 You can run the [latex template generator] to enable the features.
@@ -87,13 +91,16 @@ Congratulations. You chose to use all available features.
 
 ### Directories
 
+- [chapters-en](chapters-en/), [chapters-de](chapters-de/) One file per chapter (English, German), included by the main file.
+  The chapter on Markdown is a plain Markdown file (`.md`), included with `\markdownInput` (LuaLaTeX only).
+  The source code example of the LaTeX hints is a file of its own for each of the minted and listings packages.
 - [figures](figures/) Directory containing the figures.
-  By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
+  By using LuaLaTex/PDFLaTeX it is possible to use PDF, JPG, and PNG files. We recommend to use PDFs to enable smooth scaling.
 
 ### Files
 
 - `main-english.tex` - The main `.tex` file loading all LaTeX packages and their configurations.
-  - Add text here
+  - Add or remove chapters here
   - Adjust title, … here
 - [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
 - [abbreviations.tex](abbreviations.tex) - Acronyms and abbreviations.
@@ -155,6 +162,7 @@ To have `minted` running with a traditional installation, you have to do followi
 
 1. Install python: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
 2. Install [latexminted]: `pip install latexminted` - that uses the Python package manager to install the minted library
+
 ### latexmk hints
 
 [latexmk] runs the LaTeX tools (e.g., lualatex and biber) as often as needed to get the final PDF ([why `latexmk` is great](https://tex.stackexchange.com/a/249243/9075)).
@@ -189,23 +197,34 @@ On the command line, there are additional features:
 - `latexmk -C` or `make clean` for cleaning up
 - `make log` shows only the relevant messages of the last LaTeX run (using [texlogsieve](https://ctan.org/pkg/texlogsieve))
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
-- `make spellcheck` runs all spell checkers:
+- `make spellcheck` runs all spell checkers (in the [Docker image by DANTE e.V.](https://hub.docker.com/r/danteev/texlive), which contains them; `make LOCAL=1 spellcheck` uses local installations):
   - `make spellcheck-aspell` for interactive spell checking with aspell
-  - `make spellcheck-textidote` checks spelling, grammar, and style with [TeXtidote](https://github.com/sylvainhalle/textidote) (report in `textidote.html`)
+  - `make spellcheck-textidote` checks spelling, grammar, and style with [TeXtidote](https://github.com/sylvainhalle/textidote) (report in `textidote.html`, for the chapters in `chapters-*/*.textidote.html`)
+- `make dictionaries` merges the word lists of the spell checkers (see the FAQ on adding words)
 - `make stand`: Creates a new PDF with the current status of the document.
 - `make view`: Opens the configured viewer
 - `make mrproper`: Cleans up and removes also editor backup files.
+
+Without `make` (e.g., on Windows), run a target with `make` in the [Docker image by DANTE e.V.](https://hub.docker.com/r/danteev/texlive), which contains `make` and all tools, e.g., `dictionaries`:
+
+```powershell
+docker run --rm -it -v "${PWD}:/workdir" -w /workdir danteev/texlive:2026-C make LOCAL=1 dictionaries
+```
+
+```bash
+docker run --rm -it -u "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD:/workdir" -w /workdir danteev/texlive:2026-C make LOCAL=1 dictionaries
+```
 
 The `textlint` job of the `Check` workflow reports weakening words (e.g., "clearly", "just") in the English `.tex` files as annotations.
 Run it locally with `npx` (needs Node.js; rules come from `.textlintrc.json`):
 
 ```bash
-npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex
+npx --yes --package textlint --package textlint-plugin-latex2e --package textlint-filter-rule-allowlist --package textlint-rule-terminology --package textlint-rule-write-good textlint main-english.tex chapters-en/*.tex chapters-en/*.md
 ```
 
 The `textidote` job of the `Check` workflow checks spelling, grammar, and style of English documents with [TeXtidote](https://github.com/sylvainhalle/textidote) and reports its findings as annotations.
 Its options are in `.textidote`.
-Run it locally with `make spellcheck-textidote`: it downloads `textidote.jar` once and writes the report `textidote.html`.
+Run it locally with `make spellcheck-textidote`: it writes the report `textidote.html` (for the chapters: `chapters-*/*.textidote.html`).
 
 ### UML diagrams with PlantUML or Mermaid
 
@@ -302,6 +321,22 @@ For example:
 ```latex
 \foreignlanguage{english}{Therefore, our proposed approach will change the world.}
 ```
+
+### Q: How do I add a word (e.g., the name of a tool) to the spell checkers?
+
+Each spell checker reads its own word list; add the word as a new line:
+
+| Spell checker | Word list |
+| --- | --- |
+| aspell (CI job `spell-check`, `make spellcheck-aspell`) | `.aspell.en.pws` (English), `.aspell.de.pws` (German); below the first line, no hyphenated words |
+| [LTeX+] (VS Code) | `.vscode/ltex.dictionary.en-US.txt`, `.vscode/ltex.dictionary.de-DE.txt`; "Add to dictionary" in VS Code writes there |
+| TeXtidote (CI job `textidote`, `make spellcheck-textidote`) | `.textidote.dict` |
+| [typos](https://github.com/crate-ci/typos) (CI job `typos`) | `.typos.toml`, section `[default.extend-words]`, e.g., `Heros = "Heros"`; only needed if typos reports the word |
+
+The word lists of aspell, LTeX+, and TeXtidote contain the same words.
+Instead of editing each of them, add the word to the aspell or the LTeX+ word list and run `make dictionaries`: it merges both and writes the word into all of them (hyphenated words not into aspell's).
+On GitHub, the workflow `Dictionaries` does this after each push that changes one of these word lists and commits the result.
+To remove a word, delete it from the aspell and the LTeX+ word list and run `make dictionaries`.
 
 ### Q: How can I synchronize updates from the template to my repository?
 
@@ -440,13 +475,14 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in your main `.tex` file.
 - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
 - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
+
 ## Further information
 
 - Why the templates use which packages: [decision records of the template generator](https://github.com/latextemplates/generator-latex-template/tree/main/docs/decisions)
 - Other templates: <https://latextemplates.github.io/>
 - For German users, go to <https://texfragen.de/>.
 - Frank Mittelbach with Ulrike Fischer: [The LaTeX Companion](https://www.latex-project.org/news/2023/03/17/TLC3/) is the ultimate guide for LaTeX: The authors went through all packages offered by [CTAN](https://ctan.org/), selected the most promising ones, described them, and provide minimal working example for each of it.
-- Lutz Hering, Heike Hering: [How to Write Technial Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
+- Lutz Hering, Heike Hering: [How to Write Technical Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
 - Marcus Deininger et al.: [Studienarbeiten - Ein Leitfaden zur Erstellung, Durchführung und Präsentation wissenschaftlicher Abschlussarbeiten am Beispiel Informatik](https://vdf.ch/studienarbeiten.html?author_id=2877), vdf. - Recommended as guideline for planning and working on the whole thesis.
 - Charles Lipson, [Cite Right, Second Edition: A Quick Guide to Citation Styles--MLA, APA, Chicago, the Sciences, Professions, and More](http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo10702043.html), Chicago Guides to Writing, Editing, and Publishing, 2011. - Recommended in case you are unsure about how to correctly cite something.
 
@@ -476,13 +512,11 @@ The logos are trademarks of the universities: use them only on the title page of
 [lualatex]: http://www.luatex.org/
 [microtype]: https://ctan.org/pkg/microtype
 [minted]: https://ctan.org/pkg/minted
-[natbib]: https://ctan.org/pkg/natbib
 [paralist]: https://www.ctan.org/pkg/paralist
 [pdfcomment]: https://www.ctan.org/pkg/pdfcomment
 [upquote]: https://www.ctan.org/pkg/upquote
 
 [JabRef]: https://www.jabref.org
-[LanguageTool]: https://languagetool.org/
 [latex template generator]: https://www.npmjs.com/package/generator-latex-template
 [LTeX+]: https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus
 [latexminted]: https://pypi.org/project/latexminted/

@@ -1,0 +1,25 @@
+# Keeps the word lists of the spell checkers in sync: when a push changes the aspell or the
+# LTeX+ word list (e.g., a word added in VS Code), "make dictionaries" merges them and the
+# merged word lists are committed (see the README FAQ on adding words).
+name: Dictionaries
+on:
+  push:
+    paths:
+      - '.aspell.*.pws'
+      - '.vscode/ltex.dictionary.*.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  dictionaries:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Merge the word lists
+        run: make LOCAL=1 dictionaries
+      # Commits made with the GITHUB_TOKEN do not trigger this workflow again
+      - uses: EndBug/add-and-commit@cc9c08ba6c8df3b93a8f2db63e89b98368ae2ae8 # v11.1.1
+        with:
+          message: 'Merge the word lists of the spell checkers (make dictionaries)'
+          default_author: github_actions

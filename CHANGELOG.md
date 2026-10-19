@@ -5,6 +5,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- A chapter written in plain Markdown (`chapters-<lang>/NN - markdown.md`; LuaLaTeX).
+- Optional `[PDF]` link to the cited paper from JabRef's `file` field.
+- Section "Threats to Validity" in the evaluation chapter of the writing hints.
+- Numbered research questions (`\defRQ`, referenced as "RQ1" by `\refRQ`) using [refenums](https://github.com/koppor/refenums) (`refenums.sty`).
+- VS Code: [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) recommended, configured by `.markdownlint.yml`.
+- VS Code: LTeX+ knows the words of the aspell word lists (`.vscode/ltex.dictionary.<language>.txt`).
+- `make dictionaries` merges the word lists of aspell, LTeX+, and TeXtidote.
+- CI: after a push that changes a word list, the workflow `Dictionaries` runs `make dictionaries` and commits the merged word lists.
+- CI: [typos](https://github.com/crate-ci/typos) checks the spelling, also in comments (configured in `.typos.toml`).
+
+### Changed
+
+- Each chapter is a file in `chapters-en/` or `chapters-de/` (`NN - <name>.tex`, numbered in steps of 10), included by the main file.
+- A short README.md in `chapters-en/` and `chapters-de/`.
+- The parts of the writing hints (background, problem exposition, …, evaluation) are chapters.
+- The caption of the cross-reference example table is above the table.
+- Lines in minted listings are labeled with `\label` and referenced with `\zcref` like everything else (`\labelline` and `\refline` removed).
+- University of Hamburg (English): the title page shows "Thesis Title" as placeholder.
+- Markdown example: "a whole chapter" instead of "a longer part".
+- CI: aspell, textlint, and TeXtidote also check the Markdown chapter.
+- CI and `make spellcheck`: aspell and TeXtidote run in the [Docker image by DANTE e.V.](https://hub.docker.com/r/danteev/texlive).
+- CI: `update-files.yml` no longer passes the ignored `--cleveref=true`.
+- README.md: FAQ on adding words (e.g., names of tools) to the spell checkers.
+- README.md: how to run the `make` targets in Docker without a local `make`.
+- README.md: link to the LaTeX snippets moved to the introduction.
+- README.md: "Disabled features" is a subsection of "Benefits".
+- README.md and `docs/latex-setup.md`: markdownlint findings fixed.
+
+### Removed
+
+- `stfloats.sty`: MiKTeX ships the package `sttools` again ([miktex-packaging#492](https://github.com/MiKTeX/miktex-packaging/issues/492)).
+- `tikz-uml.sty` and `data/data.csv`: no longer used.
+
+### Fixed
+
+- Typos fixed, mostly in comments; German comments in the English files translated.
+- English: algorithms are captioned "Algorithm" (instead of "Algorithmus").
+
 ## [2026-10-16]
 
 ### Added

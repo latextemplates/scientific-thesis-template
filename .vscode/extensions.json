@@ -3,6 +3,7 @@
         "james-yu.latex-workshop",
         "tecosaur.latex-utilities",
         "ltex-plus.vscode-ltex-plus",
-        "jabref.jabref-4-vscode"
+        "jabref.jabref-4-vscode",
+        "davidanson.vscode-markdownlint"
     ]
 }

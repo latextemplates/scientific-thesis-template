@@ -4,7 +4,8 @@
 \\[Zz]cref(\[[^]]*\])?\{[^}]*\}	Section 1
 \\[Zz]vref(\[[^]]*\])?\{[^}]*\}	Section 1
 \\[Cc]ref\{[^}]*\}	Section 1
-\\refline\{[^}]*\}	Line 1
+\\refRQ(Full)?\{[^}]*\}	RQ1
+\\defRQ\{([^}]*)\}\{[^}]*\}	RQ1: $1
 \\[Gg]ls(pl)?(\[[^]]*\])?\{[^}]*\}	Term
 \\[Aa]cr[a-z]*\{[^}]*\}	Term
 \\captionof\{[^}]*\}\{([^}]*)\}	$1
@@ -15,6 +16,11 @@
 \\LaTeX(\{\})?	LaTeX
 \\TeX(\{\})?	TeX
 \\SI\{[^}]*\}\{[^}]*\}	5 m
+\\hologo\{([^}]*)\}	$1
+# Markdown: references <#id> become a word, identifiers {#id} and the colon starting a table caption vanish.
+<#[^>]*>	Section 1
+\s*\{#[^}]*\}	
+(?m)^: 	
 # Comments and changes (see the "LaTeX Hints"): only the visible text remains.
 \\textcomment\{([^}]*)\}\{[^}]*\}	$1
 \\change\{[^}]*\}\{([^}]*)\}	$1
@@ -24,6 +30,7 @@
 (\\textbackslash)+	backslash
 # Lines beginning and ending environments are no prose; \begin{document} and the environments removed in .textidote must stay.
 \\(begin|end)\{(?!(document|otherlanguage|listing|minted|lstlisting|verbatim|tikzpicture|mplibcode|sequencediagram|markdown|plantuml|mermaid|algorithm|algorithmic|equation\*?|align\*?|tabular|tabularx|longtable|tblr)\})[A-Za-z*]+\}(\{[^}]*\}|\[[^]]*\])*	
+\\ifdefined\\[a-zA-Z@]+	
 \\(if[a-zA-Z@]*|else|fi)\b	
 \\renewcommand\*?\{[^}]*\}\{[^}]*\}	
 \\IEEEauthorblock[AN]\{.*	
