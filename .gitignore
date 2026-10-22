@@ -2,10 +2,17 @@ main-english.pdf
 main-english-*.pdf
 figures/*.pdf_tex
 
+main-english.tex
+main-english-university-of-hamburg.tex
+main-german.tex
+main-german-university-of-hamburg.tex
+main-minted-english.tex
+main-minted-english-university-of-hamburg.tex
+main-minted-german.tex
+main-minted-german-university-of-hamburg.tex
+
 # glossaries
-*.glg-abr
 *.glo-abr
-*.gls-abr
 
 # glossaries-extra
 *.ist
@@ -17,17 +24,6 @@ figures/*.pdf_tex
 # plantuml
 *-plantuml.latex
 *-plantuml.txt
-
-# ltmermaid (rendered Mermaid diagrams)
-mermaid/
-
-# TeXtidote (make spellcheck-textidote)
-textidote.html
-*.textidote.html
-
-# markdown package (cache of converted Markdown)
-_markdown_*/
-*.markdown.in
 
 # latexindent
 *.bak
@@ -494,8 +490,6 @@ Backup of *.doc*
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
-# Word lists of LTeX+ (see "make dictionaries")
-!.vscode/ltex.*.txt
 
 # Local History for Visual Studio Code
 .history/

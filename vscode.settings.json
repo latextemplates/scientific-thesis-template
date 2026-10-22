@@ -1,27 +1,24 @@
 {
-    "latex-workshop.docker.enabled": true,
-    "latex-workshop.docker.image.latex": "registry.gitlab.com/islandoftex/images/texlive:latest",
     "editor.wordWrap": "on",
     "latex-workshop.view.pdf.viewer": "tab",
-    "latex-workshop.view.pdf.color.light.backgroundColor": "#cccccc",
-    "latex-workshop.view.pdf.color.dark.backgroundColor": "#121314",
+    "latex-workshop.view.pdf.backgroundColor": "#cccccc",
     "editor.renderWhitespace": "all",
-    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoBuild.run": "onSave",
     "latex-workshop.latex.recipes": [
         {
-            "name": "lualatex ➞ biber ➞ lualatex × 2 🔃",
+            "name": "lualatex ➞ biblatex ➞ lualatex × 2 🔃",
             "tools": [
-                "lualatex",
-                "biber",
-                "lualatex",
-                "lualatex"
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
             ]
         },
         {
-            "name": "pdflatex ➞ biber ➞ pdflatex × 2 🔃",
+            "name": "pdflatex ➞ biblatex ➞ pdflatex × 2 🔃",
             "tools": [
                 "pdflatex",
-                "biber",
+                "bibtex",
                 "pdflatex",
                 "pdflatex"
             ]
@@ -59,8 +56,8 @@
             "env": {}
         },
         {
-            "name": "biber",
-            "command": "biber",
+            "name": "biblatex",
+            "command": "biblatex",
             "args": [
                 "%DOCFILE%"
             ],

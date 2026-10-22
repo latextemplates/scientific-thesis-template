@@ -4,22 +4,14 @@
   },
   "filters": {
     "allowlist": {
-      "allow": [
-        "/\\bonly\\b/i",
-        "/\\bFinally,/",
-        "/\\\\[A-Za-z@]+_[A-Za-z@_]+:[A-Za-z]*/",
-        "/#[A-Za-z]+:[A-Za-z0-9_-]+/",
-        "/\\{markdown\\} package/"
-      ]
+      "allow": ["/\\bonly\\b/i"]
     }
   },
   "rules": {
     "terminology": true,
     "write-good": {
       "tooWordy": false,
-      "whitelist": [
-        "only"
-      ]
+      "whitelist": ["only"]
     }
   }
 }

@@ -1,118 +1,54 @@
 # Recommended LaTeX environments
 
-## TeXStudio as LaTeX Editor
+The recommended setup is **Docker** for compiling and **VS Code** for editing.
+Both are described in the main README; this page adds platform-specific installation hints and the TeXstudio alternative.
 
-Grammar and spell checking is available at [TeXstudio].
-Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
-Note that it is enough to point to `languagetool-server.jar`.
-![language-tool-configuration](texstudio-configuration-languagetool.png)
+## Docker (preferred)
 
-The template is compiled using normal compilation commands.
-Your LaTeX environment (such as [TeXStudio]) should take care about the compilation transparently.
+The generated `Dockerfile` is based on the [docker image by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
+This provides a perfectly configured LaTeX distribution with all required tools and works the same on Windows, macOS, and Linux.
+See [Usage with docker](../README.md#usage-with-docker) in the main README for the build and run commands.
 
-If the document needs `--shell-escape` (for PlantUML or Mermaid diagrams, or for minted with TeX Live 2024), its first lines tell TeXstudio to compile with `--shell-escape`.
-Then, TeXstudio warns that the compilation command will be overridden.
-Please answer `(a) allow for this document`:
+## VS Code as LaTeX editor
 
-![allow --shell-escape for this document](texstudio-confirmation-1.png)
+Use [VS Code](https://code.visualstudio.com/) with the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) extension.
+The recommended extensions and the required `settings.json` entries are given at [VS Code configuration](../README.md#vs-code-configuration) in the main README.
+You can also copy the contents of [vscode.settings.json](../vscode.settings.json) to your VS Code settings file.
 
-At "Build & View", there will be a question to update to biber.
-Please answer `(a) allow for this document`:
+If you do not want LaTeX Workshop to compile automatically after each change, add the following line to your `settings.json` and trigger the compilation manually:
 
-![allow biber for this document](texstudio-confirmation-2.png)
-
-When the "Package Installation" dialog pops up at TeXStudio, choose your username at "The package will be installed for:" and uncheck "Always show this dialog before installing packages."
-If you want to include .svg graphics, [inkscape] has to be in your path.
-
-**Attention!** The first compilation will take **at least 30 seconds**, because there will be some LaTeX packages installed.
-
-**If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
+```json
+"latex-workshop.latex.autoBuild.run": "never",
+```
 
 ## JabRef for managing literature
 
 Use [JabRef] to manage your bibliography.
-Quick installation using [Chocolatey]: `choco install texstudio languagetool jabref`.
+Quick installation using [Chocolatey]: `choco install jabref`.
 
 A comparison to other literature management software is available at <https://ultimate-comparisons.github.io/ultimate-reference-management-software-comparison/>.
-See [LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides) for a complete list of LaTeX editors.
 
-## LaTeX distribution
+## Installation hints for Windows
 
-Choose one of the two setups: Docker-based or traditional.
-
-### Docker-based (recommended)
-
-The [TeX Live docker image by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image) provides a perfectly configured LaTeX distribution with all required tools.
-It works the same on Windows, macOS, and Linux and ships `latexmk`, `biber`, `latexindent`, Python, and `latexminted`.
-Thus, `minted` works without further setup - also on Windows.
-
-1. Install Docker: [Docker Desktop](https://docs.docker.com/desktop/) on Windows and macOS, [Docker Engine](https://docs.docker.com/engine/install/) on Linux.
-   On Linux, follow the [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) to run `docker` without `sudo`.
-1. Execute `docker pull registry.gitlab.com/islandoftex/images/texlive:latest`.
-   This downloads approx. 3 GB.
-1. Compile on the command line: open a terminal in the directory of your document and run the command for your system.
-   Replace `main-english` by the main file you use.
-
-   Windows (PowerShell):
-
-   ```powershell
-   docker run --rm -v "${PWD}:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
-   ```
-
-   Windows (Command Prompt):
-
-   ```cmd
-   docker run --rm -v "%cd%:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
-   ```
-
-   Linux and macOS:
-
-   ```shell
-   docker run --rm -v "$PWD:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest latexmk main-english
-   ```
-
-1. To compile from [TeXstudio], open Options > Configure TeXstudio > Commands and set
-   - "PdfLaTeX" to `docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`,
-   - "LuaLaTeX" to `docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, and
-   - "Biber" to `docker run --rm -v "DIROFTEXDOCUMENT:/workdir" registry.gitlab.com/islandoftex/images/texlive:latest biber %`.
-
-   On Linux and macOS, you can mount the directory at the same path instead (`-v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT`).
-   Then, the paths in the generated SyncTeX file match your machine, and jumping between source and PDF keeps working.
-1. Press "Compile" (<kbd>F6</kbd>) in TeXstudio.
-
-For VS Code, see ["Using VSCode to Edit, Compile, and Preview PDFs"](#using-vscode-to-edit-compile-and-preview-pdfs).
-
-### Traditional
-
-Install a LaTeX distribution on your machine: [MiKTeX](https://miktex.org/download) on Windows, [TeX Live](https://www.tug.org/texlive/) on macOS and Linux.
-
-#### Installation hints for Ubuntu
-
-- From Ubuntu 18.10 onwards, the basic version of the template works without issues.
-  Advanced usages such as cool syntax highlighting with [minted](https://www.ctan.org/pkg/minted) needs more configuration.
-- Ubuntu 16.04 [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
-  The easiest way is to uninstall the ubuntu package and use [install-tl-ubuntu](https://github.com/scottkosty/install-tl-ubuntu).
-  Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
-  If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
-
-#### Installation hints for Windows
+If you prefer a local LaTeX installation over Docker, use [MiKTeX](http://miktex.org/).
 
 Note: The default installation of MiKTeX might ship with incompatible biblatex and biber packages.
 **You have to keep your MiKTeX up to date.**
 In case you followed the linked installation steps, you only have to run "Update MiKTeX".
 If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and "Update MiKTeX" and check in both tools for updates (see <http://tex.stackexchange.com/a/108490/9075>).
 
-##### Preparations
+### Preparations
 
 1. Install [chocolatey]:
     1. Open `cmd.exe` as Administrator
     2. Paste and hit <kbd>Enter</kbd> `@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
 1. Execute `choco feature enable -n=allowGlobalConfirmation` to get rid off additional installation confirmations.
-1. Execute `choco install texstudio sumatrapdf.install strawberryperl jre8 jabref languagetool` to install necessary tooling.
+1. Execute `choco install vscode sumatrapdf.install strawberryperl jre8 jabref languagetool` to install necessary tooling.
+   Replace `vscode` by `texstudio` if you prefer TeXstudio.
 1. In case [PlantUML](http://plantuml.com/) should be used, follow the installation instructions at <https://koppor.github.io/plantuml/> listed at the "pre-conditions" section.
 1. For more recommended tooling see <https://github.com/koppor/koppors-chocolatey-scripts>.
 
-##### Recommended setup of MiKTeX
+### Recommended setup of MiKTeX
 
 1. Download the basic installer from <http://miktex.org/download>
 1. Start it
@@ -143,71 +79,63 @@ If you installed MiKTeX other ways, you have to run "Update MiKTeX (Admin)" and 
      8. Execute `initexmf --update-fndb` (ensure that no other MiKTeX tooling such as the [MiKTeX Console](https://miktex.org/howto/miktex-console) is run in parallel - see <https://github.com/MiKTeX/miktex/issues/98#issuecomment-375952270>)
      9. Execute `initexmf --mklinks --force`
 
-## Using VSCode to Edit, Compile, and Preview PDFs
+## Installation hints for Ubuntu
 
-***Note: The configuration of LaTeX Workshop on [Fast Guide on Writing LaTeX with LaTeX Workshop in VS Code](https://mathjiajia.github.io/vscode-and-latex/) may require some modifications to work with this template.***
+- From Ubuntu 18.10 onwards, the basic version of the template works without issues.
+  Advanced usages such as cool syntax highlighting with [minted](https://www.ctan.org/pkg/minted) needs more configuration.
+- Ubuntu 16.04 [ships biber 2.4](https://bugs.launchpad.net/ubuntu/+source/biber/+bug/1589644), so you have to upgrade your texlive distribution.
+  The easiest way is to uninstall the ubuntu package and use [install-tl-ubuntu](https://github.com/scottkosty/install-tl-ubuntu).
+  Then, you can follow the instructions given at <http://tex.stackexchange.com/a/55459/9075> to update your texlive distribution.
+  If you do not want to have an updated installation, but fiddle around with dirty patching your installation, please follow  <http://tex.stackexchange.com/questions/84624/how-to-upgrade-biblatex-properly>.
 
-### Prerequisites
+Always working solution: Use [Docker](#docker-preferred).
 
-1. Install [VSCode](https://code.visualstudio.com/).
-2. Install [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop).
-3. Install a LaTeX distribution (see ["LaTeX distribution"](#latex-distribution)).
-   With the Docker-based setup, LaTeX Workshop can run the tools in the container (an experimental feature of LaTeX Workshop); add the following to `settings.json`:
+## TeXstudio as LaTeX editor (alternative)
 
-   ```json
-   "latex-workshop.docker.enabled": true,
-   "latex-workshop.docker.image.latex": "registry.gitlab.com/islandoftex/images/texlive:latest",
-   ```
+If VS Code does not fit your needs, [TeXstudio] is a good alternative.
+Windows: `choco install texstudio languagetool`.
+For a complete list of LaTeX editors, see [the LaTeX Editors/IDEs question on TeX.SX](http://tex.stackexchange.com/questions/339/latex-editors-ides).
 
-### Recommended Setup of VSCode
+Grammar and spell checking is available at [TeXstudio].
+Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+Note that it is enough to point to `languagetool-server.jar`.
+![language-tool-configuration](texstudio-configuration-languagetool.png)
 
-1. Open VSCode.
-2. Press <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>P</kbd> to open the command palette. Then type "JSON" and select "Preferences: Open Settings (JSON)" to open `settings.json`.
-3. Now copy and paste the following snippet into your `settings.json` file (inside the brackets `{}` of your file).
+The template is compiled using normal compilation commands.
+Your LaTeX environment (such as [TeXstudio]) should take care about the compilation transparently.
 
-   ```json
-   "latex-workshop.latex.tools": [
-     {
-       "name": "pdflatex",
-       "command": "pdflatex",
-       "args": [
-         "-synctex=1",
-         "-interaction=nonstopmode",
-         "-file-line-error",
-         "%DOC%"
-       ],
-       "env": {}
-     },
-     {
-       "name": "biber",
-       "command": "biber",
-       "args": [
-         "%DOCFILE%"
-       ],
-       "env": {}
-     }
-   ],
+If you open `main-minted-german.tex`, there will be a warning that the compilation command will be overridden.
+Please answer `(a) allow for this document`:
 
-   "latex-workshop.latex.recipes": [
-     {
-       "name": "pdflatex ➞ biber ➞ pdflatexX2",
-       "tools": [
-         "pdflatex",
-         "biber",
-         "pdflatex",
-         "pdflatex"
-       ]
-     }
-   ],
-   ```
+![allow --shell-escape for this document](texstudio-confirmation-1.png)
 
-4. (optional) If you add the following line into your `settings.json`, the LaTeX Workshop extension will not automatically compile the code after any changes. You can manually trigger compilation by hitting the green button in the extension or using other methods provided by LaTeX Workshop.
+At "Build & View", there will be a question to update to biber.
+Please answer `(a) allow for this document`:
 
-   ```json
-   "latex-workshop.latex.autoBuild.run": "never",
-   ```
+![allow biber for this document](texstudio-confirmation-2.png)
+
+When the "Package Installation" dialog pops up at TeXstudio, choose your username at "The package will be installed for:" and uncheck "Always show this dialog before installing packages."
+If you want to include .svg graphics, [inkscape] has to be in your path.
+
+**Attention!** The first compilation will take **at least 30 seconds**, because there will be some LaTeX packages installed.
+
+### Using TeXstudio with the Docker image
+
+1. Execute `sudo visudo` to edit the sudoers file
+1. Add the line `myusername ALL = (root) NOPASSWD: /usr/bin/docker`. Replace `myusername` accordingly. (Source: <https://unix.stackexchange.com/a/13058/18033>)
+1. Execute `sudo docker pull registry.gitlab.com/islandoftex/images/texlive:latest`.
+   This should not ask for any password.
+   Will download approx. 4GB.
+1. Open TeXstudio
+1. Options > Configure TeXstudio > Commands
+1. Set "PdfLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT registry.gitlab.com/islandoftex/images/texlive:latest pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+1. Set "LuaLaTeX" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT registry.gitlab.com/islandoftex/images/texlive:latest lualatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+1. Set "Biber" to `docker run --rm -v DIROFTEXDOCUMENT:DIROFTEXDOCUMENT --workdir=DIROFTEXDOCUMENT registry.gitlab.com/islandoftex/images/texlive:latest biber %`, replace `DIROFTEXDOCUMENT` by the directory of your latex document. Example: `/home/user/thesis`.
+1. Check if the "docker pull" command from step 3 succeed. If not, wait.
+1. Try to press the "Compile" (<kbd>F6</kbd>) button in TeXstudio.
 
 [chocolatey]: https://chocolatey.org/
+[inkscape]: https://inkscape.org/
 [JabRef]: https://www.jabref.org
 [LanguageTool]: https://languagetool.org/
-[TeXstudio]: http://texstudio.sourceforge.net/
+[TeXstudio]: https://www.texstudio.org/
