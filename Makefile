@@ -3,8 +3,35 @@
 ## Required for thumbpdf as latexmk does not support thumbpdf by itself
 latexcompiler = lualatex
 
-## evince at linux
-viewer = 'C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe'
+## PDF viewer: Sumatra PDF on Windows (reloads the PDF automatically), the default viewer otherwise
+ifeq ($(OS),Windows_NT)
+viewer = 'C:/Program Files/SumatraPDF/SumatraPDF.exe'
+else ifeq ($(shell uname -s),Darwin)
+viewer = open
+else
+viewer = xdg-open
+endif
+
+## The LaTeX tools run in the TeX Live Docker image (see README.md); "make LOCAL=1" uses the local LaTeX distribution
+ifeq ($(LOCAL),)
+ifeq ($(OS),Windows_NT)
+RUN = docker run --rm -v "$(CURDIR):/workdir" -w /workdir registry.gitlab.com/islandoftex/images/texlive:latest
+else
+RUN = docker run --rm -u $(shell id -u):$(shell id -g) -e HOME=/tmp -v "$(CURDIR):/workdir" -w /workdir registry.gitlab.com/islandoftex/images/texlive:latest
+endif
+endif
+
+## The spell checkers (aspell, TeXtidote) run in the Docker image by DANTE e.V., which contains them; "make LOCAL=1" uses local installations
+## LINT_IT is interactive (aspell -c)
+ifeq ($(LOCAL),)
+ifeq ($(OS),Windows_NT)
+LINT = docker run --rm -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
+LINT_IT = docker run --rm -it -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
+else
+LINT = docker run --rm -u $(shell id -u):$(shell id -g) -e HOME=/tmp -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
+LINT_IT = docker run --rm -it -u $(shell id -u):$(shell id -g) -e HOME=/tmp -v "$(CURDIR):/workdir" -w /workdir danteev/texlive:2026-C
+endif
+endif
 
 ## Editor
 editor = gedit
@@ -17,7 +44,9 @@ LITERATURE = bibliography.bib
 
 ## Derived file names
 SRC = $(shell basename $(MASTER_TEX) .tex)
-TEX_FILES = $(wildcard *.tex content/*.tex)
+TEX_FILES = $(wildcard *.tex)
+## All main files, including variants of MASTER_TEX (e.g., other languages): "make format" indents each of them and the chapters
+MAIN_TEX_FILES = $(wildcard main*.tex)
 GFX_FILES = $(wildcard figures/*)
 
 PDF = $(SRC).pdf
@@ -31,23 +60,24 @@ date=$(shell date +%Y%m%d%H%M)
 
 
 ## was wird gemacht, falls nur make aufgerufen wird
-## hier sollte noch der aspell check rein für jedes file einzeln über for schleife
 all: $(PDF)
-.PHONY: $(PDF)
+
+## Targets that do not create a file of their name; $(PDF) is phony as latexmk decides whether to rebuild
+.PHONY: all compile $(PDF) clean final mrproper pdf stand html view edit spellcheck spellcheck-aspell spellcheck-textidote dictionaries log showundef format indent split-sentences
 
 compile: $(PDF)
 
 $(PDF): $(MASTER_TEX) $(LITERATURE) $(TEX_FILES) $(GFX_FILES)
-	latexmk $(MASTER_TEX)
+	$(RUN) latexmk $(MASTER_TEX)
 
 clean:
-	latexmk -C
+	$(RUN) latexmk -C
 
 ## Endversion - mit eingebauter Seitenvorschau
 ## Mehrere Durchlaeufe, da bei longtable einige runs mehr vonnoeten sind...
 final: $(PDF)
-	thumbpdf $(PDF)
-	$(latexcompiler) $(MASTER_TEX)
+	$(RUN) thumbpdf $(PDF)
+	$(RUN) $(latexcompiler) $(MASTER_TEX)
 
 mrproper: clean
 	rm -f *~
@@ -62,7 +92,7 @@ stand: $(PDF)
 
 html: clean pdf
 	rm $(AUX)
-	htlatex $(SRC) "html,word,charset=utf8" " -utf8"
+	$(RUN) htlatex $(SRC) "html,word,charset=utf8" " -utf8"
 
 
 # Tools
@@ -77,32 +107,73 @@ edit:
 
 # Support
 
-## Rechtschreibung
-##
-## Das Ganze am Besten vor der final und als eigene Version ala "make aspell"
+## Spell checking: "make spellcheck" runs all spell checkers, "make spellcheck-<tool>" one of them
+spellcheck: spellcheck-aspell spellcheck-textidote
+
+## Interactive spell checking with aspell
 ##
 ## .aspell.conf - zu ignorierende LaTeX-Befehle
 ##   Schreiben der LaTeX-Befehle in eine config Dateiname. Sieht so aus:
 ##   add-tex-command democommand PO // PO := prüfe []{} ;; po := ignoriere []{}
 ##
 ## .aspell.en.pws - persönliches Wörterbuch
-aspell:
-	for tex in $(TEX_FILES);
-		do
-			aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c $$tex;
-		done
+spellcheck-aspell:
+	for tex in *.tex chapters-en/*.tex; do \
+		[ -e "$$tex" ] || continue; \
+		$(LINT_IT) aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c "$$tex" || exit 1; \
+	done
+	for md in chapters-en/*.md; do \
+		[ -e "$$md" ] || continue; \
+		$(LINT_IT) aspell --mode=markdown -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c "$$md" || exit 1; \
+	done
+
+## Spelling, grammar, and style with TeXtidote (https://github.com/sylvainhalle/textidote): writes textidote.html and chapters-en/*.textidote.html
+## The options are in .textidote (its --check en is overridden here).
+spellcheck-textidote:
+	@# TeXtidote exits with the number of findings, which is no failure here
+	$(LINT) textidote --check en --output html $(MASTER_TEX) > textidote.html || test -s textidote.html
+	@# TeXtidote mixes up the text of \include lines, so .textidote removes them and each chapter is checked on its own
+	for tex in chapters-en/*.tex chapters-en/*.md; do \
+		[ -e "$$tex" ] || continue; \
+		$(LINT) textidote --check en --output html --read-all "$$tex" > "$${tex%.*}.textidote.html" || test -s "$${tex%.*}.textidote.html"; \
+	done
+	@echo "Reports: textidote.html and chapters-en/*.textidote.html"
+
+## Merge the word lists of the spell checkers: a word added to .aspell.<language>.pws or (e.g., by
+## "Add to dictionary" in VS Code) to .vscode/ltex.dictionary.<language>.txt ends up in both and in .textidote.dict.
+## aspell word lists cannot contain hyphenated words; these words are added to the other lists.
+HYPHENATED_WORDS = markdown-latex-quickstart pgf-umlsd zref-clever Zref-clever zref-vario Zref-vario
+dictionaries:
+	mkdir -p .vscode
+	for pair in en:en-US de:de-DE; do \
+		lang=$${pair%%:*}; pws=".aspell.$$lang.pws"; ltex=".vscode/ltex.dictionary.$${pair#*:}.txt"; \
+		[ -e "$$pws" ] || continue; \
+		{ tail -n +2 "$$pws"; if [ -e "$$ltex" ]; then cat "$$ltex"; fi; printf '%s\n' $(HYPHENATED_WORDS); } | grep -v '^$$' | LC_ALL=C sort -u > "$$ltex.tmp"; \
+		mv "$$ltex.tmp" "$$ltex"; \
+		grep -v -e - "$$ltex" > "$$pws.tmp"; \
+		{ echo "personal_ws-1.1 $$lang $$(wc -l < "$$pws.tmp" | tr -d ' ') utf-8"; cat "$$pws.tmp"; } > "$$pws"; \
+		rm "$$pws.tmp"; \
+	done
+	cat .vscode/ltex.dictionary.*.txt | LC_ALL=C sort -u > .textidote.dict
+
+## Show only the relevant messages of the last LaTeX run
+log:
+	$(RUN) texlogsieve --no-heartbeat $(SRC).log
 
 showundef:
-	grep undefined $(LOG)
+	grep undefined $(SRC).log
 
 
 ## Reformatierung
 
 format:
-	latexindent -l -s -sl -w $(SRC)
+	for f in $(MAIN_TEX_FILES) chapters-*/*.tex; do \
+		[ -e "$$f" ] || continue; \
+		$(RUN) latexindent -l -s -sl -w "$$f" || exit 1; \
+	done
 
 indent:
-	latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w $(SRC)
+	$(RUN) latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w $(SRC)
 
 split-sentences:
-	latexindent -m -l -s -sl -w $(SRC)
+	$(RUN) latexindent -m -l -s -sl -w $(SRC)
