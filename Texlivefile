@@ -41,6 +41,7 @@ datetime2-german
 dehyph-exptl
 diagbox
 embedfile
+authorarchive
 enumitem
 environ
 epstopdf
@@ -65,6 +66,7 @@ glossaries-extra
 glossaries-german
 graphics
 helvetic
+hologo
 hycolor
 hypcap
 hyperref
@@ -92,9 +94,12 @@ lineno
 lipsum
 listings
 lscapeenhanced
+ltmermaid
 ltxcmds
 luacode
 lualatex-math
+luamplib
+metapost
 luatex85
 luatexbase
 luaxml
@@ -107,6 +112,7 @@ fancyvrb
 verse
 mathdesign
 mathtools
+metauml
 mfirstuc
 microtype
 mindflow
@@ -125,6 +131,7 @@ nfssext-cfr
 nowidow
 ntheorem
 paralist
+pdfcol
 pdfcomment
 pdfescape
 pdflscape
@@ -132,6 +139,7 @@ pdfpages
 pdftexcmds
 pgf
 pgfplots
+pgf-umlsd
 pict2e
 placeins
 plantuml

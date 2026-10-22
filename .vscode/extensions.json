@@ -1,7 +1,9 @@
 {
     "recommendations": [
-        "manhen.latex-workshop-2",
+        "james-yu.latex-workshop",
         "tecosaur.latex-utilities",
-        "ltex-plus.vscode-ltex-plus"
+        "ltex-plus.vscode-ltex-plus",
+        "jabref.jabref-4-vscode",
+        "davidanson.vscode-markdownlint"
     ]
 }
