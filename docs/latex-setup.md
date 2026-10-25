@@ -126,7 +126,7 @@ If you do not want LaTeX Workshop to compile automatically after each change, ad
 ## JabRef for managing literature
 
 Use [JabRef] to manage your bibliography.
-Quick installation using [Chocolatey]: `choco install jabref`.
+In 2026, install the latest beta version from <https://github.com/JabRef/jabref/releases>: the stable version 5.15 is too old.
 
 A comparison to other literature management software is available at <https://ultimate-comparisons.github.io/ultimate-reference-management-software-comparison/>.
 
