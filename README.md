@@ -481,6 +481,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 ## Further information
 
 - Why the templates use which packages: [decision records of the template generator](https://github.com/latextemplates/generator-latex-template/tree/main/docs/decisions)
+- Common questions of LaTeX beginners: the list of [often referenced questions on TeX.SE](https://tex.meta.stackexchange.com/q/2419/9075) and Barbara Beeton: [What every LaTeX newbie should know](https://tug.org/tug2023/files/fr-04-beeton-newbie/beeton-newbie-preprint.pdf) (TUG 2023).
 - Other templates: <https://latextemplates.github.io/>
 - For German users, go to <https://texfragen.de/>.
 - Frank Mittelbach with Ulrike Fischer: [The LaTeX Companion](https://www.latex-project.org/news/2023/03/17/TLC3/) is the ultimate guide for LaTeX: The authors went through all packages offered by [CTAN](https://ctan.org/), selected the most promising ones, described them, and provide minimal working example for each of it.
