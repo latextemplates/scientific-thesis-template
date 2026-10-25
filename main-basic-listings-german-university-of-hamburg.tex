@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1066 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1209 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1067 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1210 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -66,10 +66,11 @@
 \usepackage[hyphens]{url}
 % \urlstyle{same}
 %
-% Hinweis von http://tex.stackexchange.com/a/10419/9075.
-\makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
-\makeatother
+%
+% URLs nach jedem Zeichen umbrechen erlauben, damit lange URLs nicht in den Rand ragen.
+% Vor biblatex geladen, damit die biblatex-Einstellungen der URL-Strafen bleiben.
+% Siehe https://ctan.org/pkg/xurl.
+\usepackage{xurl}
 
 %math stuff
 \usepackage[
