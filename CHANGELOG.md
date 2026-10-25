@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- [fewerfloatpages](https://ctan.org/pkg/fewerfloatpages) avoids pages that contain only a few floats.
 - `.devcontainer/devcontainer.json`: open the repository in VS Code ("Reopen in Container") or in GitHub Codespaces to work inside the TeX Live image, without a local LaTeX installation.
 
 ### Changed
