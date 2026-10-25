@@ -58,10 +58,10 @@
 % For all options see https://tex.stackexchange.com/a/261435/9075.
 % \urlstyle{same}
 
-% Improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
-\makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
-\makeatother
+% Allow URL breaks after any character, so that long URLs do not run into the margin.
+% Loaded before biblatex, so that the biblatex settings of the URL penalties stay.
+% See https://ctan.org/pkg/xurl.
+\usepackage{xurl}
 
 % nicer // - solution by http://tex.stackexchange.com/a/98470/9075
 % DO NOT ACTIVATE -> prevents line breaks
