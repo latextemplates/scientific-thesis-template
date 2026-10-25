@@ -1,0 +1,18 @@
+{
+    "name": "LaTeX",
+    "image": "registry.gitlab.com/islandoftex/images/texlive:latest",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "james-yu.latex-workshop",
+                "tecosaur.latex-utilities",
+                "ltex-plus.vscode-ltex-plus",
+                "jabref.jabref-4-vscode",
+                "davidanson.vscode-markdownlint"
+            ],
+            "settings": {
+                "latex-workshop.docker.enabled": false
+            }
+        }
+    }
+}
