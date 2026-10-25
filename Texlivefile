@@ -103,7 +103,6 @@ luamplib
 metapost
 luatex85
 luatexbase
-luaxml
 ly1
 marginnote
 markdown
@@ -159,7 +158,6 @@ siunitx
 snapshot
 soul
 soulpos
-spelling
 stringenc
 sttools
 subfig
