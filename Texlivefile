@@ -91,6 +91,7 @@ lccaps
 letltxmacro
 libertine
 libertinus-fonts
+linebreaker
 lineno
 lipsum
 listings
@@ -101,6 +102,7 @@ luacode
 lualatex-math
 luamplib
 metapost
+lua-widow-control
 luatex85
 luatexbase
 ly1
