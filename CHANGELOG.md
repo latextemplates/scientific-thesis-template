@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- Progress bars below headings show how far each chapter is written: `\progress{60}` below a heading draws a bar filled to 60 %; `\showprogressfalse` hides all bars for the submitted version.
 - A commented-out line in the preamble switches to serif headings (classic English book style); sans-serif stays the default.
 - [fewerfloatpages](https://ctan.org/pkg/fewerfloatpages) avoids pages that contain only a few floats.
 - `.devcontainer/devcontainer.json`: open the repository in VS Code ("Reopen in Container") or in GitHub Codespaces to work inside the TeX Live image, without a local LaTeX installation.
