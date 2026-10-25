@@ -15,7 +15,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
-- The page number is typeset in a smaller font.
+- The running header and the page number are typeset in a smaller font.
 - `docs/latex-setup.md` recommends Docker for compiling and VS Code for editing (linking to the README); the MiKTeX and Ubuntu hints stay as the traditional setup and TeXstudio is the last alternative.
 - `docs/latex-setup.md` no longer mentions Ubuntu 16.04.
 - The README and `docs/latex-setup.md` recommend the [JabRef beta version](https://github.com/JabRef/jabref/releases), because the stable version 5.15 is too old.
