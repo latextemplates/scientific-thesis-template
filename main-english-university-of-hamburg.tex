@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 962 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1100.
+% vvvvvvvv  The content starts in line 966 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1104.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -234,12 +234,16 @@
 %\usepackage{mathrsfs} % nice cursive letters via \mathscr{}
 %\usepackage{calrsfs} %\mathcal{} with slightly bolder letters - does not look that good.
 
+% Headings are sans-serif (KOMA-Script default) in all languages.
+% For serif headings (classic English book style), uncomment the following line.
+% \setkomafont{disposition}{\normalfont\bfseries}
+
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
 \KOMAoptions{autooneside=false}
 \automark[section]{chapter}
-\setkomafont{pageheadfoot}{\normalfont\sffamily}
-\setkomafont{pagenumber}{\normalfont\sffamily}
+\setkomafont{pageheadfoot}{\normalfont\small\sffamily}
+\setkomafont{pagenumber}{\normalfont\small\sffamily}
 
 \ihead[]{\leftmark}
 \chead[]{}
