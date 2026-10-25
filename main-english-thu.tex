@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 958 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1094.
+% vvvvvvvv  The content starts in line 962 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1098.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -653,6 +653,10 @@
 % Alternative package: rotating. However, that only rotates the image, whereas lscape also rotates the PDF page.
 % The lscape package does not rotate the page either
 \usepackage{pdflscape}
+
+% Avoid float pages that are only partially filled: such floats are put back into the text flow.
+% Source: https://ctan.org/pkg/fewerfloatpages
+\usepackage{fewerfloatpages}
 
 % Align floats to the top on float-only pages instead of vertically centering them.
 %     See http://tex.stackexchange.com/a/28565/9075
