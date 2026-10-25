@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- LuaLaTeX: [linebreaker](https://ctan.org/pkg/linebreaker) sets a paragraph again with more tolerance when a line would run into the margin.
 - README: "Further information" links common questions of LaTeX beginners (often referenced questions on TeX.SE, Barbara Beeton's "What every LaTeX newbie should know").
 - Progress bars below headings show how far each chapter is written: `\progress{60}` below a heading draws a bar filled to 60 %; `\showprogressfalse` hides all bars for the submitted version.
 - A commented-out line in the preamble switches to serif headings (classic English book style); sans-serif stays the default.
@@ -17,6 +18,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
+- LuaLaTeX: widows and orphans are removed by [lua-widow-control](https://ctan.org/pkg/lua-widow-control), which keeps pages full by lengthening or shortening a paragraph by one line; pdfLaTeX keeps [nowidow](https://ctan.org/pkg/nowidow).
 - Long URLs may break after any character ([xurl](https://ctan.org/pkg/xurl)), so they no longer run into the margin.
 - The running header and the page number are typeset in a smaller font.
 - `docs/latex-setup.md` recommends Docker for compiling and VS Code for editing (linking to the README); the MiKTeX and Ubuntu hints stay as the traditional setup and TeXstudio is the last alternative.
