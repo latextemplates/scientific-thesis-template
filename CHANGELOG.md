@@ -7,6 +7,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ## [Unreleased]
 
+### Added
+
+- `.devcontainer/devcontainer.json`: open the repository in VS Code ("Reopen in Container") or in GitHub Codespaces to work inside the TeX Live image, without a local LaTeX installation.
+
 ### Changed
 
 - `docs/latex-setup.md` recommends Docker for compiling and VS Code for editing (linking to the README); the MiKTeX and Ubuntu hints stay as the traditional setup and TeXstudio is the last alternative.
