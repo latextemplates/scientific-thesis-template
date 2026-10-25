@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 966 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1102.
+% vvvvvvvv  The content starts in line 978 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1114.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -668,6 +668,18 @@
 \setlength{\@fptop}{0pt}
 \setlength{\@fpbot}{0pt plus 1fil}
 \makeatother
+
+% Show how far each chapter or section is written:
+% \progress{60} below a heading draws a bar filled to 60 %.
+% Set \showprogressfalse to hide all bars, e.g., for the submitted version.
+\usepackage{progressbar}
+\newif\ifshowprogress
+\showprogresstrue
+\newcommand{\progress}[1]{%
+  \ifshowprogress
+    \par\vspace{-.5\baselineskip}\noindent\progressbar[width=\linewidth,heighta=4pt,borderwidth=0.4pt,subdivisions=4,filledcolor=black!50]{\fpeval{#1/100}}\par
+  \fi
+}
 
 \usepackage[caption=false,font=footnotesize]{subfig}
 
