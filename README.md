@@ -482,12 +482,12 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 
 - Why the templates use which packages: [decision records of the template generator](https://github.com/latextemplates/generator-latex-template/tree/main/docs/decisions)
 - Common questions of LaTeX beginners: the list of [often referenced questions on TeX.SE](https://tex.meta.stackexchange.com/q/2419/9075) and Barbara Beeton: [What every LaTeX newbie should know](https://tug.org/tug2023/files/fr-04-beeton-newbie/beeton-newbie-preprint.pdf) (TUG 2023).
-- Other templates: <https://latextemplates.github.io/>
 - For German users, go to <https://texfragen.de/>.
 - Frank Mittelbach with Ulrike Fischer: [The LaTeX Companion](https://www.latex-project.org/news/2023/03/17/TLC3/) is the ultimate guide for LaTeX: The authors went through all packages offered by [CTAN](https://ctan.org/), selected the most promising ones, described them, and provide minimal working example for each of it.
 - Lutz Hering, Heike Hering: [How to Write Technical Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
 - Marcus Deininger et al.: [Studienarbeiten - Ein Leitfaden zur Erstellung, Durchführung und Präsentation wissenschaftlicher Abschlussarbeiten am Beispiel Informatik](https://vdf.ch/studienarbeiten.html?author_id=2877), vdf. - Recommended as guideline for planning and working on the whole thesis.
 - Charles Lipson, [Cite Right, Second Edition: A Quick Guide to Citation Styles--MLA, APA, Chicago, the Sciences, Professions, and More](http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo10702043.html), Chicago Guides to Writing, Editing, and Publishing, 2011. - Recommended in case you are unsure about how to correctly cite something.
+- Other templates: <https://latextemplates.github.io/>
 
 ## License
 
