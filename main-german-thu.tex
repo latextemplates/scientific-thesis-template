@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 985 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1122 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 989 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1126 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -671,6 +671,10 @@
 % Alternative package: rotating. However, that only rotates the image, whereas lscape also rotates the PDF page.
 % The lscape package does not rotate the page either
 \usepackage{pdflscape}
+
+% Avoid float pages that are only partially filled: such floats are put back into the text flow.
+% Source: https://ctan.org/pkg/fewerfloatpages
+\usepackage{fewerfloatpages}
 
 % Align floats to the top on float-only pages instead of vertically centering them.
 %     See http://tex.stackexchange.com/a/28565/9075
