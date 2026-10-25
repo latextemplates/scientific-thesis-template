@@ -17,6 +17,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
+- Long URLs may break after any character ([xurl](https://ctan.org/pkg/xurl)), so they no longer run into the margin.
 - The running header and the page number are typeset in a smaller font.
 - `docs/latex-setup.md` recommends Docker for compiling and VS Code for editing (linking to the README); the MiKTeX and Ubuntu hints stay as the traditional setup and TeXstudio is the last alternative.
 - `docs/latex-setup.md` no longer mentions Ubuntu 16.04.
