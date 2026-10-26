@@ -6,6 +6,13 @@ $pdflatex = 'lualatex --file-line-error --synctex=-1 %O %S';
 # automatically call lualatex/pdflatex (instead of latex)
 $pdf_mode = 1;
 
+# The "realmainfile" option of currfile (see the main .tex file) reads the recorder
+# file (.fls), so latexmk takes it for a source file. Its content differs between
+# runs (e.g., the font cache LuaLaTeX creates on the first run), which causes
+# needless reruns and, after five of them, exit code 12 without any error in the
+# log. Ignore the recorder file when checking whether a rerun is needed.
+$hash_calc_ignore_pattern{'fls'} = '^';
+
 # replaces main.pdf by jobname.pdf
 # Note: -pvc may then not find the PDF.
 #$jobname = 'thesis';
