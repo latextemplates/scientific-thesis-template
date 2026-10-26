@@ -29,6 +29,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - The switched-off [spelling](https://ctan.org/pkg/spelling) package is no longer loaded.
 
+### Fixed
+
+- latexmk no longer reruns LaTeX just because the recorder file (`.fls`) changed, which could end in exit code 12 without any error in the log (seen with LuaLaTeX in a fresh Docker container): `.latexmkrc` ignores the `.fls`, which currfile reads for the example listings.
+
 ## [2026-10-19]
 
 ### Added
