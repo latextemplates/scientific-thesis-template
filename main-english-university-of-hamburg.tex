@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 989 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1127.
+% vvvvvvvv  The content starts in line 991 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1129.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -504,13 +504,15 @@
   bottom,      % Footnotes appear always on bottom. This is necessary specially when floats are used
   stable,      % Make footnotes stable in section titles
   % perpage,     % Reset on each page
-  % para,        % Place footnotes side by side of in one paragraph.
+  % para,        % Place footnotes side by side in one paragraph. LuaLaTeX: also uncomment \mathpenaltiesmode below.
   % side,        % Place footnotes in the margin
   ragged,      % Use RaggedRight
   % norule,      % Suppress rule above footnotes
   multiple,    % Rearrange multiple footnotes intelligent in the text.
   % symbol,      % Use symbols instead of numbers
 ]{footmisc}
+% Needed for "para" with LuaLaTeX: otherwise, URLs cannot break inside the footnote paragraph
+%\mathpenaltiesmode=1
 
 \counterwithout{footnote}{chapter} % Continuous numbering of footnotes across chapters
 
