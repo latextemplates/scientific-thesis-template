@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- `\textcomment`: the highlighted text breaks across lines with LuaLaTeX; before, a longer passage ran into the margin.
+
 ## [2026-10-26]
 
 ### Added
