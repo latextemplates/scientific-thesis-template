@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1057 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1199.
+% vvvvvvvv  The content starts in line 1063 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1205.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -623,7 +623,13 @@
 % Enable nice comments
 \usepackage{pdfcomment}
 
-\newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\ifdefined\directlua
+  % Highlighting that breaks across lines (\colorbox does not): lua-ul's \highLight; the color needs luacolor
+  \usepackage{luacolor,lua-ul}
+  \newcommand{\textcomment}[2]{\highLight[yellow!60]{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\else
+  \newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\fi
 
 % Small PDF comment
 % 1st parameter: comment
