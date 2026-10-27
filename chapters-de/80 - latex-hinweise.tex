@@ -25,6 +25,11 @@ Beispielsweise begann der letzte Satz in einem neuen Absatz.
 Andrew Stacey begründet dies ausführlich im Abschnitt \enquote{Line Wrapping} seines \href{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}{\emph{Document Revision System}}\footnote{\url{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/}}.
 \end{ltgexample}
 
+Ist der Text fertig, können einzelne Absätze nachgebessert werden.
+Besteht die letzte Zeile eines Absatzes nur aus ein oder zwei Wörtern oder ist sie fast voll, lässt man TeX den Absatz eine Zeile kürzer oder länger setzen: \texttt{\textbackslash looseness=-1} (bzw. \texttt{=1}) als Erstes in diesen Absatz schreiben.
+TeX setzt \texttt{\textbackslash looseness} am Ende jedes Absatzes zurück, sodass nur dieser eine Absatz betroffen ist.
+Mit LuaLaTeX wird ein einzelnes kurzes Wort als letzte Zeile bereits automatisch vermieden (Paket impnattypo).
+
 Möchte man die Art des Absatzes ändern, so kann man die Dokumentklassenoption \texttt{parskip} verwenden.
 Beispielsweise kann man mit \texttt{parskip=off} erreichen, dass statt eines freien Bereichs die erste Zeile des Absatzes eingezogen wird.
 
