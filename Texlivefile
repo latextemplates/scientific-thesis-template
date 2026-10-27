@@ -102,6 +102,8 @@ luacode
 lualatex-math
 luamplib
 metapost
+lua-ul
+luacolor
 lua-widow-control
 luatex85
 luatexbase
