@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1016 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1123 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1022 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1129 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -569,7 +569,13 @@
 % Enable nice comments
 \usepackage{pdfcomment}
 
-\newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\ifdefined\directlua
+  % Highlighting that breaks across lines (\colorbox does not): lua-ul's \highLight; the color needs luacolor
+  \usepackage{luacolor,lua-ul}
+  \newcommand{\textcomment}[2]{\highLight[yellow!60]{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\else
+  \newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\fi
 
 % Small PDF comment
 % 1st parameter: comment
