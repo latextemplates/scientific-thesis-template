@@ -27,6 +27,11 @@ For instance, this sentence belongs to the same paragraph, whereas the last one 
 Andrew Stacey gives a long motivation for that in the section \enquote{Line Wrapping} of his \href{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}{\emph{Document Revision System}}\footnote{\url{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/}}.
 \end{ltgexample}
 
+Once the text is final, single paragraphs can be polished.
+If the last line of a paragraph holds only a word or two, or is nearly full, let TeX set the paragraph one line shorter or longer: write \texttt{\textbackslash looseness=-1} (or \texttt{=1}) as the first thing in that paragraph.
+TeX resets \texttt{\textbackslash looseness} at the end of every paragraph, so only that one paragraph is affected.
+With LuaLaTeX, a lone short word as the last line is avoided automatically (package impnattypo).
+
 \section{Notes separated from the text}
 
 The package mindflow enables writing down notes and annotations in a way so that they are separated from the main text.
