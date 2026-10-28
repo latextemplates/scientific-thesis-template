@@ -101,6 +101,7 @@ gnuplot
 gp
 html
 hypertext
+impnattypo
 inparaenum
 ist
 itemizations
