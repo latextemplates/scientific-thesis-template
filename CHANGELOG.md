@@ -9,6 +9,8 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- Tables: `\tablefootnote` sets a footnote inside a floating table, where a plain `\footnote` is lost. [#91](https://github.com/latextemplates/scientific-thesis-template/issues/91)
+- README: FAQ on section headings sticking out into the left margin. [#91](https://github.com/latextemplates/scientific-thesis-template/issues/91)
 - README: an "Advanced quick start" sets up the document as a git repository with the template as remote, so template updates can be merged later; the FAQ on synchronizing updates points to it.
 
 ### Changed
