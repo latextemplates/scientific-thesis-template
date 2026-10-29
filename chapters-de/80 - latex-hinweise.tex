@@ -644,8 +644,8 @@ In case one wants to name the author: \textcite{mwe} shows a minimal \LaTeX{} ex
 
 Note that \texttt{\textbackslash textcite\{mwe\}} prints both the author and the reference to the bibliography entry.
 
-A thesis is cited like any other work~\cite{Shannon1940}.
-The entry type \texttt{@MastersThesis} is labeled in the document language (\enquote{MA thesis} or \enquote{Masterarbeit}), \texttt{@PhdThesis} likewise.
+A thesis is cited like any other work: a master's thesis~\cite{Shannon1940} or a doctoral thesis~\cite{Kopp2016}.
+The entry types \texttt{@MastersThesis} and \texttt{@PhdThesis} are labeled in the document language (\enquote{MA thesis} or \enquote{Masterarbeit}, \enquote{PhD thesis} or \enquote{Diss.}).
 For a Bachelor's thesis, use \texttt{@Thesis} with \texttt{type = \{bathesis\}}; for a Diplomarbeit, \texttt{type = \{Diplomarbeit\}} is printed as is.
 
 Remember that you have to call \texttt{biber main-german} to generate the bibliography data for \texttt{lualatex}.
