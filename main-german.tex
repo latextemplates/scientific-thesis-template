@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1065 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1170 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1067 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1172 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -302,10 +302,12 @@
 \sys_if_shell_unrestricted:T { \RequirePackage [ compress = flat ] { graphicscache } }
 \ExplSyntaxOff
 \makeatletter
-% graphicscache spells the Ghostscript filter "FlatEncode"; Ghostscript knows it as FlateEncode and rejects the typo
+% graphicscache spells the Ghostscript filter "FlatEncode"; Ghostscript knows it as FlateEncode and rejects the typo.
+% Remove when https://github.com/xqms/graphicscache/issues/30 is fixed.
 \@ifpackageloaded{graphicscache}{%
   \def\graphicscache@compress@mode{FlateEncode}%
-  % graphicscache parses the \includegraphics options itself and does not know graphicx's alt text (the markdown package sets it)
+  % graphicscache parses the \includegraphics options itself and does not know graphicx's alt text (the markdown package sets it).
+  % Remove when https://github.com/xqms/graphicscache/issues/29 is fixed.
   \pgfkeys{/graphicscache/alt/.code={\graphicscache@addarg{alt={\unexpanded{#1}}}}}%
 }{}
 \makeatother
