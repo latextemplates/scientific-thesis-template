@@ -650,8 +650,8 @@
 \fi
 % Comments as footnotes keep the layout intact, e.g., to check page limits
 %\phfSetDefaultCommentingStyle{style=footcomments}
-\phfMakeCommentingCommand[initials={FA}]{FA} % first author
-% Final version: hide all edits and comments
+\phfMakeCommentingCommand[initials={FA}]{FA} % first author -> \FA{...}; add one line per author with their initials
+% Final version: hide all edits and comments (there is no class option for it: "final" is the default of every class)
 %\phfDisableCommentingCommands
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
