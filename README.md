@@ -498,6 +498,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
 - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
 - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in your main `.tex` file.
+- Uncomment `\phfDisableCommentingCommands` in your main `.tex` file to hide all edits and comments made with `\FA{...}`.
 - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
 - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
 
