@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1027 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1131.
+% vvvvvvvv  The content starts in line 1028 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1132.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -620,8 +620,7 @@
 % Modified (Text blau)
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
 
-% Edits and comments by several authors (phfcc): \FA{added text}, \FA*{text to remove}, \FA[a comment],
-% \FA!{important}; the initials appear once per page in the margin. Define one command per author.
+% Edits and comments by several authors, each with their own color and initials (phfcc)
 % Doc: https://ctan.org/pkg/phfcc
 \usepackage{phfcc}
 \ifdefined\directlua
@@ -629,8 +628,10 @@
 \fi
 % Comments as footnotes keep the layout intact, e.g., to check page limits
 %\phfSetDefaultCommentingStyle{style=footcomments}
+% One command per author: \FA{added text}, \FA*{text to remove}, \FA[a comment], \FA!{important};
+% the initials appear once per page in the margin. Add one line per further author with their initials.
 \phfMakeCommentingCommand[initials={FA}]{FA} % first author
-% Final version: hide all edits and comments
+% Final version: hide all edits and comments (there is no class option for it: "final" is the default of every class)
 %\phfDisableCommentingCommands
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
