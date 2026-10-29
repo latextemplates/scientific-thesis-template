@@ -6,7 +6,7 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 %
 % vvvvvvvv  The content starts in line 1064 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1204.
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1202.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -871,10 +871,10 @@
 % Hint by https://tex.stackexchange.com/a/463188/9075
 % \usepackage{glossary-longextra}
 
-% Following is required if the abbreviation list should be sorted automatically (\printglossary / \printglossaries)
-% Not required, if we printed the entries in-order (using \printunsrtglossaries)
-% Required to have the German chapter name % Source: https://tex.stackexchange.com/a/426392/9075
-\makeglossaries
+% The list is sorted by TeX itself (\printnoidxglossary): no external tool (makeglossaries) is needed, so the list
+% also appears when compiling without latexmk. TeX sorting is fine for a list of abbreviations; it is slow for
+% large glossaries and sorts accented characters by code point.
+\makenoidxglossaries
 
 \input{abbreviations}
 
@@ -1189,9 +1189,7 @@ What can they do with your research.
 %\listofalgorithms
 
 % Abbreviations / Acronyms
-\printglossary[type=\acronymtype,title={Abbreviations}]
-% \printglossaries
-% \printnoidxglossaries
+\printnoidxglossary[type=\acronymtype,sort=word,title={Abbreviations}]
 % \printunsrtglossaries cannot be used, because then no indexing happens; source: https://tex.stackexchange.com/a/287128/9075
 
 \microtypesetup{protrusion=true}
