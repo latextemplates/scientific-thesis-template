@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1133 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1242 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1134 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1243 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -712,7 +712,8 @@
 % Comments as footnotes keep the layout intact, e.g., to check page limits
 %\phfSetDefaultCommentingStyle{style=footcomments}
 % One command per author: \FA{added text}, \FA*{text to remove}, \FA[a comment], \FA!{important};
-% the initials appear once per page in the margin. Add one line per further author with their initials.
+% the initials appear once per page in the margin; the forms do not combine (\FA*[...]{...} is only a comment), so
+% write \FA*{removed}\FA[comment]. Add one line per further author with their initials.
 \phfMakeCommentingCommand[initials={FA}]{FA} % first author
 % Final version: hide all edits and comments (there is no class option for it: "final" is the default of every class)
 %\phfDisableCommentingCommands
