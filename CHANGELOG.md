@@ -16,7 +16,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
-- The list of abbreviations is sorted by TeX itself (`\makenoidxglossaries`); no `makeglossaries` run is needed, so the list also appears when compiling without latexmk.
+- The list of abbreviations is sorted by TeX itself (`\makenoidxglossaries`); no `makeglossaries` run is needed, so the list also appears when compiling without latexmk; `.latexmkrc` no longer calls `makeglossaries-lite`.
 
 ### Fixed
 
