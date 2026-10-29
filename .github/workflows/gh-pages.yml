@@ -21,7 +21,7 @@ jobs:
         uses: zauguin/install-texlive@6671d0c62046c7e349fe154d5208fe746b07e037 # v4.4.0
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
-          texlive_version: 2025
+          texlive_version: 2026
       - name: Prepare latexmk
         run: |
           updmap -sys
