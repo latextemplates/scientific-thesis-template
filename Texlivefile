@@ -52,6 +52,7 @@ fgruler
 fewerfloatpages
 fifo-stack
 filehook
+filemod
 fixmath
 float
 floatbytocbasic
@@ -66,6 +67,7 @@ glossaries-english
 glossaries-extra
 glossaries-german
 graphics
+graphicscache
 helvetic
 hologo
 hycolor
@@ -144,6 +146,7 @@ pdftexcmds
 pgf
 pgfplots
 pgf-umlsd
+pgfopts
 pict2e
 placeins
 plantuml
