@@ -40,22 +40,6 @@ if ($^O eq 'MSWin32') {
 # enable deletion of *.bbl when calling "latexmk -c"
 $bibtex_use = 2;
 
-# Glossaries inclusion inspired by https://tex.stackexchange.com/a/44316/9075
-add_cus_dep('glo', 'gls', 0, 'run_makeglossaries');
-add_cus_dep('acn', 'acr', 0, 'run_makeglossaries');
-# glossaries-extra's "abbreviations" option writes to .glo-abr instead
-add_cus_dep('glo-abr', 'gls-abr', 0, 'run_makeglossaries');
-
-sub run_makeglossaries {
-  if ( $silent ) {
-    # we use -lite to avoid an installation of perl
-    system "makeglossaries-lite", "-q", $_[0];
-  }
-  else {
-    system "makeglossaries-lite", $_[0];
-  };
-}
-
 #------------------------------------------------------------------------------#
 # cleanup
 
