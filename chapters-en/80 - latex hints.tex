@@ -76,6 +76,15 @@ Here is a comment\sidecomment{Comment}.
 \todo{A lot of text still needs to be produced here}
 \end{ltgexample}
 
+Several authors can mark their edits and comments with the \href{https://ctan.org/pkg/phfcc}{phfcc} package; the initials of the author appear once per page in the margin.
+Define one command per author in the preamble (\verb|\phfMakeCommentingCommand|); \verb|\phfDisableCommentingCommands| hides everything for the final version.
+
+\begin{ltgexample}
+Quantum mechanics developed quickly thanks to the works of Schrödinger, Heisenberg, and Dirac,
+who drew inspiration from earlier ideas by Planck \FA{and Einstein} \FA[Einstein must not be missing here.]
+\FA*{This sentence is to be removed.} \FA!{This is important.}
+\end{ltgexample}
+
 \section{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.

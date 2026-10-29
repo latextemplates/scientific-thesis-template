@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1017 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1153.
+% vvvvvvvv  The content starts in line 1030 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1166.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -621,6 +621,19 @@
 
 % Modified (Text blau)
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
+
+% Edits and comments by several authors (phfcc): \FA{added text}, \FA*{text to remove}, \FA[a comment],
+% \FA!{important}; the initials appear once per page in the margin. Define one command per author.
+% Doc: https://ctan.org/pkg/phfcc
+\usepackage{phfcc}
+\ifdefined\directlua
+  \phfSetDefaultCommentingStyle{style=rmstrikethrough} % strike through removed text across lines (LuaLaTeX only)
+\fi
+% Comments as footnotes keep the layout intact, e.g., to check page limits
+%\phfSetDefaultCommentingStyle{style=footcomments}
+\phfMakeCommentingCommand[initials={FA}]{FA} % first author
+% Final version: hide all edits and comments
+%\phfDisableCommentingCommands
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 
