@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 998 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1134.
+% vvvvvvvv  The content starts in line 1001 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1137.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -467,6 +467,9 @@
 %
 %%% Doc: Documentation inside dtx Package
 \usepackage{dcolumn}  % alignment at the decimal separator
+%
+%%% Doc: https://texdoc.org/serve/tablefootnote/0
+\usepackage{tablefootnote} % \tablefootnote: a footnote inside a floating table (plain \footnote is lost there)
 
 % A bit more space between the rows of a table (\extrarowheight is provided by array, which dcolumn loads)
 \setlength{\extrarowheight}{1pt}
