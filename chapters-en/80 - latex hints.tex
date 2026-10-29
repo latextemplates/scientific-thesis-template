@@ -402,6 +402,24 @@ Rows and cells can be colored with \verb|\rowcolor| and \verb|\cellcolor| from t
 \end{table}
 \end{ltgexample}
 
+A \verb|\footnote| inside a floating table is lost.
+Use \verb|\tablefootnote| from the \href{https://ctan.org/pkg/tablefootnote}{tablefootnote} package instead: it is set as a normal footnote at the bottom of the page.
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Table with a footnote}
+  \label{tab:footnote}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2\tablefootnote{A footnote inside a table.} \\
+    \midrule
+    One      & Two      \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ltgexample}
+
 \begin{ltgexample}
 % Adapted from https://tex.stackexchange.com/a/468994/9075
 \begin{table}

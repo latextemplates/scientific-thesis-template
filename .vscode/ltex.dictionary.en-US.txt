@@ -160,6 +160,7 @@ subcaption
 subfig
 subfigure
 subfigures
+tablefootnote
 tbl
 tikz
 tion

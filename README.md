@@ -481,6 +481,11 @@ Then, automatic installation should work again.
 
 Look for `% Code for my fancy chapters.` in your main `.tex` file and play around with parameters.
 
+### Q: How do I let section headings stick out into the left margin?
+
+Add `\RedeclareSectionCommand[indent=-1cm]{section}` to the preamble; `indent` is the KOMA-Script option for that, the same works for `subsection`, `paragraph`, etc.
+A negative `\hspace*` in `\addtokomafont{section}` achieves a similar effect, but belongs to the font setting and is not applied to all headings consistently.
+
 ### Q: Aren't there other templates?
 
 Sure. The [Hagenberg Thesis Document Collection](https://github.com/Digital-Media/HagenbergThesis) seems to be the most promising.

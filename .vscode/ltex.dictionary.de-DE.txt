@@ -157,6 +157,7 @@ subcaption
 subfig
 subfigure
 subfigures
+tablefootnote
 tbl
 tion
 tl
