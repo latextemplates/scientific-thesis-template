@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1054 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1191 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1067 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1204 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -640,6 +640,19 @@
 
 % Modified (Text blau)
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
+
+% Edits and comments by several authors (phfcc): \FA{added text}, \FA*{text to remove}, \FA[a comment],
+% \FA!{important}; the initials appear once per page in the margin. Define one command per author.
+% Doc: https://ctan.org/pkg/phfcc
+\usepackage{phfcc}
+\ifdefined\directlua
+  \phfSetDefaultCommentingStyle{style=rmstrikethrough} % strike through removed text across lines (LuaLaTeX only)
+\fi
+% Comments as footnotes keep the layout intact, e.g., to check page limits
+%\phfSetDefaultCommentingStyle{style=footcomments}
+\phfMakeCommentingCommand[initials={FA}]{FA} % first author
+% Final version: hide all edits and comments
+%\phfDisableCommentingCommands
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 \addto\extrasgerman{\sisetup{locale = DE}}
