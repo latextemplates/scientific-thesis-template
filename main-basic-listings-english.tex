@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1064 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1172.
+% vvvvvvvv  The content starts in line 1080 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1188.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -287,6 +287,22 @@
 \displaywidowpenalty=10000
 
 \usepackage{graphicx}
+
+% Smaller PDF: graphicscache re-encodes every included image once with Ghostscript (lossless, at most 300 dpi) and
+% caches the result in graphicscache/. It needs shell escape and an external pdflatex, so it is loaded only when the
+% document is compiled with --shell-escape; without, images are embedded as they are.
+% Doc: https://ctan.org/pkg/graphicscache
+\ExplSyntaxOn
+\sys_if_shell_unrestricted:T { \RequirePackage [ compress = flat ] { graphicscache } }
+\ExplSyntaxOff
+\makeatletter
+% graphicscache spells the Ghostscript filter "FlatEncode"; Ghostscript knows it as FlateEncode and rejects the typo
+\@ifpackageloaded{graphicscache}{%
+  \def\graphicscache@compress@mode{FlateEncode}%
+  % graphicscache parses the \includegraphics options itself and does not know graphicx's alt text (the markdown package sets it)
+  \pgfkeys{/graphicscache/alt/.code={\graphicscache@addarg{alt={\unexpanded{#1}}}}}%
+}{}
+\makeatother
 
 % Base folder, so there is no need to repeat this over and over again.
 \graphicspath{ {figures/} }
