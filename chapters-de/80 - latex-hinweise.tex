@@ -77,6 +77,15 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \todo{Hier muss noch kräftig Text produziert werden}
 \end{ltgexample}
 
+Mehrere Autoren können ihre Änderungen und Kommentare mit dem Paket \href{https://ctan.org/pkg/phfcc}{phfcc} markieren; die Initialen erscheinen einmal pro Seite am Rand.
+Pro Autor wird in der Präambel ein Befehl definiert (\verb|\phfMakeCommentingCommand|); \verb|\phfDisableCommentingCommands| blendet für die finale Version alles aus.
+
+\begin{ltgexample}
+Die Quantenmechanik entwickelte sich dank der Arbeiten von Schrödinger, Heisenberg und Dirac rasch,
+die sich von früheren Ideen von Planck \FA{und Einstein} \FA[Einstein darf hier nicht fehlen.] inspirieren ließen.
+\FA*{Dieser Satz soll entfernt werden.} \FA!{Das ist wichtig.}
+\end{ltgexample}
+
 \section{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.

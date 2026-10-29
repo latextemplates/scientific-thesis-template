@@ -138,6 +138,7 @@ oldstyle
 paralist
 pdfcomment
 pgf-umlsd
+phfcc
 powerset
 produziert
 pygments
