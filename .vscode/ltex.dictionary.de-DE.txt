@@ -159,6 +159,7 @@ subfigure
 subfigures
 tablefootnote
 tbl
+threeparttable
 tion
 tl
 tmpa

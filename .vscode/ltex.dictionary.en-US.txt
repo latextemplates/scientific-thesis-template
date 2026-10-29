@@ -162,6 +162,7 @@ subfigure
 subfigures
 tablefootnote
 tbl
+threeparttable
 tikz
 tion
 tl
