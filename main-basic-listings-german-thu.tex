@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1083 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1224 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1137 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1276 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -25,6 +25,7 @@
   open=any,       % ein Kapitel beginnt auf der nächsten Seite, nicht unbedingt auf einer rechten
   % Für beidseitigen Druck die beiden Zeilen darüber durch "twoside, open=right," ersetzen
   bibliography=totoc,
+  captions=tableheading,  % table captions are set above the table: put the space between caption and table, not above the caption
   % idxtotoc,   % Index ins Inhaltsverzeichnis
   % liststotoc, % List of * ins Inhaltsverzeichnis, mit liststotocnumbered werden die Abbildungsverzeichnisse nummeriert
   headsepline,
@@ -293,6 +294,24 @@
 
 \usepackage{graphicx}
 
+% Smaller PDF: graphicscache re-encodes every included image once with Ghostscript (lossless, at most 300 dpi) and
+% caches the result in graphicscache/. It needs shell escape and an external pdflatex, so it is loaded only when the
+% document is compiled with --shell-escape; without, images are embedded as they are.
+% Doc: https://ctan.org/pkg/graphicscache
+\ExplSyntaxOn
+\sys_if_shell_unrestricted:T { \RequirePackage [ compress = flat ] { graphicscache } }
+\ExplSyntaxOff
+\makeatletter
+% graphicscache spells the Ghostscript filter "FlatEncode"; Ghostscript knows it as FlateEncode and rejects the typo.
+% Remove when https://github.com/xqms/graphicscache/issues/30 is fixed.
+\@ifpackageloaded{graphicscache}{%
+  \def\graphicscache@compress@mode{FlateEncode}%
+  % graphicscache parses the \includegraphics options itself and does not know graphicx's alt text (the markdown package sets it).
+  % Remove when https://github.com/xqms/graphicscache/issues/29 is fixed.
+  \pgfkeys{/graphicscache/alt/.code={\graphicscache@addarg{alt={\unexpanded{#1}}}}}%
+}{}
+\makeatother
+
 % Base folder, so there is no need to repeat this over and over again.
 \graphicspath{ {figures/} }
 
@@ -382,7 +401,7 @@
   %
   basewidth=.5em,
   %
-  xleftmargin=.5cm,
+  xleftmargin=.5cm,           % room for the line numbers; widen it for listings with 100+ lines
   %
   % aboveskip=0mm,
   %
@@ -523,6 +542,15 @@
   {}%
   \finentry}
 
+\DefineBibliographyStrings{ngerman}{
+  backrefpage  = {zitiert auf S\adddot},
+  backrefpages = {zitiert auf S\adddot},
+  andothers    = {et\ \addabbrvspace al\adddot},
+  mathesis     = {Masterarbeit}, % biblatex's default is "Magisterarbeit"
+  % Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
+  bibliography = {Literaturverzeichnis}
+}
+
 % To embed the bibliography into the PDF (readers can extract it, e.g., with JabRef via "Import into library" on the PDF), uncomment:
 %\usepackage{embedfile}
 %\embedfile[mimetype=application/x-bibtex,desc=BibTeX entries of all references]{bibliography.bib}
@@ -538,6 +566,9 @@
 %
 %%% Doc: Documentation inside dtx Package
 \usepackage{dcolumn}  % alignment at the decimal separator
+%
+%%% Doc: https://texdoc.org/serve/tablefootnote/0
+\usepackage{tablefootnote} % \tablefootnote: a footnote inside a floating table (plain \footnote is lost there)
 
 % A bit more space between the rows of a table (\extrarowheight is provided by array, which dcolumn loads)
 \setlength{\extrarowheight}{1pt}
@@ -576,13 +607,15 @@
   bottom,      % Footnotes appear always on bottom. This is necessary specially when floats are used
   stable,      % Make footnotes stable in section titles
   % perpage,     % Reset on each page
-  % para,        % Place footnotes side by side of in one paragraph.
+  % para,        % Place footnotes side by side in one paragraph. LuaLaTeX: also uncomment \mathpenaltiesmode below.
   % side,        % Place footnotes in the margin
   ragged,      % Use RaggedRight
   % norule,      % Suppress rule above footnotes
   multiple,    % Rearrange multiple footnotes intelligent in the text.
   % symbol,      % Use symbols instead of numbers
 ]{footmisc}
+% Needed for "para" with LuaLaTeX: otherwise, URLs cannot break inside the footnote paragraph
+%\mathpenaltiesmode=1
 
 \counterwithout{footnote}{chapter} % Continuous numbering of footnotes across chapters
 
@@ -631,7 +664,13 @@
 % Enable nice comments
 \usepackage{pdfcomment}
 
-\newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\ifdefined\directlua
+  % Highlighting that breaks across lines (\colorbox does not): lua-ul's \highLight; the color needs luacolor
+  \usepackage{luacolor,lua-ul}
+  \newcommand{\textcomment}[2]{\highLight[yellow!60]{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\else
+  \newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\fi
 
 % Small PDF comment
 % 1st parameter: comment
@@ -665,6 +704,21 @@
 
 % Modified (Text blau)
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
+
+% Edits and comments by several authors, each with their own color and initials (phfcc)
+% Doc: https://ctan.org/pkg/phfcc
+\usepackage{phfcc}
+\ifdefined\directlua
+  \phfSetDefaultCommentingStyle{style=rmstrikethrough} % strike through removed text across lines (LuaLaTeX only)
+\fi
+% Comments as footnotes keep the layout intact, e.g., to check page limits
+%\phfSetDefaultCommentingStyle{style=footcomments}
+% One command per author: \FA{added text}, \FA*{text to remove}, \FA[a comment], \FA!{important};
+% the initials appear once per page in the margin; the forms do not combine (\FA*[...]{...} is only a comment), so
+% write \FA*{removed}\FA[comment]. Add one line per further author with their initials.
+\phfMakeCommentingCommand[initials={FA}]{FA} % first author
+% Final version: hide all edits and comments (there is no class option for it: "final" is the default of every class)
+%\phfDisableCommentingCommands
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 \addto\extrasgerman{\sisetup{locale = DE}}
@@ -886,10 +940,10 @@
 % Hint by https://tex.stackexchange.com/a/463188/9075
 % \usepackage{glossary-longextra}
 
-% Following is required if the abbreviation list should be sorted automatically (\printglossary / \printglossaries)
-% Not required, if we printed the entries in-order (using \printunsrtglossaries)
-% Required to have the German chapter name % Source: https://tex.stackexchange.com/a/426392/9075
-\makeglossaries
+% The list is sorted by TeX itself (\printnoidxglossary): no external tool (makeglossaries) is needed, so the list
+% also appears when compiling without latexmk. TeX sorting is fine for a list of abbreviations; it is slow for
+% large glossaries and sorts accented characters by code point.
+\makenoidxglossaries
 
 \input{abbreviations}
 
@@ -1209,9 +1263,7 @@
 %\listofalgorithms %Ist nur für Algorithmen, die mittels \begin{algorithm} umschlossen werden, nötig
 
 % Abkürzungsverzeichnis / Acronyms / Abbreviations
-\printglossary[type=\acronymtype,title={Abkürzungsverzeichnis}]
-% \printglossaries
-% \printnoidxglossaries
+\printnoidxglossary[type=\acronymtype,sort=word,title={Abkürzungsverzeichnis}]
 % \printunsrtglossaries cannot be used, because then no indexing happens; source: https://tex.stackexchange.com/a/287128/9075
 
 \microtypesetup{protrusion=true}

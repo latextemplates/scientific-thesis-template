@@ -1,4 +1,4 @@
-personal_ws-1.1 en 173 utf-8
+personal_ws-1.1 en 182 utf-8
 ACM
 Atlantic
 BPEL
@@ -11,6 +11,7 @@ Database
 Diag
 FancyVerbLine
 Firstname
+FlateEncode
 Geänderter
 Hier
 IEEEtran
@@ -38,6 +39,7 @@ PNG
 Practitioner
 RDBMS
 RGB
+Schrödinger
 ScienceOS
 StepLineNo
 TODO
@@ -54,6 +56,7 @@ Zref
 abbreviationdot
 aboveskip
 acmnumeric
+addarg
 angepasst
 applica
 args
@@ -98,8 +101,10 @@ für
 geändert
 gnuplot
 gp
+graphicscache
 html
 hypertext
+impnattypo
 inparaenum
 ist
 itemizations
@@ -136,6 +141,7 @@ oldstyle
 paralist
 pdfcomment
 pgfplots
+phfcc
 powerset
 produziert
 programmatically
@@ -144,6 +150,7 @@ quickstart
 rdbms
 refstepcounter
 renderers
+rmstrikethrough
 seit
 shortplural
 showstringspaces
@@ -156,7 +163,9 @@ subcaption
 subfig
 subfigure
 subfigures
+tablefootnote
 tbl
+threeparttable
 tikz
 tion
 tl

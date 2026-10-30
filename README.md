@@ -47,6 +47,20 @@ The LaTeX snippets this template is assembled from can be inspected at <https://
 
 See [docs/overleaf](docs/overleaf/).
 
+### Advanced quick start
+
+Instead of downloading the ZIP, let git fetch the template; later template updates then merge into your text (see the [FAQ](#q-how-can-i-synchronize-updates-from-the-template-to-my-repository)).
+In an empty folder:
+
+```shell
+git init -b main
+git remote add template https://github.com/latextemplates/scientific-thesis-template.git
+git fetch template
+git merge template/main
+```
+
+Then edit and compile as above.
+
 ## Writing your thesis
 
 - Read [Student Thesis Projects](https://vdf.ch/product/student-thesis-projects-en.html) by Lichter, Ludewig, Deininger, and Schneider.
@@ -342,11 +356,15 @@ To remove a word, delete it from the aspell and the LTeX+ word list and run `mak
 
 ### Q: How can I synchronize updates from the template to my repository?
 
-1. Initialize your git repository as usual
-2. Add this repository as git remote: `git remote add template https://github.com/latextemplates/{template}.git`
-3. Merge the branch `template/main` into your `main` branch: `git merge template/main`.
+Set up the repository as described in the [advanced quick start](#advanced-quick-start): this template is the git remote `template`.
+To get the latest template version, fetch and merge it:
 
-After that you can use and push the `main` branch as usual.
+```shell
+git fetch template
+git merge template/main
+```
+
+If you already have a repository, add the remote first: `git remote add template https://github.com/latextemplates/scientific-thesis-template.git`.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 
 ### Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
@@ -463,6 +481,11 @@ Then, automatic installation should work again.
 
 Look for `% Code for my fancy chapters.` in your main `.tex` file and play around with parameters.
 
+### Q: How do I let section headings stick out into the left margin?
+
+Add `\RedeclareSectionCommand[indent=-1cm]{section}` to the preamble; `indent` is the KOMA-Script option for that, the same works for `subsection`, `paragraph`, etc.
+A negative `\hspace*` in `\addtokomafont{section}` achieves a similar effect, but belongs to the font setting and is not applied to all headings consistently.
+
 ### Q: Aren't there other templates?
 
 Sure. The [Hagenberg Thesis Document Collection](https://github.com/Digital-Media/HagenbergThesis) seems to be the most promising.
@@ -475,6 +498,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
 - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
 - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in your main `.tex` file.
+- Uncomment `\phfDisableCommentingCommands` in your main `.tex` file to hide all edits and comments made with `\FA{...}`.
 - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
 - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
 

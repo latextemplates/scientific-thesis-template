@@ -11,6 +11,7 @@ Database
 Diag
 FancyVerbLine
 Firstname
+FlateEncode
 Fließtext
 Geänderter
 Hier
@@ -41,6 +42,7 @@ Projects
 RDBMS
 RGB
 Rückverweise
+Schrödinger
 StepLineNo
 TODO
 TODOs
@@ -58,6 +60,7 @@ Zref-vario
 abbreviationdot
 aboveskip
 acmnumeric
+addarg
 angepasst
 applica
 args
@@ -99,8 +102,10 @@ funktioniert
 für
 geändert
 gp
+graphicscache
 html
 hypertext
+impnattypo
 inparaenum
 ist
 itemizations
@@ -137,6 +142,7 @@ oldstyle
 paralist
 pdfcomment
 pgf-umlsd
+phfcc
 powerset
 produziert
 pygments
@@ -144,6 +150,7 @@ quickstart
 rdbms
 refstepcounter
 renderers
+rmstrikethrough
 seit
 shortplural
 showstringspaces
@@ -156,7 +163,9 @@ subcaption
 subfig
 subfigure
 subfigures
+tablefootnote
 tbl
+threeparttable
 tion
 tl
 tmpa

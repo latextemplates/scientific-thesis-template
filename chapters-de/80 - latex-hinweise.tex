@@ -25,6 +25,11 @@ Beispielsweise begann der letzte Satz in einem neuen Absatz.
 Andrew Stacey begründet dies ausführlich im Abschnitt \enquote{Line Wrapping} seines \href{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}{\emph{Document Revision System}}\footnote{\url{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/}}.
 \end{ltgexample}
 
+Ist der Text fertig, können einzelne Absätze nachgebessert werden.
+Besteht die letzte Zeile eines Absatzes nur aus ein oder zwei Wörtern oder ist sie fast voll, lässt man TeX den Absatz eine Zeile kürzer oder länger setzen: \texttt{\textbackslash looseness=-1} (bzw. \texttt{=1}) als Erstes in diesen Absatz schreiben.
+TeX setzt \texttt{\textbackslash looseness} am Ende jedes Absatzes zurück, sodass nur dieser eine Absatz betroffen ist.
+Mit LuaLaTeX wird ein einzelnes kurzes Wort als letzte Zeile bereits automatisch vermieden (Paket impnattypo).
+
 Möchte man die Art des Absatzes ändern, so kann man die Dokumentklassenoption \texttt{parskip} verwenden.
 Beispielsweise kann man mit \texttt{parskip=off} erreichen, dass statt eines freien Bereichs die erste Zeile des Absatzes eingezogen wird.
 
@@ -70,6 +75,15 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 
 \begin{ltgexample}
 \todo{Hier muss noch kräftig Text produziert werden}
+\end{ltgexample}
+
+Mehrere Autoren können ihre Änderungen und Kommentare mit dem Paket \href{https://ctan.org/pkg/phfcc}{phfcc} markieren; die Initialen erscheinen einmal pro Seite am Rand.
+Pro Autor wird in der Präambel ein Befehl definiert (\verb|\phfMakeCommentingCommand|); \verb|\phfDisableCommentingCommands| blendet für die finale Version alles aus.
+
+\begin{ltgexample}
+Die Quantenmechanik entwickelte sich dank der Arbeiten von Schrödinger, Heisenberg und Dirac rasch,
+die sich von früheren Ideen von Planck \FA{und Einstein} \FA[Einstein darf hier nicht fehlen.] inspirieren ließen.
+\FA*{Dieser Satz soll entfernt werden.} \FA!{Das ist wichtig.}
 \end{ltgexample}
 
 \section{Hyphenation}
@@ -374,6 +388,8 @@ A comparison of the packages for UML diagrams is given at \url{https://github.co
 \end{table}
 \end{ltgexample}
 
+A table caption goes above the table (\verb|\caption| before the \verb|tabular|), a figure caption below the figure.
+
 Rows and cells can be colored with \verb|\rowcolor| and \verb|\cellcolor| from the \href{https://ctan.org/pkg/colortbl}{colortbl} package, which \href{https://ctan.org/pkg/xcolor}{xcolor} loads with its option \verb|table|.
 
 \begin{ltgexample}
@@ -388,6 +404,25 @@ Rows and cells can be colored with \verb|\rowcolor| and \verb|\cellcolor| from t
     \midrule
     A    & \cellcolor{green!20}pass \\
     B    & \cellcolor{red!20}fail   \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ltgexample}
+
+A \verb|\footnote| inside a floating table is lost.
+Use \verb|\tablefootnote| from the \href{https://ctan.org/pkg/tablefootnote}{tablefootnote} package instead: it is set as a normal footnote at the bottom of the page.
+If the notes should appear directly below the table instead (common in journals), use the \href{https://ctan.org/pkg/threeparttable}{threeparttable} package.
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Table with a footnote}
+  \label{tab:footnote}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2\tablefootnote{A footnote inside a table.} \\
+    \midrule
+    One      & Two                                                \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -518,6 +553,9 @@ With paralist, one can even have all items typeset after each other and have the
   \begin{markdown}
 Text can be *emphasized* or **bold**, and `code` is set in a monospaced font.
 A citation looks like this [@mwe], and here is a footnote.^[This is an inline footnote.]
+Referenced footnotes work as well[^detail].
+
+[^detail]: This is a footnote defined at a different place in the text.
 
 - first point
 - second point
@@ -617,6 +655,10 @@ In case one wants to name the author: \textcite{mwe} shows a minimal \LaTeX{} ex
 \end{ltgexample}
 
 Note that \texttt{\textbackslash textcite\{mwe\}} prints both the author and the reference to the bibliography entry.
+
+A thesis is cited like any other work: a master's thesis~\cite{Shannon1940} or a doctoral thesis~\cite{Nash1950}.
+The entry types \texttt{@MastersThesis} and \texttt{@PhdThesis} are labeled in the document language (\enquote{MA thesis} or \enquote{Masterarbeit}, \enquote{PhD thesis} or \enquote{Diss.}).
+For a Bachelor's thesis, use \texttt{@Thesis} with \texttt{type = \{bathesis\}}; for a Diplomarbeit, \texttt{type = \{Diplomarbeit\}} is printed as is.
 
 Remember that you have to call \texttt{biber main-german} to generate the bibliography data for \texttt{lualatex}.
 You will need to run \texttt{lualatex} twice so that the page numbers are up to date.

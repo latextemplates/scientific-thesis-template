@@ -27,6 +27,11 @@ For instance, this sentence belongs to the same paragraph, whereas the last one 
 Andrew Stacey gives a long motivation for that in the section \enquote{Line Wrapping} of his \href{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}{\emph{Document Revision System}}\footnote{\url{https://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/}}.
 \end{ltgexample}
 
+Once the text is final, single paragraphs can be polished.
+If the last line of a paragraph holds only a word or two, or is nearly full, let TeX set the paragraph one line shorter or longer: write \texttt{\textbackslash looseness=-1} (or \texttt{=1}) as the first thing in that paragraph.
+TeX resets \texttt{\textbackslash looseness} at the end of every paragraph, so only that one paragraph is affected.
+With LuaLaTeX, a lone short word as the last line is avoided automatically (package impnattypo).
+
 \section{Notes separated from the text}
 
 The package mindflow enables writing down notes and annotations in a way so that they are separated from the main text.
@@ -69,6 +74,15 @@ Here is a comment\sidecomment{Comment}.
 
 \begin{ltgexample}
 \todo{A lot of text still needs to be produced here}
+\end{ltgexample}
+
+Several authors can mark their edits and comments with the \href{https://ctan.org/pkg/phfcc}{phfcc} package; the initials of the author appear once per page in the margin.
+Define one command per author in the preamble (\verb|\phfMakeCommentingCommand|); \verb|\phfDisableCommentingCommands| hides everything for the final version.
+
+\begin{ltgexample}
+Quantum mechanics developed quickly thanks to the works of Schrödinger, Heisenberg, and Dirac,
+who drew inspiration from earlier ideas by Planck \FA{and Einstein} \FA[Einstein must not be missing here.]
+\FA*{This sentence is to be removed.} \FA!{This is important.}
 \end{ltgexample}
 
 \section{Hyphenation}
@@ -376,6 +390,8 @@ A comparison of the packages for UML diagrams is given at \url{https://github.co
 \end{table}
 \end{ltgexample}
 
+A table caption goes above the table (\verb|\caption| before the \verb|tabular|), a figure caption below the figure.
+
 Rows and cells can be colored with \verb|\rowcolor| and \verb|\cellcolor| from the \href{https://ctan.org/pkg/colortbl}{colortbl} package, which \href{https://ctan.org/pkg/xcolor}{xcolor} loads with its option \verb|table|.
 
 \begin{ltgexample}
@@ -390,6 +406,25 @@ Rows and cells can be colored with \verb|\rowcolor| and \verb|\cellcolor| from t
     \midrule
     A    & \cellcolor{green!20}pass \\
     B    & \cellcolor{red!20}fail   \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ltgexample}
+
+A \verb|\footnote| inside a floating table is lost.
+Use \verb|\tablefootnote| from the \href{https://ctan.org/pkg/tablefootnote}{tablefootnote} package instead: it is set as a normal footnote at the bottom of the page.
+If the notes should appear directly below the table instead (common in journals), use the \href{https://ctan.org/pkg/threeparttable}{threeparttable} package.
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Table with a footnote}
+  \label{tab:footnote}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2\tablefootnote{A footnote inside a table.} \\
+    \midrule
+    One      & Two                                                \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -520,6 +555,9 @@ With paralist, one can even have all items typeset after each other and have the
   \begin{markdown}
 Text can be *emphasized* or **bold**, and `code` is set in a monospaced font.
 A citation looks like this [@mwe], and here is a footnote.^[This is an inline footnote.]
+Referenced footnotes work as well[^detail].
+
+[^detail]: This is a footnote defined at a different place in the text.
 
 - first point
 - second point
@@ -621,6 +659,10 @@ In case one wants to name the author: \textcite{mwe} shows a minimal \LaTeX{} ex
 \end{ltgexample}
 
 Note that \texttt{\textbackslash textcite\{mwe\}} prints both the author and the reference to the bibliography entry.
+
+A thesis is cited like any other work: a master's thesis~\cite{Shannon1940} or a doctoral thesis~\cite{Nash1950}.
+The entry types \texttt{@MastersThesis} and \texttt{@PhdThesis} are labeled in the document language (\enquote{MA thesis} or \enquote{Masterarbeit}, \enquote{PhD thesis} or \enquote{Diss.}).
+For a Bachelor's thesis, use \texttt{@Thesis} with \texttt{type = \{bathesis\}}; for a Diplomarbeit, \texttt{type = \{Diplomarbeit\}} is printed as is.
 
 Remember that you have to call \texttt{biber main-english} to generate the bibliography data for \texttt{lualatex}.
 You will need to run \texttt{lualatex} twice so that the page numbers are up to date.

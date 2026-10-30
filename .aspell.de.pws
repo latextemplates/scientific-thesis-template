@@ -1,4 +1,4 @@
-personal_ws-1.1 de 169 utf-8
+personal_ws-1.1 de 178 utf-8
 ACM
 Access
 Atlantic
@@ -12,6 +12,7 @@ Database
 Diag
 FancyVerbLine
 Firstname
+FlateEncode
 Fließtext
 Geänderter
 Hier
@@ -42,6 +43,7 @@ Projects
 RDBMS
 RGB
 Rückverweise
+Schrödinger
 StepLineNo
 TODO
 TODOs
@@ -57,6 +59,7 @@ Zref
 abbreviationdot
 aboveskip
 acmnumeric
+addarg
 angepasst
 applica
 args
@@ -98,8 +101,10 @@ funktioniert
 für
 geändert
 gp
+graphicscache
 html
 hypertext
+impnattypo
 inparaenum
 ist
 itemizations
@@ -134,6 +139,7 @@ nur
 oldstyle
 paralist
 pdfcomment
+phfcc
 powerset
 produziert
 pygments
@@ -141,6 +147,7 @@ quickstart
 rdbms
 refstepcounter
 renderers
+rmstrikethrough
 seit
 shortplural
 showstringspaces
@@ -153,7 +160,9 @@ subcaption
 subfig
 subfigure
 subfigures
+tablefootnote
 tbl
+threeparttable
 tion
 tl
 tmpa

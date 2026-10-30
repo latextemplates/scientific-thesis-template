@@ -33,6 +33,8 @@ extend-ignore-re = [
 ]
 
 [default.extend-words]
+# Ghostscript filter name FlateEncode (graphicscache preamble)
+Flate = "Flate"
 # German name of the algorithm float, mentioned in the CHANGELOG
 Algorithmus = "Algorithmus"
 # TeX Gyre Heros (font)

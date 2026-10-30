@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- The citation example cites a master's and a doctoral thesis and explains the entry types for theses (`@MastersThesis`, `@Thesis` with `type`). [#33](https://github.com/latextemplates/scientific-thesis-template/issues/33)
+- Tables: `\tablefootnote` sets a footnote inside a floating table, where a plain `\footnote` is lost. [#91](https://github.com/latextemplates/scientific-thesis-template/issues/91)
+- README: FAQ on section headings sticking out into the left margin. [#91](https://github.com/latextemplates/scientific-thesis-template/issues/91)
+- Smaller PDFs: when compiling with `--shell-escape`, [graphicscache](https://ctan.org/pkg/graphicscache) re-encodes every included image once (lossless, at most 300 dpi) and caches it in `graphicscache/`; without shell escape nothing changes.
+- Edits and comments by several authors: `\FA{added}`, `\FA*{removed}`, `\FA[comment]` ([phfcc](https://ctan.org/pkg/phfcc)), with the initials in the margin; one command per author, `\phfDisableCommentingCommands` for the final version.
+- With `--todo=todonotes`, inline TODOs are set as a titled box.
+- README: an "Advanced quick start" sets up the document as a git repository with the template as remote, so template updates can be merged later; the FAQ on synchronizing updates points to it.
+
+### Changed
+
+- The list of abbreviations is sorted by TeX itself (`\makenoidxglossaries`); no `makeglossaries` run is needed, so the list also appears when compiling without latexmk; `.latexmkrc` no longer calls `makeglossaries-lite`.
+
+### Fixed
+
+- German documents: the bibliography heading reads "Literaturverzeichnis", a cited master's thesis "Masterarbeit" (biblatex's default "Magisterarbeit"), and back references "zitiert auf S."; the German biblatex settings were never included. [#57](https://github.com/latextemplates/scientific-thesis-template/issues/57)
+- `\textcomment`: the highlighted text breaks across lines with LuaLaTeX; before, a longer passage ran into the margin.
+- Table captions: the space is now between caption and table, not above the caption (KOMA-Script option `captions=tableheading`).
+- Abbreviations example: the first use of `\glspl{rdbms}` reads "Relational Database Management Systems (RDBMS)" instead of "RDBMS (RDBMS)".
+
 ## [2026-10-26]
 
 ### Added
