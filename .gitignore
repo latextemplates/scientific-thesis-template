@@ -1,5 +1,7 @@
 main-english.pdf
 main-english-*.pdf
+# single chapters compiled on their own (see chapters-*/README.md)
+chapters-*/*.pdf
 figures/*.pdf_tex
 
 # glossaries
