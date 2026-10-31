@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Document version from git via [gitver](https://ctan.org/pkg/gitver), commented out in the preamble: `\gitVer` and `\versionBox` (commit and build time) when compiling with `--shell-escape`. [uni-stuttgart-dissertation-template#1](https://github.com/latextemplates/uni-stuttgart-dissertation-template/issues/1)
+
 ## [2026-10-30]
 
 ### Added
