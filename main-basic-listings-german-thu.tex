@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1137 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1276 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1148 (\begin{document}); das erste
+%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1287 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -787,6 +787,17 @@
 \makeatletter
 \patchcmd{\@decl@short}{\bbl@info}{\@gobble}{}{}
 \makeatother
+
+% Document version from git: \gitVer is the commit (with "-dirty" when there are uncommitted changes) and
+% \versionBox a framed "Manuscript version: #<commit> - <build time>", e.g. for the footer or the title page.
+% gitver needs git and --shell-escape (add it to $pdflatex in .latexmkrc), so it is loaded only when the
+% document is compiled with --shell-escape; without, both commands are empty.
+% Doc: https://ctan.org/pkg/gitver
+%\ExplSyntaxOn
+%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } }
+%\ExplSyntaxOff
+%\providecommand{\gitVer}{}
+%\providecommand{\versionBox}{}
 
 
 %%%
