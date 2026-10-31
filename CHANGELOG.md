@@ -9,7 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
-- Each chapter compiles on its own: `latexmk "10 - introduction"` in `chapters-en/` (or `chapters-de/`) builds that chapter with the preamble of the thesis via [subfiles](https://ctan.org/pkg/subfiles); the main files include the chapters with `\subfileinclude`. [uni-stuttgart-dissertation-template#11](https://github.com/latextemplates/uni-stuttgart-dissertation-template/issues/11)
+- Each chapter compiles on its own: `latexmk "10 - introduction"` in `chapters-en/` (or `chapters-de/`) builds that chapter with the preamble of the thesis via [subfiles](https://ctan.org/pkg/subfiles); the main files include the chapters with `\subfileinclude`, and the `Check` workflow builds the first chapter on its own and uploads its PDF. [uni-stuttgart-dissertation-template#11](https://github.com/latextemplates/uni-stuttgart-dissertation-template/issues/11)
 - Document version from git via [gitver](https://ctan.org/pkg/gitver), commented out in the preamble: `\gitVer` and `\versionBox` (commit and build time) when compiling with `--shell-escape`. [uni-stuttgart-dissertation-template#1](https://github.com/latextemplates/uni-stuttgart-dissertation-template/issues/1)
 
 ## [2026-10-30]
