@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1043 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1147.
+% vvvvvvvv  The content starts in line 1050 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1154.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -805,13 +805,14 @@
 {\LTGendlineexample=\numexpr\inputlineno-1\relax%
   \tcbinputlisting{%
     listing only,
-    listing file=\currfilepath,
+    % \currfilename, not \currfilepath: a chapter is read through the import path of subfiles, which minted would prepend once more
+    listing file=\currfilename,
     colback=green!5!white,
     colframe=green!25,
     coltitle=black!90,
     coltext=black!90,
     left=8mm,
-    title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
+    title=Corresponding \LaTeX{} code of \texttt{\currfilename},
     minted language=TeX,
     minted style=vs,
     minted options={
@@ -1040,6 +1041,12 @@
   \usepackage{linebreaker}
 \fi
 
+% Each chapter compiles on its own: its file starts with \documentclass[../<main file>]{subfiles}, and
+% "latexmk" in chapters-en/ builds it with this preamble (see chapters-en/README.md).
+% In the full document, \subfileinclude works like \include.
+% subfiles is loaded as the last package.
+% Doc: https://ctan.org/pkg/subfiles
+\usepackage{subfiles}
 \begin{document}
 \raggedbottom
 \pagenumbering{arabic}
@@ -1144,17 +1151,17 @@ What can they do with your research.
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
 
-\include{chapters-en/10 - introduction}
-\include{chapters-en/20 - background}
-\include{chapters-en/30 - problem exposition}
-\include{chapters-en/40 - first real chapter}
-\include{chapters-en/50 - second real chapter}
-\include{chapters-en/60 - evaluation}
+\subfileinclude{chapters-en/10 - introduction}
+\subfileinclude{chapters-en/20 - background}
+\subfileinclude{chapters-en/30 - problem exposition}
+\subfileinclude{chapters-en/40 - first real chapter}
+\subfileinclude{chapters-en/50 - second real chapter}
+\subfileinclude{chapters-en/60 - evaluation}
 \ifluatex
   \markdownInput{chapters-en/70 - markdown.md}
 \fi
-\include{chapters-en/80 - latex hints}
-\include{chapters-en/90 - conclusion}
+\subfileinclude{chapters-en/80 - latex hints}
+\subfileinclude{chapters-en/90 - conclusion}
 
 %%% ===============================================================================
 %%% Bibliography
