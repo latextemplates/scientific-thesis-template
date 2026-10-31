@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  The content starts in line 1034 (\begin{document}); the first
-%           chapter (\include{chapters-en/10 - introduction}) is included in line 1170.
+% vvvvvvvv  The content starts in line 1045 (\begin{document}); the first
+%           chapter (\include{chapters-en/10 - introduction}) is included in line 1181.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -697,6 +697,17 @@
 
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
+
+% Document version from git: \gitVer is the commit (with "-dirty" when there are uncommitted changes) and
+% \versionBox a framed "Manuscript version: #<commit> - <build time>", e.g. for the footer or the title page.
+% gitver needs git and --shell-escape (add it to $pdflatex in .latexmkrc), so it is loaded only when the
+% document is compiled with --shell-escape; without, both commands are empty.
+% Doc: https://ctan.org/pkg/gitver
+%\ExplSyntaxOn
+%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } }
+%\ExplSyntaxOff
+%\providecommand{\gitVer}{}
+%\providecommand{\versionBox}{}
 
 
 %%%
