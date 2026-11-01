@@ -76,15 +76,16 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           texlogsieve main-english.log | tee -a "$GITHUB_STEP_SUMMARY" || true
           echo '```' >> $GITHUB_STEP_SUMMARY
-      - name: Install diff-pdf
+      - name: Install pdftoppm and ImageMagick
         # A TeX Live update can change the output (line breaks, fonts, spacing) without an error.
-        # On the weekly run, the PDF published from main is the baseline; differing pages are
-        # highlighted in the artifact "pdf-diff". A difference is a warning, not a failure.
+        # On the weekly run, the PDF published from main is the baseline; pages that differ are
+        # rendered side by side in the artifact "pdf-diff". A difference is a warning, not a failure.
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
-          packages: diff-pdf
+          packages: poppler-utils imagemagick
           version: 1.0
+          execute_install_scripts: true # creates the "compare" alternative
       - name: Compare with the published PDF
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
@@ -92,18 +93,37 @@ jobs:
             echo "No published main-english.pdf to compare with." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          if diff-pdf --output-diff=pdf-diff.pdf published.pdf main-english.pdf; then
-            echo "main-english.pdf is identical to the published one." >> "$GITHUB_STEP_SUMMARY"
-            rm -f pdf-diff.pdf
+          pages() { pdfinfo "$1" | awk '/^Pages:/ { print $2 }'; }
+          published=$(pages published.pdf)
+          built=$(pages main-english.pdf)
+          mkdir pdf-diff
+          changed=0
+          for i in $(seq 1 $(( published > built ? published : built ))); do
+            if [ "$i" -gt "$published" ] || [ "$i" -gt "$built" ]; then
+              changed=$((changed + 1))
+              continue
+            fi
+            pdftoppm -r 50 -f "$i" -l "$i" -png -singlefile published.pdf "pdf-diff/page-$i-published"
+            pdftoppm -r 50 -f "$i" -l "$i" -png -singlefile main-english.pdf "pdf-diff/page-$i-built"
+            # "compare" exits with 1 when the pages differ and writes the differences in red
+            if compare -metric AE "pdf-diff/page-$i-published.png" "pdf-diff/page-$i-built.png" "pdf-diff/page-$i-diff.png" 2>/dev/null; then
+              rm "pdf-diff/page-$i-published.png" "pdf-diff/page-$i-built.png" "pdf-diff/page-$i-diff.png"
+            else
+              changed=$((changed + 1))
+            fi
+          done
+          if [ "$changed" -eq 0 ]; then
+            echo "main-english.pdf is identical to the published one ($built pages)." >> "$GITHUB_STEP_SUMMARY"
+            rmdir pdf-diff
           else
-            echo "::warning::main-english.pdf differs from the published one; see the artifact pdf-diff"
-            echo "main-english.pdf **differs** from the published one; the artifact \`pdf-diff\` highlights the changed pages." >> "$GITHUB_STEP_SUMMARY"
+            echo "::warning::main-english.pdf differs from the published one on $changed page(s); see the artifact pdf-diff"
+            echo "main-english.pdf **differs** from the published one on $changed page(s) (published: $published pages, built: $built pages); the artifact \`pdf-diff\` shows the pages and their differences in red." >> "$GITHUB_STEP_SUMMARY"
           fi
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && hashFiles('pdf-diff.pdf') != ''
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && hashFiles('pdf-diff/*.png') != ''
         with:
           name: pdf-diff
-          path: pdf-diff.pdf
+          path: pdf-diff/
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: test-result
