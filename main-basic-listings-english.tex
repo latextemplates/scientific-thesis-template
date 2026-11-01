@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1122 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1230.
+% vvvvvvvv  The content starts in line 1127 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1235.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -546,6 +546,11 @@
 %
 %%% Doc: Documentation inside dtx Package
 \usepackage{dcolumn}  % alignment at the decimal separator
+%
+% rotating has to be loaded before tablefootnote. The template rotates pages with pdflscape (see below), but
+% packages that users add later (ctable, sidewaystable) load rotating and would then fail with
+% "Package rotating loaded after tablefootnote", so it is loaded here.
+\usepackage{rotating}
 %
 %%% Doc: https://texdoc.org/serve/tablefootnote/0
 \usepackage{tablefootnote} % \tablefootnote: a footnote inside a floating table (plain \footnote is lost there)
