@@ -595,12 +595,14 @@ With \verb+\gls{...}+, you can enter abbreviations: the first time you call it, 
 When reusing \verb+\gls{..}+ the short form is automatically displayed.
 The abbreviation is also automatically inserted in the abbreviation list.
 With \verb+\glspl{...}+ the plural form is used.
-If you want the short form to appear directly at the first use, you can use \verb+\glsunset{..}+ to mark an abbreviation as already used.
-The opposite is achieved with \verb+\glsreset{..}+.
+If you want the short form to appear directly at the first use, you can use \verb+\glsunset{...}+ to mark an abbreviation as already used.
+The opposite is achieved with \verb+\glsreset{...}+.
+Both only change the ``already used'' flag: the effect shows at the next \verb+\gls{...}+ of that abbreviation, so they have to come before it in the text.
+\verb+\glsresetall+ (e.g., after the abstract) lets every abbreviation appear in its long form again.
 
-Abbreviations are defined in \verb+\content\ausarbeitung.tex+ by means of \verb+\newacronym{...}{...}{...}+.
+Abbreviations are defined in \verb+abbreviations.tex+ by means of \verb+\newabbreviation{key}{short}{long}+ (or \verb+\newacronym+ for an acronym that is read as a word).
 
-More information at: \url{https://ctan.org/pkg/bib2gls}.
+More information at: \url{https://ctan.org/pkg/glossaries-extra}.
 
 \begin{ltgexample}
 At the first pass, the \gls{er} was 5.
