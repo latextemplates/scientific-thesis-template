@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- README: FAQ on changing the citation style to APA, Chicago, IEEE, etc., with a link to rendered examples of each style. [#151](https://github.com/latextemplates/scientific-thesis-template/issues/151)
+
 ## [2026-11-01]
 
 ### Added
