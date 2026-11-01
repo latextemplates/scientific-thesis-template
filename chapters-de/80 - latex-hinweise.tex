@@ -595,10 +595,12 @@ Außerdem wird die Abkürzung automatisch in die Abkürzungsliste eingefügt.
 Mit \verb+\glspl{...}+ wird die Pluralform verwendet.
 Möchte man, dass bei der ersten Verwendung direkt die Kurzform erscheint, so kann man mit \verb+\glsunset{...}+ eine Abkürzung als bereits verwendet markieren.
 Das Gegenteil erreicht man mit \verb+\glsreset{...}+.
+Beide ändern nur die Markierung \enquote{bereits verwendet}: Die Wirkung zeigt sich beim nächsten \verb+\gls{...}+ dieser Abkürzung, die Befehle müssen also davor im Text stehen.
+\verb+\glsresetall+ (z.\,B. nach der Kurzfassung) lässt alle Abkürzungen wieder in der Langform erscheinen.
 
-Definiert werden Abkürzungen in der Datei \textit{abbreviationstex} mithilfe von \verb+\newacronym{...}{...}{...}+.
+Definiert werden Abkürzungen in der Datei \verb+abbreviations.tex+ mithilfe von \verb+\newabbreviation{key}{kurz}{lang}+ (oder \verb+\newacronym+ für ein Akronym, das als Wort gelesen wird).
 
-Mehr Infos unter: \url{https://ctan.org/pkg/bib2gls}.
+Mehr Infos unter: \url{https://ctan.org/pkg/glossaries-extra}.
 
 \begin{ltgexample}
 Beim ersten Durchlauf betrug die \gls{fr} 5.
