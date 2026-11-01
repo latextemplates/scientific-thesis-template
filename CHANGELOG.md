@@ -18,6 +18,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Fixed
 
+- `rotating` is loaded before `tablefootnote`, so packages added later that need it (`ctable`, `sidewaystable`) no longer fail with "Package rotating loaded after tablefootnote". [#101](https://github.com/latextemplates/scientific-thesis-template/issues/101)
 - The abbreviations example names the right file (`abbreviations.tex`) and command (`\newabbreviation`) and explains that `\glsunset`/`\glsreset` act on the next `\gls`; README FAQ on it. [#121](https://github.com/latextemplates/scientific-thesis-template/issues/121)
 
 
