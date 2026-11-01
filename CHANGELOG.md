@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- README: FAQ on why the title page says "Masterarbeit" in an English thesis and how to set the type as free text. [#97](https://github.com/latextemplates/scientific-thesis-template/issues/97)
 - The declaration at the end of the thesis is the file `affirmation.tex` instead of the fixed `\Versicherung` of the cover package, so its text can be adapted. [#119](https://github.com/latextemplates/scientific-thesis-template/issues/119)
 - `Check` workflow: the weekly run compares the built PDF with the published one and uploads the highlighted differences as artifact `pdf-diff`, so a changed output after a TeX Live update is visible without an error.
 - `scientific-thesis-cover.sty` 5.0.0: a custom institute with several lines (`institute={...\\...}`, e.g., with a department) is centered line by line, and `\\` works in all option values. [#145](https://github.com/latextemplates/scientific-thesis-template/issues/145)
