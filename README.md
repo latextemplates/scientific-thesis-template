@@ -482,6 +482,19 @@ Put them before that `\gls{...}` in the text, use the key from `abbreviations.te
 On the cover of the University of Stuttgart, the thesis type is the official German term of the examination regulations, also in an English thesis; see the [discussion at the cover package](https://github.com/latextemplates/scientific-thesis-cover/pull/10).
 If your university wants it in English, set the type as free text in the options of `scientific-thesis-cover` in the main file: `type={Master Thesis}` instead of `type=master`.
 
+### Q: How do I change the font of the table of contents?
+
+With KOMA-Script commands in the preamble of the main file (next to `\setkomafont{disposition}`); the `tocloft` package is not needed and does not go well with KOMA-Script.
+The chapter entries use the font element `chapterentry`, the lower levels are set by `\DeclareTOCStyleEntries`:
+
+```latex
+\setkomafont{chapterentry}{\sffamily\bfseries\large}
+\DeclareTOCStyleEntries[entryformat=\sffamily\large]{tocline}{section}
+\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{subsection,subsubsection}
+```
+
+The template sets all entries in the sans-serif font of the headings; see the KOMA-Script manual (`texdoc scrguide`, section on `tocbasic`) for `numwidth`, `indent`, `pagenumberformat`, and the other keys.
+
 ### Q: How do I change the citation style (APA, Chicago, IEEE, ...)?
 
 The bibliography is typeset by [biblatex] with its built-in styles: `alphabetic` here (`--authoryear` at generation time switches to `authoryear`).
