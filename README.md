@@ -497,16 +497,17 @@ The template sets all entries in the sans-serif font of the headings; see the KO
 
 ### Q: How do I speed up compilation with a precompiled preamble?
 
-With pdfLaTeX, the preamble of `main-english.tex` can be dumped into a format file once ([mylatexformat](https://ctan.org/pkg/mylatexformat), part of TeX Live); later runs load the format instead of reading all packages, which saved 26 % per run for the example thesis.
+With pdfLaTeX, the preamble of `main-english.tex` can be dumped into a format file once ([mylatex](https://ctan.org/pkg/mylatex), part of TeX Live); later runs load the format instead of reading all packages, which saved 26 % per run for the example thesis.
 
 ```bash
-pdflatex -ini -jobname=main-english "&pdflatex" mylatexformat.ltx """main-english.tex"""
-pdflatex -fmt=main-english main-english.tex
+pdflatex -ini "&pdflatex" mylatex.ltx main-english
+pdflatex "&mylatex" main-english
 ```
 
 Caveats: a run with the format skips the preamble of the `.tex` file, so after every change to the preamble, and after a TeX Live update, the first command has to be repeated; otherwise the change is silently ignored.
+Additions placed after a line containing only `% mylatex` (put it right before `\begin{document}`) are read anyway, so new packages and macros can go there while writing.
 `latexmk` does not rebuild the format, so this is for runs by hand while writing; `latexmk` builds the final version as usual.
-The file `main-english.fmt` (about 14 MB) is a build product and in `.gitignore`.
+The file `mylatex.fmt` (about 14 MB) is a build product and in `.gitignore`.
 LuaLaTeX (the default of this template) cannot dump its preamble: Lua states and the loaded fonts are not part of a format.
 The other ways to shorten the edit-compile loop, with measurements, are in the decision record [How to speed up compilation](https://github.com/latextemplates/gadr-latex-packages/blob/main/compilation-speed.md).
 
