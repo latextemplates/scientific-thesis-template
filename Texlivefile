@@ -66,6 +66,7 @@ glossaries
 glossaries-english
 glossaries-extra
 glossaries-german
+gitver
 graphics
 graphicscache
 helvetic
@@ -82,6 +83,7 @@ ifmtarg
 ifplatform
 iftex
 impnattypo
+import
 inconsolata
 infwarerr
 intcalc
@@ -169,6 +171,7 @@ soulpos
 stringenc
 sttools
 subfig
+subfiles
 svn-prov
 tabto-ltx
 tablefootnote

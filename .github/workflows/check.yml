@@ -18,7 +18,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install TeX Live
-        uses: zauguin/install-texlive@6671d0c62046c7e349fe154d5208fe746b07e037 # v4.4.0
+        uses: zauguin/install-texlive@c9f3ea3d51b2e04d092c4f9d208a19542d5dabcf # v4.5.0
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
           texlive_version: 2026
@@ -83,13 +83,38 @@ jobs:
             main-english.pdf
             main-english.log
             main-english.fls
+  chapter:
+    # One chapter compiled on its own (package subfiles, see chapters-en/README.md)
+    name: chapter (latexmk "10 - introduction")
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@c9f3ea3d51b2e04d092c4f9d208a19542d5dabcf # v4.5.0
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+          texlive_version: 2026
+      - name: Prepare latexmk
+        run: |
+          updmap -sys
+          texhash
+          tlmgr generate language --rebuild-sys
+      - run: latexmk "10 - introduction"
+        working-directory: chapters-en
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: chapter
+          path: |
+            chapters-en/10-introduction.pdf
+            chapters-en/10-introduction.log
   word-count:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install TeX Live
-        uses: zauguin/install-texlive@6671d0c62046c7e349fe154d5208fe746b07e037 # v4.4.0
+        uses: zauguin/install-texlive@c9f3ea3d51b2e04d092c4f9d208a19542d5dabcf # v4.5.0
         with:
           package_file: '${{ github.workspace }}/Texlivefile'
           texlive_version: 2026
@@ -251,7 +276,7 @@ jobs:
           version: 1.0
           execute_install_scripts: true
       - name: Install latexindent
-        uses: zauguin/install-texlive@6671d0c62046c7e349fe154d5208fe746b07e037 # v4.4.0
+        uses: zauguin/install-texlive@c9f3ea3d51b2e04d092c4f9d208a19542d5dabcf # v4.5.0
         with:
           packages: latexindent
           texlive_version: 2026

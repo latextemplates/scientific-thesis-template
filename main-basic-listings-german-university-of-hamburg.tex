@@ -5,8 +5,8 @@
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1137 (\begin{document}); das erste
-%           Kapitel (\include{chapters-de/10 - einleitung}) wird in Zeile 1278 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1156 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1297 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -788,6 +788,18 @@
 \patchcmd{\@decl@short}{\bbl@info}{\@gobble}{}{}
 \makeatother
 
+% Document version from git: \gitVer is the commit (with "-dirty" when there are uncommitted changes) and
+% \versionBox a framed "Manuscript version: #<commit> - <build time>", e.g. for the footer or the title page.
+% gitver needs git and --shell-escape (add it to $pdflatex in .latexmkrc), so it is loaded only when the
+% document is compiled with --shell-escape; without, both commands are empty.
+% Without a git repository (e.g. a downloaded zip), gitver reports an error and the version reads "unknown".
+% Doc: https://ctan.org/pkg/gitver
+%\ExplSyntaxOn
+%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } }
+%\ExplSyntaxOff
+%\providecommand{\gitVer}{}
+%\providecommand{\versionBox}{}
+
 
 %%%
 % Allows rotating figures by 90 degrees
@@ -885,13 +897,14 @@
 {\LTGendlineexample=\numexpr\inputlineno-1\relax%
   \tcbinputlisting{%
     listing only,
-    listing file=\currfilepath,
+    % \currfilename statt \currfilepath: ein Kapitel wird über den Import-Pfad von subfiles gelesen, den minted sonst noch einmal voranstellt
+    listing file=\currfilename,
     colback=green!5!white,
     colframe=green!25,
     coltitle=black!90,
     coltext=black!90,
     left=8mm,
-    title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
+    title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilename},
     listing options={
         frame=none,
         language={[LaTeX]TeX},
@@ -1134,6 +1147,12 @@
   \usepackage{linebreaker}
 \fi
 
+% Each chapter compiles on its own: its file starts with \documentclass[../<main file>]{subfiles}, and
+% "latexmk" in chapters-de/ builds it with this preamble (see chapters-de/README.md).
+% In the full document, \subfileinclude works like \include.
+% subfiles is loaded as the last package.
+% Doc: https://ctan.org/pkg/subfiles
+\usepackage{subfiles}
 \begin{document}
 \raggedbottom     % Variable Seitenhoehen zulassen
 \ifluatex
@@ -1275,17 +1294,17 @@
 \pagestyle{scrheadings}
 \mainmatter
 
-\include{chapters-de/10 - einleitung}
-\include{chapters-de/20 - hintergrund}
-\include{chapters-de/30 - problemdarstellung}
-\include{chapters-de/40 - erstes kapitel}
-\include{chapters-de/50 - zweites kapitel}
-\include{chapters-de/60 - evaluation}
+\subfileinclude{chapters-de/10 - einleitung}
+\subfileinclude{chapters-de/20 - hintergrund}
+\subfileinclude{chapters-de/30 - problemdarstellung}
+\subfileinclude{chapters-de/40 - erstes kapitel}
+\subfileinclude{chapters-de/50 - zweites kapitel}
+\subfileinclude{chapters-de/60 - evaluation}
 \ifluatex
   \markdownInput{chapters-de/70 - markdown.md}
 \fi
-\include{chapters-de/80 - latex-hinweise}
-\include{chapters-de/90 - zusammenfassung}
+\subfileinclude{chapters-de/80 - latex-hinweise}
+\subfileinclude{chapters-de/90 - zusammenfassung}
 
 %%% ===============================================================================
 %%% Bibliography
