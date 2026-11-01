@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- README: FAQ on a precompiled preamble with pdfLaTeX (`mylatexformat`) and its caveats, with a link to the decision record on compilation speed; `*.fmt` is ignored by git.
 - The main file header and the PDF properties (custom entry `Template`) name the template and the generator version the document is based on. [#93](https://github.com/latextemplates/scientific-thesis-template/issues/93)
 - README: FAQ on why the title page says "Masterarbeit" in an English thesis and how to set the type as free text. [#97](https://github.com/latextemplates/scientific-thesis-template/issues/97)
 - The declaration at the end of the thesis is the file `affirmation.tex` instead of the fixed `\Versicherung` of the cover package, so its text can be adapted. [#119](https://github.com/latextemplates/scientific-thesis-template/issues/119)
