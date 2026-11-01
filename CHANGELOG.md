@@ -16,6 +16,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - `scientific-thesis-cover.sty` 5.0.0: a custom institute with several lines (`institute={...\\...}`, e.g., with a department) is centered line by line, and `\\` works in all option values. [#145](https://github.com/latextemplates/scientific-thesis-template/issues/145)
 - README: FAQ on changing the citation style to APA, Chicago, IEEE, etc., with a link to rendered examples of each style. [#151](https://github.com/latextemplates/scientific-thesis-template/issues/151)
 
+### Changed
+
+- The entries of the table of contents are set in the sans-serif font of the headings on all levels; before, only the chapter entries were. README FAQ on changing the fonts of the table of contents. [#150](https://github.com/latextemplates/scientific-thesis-template/issues/150)
+
 ### Fixed
 
 - `rotating` is loaded before `tablefootnote`, so packages added later that need it (`ctable`, `sidewaystable`) no longer fail with "Package rotating loaded after tablefootnote". [#101](https://github.com/latextemplates/scientific-thesis-template/issues/101)
