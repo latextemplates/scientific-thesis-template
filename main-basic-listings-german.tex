@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1164 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1273 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1170 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1279 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -237,6 +237,12 @@
 % Headings are sans-serif (KOMA-Script default) in all languages.
 % For serif headings (classic English book style), uncomment the following line.
 % \setkomafont{disposition}{\normalfont\bfseries}
+
+% Entries of the table of contents in the font of the headings: by default, KOMA-Script sets only the
+% chapter entries in the heading font and the lower levels in the text font. No tocloft needed (it does
+% not go well with KOMA-Script); change entryformat to taste, e.g., \sffamily\large for larger section entries,
+% and \setkomafont{chapterentry}{...} for the chapter entries.
+\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{section,subsection,subsubsection}
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
