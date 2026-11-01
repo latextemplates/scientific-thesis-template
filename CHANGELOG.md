@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- `Check` workflow: the weekly run compares the built PDF with the published one and uploads the highlighted differences as artifact `pdf-diff`, so a changed output after a TeX Live update is visible without an error.
 - `scientific-thesis-cover.sty` 5.0.0: a custom institute with several lines (`institute={...\\...}`, e.g., with a department) is centered line by line, and `\\` works in all option values. [#145](https://github.com/latextemplates/scientific-thesis-template/issues/145)
 - README: FAQ on changing the citation style to APA, Chicago, IEEE, etc., with a link to rendered examples of each style. [#151](https://github.com/latextemplates/scientific-thesis-template/issues/151)
 
