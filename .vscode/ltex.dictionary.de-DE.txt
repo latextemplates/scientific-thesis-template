@@ -59,6 +59,7 @@ Zref-clever
 Zref-vario
 abbreviationdot
 aboveskip
+acm
 acmnumeric
 addarg
 angepasst

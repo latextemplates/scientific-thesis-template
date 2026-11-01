@@ -2,6 +2,7 @@ personal_ws-1.1 en 182 utf-8
 abbreviationdot
 aboveskip
 ACM
+acm
 acmnumeric
 addarg
 angepasst
@@ -81,8 +82,8 @@ Kommentar
 kräftig
 language
 lastline
-Lastname
 lastname
+Lastname
 LaTeX
 LaTeXing
 latextemplates
@@ -122,8 +123,8 @@ numbersep
 numberstyle
 nur
 Nx
-OldStyle
 oldstyle
+OldStyle
 OMG
 ORCID
 Organization
@@ -138,8 +139,8 @@ produziert
 programmatically
 pygments
 quickstart
-rdbms
 RDBMS
+rdbms
 refstepcounter
 renderers
 RGB
@@ -185,9 +186,9 @@ Worten
 wurde
 xcolor
 xleftmargin
-Zcref
 zcref
-zref
+Zcref
 Zref
+zref
 zvref
 œ

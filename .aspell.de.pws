@@ -3,6 +3,7 @@ abbreviationdot
 aboveskip
 Access
 ACM
+acm
 acmnumeric
 addarg
 angepasst
@@ -80,8 +81,8 @@ Kommentar
 kräftig
 language
 lastline
-Lastname
 lastname
+Lastname
 LaTeX
 LaTeXing
 latextemplates
@@ -120,8 +121,8 @@ numbersep
 numberstyle
 nur
 Nx
-OldStyle
 oldstyle
+OldStyle
 OMG
 Open
 ORCID
@@ -135,8 +136,8 @@ produziert
 Projects
 pygments
 quickstart
-rdbms
 RDBMS
+rdbms
 refstepcounter
 renderers
 RGB
@@ -181,9 +182,9 @@ Worten
 wurde
 xcolor
 xleftmargin
-Zcref
 zcref
-zref
+Zcref
 Zref
+zref
 zvref
 œ
