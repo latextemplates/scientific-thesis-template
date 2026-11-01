@@ -76,6 +76,29 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           texlogsieve main-english.log | tee -a "$GITHUB_STEP_SUMMARY" || true
           echo '```' >> $GITHUB_STEP_SUMMARY
+      - name: Compare with the published PDF
+        # A TeX Live update can change the output (line breaks, fonts, spacing) without an error.
+        # On the weekly run, the PDF published from main is the baseline; differing pages are
+        # highlighted in the artifact "pdf-diff". A difference is a warning, not a failure.
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          sudo apt-get install -y diff-pdf
+          if ! curl -sSfL -o published.pdf https://latextemplates.github.io/scientific-thesis-template/main-english.pdf; then
+            echo "No published main-english.pdf to compare with." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if diff-pdf --output-diff=pdf-diff.pdf published.pdf main-english.pdf; then
+            echo "main-english.pdf is identical to the published one." >> "$GITHUB_STEP_SUMMARY"
+            rm -f pdf-diff.pdf
+          else
+            echo "::warning::main-english.pdf differs from the published one; see the artifact pdf-diff"
+            echo "main-english.pdf **differs** from the published one; the artifact \`pdf-diff\` highlights the changed pages." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && hashFiles('pdf-diff.pdf') != ''
+        with:
+          name: pdf-diff
+          path: pdf-diff.pdf
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: test-result
