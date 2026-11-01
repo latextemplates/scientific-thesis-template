@@ -4,9 +4,10 @@
 % !TeX program = lualatex
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
+% Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1053 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1189.
+% vvvvvvvv  The content starts in line 1064 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1200.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -486,6 +487,11 @@
 %%% Doc: Documentation inside dtx Package
 \usepackage{dcolumn}  % alignment at the decimal separator
 %
+% rotating has to be loaded before tablefootnote. The template rotates pages with pdflscape (see below), but
+% packages that users add later (ctable, sidewaystable) load rotating and would then fail with
+% "Package rotating loaded after tablefootnote", so it is loaded here.
+\usepackage{rotating}
+%
 %%% Doc: https://texdoc.org/serve/tablefootnote/0
 \usepackage{tablefootnote} % \tablefootnote: a footnote inside a floating table (plain \footnote is lost there)
 
@@ -697,6 +703,11 @@
 
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
+
+% Which template this document is based on, in the PDF properties (custom entry "Template"; shown by
+% "pdfinfo -custom" and in the document properties of most viewers). Keep it: it tells which version
+% of the template a document was built on, which helps when comparing or updating adapted files.
+\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.1}}}
 
 % Document version from git: \gitVer is the commit (with "-dirty" when there are uncommitted changes) and
 % \versionBox a framed "Manuscript version: #<commit> - <build time>", e.g. for the footer or the title page.
