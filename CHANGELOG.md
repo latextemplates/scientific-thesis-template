@@ -19,6 +19,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
+- The English thesis: the German summary (`Kurzfassung`) is an appendix instead of a section after the abstract, as the examination regulations of the University of Stuttgart require. [#105](https://github.com/latextemplates/scientific-thesis-template/issues/105)
 - The entries of the table of contents are set in the sans-serif font of the headings on all levels; before, only the chapter entries were. README FAQ on changing the fonts of the table of contents. [#150](https://github.com/latextemplates/scientific-thesis-template/issues/150)
 
 ### Fixed
