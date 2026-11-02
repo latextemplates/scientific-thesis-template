@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- [ChkTeX](https://ctan.org/pkg/chktex) lint: `make chktex` and the job `chktex` of the `Check` workflow check the main file and the chapters for typographic and syntax issues. `.chktexrc` turns off the four warnings that do not fit the template (listed there with the reason) and accepts a spaced en dash, so no `-n` options are needed; a single line is excluded with `% chktex <number>` at its end. [#108](https://github.com/latextemplates/scientific-thesis-template/issues/108)
 - LuaLaTeX: no line break after a one-letter word such as "a" or "I" (`\suppressonecharbreak` of [chickenize](https://ctan.org/pkg/chickenize)); pdfLaTeX is unaffected. [#84](https://github.com/latextemplates/scientific-thesis-template/issues/84)
 - README: FAQ on a precompiled preamble with pdfLaTeX (`mylatex`) and its caveats, with a link to the decision record on compilation speed; `*.fmt` is ignored by git.
 - The main file header and the PDF properties (custom entry `Template`) name the template and the generator version the document is based on. [#93](https://github.com/latextemplates/scientific-thesis-template/issues/93)
