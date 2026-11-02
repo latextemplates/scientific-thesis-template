@@ -148,13 +148,13 @@ dictionaries:
 	for pair in en:en-US de:de-DE; do \
 		lang=$${pair%%:*}; pws=".aspell.$$lang.pws"; ltex=".vscode/ltex.dictionary.$${pair#*:}.txt"; \
 		[ -e "$$pws" ] || continue; \
-		{ tail -n +2 "$$pws"; if [ -e "$$ltex" ]; then cat "$$ltex"; fi; printf '%s\n' $(HYPHENATED_WORDS); } | grep -v '^$$' | LC_ALL=C sort -u > "$$ltex.tmp"; \
+		{ tail -n +2 "$$pws"; if [ -e "$$ltex" ]; then cat "$$ltex"; fi; printf '%s\n' $(HYPHENATED_WORDS); } | grep -v '^$$' | LC_ALL=C sort -u | LC_ALL=C sort -f > "$$ltex.tmp"; \
 		mv "$$ltex.tmp" "$$ltex"; \
 		grep -v -e - "$$ltex" > "$$pws.tmp"; \
 		{ echo "personal_ws-1.1 $$lang $$(wc -l < "$$pws.tmp" | tr -d ' ') utf-8"; cat "$$pws.tmp"; } > "$$pws"; \
 		rm "$$pws.tmp"; \
 	done
-	cat .vscode/ltex.dictionary.*.txt | LC_ALL=C sort -u > .textidote.dict
+	cat .vscode/ltex.dictionary.*.txt | LC_ALL=C sort -u | LC_ALL=C sort -f > .textidote.dict
 
 ## Show only the relevant messages of the last LaTeX run
 log:
