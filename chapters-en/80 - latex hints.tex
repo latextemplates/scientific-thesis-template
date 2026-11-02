@@ -464,15 +464,14 @@ Scaling shrinks the font, so for a table with long text in its cells, prefer wra
 \begin{table}
   \caption{Table with diagonal line}
   \label{tab:diag}
-  \begin{center}
-    \begin{tabular}{|l|c|c|} % chktex 44
-      \hline % chktex 44
-      \diagbox{Row}{Column} & A & B \\
-      \hline % chktex 44
-      1                     & x & y \\
-      \hline % chktex 44
-    \end{tabular}
-  \end{center}
+  \centering
+  \begin{tabular}{|l|c|c|} % chktex 44
+    \hline % chktex 44
+    \diagbox{Row}{Column} & A & B \\
+    \hline % chktex 44
+    1                     & x & y \\
+    \hline % chktex 44
+  \end{tabular}
 \end{table}
 \end{ltgexample}
 
@@ -641,7 +640,7 @@ A \gls{gp} is a medical doctor.
 I went to my surgery to see the \gls{gp}.
 \end{ltgexample}
 
-\todo{Include difference between acronym and abbreviation, see \url{https://tex.stackexchange.com/a/154566/9075}}
+\todo{Include difference between acronym and abbreviation, see https://tex.stackexchange.com/a/154566/9075}
 
 \section{Other Features}
 
