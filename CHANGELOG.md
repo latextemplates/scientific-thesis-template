@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- pdfLaTeX, `listings`: the `literate` table that maps UTF-8 characters in listings covers more characters (ñ, Ø, ý, ł, Czech, Polish, and Turkish letters, €, £, §, °, µ, …, dashes, and quotes); README FAQ on the error "Invalid UTF-8 byte sequence (`\lst@EC`)" and how to add a character. LuaLaTeX needs no table. [#9](https://github.com/latextemplates/scientific-thesis-template/issues/9)
 - [ChkTeX](https://ctan.org/pkg/chktex) lint: `make chktex` and the job `chktex` of the `Check` workflow check the main file and the chapters for typographic and syntax issues. `.chktexrc` turns off the four warnings that do not fit the template (listed there with the reason) and accepts a spaced en dash, so no `-n` options are needed; a single line is excluded with `% chktex <number>` at its end. [#108](https://github.com/latextemplates/scientific-thesis-template/issues/108)
 - LuaLaTeX: no line break after a one-letter word such as "a" or "I" (`\suppressonecharbreak` of [chickenize](https://ctan.org/pkg/chickenize)); pdfLaTeX is unaffected. [#84](https://github.com/latextemplates/scientific-thesis-template/issues/84)
 - README: FAQ on a precompiled preamble with pdfLaTeX (`mylatex`) and its caveats, with a link to the decision record on compilation speed; `*.fmt` is ignored by git.
