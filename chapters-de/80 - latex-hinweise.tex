@@ -105,7 +105,7 @@ In case you write \enquote{application-specific}, then the word will only be hyp
 You can also insert \verb1\allowbreak{}1 into the word, as in applica\allowbreak{}tion-specific, but this is much more effort.
 
 You can now write words containing hyphens which are hyphenated at other places in the word.
-For that, write \verb1"=1 instead of \verb1-1, as in application"=specific.
+For that, write \verb1"=1 instead of \verb1-1, as in application"=specific. % chktex 18
 This is enabled by an additional configuration of the babel package.
 \end{ltgexample}
 
@@ -130,7 +130,7 @@ Numbers are automatically grouped: \num{123456}.
 
 \begin{ltgexample}
 Please use the \enquote{enquote command} to quote something.
-Quoting with "`quote"' or ``quote'' also works.
+Quoting with "`quote"' or ``quote'' also works. % chktex 18
 
 \end{ltgexample}
 
@@ -369,7 +369,7 @@ A comparison of the packages for UML diagrams is given at \url{https://github.co
     \newthread{client}{Client}
     % [3]: horizontal gap (in cm) to the box of the previous instance; the default (0.2) leaves no room for the message labels
     \newinst[3]{server}{Server}
-    \begin{call}{client}{request()}{server}{response}
+    \begin{call}{client}{request()}{server}{response} % chktex 36
     \end{call}
   \end{sequencediagram}
   \caption{Sequence diagram drawn with pgf-umlsd}
@@ -441,12 +441,12 @@ If the notes should appear directly below the table instead (common in journals)
   \caption{Table with diagonal line}
   \label{tab:diag}
   \begin{center}
-    \begin{tabular}{|l|c|c|}
-      \hline
+    \begin{tabular}{|l|c|c|} % chktex 44
+      \hline % chktex 44
       \diagbox{Row}{Column} & A & B \\
-      \hline
+      \hline % chktex 44
       1                     & x & y \\
-      \hline
+      \hline % chktex 44
     \end{tabular}
   \end{center}
 \end{table}
@@ -461,19 +461,19 @@ The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on e
 \begin{ltgexample}
 \begin{longtable}{|l|l|l|}
   \caption{A sample long table.}\label{tab:long} \\
-  \hline
-  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+  \hline % chktex 44
+  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline % chktex 44
   \endfirsthead
 
   \multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
-  \hline
-  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+  \hline % chktex 44
+  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline % chktex 44
   \endhead
 
-  \hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+  \hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline % chktex 44
   \endfoot
 
-  \hline\hline
+  \hline\hline % chktex 44
   \endlastfoot
 
   A & BC & D \\
@@ -735,7 +735,7 @@ Test of line referencing: line~\ref{alg1:state2} (\zcref{alg:example}) and line~
 
 \subsection{Enumerations}
 
-\begin{enumerate}[label=\alph*)]
+\begin{enumerate}[label={(\alph*)}]
   \item a
   \item b
   \item c
@@ -743,7 +743,7 @@ Test of line referencing: line~\ref{alg1:state2} (\zcref{alg:example}) and line~
 \end{enumerate}
 
 Equivalent to paralist's inparaenum:
-\begin{enumerate*}[label=\alph*)]
+\begin{enumerate*}[label={(\alph*)}]
   \item a
   \item b
   \item c
