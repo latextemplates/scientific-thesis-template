@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1170 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1279 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1177 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1286 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -1161,6 +1161,13 @@
   \usepackage{linebreaker}
 \fi
 
+% LuaLaTeX: no line break after a one-letter word such as "a" or "I".
+% chickenize inserts a penalty after each one-character word of a paragraph.
+% See https://ctan.org/pkg/chickenize. LuaLaTeX only, so pdfLaTeX skips it.
+\ifdefined\directlua
+  \usepackage{chickenize}
+  \suppressonecharbreak
+\fi
 % Each chapter compiles on its own: its file starts with \documentclass[../<main file>]{subfiles}, and
 % "latexmk" in chapters-de/ builds it with this preamble (see chapters-de/README.md).
 % In the full document, \subfileinclude works like \include.
