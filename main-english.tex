@@ -7,7 +7,7 @@
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
 % vvvvvvvv  The content starts in line 1091 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1186.
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1189.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -1090,6 +1090,9 @@
 \usepackage{subfiles}
 \begin{document}
 \raggedbottom
+% The pages are numbered continuously from the title page, so no roman numerals for the front matter:
+% ISO 7144 requires this for theses. For roman numerals, regenerate with --pagenumbering=roman
+% (or put \frontmatter here and \mainmatter before the first chapter).
 \pagenumbering{arabic}
 \Titelblatt
 
