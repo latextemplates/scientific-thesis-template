@@ -321,6 +321,13 @@ lualatex -halt-on-error --synctex=1 main-english
 
 The line starting with `!` in the output (and in `main-english.log`) names the error, the following `l.<number>` line the line of the source.
 `make log` shows only the relevant messages of the last run (using [texlogsieve](https://ctan.org/pkg/texlogsieve)).
+For an interactive run, [texfot](https://ctan.org/pkg/texfot) wraps the compiler and prints only the lines that probably need a change in the source:
+
+```bash
+texfot lualatex main-english
+```
+
+Which tool fits which situation is compared in the [decision record on log filtering](https://github.com/latextemplates/gadr-latex-packages/blob/main/log-filtering.md).
 Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
 
 If there is no PDF although the log shows only warnings, the compiler stopped on a missing file without an `!` line: search the end of the log for `not found`, `cannot find`, or `Fatal error`.
