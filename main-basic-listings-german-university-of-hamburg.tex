@@ -7,7 +7,7 @@
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
 % vvvvvvvv  Der Inhalt beginnt in Zeile 1204 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1345 eingebunden.
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1346 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -1209,8 +1209,10 @@
   \autotypelangoptions{ngerman}{ligatures=selective}
 \fi
 
+% Die Seitennummerierung erfolgt durchlaufend ab der Titelseite, also keine römischen Ziffern im Vorspann:
+% Die ISO 7144 schreibt das für Abschlussarbeiten vor. Für römische Ziffern mit --pagenumbering=roman neu erzeugen
+% (oder hier \frontmatter und vor dem ersten Kapitel \mainmatter einfügen).
 \pagenumbering{arabic}
-\frontmatter
 \newgeometry{centering,left=2cm,right=2cm,top=2cm,bottom=2cm}
 \begin{titlepage}
   \includegraphics[width=10cm]{figures/uhh-logo.pdf}
@@ -1340,7 +1342,6 @@
 % Headline and footline
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
-\mainmatter
 
 \subfileinclude{chapters-de/10 - einleitung}
 \subfileinclude{chapters-de/20 - hintergrund}
