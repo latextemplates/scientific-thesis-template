@@ -81,14 +81,12 @@ da
 dante
 dazu
 der
-dissertation
 dwarflike
 eclipseKeywords
 eclipseStrings
 edef
 ein
 einigen
-enhanced
 enquote
 enumitem
 eq
@@ -103,7 +101,6 @@ fquote
 fr
 funktioniert
 für
-generator
 geändert
 gnuplot
 gp
@@ -129,7 +126,6 @@ longtable
 lst
 lstlisting
 luamplib
-markdown
 markdown-latex-quickstart
 markup
 md
@@ -184,7 +180,6 @@ tion
 tl
 tmpa
 tt
-uni
 ustutt
 werden
 wird
