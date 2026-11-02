@@ -516,6 +516,17 @@ Put them before that `\gls{...}` in the text, use the key from `abbreviations.te
 On the cover of the University of Stuttgart, the thesis type is the official German term of the examination regulations, also in an English thesis; see the [discussion at the cover package](https://github.com/latextemplates/scientific-thesis-cover/pull/10).
 If your university wants it in English, set the type as free text in the options of `scientific-thesis-cover` in the main file: `type={Master Thesis}` instead of `type=master`.
 
+### Q: Why are the pages numbered continuously, without roman numerals for the front matter?
+
+ISO 7144 ("Presentation of theses and similar documents") numbers the pages consecutively with arabic numerals from the title page on, and the doctoral regulations of the University of Stuttgart require that.
+Furthermore, the page number in the PDF viewer then equals the printed one, and a page reference is unambiguous.
+See the [decision record](https://github.com/latextemplates/generator-latex-template/blob/main/docs/decisions/0027-number-pages-continuously.md).
+If your institution wants roman numerals for the front matter, put `\frontmatter` before the title page and `\mainmatter` before the first chapter of the main file, or generate an own copy of the template with the [latex template generator]:
+
+```bash
+npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --pagenumbering=roman'
+```
+
 ### Q: How do I change the font of the table of contents?
 
 With KOMA-Script commands in the preamble of the main file (next to `\setkomafont{disposition}`); the `tocloft` package is not needed and does not go well with KOMA-Script.
