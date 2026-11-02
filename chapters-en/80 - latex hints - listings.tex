@@ -6,6 +6,8 @@
 % "XML." ends a sentence, so \@ before the period restores the sentence space.
 % (The other way round, "e.g.\ details" forces the narrow space after a lowercase abbreviation; ~ is a
 % non-breaking inter-word space, as in "Prof.~Dr.~Eike Kraft".)
+% An abbreviation set with \gls{xml} needs no \@: glossaries ends it with a non-letter, so the period after it
+% gets the sentence space. The plain "XML" here is for documents without the glossaries package.
 \Zcref{lst:XML} shows source code written in XML\@.
 \Zcref{line:comment} contains a comment.
 
