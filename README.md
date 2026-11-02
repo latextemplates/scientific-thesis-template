@@ -302,6 +302,15 @@ Add the same comment to further `.tex` files.
 
 ## FAQs
 
+### Q: pdfLaTeX stops with "Invalid UTF-8 byte sequence (\lst@EC)" in a listing, or an umlaut is missing in it.
+
+Under pdfLaTeX, the `listings` package reads a listing byte by byte, so a character outside ASCII has to be mapped to its LaTeX command.
+The template does this for accented Latin letters and common punctuation with `literate=` in `\lstset` (search for `extendedchars` in `main-english.tex`).
+A character that is not in the table triggers the error and is dropped.
+Add it with the same pattern, e.g., `{ő}{{\H{o}}}1` (the `1` is its width in characters).
+LuaLaTeX reads UTF-8 directly and needs no table, which is why the table is inside `\ifpdftex`.
+[listingsutf8](https://ctan.org/pkg/listingsutf8) helps with `\lstinputlisting` only, not with the `lstlisting` environment.
+
 ### Q: How do I find the cause of a LaTeX error?
 
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
