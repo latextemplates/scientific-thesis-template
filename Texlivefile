@@ -22,6 +22,8 @@ bigintcalc
 bitset
 blindtext
 bookcover
+adjustbox
+collectbox
 booktabs
 caption
 catchfile

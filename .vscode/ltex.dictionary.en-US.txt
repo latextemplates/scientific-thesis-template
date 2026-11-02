@@ -59,6 +59,7 @@ aboveskip
 acm
 acmnumeric
 addarg
+adjustbox
 angepasst
 applica
 args

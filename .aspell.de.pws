@@ -23,6 +23,7 @@ breaklines
 category
 Cleveref
 cls
+adjustbox
 colortbl
 commentstyle
 cref
