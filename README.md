@@ -313,13 +313,19 @@ LuaLaTeX reads UTF-8 directly and needs no table, which is why the table is insi
 
 ### Q: How do I find the cause of a LaTeX error?
 
-In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
+Run the compiler so that it stops at the first error instead of continuing with a damaged document:
 
 ```bash
-lualatex --synctex=1 main-english
+lualatex -halt-on-error --synctex=1 main-english
 ```
 
+The line starting with `!` in the output (and in `main-english.log`) names the error, the following `l.<number>` line the line of the source.
+`make log` shows only the relevant messages of the last run (using [texlogsieve](https://ctan.org/pkg/texlogsieve)).
 Run `biber main-english` to get the bibliography rendered (execute `lualatex` afterwards).
+
+If there is no PDF although the log shows only warnings, the compiler stopped on a missing file without an `!` line: search the end of the log for `not found`, `cannot find`, or `Fatal error`.
+A missing font or encoding file is the usual cause (see the questions on `.enc` files and `LatinModernMath` below); warnings such as "THIS IS AN ALPHA VERSION" of a package are harmless.
+The `Check` workflow builds this template on every change, so a build that fails locally comes from the local TeX installation; compare with the PDF at <https://latextemplates.github.io/scientific-thesis-template/> or build in the Docker image (see the Makefile).
 
 ### Q: I get `! Package minted Error: minted v3+ executable is not installed`
 
