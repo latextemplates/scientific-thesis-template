@@ -19,7 +19,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - README: FAQ on why the title page says "Masterarbeit" in an English thesis and how to set the type as free text. [#97](https://github.com/latextemplates/scientific-thesis-template/issues/97)
 - The declaration at the end of the thesis is the file `affirmation.tex` (German: `affirmation-de.tex`) instead of the fixed `\Versicherung` of the cover package, so its text can be adapted. [#119](https://github.com/latextemplates/scientific-thesis-template/issues/119)
 - `Check` workflow: the weekly run compares the built PDF with the published one and uploads the highlighted differences as artifact `pdf-diff`, so a changed output after a TeX Live update is visible without an error.
-- `scientific-thesis-cover.sty` 5.0.0: a custom institute with several lines (`institute={...\\...}`, e.g., with a department) is centered line by line, and `\\` works in all option values. [#145](https://github.com/latextemplates/scientific-thesis-template/issues/145)
+- `scientific-thesis-cover.sty` 5.0.1: no warning "This package requires UTF-8 support" under pdfLaTeX; a custom institute with several lines (`institute={...\\...}`, e.g., with a department) is centered line by line, and `\\` works in all option values. [#145](https://github.com/latextemplates/scientific-thesis-template/issues/145)
 - README: FAQ on changing the citation style to APA, Chicago, IEEE, etc., with a link to rendered examples of each style. [#151](https://github.com/latextemplates/scientific-thesis-template/issues/151)
 
 ### Changed
@@ -31,6 +31,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Fixed
 
+- Warnings in the log of a clean build are gone: "Command `\@parboxrestore` has changed", "Token not allowed in a PDF string" (the todo on abbreviations), `ifplatform` under pdfLaTeX, and the undefined italic shape of Inconsolata under LuaLaTeX; the diagonal-cell table uses `\centering`. [#135](https://github.com/latextemplates/scientific-thesis-template/issues/135)
 - LuaLaTeX: math and siunitx numbers are set in TeX Gyre Termes Math, the math font matching the text font; before, they were Latin Modern Math and differed in design and weight from numbers in the text. [#36](https://github.com/latextemplates/scientific-thesis-template/issues/36)
 - `rotating` is loaded before `tablefootnote`, so packages added later that need it (`ctable`, `sidewaystable`) no longer fail with "Package rotating loaded after tablefootnote". [#101](https://github.com/latextemplates/scientific-thesis-template/issues/101)
 - The abbreviations example names the right file (`abbreviations.tex`) and command (`\newabbreviation`) and explains that `\glsunset`/`\glsreset` act on the next `\gls`; README FAQ on it. [#121](https://github.com/latextemplates/scientific-thesis-template/issues/121)
