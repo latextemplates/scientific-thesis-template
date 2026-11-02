@@ -23,6 +23,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
+- The longtable example uses booktabs rules (`\toprule`, `\midrule`, `\bottomrule`) without vertical lines, like the other table examples.
 - README FAQ "How do I find the cause of a LaTeX error?": `-halt-on-error`, how to read the `!` line, `make log` and `texfot`, and what to look for when there is no PDF although the log shows only warnings (missing font or encoding file). [#134](https://github.com/latextemplates/scientific-thesis-template/issues/134)
 - The English thesis: the German summary (`Kurzfassung`) is an appendix instead of a section after the abstract, as the examination regulations of the University of Stuttgart require. [#105](https://github.com/latextemplates/scientific-thesis-template/issues/105)
 - The entries of the table of contents are set in the sans-serif font of the headings on all levels; before, only the chapter entries were. README FAQ on changing the fonts of the table of contents. [#150](https://github.com/latextemplates/scientific-thesis-template/issues/150)
