@@ -1,4 +1,4 @@
-personal_ws-1.1 de 178 utf-8
+personal_ws-1.1 de 191 utf-8
 abbreviationdot
 aboveskip
 Access
@@ -6,6 +6,7 @@ ACM
 acm
 acmnumeric
 addarg
+adjustbox
 angepasst
 applica
 args
@@ -14,8 +15,8 @@ auch
 backticks
 basewidth
 basicstyle
-bei
 Bei
+bei
 belowskip
 BPEL
 BPMN
@@ -23,7 +24,6 @@ breaklines
 category
 Cleveref
 cls
-adjustbox
 colortbl
 commentstyle
 cref
@@ -76,14 +76,14 @@ inparaenum
 ist
 itemizations
 JabRef
-json
 JSON
+json
 Kommentar
 kräftig
 language
 lastline
-lastname
 Lastname
+lastname
 LaTeX
 LaTeXing
 latextemplates
@@ -122,8 +122,8 @@ numbersep
 numberstyle
 nur
 Nx
-oldstyle
 OldStyle
+oldstyle
 OMG
 Open
 ORCID
@@ -184,8 +184,8 @@ Worten
 wurde
 xcolor
 xleftmargin
-zcref
 Zcref
+zcref
 Zref
 zref
 zvref
