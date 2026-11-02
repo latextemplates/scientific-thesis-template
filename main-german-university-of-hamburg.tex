@@ -7,7 +7,7 @@
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
 % vvvvvvvv  Der Inhalt beginnt in Zeile 1116 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1253 eingebunden.
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung} % chktex 8) wird in Zeile 1253 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -55,7 +55,7 @@
 %
 % Hinweis von http://tex.stackexchange.com/a/321066/9075
 % Ermögliche die Benutzung von "= als Trennstriche
-\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}} % chktex 18
 
 % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
 \addto\captionsngerman{%
@@ -146,7 +146,7 @@
 
   % See https://tug.org/FontCatalogue/texgyretermes/ for more information
   \setmainfont{texgyretermes}[
-    Extension = .otf,
+    Extension = .otf, % chktex 26
     UprightFont = *-regular,
     BoldFont = *-bold,
     ItalicFont = *-italic,
@@ -391,8 +391,8 @@
 \usepackage[autostyle=true]{csquotes}
 
 % Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
-\defineshorthand{"`}{\openautoquote}
-\defineshorthand{"'}{\closeautoquote}
+\defineshorthand{"`}{\openautoquote} % chktex 18
+\defineshorthand{"'}{\closeautoquote} % chktex 18
 
 % bessere Abstaende innerhalb der Tabelle (Layout))
 % -------------------------------------------------
@@ -478,7 +478,7 @@
     \map{
       % JabRef stores "description:path:type", multiple files separated by ";"; the steps keep the path of the first file
       \step[fieldsource=file, match=\regexp{\A[^:;]*:}, replace={}]
-      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}]
+      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}] % chktex 36
     }
   }
 }
@@ -642,7 +642,7 @@
 
 % Define default commands
 \makeatletter
-\@ifundefined{missingfigure}{\newcommand{\missingfigure}{... missing figure ...}}{}
+\@ifundefined{missingfigure}{\newcommand{\missingfigure}{\ldots\ missing figure \ldots}}{}
 \@ifundefined{textcomment}{\newcommand{\textcomment}[2]{#1 \todo{#2}}}{}
 \@ifundefined{sidecomment}{\newcommand{\sidecomment}[1]{\marginpar{#1}}}{}
 \@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
@@ -752,7 +752,7 @@
 % Without a git repository (e.g. a downloaded zip), gitver reports an error and the version reads "unknown".
 % Doc: https://ctan.org/pkg/gitver
 %\ExplSyntaxOn
-%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } }
+%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } } % chktex 26
 %\ExplSyntaxOff
 %\providecommand{\gitVer}{}
 %\providecommand{\versionBox}{}
@@ -883,11 +883,11 @@
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
   <-6>    MnSymbolC5
-  <6-7>   MnSymbolC6
-  <7-8>   MnSymbolC7
-  <8-9>   MnSymbolC8
-  <9-10>  MnSymbolC9
-  <10-12> MnSymbolC10
+  <6-7>   MnSymbolC6 % chktex 8
+  <7-8>   MnSymbolC7 % chktex 8
+  <8-9>   MnSymbolC8 % chktex 8
+  <9-10>  MnSymbolC9 % chktex 8
+  <10-12> MnSymbolC10 % chktex 8
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
@@ -1042,7 +1042,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -1050,7 +1050,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1074,7 +1074,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -1082,7 +1082,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1165,7 +1165,7 @@
 \begin{otherlanguage}{american}
   \emph{Write an abstract for your work.
     Replace each of the points below with one sentence (two if you must) and you have your abstract.
-    Write it when you finished your entire report.
+    Write it when you finished your entire report.%
     \footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
 
   \emph{Introduction.}
@@ -1250,17 +1250,17 @@
 \pagestyle{scrheadings}
 \mainmatter
 
-\subfileinclude{chapters-de/10 - einleitung}
-\subfileinclude{chapters-de/20 - hintergrund}
-\subfileinclude{chapters-de/30 - problemdarstellung}
-\subfileinclude{chapters-de/40 - erstes kapitel}
-\subfileinclude{chapters-de/50 - zweites kapitel}
-\subfileinclude{chapters-de/60 - evaluation}
+\subfileinclude{chapters-de/10 - einleitung} % chktex 8
+\subfileinclude{chapters-de/20 - hintergrund} % chktex 8
+\subfileinclude{chapters-de/30 - problemdarstellung} % chktex 8
+\subfileinclude{chapters-de/40 - erstes kapitel} % chktex 8
+\subfileinclude{chapters-de/50 - zweites kapitel} % chktex 8
+\subfileinclude{chapters-de/60 - evaluation} % chktex 8
 \ifluatex
-  \markdownInput{chapters-de/70 - markdown.md}
+  \markdownInput{chapters-de/70 - markdown.md} % chktex 8
 \fi
-\subfileinclude{chapters-de/80 - latex-hinweise}
-\subfileinclude{chapters-de/90 - zusammenfassung}
+\subfileinclude{chapters-de/80 - latex-hinweise} % chktex 8
+\subfileinclude{chapters-de/90 - zusammenfassung} % chktex 8
 
 %%% ===============================================================================
 %%% Bibliography
