@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1179 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung} % chktex 8) wird in Zeile 1288 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1186 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung} % chktex 8) wird in Zeile 1295 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -418,7 +418,10 @@
 }
 
 \ifpdftex
-  % Ermögliche Umlaute falls \lstinputputlisting genutzt wird
+  % pdfLaTeX: listings liest ein Listing byteweise, daher muss jedes UTF-8-Zeichen hier auf seinen LaTeX-Befehl abgebildet werden.
+  % Ein Zeichen, das in dieser Tabelle fehlt, führt zu "LaTeX Error: Invalid UTF-8 byte sequence (\lst@EC)" und fällt weg;
+  % es wird nach demselben Muster ergänzt: {Zeichen}{{Befehl}}1 (die 1 ist die Breite in Zeichen).
+  % LuaLaTeX braucht keine Tabelle (siehe \ifpdftex oben). listingsutf8 hilft nur bei \lstinputlisting.
   % Siehe https://stackoverflow.com/a/29260603/873282 und https://tex.stackexchange.com/a/24532/9075 für Details.
   % listingsutf8 hat im Juni 2020 nicht funktioniert.
   \lstset{extendedchars=true, literate=
@@ -433,7 +436,11 @@
       {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
       {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
       {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-      {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+      {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {Ø}{{\O}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+      {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ý}{{\'y}}1 {Ý}{{\'Y}}1 {ÿ}{{\"y}}1 {ł}{{\l}}1 {Ł}{{\L}}1 {ı}{{\i}}1
+      {č}{{\v c}}1 {Č}{{\v C}}1 {š}{{\v s}}1 {Š}{{\v S}}1 {ž}{{\v z}}1 {Ž}{{\v Z}}1 {ř}{{\v r}}1 {Ř}{{\v R}}1 {ě}{{\v e}}1 {Ě}{{\v E}}1 {ů}{{\r u}}1 {Ů}{{\r U}}1
+      {ş}{{\c s}}1 {Ş}{{\c S}}1 {ğ}{{\u g}}1 {Ğ}{{\u G}}1 {ą}{{\k a}}1 {Ą}{{\k A}}1 {ę}{{\k e}}1 {Ę}{{\k E}}1 {ń}{{\'n}}1 {Ń}{{\'N}}1 {ś}{{\'s}}1 {Ś}{{\'S}}1 {ź}{{\'z}}1 {Ź}{{\'Z}}1 {ż}{{\.z}}1 {Ż}{{\.Z}}1
+      {€}{{\texteuro}}1 {£}{{\pounds}}1 {§}{{\S}}1 {°}{{\textdegree}}1 {µ}{{\textmu}}1 {…}{{\dots}}1 {–}{{\textendash}}1 {—}{{\textemdash}}1 {„}{{\quotedblbase}}1 {“}{{\textquotedblleft}}1 {”}{{\textquotedblright}}1 {‚}{{\quotesinglbase}}1 {‘}{{\textquoteleft}}1 {’}{{\textquoteright}}1 {«}{{\guillemetleft}}1 {»}{{\guillemetright}}1
   }
 \fi
 
