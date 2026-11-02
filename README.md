@@ -311,6 +311,17 @@ Add it with the same pattern, e.g., `{ő}{{\H{o}}}1` (the `1` is its width in ch
 LuaLaTeX reads UTF-8 directly and needs no table, which is why the table is inside `\ifpdftex`.
 [listingsutf8](https://ctan.org/pkg/listingsutf8) helps with `\lstinputlisting` only, not with the `lstlisting` environment.
 
+### Q: How do I include an SVG file?
+
+Convert it once to PDF with Inkscape (1.0 or later) and include the PDF with `\includegraphics`:
+
+```bash
+inkscape figure.svg --export-type=pdf --export-filename=figure.pdf
+```
+
+The [svg](https://ctan.org/pkg/svg) package automates this (`\includesvg{figure}` converts at every build), but it needs Inkscape on the machine that compiles and `--shell-escape`, so the conversion fails on Overleaf and in CI; the one-time conversion has neither constraint.
+Text in the SVG stays as it is; the `--export-latex` option of Inkscape writes the text to a `.pdf_tex` file set by LaTeX in the document font instead (see the svg package manual for the `\includeinkscape` workflow).
+
 ### Q: How do I find the cause of a LaTeX error?
 
 Run the compiler so that it stops at the first error instead of continuing with a damaged document:
