@@ -139,6 +139,10 @@ spellcheck-textidote:
 	done
 	@echo "Reports: textidote.html and chapters-en/*.textidote.html"
 
+## Check the LaTeX sources for typographic and syntax issues with ChkTeX (configuration: .chktexrc)
+chktex:
+	$(RUN) find . -maxdepth 2 \( -name 'main*.tex' -o -path './chapters-*/*.tex' \) -exec chktex -q {} +
+
 ## Merge the word lists of the spell checkers: a word added to .aspell.<language>.pws or (e.g., by
 ## "Add to dictionary" in VS Code) to .vscode/ltex.dictionary.<language>.txt ends up in both and in .textidote.dict.
 ## aspell word lists cannot contain hyphenated words; these words are added to the other lists.

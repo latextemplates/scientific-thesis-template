@@ -156,6 +156,23 @@ jobs:
           path: |
             chapters-en/10-introduction.pdf
             chapters-en/10-introduction.log
+  chktex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@c9f3ea3d51b2e04d092c4f9d208a19542d5dabcf # v4.5.0
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+          texlive_version: 2026
+      - name: Check the LaTeX sources with ChkTeX (configuration in .chktexrc)
+        run: |
+          find . -maxdepth 2 \( -name 'main*.tex' -o -path './chapters-*/*.tex' \) -exec chktex -q {} + | tee chktex.txt
+          if [ -s chktex.txt ]; then
+            { echo "## ChkTeX"; echo; echo '```'; cat chktex.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
   word-count:
     runs-on: ubuntu-latest
     steps:

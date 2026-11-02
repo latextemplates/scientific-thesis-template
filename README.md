@@ -216,6 +216,7 @@ On the command line, there are additional features:
 - `latexmk -C` or `make clean` for cleaning up
 - `make log` shows only the relevant messages of the last LaTeX run (using [texlogsieve](https://ctan.org/pkg/texlogsieve))
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
+- `make chktex` checks the LaTeX sources for typographic and syntax issues with [ChkTeX](https://ctan.org/pkg/chktex); the `Check` workflow runs it as job `chktex`. Warnings to ignore are configured in `.chktexrc` (`chktex -l` lists all), a single line with `% chktex <number>` at its end.
 - `make spellcheck` runs all spell checkers (in the [Docker image by DANTE e.V.](https://hub.docker.com/r/danteev/texlive), which contains them; `make LOCAL=1 spellcheck` uses local installations):
   - `make spellcheck-aspell` for interactive spell checking with aspell
   - `make spellcheck-textidote` checks spelling, grammar, and style with [TeXtidote](https://github.com/sylvainhalle/textidote) (report in `textidote.html`, for the chapters in `chapters-*/*.textidote.html`)
