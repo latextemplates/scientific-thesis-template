@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1077 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1204.
+% vvvvvvvv  The content starts in line 1079 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1206.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -153,6 +153,8 @@
   ]
   % See https://tug.org/FontCatalogue/texgyreheros/ for more information
   \setsansfont[Scale=.9]{TeX Gyre Heros}
+  % Math (and siunitx numbers) in the matching math font; unicode-math would use Latin Modern Math otherwise
+  \setmathfont{TeX Gyre Termes Math}
   % shapely l, upright quotes
   % Normal scaling is too large --> thus, we use ",Scale=.9"
   \ifwindows
