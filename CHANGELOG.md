@@ -9,6 +9,8 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- README: FAQ for theses at ISTE (cover keys `institute=istesqa` and the project types, free-text institute, generator call for Times and roman front matter). [#70](https://github.com/latextemplates/scientific-thesis-template/issues/70)
+- writing hints from the ISTE fork of the thesis template: how to document the literature search (search engines, keywords, inclusion criteria; JabRef for the papers), an explicit contribution paragraph, who benefits and lessons learned in the conclusion, and the Goal Question Metric approach and the case-study checklist of Runeson and Höst in the evaluation. [#70](https://github.com/latextemplates/scientific-thesis-template/issues/70)
 - README: FAQ on including an SVG file (one-time Inkscape conversion to PDF, the `svg` package and its constraints). [#122](https://github.com/latextemplates/scientific-thesis-template/issues/122)
 - Tables: example of a wide table scaled to the text width with [adjustbox](https://ctan.org/pkg/adjustbox) (`max width=\textwidth`, scales only if too wide), with a hint when to prefer `tabularx` or a landscape page instead. [#80](https://github.com/latextemplates/scientific-thesis-template/issues/80)
 - pdfLaTeX, `listings`: the `literate` table that maps UTF-8 characters in listings covers more characters (ñ, Ø, ý, ł, Czech, Polish, and Turkish letters, €, £, §, °, µ, …, dashes, and quotes); README FAQ on the error "Invalid UTF-8 byte sequence (`\lst@EC`)" and how to add a character. LuaLaTeX needs no table. [#9](https://github.com/latextemplates/scientific-thesis-template/issues/9)
@@ -24,6 +26,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
+- `scientific-thesis-cover` 5.1.0: `institute=istesqa`, the project types of the Bachelor programmes (`type=forschungsprojekt`, `projektaids`, `studienprojektmi`, `studienprojektse`), `studyprogram=aids` and `swe`. [#70](https://github.com/latextemplates/scientific-thesis-template/issues/70)
 - All variants number the pages continuously with arabic numerals from the title page on, as ISO 7144 requires (the Hamburg and THU variants used roman numerals for the front matter); the README FAQ explains why and how to get roman numerals back (`--pagenumbering=roman` of the generator). [#69](https://github.com/latextemplates/scientific-thesis-template/issues/69)
 - Writing hints that are question lists or short notes (the self-check questions on the scientific argument, the notes on the evaluation setup) are set as `mindflow` notes, gray and separated from the text, so they are visible as hints and not as thesis text.
 - The longtable example uses booktabs rules (`\toprule`, `\midrule`, `\bottomrule`) without vertical lines, like the other table examples.

@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01] % shipout hooks
 \newcommand{\USCCover@Pgkname}{scientific-thesis-cover}
-\ProvidesPackage{\USCCover@Pgkname}[2026/11/02 Cover and affirmation for scientific works.]
+\ProvidesPackage{\USCCover@Pgkname}[2026/11/03 Cover and affirmation for scientific works.]
 \typeout{Package: `\USCCover@Pgkname' v5.0.1}
 % ------------------------------
 % required packages
@@ -95,6 +95,11 @@
     \gdef\@labelTypeProjectINF{Projekt-INF}%
     \gdef\@labelTypeFachstudie{Fachstudie}%
     \gdef\@labelTypeProzessanalyse{Prozessanalyse}%
+    % Project modules of the Bachelor programmes (Prüfungsordnung, Amtliche Bekanntmachung Nr. 26/2025)
+    \gdef\@labelTypeForschungsprojekt{Bachelor-Forschungsprojekt Informatik}%
+    \gdef\@labelTypeProjektAIDS{Projekt Artificial Intelligence and Data Science}%
+    \gdef\@labelTypeStudienprojektMI{Studienprojekt Medieninformatik}%
+    \gdef\@labelTypeStudienprojektSE{Studienprojekt Software Engineering}%
 
     \gdef\@labelCourseCS{Informatik}%
     \gdef\@labelCourseSE{Softwaretechnik}%
@@ -104,6 +109,8 @@
     \gdef\@labelCourseBIS{Wirtschaftsinformatik}%
     \gdef\@labelCourseSimTech{Simulation Technology}%
     \gdef\@labelCourseMedInf{Medieninformatik}%
+    \gdef\@labelCourseAIDS{Artificial Intelligence and Data Science}%
+    \gdef\@labelCourseSWE{Software Engineering}%
 
     % institute names
     \gdef\@labeliaas{Institute of Architecture of Application Systems}%
@@ -111,6 +118,7 @@
     \gdef\@labelfmi{Institute of Formal Methods in Computer Science}%
     \gdef\@labelims{Institute for Natural Language Processing}%
     \gdef\@labeliste{Institute of Software Engineering}%
+    \gdef\@labelistesqa{Institute of Software Engineering\\Software Quality and Architecture}%
     \gdef\@labeliti{Institute of Computer Architecture and Computer Engineering}%
     \gdef\@labeliris{Institute of Computer-aided Product Development Systems}%
     \gdef\@labelvis{Institute for Visualization and Interactive Systems}%
@@ -149,6 +157,11 @@
     \gdef\@labelTypeProjectINF{Projekt-INF}%
     \gdef\@labelTypeFachstudie{Fachstudie}%
     \gdef\@labelTypeProzessanalyse{Prozessanalyse}%
+    % Project modules of the Bachelor programmes (Prüfungsordnung, Amtliche Bekanntmachung Nr. 26/2025)
+    \gdef\@labelTypeForschungsprojekt{Bachelor-Forschungsprojekt Informatik}%
+    \gdef\@labelTypeProjektAIDS{Projekt Artificial Intelligence and Data Science}%
+    \gdef\@labelTypeStudienprojektMI{Studienprojekt Medieninformatik}%
+    \gdef\@labelTypeStudienprojektSE{Studienprojekt Software Engineering}%
 
     \gdef\@labelCourseCS{Informatik}%
     \gdef\@labelCourseSE{Softwaretechnik}%
@@ -158,6 +171,8 @@
     \gdef\@labelCourseBIS{Wirtschaftsinformatik}%
     \gdef\@labelCourseSimTech{Simulation Technology}%
     \gdef\@labelCourseMedInf{Medieninformatik}%
+    \gdef\@labelCourseAIDS{Artificial Intelligence and Data Science}%
+    \gdef\@labelCourseSWE{Software Engineering}%
 
     % institute names
     \gdef\@labeliaas{Institut für Architektur von Anwendungssystemen}%
@@ -165,6 +180,7 @@
     \gdef\@labelfmi{Institut für Formale Methoden der Informatik}%
     \gdef\@labelims{Institut für Maschinelle Sprachverarbeitung}%
     \gdef\@labeliste{Institut für Software Engineering}%
+    \gdef\@labelistesqa{Institut für Software Engineering\\Software Quality and Architecture}%
     \gdef\@labeliti{Institut für Technische Informatik}%
     \gdef\@labeliris{Institut für Rechnergestützte Ingenieursysteme}%
     \gdef\@labelvis{Institut für Visualisierung und Interaktive Systeme}%
@@ -208,6 +224,10 @@
     \def\0{fachstudie}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelType{\@labelTypeFachstudie}}{}
     \def\0{projectinf}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelType{\@labelTypeProjectINF}}{}
     \def\0{prozessanalyse}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelType{\@labelTypeProzessanalyse}}{}
+    \def\0{forschungsprojekt}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelType{\@labelTypeForschungsprojekt}}{}
+    \def\0{projektaids}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelType{\@labelTypeProjektAIDS}}{}
+    \def\0{studienprojektmi}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelType{\@labelTypeStudienprojektMI}}{}
+    \def\0{studienprojektse}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelType{\@labelTypeStudienprojektSE}}{}
 }
 
 % ------------------------------
@@ -230,6 +250,7 @@
     \2{fmi}{\@labelfmi}{\@labelAddress}
     \2{ims}{\@labelims}{Pfaffenwaldring 5B\\70569 Stuttgart}
     \2{iste}{\@labeliste}{\@labelAddress}
+    \2{istesqa}{\@labelistesqa}{\@labelAddress}
     \2{iti}{\@labeliti}{Pfaffenwaldring 47\\70569 Stuttgart}
     \2{iris}{\@labeliris}{\@labelAddress}
     \2{vis}{\@labelvis}{\@labelAddress}
@@ -254,6 +275,8 @@
     \def\0{bis}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseBIS}}{}
     \def\0{simtech}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseSimTech}}{}
     \def\0{medinf}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseMedInf}}{}
+    \def\0{aids}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseAIDS}}{}
+    \def\0{swe}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelCourseValue{\@labelCourseSWE}}{}
 
 }
 
