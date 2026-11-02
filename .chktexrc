@@ -13,6 +13,13 @@ CmdLine
 # A spaced en dash (word -- word) is accepted in addition to the em dash (word---word)
 WordDash { 2 }
 
+# Arguments that are file names, URLs, or labels, not text (the dash in "10 - introduction" is not a dash in the text)
+WipeArg
+{
+    \subfileinclude:{} \markdownInput:{} \url:{} \includegraphics:[]{} \lipsum:[]
+    \zcref:*[]{} \Zcref:*[]{} \zcpageref:*[]{}
+}
+
 # Environments containing code, not LaTeX text
 VerbEnvir
 {
