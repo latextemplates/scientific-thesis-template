@@ -180,6 +180,7 @@ tabto-ltx
 tablefootnote
 tcolorbox
 tex-gyre
+tex-gyre-math
 texcount
 texlogsieve
 textcase
@@ -199,6 +200,7 @@ url
 
 varwidth
 xcharter
+xcharter-math
 xcolor
 xfor
 xifthen
