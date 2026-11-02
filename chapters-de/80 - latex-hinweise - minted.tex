@@ -4,8 +4,11 @@ The \href{https://github.com/gpoore/minted}{minted} package highlights listings 
 It uses the \href{http://pygments.org/}{pygments} library, which in turn requires Python.
 
 \begin{ltgexample}
-% \@ before the period: LaTeX takes a period after a capital letter for an abbreviation (as in "e.g.") and sets
-% the narrow inter-word space; \@ tells it that the sentence ends here, so it sets the wider sentence space.
+% After a period, LaTeX sets the wider sentence space by default. The exception: a period after a capital letter
+% is taken for an abbreviation or initial ("T. Scientist", "NASA") and gets the narrow inter-word space.
+% "XML." ends a sentence, so \@ before the period restores the sentence space.
+% (The other way round, "e.g.\ details" forces the narrow space after a lowercase abbreviation; ~ is a
+% non-breaking inter-word space, as in "Prof.~Dr.~Eike Kraft".)
 \Zcref{lst:XML} shows source code written in XML\@.
 \Zcref{line:comment} contains a comment.
 
