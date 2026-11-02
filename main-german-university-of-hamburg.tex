@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1129 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1266 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1131 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1268 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -48,7 +48,9 @@
 \ifluatex
   \usepackage{ifplatform}
 \else
-  \newif\ifwindows % \ifwindows has to be a conditional for TeX to skip the LuaLaTeX branch correctly
+  % A conditional named \ifwindows, so that TeX can skip the LuaLaTeX branch of the font setup. Written with \csname:
+  % when LuaLaTeX skips this branch, a literal \ifwindows (defined by ifplatform by then) would unbalance the \ifluatex.
+  \expandafter\newif\csname ifwindows\endcsname
 \fi
 
 % backticks (`) werden als solches in verbatim-Umgebungen dargestellt
