@@ -483,21 +483,24 @@ The \href{https://ctan.org/pkg/longtable}{longtable} package typesets tables tha
 The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on every page; once enough rows are added, the table spans more than one page on its own.
 
 \begin{ltgexample}
-\begin{longtable}{|l|l|l|}
+\begin{longtable}{lll}
   \caption{A sample long table.}\label{tab:long} \\
-  \hline % chktex 44
-  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline % chktex 44
+  \toprule
+  \textbf{First column} & \textbf{Second column} & \textbf{Third column} \\
+  \midrule
   \endfirsthead
 
   \multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
-  \hline % chktex 44
-  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline % chktex 44
+  \toprule
+  \textbf{First column} & \textbf{Second column} & \textbf{Third column} \\
+  \midrule
   \endhead
 
-  \hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline % chktex 44
+  \midrule
+  \multicolumn{3}{r}{{Continued on next page}} \\
   \endfoot
 
-  \hline\hline % chktex 44
+  \bottomrule
   \endlastfoot
 
   A & BC & D \\
