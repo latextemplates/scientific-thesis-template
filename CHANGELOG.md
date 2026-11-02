@@ -9,6 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
+- LuaLaTeX: no line break after a one-letter word such as "a" or "I" (`\suppressonecharbreak` of [chickenize](https://ctan.org/pkg/chickenize)); pdfLaTeX is unaffected. [#84](https://github.com/latextemplates/scientific-thesis-template/issues/84)
 - README: FAQ on a precompiled preamble with pdfLaTeX (`mylatex`) and its caveats, with a link to the decision record on compilation speed; `*.fmt` is ignored by git.
 - The main file header and the PDF properties (custom entry `Template`) name the template and the generator version the document is based on. [#93](https://github.com/latextemplates/scientific-thesis-template/issues/93)
 - README: FAQ on why the title page says "Masterarbeit" in an English thesis and how to set the type as free text. [#97](https://github.com/latextemplates/scientific-thesis-template/issues/97)
