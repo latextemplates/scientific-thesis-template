@@ -7,7 +7,7 @@
 % Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
 % vvvvvvvv  The content starts in line 1145 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1276.
+%           chapter (\subfileinclude{chapters-en/10 - introduction} % chktex 8) is included in line 1276.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -49,7 +49,7 @@
 \usepackage[ngerman,main=english]{babel}
 %
 % Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
-\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}} % chktex 18
 
 % Links behave as they should. Enables "\url{...}" for URL typesettings.
 % Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
@@ -144,7 +144,7 @@
 
   % See https://tug.org/FontCatalogue/texgyretermes/ for more information
   \setmainfont{texgyretermes}[
-    Extension = .otf,
+    Extension = .otf, % chktex 26
     UprightFont = *-regular,
     BoldFont = *-bold,
     ItalicFont = *-italic,
@@ -353,9 +353,9 @@
   breaklines=true,
   frame=lines,
   % backgroundcolor=\color{gray}, %only if you like
-  string=[s]{"}{"},
-  comment=[l]{:\ "},
-  morecomment=[l]{:"},
+  string=[s]{"}{"}, % chktex 18
+  comment=[l]{:\ "}, % chktex 18
+  morecomment=[l]{:"}, % chktex 18
   literate=
     *{0}{{{\color{numb}0}}}{1}
     {1}{{{\color{numb}1}}}{1}
@@ -371,7 +371,7 @@
 
 \lstset{
   % everything between (* *) is a latex command
-  escapeinside={(*}{*)},
+  escapeinside={(*}{*)}, % chktex 9
   %
   language=json,
   %
@@ -417,13 +417,13 @@
   % See https://stackoverflow.com/a/29260603/873282 and https://tex.stackexchange.com/a/24532/9075 for details.
   % listingsutf8 did not work in June 2020.
   \lstset{extendedchars=true, literate=
-      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 % chktex 7
       {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1 % chktex 7
       {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 % chktex 7
       {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1 % chktex 7
       {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
       {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
       {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
@@ -446,8 +446,8 @@
 \usepackage[autostyle=true]{csquotes}
 
 % Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
-\defineshorthand{"`}{\openautoquote}
-\defineshorthand{"'}{\closeautoquote}
+\defineshorthand{"`}{\openautoquote} % chktex 18
+\defineshorthand{"'}{\closeautoquote} % chktex 18
 
 % Nicer tables (\toprule, \midrule, \bottomrule)
 \usepackage{booktabs}
@@ -530,7 +530,7 @@
     \map{
       % JabRef stores "description:path:type", multiple files separated by ";"; the steps keep the path of the first file
       \step[fieldsource=file, match=\regexp{\A[^:;]*:}, replace={}]
-      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}]
+      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}] % chktex 36
     }
   }
 }
@@ -685,7 +685,7 @@
 
 % Define default commands
 \makeatletter
-\@ifundefined{missingfigure}{\newcommand{\missingfigure}{... missing figure ...}}{}
+\@ifundefined{missingfigure}{\newcommand{\missingfigure}{\ldots\ missing figure \ldots}}{}
 \@ifundefined{textcomment}{\newcommand{\textcomment}[2]{#1 \todo{#2}}}{}
 \@ifundefined{sidecomment}{\newcommand{\sidecomment}[1]{\marginpar{#1}}}{}
 \@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
@@ -786,7 +786,7 @@
 % Without a git repository (e.g. a downloaded zip), gitver reports an error and the version reads "unknown".
 % Doc: https://ctan.org/pkg/gitver
 %\ExplSyntaxOn
-%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } }
+%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } } % chktex 26
 %\ExplSyntaxOff
 %\providecommand{\gitVer}{}
 %\providecommand{\versionBox}{}
@@ -919,11 +919,11 @@
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
   <-6>    MnSymbolC5
-  <6-7>   MnSymbolC6
-  <7-8>   MnSymbolC7
-  <8-9>   MnSymbolC8
-  <9-10>  MnSymbolC9
-  <10-12> MnSymbolC10
+  <6-7>   MnSymbolC6 % chktex 8
+  <7-8>   MnSymbolC7 % chktex 8
+  <8-9>   MnSymbolC8 % chktex 8
+  <9-10>  MnSymbolC9 % chktex 8
+  <10-12> MnSymbolC10 % chktex 8
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
@@ -1071,7 +1071,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -1079,7 +1079,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1103,7 +1103,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -1111,7 +1111,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1186,7 +1186,7 @@
 \section*{Abstract}
 \emph{Write an abstract for your work.
   Replace each of the points below with one sentence (two if you must) and you have your abstract.
-  Write it when you finished your entire report.
+  Write it when you finished your entire report.%
   \footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
 
 \emph{Introduction.}
@@ -1273,17 +1273,17 @@ What can they do with your research.
 \pagestyle{scrheadings}
 \mainmatter
 
-\subfileinclude{chapters-en/10 - introduction}
-\subfileinclude{chapters-en/20 - background}
-\subfileinclude{chapters-en/30 - problem exposition}
-\subfileinclude{chapters-en/40 - first real chapter}
-\subfileinclude{chapters-en/50 - second real chapter}
-\subfileinclude{chapters-en/60 - evaluation}
+\subfileinclude{chapters-en/10 - introduction} % chktex 8
+\subfileinclude{chapters-en/20 - background} % chktex 8
+\subfileinclude{chapters-en/30 - problem exposition} % chktex 8
+\subfileinclude{chapters-en/40 - first real chapter} % chktex 8
+\subfileinclude{chapters-en/50 - second real chapter} % chktex 8
+\subfileinclude{chapters-en/60 - evaluation} % chktex 8
 \ifluatex
-  \markdownInput{chapters-en/70 - markdown.md}
+  \markdownInput{chapters-en/70 - markdown.md} % chktex 8
 \fi
-\subfileinclude{chapters-en/80 - latex hints}
-\subfileinclude{chapters-en/90 - conclusion}
+\subfileinclude{chapters-en/80 - latex hints} % chktex 8
+\subfileinclude{chapters-en/90 - conclusion} % chktex 8
 
 %%% ===============================================================================
 %%% Bibliography
