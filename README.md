@@ -516,6 +516,21 @@ Put them before that `\gls{...}` in the text, use the key from `abbreviations.te
 On the cover of the University of Stuttgart, the thesis type is the official German term of the examination regulations, also in an English thesis; see the [discussion at the cover package](https://github.com/latextemplates/scientific-thesis-cover/pull/10).
 If your university wants it in English, set the type as free text in the options of `scientific-thesis-cover` in the main file: `type={Master Thesis}` instead of `type=master`.
 
+### Q: I write my thesis at ISTE (University of Stuttgart). What do I set?
+
+- Cover (options of `scientific-thesis-cover` in the main file): `institute=istesqa` prints the Institute of Software Engineering with the group Software Quality and Architecture; `type=forschungsprojekt` prints "Bachelor-Forschungsprojekt Informatik", `type=studienprojektse` "Studienprojekt Software Engineering", `type=bachelor` and `type=master` the theses.
+  The [cover package](https://github.com/latextemplates/scientific-thesis-cover#options) lists all keys.
+  Any other institute, group, or type is free text in curly braces, `\\` starts a new line: `institute={Institute of Software Engineering\\Empirical Software Engineering}`.
+- Times as text font and roman page numbers for the front matter are generator options.
+  Generate an own copy of the template with the [latex template generator]:
+
+  ```bash
+  npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --font=times --pagenumbering=roman'
+  ```
+
+  The generator asks for the remaining options (institution: University of Stuttgart; language; package for source code).
+- The German Kurzfassung stays the appendix at the end of the thesis.
+
 ### Q: Why are the pages numbered continuously, without roman numerals for the front matter?
 
 ISO 7144 ("Presentation of theses and similar documents") numbers the pages consecutively with arabic numerals from the title page on, and the doctoral regulations of the University of Stuttgart require that.
