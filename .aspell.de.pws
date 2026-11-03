@@ -1,4 +1,4 @@
-personal_ws-1.1 de 196 utf-8
+personal_ws-1.1 de 199 utf-8
 abbreviationdot
 aboveskip
 Access
@@ -59,6 +59,7 @@ FlateEncode
 Fließtext
 flXML
 fontsize
+fontspec
 fquote
 fr
 funktioniert
@@ -112,6 +113,7 @@ monospaced
 morecomment
 nato
 nd
+newtxtext
 nm
 nn
 nnn
@@ -166,6 +168,7 @@ subfigures
 tablefootnote
 tabularx
 tbl
+tex
 Textfarbe
 Thesis
 threeparttable

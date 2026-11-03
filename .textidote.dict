@@ -60,6 +60,7 @@ FlateEncode
 Fließtext
 flXML
 fontsize
+fontspec
 fquote
 fr
 funktioniert
@@ -116,6 +117,7 @@ monospaced
 morecomment
 nato
 nd
+newtxtext
 nm
 nn
 nnn
@@ -174,6 +176,7 @@ subfigures
 tablefootnote
 tabularx
 tbl
+tex
 Textfarbe
 Thesis
 threeparttable
