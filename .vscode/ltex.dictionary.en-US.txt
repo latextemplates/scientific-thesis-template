@@ -5,6 +5,7 @@ BPMN
 Bei
 Cleveref
 Crossmark
+DOI
 Das
 Database
 Diag
@@ -34,6 +35,7 @@ OMG
 ORCID
 OldStyle
 Organization
+PDFs
 PNG
 Practitioner
 RDBMS
@@ -50,6 +52,7 @@ Ulm
 VV
 Wikimedia
 Worten
+Xplore
 Zcref
 Zref
 Zref-clever
@@ -80,6 +83,7 @@ cref
 da
 dante
 dazu
+dblp
 der
 dwarflike
 eclipseKeywords

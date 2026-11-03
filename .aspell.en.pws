@@ -1,10 +1,11 @@
-personal_ws-1.1 en 182 utf-8
+personal_ws-1.1 en 194 utf-8
 abbreviationdot
 aboveskip
 ACM
 acm
 acmnumeric
 addarg
+adjustbox
 angepasst
 applica
 args
@@ -13,8 +14,8 @@ auch
 backticks
 basewidth
 basicstyle
-bei
 Bei
+bei
 belowskip
 BPEL
 BPMN
@@ -23,7 +24,6 @@ breaklines
 category
 Cleveref
 cls
-adjustbox
 colortbl
 commentstyle
 compat
@@ -34,8 +34,10 @@ dante
 Das
 Database
 dazu
+dblp
 der
 Diag
+DOI
 dwarflike
 eclipseKeywords
 eclipseStrings
@@ -74,14 +76,14 @@ inparaenum
 ist
 itemizations
 JabRef
-json
 JSON
+json
 Kommentar
 kräftig
 language
 lastline
-lastname
 Lastname
+lastname
 LaTeX
 LaTeXing
 latextemplates
@@ -120,13 +122,14 @@ numbersep
 numberstyle
 nur
 Nx
-oldstyle
 OldStyle
+oldstyle
 OMG
 ORCID
 Organization
 paralist
 pdfcomment
+PDFs
 pgfplots
 phfcc
 PNG
@@ -183,8 +186,9 @@ Worten
 wurde
 xcolor
 xleftmargin
-zcref
+Xplore
 Zcref
+zcref
 Zref
 zref
 zvref
