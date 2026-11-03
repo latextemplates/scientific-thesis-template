@@ -518,9 +518,9 @@ If your university wants it in English, set the type as free text in the options
 
 ### Q: I write my thesis at ISTE (University of Stuttgart). What do I set?
 
-- Cover (options of `scientific-thesis-cover` in the main file): `institute=istesqa` prints the Institute of Software Engineering with the group Software Quality and Architecture; `type=forschungsprojekt` prints "Bachelor-Forschungsprojekt Informatik", `type=studienprojektse` "Studienprojekt Software Engineering", `type=bachelor` and `type=master` the theses.
+- Cover (options of `scientific-thesis-cover` in the main file): `institute=istesqa` prints the Institute of Software Engineering with the department Software Quality and Architecture, `institute=iste, department={Empirical Software Engineering}` another department; `type=forschungsprojekt` prints "Bachelor-Forschungsprojekt Informatik", `type=studienprojektse` "Studienprojekt Software Engineering", `type=bachelor` and `type=master` the theses.
   The [cover package](https://github.com/latextemplates/scientific-thesis-cover#options) lists all keys.
-  Any other institute, group, or type is free text in curly braces, `\\` starts a new line: `institute={Institute of Software Engineering\\Empirical Software Engineering}`.
+  Any other institute, department, or type is free text in curly braces, `\\` starts a new line: `institute={Institute of Software Engineering\\Empirical Software Engineering}`.
 - Times as text font and roman page numbers for the front matter are generator options.
   Generate an own copy of the template with the [latex template generator]:
 
