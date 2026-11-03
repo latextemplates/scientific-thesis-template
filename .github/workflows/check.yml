@@ -76,6 +76,19 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           texlogsieve main-english.log | tee -a "$GITHUB_STEP_SUMMARY" || true
           echo '```' >> $GITHUB_STEP_SUMMARY
+      - name: Install pdftotext
+        uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
+        with:
+          packages: poppler-utils
+          version: 1.0
+      - name: Check that words with ligatures can be copied from the PDF
+        # The example "Other features" typesets "workflow" and "dwarflike". A wrong font setup
+        # gives "work?ow" or the ligature characters U+FB00 to U+FB06 when the text is copied.
+        run: |
+          pdftotext main-english.pdf main-english.txt
+          grep -q workflow main-english.txt
+          grep -q dwarflike main-english.txt
+          ! LC_ALL=C grep -qP '\xef\xac[\x80-\x86]' main-english.txt
       - name: Install pdftoppm and ImageMagick
         # A TeX Live update can change the output (line breaks, fonts, spacing) without an error.
         # On the weekly run, the PDF published from main is the baseline; pages that differ are
