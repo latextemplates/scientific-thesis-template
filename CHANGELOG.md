@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- `minted` listings use the same font size as `listings` ones (`\footnotesize`) instead of the text size.
+
 ## [2026-11-03]
 
 ### Added
