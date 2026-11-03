@@ -11,11 +11,6 @@ concurrency:
 jobs:
   generatetex:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        language: [en, de]
-        listings: [listings, minted]
-        variant: [ustutt, university-of-hamburg, thu]
     steps:
       - name: Set up Git repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -34,81 +29,84 @@ jobs:
           npm install
           npm link
           npm install -g yo
-      - run: mkdir /tmp/ltg
-      - name: Generate template
+      - name: Generate all variants
         shell: bash
-        working-directory: /tmp/ltg
         run: |
-          yo $GITHUB_WORKSPACE/generator-latex-template/generators/app/index.js \
-           --githubpublish\
-           --overleaf=true\
-           --docker=iot\
-           --documentclass=scientific-thesis\
-           --thesisvariant=${{ matrix.variant }}\
-           --papersize=a4\
-           --latexcompiler=both\
-           --bibtextool=biblatex\
-           --texlive=2026\
-           --lang=${{ matrix.language }}\
-           --font=default\
-           --listings=${{ matrix.listings }}\
-           --enquotes=csquotes\
-           --tweakouterquote=babel\
-           --todo=pdfcomment\
-           --examples=true\
-           --howtotext=true\
-           --uml=none
-        env:
-          yeoman_test: true
-      - name: Prepare files
-        working-directory: /tmp/ltg
-        run: |
-          ls -la
+          # All variants in one job and one commit; the variant that owns the shared files (README, Makefile, ...) comes last.
+          for language in de en; do
+            for listings in listings minted; do
+              for variant in university-of-hamburg thu ustutt; do
+                rm -rf /tmp/ltg && mkdir /tmp/ltg && cd /tmp/ltg
+                yo $GITHUB_WORKSPACE/generator-latex-template/generators/app/index.js \
+                 --githubpublish\
+                 --overleaf=true\
+                 --docker=iot\
+                 --documentclass=scientific-thesis\
+                 --thesisvariant=${variant}\
+                 --papersize=a4\
+                 --latexcompiler=both\
+                 --bibtextool=biblatex\
+                 --texlive=2026\
+                 --lang=${language}\
+                 --font=default\
+                 --listings=${listings}\
+                 --enquotes=csquotes\
+                 --tweakouterquote=babel\
+                 --todo=pdfcomment\
+                 --examples=true\
+                 --howtotext=true\
+                 --uml=none
 
-          if [ ${{ matrix.language }} == "en" ]; then
-            LANGUAGE=english
-          else
-            LANGUAGE=german
-          fi
+                ls -la
 
-          if [ ${{ matrix.variant }} == "ustutt" ]; then
-            VARIANT=""
-          else
-            VARIANT="-${{ matrix.variant }}"
-          fi
+                if [ ${language} == "en" ]; then
+                  LANGUAGE=english
+                else
+                  LANGUAGE=german
+                fi
 
-          if [ ${{ matrix.listings }} == "listings" ]; then
-            mv main-$LANGUAGE.tex main-basic-listings-$LANGUAGE$VARIANT.tex
-          else
-            if [ -n "$VARIANT" ]; then
-              mv main-$LANGUAGE.tex main-$LANGUAGE$VARIANT.tex
-            fi
-          fi
+                if [ ${variant} == "ustutt" ]; then
+                  VARIANT=""
+                else
+                  VARIANT="-${variant}"
+                fi
 
-          # remove files which should not be overwritten
+                if [ ${listings} == "listings" ]; then
+                  mv main-$LANGUAGE.tex main-basic-listings-$LANGUAGE$VARIANT.tex
+                else
+                  if [ -n "$VARIANT" ]; then
+                    mv main-$LANGUAGE.tex main-$LANGUAGE$VARIANT.tex
+                  fi
+                fi
 
-          # .latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
-          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.language }}" != "en" ]; then
-            echo "REMOVING .latexmkrc"
-            rm Makefile
-            rm README.md
-            rm .latexmkrc
-            rm -rf .github/workflows
-            rm .dockerignore
-            rm .gitignore
-            rm abbreviations.tex
-            rm commands.tex
-          fi
+                # remove files which should not be overwritten
 
-          # Files are ready
-          # Overwrite old versions in $GITHUB_WORKSPACE
-          cp -r * $GITHUB_WORKSPACE
-          cp -r .* $GITHUB_WORKSPACE
+                # .latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
+                if [ "${listings}" != "minted" ] || [ "${language}" != "en" ]; then
+                  echo "REMOVING .latexmkrc"
+                  rm Makefile
+                  rm README.md
+                  rm .latexmkrc
+                  rm -rf .github/workflows
+                  rm .dockerignore
+                  rm .gitignore
+                  rm abbreviations.tex
+                  rm commands.tex
+                fi
 
-          # output current status
+                # Files are ready
+                # Overwrite old versions in $GITHUB_WORKSPACE
+                cp -r * $GITHUB_WORKSPACE
+                cp -r .* $GITHUB_WORKSPACE
+
+              done
+            done
+          done
           cd ${{ github.workspace }}
           git status
           git diff
+        env:
+          yeoman_test: true
       - name: Commit changes
         uses: EndBug/add-and-commit@cc9c08ba6c8df3b93a8f2db63e89b98368ae2ae8 # v11.1.1
         with:

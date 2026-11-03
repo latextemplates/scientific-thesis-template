@@ -7,6 +7,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ## [Unreleased]
 
+### Changed
+
+- The `Update Files` workflow generates all variants in one job and pushes one commit instead of one per variant.
+
 ### Fixed
 
 - `minted` listings use the same font size as `listings` ones (`\footnotesize`) instead of the text size.
