@@ -14,6 +14,14 @@ $pdf_mode = 1;
 # a no-op when nothing reads it.
 $hash_calc_ignore_pattern{'fls'} = '^';
 
+# biblatex writes its own rerun flags into the .run.xml and .aux files (via logreq
+# and the .bbl checksum). They flip once biber ran and once the references are
+# stable, so the files change one last time when nothing else does, and latexmk
+# runs LaTeX once more for nothing. Ignore these lines; the flags only matter to
+# biblatex itself. Patterns by John Collins (latexmk author).
+$hash_calc_ignore_pattern{'xml'} = 'package="biblatex" .*active="[01]"';
+$hash_calc_ignore_pattern{'aux'} = '^\\\\abx@aux@read@bbl(@mdfivesum\{.*\}|rerun)';
+
 # replaces main.pdf by jobname.pdf
 # Note: -pvc may then not find the PDF.
 #$jobname = 'thesis';
