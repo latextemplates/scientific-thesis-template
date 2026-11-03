@@ -104,7 +104,7 @@ In case you write \enquote{application-specific}, then the word will only be hyp
 You can also insert \verb1\allowbreak{}1 into the word, as in applica\allowbreak{}tion-specific, but this is much more effort.
 
 You can now write words containing hyphens which are hyphenated at other places in the word.
-For that, write \verb1"=1 instead of \verb1-1, as in application"=specific.
+For that, write \verb1"=1 instead of \verb1-1, as in application"=specific. % chktex 18
 This is enabled by an additional configuration of the babel package.
 \end{ltgexample}
 
@@ -129,7 +129,7 @@ Numbers are automatically grouped: \num{123456}.
 
 \begin{ltgexample}
 Please use the \enquote{enquote command} to quote something.
-Quoting with "`quote"' or ``quote'' also works.
+Quoting with "`quote"' or ``quote'' also works. % chktex 18
 
 \end{ltgexample}
 
@@ -371,7 +371,7 @@ A comparison of the packages for UML diagrams is given at \url{https://github.co
     \newthread{client}{Client}
     % [3]: horizontal gap (in cm) to the box of the previous instance; the default (0.2) leaves no room for the message labels
     \newinst[3]{server}{Server}
-    \begin{call}{client}{request()}{server}{response}
+    \begin{call}{client}{request()}{server}{response} % chktex 36
     \end{call}
   \end{sequencediagram}
   \caption{Sequence diagram drawn with pgf-umlsd}
@@ -437,20 +437,41 @@ If the notes should appear directly below the table instead (common in journals)
 \end{table}
 \end{ltgexample}
 
+A table wider than the text runs into the margin.
+\verb|\begin{adjustbox}{max width=\textwidth}| from the \href{https://ctan.org/pkg/adjustbox}{adjustbox} package scales it down to the text width, and only if it is too wide.
+Scaling shrinks the font, so for a table with long text in its cells, prefer wrapping the text with the column type \verb|X| of the \href{https://ctan.org/pkg/tabularx}{tabularx} package, and for a very wide table, a landscape page (see \texttt{pdflscape}).
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Wide table scaled to the text width}
+  \label{tab:wide}
+  \centering
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{llllllllllll}
+      \toprule
+      Jan  & Feb  & Mar  & Apr  & May  & Jun  & Jul  & Aug   & Sep  & Oct   & Nov   & Dec   \\
+      \midrule
+      1.11 & 2.22 & 3.33 & 4.44 & 5.55 & 6.66 & 7.77 & 8.88  & 9.99 & 10.10 & 11.11 & 12.12 \\
+      Rain & Snow & Wind & Sun  & Fog  & Hail & Heat & Storm & Mist & Frost & Sleet & Calm  \\
+      \bottomrule
+    \end{tabular}
+  \end{adjustbox}
+\end{table}
+\end{ltgexample}
+
 \begin{ltgexample}
 % Adapted from https://tex.stackexchange.com/a/468994/9075
 \begin{table}
   \caption{Table with diagonal line}
   \label{tab:diag}
-  \begin{center}
-    \begin{tabular}{|l|c|c|}
-      \hline
-      \diagbox{Row}{Column} & A & B \\
-      \hline
-      1                     & x & y \\
-      \hline
-    \end{tabular}
-  \end{center}
+  \centering
+  \begin{tabular}{|l|c|c|} % chktex 44
+    \hline % chktex 44
+    \diagbox{Row}{Column} & A & B \\
+    \hline % chktex 44
+    1                     & x & y \\
+    \hline % chktex 44
+  \end{tabular}
 \end{table}
 \end{ltgexample}
 
@@ -461,21 +482,24 @@ The \href{https://ctan.org/pkg/longtable}{longtable} package typesets tables tha
 The header (\verb+\endhead+) and footer (\verb+\endfoot+) rows are repeated on every page; once enough rows are added, the table spans more than one page on its own.
 
 \begin{ltgexample}
-\begin{longtable}{|l|l|l|}
+\begin{longtable}{lll}
   \caption{A sample long table.}\label{tab:long} \\
-  \hline
-  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+  \toprule
+  \textbf{First column} & \textbf{Second column} & \textbf{Third column} \\
+  \midrule
   \endfirsthead
 
   \multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
-  \hline
-  \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline
+  \toprule
+  \textbf{First column} & \textbf{Second column} & \textbf{Third column} \\
+  \midrule
   \endhead
 
-  \hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+  \midrule
+  \multicolumn{3}{r}{{Continued on next page}} \\
   \endfoot
 
-  \hline\hline
+  \bottomrule
   \endlastfoot
 
   A & BC & D \\
@@ -595,12 +619,14 @@ With \verb+\gls{...}+, you can enter abbreviations: the first time you call it, 
 When reusing \verb+\gls{..}+ the short form is automatically displayed.
 The abbreviation is also automatically inserted in the abbreviation list.
 With \verb+\glspl{...}+ the plural form is used.
-If you want the short form to appear directly at the first use, you can use \verb+\glsunset{..}+ to mark an abbreviation as already used.
-The opposite is achieved with \verb+\glsreset{..}+.
+If you want the short form to appear directly at the first use, you can use \verb+\glsunset{...}+ to mark an abbreviation as already used.
+The opposite is achieved with \verb+\glsreset{...}+.
+Both only change the ``already used'' flag: the effect shows at the next \verb+\gls{...}+ of that abbreviation, so they have to come before it in the text.
+\verb+\glsresetall+ (e.g., after the abstract) lets every abbreviation appear in its long form again.
 
-Abbreviations are defined in \verb+\content\ausarbeitung.tex+ by means of \verb+\newacronym{...}{...}{...}+.
+Abbreviations are defined in \verb+abbreviations.tex+ by means of \verb+\newabbreviation{key}{short}{long}+ (or \verb+\newacronym+ for an acronym that is read as a word).
 
-More information at: \url{https://ctan.org/pkg/bib2gls}.
+More information at: \url{https://ctan.org/pkg/glossaries-extra}.
 
 \begin{ltgexample}
 At the first pass, the \gls{er} was 5.
@@ -614,7 +640,7 @@ A \gls{gp} is a medical doctor.
 I went to my surgery to see the \gls{gp}.
 \end{ltgexample}
 
-\todo{Include difference between acronym and abbreviation - \url{https://tex.stackexchange.com/a/154566/9075}}
+\todo{Include difference between acronym and abbreviation, see https://tex.stackexchange.com/a/154566/9075}
 
 \section{Other Features}
 
@@ -737,7 +763,7 @@ Test of line referencing: line~\ref{alg1:state2} (\zcref{alg:example}) and line~
 
 \subsection{Enumerations}
 
-\begin{enumerate}[label=\alph*)]
+\begin{enumerate}[label={(\alph*)}]
   \item a
   \item b
   \item c
@@ -745,7 +771,7 @@ Test of line referencing: line~\ref{alg1:state2} (\zcref{alg:example}) and line~
 \end{enumerate}
 
 Equivalent to paralist's inparaenum:
-\begin{enumerate*}[label=\alph*)]
+\begin{enumerate*}[label={(\alph*)}]
   \item a
   \item b
   \item c

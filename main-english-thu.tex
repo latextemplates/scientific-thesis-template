@@ -4,9 +4,10 @@
 % !TeX program = lualatex
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
+% Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1053 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1187.
+% vvvvvvvv  The content starts in line 1094 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1220.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -32,7 +33,19 @@
 
 \usepackage{iftex}
 
-\usepackage{ifplatform}
+% lineno is loaded by mindflow (used in the examples). It checks \@parboxrestore when it is loaded and warns
+% "Command \@parboxrestore has changed" if another package has patched the command before; loaded here first.
+\usepackage{lineno}
+
+% \ifwindows selects the system fonts under LuaLaTeX (see the font setup). Under pdfLaTeX, ifplatform needs shell
+% escape and warns without it, so it is loaded for LuaLaTeX only.
+\ifluatex
+  \usepackage{ifplatform}
+\else
+  % A conditional named \ifwindows, so that TeX can skip the LuaLaTeX branch of the font setup. Written with \csname:
+  % when LuaLaTeX skips this branch, a literal \ifwindows (defined by ifplatform by then) would unbalance the \ifluatex.
+  \expandafter\newif\csname ifwindows\endcsname
+\fi
 
 % backticks (`) are rendered as such in verbatim environments.
 % See the following links for details:
@@ -48,7 +61,7 @@
 \usepackage[ngerman,main=english]{babel}
 %
 % Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
-\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}} % chktex 18
 
 % Links behave as they should. Enables "\url{...}" for URL typesettings.
 % Allow URL breaks also at a hyphen, even though it might be confusing: Is the "-" part of the address or just a hyphen?
@@ -143,7 +156,7 @@
 
   % See https://tug.org/FontCatalogue/texgyretermes/ for more information
   \setmainfont{texgyretermes}[
-    Extension = .otf,
+    Extension = .otf, % chktex 26
     UprightFont = *-regular,
     BoldFont = *-bold,
     ItalicFont = *-italic,
@@ -152,12 +165,14 @@
   ]
   % See https://tug.org/FontCatalogue/texgyreheros/ for more information
   \setsansfont[Scale=.9]{TeX Gyre Heros}
+  % Math (and siunitx numbers) in the matching math font; unicode-math would use Latin Modern Math otherwise
+  \setmathfont{TeX Gyre Termes Math}
   % shapely l, upright quotes
   % Normal scaling is too large --> thus, we use ",Scale=.9"
   \ifwindows
-    \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolata}
+    \setmonofont[StylisticSet={1,3},Scale=.9,ItalicFont=Inconsolata,BoldItalicFont=Inconsolata Bold]{Inconsolata} % no italic: upright instead of a font warning
   \else
-    \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolatazi4}
+    \setmonofont[StylisticSet={1,3},Scale=.9,ItalicFont=*-Regular,BoldItalicFont=*-Bold]{Inconsolatazi4} % no italic: upright instead of a font warning
   \fi
 
   % Enable proper ligatures for English documents (German documents use autotype, see ADR-0008)
@@ -238,6 +253,12 @@
 % Headings are sans-serif (KOMA-Script default) in all languages.
 % For serif headings (classic English book style), uncomment the following line.
 % \setkomafont{disposition}{\normalfont\bfseries}
+
+% Entries of the table of contents in the font of the headings: by default, KOMA-Script sets only the
+% chapter entries in the heading font and the lower levels in the text font. No tocloft needed (it does
+% not go well with KOMA-Script); change entryformat to taste, e.g., \sffamily\large for larger section entries,
+% and \setkomafont{chapterentry}{...} for the chapter entries.
+\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{section,subsection,subsubsection}
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
@@ -375,8 +396,8 @@
 \usepackage[autostyle=true]{csquotes}
 
 % Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
-\defineshorthand{"`}{\openautoquote}
-\defineshorthand{"'}{\closeautoquote}
+\defineshorthand{"`}{\openautoquote} % chktex 18
+\defineshorthand{"'}{\closeautoquote} % chktex 18
 
 % Nicer tables (\toprule, \midrule, \bottomrule)
 \usepackage{booktabs}
@@ -459,7 +480,7 @@
     \map{
       % JabRef stores "description:path:type", multiple files separated by ";"; the steps keep the path of the first file
       \step[fieldsource=file, match=\regexp{\A[^:;]*:}, replace={}]
-      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}]
+      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}] % chktex 36
     }
   }
 }
@@ -486,8 +507,16 @@
 %%% Doc: Documentation inside dtx Package
 \usepackage{dcolumn}  % alignment at the decimal separator
 %
+% rotating has to be loaded before tablefootnote. The template rotates pages with pdflscape (see below), but
+% packages that users add later (ctable, sidewaystable) load rotating and would then fail with
+% "Package rotating loaded after tablefootnote", so it is loaded here.
+\usepackage{rotating}
+%
 %%% Doc: https://texdoc.org/serve/tablefootnote/0
 \usepackage{tablefootnote} % \tablefootnote: a footnote inside a floating table (plain \footnote is lost there)
+%
+%%% Doc: https://ctan.org/pkg/adjustbox
+\usepackage{adjustbox} % \begin{adjustbox}{max width=\textwidth}: scales a table down only if it is wider than the text
 
 % A bit more space between the rows of a table (\extrarowheight is provided by array, which dcolumn loads)
 \setlength{\extrarowheight}{1pt}
@@ -609,7 +638,7 @@
 
 % Define default commands
 \makeatletter
-\@ifundefined{missingfigure}{\newcommand{\missingfigure}{... missing figure ...}}{}
+\@ifundefined{missingfigure}{\newcommand{\missingfigure}{\ldots\ missing figure \ldots}}{}
 \@ifundefined{textcomment}{\newcommand{\textcomment}[2]{#1 \todo{#2}}}{}
 \@ifundefined{sidecomment}{\newcommand{\sidecomment}[1]{\marginpar{#1}}}{}
 \@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
@@ -698,6 +727,11 @@
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
+% Which template this document is based on, in the PDF properties (custom entry "Template"; shown by
+% "pdfinfo -custom" and in the document properties of most viewers). Keep it: it tells which version
+% of the template a document was built on, which helps when comparing or updating adapted files.
+\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.1}}}
+
 % Document version from git: \gitVer is the commit (with "-dirty" when there are uncommitted changes) and
 % \versionBox a framed "Manuscript version: #<commit> - <build time>", e.g. for the footer or the title page.
 % gitver needs git and --shell-escape (add it to $pdflatex in .latexmkrc), so it is loaded only when the
@@ -705,7 +739,7 @@
 % Without a git repository (e.g. a downloaded zip), gitver reports an error and the version reads "unknown".
 % Doc: https://ctan.org/pkg/gitver
 %\ExplSyntaxOn
-%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } }
+%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } } % chktex 26
 %\ExplSyntaxOff
 %\providecommand{\gitVer}{}
 %\providecommand{\versionBox}{}
@@ -834,11 +868,11 @@
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
   <-6>    MnSymbolC5
-  <6-7>   MnSymbolC6
-  <7-8>   MnSymbolC7
-  <8-9>   MnSymbolC8
-  <9-10>  MnSymbolC9
-  <10-12> MnSymbolC10
+  <6-7>   MnSymbolC6 % chktex 8
+  <7-8>   MnSymbolC7 % chktex 8
+  <8-9>   MnSymbolC8 % chktex 8
+  <9-10>  MnSymbolC9 % chktex 8
+  <10-12> MnSymbolC10 % chktex 8
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
@@ -986,7 +1020,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -994,7 +1028,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1018,7 +1052,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -1026,7 +1060,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1044,6 +1078,13 @@
   \usepackage{linebreaker}
 \fi
 
+% LuaLaTeX: no line break after a one-letter word such as "a" or "I".
+% chickenize inserts a penalty after each one-character word of a paragraph.
+% See https://ctan.org/pkg/chickenize. LuaLaTeX only, so pdfLaTeX skips it.
+\ifdefined\directlua
+  \usepackage{chickenize}
+  \suppressonecharbreak
+\fi
 % Each chapter compiles on its own: its file starts with \documentclass[../<main file>]{subfiles}, and
 % "latexmk" in chapters-en/ builds it with this preamble (see chapters-en/README.md).
 % In the full document, \subfileinclude works like \include.
@@ -1052,8 +1093,10 @@
 \usepackage{subfiles}
 \begin{document}
 \raggedbottom
+% The pages are numbered continuously from the title page, so no roman numerals for the front matter:
+% ISO 7144 requires this for theses. For roman numerals, regenerate with --pagenumbering=roman
+% (or put \frontmatter here and \mainmatter before the first chapter).
 \pagenumbering{arabic}
-\frontmatter
 \newgeometry{centering,left=2cm,right=2cm,top=2cm,bottom=2cm}
 \begin{titlepage}
   \includegraphics[width=5cm]{figures/thu-logo.png}
@@ -1075,7 +1118,7 @@
   {\small
     Faculty of Computer Science\\[.2cm]
     Degree programme: Computer Science\\[.2cm]
-    Student ID: 1234567\\[.5cm]
+    Student ID: 1234567\\[.5cm] % chktex 13
     Submission date: Month DD, 20XX\\[.5cm]
     First examiner: Prof.\ Dr.\ Eike Kraft\\[.25cm]
     Second examiner: Prof.\ Dr.\ Luca Wind
@@ -1092,7 +1135,7 @@
 \section*{Abstract}
 \emph{Write an abstract for your work.
   Replace each of the points below with one sentence (two if you must) and you have your abstract.
-  Write it when you finished your entire report.
+  Write it when you finished your entire report.%
   \footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
 
 \emph{Introduction.}
@@ -1142,15 +1185,6 @@ What can they do with your research.
 (Essay folks: all the same questions apply: what conclusions did you draw, and why would anyone care about them?)
 
 
-% Solely for German courses of study, which require a German abstract (Kurzfassung) in addition to the English one.
-% Remove this section if your course of study does not require it.
-\section*{Kurzfassung}
-\begin{otherlanguage}{ngerman}
-  %Silbentrennung Deutsch
-  Kurzfassung der Arbeit.
-\end{otherlanguage}
-
-
 \microtypesetup{protrusion=false}
 
 % In case you have trouble with headings reaching into the page numbers, enable the following three lines.
@@ -1182,7 +1216,6 @@ What can they do with your research.
 % Headline and footline
 \renewcommand*{\chapterpagestyle}{scrplain}
 \pagestyle{scrheadings}
-\mainmatter
 
 \subfileinclude{chapters-en/10 - introduction}
 \subfileinclude{chapters-en/20 - background}
@@ -1245,6 +1278,20 @@ All links were last followed on October 5, 2020.
   \bottomrule
 \end{tabular}
 
+%%% ===============================================================================
+\chapter{Kurzfassung}\label{sec:kurzfassung}
+%%% ===============================================================================
+
+\begin{otherlanguage}{ngerman}
+  %Silbentrennung Deutsch
+  Kurzfassung der Arbeit.
+\end{otherlanguage}
+
+\emph{Solely for German courses of study that allow a thesis in English but require a German summary as an appendix.
+  For example, the examination regulations of the University of Stuttgart for the B.Sc.\ in Informatik, Software Engineering, Medieninformatik, and Artificial Intelligence and Data Science demand it in
+  \href{https://www.uni-stuttgart.de/universitaet/aktuelles/bekanntmachungen/Amtliche-Bekanntmachung-Nummer-26-2025/}{§\,27 Absatz 6}.
+  Remove this appendix if your course of study does not require it.}
+
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
 \clearpage
@@ -1260,7 +1307,7 @@ All links were last followed on October 5, 2020.
   \blindtext[1]
   \vspace*{1cm}\\
   Ulm, den XX.XX.20XX
-  \hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+  \hspace*{\fill}\begin{tabular}{@{}l@{}}\hline % chktex 44
     \makebox[5cm]{Vorname Nachname}
   \end{tabular}
   \vspace*{3cm}
@@ -1270,7 +1317,7 @@ All links were last followed on October 5, 2020.
   \blindtext[1]
   \vspace*{1cm}\\
   Ulm, den XX.XX.20XX
-  \hspace*{\fill}\begin{tabular}{@{}l@{}}\hline
+  \hspace*{\fill}\begin{tabular}{@{}l@{}}\hline % chktex 44
     \makebox[5cm]{Vorname Nachname}
   \end{tabular}
 }

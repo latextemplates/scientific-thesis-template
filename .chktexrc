@@ -1,0 +1,27 @@
+# Configuration of ChkTeX (https://ctan.org/pkg/chktex), read from the current directory.
+# "make chktex" and the "chktex" job of the Check workflow use it. "chktex -l" lists all warnings.
+
+CmdLine
+{
+    # 1: "Command terminated with space" fires on every command at the end of a line (e.g., \ifluatex)
+    # 24: "Delete this space to maintain correct pagereferences": \label on its own line below \caption or \section is the style of this document
+    # 27: "Could not execute LaTeX command": \input of files that only TeX Live has (e.g., glyphtounicode)
+    # 38: "You should not use punctuation in front of quotes": this document uses the American style (word.'')
+    -n1 -n24 -n27 -n38
+}
+
+# A spaced en dash (word -- word) is accepted in addition to the em dash (word---word)
+WordDash { 2 }
+
+# Arguments that are file names, URLs, or labels, not text (the dash in "10 - introduction" is not a dash in the text)
+WipeArg
+{
+    \subfileinclude:{} \markdownInput:{} \url:{} \includegraphics:[]{} \lipsum:[]
+    \zcref:*[]{} \Zcref:*[]{} \zcpageref:*[]{}
+}
+
+# Environments containing code, not LaTeX text
+VerbEnvir
+{
+    markdown mplibcode sequencediagram mindflow plantuml mermaid umlseqdiag
+}

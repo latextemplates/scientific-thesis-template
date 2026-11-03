@@ -4,9 +4,10 @@
 % !TeX program = lualatex
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
+% Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1153 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1262 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1201 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1313 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -38,7 +39,19 @@
 
 \usepackage{iftex}
 
-\usepackage{ifplatform}
+% lineno is loaded by mindflow (used in the examples). It checks \@parboxrestore when it is loaded and warns
+% "Command \@parboxrestore has changed" if another package has patched the command before; loaded here first.
+\usepackage{lineno}
+
+% \ifwindows selects the system fonts under LuaLaTeX (see the font setup). Under pdfLaTeX, ifplatform needs shell
+% escape and warns without it, so it is loaded for LuaLaTeX only.
+\ifluatex
+  \usepackage{ifplatform}
+\else
+  % A conditional named \ifwindows, so that TeX can skip the LuaLaTeX branch of the font setup. Written with \csname:
+  % when LuaLaTeX skips this branch, a literal \ifwindows (defined by ifplatform by then) would unbalance the \ifluatex.
+  \expandafter\newif\csname ifwindows\endcsname
+\fi
 
 % backticks (`) werden als solches in verbatim-Umgebungen dargestellt
 % Details unter:
@@ -54,7 +67,7 @@
 %
 % Hinweis von http://tex.stackexchange.com/a/321066/9075
 % Ermögliche die Benutzung von "= als Trennstriche
-\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}} % chktex 18
 
 % Ein "abstract" ist eine "Kurzfassung", keine "Zusammenfassung"
 \addto\captionsngerman{%
@@ -145,7 +158,7 @@
 
   % See https://tug.org/FontCatalogue/texgyretermes/ for more information
   \setmainfont{texgyretermes}[
-    Extension = .otf,
+    Extension = .otf, % chktex 26
     UprightFont = *-regular,
     BoldFont = *-bold,
     ItalicFont = *-italic,
@@ -154,12 +167,14 @@
   ]
   % See https://tug.org/FontCatalogue/texgyreheros/ for more information
   \setsansfont[Scale=.9]{TeX Gyre Heros}
+  % Math (and siunitx numbers) in the matching math font; unicode-math would use Latin Modern Math otherwise
+  \setmathfont{TeX Gyre Termes Math}
   % shapely l, upright quotes
   % Normal scaling is too large --> thus, we use ",Scale=.9"
   \ifwindows
-    \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolata}
+    \setmonofont[StylisticSet={1,3},Scale=.9,ItalicFont=Inconsolata,BoldItalicFont=Inconsolata Bold]{Inconsolata} % no italic: upright instead of a font warning
   \else
-    \setmonofont[StylisticSet={1,3},Scale=.9]{Inconsolatazi4}
+    \setmonofont[StylisticSet={1,3},Scale=.9,ItalicFont=*-Regular,BoldItalicFont=*-Bold]{Inconsolatazi4} % no italic: upright instead of a font warning
   \fi
 
 \else
@@ -236,6 +251,12 @@
 % Headings are sans-serif (KOMA-Script default) in all languages.
 % For serif headings (classic English book style), uncomment the following line.
 % \setkomafont{disposition}{\normalfont\bfseries}
+
+% Entries of the table of contents in the font of the headings: by default, KOMA-Script sets only the
+% chapter entries in the heading font and the lower levels in the text font. No tocloft needed (it does
+% not go well with KOMA-Script); change entryformat to taste, e.g., \sffamily\large for larger section entries,
+% and \setkomafont{chapterentry}{...} for the chapter entries.
+\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{section,subsection,subsubsection}
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
@@ -349,9 +370,9 @@
   breaklines=true,
   frame=lines,
   % backgroundcolor=\color{gray}, %only if you like
-  string=[s]{"}{"},
-  comment=[l]{:\ "},
-  morecomment=[l]{:"},
+  string=[s]{"}{"}, % chktex 18
+  comment=[l]{:\ "}, % chktex 18
+  morecomment=[l]{:"}, % chktex 18
   literate=
     *{0}{{{\color{numb}0}}}{1}
     {1}{{{\color{numb}1}}}{1}
@@ -367,7 +388,7 @@
 
 \lstset{
   % everything between (* *) is a latex command
-  escapeinside={(*}{*)},
+  escapeinside={(*}{*)}, % chktex 9
   %
   language=json,
   %
@@ -409,22 +430,29 @@
 }
 
 \ifpdftex
-  % Ermögliche Umlaute falls \lstinputputlisting genutzt wird
+  % pdfLaTeX: listings liest ein Listing byteweise, daher muss jedes UTF-8-Zeichen hier auf seinen LaTeX-Befehl abgebildet werden.
+  % Ein Zeichen, das in dieser Tabelle fehlt, führt zu "LaTeX Error: Invalid UTF-8 byte sequence (\lst@EC)" und fällt weg;
+  % es wird nach demselben Muster ergänzt: {Zeichen}{{Befehl}}1 (die 1 ist die Breite in Zeichen).
+  % LuaLaTeX braucht keine Tabelle (siehe \ifpdftex oben). listingsutf8 hilft nur bei \lstinputlisting.
   % Siehe https://stackoverflow.com/a/29260603/873282 und https://tex.stackexchange.com/a/24532/9075 für Details.
   % listingsutf8 hat im Juni 2020 nicht funktioniert.
   \lstset{extendedchars=true, literate=
-      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 % chktex 7
       {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1 % chktex 7
       {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 % chktex 7
       {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1 % chktex 7
       {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
       {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
       {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
       {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-      {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+      {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {Ø}{{\O}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+      {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ý}{{\'y}}1 {Ý}{{\'Y}}1 {ÿ}{{\"y}}1 {ł}{{\l}}1 {Ł}{{\L}}1 {ı}{{\i}}1
+      {č}{{\v c}}1 {Č}{{\v C}}1 {š}{{\v s}}1 {Š}{{\v S}}1 {ž}{{\v z}}1 {Ž}{{\v Z}}1 {ř}{{\v r}}1 {Ř}{{\v R}}1 {ě}{{\v e}}1 {Ě}{{\v E}}1 {ů}{{\r u}}1 {Ů}{{\r U}}1
+      {ş}{{\c s}}1 {Ş}{{\c S}}1 {ğ}{{\u g}}1 {Ğ}{{\u G}}1 {ą}{{\k a}}1 {Ą}{{\k A}}1 {ę}{{\k e}}1 {Ę}{{\k E}}1 {ń}{{\'n}}1 {Ń}{{\'N}}1 {ś}{{\'s}}1 {Ś}{{\'S}}1 {ź}{{\'z}}1 {Ź}{{\'Z}}1 {ż}{{\.z}}1 {Ż}{{\.Z}}1
+      {€}{{\texteuro}}1 {£}{{\pounds}}1 {§}{{\S}}1 {°}{{\textdegree}}1 {µ}{{\textmu}}1 {…}{{\dots}}1 {–}{{\textendash}}1 {—}{{\textemdash}}1 {„}{{\quotedblbase}}1 {“}{{\textquotedblleft}}1 {”}{{\textquotedblright}}1 {‚}{{\quotesinglbase}}1 {‘}{{\textquoteleft}}1 {’}{{\textquoteright}}1 {«}{{\guillemetleft}}1 {»}{{\guillemetright}}1
   }
 \fi
 
@@ -442,8 +470,8 @@
 \usepackage[autostyle=true]{csquotes}
 
 % Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
-\defineshorthand{"`}{\openautoquote}
-\defineshorthand{"'}{\closeautoquote}
+\defineshorthand{"`}{\openautoquote} % chktex 18
+\defineshorthand{"'}{\closeautoquote} % chktex 18
 
 % bessere Abstaende innerhalb der Tabelle (Layout))
 % -------------------------------------------------
@@ -529,7 +557,7 @@
     \map{
       % JabRef stores "description:path:type", multiple files separated by ";"; the steps keep the path of the first file
       \step[fieldsource=file, match=\regexp{\A[^:;]*:}, replace={}]
-      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}]
+      \step[fieldsource=file, match=\regexp{:[^:;]*(;.*)?\z}, replace={}] % chktex 36
     }
   }
 }
@@ -565,8 +593,16 @@
 %%% Doc: Documentation inside dtx Package
 \usepackage{dcolumn}  % alignment at the decimal separator
 %
+% rotating has to be loaded before tablefootnote. The template rotates pages with pdflscape (see below), but
+% packages that users add later (ctable, sidewaystable) load rotating and would then fail with
+% "Package rotating loaded after tablefootnote", so it is loaded here.
+\usepackage{rotating}
+%
 %%% Doc: https://texdoc.org/serve/tablefootnote/0
 \usepackage{tablefootnote} % \tablefootnote: a footnote inside a floating table (plain \footnote is lost there)
+%
+%%% Doc: https://ctan.org/pkg/adjustbox
+\usepackage{adjustbox} % \begin{adjustbox}{max width=\textwidth}: scales a table down only if it is wider than the text
 
 % A bit more space between the rows of a table (\extrarowheight is provided by array, which dcolumn loads)
 \setlength{\extrarowheight}{1pt}
@@ -688,7 +724,7 @@
 
 % Define default commands
 \makeatletter
-\@ifundefined{missingfigure}{\newcommand{\missingfigure}{... missing figure ...}}{}
+\@ifundefined{missingfigure}{\newcommand{\missingfigure}{\ldots\ missing figure \ldots}}{}
 \@ifundefined{textcomment}{\newcommand{\textcomment}[2]{#1 \todo{#2}}}{}
 \@ifundefined{sidecomment}{\newcommand{\sidecomment}[1]{\marginpar{#1}}}{}
 \@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
@@ -779,6 +815,11 @@
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
+% Which template this document is based on, in the PDF properties (custom entry "Template"; shown by
+% "pdfinfo -custom" and in the document properties of most viewers). Keep it: it tells which version
+% of the template a document was built on, which helps when comparing or updating adapted files.
+\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.1}}}
+
 % Hint by https://tex.stackexchange.com/a/193370/9075 to suppress strange outputs of the babel package
 % Example strange output: Package babel Info: Redefining ngerman shorthand "|
 \usepackage{etoolbox}
@@ -793,7 +834,7 @@
 % Without a git repository (e.g. a downloaded zip), gitver reports an error and the version reads "unknown".
 % Doc: https://ctan.org/pkg/gitver
 %\ExplSyntaxOn
-%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } }
+%\sys_if_shell_unrestricted:T { \RequirePackage [ noheader , nopdfinfo ] { gitver } } % chktex 26
 %\ExplSyntaxOff
 %\providecommand{\gitVer}{}
 %\providecommand{\versionBox}{}
@@ -928,11 +969,11 @@
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
   <-6>    MnSymbolC5
-  <6-7>   MnSymbolC6
-  <7-8>   MnSymbolC7
-  <8-9>   MnSymbolC8
-  <9-10>  MnSymbolC9
-  <10-12> MnSymbolC10
+  <6-7>   MnSymbolC6 % chktex 8
+  <7-8>   MnSymbolC7 % chktex 8
+  <8-9>   MnSymbolC8 % chktex 8
+  <9-10>  MnSymbolC9 % chktex 8
+  <10-12> MnSymbolC10 % chktex 8
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
@@ -1086,7 +1127,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries``}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -1094,7 +1135,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries''}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1118,7 +1159,7 @@
     \put(-15,-5){\makebox(0,0){%
         \scalebox{4.5}{\textcolor{quotemark}{\bfseries \glqq}}}%
     }
-  \end{picture}\em\ignorespaces%
+  \end{picture}\em\ignorespaces% chktex 31
 }{%
   \newline%
   \makebox[0pt][l]{\hspace{0.6\textwidth}%
@@ -1126,7 +1167,7 @@
       \put(15,10){\makebox(0,0){%
           \scalebox{4.5}{\textcolor{quotemark}{\rmfamily\bfseries \grqq}}}%
       }
-    \end{picture}}%
+    \end{picture}}% chktex 31
   \fqauthor
   \end{list}
 }
@@ -1144,6 +1185,13 @@
   \usepackage{linebreaker}
 \fi
 
+% LuaLaTeX: no line break after a one-letter word such as "a" or "I".
+% chickenize inserts a penalty after each one-character word of a paragraph.
+% See https://ctan.org/pkg/chickenize. LuaLaTeX only, so pdfLaTeX skips it.
+\ifdefined\directlua
+  \usepackage{chickenize}
+  \suppressonecharbreak
+\fi
 % Each chapter compiles on its own: its file starts with \documentclass[../<main file>]{subfiles}, and
 % "latexmk" in chapters-de/ builds it with this preamble (see chapters-de/README.md).
 % In the full document, \subfileinclude works like \include.
@@ -1158,6 +1206,9 @@
   \autotypelangoptions{ngerman}{ligatures=selective}
 \fi
 
+% Die Seitennummerierung erfolgt durchlaufend ab der Titelseite, also keine römischen Ziffern im Vorspann:
+% Die ISO 7144 schreibt das für Abschlussarbeiten vor. Für römische Ziffern mit --pagenumbering=roman neu erzeugen
+% (oder hier \frontmatter und vor dem ersten Kapitel \mainmatter einfügen).
 \pagenumbering{arabic}
 \Titelblatt
 
@@ -1171,7 +1222,7 @@
 \begin{otherlanguage}{american}
   \emph{Write an abstract for your work.
     Replace each of the points below with one sentence (two if you must) and you have your abstract.
-    Write it when you finished your entire report.
+    Write it when you finished your entire report.%
     \footnote{https://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/}}
 
   \emph{Introduction.}
@@ -1325,5 +1376,6 @@ Alle Links wurden zuletzt am 29.03.2021 geprüft.
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
-\Versicherung
+% Die Erklärung steht in affirmation-de.tex; der Text wird dort angepasst (der Paketbefehl \Versicherung druckt den festen Text der Universität Stuttgart)
+\input{affirmation-de}
 \end{document}

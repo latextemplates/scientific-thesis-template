@@ -22,11 +22,17 @@ bigintcalc
 bitset
 blindtext
 bookcover
+adjustbox
+collectbox
 booktabs
 caption
 catchfile
 cfr-lm
+chickenize
+chktex
 charter
+cite
+courier
 cleveref
 cm-super
 cmap
@@ -177,7 +183,9 @@ tabto-ltx
 tablefootnote
 tcolorbox
 tex-gyre
+tex-gyre-math
 texcount
+texfot
 texlogsieve
 textcase
 tikzmark
@@ -196,6 +204,7 @@ url
 
 varwidth
 xcharter
+xcharter-math
 xcolor
 xfor
 xifthen

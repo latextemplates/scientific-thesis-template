@@ -139,6 +139,10 @@ spellcheck-textidote:
 	done
 	@echo "Reports: textidote.html and chapters-en/*.textidote.html"
 
+## Check the LaTeX sources for typographic and syntax issues with ChkTeX (configuration: .chktexrc)
+chktex:
+	$(RUN) find . -maxdepth 2 \( -name 'main*.tex' -o -path './chapters-*/*.tex' \) -exec chktex -q {} +
+
 ## Merge the word lists of the spell checkers: a word added to .aspell.<language>.pws or (e.g., by
 ## "Add to dictionary" in VS Code) to .vscode/ltex.dictionary.<language>.txt ends up in both and in .textidote.dict.
 ## aspell word lists cannot contain hyphenated words; these words are added to the other lists.
@@ -148,13 +152,13 @@ dictionaries:
 	for pair in en:en-US de:de-DE; do \
 		lang=$${pair%%:*}; pws=".aspell.$$lang.pws"; ltex=".vscode/ltex.dictionary.$${pair#*:}.txt"; \
 		[ -e "$$pws" ] || continue; \
-		{ tail -n +2 "$$pws"; if [ -e "$$ltex" ]; then cat "$$ltex"; fi; printf '%s\n' $(HYPHENATED_WORDS); } | grep -v '^$$' | LC_ALL=C sort -u > "$$ltex.tmp"; \
+		{ tail -n +2 "$$pws"; if [ -e "$$ltex" ]; then cat "$$ltex"; fi; printf '%s\n' $(HYPHENATED_WORDS); } | grep -v '^$$' | LC_ALL=C sort -u | LC_ALL=C sort -f > "$$ltex.tmp"; \
 		mv "$$ltex.tmp" "$$ltex"; \
 		grep -v -e - "$$ltex" > "$$pws.tmp"; \
 		{ echo "personal_ws-1.1 $$lang $$(wc -l < "$$pws.tmp" | tr -d ' ') utf-8"; cat "$$pws.tmp"; } > "$$pws"; \
 		rm "$$pws.tmp"; \
 	done
-	cat .vscode/ltex.dictionary.*.txt | LC_ALL=C sort -u > .textidote.dict
+	cat .vscode/ltex.dictionary.*.txt | LC_ALL=C sort -u | LC_ALL=C sort -f > .textidote.dict
 
 ## Show only the relevant messages of the last LaTeX run
 log:
