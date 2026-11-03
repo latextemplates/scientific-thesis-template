@@ -26,7 +26,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
-- `scientific-thesis-cover` 5.1.0: `institute=istesqa`, the project types of the Bachelor programmes (`type=forschungsprojekt`, `projektaids`, `studienprojektmi`, `studienprojektse`), `studyprogram=aids` and `swe`. [#70](https://github.com/latextemplates/scientific-thesis-template/issues/70)
+- `scientific-thesis-cover` 5.2.0: `institute=istesqa` and `ipvsas`, the option `department` for a line below the institute, the project types of the Bachelor programmes (`type=forschungsprojekt`, `projektaids`, `studienprojektmi`, `studienprojektse`), `studyprogram=aids` and `swe`. [#70](https://github.com/latextemplates/scientific-thesis-template/issues/70)
 - All variants number the pages continuously with arabic numerals from the title page on, as ISO 7144 requires (the Hamburg and THU variants used roman numerals for the front matter); the README FAQ explains why and how to get roman numerals back (`--pagenumbering=roman` of the generator). [#69](https://github.com/latextemplates/scientific-thesis-template/issues/69)
 - Writing hints that are question lists or short notes (the self-check questions on the scientific argument, the notes on the evaluation setup) are set as `mindflow` notes, gray and separated from the text, so they are visible as hints and not as thesis text.
 - The longtable example uses booktabs rules (`\toprule`, `\midrule`, `\bottomrule`) without vertical lines, like the other table examples.

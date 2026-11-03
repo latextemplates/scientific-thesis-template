@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01] % shipout hooks
 \newcommand{\USCCover@Pgkname}{scientific-thesis-cover}
-\ProvidesPackage{\USCCover@Pgkname}[2026/11/02 Cover and affirmation for scientific works.]
-\typeout{Package: `\USCCover@Pgkname' v5.1.0}
+\ProvidesPackage{\USCCover@Pgkname}[2026/11/03 Cover and affirmation for scientific works.]
+\typeout{Package: `\USCCover@Pgkname' v5.2.0}
 % ------------------------------
 % required packages
 % ------------------------------
@@ -50,6 +50,7 @@
 \DeclareStringOption[author not set]{author}
 \DeclareStringOption[bachelor]{type}
 \DeclareStringOption[fac]{institute}
+\DeclareStringOption[]{department} % printed below the institute
 \DeclareStringOption[]{number} % running number
 \DeclareStringOption[cs]{studyprogram}
 \define@key{MCS}{course}{\def\MCS@studyprogram{#1}} % old name of studyprogram, kept for backwards compatibility
@@ -118,7 +119,8 @@
     \gdef\@labelfmi{Institute of Formal Methods in Computer Science}%
     \gdef\@labelims{Institute for Natural Language Processing}%
     \gdef\@labeliste{Institute of Software Engineering}%
-    \gdef\@labelistesqa{Institute of Software Engineering\\Software Quality and Architecture}%
+    \gdef\@labelDeptSQA{Software Quality and Architecture}%
+    \gdef\@labelDeptAS{Application of Parallel and Distributed Systems}%
     \gdef\@labeliti{Institute of Computer Architecture and Computer Engineering}%
     \gdef\@labeliris{Institute of Computer-aided Product Development Systems}%
     \gdef\@labelvis{Institute for Visualization and Interactive Systems}%
@@ -180,7 +182,8 @@
     \gdef\@labelfmi{Institut für Formale Methoden der Informatik}%
     \gdef\@labelims{Institut für Maschinelle Sprachverarbeitung}%
     \gdef\@labeliste{Institut für Software Engineering}%
-    \gdef\@labelistesqa{Institut für Software Engineering\\Software Quality and Architecture}%
+    \gdef\@labelDeptSQA{Software Quality and Architecture}%
+    \gdef\@labelDeptAS{Anwendersoftware}%
     \gdef\@labeliti{Institut für Technische Informatik}%
     \gdef\@labeliris{Institut für Rechnergestützte Ingenieursysteme}%
     \gdef\@labelvis{Institut für Visualisierung und Interaktive Systeme}%
@@ -241,6 +244,7 @@
     % use specified text if institute does not match
     \gdef\@labelInstitute{\MCS@institute}
     \gdef\@labelInstituteAddress{}
+    \gdef\@labelDepartment{}
 
     \def\1{\MCS@institute}
     % #1: key, #2: name, #3: address
@@ -250,13 +254,18 @@
     \2{fmi}{\@labelfmi}{\@labelAddress}
     \2{ims}{\@labelims}{Pfaffenwaldring 5B\\70569 Stuttgart}
     \2{iste}{\@labeliste}{\@labelAddress}
-    \2{istesqa}{\@labelistesqa}{\@labelAddress}
+    % #1: key, #2: name, #3: address, #4: department
+    \def\3##1##2##3##4{\2{##1}{##2}{##3}\def\0{##1}\ifthenelse{\equal{\0}{\1}}{\gdef\@labelDepartment{##4}}{}}
+    \3{istesqa}{\@labeliste}{\@labelAddress}{\@labelDeptSQA}
+    \3{ipvsas}{\@labelipvs}{\@labelAddress}{\@labelDeptAS}
     \2{iti}{\@labeliti}{Pfaffenwaldring 47\\70569 Stuttgart}
     \2{iris}{\@labeliris}{\@labelAddress}
     \2{vis}{\@labelvis}{\@labelAddress}
     \2{visus}{\@labelvisus}{Allmandring 19\\70569 Stuttgart}
     \2{sec}{\@labelsec}{\@labelAddress}
     \2{fac}{\@labelDept}{\@labelAddress}
+    % the option department overrides the department of a predefined institute
+    \ifx\MCS@department\empty\else\gdef\@labelDepartment{\MCS@department}\fi
 }
 
 % ------------------------------
@@ -328,7 +337,7 @@
             \else
                 \put(0,-26mm){\makebox[\paperwidth]{\includegraphics[height=14mm]{\MCS@logo}}}
             \fi
-            \USCCover@at{33mm}{100mm}{\@labelInstitute}
+            \USCCover@at{33mm}{100mm}{\@labelInstitute\ifx\@labelDepartment\empty\else\\\@labelDepartment\fi}
             \USCCover@at{53mm}{100mm}{\@labelInstituteAddress}
             \USCCover@at{100mm}{100mm}{\fontsize{12pt}{14pt}\selectfont\textbf{%
                     \@labelType\ifx\MCS@number\empty\else\ Nr.\,\MCS@number\fi}}
