@@ -436,15 +436,15 @@ If the notes should appear directly below the table instead (common in journals)
 \end{ltgexample}
 
 A table wider than the text runs into the margin.
-\verb|\begin{adjustbox}{max width=\textwidth}| from the \href{https://ctan.org/pkg/adjustbox}{adjustbox} package scales it down to the text width, and only if it is too wide.
+\verb|\begin{adjustbox}{max width=\linewidth}| from the \href{https://ctan.org/pkg/adjustbox}{adjustbox} package scales it down to the line width (the column width in a two-column layout), and only if it is too wide.
 Scaling shrinks the font, so for a table with long text in its cells, prefer wrapping the text with the column type \verb|X| of the \href{https://ctan.org/pkg/tabularx}{tabularx} package, and for a very wide table, a landscape page (see \texttt{pdflscape}).
 
 \begin{ltgexample}
 \begin{table}
-  \caption{Wide table scaled to the text width}
+  \caption{Wide table scaled to the line width}
   \label{tab:wide}
   \centering
-  \begin{adjustbox}{max width=\textwidth}
+  \begin{adjustbox}{max width=\linewidth}
     \begin{tabular}{llllllllllll}
       \toprule
       Jan  & Feb  & Mar  & Apr  & May  & Jun  & Jul  & Aug   & Sep  & Oct   & Nov   & Dec   \\

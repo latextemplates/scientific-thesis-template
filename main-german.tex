@@ -4,10 +4,10 @@
 % !TeX program = lualatex
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
-% Generated with generator-latex-template 2026.11.1 for latextemplates/scientific-thesis-template
+% Generated with generator-latex-template 2026.11.4 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1128 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1236 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1133 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1241 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -155,6 +155,10 @@
 \ifluatex
   \usepackage[no-math]{fontspec}
   \usepackage{unicode-math}
+  % newtxtext is for pdflatex. Under LuaLaTeX, it replaces the fonts set below by TeX Gyre Termes X without TeX ligatures: `` and '' appear as two single quotes (e.g., in the bibliography)
+  \newcommand{\ltgNewtxtextError}{\GenericError{}{newtxtext loaded under LuaLaTeX}{}{Remove \string\usepackage{newtxtext}: the fonts are set with fontspec in main-german.tex (search for \string\setmainfont).}}
+  \IfPackageLoadedTF{newtxtext}{\ltgNewtxtextError}{}
+  \AddToHook{package/newtxtext/before}{\ltgNewtxtextError}
 
   % See https://tug.org/FontCatalogue/texgyretermes/ for more information
   \setmainfont{texgyretermes}[
@@ -176,7 +180,6 @@
   \else
     \setmonofont[StylisticSet={1,3},Scale=.9,ItalicFont=*-Regular,BoldItalicFont=*-Bold]{Inconsolatazi4} % no italic: upright instead of a font warning
   \fi
-
 \else
   \RequirePackage{newtxtext}
   \RequirePackage{newtxmath}
@@ -349,6 +352,8 @@
 \usepackage[newfloat]{minted}
 
 \setminted{
+  % Same size as the listings package uses (basicstyle)
+  fontsize=\footnotesize,
   % Line numbers not flowing out of the margin
   numbersep=5pt,
   xleftmargin=12pt,
@@ -749,7 +754,7 @@
 % Which template this document is based on, in the PDF properties (custom entry "Template"; shown by
 % "pdfinfo -custom" and in the document properties of most viewers). Keep it: it tells which version
 % of the template a document was built on, which helps when comparing or updating adapted files.
-\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.1}}}
+\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.4}}}
 
 % Hint by https://tex.stackexchange.com/a/193370/9075 to suppress strange outputs of the babel package
 % Example strange output: Package babel Info: Redefining ngerman shorthand "|
