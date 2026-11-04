@@ -80,7 +80,7 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
           packages: poppler-utils
-          version: 1.0
+          version: 1.1 # bumped after a cache saved during an apt mirror outage lacked pdftotext
       - name: Check that words with ligatures can be copied from the PDF
         # The example "Other features" typesets "workflow" and "dwarflike". A wrong font setup
         # gives "work?ow" or the ligature characters U+FB00 to U+FB06 when the text is copied.
