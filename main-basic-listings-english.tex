@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.4 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1166 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1268.
+% vvvvvvvv  The content starts in line 1168 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1270.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -153,10 +153,12 @@
 \ifluatex
   \usepackage[no-math]{fontspec}
   \usepackage{unicode-math}
-  % newtxtext is for pdflatex. Under LuaLaTeX, it replaces the fonts set below by TeX Gyre Termes X without TeX ligatures: `` and '' appear as two single quotes (e.g., in the bibliography)
-  \newcommand{\ltgNewtxtextError}{\GenericError{}{newtxtext loaded under LuaLaTeX}{}{Remove \string\usepackage{newtxtext}: the fonts are set with fontspec in main-english.tex (search for \string\setmainfont).}}
-  \IfPackageLoadedTF{newtxtext}{\ltgNewtxtextError}{}
-  \AddToHook{package/newtxtext/before}{\ltgNewtxtextError}
+  % newtxtext and newtxmath are for pdflatex. Under LuaLaTeX, newtxtext replaces the fonts set below by TeX Gyre Termes X without TeX ligatures (`` and '' appear as two single quotes, e.g., in the bibliography); newtxmath clashes with unicode-math.
+  \newcommand{\ltgPdflatexOnlyError}[2]{\GenericError{}{#1 loaded under LuaLaTeX}{}{Remove \string\usepackage{#1}: the fonts are set with fontspec in main-english.tex (search for \string#2).}}
+  \IfPackageLoadedTF{newtxtext}{\ltgPdflatexOnlyError{newtxtext}{\setmainfont}}{}
+  \AddToHook{package/newtxtext/before}{\ltgPdflatexOnlyError{newtxtext}{\setmainfont}}
+  \IfPackageLoadedTF{newtxmath}{\ltgPdflatexOnlyError{newtxmath}{\setmathfont}}{}
+  \AddToHook{package/newtxmath/before}{\ltgPdflatexOnlyError{newtxmath}{\setmathfont}}
 
   % See https://tug.org/FontCatalogue/texgyretermes/ for more information
   \setmainfont{texgyretermes}[
