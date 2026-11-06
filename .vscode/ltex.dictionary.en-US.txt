@@ -111,6 +111,7 @@ monospaced
 morecomment
 nato
 nd
+newtxmath
 newtxtext
 nm
 nn
@@ -180,6 +181,7 @@ Treaty
 tt
 Ulm
 UML
+unicode
 ustutt
 VV
 werden

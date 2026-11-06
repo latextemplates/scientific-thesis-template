@@ -1,4 +1,4 @@
-personal_ws-1.1 en 197 utf-8
+personal_ws-1.1 en 199 utf-8
 abbreviationdot
 aboveskip
 ACM
@@ -111,6 +111,7 @@ monospaced
 morecomment
 nato
 nd
+newtxmath
 newtxtext
 nm
 nn
@@ -179,6 +180,7 @@ Treaty
 tt
 Ulm
 UML
+unicode
 ustutt
 VV
 werden
