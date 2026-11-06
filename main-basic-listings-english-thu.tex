@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.4 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1171 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1301.
+% vvvvvvvv  The content starts in line 1172 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1302.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -183,7 +183,8 @@
 
   % Enable proper ligatures for English documents (German documents use autotype, see ADR-0008)
   % For more information see https://ctan.org/pkg/selnolig
-  \usepackage{selnolig}
+  % The language has to be named: without it, selnolig loads no rules (acmart and scrbook do not pass "english" as a class option)
+  \usepackage[english]{selnolig}
 \else
   \RequirePackage{newtxtext}
   \RequirePackage{newtxmath}
