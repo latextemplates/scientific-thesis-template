@@ -4,10 +4,10 @@
 % !TeX program = lualatex
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
-% Generated with generator-latex-template 2026.11.4 for latextemplates/scientific-thesis-template
+% Generated with generator-latex-template 2026.11.9 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1136 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1274 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1138 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1276 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -155,10 +155,12 @@
 \ifluatex
   \usepackage[no-math]{fontspec}
   \usepackage{unicode-math}
-  % newtxtext is for pdflatex. Under LuaLaTeX, it replaces the fonts set below by TeX Gyre Termes X without TeX ligatures: `` and '' appear as two single quotes (e.g., in the bibliography)
-  \newcommand{\ltgNewtxtextError}{\GenericError{}{newtxtext loaded under LuaLaTeX}{}{Remove \string\usepackage{newtxtext}: the fonts are set with fontspec in main-german.tex (search for \string\setmainfont).}}
-  \IfPackageLoadedTF{newtxtext}{\ltgNewtxtextError}{}
-  \AddToHook{package/newtxtext/before}{\ltgNewtxtextError}
+  % newtxtext and newtxmath are for pdflatex. Under LuaLaTeX, newtxtext replaces the fonts set below by TeX Gyre Termes X without TeX ligatures (`` and '' appear as two single quotes, e.g., in the bibliography); newtxmath clashes with unicode-math.
+  \newcommand{\ltgPdflatexOnlyError}[2]{\GenericError{}{#1 loaded under LuaLaTeX}{}{Remove \string\usepackage{#1}: the fonts are set with fontspec in main-german.tex (search for \string#2).}}
+  \IfPackageLoadedTF{newtxtext}{\ltgPdflatexOnlyError{newtxtext}{\setmainfont}}{}
+  \AddToHook{package/newtxtext/before}{\ltgPdflatexOnlyError{newtxtext}{\setmainfont}}
+  \IfPackageLoadedTF{newtxmath}{\ltgPdflatexOnlyError{newtxmath}{\setmathfont}}{}
+  \AddToHook{package/newtxmath/before}{\ltgPdflatexOnlyError{newtxmath}{\setmathfont}}
 
   % See https://tug.org/FontCatalogue/texgyretermes/ for more information
   \setmainfont{texgyretermes}[
@@ -756,7 +758,7 @@
 % Which template this document is based on, in the PDF properties (custom entry "Template"; shown by
 % "pdfinfo -custom" and in the document properties of most viewers). Keep it: it tells which version
 % of the template a document was built on, which helps when comparing or updating adapted files.
-\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.4}}}
+\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.9}}}
 
 % Hint by https://tex.stackexchange.com/a/193370/9075 to suppress strange outputs of the babel package
 % Example strange output: Package babel Info: Redefining ngerman shorthand "|

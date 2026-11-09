@@ -10,6 +10,8 @@ extend-exclude = [
   "*-de.md",
   "*.de.md",
   "chapters-de/",
+  # Examples of the IEEE Reference Guide with its abbreviations (Commun., Comput., ...)
+  "comparison/reference-guide-*.tex",
   # Bibliography, styles, and classes
   "*.bib",
   "*.bst",

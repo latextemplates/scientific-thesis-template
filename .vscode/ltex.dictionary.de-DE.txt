@@ -113,6 +113,7 @@ monospaced
 morecomment
 nato
 nd
+newtxmath
 newtxtext
 nm
 nn
@@ -182,6 +183,7 @@ Treaty
 tt
 UML
 uni
+unicode
 ustutt
 vorausverweist
 Vorwärtsverweise
