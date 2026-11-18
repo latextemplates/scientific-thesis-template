@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01] % shipout hooks
 \newcommand{\USCCover@Pgkname}{scientific-thesis-cover}
-\ProvidesPackage{\USCCover@Pgkname}[2026/11/03 Cover and affirmation for scientific works.]
-\typeout{Package: `\USCCover@Pgkname' v5.2.0}
+\ProvidesPackage{\USCCover@Pgkname}[2026/11/18 Cover and affirmation for scientific works.]
+\typeout{Package: `\USCCover@Pgkname' v5.3.0}
 % ------------------------------
 % required packages
 % ------------------------------
@@ -65,6 +65,7 @@
 \DeclareStringOption[german]{language}
 \DeclareBoolOption[false]{setPageNumberToOne}
 \DeclareBoolOption[false]{setCoverPageNumberToMinusOne}
+\DeclareBoolOption[false]{ustutt} % layout of the cover page as in version 4 (until 2026-10)
 
 % ------------------------------
 % process options
@@ -81,6 +82,8 @@
     \gdef\@labelExaminer{Examiner}%
     %\gdef\@labelprueferin{Examiner}%
     \gdef\@labelAdvisor{Advisor}%
+    \gdef\@labelAdvisors{Advisors}%
+    \gdef\@labelExaminers{Examiners}%
     \gdef\@labelCourse{Study program}%
     \gdef\@labelStartdate{Start date}%
     \gdef\@labelEnddate{End date}%
@@ -146,6 +149,8 @@
 \def\labelsgerman{
     \gdef\@labelExaminer{Prüfer/in}%
     \gdef\@labelAdvisor{Betreuer/in}%
+    \gdef\@labelAdvisors{Betreuer/innen}%
+    \gdef\@labelExaminers{Prüfer/innen}%
     \gdef\@labelCourse{Studiengang}%
     \gdef\@labelStartdate{Beginn am}%
     \gdef\@labelEnddate{Beendet am}%
@@ -318,6 +323,13 @@
     \put(\dimexpr\paperwidth/2-50mm\relax,-#1){\textbf{#2:}}%
     \put(\dimexpr\paperwidth/2-17mm\relax,-#1){\parbox[t]{85mm}{\raggedright #3}}}
 
+% #1: value, #2: singular label, #3: plural label
+% Several names (separated by \\) take the plural label.
+\newcommand{\USCCover@label}[3]{\expandafter\USCCover@label@\expandafter{#1}{#2}{#3}}
+\newcommand{\USCCover@label@}[3]{\in@{\\}{#1}\ifin@#3\else#2\fi}
+\newcommand{\USCCover@examinerlabel}{\USCCover@label{\MCS@examiner}{\@labelExaminer}{\@labelExaminers}}
+\newcommand{\USCCover@advisorlabel}{\USCCover@label{\MCS@advisor}{\@labelAdvisor}{\@labelAdvisors}}
+
 % Only include package if a logo is provided, otherwise it is not needed.
 \ifx\MCS@logo\empty
 \else
@@ -327,6 +339,119 @@
 % The cover page is laid out at absolute positions on the paper,
 % following the layout requirements of the Faculty of Computer Science.
 % It does not depend on margins set by the document class or packages such as geometry.
+% Layout of version 4 (option ustutt): flowing boxes relative to the type area.
+% Institute, department, university, and address form one block, as in version 4.
+\newcommand{\USCCover@classicInstitute}{%
+    \@labelInstitute\ifx\@labelDepartment\empty\else\\\@labelDepartment\fi
+    \ifx\@labelInstituteAddress\empty\else\\~\newline\@labelUniversity\\\@labelInstituteAddress\fi}
+\newcommand{\USCCover@TBlabel}[1]{\textbf{#1}\hfil}
+
+\newenvironment{USCCover@TBlist}{%
+    \list{}{\labelwidth 45mm \leftmargin 70mm % alt: 35/60 mm
+        \rightmargin 20mm \let\makelabel\USCCover@TBlabel}%
+}{\endlist}
+\newcommand{\USCCover@classic}{%
+    \sffamily
+    \pagestyle{empty}%
+    \thispagestyle{empty}%
+    %\fontfamily{ppl}\selectfont
+    %
+    \@normalsize \@setsize\normalsize{13.6pt}\xipt\@xipt
+    %
+    \frenchspacing    % besser, da viele Abk. (<- da ist schon eine)
+    \parskip=0pt\parindent=0pt\null
+    %
+    % Damit alles richtig funktioniert, mu"s der Ursprung auf die
+    % tats"achliche linke obere Ecke des Blattes gelegt werden (ohne den
+    % bekannten 1in Offset also).
+    % Ausserdem werden die beiden Seitenr"ander auf 28mm + 4.5mm Falz
+    % gesetzt, die Seitenh"ohe auf DIN A4-H"ohe.
+    %
+    \hsize=154mm       %% DIN A4: 210mm - 2*28mm
+    \columnwidth=\hsize \linewidth=\hsize
+    %
+    \dimen0=0pt
+    \advance\dimen0-\oddsidemargin
+    \advance\dimen0 2.6mm %%
+    \advance\dimen0 4.5mm %%
+    \hbox to 0pt{\kern\dimen0\vbox to\topskip{%
+                \dimen0=-1in
+                \advance\dimen0-\topmargin
+                \advance\dimen0-\headheight
+                \advance\dimen0-\headsep
+                \vskip\dimen0\relax
+                %
+
+                \vskip 20mm\relax %%%
+
+                % Height of the institute vbox
+                \newcommand{\instituteHeight}{70}
+
+                \ifx\MCS@logo\empty
+                \else
+                    \vbox to 15mm{
+                        \begin{center}
+                            \includegraphics[height=14mm]{\MCS@logo}
+                        \end{center}
+                       \vfill}
+                    % Height of institute vbox reduced to accomodate logo
+                    \renewcommand{\instituteHeight}{55}
+                \fi
+
+                \vbox to \instituteHeight mm{
+                        \begin{center}%
+                            \USCCover@classicInstitute
+                        \end{center}
+                        \vfill}%
+
+                \vskip -4mm\relax
+                %%%%% ==> 155mm (Titel: 165mm/Autor: 195mm) von oben
+                %%% Die Box kann max. 100mm breit und 60mmm hoch sein,
+                %%% au"serdem wird noch ein Rand von mind. 2.5mm gelassen
+                %%% Even if \centering is not recommended (see l2tabu or nag package), just replacing it with {\centering{...}} doesn't work as \centering doesn't center on the complete page
+                \centerline{\fboxsep=0pt
+                    \@USCCover@umrandet{\hbox to 100mm{\hfil
+                                \vbox to 60mm{\hsize=95mm\parindent=0pt
+                                        \vskip 10mm plus 30mm minus 7.5mm
+                                        \begin{center}\@setsize\large{14pt}\xiipt\@xiipt %%\large
+                                            \ifx\MCS@number\empty
+                                                \@labelType
+                                            \else
+                                                \@labelType\ Nr.\,\MCS@number
+                                            \fi
+                                        \end{center}%
+                                        \vskip 12.5mm plus 12.5mm minus 10mm
+                                        \begin{center}\@setsize\LARGE{22pt}\xviipt\@xviipt %%\LARGE
+                                            \textbf{ \MCS@title}
+                                        \end{center}%
+                                        \vskip 10mm plus 10mm minus 7.5mm
+                                        \begin{center}\@setsize\large{14pt}\xiipt\@xiipt %%\large
+                                            \MCS@author
+                                        \end{center}%
+                                        \vskip 17.5mm plus 35mm minus 12.5mm}\hfil}}}%
+                \vskip 20mm %%%%%
+
+                \vbox to 15mm{%
+                        \begin{USCCover@TBlist}%
+                            \item[\@labelCourse: ]\@labelCourseValue
+                        \end{USCCover@TBlist}%
+                        \vfill}%
+                \vbox to 45mm{%
+                        \begin{USCCover@TBlist}%
+                            \item[\USCCover@examinerlabel:]\MCS@examiner
+                            \item[\USCCover@advisorlabel:]\MCS@advisor
+                        \end{USCCover@TBlist}%
+                        \vfill}%
+                \vbox to 70mm{%%%%% ==> 85 mm von oben
+                        \begin{USCCover@TBlist}%
+                            \item[\@labelStartdate:]\MCS@startdate
+                            \item[\@labelEnddate:]\MCS@enddate
+                        \end{USCCover@TBlist}%
+                        \vfill}%
+
+                \vss}\hss}%
+}
+
 \newsavebox{\USCCover@page}
 \newcommand{\USCCover@typeset}{%
     \global\sbox{\USCCover@page}{%
@@ -346,8 +471,8 @@
                     \parbox[b][43mm][c]{100mm}{\centering\fontsize{17.28pt}{22pt}\selectfont\textbf{\MCS@title}}}}
             \USCCover@at{152mm}{100mm}{\fontsize{12pt}{14pt}\selectfont\MCS@author}
             \USCCover@field{224mm}{\@labelCourse}{\@labelCourseValue}
-            \USCCover@field{232mm}{\@labelExaminer}{\MCS@examiner}
-            \USCCover@field{247mm}{\@labelAdvisor}{\MCS@advisor}
+            \USCCover@field{232mm}{\USCCover@examinerlabel}{\MCS@examiner}
+            \USCCover@field{247mm}{\USCCover@advisorlabel}{\MCS@advisor}
             \USCCover@field{262mm}{\@labelStartdate}{\MCS@startdate}
             \USCCover@field{270mm}{\@labelEnddate}{\MCS@enddate}
         \end{picture}}}
@@ -364,9 +489,13 @@
     \begingroup
     \newcommand{\USCCover@isTwoColumn}{false}
     \if@twocolumn \renewcommand{\USCCover@isTwoColumn}{true} \onecolumn \fi
-    \USCCover@typeset
-    \AddToHookNext{shipout/foreground}{\put(0,0){\usebox{\USCCover@page}}}%
-    \null
+    \ifMCS@ustutt
+        \USCCover@classic
+    \else
+        \USCCover@typeset
+        \AddToHookNext{shipout/foreground}{\put(0,0){\usebox{\USCCover@page}}}%
+        \null
+    \fi
     \thispagestyle{empty}%
     \cleardoublepage % if twoside add a blank page after cover
     % set counter to start at 1 after the clear(double)page

@@ -11,6 +11,8 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - The page numbers of sections and subsections in the table of contents are in sans-serif, like the entries themselves.
 - The variant for the University of Stuttgart is two-sided again (chapters start on a right-hand page), as the university requires double-sided PDFs.
+- The variant for the University of Stuttgart sets the cover page in its previous layout again, keeping the new labels ("Study program", "Advisor", "Start date", "End date").
+- Several advisors on the cover page are labeled "Advisors" (German: "Betreuer/innen").
 
 ## [2026-11-04]
 
