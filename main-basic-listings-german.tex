@@ -4,10 +4,10 @@
 % !TeX program = lualatex
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
-% Generated with generator-latex-template 2026.11.9 for latextemplates/scientific-thesis-template
+% Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1206 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1318 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1205 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1317 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -22,9 +22,8 @@
   numbers=autoendperiod,
   ngerman,  % Neue deutsche Rechtschreibung; der Parameter wird an andere Pakete weiter gegeben
   a4paper,  % KOMAScript allows for both paper=a4 and (standard) a4paper - https://tex.stackexchange.com/a/61044/9075
-  twoside=false,  % optimiert für das Lesen am Bildschirm: gleiche Ränder auf jeder Seite und keine leeren Seiten
-  open=any,       % ein Kapitel beginnt auf der nächsten Seite, nicht unbedingt auf einer rechten
-  % Für beidseitigen Druck die beiden Zeilen darüber durch "twoside, open=right," ersetzen
+  twoside,  % die Universität Stuttgart verlangt beidseitigen Druck: Kapitel beginnen auf einer rechten Seite
+  open=right,
   bibliography=totoc,
   captions=tableheading,  % table captions are set above the table: put the space between caption and table, not above the caption
   % idxtotoc,   % Index ins Inhaltsverzeichnis
@@ -261,7 +260,7 @@
 % chapter entries in the heading font and the lower levels in the text font. No tocloft needed (it does
 % not go well with KOMA-Script); change entryformat to taste, e.g., \sffamily\large for larger section entries,
 % and \setkomafont{chapterentry}{...} for the chapter entries.
-\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{section,subsection,subsubsection}
+\DeclareTOCStyleEntries[entryformat=\sffamily,pagenumberformat=\sffamily]{tocline}{section,subsection,subsubsection}
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
@@ -823,7 +822,7 @@
 % Which template this document is based on, in the PDF properties (custom entry "Template"; shown by
 % "pdfinfo -custom" and in the document properties of most viewers). Keep it: it tells which version
 % of the template a document was built on, which helps when comparing or updating adapted files.
-\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.9}}}
+\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.12}}}
 
 % Hint by https://tex.stackexchange.com/a/193370/9075 to suppress strange outputs of the babel package
 % Example strange output: Package babel Info: Redefining ngerman shorthand "|

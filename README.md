@@ -549,11 +549,11 @@ The chapter entries use the font element `chapterentry`, the lower levels are se
 
 ```latex
 \setkomafont{chapterentry}{\sffamily\bfseries\large}
-\DeclareTOCStyleEntries[entryformat=\sffamily\large]{tocline}{section}
-\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{subsection,subsubsection}
+\DeclareTOCStyleEntries[entryformat=\sffamily\large,pagenumberformat=\sffamily]{tocline}{section}
+\DeclareTOCStyleEntries[entryformat=\sffamily,pagenumberformat=\sffamily]{tocline}{subsection,subsubsection}
 ```
 
-The template sets all entries in the sans-serif font of the headings; see the KOMA-Script manual (`texdoc scrguide`, section on `tocbasic`) for `numwidth`, `indent`, `pagenumberformat`, and the other keys.
+The template sets all entries and their page numbers in the sans-serif font of the headings; see the KOMA-Script manual (`texdoc scrguide`, section on `tocbasic`) for `numwidth`, `indent`, `pagenumberformat`, and the other keys.
 
 ### Q: How do I speed up compilation with a precompiled preamble?
 
