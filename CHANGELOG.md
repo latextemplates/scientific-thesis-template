@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- The page numbers of sections and subsections in the table of contents are in sans-serif, like the entries themselves.
+- The variant for the University of Stuttgart is two-sided again (chapters start on a right-hand page), as the university requires double-sided PDFs.
+
 ## [2026-11-04]
 
 ### Changed
