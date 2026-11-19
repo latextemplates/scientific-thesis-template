@@ -52,7 +52,7 @@ jobs:
                  --listings=${listings}\
                  --enquotes=csquotes\
                  --tweakouterquote=babel\
-                 --todo=todonotes\
+                 --todo=zebra\
                  --examples=true\
                  --howtotext=true\
                  --uml=none
