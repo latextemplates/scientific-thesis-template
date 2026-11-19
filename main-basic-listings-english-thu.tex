@@ -838,10 +838,10 @@
 
 % Show how far each chapter or section is written:
 % \progress{60} below a heading draws a bar filled to 60 %.
-% Set \showprogressfalse to hide all bars, e.g., for the submitted version.
+% The bars are hidden by default; set \showprogresstrue to show them while writing.
 \usepackage{progressbar}
 \newif\ifshowprogress
-\showprogresstrue
+\showprogressfalse
 \newcommand{\progress}[1]{%
   \ifshowprogress
     \par\vspace{-.5\baselineskip}%
@@ -959,9 +959,9 @@
   translate=babel,
   abbreviations,         % create "abbreviations" glossary
   nomain,                % don't create "main" glossary
-  stylemods=longbooktabs % do the adjustments for the longbooktabs styles
+  stylemods             % do the adjustments for the glossary styles
 ]{glossaries-extra}
-\setglossarystyle{long3col-booktabs}
+\setglossarystyle{index}
 
 % Hint by https://tex.stackexchange.com/a/463188/9075
 % \usepackage{glossary-longextra}
@@ -1290,7 +1290,7 @@ What can they do with your research.
 %\listofalgorithms
 
 % Abbreviations / Acronyms
-\printnoidxglossary[type=\acronymtype,sort=word,title={Abbreviations}]
+\printnoidxglossary[type=\acronymtype,sort=word,title={List of Abbreviations}]
 % \printunsrtglossaries cannot be used, because then no indexing happens; source: https://tex.stackexchange.com/a/287128/9075
 
 \microtypesetup{protrusion=true}

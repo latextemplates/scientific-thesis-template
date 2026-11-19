@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1169 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1271.
+% vvvvvvvv  The content starts in line 1178 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1280.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -835,10 +835,10 @@
 
 % Show how far each chapter or section is written:
 % \progress{60} below a heading draws a bar filled to 60 %.
-% Set \showprogressfalse to hide all bars, e.g., for the submitted version.
+% The bars are hidden by default; set \showprogresstrue to show them while writing.
 \usepackage{progressbar}
 \newif\ifshowprogress
-\showprogresstrue
+\showprogressfalse
 \newcommand{\progress}[1]{%
   \ifshowprogress
     \par\vspace{-.5\baselineskip}%
@@ -956,9 +956,9 @@
   translate=babel,
   abbreviations,         % create "abbreviations" glossary
   nomain,                % don't create "main" glossary
-  stylemods=longbooktabs % do the adjustments for the longbooktabs styles
+  stylemods             % do the adjustments for the glossary styles
 ]{glossaries-extra}
-\setglossarystyle{long3col-booktabs}
+\setglossarystyle{index}
 
 % Hint by https://tex.stackexchange.com/a/463188/9075
 % \usepackage{glossary-longextra}
@@ -1003,6 +1003,15 @@
 \usepackage{lccaps}
 \input{commands}
 
+% Same left and right margins on every page: the text block stays in the middle of the page (reading on screen),
+% while page numbers and headers alternate between left-hand and right-hand pages (two-sided printing).
+\usepackage[
+  left=3cm,right=3cm,top=2.5cm,bottom=2.5cm,
+  headsep=18pt,
+  footskip=30pt,
+  includehead,
+  includefoot
+]{geometry}
 % Package URL: https://ctan.org/pkg/scientific-thesis-cover
 \usepackage[
   title={Is Oil the future?},
@@ -1259,7 +1268,7 @@ What can they do with your research.
 %\listofalgorithms
 
 % Abbreviations / Acronyms
-\printnoidxglossary[type=\acronymtype,sort=word,title={Abbreviations}]
+\printnoidxglossary[type=\acronymtype,sort=word,title={List of Abbreviations}]
 % \printunsrtglossaries cannot be used, because then no indexing happens; source: https://tex.stackexchange.com/a/287128/9075
 
 \microtypesetup{protrusion=true}
