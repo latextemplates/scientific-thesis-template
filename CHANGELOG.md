@@ -11,8 +11,12 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 - The page numbers of sections and subsections in the table of contents are in sans-serif, like the entries themselves.
 - The variant for the University of Stuttgart is two-sided again (chapters start on a right-hand page), as the university requires double-sided PDFs.
-- The variant for the University of Stuttgart sets the cover page in its previous layout again, keeping the new labels ("Study program", "Advisor", "Start date", "End date").
-- Several advisors on the cover page are labeled "Advisors" (German: "Betreuer/innen").
+- The variant for the University of Stuttgart sets the cover page in its previous layout and with its previous labels again ("Course of Study", "Supervisor", "Commenced", "Completed").
+- The variant for the University of Stuttgart keeps the text block in the middle of the page again (same left and right margins), while the page numbers alternate.
+- Several supervisors on the cover page are labeled in the plural ("Supervisors", German: "Betreuer/innen"); the other variants say "Advisors".
+- The progress bars are hidden by default; `\showprogresstrue` in the preamble shows them.
+- The list of abbreviations is titled "List of Abbreviations" again and uses the more compact style `index`.
+- The introduction states that the chapter structure is only an example to be agreed on with the supervisor.
 
 ## [2026-11-04]
 

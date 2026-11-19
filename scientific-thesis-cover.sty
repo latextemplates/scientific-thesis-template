@@ -215,6 +215,14 @@
     \def\0{english}
     \ifx\MCS@language\0
         \labelsenglish
+        \ifMCS@ustutt
+            % labels of version 4
+            \gdef\@labelAdvisor{Supervisor}%
+            \gdef\@labelAdvisors{Supervisors}%
+            \gdef\@labelCourse{Course of Study}%
+            \gdef\@labelStartdate{Commenced}%
+            \gdef\@labelEnddate{Completed}%
+        \fi
     \else
         \labelsgerman
     \fi
