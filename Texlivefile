@@ -10,6 +10,7 @@ algorithms
 algpseudocodex
 amsmath
 autotype
+atbegshi
 auxhook
 babel
 babel-english
@@ -86,6 +87,7 @@ hyphen-english
 hyphen-german
 hyphenex
 ifmtarg
+ifoddpage
 ifplatform
 iftex
 impnattypo
@@ -117,7 +119,9 @@ luacolor
 lua-widow-control
 luatex85
 luatexbase
+luatodonotes
 ly1
+manfnt
 marginnote
 markdown
 
@@ -193,7 +197,6 @@ textcase
 tikzmark
 times
 tools
-todonotes
 totcount
 totpages
 tracklang
@@ -215,6 +218,7 @@ xkeyval
 xpatch
 xstring
 xurl
+zebra
 zref
 zref-clever
 zref-vario

@@ -79,6 +79,22 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \todo{Hier muss noch kräftig Text produziert werden}
 \end{ltgexample}
 
+Bei zebra nimmt \verb|\todo| die verantwortliche Person als optionales Argument; weitere Notizarten sind \verb|\note|, \verb|\comment|, \verb|\fixed| und \verb|\placeholder|.
+Alle Notizen werden am Ende des Dokuments aufgelistet.
+
+\begin{ltgexample}
+\todo[FA]{Add a citation}
+
+\note{Shorten this paragraph?}
+
+\comment[FA]{Is this claim backed by the evaluation?}
+
+\fixed{Typo corrected}
+
+\placeholder{Table with the results}
+\end{ltgexample}
+
+
 Mehrere Autoren können ihre Änderungen und Kommentare mit dem Paket \href{https://ctan.org/pkg/phfcc}{phfcc} markieren; die Initialen erscheinen einmal pro Seite am Rand.
 Pro Autor wird in der Präambel ein Befehl definiert (\verb|\phfMakeCommentingCommand|); \verb|\phfDisableCommentingCommands| blendet für die finale Version alles aus.
 

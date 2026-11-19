@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1121 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1249.
+% vvvvvvvv  The content starts in line 1137 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1265.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -620,11 +620,11 @@
 
 % TODO (and comment) configuration
 %
-% - \todo (from todo, easy-todo, todonotes) / \TODO (from fixmetodonotes) - for "normal" TODOs
+% - \todo (from zebra, todonotes, luatodonotes) / \TODO (from fixmetodonotes) - for "normal" TODOs
 % - \todofix - "important" TODOs
 %
 % - \textcomment - highlights text and has a hover comment
-% - \sidecomment - just puts a comment to the side. Note: \comment MUST NOT be used as command name, it is already defined by much packages (mathdesign, mindflow, verbatim, and others)
+% - \sidecomment - just puts a comment to the side. Note: \comment is the comment environment of several packages (mathdesign, mindflow, verbatim, and others); only zebra adds \comment[name]{...} as command
 %
 % - \missingfigure
 %
@@ -632,13 +632,29 @@
 % - \modified
 % - \change      - addresses a review comment
 
-\usepackage[color=gray!17]{todonotes}
-\let\xtodo\todo
-% Inline TODOs as a titled box, which stands out in a long text
-\usepackage{tcolorbox}
-\newtcolorbox{todobox}{colback=yellow!8,colframe=brown!60!black,fonttitle=\bfseries,title=TODO}
-\renewcommand{\todo}[1]{\begin{todobox}#1\end{todobox}}
-\newcommand{\todofix}[1]{\xtodo[color=red!40]{#1}}
+% TODOs as short inline notes with a small numbered symbol in the margin; a summary and a list of all notes follow at the end
+% Doc: https://ctan.org/pkg/zebra
+% Commands: \todo[name]{...}, \note, \fixed, \placeholder, and \comment
+\usepackage[draft]{zebra} % explicit: the class option draft=false would hide all notes
+% Final version: hide all notes and the lists at the end
+% \usepackage[final]{zebra}
+\newcommand{\todofix}[1]{\zebratodo{#1}}
+\newcommand{\sidecomment}[1]{\zebracomment{#1}}
+% \comment is also the comment environment (verbatim, comment; used by mindflow and acmart), which zebra does not redefine:
+% \comment[name]{...} is a zebra note, \begin{comment} ... \end{comment} still comments out
+\makeatletter
+\AddToHook{begindocument/before}{%
+  \@ifundefined{comment}{\let\comment\zebracomment}{%
+    \let\ltg@commentenvironment\comment
+    \def\ltg@commentname{comment}%
+    \renewcommand*{\comment}{%
+      \ifx\@currenvir\ltg@commentname
+        \expandafter\ltg@commentenvironment
+      \else
+        \expandafter\zebracomment
+      \fi}}}
+\makeatother
+\newcommand{\missingfigure}[1][]{\zebraplaceholder{missing figure}}
 
 % Define default commands
 \makeatletter
