@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1145 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1253 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1126 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1234 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -632,32 +632,13 @@
 % - \modified
 % - \change      - addresses a review comment
 
-% Enable nice comments
-\usepackage{pdfcomment}
-
-\ifdefined\directlua
-  % Highlighting that breaks across lines (\colorbox does not): lua-ul's \highLight; the color needs luacolor
-  \usepackage{luacolor,lua-ul}
-  \newcommand{\textcomment}[2]{\highLight[yellow!60]{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\else
-  \newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\fi
-
-% Small PDF comment
-% 1st parameter: comment
-\newcommand{\sidecomment}[1]{\pdfcomment[color={0.045 0.278 0.643},voffset=4pt,icon=Note]{#1}}
-% Disabled variant - for the final PDF
-%\newcommand{\sidecomment}[1]{}
-
-\newcommand{\todo}[1]{TODO!\sidecomment{#1}}
-
-% Changes
-%
-% 1st parameter: review comment
-% 2nd parameter: new text
-\newcommand{\change}[2]{{\color{red}#2}\pdfcomment[color={0.234 0.867 0.211},voffset=8pt,opacity=0.5]{#1}}
-% Disabled variant - for the final PDF
-%\newcommand{\change}[2]{#2}
+\usepackage[color=gray!17]{todonotes}
+\let\xtodo\todo
+% Inline TODOs as a titled box, which stands out in a long text
+\usepackage{tcolorbox}
+\newtcolorbox{todobox}{colback=yellow!8,colframe=brown!60!black,fonttitle=\bfseries,title=TODO}
+\renewcommand{\todo}[1]{\begin{todobox}#1\end{todobox}}
+\newcommand{\todofix}[1]{\xtodo[color=red!40]{#1}}
 
 % Define default commands
 \makeatletter

@@ -253,7 +253,7 @@ PlantUML and Mermaid offer a more compact syntax and lay out the diagrams automa
 To use them, generate an own copy of this template with the [latex template generator]:
 
 ```bash
-npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --uml=plantuml --docker=dante'
+npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=todonotes --examples=true --howtotext=true --uml=plantuml --docker=dante'
 ```
 
 Use `--uml=mermaid` for Mermaid.
@@ -525,7 +525,7 @@ If your university wants it in English, set the type as free text in the options
   Generate an own copy of the template with the [latex template generator]:
 
   ```bash
-  npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --font=times --pagenumbering=roman'
+  npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=todonotes --examples=true --howtotext=true --font=times --pagenumbering=roman'
   ```
 
   The generator asks for the remaining options (institution: University of Stuttgart; language; package for source code).
@@ -539,7 +539,7 @@ See the [decision record](https://github.com/latextemplates/generator-latex-temp
 If your institution wants roman numerals for the front matter, put `\frontmatter` before the title page and `\mainmatter` before the first chapter of the main file, or generate an own copy of the template with the [latex template generator]:
 
 ```bash
-npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --pagenumbering=roman'
+npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=todonotes --examples=true --howtotext=true --pagenumbering=roman'
 ```
 
 ### Q: How do I change the font of the table of contents?
