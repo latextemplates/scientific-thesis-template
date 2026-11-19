@@ -16,6 +16,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - Several supervisors on the cover page are labeled in the plural ("Supervisors", German: "Betreuer/innen"); the other variants say "Advisors".
 - The progress bars are hidden by default; `\showprogresstrue` in the preamble shows them.
 - The list of abbreviations is titled "List of Abbreviations" again and uses the more compact style `index`.
+- The example start and end dates on the cover page are in 2027.
 - The introduction states that the chapter structure is only an example to be agreed on with the supervisor.
 
 ## [2026-11-04]
