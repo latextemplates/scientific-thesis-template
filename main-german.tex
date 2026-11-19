@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1126 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1234 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1163 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1271 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -127,12 +127,18 @@
 % italic letters, including Greek.
 \usepackage{fixmath}
 
+\usepackage{framed} % for the shaded definitions below
 %for theorems, replacement for amsthm
-\usepackage[amsmath,hyperref]{ntheorem}
+\usepackage[amsmath,hyperref,framed]{ntheorem} % option framed: \newshadedtheorem
 \theorempreskipamount 2ex plus1ex minus0.5ex
 \theorempostskipamount 2ex plus1ex minus0.5ex
 \theoremstyle{break}
-\newtheorem{definition}{Definition}[chapter]
+% Definitions on a light gray background with a bar on the left, so that they stand out in the text
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\newcommand{\definitionframe}[1]{{\color{black!45}\vrule width 2pt}\colorbox{black!4}{#1}}
+\def\theoremframecommand{\definitionframe}
+\newshadedtheorem{definition}{Definition}[chapter]
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/onlyamsmath/onlyamsmath.dvi
 % Warnt bei Benutzung von Befehlen die mit amsmath inkompatibel sind.
@@ -260,7 +266,9 @@
 % chapter entries in the heading font and the lower levels in the text font. No tocloft needed (it does
 % not go well with KOMA-Script); change entryformat to taste, e.g., \sffamily\large for larger section entries,
 % and \setkomafont{chapterentry}{...} for the chapter entries.
-\DeclareTOCStyleEntries[entryformat=\sffamily,pagenumberformat=\sffamily]{tocline}{section,subsection,subsubsection}
+% Dot leaders in light gray, so that they do not compete with the entries
+\DeclareTOCStyleEntries[entryformat=\sffamily,pagenumberformat=\sffamily,linefill=\TOCLineLeaderFill[\textcolor{black!30}{.}]]{tocline}{section,subsection,subsubsection}
+\DeclareTOCStyleEntries[linefill=\TOCLineLeaderFill[\textcolor{black!30}{.}]]{tocline}{figure,table}
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
@@ -555,6 +563,13 @@
 % longtable: tables that automatically break across page boundaries.
 \usepackage{longtable}
 
+% tabularray: tables whose layout (column widths, alignment, colors, cells spanning rows or columns) is set in one
+% place in front of the content. It covers what tabularx, multirow, multicolumn, and colortbl do for tabular.
+% Doc: https://ctan.org/pkg/tabularray
+\usepackage{tabularray}
+% \toprule, \midrule, \cmidrule, and \bottomrule inside tblr
+\UseTblrLibrary{booktabs}
+
 % UML diagrams without external tools (see the "UML diagrams" section in the LaTeX hints):
 % - MetaUML (class and component diagrams) is MetaPost code, which lualatex runs itself via luamplib
 % - pgf-umlsd (sequence diagrams) is TikZ code, which works with every engine
@@ -685,12 +700,34 @@
     notes,              % [^label] referenced footnotes
     inlineNotes,        % ^[inline footnote text]
     pipeTables,         % | a | b | style tables
-    tableCaptions,      % : Caption text below a table
+    tableCaptions,      % : Caption text below a table (typeset above it, see below)
     tableAttributes,    % {#id} identifier on a table caption
     headerAttributes,   % {#id} identifier on a heading
     relativeReferences, % <#id> to reference an id defined via {#id} (typeset by \zcref, see below)
     hashEnumerators,    % 1) 2) 3) style enumerators
   ]{markdown}
+  % Table captions above the table, as for all other tables (the markdown package puts them below)
+  \makeatletter
+  \ExplSyntaxOn
+  \markdownSetup{rendererPrototypes={
+        table = {
+            \markdownLaTeXTable={}
+            \markdownLaTeXTableAlignment={}
+            \markdownLaTeXTableEnd={\markdownLaTeXBottomRule\end{tabular}}
+            \tl_if_empty:nF {#1} {
+              \addto@hook\markdownLaTeXTable{\begin{table}\centering\caption{#1}}
+              \seq_map_inline:Nn \l__markdown_table_identifiers_seq { \addto@hook\markdownLaTeXTable{\label{##1}} }
+              \addto@hook\markdownLaTeXTableEnd{\end{table}}
+            }
+            \addto@hook\markdownLaTeXTable{\begin{tabular}}
+            \markdownLaTeXRowCounter=0
+            \markdownLaTeXRowTotal=#2
+            \markdownLaTeXColumnTotal=#3
+            \markdownLaTeXRenderTableRow
+          }
+      }}
+  \ExplSyntaxOff
+  \makeatother
   % Markdown's own reference syntax <#id> typesets the bare number (\ref).
   % Typeset it with \zcref instead, so that "<#tbl:example> shows" reads "Table 1 shows".
   % Other links are rendered as before.

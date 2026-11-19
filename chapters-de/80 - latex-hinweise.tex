@@ -469,6 +469,43 @@ Scaling shrinks the font, so for a table with long text in its cells, prefer wra
 \end{ltgexample}
 
 
+\section{Tables with tabularray}
+
+The \href{https://ctan.org/pkg/tabularray}{tabularray} package separates the layout of a table from its content.
+The layout is given once as key-value list in front of the rows: the columns (\verb+colspec+), the style of whole rows (\verb+row{...}+), and cells spanning several rows or columns (\verb+cell{row}{column} = {r=..., c=...}+).
+The rows then contain only the content, without \verb+\multicolumn+ or \verb+\multirow+.
+\verb+X+ columns share the remaining width as in tabularx, \verb+Q+ columns are as wide as their content.
+The caption is above the table, as for all tables.
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Runtime of four sorting algorithms, set with tabularray}
+  \label{tab:tabularray}
+  \centering
+  \begin{tblr}{
+      colspec = {X[l] Q[r] Q[r] Q[r]},
+      row{1,2} = {font=\bfseries},
+      cell{1}{1} = {r=2}{l,m},  % "Algorithm" spans the two header rows
+      cell{1}{2} = {c=2}{c},    % "Runtime" spans two columns
+      cell{1}{4} = {r=2}{r,m},
+      row{4,6} = {bg=black!6},  % every second row on a light gray background
+    }
+    \toprule
+    Algorithm & Runtime (s)  &                   & Memory (MB) \\
+    \cmidrule{2-3}
+              & 1\,000 items & 1\,000\,000 items &             \\
+    \midrule
+    Quicksort & 0.12         & 1.80              & 12          \\
+    Mergesort & 0.15         & 2.10              & 24          \\
+    Heapsort  & 0.20         & 2.40              & 12          \\
+    Timsort   & 0.10         & 1.50              & 18          \\
+    \bottomrule
+  \end{tblr}
+\end{table}
+\end{ltgexample}
+
+For a table spanning several pages, \verb+longtblr+ takes the same keys and repeats the header row (\verb+rowhead = 1+) on every page.
+
 \section{Tables spanning multiple pages}
 
 The \href{https://ctan.org/pkg/longtable}{longtable} package typesets tables that automatically break across page boundaries.
