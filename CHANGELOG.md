@@ -7,8 +7,15 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ## [Unreleased]
 
+### Added
+
+- The LaTeX hints contain an example of a table set with [tabularray](https://ctan.org/pkg/tabularray).
+
 ### Changed
 
+- Definitions are set on a light gray background with a bar on the left.
+- The dot leaders in the table of contents and the lists of figures and tables are light gray.
+- The table written in Markdown has its caption above the table, as all other tables.
 - TODOs (`\todo{...}`) are shown as a titled box in the text (package `todonotes`) instead of a PDF comment that only shows "TODO!".
 - The page numbers of sections and subsections in the table of contents are in sans-serif, like the entries themselves.
 - The variant for the University of Stuttgart is two-sided again (chapters start on a right-hand page), as the university requires double-sided PDFs.
@@ -19,6 +26,10 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The list of abbreviations is titled "List of Abbreviations" again and uses the more compact style `index`.
 - The example start and end dates on the cover page and the date the links were last followed are in 2027.
 - The introduction states in a TODO that the chapter structure is only an example to be agreed on with the supervisor.
+
+### Fixed
+
+- The example figures in the chapters show a placeholder image instead of only a caption.
 
 ## [2026-11-04]
 
