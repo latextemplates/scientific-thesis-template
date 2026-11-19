@@ -78,7 +78,15 @@ Here is a comment\sidecomment{Comment}.
 \todo{A lot of text still needs to be produced here}
 \end{ltgexample}
 
-With zebra, \verb|\todo| takes the responsible person as optional argument; further note types are \verb|\note|, \verb|\comment|, \verb|\fixed|, and \verb|\placeholder|.
+\verb|\TODO| and \verb|\FIXME| work with every TODO package the template offers: \verb|\TODO| is a normal TODO, \verb|\FIXME| an important one.
+
+\begin{ltgexample}
+\TODO{Add the evaluation}
+
+\FIXME{The numbers are outdated}
+\end{ltgexample}
+
+With zebra, \verb|\todo| takes the responsible person as optional argument; further note types are \verb|\note|, \verb|\comment|, \verb|\fixed|, \verb|\placeholder|, and \verb|\fixme| (defined by the template, used by \verb|\FIXME|).
 All notes are listed at the end of the document.
 
 \begin{ltgexample}

@@ -79,7 +79,15 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \todo{Hier muss noch kräftig Text produziert werden}
 \end{ltgexample}
 
-Bei zebra nimmt \verb|\todo| die verantwortliche Person als optionales Argument; weitere Notizarten sind \verb|\note|, \verb|\comment|, \verb|\fixed| und \verb|\placeholder|.
+\verb|\TODO| und \verb|\FIXME| funktionieren mit jedem TODO-Paket der Vorlage: \verb|\TODO| ist ein normales TODO, \verb|\FIXME| ein wichtiges.
+
+\begin{ltgexample}
+\TODO{Evaluation ergänzen}
+
+\FIXME{Die Zahlen sind veraltet}
+\end{ltgexample}
+
+Bei zebra nimmt \verb|\todo| die verantwortliche Person als optionales Argument; weitere Notizarten sind \verb|\note|, \verb|\comment|, \verb|\fixed|, \verb|\placeholder| und \verb|\fixme| (von der Vorlage definiert, genutzt von \verb|\FIXME|).
 Alle Notizen werden am Ende des Dokuments aufgelistet.
 
 \begin{ltgexample}

@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1207 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1337.
+% vvvvvvvv  The content starts in line 1210 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1340.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -686,8 +686,8 @@
 
 % TODO (and comment) configuration
 %
-% - \todo (from zebra, todonotes, luatodonotes) / \TODO (from fixmetodonotes) - for "normal" TODOs
-% - \todofix - "important" TODOs
+% - \todo (from zebra, todonotes, luatodonotes), or \TODO - for "normal" TODOs
+% - \todofix, or \FIXME - "important" TODOs
 %
 % - \textcomment - highlights text and has a hover comment
 % - \sidecomment - just puts a comment to the side. Note: \comment is the comment environment of several packages (mathdesign, mindflow, verbatim, and others); only zebra adds \comment[name]{...} as command
@@ -704,7 +704,9 @@
 \usepackage[draft]{zebra} % explicit: the class option draft=false would hide all notes
 % Final version: hide all notes and the lists at the end
 % \usepackage[final]{zebra}
-\newcommand{\todofix}[1]{\zebratodo{#1}}
+% Important TODOs as own note type: \fixme{...}
+\zebranewnote{fixme}{red!80!black}
+\newcommand{\todofix}[1]{\zebrafixme{#1}}
 \newcommand{\sidecomment}[1]{\zebracomment{#1}}
 % \comment is also the comment environment (verbatim, comment; used by mindflow and acmart), which zebra does not redefine:
 % \comment[name]{...} is a zebra note, \begin{comment} ... \end{comment} still comments out
@@ -730,6 +732,7 @@
 \@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
 \@ifundefined{TODO}{\newcommand{\TODO}[1]{\todo{#1}}}{}
 \@ifundefined{todofix}{\newcommand{\todofix}[1]{\todo{#1}}}{}
+\@ifundefined{FIXME}{\newcommand{\FIXME}[1]{\todofix{#1}}}{}
 \@ifundefined{change}{\newcommand{\change}[2]{#1 $\rightarrow$ #2}}{}
 \makeatother
 
