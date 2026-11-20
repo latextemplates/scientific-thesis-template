@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1176 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1314 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1182 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1320 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -382,6 +382,12 @@
 %\usemintedstyle{bw} %black and white style
 %\usemintedstyle{vs} %visual studio
 \usemintedstyle{friendly_grayscale}
+
+% Line numbers are not copied along with the code (in PDF viewers that support ActualText)
+\usepackage{accsupp}
+% robust, as \refstepcounter expands \theFancyVerbLine for \label
+\DeclareRobustCommand{\mintednocopy}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+\renewcommand{\theFancyVerbLine}{\mintednocopy{\rmfamily\tiny\arabic{FancyVerbLine}}}
 %\usemintedstyle{friendly}
 %\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
 %\usemintedstyle{autumn}

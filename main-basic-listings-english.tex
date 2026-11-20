@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1233 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1335.
+% vvvvvvvv  The content starts in line 1235 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1337.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -354,8 +354,10 @@
 % Code Listings
 \usepackage{listings}
 
-% accsupp keeps the soft-wrap arrow (see postbreak below) out of the copied text
+% accsupp keeps the soft-wrap arrow (see postbreak below) and the line numbers out of the copied text
 \usepackage{accsupp}
+% The line number is the argument of the last command of numberstyle
+\newcommand{\lstnocopy}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
 
 \definecolor{eclipseStrings}{RGB}{42,0.0,255}
 \definecolor{eclipseKeywords}{RGB}{127,0,85}
@@ -369,7 +371,7 @@
   commentstyle=\color{eclipseStrings}, % style of comment
   stringstyle=\color{eclipseKeywords}, % style of strings
   numbers=left,
-  numberstyle=\scriptsize,
+  numberstyle=\scriptsize\lstnocopy,
   stepnumber=1,
   numbersep=8pt,
   showstringspaces=false,
@@ -422,7 +424,7 @@
   %
   numbers=left,
   %
-  numberstyle=\tiny,
+  numberstyle=\tiny\lstnocopy,
   %
   basewidth=.5em,
   %
@@ -986,7 +988,7 @@
         belowskip=0mm,
         numbers=left,
         xleftmargin=0mm,
-        numberstyle=\tiny,
+        numberstyle=\tiny\lstnocopy,
         numbersep=8pt%
       }
   }%
