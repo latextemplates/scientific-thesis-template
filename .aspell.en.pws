@@ -1,4 +1,4 @@
-personal_ws-1.1 en 199 utf-8
+personal_ws-1.1 en 202 utf-8
 abbreviationdot
 aboveskip
 ACM
@@ -6,6 +6,7 @@ acm
 acmnumeric
 addarg
 adjustbox
+al
 angepasst
 applica
 args
@@ -17,6 +18,7 @@ basicstyle
 Bei
 bei
 belowskip
+Binz
 BPEL
 BPMN
 breakatwhitespace
@@ -49,6 +51,7 @@ enumitem
 eq
 error
 escapeinside
+et
 FancyVerbLine
 ff
 firstline

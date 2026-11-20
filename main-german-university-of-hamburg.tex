@@ -747,13 +747,13 @@
             \markdownLaTeXTable={}
             \markdownLaTeXTableAlignment={}
             % begin and end in nested order, so ChkTeX finds the pairs
-            \tl_if_empty:nF {#1} {
+            \IfBlankF {#1} {
               \addto@hook\markdownLaTeXTable{\begin{table}\centering\caption{#1}}
               \seq_map_inline:Nn \l__markdown_table_identifiers_seq { \addto@hook\markdownLaTeXTable{\label{##1}} }
             }
             \addto@hook\markdownLaTeXTable{\begin{tabular}}
             \markdownLaTeXTableEnd={\markdownLaTeXBottomRule\end{tabular}}
-            \tl_if_empty:nF {#1} { \addto@hook\markdownLaTeXTableEnd{\end{table}} }
+            \IfBlankF {#1} { \addto@hook\markdownLaTeXTableEnd{\end{table}} }
             \markdownLaTeXRowCounter=0
             \markdownLaTeXRowTotal=#2
             \markdownLaTeXColumnTotal=#3
