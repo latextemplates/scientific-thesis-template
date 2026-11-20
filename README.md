@@ -84,6 +84,8 @@ Following features are enabled in this template:
 - Support of hyperlinked references without extra color thanx to [hyperref].
 - Better breaking of long URLs.
 - Support for `\powerset` command.
+- TODOs (`\todo{...}`) as short notes in the text with a numbered symbol in the margin, and a list of all open notes at the end of the document.
+  This is enabled by the [zebra](https://ctan.org/pkg/zebra) package.
 - Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 - [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
 - Modern packages such as [microtype], [zref-clever], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [booktabs].
@@ -253,7 +255,7 @@ PlantUML and Mermaid offer a more compact syntax and lay out the diagrams automa
 To use them, generate an own copy of this template with the [latex template generator]:
 
 ```bash
-npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --uml=plantuml --docker=dante'
+npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=zebra --examples=true --howtotext=true --uml=plantuml --docker=dante'
 ```
 
 Use `--uml=mermaid` for Mermaid.
@@ -525,7 +527,7 @@ If your university wants it in English, set the type as free text in the options
   Generate an own copy of the template with the [latex template generator]:
 
   ```bash
-  npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --font=times --pagenumbering=roman'
+  npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=zebra --examples=true --howtotext=true --font=times --pagenumbering=roman'
   ```
 
   The generator asks for the remaining options (institution: University of Stuttgart; language; package for source code).
@@ -539,7 +541,7 @@ See the [decision record](https://github.com/latextemplates/generator-latex-temp
 If your institution wants roman numerals for the front matter, put `\frontmatter` before the title page and `\mainmatter` before the first chapter of the main file, or generate an own copy of the template with the [latex template generator]:
 
 ```bash
-npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=pdfcomment --examples=true --howtotext=true --pagenumbering=roman'
+npx -p yo -p generator-latex-template -c 'yo latex-template --documentclass=scientific-thesis --latexcompiler=both --overleaf=true --texlive=2026 --enquotes=csquotes --tweakouterquote=babel --todo=zebra --examples=true --howtotext=true --pagenumbering=roman'
 ```
 
 ### Q: How do I change the font of the table of contents?
@@ -549,11 +551,11 @@ The chapter entries use the font element `chapterentry`, the lower levels are se
 
 ```latex
 \setkomafont{chapterentry}{\sffamily\bfseries\large}
-\DeclareTOCStyleEntries[entryformat=\sffamily\large]{tocline}{section}
-\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{subsection,subsubsection}
+\DeclareTOCStyleEntries[entryformat=\sffamily\large,pagenumberformat=\sffamily]{tocline}{section}
+\DeclareTOCStyleEntries[entryformat=\sffamily,pagenumberformat=\sffamily]{tocline}{subsection,subsubsection}
 ```
 
-The template sets all entries in the sans-serif font of the headings; see the KOMA-Script manual (`texdoc scrguide`, section on `tocbasic`) for `numwidth`, `indent`, `pagenumberformat`, and the other keys.
+The template sets all entries and their page numbers in the sans-serif font of the headings; see the KOMA-Script manual (`texdoc scrguide`, section on `tocbasic`) for `numwidth`, `indent`, `pagenumberformat`, and the other keys.
 
 ### Q: How do I speed up compilation with a precompiled preamble?
 
@@ -616,7 +618,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 
 - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
 - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
-- Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in your main `.tex` file.
+- Check the list of notes at the end of the PDF. Then switch to `\usepackage[final]{zebra}` in your main `.tex` file (the line is there as a comment): this hides all notes and the list.
 - Uncomment `\phfDisableCommentingCommands` in your main `.tex` file to hide all edits and comments made with `\FA{...}`.
 - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
 - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).

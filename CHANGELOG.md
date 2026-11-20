@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Added
+
+- `\TODO{...}` marks a TODO, `\FIXME{...}` an important one, and `\CITE{...}` a claim that still needs a citation.
+- The LaTeX hints contain an example of a table set with [tabularray](https://ctan.org/pkg/tabularray).
+
+### Changed
+
+- The line numbers of code listings are not copied along with the code (in PDF viewers that support it, such as Acrobat, Evince, and Okular).
+- TODOs are set with [zebra](https://ctan.org/pkg/zebra): `\todo{...}` is a short note in the text with a numbered symbol in the margin, and all open notes are listed at the end of the document. `\usepackage[final]{zebra}` hides them for the final version.
+- Definitions are set on a light gray background with a bar on the left.
+- The dot leaders in the table of contents and the lists of figures and tables are light gray.
+- The table written in Markdown has its caption above the table, as all other tables.
+- TODOs (`\todo{...}`) are shown as a titled box in the text (package `todonotes`) instead of a PDF comment that only shows "TODO!".
+- The page numbers of sections and subsections in the table of contents are in sans-serif, like the entries themselves.
+- The variant for the University of Stuttgart is two-sided again (chapters start on a right-hand page), as the university requires double-sided PDFs.
+- The variant for the University of Stuttgart sets the cover page in its previous layout and with its previous labels again ("Course of Study", "Supervisor", "Commenced", "Completed").
+- The variant for the University of Stuttgart keeps the text block in the middle of the page again (same left and right margins), while the page numbers alternate.
+- Several supervisors on the cover page are labeled in the plural ("Supervisors", German: "Betreuer/innen"); the other variants say "Advisors".
+- `scientific-thesis-cover.sty` 5.3.0: the two cover-page changes above as released.
+- The progress bars are hidden by default; `\showprogresstrue` in the preamble shows them.
+- The list of abbreviations is titled "List of Abbreviations" again and uses the more compact style `index`.
+- The example start and end dates on the cover page and the date the links were last followed are in 2027.
+- The introduction states in a TODO that the chapter structure is only an example to be agreed on with the supervisor.
+
+### Fixed
+
+- The example figures in the chapters show a placeholder image instead of only a caption.
+
 ## [2026-11-04]
 
 ### Changed

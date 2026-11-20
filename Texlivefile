@@ -10,6 +10,7 @@ algorithms
 algpseudocodex
 amsmath
 autotype
+atbegshi
 auxhook
 babel
 babel-english
@@ -63,8 +64,8 @@ fixmath
 float
 floatbytocbasic
 floatflt
-fncychap
 fontaxes
+framed
 fontspec
 footmisc
 gettitlestring
@@ -86,6 +87,7 @@ hyphen-english
 hyphen-german
 hyphenex
 ifmtarg
+ifoddpage
 ifplatform
 iftex
 impnattypo
@@ -117,7 +119,9 @@ luacolor
 lua-widow-control
 luatex85
 luatexbase
+luatodonotes
 ly1
+manfnt
 marginnote
 markdown
 
@@ -142,6 +146,7 @@ newfloat
 newtx
 newtxtt
 nfssext-cfr
+ninecolors
 nowidow
 ntheorem
 paralist
@@ -181,6 +186,7 @@ subfiles
 svn-prov
 tabto-ltx
 tablefootnote
+tabularray
 tcolorbox
 tex-gyre
 tex-gyre-math
@@ -212,6 +218,7 @@ xkeyval
 xpatch
 xstring
 xurl
+zebra
 zref
 zref-clever
 zref-vario

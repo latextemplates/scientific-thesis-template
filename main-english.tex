@@ -4,10 +4,10 @@
 % !TeX program = lualatex
 % !BIB program = biber
 % -*- coding:utf-8 mod:LaTeX -*-
-% Generated with generator-latex-template 2026.11.9 for latextemplates/scientific-thesis-template
+% Generated with generator-latex-template 2026.11.20 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1099 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1197.
+% vvvvvvvv  The content starts in line 1159 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1257.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -16,9 +16,8 @@
   numbers=noenddot,
   english,  % English as main language; this parameter is passed to other packages (e.g., selnolig in the case of lualatex)
   a4paper,  % KOMAScript allows for both paper=a4 and (standard) a4paper - https://tex.stackexchange.com/a/61044/9075
-  twoside=false,  % optimized for reading on screen: the same margins on every page and no blank pages
-  open=any,       % a chapter starts on the next page, not necessarily on a right-hand one
-  % For two-sided printing, replace the two lines above by "twoside, open=right,"
+  twoside,  % the University of Stuttgart requires two-sided printing: chapters start on a right-hand page
+  open=right,
   bibliography=totoc,
   captions=tableheading,  % table captions are set above the table: put the space between caption and table, not above the caption
   % idxtotoc,   % Index ins Inhaltsverzeichnis
@@ -126,12 +125,18 @@
 % italic letters, including Greek.
 \usepackage{fixmath}
 
+\usepackage{framed} % for the shaded definitions below
 %for theorems, replacement for amsthm
-\usepackage[amsmath,hyperref]{ntheorem}
+\usepackage[amsmath,hyperref,framed]{ntheorem} % option framed: \newshadedtheorem
 \theorempreskipamount 2ex plus1ex minus0.5ex
 \theorempostskipamount 2ex plus1ex minus0.5ex
 \theoremstyle{break}
-\newtheorem{definition}{Definition}[chapter]
+% Definitions on a light gray background with a bar on the left, so that they stand out in the text
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\newcommand{\definitionframe}[1]{{\color{black!45}\vrule width 2pt}\colorbox{black!4}{#1}}
+\def\theoremframecommand{\definitionframe}
+\newshadedtheorem{definition}{Definition}[chapter]
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/onlyamsmath/onlyamsmath.dvi
 % Warnt bei Benutzung von Befehlen die mit amsmath inkompatibel sind.
@@ -264,7 +269,9 @@
 % chapter entries in the heading font and the lower levels in the text font. No tocloft needed (it does
 % not go well with KOMA-Script); change entryformat to taste, e.g., \sffamily\large for larger section entries,
 % and \setkomafont{chapterentry}{...} for the chapter entries.
-\DeclareTOCStyleEntries[entryformat=\sffamily]{tocline}{section,subsection,subsubsection}
+% Dot leaders in light gray, so that they do not compete with the entries
+\DeclareTOCStyleEntries[entryformat=\sffamily,pagenumberformat=\sffamily,linefill=\TOCLineLeaderFill[\textcolor{black!30}{.}]]{tocline}{section,subsection,subsubsection}
+\DeclareTOCStyleEntries[linefill=\TOCLineLeaderFill[\textcolor{black!30}{.}]]{tocline}{figure,table}
 
 % Header: the chapter on the left, the current section on the right.
 % autooneside=false keeps the section mark in a single-sided document.
@@ -366,6 +373,12 @@
 %\usemintedstyle{bw} %black and white style
 %\usemintedstyle{vs} %visual studio
 \usemintedstyle{friendly_grayscale}
+
+% Line numbers are not copied along with the code (in PDF viewers that support ActualText)
+\usepackage{accsupp}
+% robust, as \refstepcounter expands \theFancyVerbLine for \label
+\DeclareRobustCommand{\mintednocopy}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+\renewcommand{\theFancyVerbLine}{\mintednocopy{\rmfamily\tiny\arabic{FancyVerbLine}}}
 %\usemintedstyle{friendly}
 %\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
 %\usemintedstyle{autumn}
@@ -538,6 +551,13 @@
 % longtable: tables that automatically break across page boundaries.
 \usepackage{longtable}
 
+% tabularray: tables whose layout (column widths, alignment, colors, cells spanning rows or columns) is set in one
+% place in front of the content. It covers what tabularx, multirow, multicolumn, and colortbl do for tabular.
+% Doc: https://ctan.org/pkg/tabularray
+\usepackage{tabularray}
+% \toprule, \midrule, \cmidrule, and \bottomrule inside tblr
+\UseTblrLibrary{booktabs}
+
 % UML diagrams without external tools (see the "UML diagrams" section in the LaTeX hints):
 % - MetaUML (class and component diagrams) is MetaPost code, which lualatex runs itself via luamplib
 % - pgf-umlsd (sequence diagrams) is TikZ code, which works with every engine
@@ -603,11 +623,12 @@
 
 % TODO (and comment) configuration
 %
-% - \todo (from todo, easy-todo, todonotes) / \TODO (from fixmetodonotes) - for "normal" TODOs
-% - \todofix - "important" TODOs
+% - \todo (from zebra, todonotes, luatodonotes), or \TODO - for "normal" TODOs
+% - \todofix, or \FIXME - "important" TODOs
+% - \CITE - a claim that still needs a citation
 %
-% - \textcomment - highlights text and has a hover comment
-% - \sidecomment - just puts a comment to the side. Note: \comment MUST NOT be used as command name, it is already defined by much packages (mathdesign, mindflow, verbatim, and others)
+% - \textcomment{text}{comment} - comments on a text passage (pdfcomment: highlights the text and shows the comment on hover; otherwise: the text followed by \todo{comment})
+% - \sidecomment - just puts a comment to the side. Note: \comment is the comment environment of several packages (mathdesign, mindflow, verbatim, and others); only zebra adds \comment[name]{...} as command
 %
 % - \missingfigure
 %
@@ -615,32 +636,34 @@
 % - \modified
 % - \change      - addresses a review comment
 
-% Enable nice comments
-\usepackage{pdfcomment}
-
-\ifdefined\directlua
-  % Highlighting that breaks across lines (\colorbox does not): lua-ul's \highLight; the color needs luacolor
-  \usepackage{luacolor,lua-ul}
-  \newcommand{\textcomment}[2]{\highLight[yellow!60]{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\else
-  \newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\fi
-
-% Small PDF comment
-% 1st parameter: comment
-\newcommand{\sidecomment}[1]{\pdfcomment[color={0.045 0.278 0.643},voffset=4pt,icon=Note]{#1}}
-% Disabled variant - for the final PDF
-%\newcommand{\sidecomment}[1]{}
-
-\newcommand{\todo}[1]{TODO!\sidecomment{#1}}
-
-% Changes
-%
-% 1st parameter: review comment
-% 2nd parameter: new text
-\newcommand{\change}[2]{{\color{red}#2}\pdfcomment[color={0.234 0.867 0.211},voffset=8pt,opacity=0.5]{#1}}
-% Disabled variant - for the final PDF
-%\newcommand{\change}[2]{#2}
+% TODOs as short inline notes with a small numbered symbol in the margin; a summary and a list of all notes follow at the end
+% Doc: https://ctan.org/pkg/zebra
+% Commands: \todo[name]{...}, \note, \fixed, \placeholder, and \comment
+\usepackage[draft]{zebra} % explicit: the class option draft=false would hide all notes
+% Final version: hide all notes and the lists at the end
+% \usepackage[final]{zebra}
+% Important TODOs as own note type: \fixme{...}
+\zebranewnote{fixme}{red!80!black}
+\newcommand{\todofix}[1]{\zebrafixme{#1}}
+% Missing citations as own note type: \zebrasource{...} (a note type "cite" would clash with \cite)
+\zebranewnote{source}{blue!70!black}
+\newcommand{\CITE}[1]{\zebrasource{#1}}
+\newcommand{\sidecomment}[1]{\zebracomment{#1}}
+% \comment is also the comment environment (verbatim, comment; used by mindflow and acmart), which zebra does not redefine:
+% \comment[name]{...} is a zebra note, \begin{comment} ... \end{comment} still comments out
+\makeatletter
+\AddToHook{begindocument/before}{%
+  \@ifundefined{comment}{\let\comment\zebracomment}{%
+    \let\ltg@commentenvironment\comment
+    \def\ltg@commentname{comment}%
+    \renewcommand*{\comment}{%
+      \ifx\@currenvir\ltg@commentname
+        \expandafter\ltg@commentenvironment
+      \else
+        \expandafter\zebracomment
+      \fi}}}
+\makeatother
+\newcommand{\missingfigure}[1][]{\zebraplaceholder{missing figure}}
 
 % Define default commands
 \makeatletter
@@ -650,6 +673,8 @@
 \@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
 \@ifundefined{TODO}{\newcommand{\TODO}[1]{\todo{#1}}}{}
 \@ifundefined{todofix}{\newcommand{\todofix}[1]{\todo{#1}}}{}
+\@ifundefined{FIXME}{\newcommand{\FIXME}[1]{\todofix{#1}}}{}
+\@ifundefined{CITE}{\newcommand{\CITE}[1]{\todo{Citation needed: #1}}}{}
 \@ifundefined{change}{\newcommand{\change}[2]{#1 $\rightarrow$ #2}}{}
 \makeatother
 
@@ -686,12 +711,35 @@
     notes,              % [^label] referenced footnotes
     inlineNotes,        % ^[inline footnote text]
     pipeTables,         % | a | b | style tables
-    tableCaptions,      % : Caption text below a table
+    tableCaptions,      % : Caption text below a table (typeset above it, see below)
     tableAttributes,    % {#id} identifier on a table caption
     headerAttributes,   % {#id} identifier on a heading
     relativeReferences, % <#id> to reference an id defined via {#id} (typeset by \zcref, see below)
     hashEnumerators,    % 1) 2) 3) style enumerators
   ]{markdown}
+  % Table captions above the table, as for all other tables (the markdown package puts them below)
+  \makeatletter
+  \ExplSyntaxOn
+  \markdownSetup{rendererPrototypes={
+        table = {
+            \markdownLaTeXTable={}
+            \markdownLaTeXTableAlignment={}
+            % begin and end in nested order, so ChkTeX finds the pairs
+            \IfBlankF {#1} {
+              \addto@hook\markdownLaTeXTable{\begin{table}\centering\caption{#1}}
+              \seq_map_inline:Nn \l__markdown_table_identifiers_seq { \addto@hook\markdownLaTeXTable{\label{##1}} }
+            }
+            \addto@hook\markdownLaTeXTable{\begin{tabular}}
+            \markdownLaTeXTableEnd={\markdownLaTeXBottomRule\end{tabular}}
+            \IfBlankF {#1} { \addto@hook\markdownLaTeXTableEnd{\end{table}} }
+            \markdownLaTeXRowCounter=0
+            \markdownLaTeXRowTotal=#2
+            \markdownLaTeXColumnTotal=#3
+            \markdownLaTeXRenderTableRow
+          }
+      }}
+  \ExplSyntaxOff
+  \makeatother
   % Markdown's own reference syntax <#id> typesets the bare number (\ref).
   % Typeset it with \zcref instead, so that "<#tbl:example> shows" reads "Table 1 shows".
   % Other links are rendered as before.
@@ -736,7 +784,7 @@
 % Which template this document is based on, in the PDF properties (custom entry "Template"; shown by
 % "pdfinfo -custom" and in the document properties of most viewers). Keep it: it tells which version
 % of the template a document was built on, which helps when comparing or updating adapted files.
-\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.9}}}
+\hypersetup{pdfinfo={Template={latextemplates/scientific-thesis-template, generated with generator-latex-template 2026.11.20}}}
 
 % Document version from git: \gitVer is the commit (with "-dirty" when there are uncommitted changes) and
 % \versionBox a framed "Manuscript version: #<commit> - <build time>", e.g. for the footer or the title page.
@@ -770,10 +818,11 @@
 
 % Show how far each chapter or section is written:
 % \progress{60} below a heading draws a bar filled to 60 %.
-% Set \showprogressfalse to hide all bars, e.g., for the submitted version.
+% The bars are hidden by default; uncomment \showprogresstrue below to show them while writing.
 \usepackage{progressbar}
 \newif\ifshowprogress
-\showprogresstrue
+\showprogressfalse
+% \showprogresstrue % uncomment to show the bars while writing
 \newcommand{\progress}[1]{%
   \ifshowprogress
     \par\vspace{-.5\baselineskip}%
@@ -837,6 +886,7 @@
 \usepackage{mwe}
 \usepackage{hologo} % logos such as \hologo{LuaLaTeX} (used in the Markdown example)
 \usepackage[realmainfile]{currfile}
+\newcommand{\ltgexamplefile}{\currfilename}
 \usepackage{tcolorbox}
 \tcbuselibrary{minted}
 % Required for proper example rendering in the compiled PDF
@@ -847,14 +897,14 @@
 {\LTGendlineexample=\numexpr\inputlineno-1\relax%
   \tcbinputlisting{%
     listing only,
-    % \currfilename, not \currfilepath: a chapter is read through the import path of subfiles, which minted would prepend once more
-    listing file=\currfilename,
+    % \currfilename (in \ltgexamplefile), not \currfilepath: a chapter is read through the import path of subfiles, which minted would prepend once more
+    listing file=\ltgexamplefile,
     colback=green!5!white,
     colframe=green!25,
     coltitle=black!90,
     coltext=black!90,
     left=8mm,
-    title=Corresponding \LaTeX{} code of \texttt{\currfilename},
+    title=Corresponding \LaTeX{} code of \texttt{\ltgexamplefile},
     minted language=TeX,
     minted style=vs,
     minted options={
@@ -866,7 +916,7 @@
         linenos,
         numbersep=8pt
       }
-  }
+  }%
 }%
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
@@ -887,9 +937,9 @@
   translate=babel,
   abbreviations,         % create "abbreviations" glossary
   nomain,                % don't create "main" glossary
-  stylemods=longbooktabs % do the adjustments for the longbooktabs styles
+  stylemods              % do the adjustments for the glossary styles
 ]{glossaries-extra}
-\setglossarystyle{long3col-booktabs}
+\setglossarystyle{index}
 
 % Hint by https://tex.stackexchange.com/a/463188/9075
 % \usepackage{glossary-longextra}
@@ -934,6 +984,15 @@
 \usepackage{lccaps}
 \input{commands}
 
+% Same left and right margins on every page: the text block stays in the middle of the page (reading on screen),
+% while page numbers and headers alternate between left-hand and right-hand pages (two-sided printing).
+\usepackage[
+  left=3cm,right=3cm,top=2.5cm,bottom=2.5cm,
+  headsep=18pt,
+  footskip=30pt,
+  includehead,
+  includefoot
+]{geometry}
 % Package URL: https://ctan.org/pkg/scientific-thesis-cover
 \usepackage[
   title={Is Oil the future?},
@@ -943,9 +1002,10 @@
   course={Medieninformatik},
   examiner={Prof.\ Dr.\ Eike Kraft},
   supervisor={Luca Wind,\ M.Sc.,\\Janne Strom,\ M.Sc.},
-  startdate={July 5, 2018},
-  enddate={January 5, 2019},
-  language=english
+  startdate={April 1, 2027},
+  enddate={September 30, 2027},
+  language=english,
+  ustutt  % layout of the cover page as before 2026-11 (University of Stuttgart)
 ]{scientific-thesis-cover}
 
 
@@ -1185,7 +1245,7 @@ What can they do with your research.
 %\listofalgorithms
 
 % Abbreviations / Acronyms
-\printnoidxglossary[type=\acronymtype,sort=word,title={Abbreviations}]
+\printnoidxglossary[type=\acronymtype,sort=word,title={List of Abbreviations}]
 % \printunsrtglossaries cannot be used, because then no indexing happens; source: https://tex.stackexchange.com/a/287128/9075
 
 \microtypesetup{protrusion=true}
@@ -1216,7 +1276,7 @@ What can they do with your research.
 \ \\
 %
 \noindent
-All links were last followed on October 5, 2020.
+All links were last followed on September 25, 2027.
 
 %%% ===============================================================================
 

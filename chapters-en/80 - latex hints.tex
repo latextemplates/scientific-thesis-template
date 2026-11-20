@@ -62,11 +62,6 @@ With \verb1\textmarker1, only the text color is changed, since this also works w
 \end{ltgexample}
 
 \begin{ltgexample}
-\hl{Highlighted in yellow.}
-Provided indirectly by the pdfcomment package (via soulpos).
-\end{ltgexample}
-
-\begin{ltgexample}
 \modified{Manual marking for text that has been changed since the last version.}
 \end{ltgexample}
 
@@ -83,11 +78,37 @@ Here is a comment\sidecomment{Comment}.
 \todo{A lot of text still needs to be produced here}
 \end{ltgexample}
 
-Several authors can mark their edits and comments with the \href{https://ctan.org/pkg/phfcc}{phfcc} package; the initials of the author appear once per page in the margin.
+\verb|\TODO|, \verb|\FIXME|, and \verb|\CITE| work with every package for notes the template offers: \verb|\TODO| marks an open task, \verb|\FIXME| an important one, and \verb|\CITE| a claim that still needs a citation.
+
+\begin{ltgexample}
+\TODO{Add the evaluation}
+
+\FIXME{The numbers are outdated}
+
+Most scientific texts in computer science are written with \LaTeX{}~\CITE{Survey on the tools used for writing}.
+\end{ltgexample}
+
+With zebra, \verb|\todo| takes the responsible person as optional argument; further note types are \verb|\note|, \verb|\comment|, \verb|\fixed|, \verb|\placeholder|, \verb|\fixme|, and \verb|\source| (defined by the template, used by \verb|\FIXME| and \verb|\CITE|).
+All notes are listed at the end of the document.
+
+\begin{ltgexample}
+\todo[FA]{Add a citation}
+
+\note{Shorten this paragraph?}
+
+\comment[FA]{Is this claim backed by the evaluation?}
+
+\fixed{Typo corrected}
+
+\placeholder{Table with the results}
+\end{ltgexample}
+
+
+Co-authors can mark their edits and comments with the \href{https://ctan.org/pkg/phfcc}{phfcc} package; the initials of the author appear once per page in the margin.
 Define one command per author in the preamble (\verb|\phfMakeCommentingCommand|); \verb|\phfDisableCommentingCommands| hides everything for the final version.
 
 \begin{ltgexample}
-Quantum mechanics developed quickly thanks to the works of Schrödinger, Heisenberg, and Dirac,
+Quantum mechanics developed within one decade thanks to the works of Schrödinger, Heisenberg, and Dirac,
 who drew inspiration from earlier ideas by Planck \FA{and Einstein} \FA[Einstein must not be missing here.]
 \FA*{This sentence is to be removed.} \FA!{This is important.}
 \end{ltgexample}
@@ -439,7 +460,7 @@ If the notes should appear directly below the table instead (common in journals)
 
 A table wider than the text runs into the margin.
 \verb|\begin{adjustbox}{max width=\linewidth}| from the \href{https://ctan.org/pkg/adjustbox}{adjustbox} package scales it down to the line width (the column width in a two-column layout), and only if it is too wide.
-Scaling shrinks the font, so for a table with long text in its cells, prefer wrapping the text with the column type \verb|X| of the \href{https://ctan.org/pkg/tabularx}{tabularx} package, and for a very wide table, a landscape page (see \texttt{pdflscape}).
+Scaling shrinks the font, so for a table with long text in its cells, prefer wrapping the text with the column type \verb|X| of the \href{https://ctan.org/pkg/tabularx}{tabularx} package, and for a table wider than the page, a landscape page (see \texttt{pdflscape}).
 
 \begin{ltgexample}
 \begin{table}
@@ -475,6 +496,43 @@ Scaling shrinks the font, so for a table with long text in its cells, prefer wra
 \end{table}
 \end{ltgexample}
 
+
+\section{Tables with tabularray}
+
+The \href{https://ctan.org/pkg/tabularray}{tabularray} package separates the layout of a table from its content.
+The layout is given once as key-value list in front of the rows: the columns (\verb+colspec+), the style of whole rows (\verb+row{...}+), and cells spanning multiple rows or columns (\verb+cell{row}{column} = {r=..., c=...}+).
+The rows then contain only the content, without \verb+\multicolumn+ or \verb+\multirow+.
+\verb+X+ columns share the remaining width as in tabularx, \verb+Q+ columns are as wide as their content.
+The caption is above the table, as for all tables.
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Runtime of four sorting algorithms, set with tabularray}
+  \label{tab:tabularray}
+  \centering
+  \begin{tblr}{
+      colspec = {X[l] Q[r] Q[r] Q[r]},
+      row{1,2} = {font=\bfseries},
+      cell{1}{1} = {r=2}{l,m},  % "Algorithm" spans the two header rows
+      cell{1}{2} = {c=2}{c},    % "Runtime" spans two columns
+      cell{1}{4} = {r=2}{r,m},
+      row{4,6} = {bg=black!6},  % every second row on a light gray background
+    }
+    \toprule
+    Algorithm & Runtime (s)  &                   & Memory (MB) \\
+    \cmidrule{2-3}
+              & 1\,000 items & 1\,000\,000 items &             \\
+    \midrule
+    Quicksort & 0.12         & 1.80              & 12          \\
+    Mergesort & 0.15         & 2.10              & 24          \\
+    Heapsort  & 0.20         & 2.40              & 12          \\
+    Timsort   & 0.10         & 1.50              & 18          \\
+    \bottomrule
+  \end{tblr}
+\end{table}
+\end{ltgexample}
+
+For a table spanning more than one page, \verb+longtblr+ takes the same keys and repeats the header row (\verb+rowhead = 1+) on every page.
 
 \section{Tables spanning multiple pages}
 
