@@ -79,15 +79,17 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \todo{Hier muss noch kräftig Text produziert werden}
 \end{ltgexample}
 
-\verb|\TODO| und \verb|\FIXME| funktionieren mit jedem TODO-Paket der Vorlage: \verb|\TODO| ist ein normales TODO, \verb|\FIXME| ein wichtiges.
+\verb|\TODO|, \verb|\FIXME| und \verb|\CITE| funktionieren mit jedem TODO-Paket der Vorlage: \verb|\TODO| ist ein normales TODO, \verb|\FIXME| ein wichtiges, und \verb|\CITE| markiert eine Aussage, der noch ein Beleg fehlt.
 
 \begin{ltgexample}
 \TODO{Evaluation ergänzen}
 
 \FIXME{Die Zahlen sind veraltet}
+
+Die meisten wissenschaftlichen Texte der Informatik werden mit \LaTeX{} geschrieben.\CITE{Umfrage zu den Werkzeugen beim Schreiben}
 \end{ltgexample}
 
-Bei zebra nimmt \verb|\todo| die verantwortliche Person als optionales Argument; weitere Notizarten sind \verb|\note|, \verb|\comment|, \verb|\fixed|, \verb|\placeholder| und \verb|\fixme| (von der Vorlage definiert, genutzt von \verb|\FIXME|).
+Bei zebra nimmt \verb|\todo| die verantwortliche Person als optionales Argument; weitere Notizarten sind \verb|\note|, \verb|\comment|, \verb|\fixed|, \verb|\placeholder|, \verb|\fixme| und \verb|\source| (von der Vorlage definiert, genutzt von \verb|\FIXME| und \verb|\CITE|).
 Alle Notizen werden am Ende des Dokuments aufgelistet.
 
 \begin{ltgexample}

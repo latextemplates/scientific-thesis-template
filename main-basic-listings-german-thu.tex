@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  Der Inhalt beginnt in Zeile 1266 (\begin{document}); das erste
-%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1406 eingebunden.
+% vvvvvvvv  Der Inhalt beginnt in Zeile 1271 (\begin{document}); das erste
+%           Kapitel (\subfileinclude{chapters-de/10 - einleitung}) wird in Zeile 1411 eingebunden.
 %           Die Kapitel liegen im Verzeichnis "chapters-de".
 %           Alles darüber ist die Präambel: Dokumentklasse, Pakete und Einstellungen.
 
@@ -709,8 +709,9 @@
 %
 % - \todo (from zebra, todonotes, luatodonotes), or \TODO - for "normal" TODOs
 % - \todofix, or \FIXME - "important" TODOs
+% - \CITE - a claim that still needs a citation
 %
-% - \textcomment - highlights text and has a hover comment
+% - \textcomment{text}{comment} - comments on a text passage (pdfcomment: highlights the text and shows the comment on hover; otherwise: the text followed by \todo{comment})
 % - \sidecomment - just puts a comment to the side. Note: \comment is the comment environment of several packages (mathdesign, mindflow, verbatim, and others); only zebra adds \comment[name]{...} as command
 %
 % - \missingfigure
@@ -728,6 +729,9 @@
 % Important TODOs as own note type: \fixme{...}
 \zebranewnote{fixme}{red!80!black}
 \newcommand{\todofix}[1]{\zebrafixme{#1}}
+% Missing citations as own note type: \zebrasource{...} (a note type "cite" would clash with \cite)
+\zebranewnote{source}{blue!70!black}
+\newcommand{\CITE}[1]{\zebrasource{#1}}
 \newcommand{\sidecomment}[1]{\zebracomment{#1}}
 % \comment is also the comment environment (verbatim, comment; used by mindflow and acmart), which zebra does not redefine:
 % \comment[name]{...} is a zebra note, \begin{comment} ... \end{comment} still comments out
@@ -754,6 +758,7 @@
 \@ifundefined{TODO}{\newcommand{\TODO}[1]{\todo{#1}}}{}
 \@ifundefined{todofix}{\newcommand{\todofix}[1]{\todo{#1}}}{}
 \@ifundefined{FIXME}{\newcommand{\FIXME}[1]{\todofix{#1}}}{}
+\@ifundefined{CITE}{\newcommand{\CITE}[1]{\todo{CITE: #1}}}{}
 \@ifundefined{change}{\newcommand{\change}[2]{#1 $\rightarrow$ #2}}{}
 \makeatother
 
