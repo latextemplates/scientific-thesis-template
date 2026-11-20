@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1234 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1364.
+% vvvvvvvv  The content starts in line 1235 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1365.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -948,6 +948,7 @@
 \usepackage{mwe}
 \usepackage{hologo} % logos such as \hologo{LuaLaTeX} (used in the Markdown example)
 \usepackage[realmainfile]{currfile}
+\newcommand{\ltgexamplefile}{\currfilename}
 \usepackage{tcolorbox}
 \tcbuselibrary{listings}
 % Required for proper example rendering in the compiled PDF
@@ -961,7 +962,7 @@
   % of this file outside the example is read as empty line while the box reads the file.
   \ifdefined\directlua
     \directlua{
-      local file = "\luaescapestring{\currfilename}"
+      local file = "\luaescapestring{\ltgexamplefile}"
       local first, last, line = \the\LTGbeginlineexample, \the\LTGendlineexample, 0
       luatexbase.add_to_callback("process_input_buffer", function(text)
         if status.filename:sub(-string.len(file)) == file then
@@ -974,14 +975,14 @@
   \fi
   \tcbinputlisting{%
     listing only,
-    % \currfilename, not \currfilepath: a chapter is read through the import path of subfiles, which minted would prepend once more
-    listing file=\currfilename,
+    % \currfilename (in \ltgexamplefile), not \currfilepath: a chapter is read through the import path of subfiles, which minted would prepend once more
+    listing file=\ltgexamplefile,
     colback=green!5!white,
     colframe=green!25,
     coltitle=black!90,
     coltext=black!90,
     left=8mm,
-    title=Corresponding \LaTeX{} code of \texttt{\currfilename},
+    title=Corresponding \LaTeX{} code of \texttt{\ltgexamplefile},
     listing options={
         frame=none,
         language={[LaTeX]TeX},
