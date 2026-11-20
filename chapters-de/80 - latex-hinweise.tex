@@ -458,7 +458,7 @@ If the notes should appear directly below the table instead (common in journals)
 
 A table wider than the text runs into the margin.
 \verb|\begin{adjustbox}{max width=\linewidth}| from the \href{https://ctan.org/pkg/adjustbox}{adjustbox} package scales it down to the line width (the column width in a two-column layout), and only if it is too wide.
-Scaling shrinks the font, so for a table with long text in its cells, prefer wrapping the text with the column type \verb|X| of the \href{https://ctan.org/pkg/tabularx}{tabularx} package, and for a very wide table, a landscape page (see \texttt{pdflscape}).
+Scaling shrinks the font, so for a table with long text in its cells, prefer wrapping the text with the column type \verb|X| of the \href{https://ctan.org/pkg/tabularx}{tabularx} package, and for a table wider than the page, a landscape page (see \texttt{pdflscape}).
 
 \begin{ltgexample}
 \begin{table}
@@ -498,7 +498,7 @@ Scaling shrinks the font, so for a table with long text in its cells, prefer wra
 \section{Tables with tabularray}
 
 The \href{https://ctan.org/pkg/tabularray}{tabularray} package separates the layout of a table from its content.
-The layout is given once as key-value list in front of the rows: the columns (\verb+colspec+), the style of whole rows (\verb+row{...}+), and cells spanning several rows or columns (\verb+cell{row}{column} = {r=..., c=...}+).
+The layout is given once as key-value list in front of the rows: the columns (\verb+colspec+), the style of whole rows (\verb+row{...}+), and cells spanning multiple rows or columns (\verb+cell{row}{column} = {r=..., c=...}+).
 The rows then contain only the content, without \verb+\multicolumn+ or \verb+\multirow+.
 \verb+X+ columns share the remaining width as in tabularx, \verb+Q+ columns are as wide as their content.
 The caption is above the table, as for all tables.
@@ -530,7 +530,7 @@ The caption is above the table, as for all tables.
 \end{table}
 \end{ltgexample}
 
-For a table spanning several pages, \verb+longtblr+ takes the same keys and repeats the header row (\verb+rowhead = 1+) on every page.
+For a table spanning more than one page, \verb+longtblr+ takes the same keys and repeats the header row (\verb+rowhead = 1+) on every page.
 
 \section{Tables spanning multiple pages}
 
