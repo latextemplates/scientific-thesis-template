@@ -25,7 +25,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 - The variant for the University of Stuttgart sets the cover page in its previous layout and with its previous labels again ("Course of Study", "Supervisor", "Commenced", "Completed").
 - The variant for the University of Stuttgart keeps the text block in the middle of the page again (same left and right margins), while the page numbers alternate.
 - Several supervisors on the cover page are labeled in the plural ("Supervisors", German: "Betreuer/innen"); the other variants say "Advisors".
-- `scientific-thesis-cover.sty` 5.3.0 (the release, also on CTAN): the two cover-page changes above.
+- `scientific-thesis-cover.sty` 5.3.0: the two cover-page changes above as released.
 - The progress bars are hidden by default; `\showprogresstrue` in the preamble shows them.
 - The list of abbreviations is titled "List of Abbreviations" again and uses the more compact style `index`.
 - The example start and end dates on the cover page and the date the links were last followed are in 2027.
