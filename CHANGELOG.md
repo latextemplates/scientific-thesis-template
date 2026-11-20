@@ -9,7 +9,7 @@ From 2025-01-26 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Added
 
-- `\TODO{...}` marks a TODO and `\FIXME{...}` an important one.
+- `\TODO{...}` marks a TODO, `\FIXME{...}` an important one, and `\CITE{...}` a claim that still needs a citation.
 - The LaTeX hints contain an example of a table set with [tabularray](https://ctan.org/pkg/tabularray).
 
 ### Changed
