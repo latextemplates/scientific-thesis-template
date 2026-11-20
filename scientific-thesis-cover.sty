@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01] % shipout hooks
 \newcommand{\USCCover@Pgkname}{scientific-thesis-cover}
-\ProvidesPackage{\USCCover@Pgkname}[2026/11/18 Cover and affirmation for scientific works.]
+\ProvidesPackage{\USCCover@Pgkname}[2026/11/20 Cover and affirmation for scientific works.]
 \typeout{Package: `\USCCover@Pgkname' v5.3.0}
 % ------------------------------
 % required packages
@@ -398,10 +398,10 @@
                 \ifx\MCS@logo\empty
                 \else
                     \vbox to 15mm{
-                        \begin{center}
-                            \includegraphics[height=14mm]{\MCS@logo}
-                        \end{center}
-                       \vfill}
+                            \begin{center}
+                                \includegraphics[height=14mm]{\MCS@logo}
+                            \end{center}
+                            \vfill}
                     % Height of institute vbox reduced to accomodate logo
                     \renewcommand{\instituteHeight}{55}
                 \fi
@@ -476,7 +476,7 @@
                     \@labelType\ifx\MCS@number\empty\else\ Nr.\,\MCS@number\fi}}
             % title box: 104mm to 147mm from the top, title centered vertically
             \put(\dimexpr(\paperwidth-100mm)/2\relax,-147mm){\fboxsep=0pt\@USCCover@umrandet{%
-                    \parbox[b][43mm][c]{100mm}{\centering\fontsize{17.28pt}{22pt}\selectfont\textbf{\MCS@title}}}}
+                        \parbox[b][43mm][c]{100mm}{\centering\fontsize{17.28pt}{22pt}\selectfont\textbf{\MCS@title}}}}
             \USCCover@at{152mm}{100mm}{\fontsize{12pt}{14pt}\selectfont\MCS@author}
             \USCCover@field{224mm}{\@labelCourse}{\@labelCourseValue}
             \USCCover@field{232mm}{\USCCover@examinerlabel}{\MCS@examiner}
@@ -518,7 +518,7 @@
     \cleardoublepage
     \providecommand{\USCCover@isTwoColumn}{}
     \if@twocolumn \renewcommand{\USCCover@isTwoColumn}{true} \onecolumn
-        \else \renewcommand{\USCCover@isTwoColumn}{false} \fi
+    \else \renewcommand{\USCCover@isTwoColumn}{false} \fi
     \null
     \vskip 5cm\relax
     \begin{center}
