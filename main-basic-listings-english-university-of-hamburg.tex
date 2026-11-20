@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1235 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1367.
+% vvvvvvvv  The content starts in line 1239 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1371.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -739,7 +739,7 @@
 \@ifundefined{TODO}{\newcommand{\TODO}[1]{\todo{#1}}}{}
 \@ifundefined{todofix}{\newcommand{\todofix}[1]{\todo{#1}}}{}
 \@ifundefined{FIXME}{\newcommand{\FIXME}[1]{\todofix{#1}}}{}
-\@ifundefined{CITE}{\newcommand{\CITE}[1]{\todo{CITE: #1}}}{}
+\@ifundefined{CITE}{\newcommand{\CITE}[1]{\todo{Citation needed: #1}}}{}
 \@ifundefined{change}{\newcommand{\change}[2]{#1 $\rightarrow$ #2}}{}
 \makeatother
 
@@ -789,13 +789,14 @@
         table = {
             \markdownLaTeXTable={}
             \markdownLaTeXTableAlignment={}
-            \markdownLaTeXTableEnd={\markdownLaTeXBottomRule\end{tabular}}
+            % begin and end in nested order, so ChkTeX finds the pairs
             \tl_if_empty:nF {#1} {
               \addto@hook\markdownLaTeXTable{\begin{table}\centering\caption{#1}}
               \seq_map_inline:Nn \l__markdown_table_identifiers_seq { \addto@hook\markdownLaTeXTable{\label{##1}} }
-              \addto@hook\markdownLaTeXTableEnd{\end{table}}
             }
             \addto@hook\markdownLaTeXTable{\begin{tabular}}
+            \markdownLaTeXTableEnd={\markdownLaTeXBottomRule\end{tabular}}
+            \tl_if_empty:nF {#1} { \addto@hook\markdownLaTeXTableEnd{\end{table}} }
             \markdownLaTeXRowCounter=0
             \markdownLaTeXRowTotal=#2
             \markdownLaTeXColumnTotal=#3
@@ -962,15 +963,18 @@
   % of this file outside the example is read as empty line while the box reads the file.
   \ifdefined\directlua
     \directlua{
-      local file = "\luaescapestring{\ltgexamplefile}"
+      % Lua strings in [[...]] and a space before each parenthesis keep ChkTeX quiet; noindent keeps latexindent from flattening the Lua code
+      % \begin{noindent}
+      local file = [[\ltgexamplefile]]
       local first, last, line = \the\LTGbeginlineexample, \the\LTGendlineexample, 0
-      luatexbase.add_to_callback("process_input_buffer", function(text)
-        if status.filename:sub(-string.len(file)) == file then
+      luatexbase.add_to_callback ([[process_input_buffer]], function (text)
+        if status.filename:sub (-string.len (file)) == file then
           line = line + 1
-          if line < first or line > last then return "" end
+          if line < first or line > last then return [[]] end
         end
         return text
-      end, "ltgexample")
+      end, [[ltgexample]])
+      % \end{noindent}
     }%
   \fi
   \tcbinputlisting{%
@@ -1001,7 +1005,7 @@
         numbersep=8pt%
       }
   }%
-  \ifdefined\directlua\directlua{luatexbase.remove_from_callback("process_input_buffer", "ltgexample")}\fi
+  \ifdefined\directlua\directlua{luatexbase.remove_from_callback ([[process_input_buffer]], [[ltgexample]])}\fi
 }%
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377

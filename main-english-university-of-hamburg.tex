@@ -6,8 +6,8 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 % Generated with generator-latex-template 2026.11.12 for latextemplates/scientific-thesis-template
 %
-% vvvvvvvv  The content starts in line 1152 (\begin{document}); the first
-%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1280.
+% vvvvvvvv  The content starts in line 1153 (\begin{document}); the first
+%           chapter (\subfileinclude{chapters-en/10 - introduction}) is included in line 1281.
 %           The chapters are in the directory "chapters-en".
 %           Everything above is the preamble: document class, packages, and settings.
 
@@ -677,7 +677,7 @@
 \@ifundefined{TODO}{\newcommand{\TODO}[1]{\todo{#1}}}{}
 \@ifundefined{todofix}{\newcommand{\todofix}[1]{\todo{#1}}}{}
 \@ifundefined{FIXME}{\newcommand{\FIXME}[1]{\todofix{#1}}}{}
-\@ifundefined{CITE}{\newcommand{\CITE}[1]{\todo{CITE: #1}}}{}
+\@ifundefined{CITE}{\newcommand{\CITE}[1]{\todo{Citation needed: #1}}}{}
 \@ifundefined{change}{\newcommand{\change}[2]{#1 $\rightarrow$ #2}}{}
 \makeatother
 
@@ -727,13 +727,14 @@
         table = {
             \markdownLaTeXTable={}
             \markdownLaTeXTableAlignment={}
-            \markdownLaTeXTableEnd={\markdownLaTeXBottomRule\end{tabular}}
+            % begin and end in nested order, so ChkTeX finds the pairs
             \tl_if_empty:nF {#1} {
               \addto@hook\markdownLaTeXTable{\begin{table}\centering\caption{#1}}
               \seq_map_inline:Nn \l__markdown_table_identifiers_seq { \addto@hook\markdownLaTeXTable{\label{##1}} }
-              \addto@hook\markdownLaTeXTableEnd{\end{table}}
             }
             \addto@hook\markdownLaTeXTable{\begin{tabular}}
+            \markdownLaTeXTableEnd={\markdownLaTeXBottomRule\end{tabular}}
+            \tl_if_empty:nF {#1} { \addto@hook\markdownLaTeXTableEnd{\end{table}} }
             \markdownLaTeXRowCounter=0
             \markdownLaTeXRowTotal=#2
             \markdownLaTeXColumnTotal=#3
