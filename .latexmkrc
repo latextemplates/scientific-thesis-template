@@ -12,6 +12,8 @@ $pdf_mode = 1;
 # needless reruns and, after five of them, exit code 12 without any error in the
 # log. Ignore the recorder file when checking whether a rerun is needed; this is
 # a no-op when nothing reads it.
+# Required for latexmk < 4.89 (TeX Live 2025); 4.89 handles the recorder file itself.
+# Remove this setting together with the support for TeX Live 2025.
 $hash_calc_ignore_pattern{'fls'} = '^';
 
 # biblatex writes its own rerun flags into the .run.xml and .aux files (via logreq
